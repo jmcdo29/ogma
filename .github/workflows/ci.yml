@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+  push:
+    branches:
+      - '*'
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install
+      run: npm ci
+    - name: check format
+      run: npx prettier --check 'src/**/*.ts'
+    - name: lint
+      run: npm run lint
+    - name: npm test
+      run: npm run test:cov
+    - name: npm build
+      run: npm run build
+      env:
+        CI: true
