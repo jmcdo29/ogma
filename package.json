@@ -1,8 +1,15 @@
 {
   "name": "nestjs-ogma",
   "version": "0.0.3",
-  "description": "",
-  "author": "",
+  "description": "A NestJS module for the Ogma logger",
+  "author": {
+    "name": "Jay McDoniel",
+    "email": "jmcdo29@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmcdo29/nestjs-ogma"
+  },
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
