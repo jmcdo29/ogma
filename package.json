@@ -1,6 +1,6 @@
 {
   "name": "nestjs-ogma",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A NestJS module for the Ogma logger",
   "author": {
     "name": "Jay McDoniel",
