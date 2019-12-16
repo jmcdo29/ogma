@@ -6,7 +6,8 @@ import {
   Scope,
 } from '@nestjs/common';
 import { color, Ogma } from 'ogma';
-import { OGMA_CONTEXT, OGMA_INSTANCE } from './ogma.constants';
+import { OgmaModuleOptions } from './interfaces/ogma-options.interface';
+import { OGMA_CONTEXT, OGMA_INSTANCE, OGMA_OPTIONS } from './ogma.constants';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class OgmaService implements LoggerService {
@@ -63,8 +64,11 @@ export class OgmaService implements LoggerService {
     context?: string,
   ): void {
     context = context ?? this.context;
-    context = context ? color.cyan('[' + context + ']') : '';
-    const nest = color.yellow('[Nest]');
+    context = context ? '[' + context + ']' : '';
+    context = (this.ogma as any).options.color ? color.cyan(context) : context;
+    const nest = (this.ogma as any).options.color
+      ? color.yellow('[Nest]')
+      : '[Nest]';
     if (typeof message === 'object' && message !== null) {
       this.ogma[levelString](nest + ' ' + process.pid + ' ' + context + ' |');
       this.ogma[levelString](message);
