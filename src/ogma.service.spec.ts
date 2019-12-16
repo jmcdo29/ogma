@@ -41,6 +41,10 @@ describe('OgmaService', () => {
                       provide: OGMA_INSTANCE,
                       useFactory: () => {
                         const ogma = new Ogma(options);
+                        (ogma as any).options = {
+                          ...(ogma as any).options,
+                          ...options,
+                        };
                         ogmaSpy = jest.spyOn(ogma, level as any);
                         return ogma;
                       },
@@ -90,28 +94,5 @@ describe.each([new Ogma(), undefined])(
       expect(service).toHaveProperty('ogma');
       expect(service).toBeDefined();
     });
-  },
-);
-
-describe.each([{ context: 'TEST_CONTEXT' }, {}, undefined])(
-  'OgmaModule',
-  (options: any) => {
-    let service: OgmaService;
-
-    beforeEach(async () => {
-      const module = await Test.createTestingModule({
-        imports: [OgmaModule.forFeature(options)],
-      }).compile();
-      service = await module.resolve(OgmaService);
-    });
-
-    it(
-      'should have OgmaService defined with options ' + JSON.stringify(options),
-      () => {
-        expect(service).toBeDefined();
-        expect(service).toHaveProperty('context');
-        expect((service as any).context).toBe(options?.context ?? '');
-      },
-    );
   },
 );
