@@ -19,7 +19,7 @@ export class OgmaService implements LoggerService {
   public log = this.info;
 
   constructor(
-    @Optional() @Inject(OGMA_INSTANCE) ogma: Ogma,
+    @Optional() @Inject(OGMA_INSTANCE) ogma?: Ogma,
     @Optional() @Inject(OGMA_CONTEXT) context?: string,
   ) {
     this.context = context || '';
