@@ -16,16 +16,53 @@ Ogma is a lightweight logger with customization options, that prints your logs i
 
 ## Configuration
 
-Currently, configuration is only done in the `forFeature` static method of the module. The method takes in a single object that is an intersection of the context key, and the `OgmaOptions` from the `Ogma` package. You could configured your OgmaModule like so
+In your root module, import `OgmaModule.forRoot` or `OgmaModule.forRootAsync` to apply application wide settings, such as `color`, `json`, and `application`. You can also set a default context as a fallback if no context is passed in the `forFeature` static method. You can use the standard method of async module configuration meaning `useClass`, `useValue`, and `useFactory` are all available methods to work with.
 
 ```ts
 @Module({
   imports: [
-    OgmaModule.forFeature({ context: MyService.name, color: false })
-  ],
+    OgmaModule.forRoot({
+      color: true,
+      json: false,
+      application: 'NestJS'
+    })
+  ]
+})
+export class AppModule {}
+```
+
+or async
+
+```ts
+@Module({
+  imports: [
+    OgmaModule.forRootAsync({
+      useFactory: (config: ConfigService) => ({
+        json: config.isProd(),
+        stream: {
+          write: (message) =>
+            appendFile(config.getLogFile(), message, (err) => {
+              if (err) {
+                throw err;
+              }
+            })
+        },
+        application: config.getAppName()
+      })
+    })
+  ]
+})
+export class AppModule {}
+```
+
+From here in each module you need to add the `OgmaService` you can add `OgmaModule.forFeature(context, option)`, where context is the context you want to add to the log and options are `OgmaOptions` you want to pass to override the originally configured options.
+
+```ts
+@Module({
+  imports: [OgmaModule.forFeature(MyService.name, { color: false })],
   providers: [MyService]
 })
 export class MyModule {}
 ```
 
-The above will turn colors off for MyModule's related service's logs, and will create a context for the logs called 'MyService`.
+The above would set up the OgmaService to add the context of `[MyService]` to every log from within the `MyModule` module, and would tell the `Ogma` instance to not use any colors.
