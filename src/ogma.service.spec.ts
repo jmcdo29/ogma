@@ -1,7 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { LogLevel, Ogma, OgmaOptions } from 'ogma';
 import { OGMA_CONTEXT, OGMA_INSTANCE } from './ogma.constants';
-import { OgmaModule } from './ogma.module';
 import { OgmaService } from './ogma.service';
 
 jest.mock('ogma');
@@ -64,11 +63,7 @@ describe('OgmaService', () => {
                 'should call with value %o',
                 (value: any) => {
                   service[level](value, customContext);
-                  if (typeof value === 'object') {
-                    expect(ogmaSpy).toBeCalledTimes(2);
-                  } else {
-                    expect(ogmaSpy).toBeCalledTimes(1);
-                  }
+                  expect(ogmaSpy).toBeCalledTimes(1);
                 },
               );
               it('should be able to call "callError"', () => {

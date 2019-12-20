@@ -16,6 +16,9 @@ export class OgmaModule {
       logLevel: options.logLevel as keyof typeof LogLevel,
       color: options.color,
       stream: options.stream,
+      json: options.json,
+      application: options.application ?? 'Nest',
+      context: options.context,
     });
     return OgmaCoreModule.forRoot(OgmaCoreModule, options);
   }
@@ -41,16 +44,12 @@ export class OgmaModule {
         },
         {
           provide: OGMA_INSTANCE,
-          useFactory: (moduleOptions: OgmaOptions) => {
+          useFactory: () => {
             if (options) {
               return createOgmaProvider(options);
             }
-            if (!(OgmaModule.ogmaInstance as any).options.logLevel) {
-              OgmaModule.ogmaInstance = createOgmaProvider(moduleOptions);
-            }
             return OgmaModule.ogmaInstance;
           },
-          inject: [OGMA_OPTIONS],
           scope: Scope.TRANSIENT,
         },
         OgmaService,

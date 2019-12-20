@@ -4,4 +4,7 @@ export interface OgmaModuleOptions {
   stream?: {
     write: (message: any) => void;
   };
+  json?: boolean;
+  context?: string;
+  application?: string;
 }

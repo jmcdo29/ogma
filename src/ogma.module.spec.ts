@@ -6,7 +6,7 @@ describe('OgmaModule', () => {
   let service: OgmaService;
 
   describe.each(['TEST_CONTEXT', '', undefined])(
-    'create context then use that context',
+    'create context %j then use that context',
     (options: string | undefined) => {
       beforeEach(async () => {
         const module = await Test.createTestingModule({
@@ -18,15 +18,11 @@ describe('OgmaModule', () => {
         service = await module.resolve(OgmaService);
       });
 
-      it(
-        'should have OgmaService defined with options ' +
-          JSON.stringify(options),
-        () => {
-          expect(service).toBeDefined();
-          expect(service).toHaveProperty('context');
-          expect((service as any).context).toBe(options ?? '');
-        },
-      );
+      it('should have OgmaService defined with options', () => {
+        expect(service).toBeDefined();
+        expect(service).toHaveProperty('context');
+        expect((service as any).context).toBe(options ?? '');
+      });
     },
   );
   describe('create context then use new context', () => {
@@ -62,6 +58,19 @@ describe('OgmaModule', () => {
       }).compile();
       service = await module.resolve(OgmaService);
       expect((service as any).ogma.options.logLevel).toBeDefined();
+    });
+  });
+
+  describe('forFeature without using forRoot', () => {
+    it('should create a new ogma instance', async () => {
+      const module = await Test.createTestingModule({
+        imports: [
+          OgmaModule.forRoot({ application: 'TEST APP' }),
+          OgmaModule.forFeature('No Root'),
+        ],
+      }).compile();
+      service = await module.resolve(OgmaService);
+      expect((service as any).ogma.options.logLevel).toBe('INFO');
     });
   });
 });

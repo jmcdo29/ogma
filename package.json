@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@golevelup/nestjs-modules": "^0.3.0",
-    "ogma": "0.0.2"
+    "ogma": "0.0.6"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",

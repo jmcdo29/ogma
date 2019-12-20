@@ -11,14 +11,15 @@ import { OGMA_CONTEXT, OGMA_INSTANCE, OGMA_OPTIONS } from './ogma.constants';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class OgmaService implements LoggerService {
-  private context?: string;
+  private readonly context?: string;
+  private readonly ogma: Ogma;
 
   public fine = this.verbose;
 
   public log = this.info;
 
   constructor(
-    @Optional() @Inject(OGMA_INSTANCE) private readonly ogma: Ogma,
+    @Optional() @Inject(OGMA_INSTANCE) ogma: Ogma,
     @Optional() @Inject(OGMA_CONTEXT) context?: string,
   ) {
     this.context = context || '';
@@ -64,18 +65,6 @@ export class OgmaService implements LoggerService {
     context?: string,
   ): void {
     context = context ?? this.context;
-    context = context ? '[' + context + ']' : '';
-    context = (this.ogma as any).options.color ? color.cyan(context) : context;
-    const nest = (this.ogma as any).options.color
-      ? color.yellow('[Nest]')
-      : '[Nest]';
-    if (typeof message === 'object' && message !== null) {
-      this.ogma[levelString](nest + ' ' + process.pid + ' ' + context + ' |');
-      this.ogma[levelString](message);
-    } else {
-      this.ogma[levelString](
-        nest + ' ' + process.pid + ' ' + context + ' | ' + message,
-      );
-    }
+    this.ogma[levelString](message, context);
   }
 }
