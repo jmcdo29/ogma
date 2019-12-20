@@ -1,5 +1,7 @@
+import { LogLevel } from 'ogma';
+
 export interface OgmaModuleOptions {
-  logLevel?: string;
+  logLevel?: keyof typeof LogLevel;
   color?: boolean;
   stream?: {
     write: (message: any) => void;

@@ -1,5 +1,8 @@
 import { Ogma, OgmaOptions } from 'ogma';
 
-export function createOgmaProvider(options?: Partial<OgmaOptions>): Ogma {
-  return new Ogma(options);
+export function createOgmaProvider(options: Partial<OgmaOptions>): Ogma {
+  return new Ogma({
+    ...options,
+    application: options.application || 'Nest',
+  });
 }
