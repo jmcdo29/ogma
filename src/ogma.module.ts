@@ -29,7 +29,7 @@ export class OgmaModule {
    * @param options optional additional options for creating a new Ogma instance
    */
   static forFeature(
-    context?: string,
+    context: string = '',
     options?: OgmaModuleOptions,
   ): DynamicModule {
     return {

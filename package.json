@@ -36,6 +36,7 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
+    "@compodoc/compodoc": "^1.1.11",
     "@nestjs/cli": "^6.9.0",
     "@nestjs/common": "^6.10.11",
     "@nestjs/core": "^6.10.11",
@@ -82,7 +83,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": [
+        "lint-staged",
+        "compodoc"
+      ],
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
