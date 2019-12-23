@@ -10,5 +10,5 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
   OgmaCoreModule,
   OgmaModuleOptions
 >(OGMA_OPTIONS) {
-  static Deferred = OgmaCoreModule.externallyConfigured(OgmaCoreModule, 500);
+  static Deferred = OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0);
 }

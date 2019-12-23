@@ -1,16 +1,19 @@
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { OgmaModule } from './ogma.module';
 import { OgmaService } from './ogma.service';
+
 describe('OgmaModule', () => {
-  beforeEach(() => {
+  let module: TestingModule;
+  afterEach(async () => {
     (OgmaModule as any).ogmaInstance = undefined;
+    await module.close();
   });
   describe.each(['TEST_CONTEXT', '', undefined])(
     'create context %j then use that context',
     (options: string | undefined) => {
       let service: OgmaService;
       beforeEach(async () => {
-        const module = await Test.createTestingModule({
+        module = await Test.createTestingModule({
           imports: [
             OgmaModule.forRoot({ color: false }),
             OgmaModule.forFeature(options),
@@ -23,6 +26,7 @@ describe('OgmaModule', () => {
         expect(service).toBeDefined();
         expect(service).toHaveProperty('context');
         expect((service as any).context).toBe(options ?? '');
+        expect((service as any).ogma.options.color).toBe(false);
       });
     },
   );
@@ -30,7 +34,7 @@ describe('OgmaModule', () => {
   describe('create context then use new context', () => {
     let service: OgmaService;
     it('should create multiple ogma instances', async () => {
-      const module = await Test.createTestingModule({
+      module = await Test.createTestingModule({
         imports: [
           OgmaModule.forRoot({
             color: true,
@@ -44,17 +48,16 @@ describe('OgmaModule', () => {
         ],
       }).compile();
       service = await module.resolve(OgmaService);
-      expect((service as any).ogma.options.logLevel).toBeDefined();
-      expect((service as any).ogma.options.color).toBeDefined();
+      expect((service as any).ogma.options.logLevel).toBe('ALL');
+      expect((service as any).ogma.options.color).toBe(false);
+      expect((service as any).context).toBe('NEW CONTEXT');
     });
   });
-  /*************************************************************************/
-  describe.only('create context with async config', () => {
+  describe('create context with async config', () => {
     let service: OgmaService;
     it('should create the async configuration', async () => {
-      const module = await Test.createTestingModule({
+      module = await Test.createTestingModule({
         imports: [
-          // set the general options for the OgmaModule
           OgmaModule.forRootAsync({
             useFactory: () => {
               return {
@@ -63,25 +66,23 @@ describe('OgmaModule', () => {
               };
             },
           }),
-          // Create a new instance of Ogma for the OgmaService with application options as 'TEST APP'
           OgmaModule.forFeature('TEST CONTEXT', {
             logLevel: 'SILLY',
             application: 'TEST APP',
           }),
         ],
       }).compile();
+
       service = await module.resolve(OgmaService);
-      // based on new Ogma options from forFeature
-      // seems `await module.resolve(OgmaService)` is not resolving the correct value. Can't tell why.
       expect((service as any).ogma.options.logLevel).toBe('SILLY');
       expect((service as any).ogma.options.application).toBe('TEST APP');
+      expect((service as any).ogma.options.color).toBe(false);
     });
   });
-  /*************************************************************************/
   describe('multiple forFeatures', () => {
     let service: OgmaService;
     it('should create a new ogma instance', async () => {
-      const module = await Test.createTestingModule({
+      module = await Test.createTestingModule({
         imports: [
           OgmaModule.forRoot({ context: 'TEST FUNC' }),
           OgmaModule.forFeature('No Root', { application: 'TEST APP' }),
@@ -91,6 +92,7 @@ describe('OgmaModule', () => {
       }).compile();
       service = await module.resolve(OgmaService);
       expect((service as any).ogma.options.logLevel).toBe('INFO');
+      expect((service as any).context).toBe('Third feature');
     });
   });
 });

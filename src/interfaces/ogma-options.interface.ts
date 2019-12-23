@@ -1,12 +1,3 @@
-import { LogLevel } from 'ogma';
+import { OgmaOptions } from 'ogma';
 
-export interface OgmaModuleOptions {
-  logLevel?: keyof typeof LogLevel;
-  color?: boolean;
-  stream?: {
-    write: (message: any) => void;
-  };
-  json?: boolean;
-  context?: string;
-  application?: string;
-}
+export interface OgmaModuleOptions extends Partial<OgmaOptions> {}
