@@ -62,6 +62,8 @@ export class AppModule {}
 
 From here in each module you need to add the `OgmaService` you can add `OgmaModule.forFeature(context, option)`, where context is the context you want to add to the log and options are `OgmaOptions` you want to pass to override the originally configured options.
 
+> OgmaModule is required to be the first parameter of `forRoot` and `forRootAsync` because of how the `OgmaModule` makes use of an underlying library for creating [DynamicModules](https://docs.nestjs.com/fundamentals/dynamic-modules). Go check it out at [@golevelup/nestjs-modules](https://github.com/golevelup/nestjs/tree/master/packages/modules).
+
 ```ts
 @Module({
   imports: [
