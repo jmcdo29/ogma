@@ -31,6 +31,7 @@ export class OgmaService implements LoggerService {
     @Inject(OGMA_INSTANCE) ogma?: Ogma,
     @Optional() @Inject(OGMA_CONTEXT) context?: string,
   ) {
+    // console.log(ogma);
     this.context = context || '';
     this.ogma = ogma ?? new Ogma();
   }

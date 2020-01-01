@@ -1,25 +1,72 @@
-import { AsyncModuleConfig } from '@golevelup/nestjs-modules';
-import { DynamicModule, Module, Scope } from '@nestjs/common';
+import { createConfigurableDynamicRootModule } from '@golevelup/nestjs-modules';
+import {
+  CallHandler,
+  DynamicModule,
+  ExecutionContext,
+  Module,
+  Scope,
+} from '@nestjs/common';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import { Ogma } from 'ogma';
-import { OgmaModuleOptions } from './interfaces/ogma-options.interface';
-import { OgmaCoreModule } from './ogma-core.module';
-import { OGMA_CONTEXT, OGMA_INSTANCE, OGMA_OPTIONS } from './ogma.constants';
+import {
+  OgmaInterceptorOptions,
+  OgmaModuleOptions,
+  OgmaServiceOptions,
+} from './interfaces/ogma-options.interface';
+import {
+  OGMA_CONTEXT,
+  OGMA_INSTANCE,
+  OGMA_INTERCEPTOR_OPTIONS,
+  OGMA_OPTIONS,
+  OGMA_SERVICE_OPTIONS,
+} from './ogma.constants';
+import { OgmaInterceptor } from './ogma.interceptor';
 import { createOgmaProvider } from './ogma.provider';
 import { OgmaService } from './ogma.service';
 
 @Module({})
-export class OgmaModule {
-  private static ogmaInstance?: Ogma;
-
-  static forRoot(options: OgmaModuleOptions): DynamicModule {
-    return OgmaCoreModule.forRoot(OgmaCoreModule, options);
-  }
-
-  static forRootAsync(
-    options: AsyncModuleConfig<OgmaModuleOptions>,
-  ): DynamicModule {
-    return OgmaCoreModule.forRootAsync(OgmaCoreModule, options);
-  }
+export class OgmaModule extends createConfigurableDynamicRootModule<
+  OgmaModule,
+  OgmaModuleOptions
+>(OGMA_OPTIONS, {
+  providers: [
+    OgmaService,
+    {
+      provide: OGMA_INTERCEPTOR_OPTIONS,
+      useFactory: (options: OgmaModuleOptions) => options.interceptor,
+      inject: [OGMA_OPTIONS],
+    },
+    {
+      provide: OGMA_SERVICE_OPTIONS,
+      useFactory: (options: OgmaModuleOptions) => options.service,
+      inject: [OGMA_OPTIONS],
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useFactory: (options: OgmaInterceptorOptions, service: OgmaService) => {
+        let interceptor;
+        if (typeof options !== 'boolean' && options !== undefined) {
+          interceptor = new OgmaInterceptor(options, service);
+        } else {
+          interceptor = {
+            intercept: (context: ExecutionContext, next: CallHandler) =>
+              next.handle(),
+          };
+        }
+        return interceptor;
+      },
+      inject: [OGMA_INTERCEPTOR_OPTIONS, OgmaService],
+    },
+    {
+      provide: OGMA_INSTANCE,
+      useFactory: (options: OgmaServiceOptions) => createOgmaProvider(options),
+      inject: [OGMA_SERVICE_OPTIONS],
+    },
+  ],
+  exports: [OGMA_INTERCEPTOR_OPTIONS, OGMA_SERVICE_OPTIONS],
+}) {
+  static ogmaInstance?: Ogma;
+  private static Deferred = OgmaModule.externallyConfigured(OgmaModule, 0);
 
   /**
    *  Creates a new OgmaService based on the given context and possible options.
@@ -30,11 +77,11 @@ export class OgmaModule {
    */
   static forFeature(
     context: string = '',
-    options?: OgmaModuleOptions,
+    options?: OgmaServiceOptions,
   ): DynamicModule {
     return {
       module: OgmaModule,
-      imports: [OgmaCoreModule.Deferred],
+      imports: [OgmaModule.Deferred],
       providers: [
         {
           provide: OGMA_CONTEXT,
@@ -45,14 +92,17 @@ export class OgmaModule {
           provide: OGMA_INSTANCE,
           useFactory: (moduleOptions: OgmaModuleOptions) => {
             if (options) {
-              return createOgmaProvider({ ...moduleOptions, ...options });
-            }
-            if (!OgmaModule.ogmaInstance) {
-              OgmaModule.ogmaInstance = createOgmaProvider(moduleOptions);
+              const originalInstance = OgmaModule.ogmaInstance;
+              const returnInstance = createOgmaProvider({
+                ...moduleOptions,
+                ...options,
+              });
+              OgmaModule.ogmaInstance = originalInstance;
+              return returnInstance;
             }
             return OgmaModule.ogmaInstance;
           },
-          inject: [OGMA_OPTIONS],
+          inject: [OGMA_SERVICE_OPTIONS],
         },
         OgmaService,
       ],

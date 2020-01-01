@@ -21,10 +21,12 @@ In your root module, import `OgmaModule.forRoot` or `OgmaModule.forRootAsync` to
 ```ts
 @Module({
   imports: [
-    OgmaModule.forRoot({
-      color: true,
-      json: false,
-      application: 'NestJS'
+    OgmaModule.forRoot(OgmaModule, {
+      serivce: {
+        color: true,
+        json: false,
+        application: 'NestJS'
+      }
     })
   ]
 })
@@ -36,16 +38,19 @@ or async
 ```ts
 @Module({
   imports: [
-    OgmaModule.forRootAsync({
+    OgmaModule.forRootAsync(OgmaModule, {
       useFactory: (config: ConfigService) => ({
-        json: config.isProd(),
-        stream: {
-          write: (message) =>
-            appendFile(config.getLogFile(), message, (err) => {
-              if (err) {
-                throw err;
+        service: {
+          json: config.isProd(),
+          stream: {
+            write: (message) =>
+              appendFile(config.getLogFile(), message, (err) => {
+                if (err) {
+                  throw err;
+                }
               }
             })
+          }
         },
         application: config.getAppName()
       })
@@ -59,10 +64,36 @@ From here in each module you need to add the `OgmaService` you can add `OgmaModu
 
 ```ts
 @Module({
-  imports: [OgmaModule.forFeature(MyService.name, { color: false })],
+  imports: [
+    OgmaModule.forFeature(MyService.name, {
+      service: { color: false }
+    })
+  ],
   providers: [MyService]
 })
 export class MyModule {}
 ```
 
 The above would set up the OgmaService to add the context of `[MyService]` to every log from within the `MyModule` module, and would tell the `Ogma` instance to not use any colors.
+
+## OgmaInterceptor
+
+Ogma also comes with a built in Interceptor for logging requests made to your server. You can decide to turn the interceptor off by passing `{ interceptor: false }` as part of the options to the `OgmaModule`. By default, the interceptor will be in `production` mode and will output a log like
+
+```sh
+[ISOString TimeStamp] [Application Name] PID [Context] [LogLevel]| Remote-Address - method URL HTTP/version Status Response-Time ms - Response-Content-Length
+```
+
+While the other option, `dev` mode, will print out in
+
+```sh
+[ISOString TimeStamp] [Application Name] PID [Context] [LogLevel]| method URL Status Response-Time ms - Response-Content-Length
+```
+
+Where `context` in both cases is the class-method combination of the path that was called. This is especially useful for GraphQL logging where all URLs log from the `/graphql` route.
+
+If you would like to skip any request url path, you can pass in a `skip` option that is a function with `req` and `res` parameters that returns a boolean. `true` to skip, `false` to log. Of course, if the JSON option is passed, then the log will be in a JSON format. All route logs are logged at the `INFO`/`LOG` level, for the sake of being visible at the default level.
+
+> In the `dev` format, the HTTP status is colored with 200's as green, 300's as cyan 400's as yellow and 500's as red. All other HTTP status codes are uncolored.
+
+> Note: Be aware that as this is an interceptor, any errors that happen in middleware, such as Passport's serialization/deserialization and authentication methods through the PassportStrategy.
