@@ -45,7 +45,8 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
       provide: APP_INTERCEPTOR,
       useFactory: (options: OgmaInterceptorOptions, service: OgmaService) => {
         let interceptor;
-        if (typeof options !== 'boolean' && options !== undefined) {
+        if (options) {
+          options = typeof options === 'object' ? options : {};
           interceptor = new OgmaInterceptor(options, service);
         } else {
           interceptor = {

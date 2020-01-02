@@ -6,6 +6,17 @@
     "name": "Jay McDoniel",
     "email": "jmcdo29@gmail.com"
   },
+  "keywords": [
+    "nestjs",
+    "nest",
+    "logger",
+    "json",
+    "json-logging",
+    "request-logging",
+    "nestjs-module",
+    "module",
+    "logging"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/jmcdo29/nestjs-ogma"

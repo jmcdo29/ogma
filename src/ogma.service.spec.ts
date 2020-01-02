@@ -85,7 +85,7 @@ describe.each([new Ogma(), undefined])(
     it(`should still be defined with instance ${
       instance ? 'new' : 'undefined'
     }`, () => {
-      const service = new OgmaService(instance as any);
+      const service = new OgmaService(instance);
       expect(service).toHaveProperty('ogma');
       expect(service).toBeDefined();
     });
