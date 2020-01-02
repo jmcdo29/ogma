@@ -30,7 +30,6 @@
   "scripts": {
     "preversion": "npm run format && npm run lint && npm run build",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "postpublish": "git push origin $(npm info nestjs-ogma version)",
     "commit": "git-cz",
     "prebuild": "rimraf dist",
     "build": "nest build",
