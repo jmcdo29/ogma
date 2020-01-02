@@ -19,6 +19,10 @@ module.exports = {
         'test',
       ],
     ],
-    'scope-enum': [2, 'always', ['service', 'module', 'interceptor']],
+    'scope-enum': [
+      2,
+      'always',
+      ['service', 'module', 'interceptor', 'deps', 'docs', 'release'],
+    ],
   },
 };
