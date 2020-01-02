@@ -108,9 +108,9 @@ All configuration options are just that: options. None of them need to be provid
 | name | value | default | description |
 | --- | --- | --- | --- |
 | format | `'dev' | 'prod'` | 'prod' | Determines which format the logs will print in, according to the described formats above. |
-| skip | `function(req: Request | FastifyRequest, res: Response | FastifyReply<ServerResponse>): boolean` | N/A | A function to determine if the HTTP request should be logged or not. Useful for ignoring successes or for ignoring specific routes. |
-| getRequest | `function(context: ExecutionContext): Request | FastifyRequest` | N/A | Override the standard way of getting the HTTP request object. Useful for things like GraphQL where you need to first convert the context to the GraphQLContext |
-| getResponse | `function(context: ExecutionContext): Response | FastifyReply<ServerResponse>` | N/A | Exact same as the `getRequest` method, but for the response object. |
+| skip | `function(req: Request or FastifyRequest, res: Response or FastifyReply<ServerResponse>): boolean` | N/A | A function to determine if the HTTP request should be logged or not. Useful for ignoring successes or for ignoring specific routes. |
+| getRequest | `function(context: ExecutionContext): Request or FastifyRequest` | N/A | Override the standard way of getting the HTTP request object. Useful for things like GraphQL where you need to first convert the context to the GraphQLContext |
+| getResponse | `function(context: ExecutionContext): Response or FastifyReply<ServerResponse>` | N/A | Exact same as the `getRequest` method, but for the response object. |
 
 So long as the interceptors portion of the `OgmaModuleOptions` returns `truthy`, the `OgmaInterceptor` will be bound to your application and will start logging HTTP requests.
 
