@@ -13,6 +13,18 @@ const method = 'GET';
 const url = '/';
 const time = '50 ms';
 
+function mockExecContext(code: number, type: string = 'http') {
+  return createMock<ExecutionContext>({
+    switchToHttp: () => ({
+      getRequest: jest.fn(),
+      getResponse: () => ({
+        statusCode: code,
+      }),
+    }),
+    getType: () => type,
+  });
+}
+
 describe.each([
   {
     format: 'dev' as 'dev',
@@ -222,93 +234,37 @@ describe('OgmaInterceptor with getRequest and getResponse options', () => {
 });
 describe('OgmaInterceptor shouldLog', () => {
   const ogmaOptions = { ogma: { options: { color: true, json: false } } };
-  it('should not log based on the options', () => {
-    const interceptorOptions = {
+  it.each([
+    {
       skip: jest.fn((req: any, res: any) => res.statusCode === 200),
-    };
-    const interceptor = new OgmaInterceptor(interceptorOptions, {
-      info: jest.fn(),
-      ...ogmaOptions,
-    } as any);
-    expect(
-      interceptor.shouldLog(
-        createMock<ExecutionContext>({
-          switchToHttp: () => ({
-            getRequest: jest.fn(),
-            getResponse: () => ({
-              statusCode: 200,
-            }),
-          }),
-          getType: () => 'http',
-        }),
-      ),
-    ).toBe(false);
-    expect(interceptorOptions.skip).toBeCalledTimes(1);
-  });
-  it('should log based on the options', () => {
-    const interceptorOptions = {
+      context: mockExecContext(200),
+      log: false,
+    },
+    {
       skip: jest.fn((req: any, res: any) => res.statusCode === 300),
-    };
-    const interceptor = new OgmaInterceptor(interceptorOptions, {
-      info: jest.fn(),
-      ...ogmaOptions,
-    } as any);
-    expect(
-      interceptor.shouldLog(
-        createMock<ExecutionContext>({
-          switchToHttp: () => ({
-            getRequest: jest.fn(),
-            getResponse: () => ({
-              statusCode: 200,
-            }),
-          }),
-          getType: () => 'http',
-        }),
-      ),
-    ).toBe(true);
-    expect(interceptorOptions.skip).toBeCalledTimes(1);
-  });
-  it('should not log based on the context', () => {
+      context: mockExecContext(200),
+      log: true,
+    },
+    {
+      context: mockExecContext(200, 'ws'),
+      log: false,
+    },
+    {
+      context: mockExecContext(200),
+      log: true,
+    },
+  ])('should try to log based on options %j', (options) => {
     const interceptorOptions = {
-      skip: jest.fn((req: any, res: any) => res.statusCode === 300),
+      skip: options.skip,
     };
     const interceptor = new OgmaInterceptor(interceptorOptions, {
       info: jest.fn(),
       ...ogmaOptions,
     } as any);
-    expect(
-      interceptor.shouldLog(
-        createMock<ExecutionContext>({
-          switchToHttp: () => ({
-            getRequest: jest.fn(),
-            getResponse: () => ({
-              statusCode: 200,
-            }),
-          }),
-          getType: () => 'ws',
-        }),
-      ),
-    ).toBe(false);
-  });
-  it('should log based on lack of skip option', () => {
-    const interceptorOptions = {};
-    const interceptor = new OgmaInterceptor(interceptorOptions, {
-      info: jest.fn(),
-      ...ogmaOptions,
-    } as any);
-    expect(
-      interceptor.shouldLog(
-        createMock<ExecutionContext>({
-          switchToHttp: () => ({
-            getRequest: jest.fn(),
-            getResponse: () => ({
-              statusCode: 200,
-            }),
-          }),
-          getType: () => 'http',
-        }),
-      ),
-    ).toBe(true);
+    expect(interceptor.shouldLog(options.context)).toBe(options.log);
+    if (options.skip) {
+      expect(options.skip).toBeCalledTimes(1);
+    }
   });
 });
 describe('OgmaInterceptor testing intercept', () => {
@@ -362,23 +318,26 @@ describe('OgmaInterceptor testing intercept', () => {
         });
       },
     );
-    it('should intercept the response and log it', (done) => {
-      const observer = Observable.create((obs: Observer<any>) => {
-        obs.next(data);
-        obs.complete();
-        return;
-      });
-      interceptor.intercept(context, { handle: () => observer }).subscribe({
-        next: (val) => {
-          expect(val).toEqual(data);
-        },
-        complete: () => {
-          if (!skipOption.skip) {
-            expect(ogmaOptions.info).toBeCalledTimes(1);
-          }
-          done();
-        },
-      });
-    });
+    it.each([undefined, data])(
+      'should intercept the response and log it',
+      (value: string | undefined, done: any) => {
+        const observer = Observable.create((obs: Observer<any>) => {
+          obs.next(value);
+          obs.complete();
+          return;
+        });
+        interceptor.intercept(context, { handle: () => observer }).subscribe({
+          next: (val) => {
+            expect(val).toEqual(value);
+          },
+          complete: () => {
+            if (!skipOption.skip) {
+              expect(ogmaOptions.info).toBeCalledTimes(1);
+            }
+            done();
+          },
+        });
+      },
+    );
   });
 });

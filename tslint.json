@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "extends": ["tslint:recommended", "tslint-config-prettier", "tslint-sonarts"],
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,

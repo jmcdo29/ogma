@@ -66,7 +66,7 @@ export class OgmaInterceptor implements NestInterceptor {
     const callingHandler = context.getHandler().name;
     const req = this.getRequest(context);
     const res = this.getResponse(context);
-    data = JSON.stringify(data);
+    data = data ? JSON.stringify(data) : '';
     let logString: string | object = '';
     if (this.options.format === 'dev') {
       logString = this.devContext(req, res, Buffer.from(data), startTime);
