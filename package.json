@@ -1,6 +1,6 @@
 {
   "name": "nestjs-ogma",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A NestJS module for the Ogma logger",
   "author": {
     "name": "Jay McDoniel",
@@ -30,6 +30,7 @@
   "scripts": {
     "preversion": "npm run format && npm run lint && npm run build",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postpublish": "git push origin $(npm info nestjs-ogma version)",
     "commit": "git-cz",
     "prebuild": "rimraf dist",
     "build": "nest build",
