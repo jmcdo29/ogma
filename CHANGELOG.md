@@ -1,3 +1,11 @@
+<a name="2.0.4"></a>
+
+## [2.0.4](https://github.com/jmcdo29/nestjs-ogma/compare/v2.0.2...v2.0.4) (2020-01-11)
+
+### Bug Fixes
+
+- add [@types](https://github.com/types)/express and fastify to dependencies ([9fa3436](https://github.com/jmcdo29/nestjs-ogma/commit/9fa3436))
+
 <a name="2.0.3"></a>
 
 ## [2.0.3](https://github.com/jmcdo29/nestjs-ogma/compare/v2.0.0...2.0.3) (2020-01-02)
