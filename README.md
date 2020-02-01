@@ -10,7 +10,7 @@ A [NestJS module](https://docs.nestjs.com) for the [Ogma](https://github.com/jmc
 
 ## Usage
 
-The OgmaService class is TRANSIENT scoped, which means that for each time you call `OgmaModule.forFeature()` a new instance of the `OgmaService` is created, and a new context is given to that OgmaService if one is provided. The base Ogma class, will also be created as you are able to pass in options for the ogma class. This allows you to give each of your OgmaService's different logLevel configurations, which can be a big win.
+The OgmaService class is TRANSIENT scoped, which means that for each time you call `OgmaModule.forFeature()` a new instance of the `OgmaService` is created, and a new context is given to that OgmaService if one is provided. The base Ogma class will also be created as you can pass in options for the ogma class. This allows you to give each of your OgmaService's different logLevel configurations, which can be a big win.
 
 Ogma is a lightweight logger with customization options, that prints your logs in a pretty manner with timestamping, colors, and different levels. See the GitHub repository for Ogma to learn more about configuration and options.
 
@@ -203,7 +203,7 @@ And now `this.logger` is available in your `CatsService` class.
 
 ## Get in Touch
 
-If there is something that needs to be addressed in regards to the module, feel free to [make an issue](https://github.com/jmcdo29/nestjs-ogma/issues/new). If you are looking to contact me, you cna either [email me](mailto:me@jaymcdoniel.dev), or [find me on discord](https://discord.com) as `PerfectOrphan31#6003`.
+If there is something that needs to be addressed in regards to the module, feel free to [make an issue](https://github.com/jmcdo29/nestjs-ogma/issues/new). If you are looking to contact me, you can either [email me](mailto:me@jaymcdoniel.dev), or [find me on discord](https://discord.com) as `PerfectOrphan31#6003`.
 
 ## Contributing
 
