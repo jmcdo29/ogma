@@ -5,17 +5,16 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
-import { FastifyReply, FastifyRequest } from 'fastify';
-import { ServerResponse } from 'http';
 import { color, OgmaOptions } from 'ogma';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import {
+  FastifyLikeRequest,
+  FastifyLikeResponse,
+} from './interfaces/fastify-like.interface';
 import { OgmaInterceptorOptions } from './interfaces/ogma-options.interface';
+import { OgmaRequest, OgmaResponse } from './interfaces/ogma-types.interface';
 import { OgmaService } from './ogma.service';
-
-type OgmaRequest = FastifyRequest | Request;
-type OgmaResponse = FastifyReply<ServerResponse> | Response;
 
 @Injectable()
 export class OgmaInterceptor implements NestInterceptor {
@@ -146,13 +145,11 @@ export class OgmaInterceptor implements NestInterceptor {
     )} ${requestTime} - ${contentLength}`;
   }
 
-  private isFastifyRequest(req: OgmaRequest): req is FastifyRequest {
+  private isFastifyRequest(req: OgmaRequest): req is FastifyLikeRequest {
     return Object.keys(req).indexOf('raw') !== -1;
   }
 
-  private isFastifyResponse(
-    res: OgmaResponse,
-  ): res is FastifyReply<ServerResponse> {
+  private isFastifyResponse(res: OgmaResponse): res is FastifyLikeResponse {
     return Object.keys(res).indexOf('res') !== -1;
   }
 

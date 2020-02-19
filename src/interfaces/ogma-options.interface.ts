@@ -1,11 +1,6 @@
 import { ExecutionContext } from '@nestjs/common';
-import { Request, Response } from 'express';
-import { FastifyReply, FastifyRequest } from 'fastify';
-import { ServerResponse } from 'http';
 import { OgmaOptions } from 'ogma';
-
-type OgmaRequest = FastifyRequest | Request;
-type OgmaResponse = FastifyReply<ServerResponse> | Response;
+import { OgmaRequest, OgmaResponse } from './ogma-types.interface';
 
 export interface OgmaModuleOptions {
   service?: OgmaServiceOptions;
