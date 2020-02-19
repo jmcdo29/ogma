@@ -105,7 +105,8 @@ export class OgmaService implements LoggerService {
    */
   public printError(error: Error, context?: string): void {
     this.printMessage('', 'error', context);
-    this.ogma.printError(error);
+    context = context ?? this.context;
+    this.ogma.printError(error, context);
   }
 
   private printMessage(

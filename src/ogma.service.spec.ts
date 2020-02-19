@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import { LogLevel, Ogma, OgmaOptions } from 'ogma';
+import { Ogma, OgmaOptions } from 'ogma';
 import { OGMA_CONTEXT, OGMA_INSTANCE } from './ogma.constants';
 import { OgmaService } from './ogma.service';
 
@@ -16,20 +16,20 @@ describe('OgmaService', () => {
     'should work with context %s',
     (context: string | null) => {
       describe.each([
-        { logLevel: 'ALL' as keyof typeof LogLevel, color: true },
+        { logLevel: 'ALL' as const, color: true },
         { color: false, stream: mockStream },
       ])('should work with options %o', (options: Partial<OgmaOptions>) => {
         describe.each(['Custom_Context', undefined])(
           'calling with custom context %s',
           (customContext: string | undefined) => {
             describe.each([
-              'info' as keyof OgmaService,
-              'error' as keyof OgmaService,
-              'warn' as keyof OgmaService,
-              'debug' as keyof OgmaService,
-              'verbose' as keyof OgmaService,
-              'silly' as keyof OgmaService,
-              'fatal' as keyof OgmaService,
+              'info' as const,
+              'error' as const,
+              'warn' as const,
+              'debug' as const,
+              'verbose' as const,
+              'silly' as const,
+              'fatal' as const,
             ])('should call %s method', (level: keyof OgmaService) => {
               let ogmaSpy: jest.SpyInstance;
               beforeEach(async () => {
@@ -44,7 +44,7 @@ describe('OgmaService', () => {
                           ...(ogma as any).options,
                           ...options,
                         };
-                        ogmaSpy = jest.spyOn(ogma, level as any);
+                        ogmaSpy = jest.spyOn(ogma, level);
                         return ogma;
                       },
                     },
@@ -67,9 +67,14 @@ describe('OgmaService', () => {
                 },
               );
               it('should be able to call "callError"', () => {
+                const error = new Error('This is my error');
                 ogmaSpy = jest.spyOn(Ogma.prototype, 'printError');
-                service.printError(new Error('This is my error'));
+                service.printError(error, customContext);
                 expect(ogmaSpy).toBeCalledTimes(1);
+                expect(ogmaSpy).toBeCalledWith(
+                  error,
+                  customContext ?? context ?? '',
+                );
               });
             });
           },
