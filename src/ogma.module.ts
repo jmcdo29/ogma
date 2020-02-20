@@ -33,7 +33,10 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
     OgmaService,
     {
       provide: OGMA_INTERCEPTOR_OPTIONS,
-      useFactory: (options: OgmaModuleOptions) => options.interceptor,
+      useFactory: (
+        options: OgmaModuleOptions,
+      ): OgmaInterceptorOptions | boolean =>
+        options.interceptor !== undefined ? options.interceptor : true,
       inject: [OGMA_OPTIONS],
     },
     {
@@ -47,6 +50,11 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
         let interceptor;
         if (options) {
           options = typeof options === 'object' ? options : {};
+          options.format =
+            options.format ??
+            process.env.NODE_ENV?.toLowerCase().includes('prod')
+              ? 'prod'
+              : 'dev';
           interceptor = new OgmaInterceptor(options, service);
         } else {
           interceptor = {
