@@ -13,3 +13,8 @@ export interface OgmaInterceptorOptions {
   getRequest?(context: ExecutionContext): OgmaRequest;
   getResponse?(context: ExecutionContext): OgmaResponse;
 }
+
+export interface OgmaInterceptorServiceOptions extends OgmaInterceptorOptions {
+  json: boolean;
+  color: boolean;
+}

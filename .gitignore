@@ -1,5 +1,6 @@
 # compiled output
 /dist
+/dist-test
 /node_modules
 
 # Logs
@@ -30,3 +31,5 @@ lerna-debug.log*
 .vscode/*
 
 *.tgz
+
+*.txt

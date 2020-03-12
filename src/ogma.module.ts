@@ -8,6 +8,11 @@ import {
 } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { Ogma } from 'ogma';
+import { DelegatorService } from './interceptor/delegator.service';
+import { HttpInterceptorService } from './interceptor/http-interceptor.service';
+import { OgmaInterceptor } from './interceptor/ogma.interceptor';
+import { RpcInterceptorService } from './interceptor/rpc-interceptor.service';
+import { WebsocketInterceptorService } from './interceptor/websocket-interceptor.service';
 import {
   OgmaInterceptorOptions,
   OgmaModuleOptions,
@@ -20,7 +25,6 @@ import {
   OGMA_OPTIONS,
   OGMA_SERVICE_OPTIONS,
 } from './ogma.constants';
-import { OgmaInterceptor } from './ogma.interceptor';
 import { createOgmaProvider } from './ogma.provider';
 import { OgmaService } from './ogma.service';
 
@@ -30,6 +34,10 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
   OgmaModuleOptions
 >(OGMA_OPTIONS, {
   providers: [
+    HttpInterceptorService,
+    WebsocketInterceptorService,
+    DelegatorService,
+    RpcInterceptorService,
     OgmaService,
     {
       provide: OGMA_INTERCEPTOR_OPTIONS,
@@ -46,7 +54,11 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
     },
     {
       provide: APP_INTERCEPTOR,
-      useFactory: (options: OgmaInterceptorOptions, service: OgmaService) => {
+      useFactory: (
+        options: OgmaInterceptorOptions,
+        service: OgmaService,
+        delegate: DelegatorService,
+      ) => {
         let interceptor;
         if (options) {
           options = typeof options === 'object' ? options : {};
@@ -55,7 +67,7 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
             process.env.NODE_ENV?.toLowerCase().includes('prod')
               ? 'prod'
               : 'dev';
-          interceptor = new OgmaInterceptor(options, service);
+          interceptor = new OgmaInterceptor(options, service, delegate);
         } else {
           interceptor = {
             intercept: (context: ExecutionContext, next: CallHandler) =>
@@ -64,7 +76,7 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
         }
         return interceptor;
       },
-      inject: [OGMA_INTERCEPTOR_OPTIONS, OgmaService],
+      inject: [OGMA_INTERCEPTOR_OPTIONS, OgmaService, DelegatorService],
     },
     {
       provide: OGMA_INSTANCE,

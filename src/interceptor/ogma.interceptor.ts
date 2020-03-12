@@ -6,15 +6,16 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { color, OgmaOptions } from 'ogma';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import {
   FastifyLikeRequest,
   FastifyLikeResponse,
-} from './interfaces/fastify-like.interface';
-import { OgmaInterceptorOptions } from './interfaces/ogma-options.interface';
-import { OgmaRequest, OgmaResponse } from './interfaces/ogma-types.interface';
-import { OgmaService } from './ogma.service';
+} from '../interfaces/fastify-like.interface';
+import { OgmaInterceptorOptions } from '../interfaces/ogma-options.interface';
+import { OgmaRequest, OgmaResponse } from '../interfaces/ogma-types.interface';
+import { OgmaService } from '../ogma.service';
+import { DelegatorService } from './delegator.service';
 
 @Injectable()
 export class OgmaInterceptor implements NestInterceptor {
@@ -23,6 +24,7 @@ export class OgmaInterceptor implements NestInterceptor {
   constructor(
     private readonly options: OgmaInterceptorOptions,
     private readonly service: OgmaService,
+    private readonly delegate: DelegatorService,
   ) {
     const ogmaOptions: OgmaOptions = (this.service as any).ogma.options;
     this.json = ogmaOptions.json;
@@ -31,24 +33,34 @@ export class OgmaInterceptor implements NestInterceptor {
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const startTime = Date.now();
-
+    const options = { ...this.options, json: this.json, color: this.color };
+    let logObject: string | object;
     return next.handle().pipe(
-      tap((data) => {
-        if (this.shouldLog(context)) {
-          this.log(data, context, startTime);
-        }
-        return;
-      }),
-      catchError((err) => {
-        if (this.shouldLog(context)) {
-          this.setStatusCode(
-            this.getResponse(context),
-            this.determineStatusCodeFromError(err),
-          );
-          this.log(err, context, startTime);
-        }
-        return throwError(err);
-      }),
+      tap(
+        (data) => {
+          if (this.shouldLog(context)) {
+            logObject = this.delegate.getContextSuccessString(
+              data,
+              context,
+              startTime,
+              options,
+            );
+            this.log(logObject, context);
+          }
+          return;
+        },
+        (err) => {
+          if (this.shouldLog(context)) {
+            logObject = this.delegate.getContextErrorString(
+              err,
+              context,
+              startTime,
+              options,
+            );
+            this.log(logObject, context);
+          }
+        },
+      ),
     );
   }
 
@@ -60,19 +72,11 @@ export class OgmaInterceptor implements NestInterceptor {
     return !(shouldNotLog !== undefined && shouldNotLog);
   }
 
-  public log(data: any, context: ExecutionContext, startTime: number): void {
-    const callingClass = context.getClass().name;
-    const callingHandler = context.getHandler().name;
-    const req = this.getRequest(context);
-    const res = this.getResponse(context);
-    data = data ? JSON.stringify(data) : '';
-    let logString: string | object = '';
-    if (this.options.format === 'dev') {
-      logString = this.devContext(req, res, Buffer.from(data), startTime);
-    } else {
-      logString = this.prodContext(req, res, Buffer.from(data), startTime);
-    }
-    this.service.info(logString, callingClass + '-' + callingHandler);
+  public log(logObject: string | object, context: ExecutionContext): void {
+    this.service.info(
+      logObject,
+      `${context.getClass().name} - ${context.getHandler().name}`,
+    );
   }
 
   public getRequest(context: ExecutionContext): OgmaRequest {

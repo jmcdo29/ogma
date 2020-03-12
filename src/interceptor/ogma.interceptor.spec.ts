@@ -2,7 +2,7 @@ import { createMock } from '@golevelup/ts-jest';
 import { ExecutionContext } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { Observable, Observer } from 'rxjs';
-import { OgmaInterceptorOptions } from './interfaces/ogma-options.interface';
+import { OgmaInterceptorOptions } from '../interfaces/ogma-options.interface';
 import { OgmaInterceptor } from './ogma.interceptor';
 
 process.stdout.hasColors = () => true;
