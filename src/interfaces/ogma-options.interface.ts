@@ -8,7 +8,6 @@ export interface OgmaModuleOptions {
 }
 export interface OgmaServiceOptions extends Partial<OgmaOptions> {}
 export interface OgmaInterceptorOptions {
-  format?: 'dev' | 'prod';
   skip?(req: OgmaRequest, res: OgmaResponse): boolean;
   getRequest?(context: ExecutionContext): OgmaRequest;
   getResponse?(context: ExecutionContext): OgmaResponse;

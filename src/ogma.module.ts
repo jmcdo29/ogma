@@ -6,7 +6,7 @@ import {
   Module,
   Scope,
 } from '@nestjs/common';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_INTERCEPTOR, Reflector } from '@nestjs/core';
 import { Ogma } from 'ogma';
 import { DelegatorService } from './interceptor/delegator.service';
 import { HttpInterceptorService } from './interceptor/http-interceptor.service';
@@ -58,16 +58,17 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
         options: OgmaInterceptorOptions,
         service: OgmaService,
         delegate: DelegatorService,
+        reflector: Reflector,
       ) => {
         let interceptor;
         if (options) {
           options = typeof options === 'object' ? options : {};
-          options.format =
-            options.format ??
-            process.env.NODE_ENV?.toLowerCase().includes('prod')
-              ? 'prod'
-              : 'dev';
-          interceptor = new OgmaInterceptor(options, service, delegate);
+          interceptor = new OgmaInterceptor(
+            options,
+            service,
+            delegate,
+            reflector,
+          );
         } else {
           interceptor = {
             intercept: (context: ExecutionContext, next: CallHandler) =>
@@ -76,7 +77,12 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
         }
         return interceptor;
       },
-      inject: [OGMA_INTERCEPTOR_OPTIONS, OgmaService, DelegatorService],
+      inject: [
+        OGMA_INTERCEPTOR_OPTIONS,
+        OgmaService,
+        DelegatorService,
+        Reflector,
+      ],
     },
     {
       provide: OGMA_INSTANCE,

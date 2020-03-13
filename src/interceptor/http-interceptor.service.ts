@@ -6,7 +6,8 @@ import {
 } from '../interfaces/fastify-like.interface';
 import { OgmaInterceptorServiceOptions } from '../interfaces/ogma-options.interface';
 import { OgmaRequest, OgmaResponse } from '../interfaces/ogma-types.interface';
-import { InterceptorService } from './interceptor-service.interface';
+import { InterceptorService } from './interfaces/interceptor-service.interface';
+import { LogObject } from './interfaces/log.interface';
 
 @Injectable()
 export class HttpInterceptorService implements InterceptorService {
@@ -17,9 +18,17 @@ export class HttpInterceptorService implements InterceptorService {
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
-  ): string | object {
+  ): LogObject {
     this.options = options;
-    return 'success string';
+    return {
+      callerAddress: '127.0.0.1',
+      method: 'GET',
+      callPoint: '/',
+      status: '200',
+      responseTime: 83,
+      contentLength: 42,
+      protocol: 'HTTP/1.1',
+    };
   }
 
   getErrorContext(
@@ -27,9 +36,17 @@ export class HttpInterceptorService implements InterceptorService {
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
-  ): string | object {
+  ): LogObject {
     this.options = options;
-    return 'error string';
+    return {
+      callerAddress: '127.0.0.1',
+      method: 'GET',
+      callPoint: '/',
+      status: '500',
+      responseTime: 83,
+      contentLength: 42,
+      protocol: 'HTTP/1.1',
+    };
   }
 
   private getRequest(context: ExecutionContext): OgmaRequest {
@@ -44,62 +61,6 @@ export class HttpInterceptorService implements InterceptorService {
       return this.options.getResponse(context);
     }
     return context.switchToHttp().getResponse();
-  }
-
-  private devContext(
-    req: OgmaRequest,
-    res: OgmaResponse,
-    data: Buffer,
-    startTime: number,
-  ): string | object {
-    const requestTime = Date.now() - startTime + ' ms';
-    const contentLength = data.byteLength;
-    const status = this.getStatusCode(res);
-    const url = this.getUrl(req);
-    const method = this.getMethod(req);
-    if (this.options.json) {
-      return {
-        method,
-        url,
-        status,
-        'Content-Length': contentLength,
-        'Response-Time': requestTime,
-      };
-    }
-    return `${method} ${url} ${this.statusCodeColor(
-      status,
-    )} ${requestTime} - ${contentLength}`;
-  }
-
-  private prodContext(
-    req: OgmaRequest,
-    res: OgmaResponse,
-    data: Buffer,
-    startTime: number,
-  ): string | object {
-    const requestTime = Date.now() - startTime + ' ms';
-    const contentLength = data.byteLength;
-    const address = req.ips ?? req.ip;
-    const status = this.getStatusCode(res);
-    const url = this.getUrl(req);
-    const method = this.getMethod(req);
-    const httpMajor = this.getHttpMajor(req);
-    const httpMinor = this.getHttpMinor(req);
-    const httpVersion = `${httpMajor}.${httpMinor}`;
-    if (this.options.json) {
-      return {
-        'Remote-Address': address,
-        method,
-        url,
-        status,
-        'Content-Length': contentLength,
-        'Response-Time': requestTime,
-        httpVersion,
-      };
-    }
-    return `${address} - ${method} ${url} HTTP/${httpVersion} ${this.statusCodeColor(
-      status,
-    )} ${requestTime} - ${contentLength}`;
   }
 
   private isFastifyRequest(req: OgmaRequest): req is FastifyLikeRequest {

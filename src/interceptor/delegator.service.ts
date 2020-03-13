@@ -1,6 +1,7 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { OgmaInterceptorServiceOptions } from '../interfaces/ogma-options.interface';
 import { HttpInterceptorService } from './http-interceptor.service';
+import { LogObject } from './interfaces/log.interface';
 import { RpcInterceptorService } from './rpc-interceptor.service';
 import { WebsocketInterceptorService } from './websocket-interceptor.service';
 
@@ -17,30 +18,34 @@ export class DelegatorService {
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
-  ): string | object {
+  ): string | LogObject {
+    let logObject: string | LogObject;
     switch (context.getType()) {
       case 'http':
-        return this.httpParser.getSuccessContext(
+        logObject = this.httpParser.getSuccessContext(
           data,
           context,
           startTime,
           options,
         );
+        break;
       case 'ws':
-        return this.wsParser.getSuccessContext(
+        logObject = this.wsParser.getSuccessContext(
           data,
           context,
           startTime,
           options,
         );
+        break;
       case 'rpc':
-        return this.rpcParser.getSuccessContext(
+        logObject = this.rpcParser.getSuccessContext(
           data,
           context,
           startTime,
           options,
         );
     }
+    return this.getStringOrObject(logObject, { json: options.json });
   }
 
   getContextErrorString(
@@ -48,29 +53,42 @@ export class DelegatorService {
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
-  ): string | object {
+  ): string | LogObject {
+    let logObject: string | LogObject;
     switch (context.getType()) {
       case 'http':
-        return this.httpParser.getErrorContext(
+        logObject = this.httpParser.getErrorContext(
           error,
           context,
           startTime,
           options,
         );
+        break;
       case 'ws':
-        return this.wsParser.getErrorContext(
+        logObject = this.wsParser.getErrorContext(
           error,
           context,
           startTime,
           options,
         );
+        break;
       case 'rpc':
-        return this.rpcParser.getErrorContext(
+        logObject = this.rpcParser.getErrorContext(
           error,
           context,
           startTime,
           options,
         );
     }
+    return this.getStringOrObject(logObject, { json: options.json });
+  }
+
+  private getStringOrObject(
+    data: LogObject,
+    options: { json: boolean },
+  ): string | LogObject {
+    return options.json
+      ? data
+      : `${data.callerAddress} - ${data.method} ${data.callPoint} ${data.protocol} ${data.status} ${data.responseTime}ms - ${data.contentLength}`;
   }
 }

@@ -1,5 +1,6 @@
 import { ExecutionContext, HttpException } from '@nestjs/common';
 import { OgmaInterceptorServiceOptions } from 'src/interfaces/ogma-options.interface';
+import { LogObject } from './log.interface';
 
 export interface InterceptorService {
   getSuccessContext(
@@ -7,12 +8,12 @@ export interface InterceptorService {
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
-  ): string | object;
+  ): LogObject;
 
   getErrorContext(
     error: Error | HttpException,
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
-  ): string | object;
+  ): LogObject;
 }
