@@ -4,7 +4,7 @@ import { LogObject } from './log.interface';
 
 export interface InterceptorService {
   getSuccessContext(
-    data: any,
+    data: number,
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,

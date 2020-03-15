@@ -19,7 +19,9 @@ export class DelegatorService {
     startTime: number,
     options: OgmaInterceptorServiceOptions,
   ): string | LogObject {
-    let logObject: string | LogObject;
+    data = data ? JSON.stringify(data) : '';
+    data = Buffer.from(data).byteLength;
+    let logObject: LogObject = {} as any;
     switch (context.getType()) {
       case 'http':
         logObject = this.httpParser.getSuccessContext(
@@ -29,7 +31,7 @@ export class DelegatorService {
           options,
         );
         break;
-      case 'ws':
+      /* case 'ws':
         logObject = this.wsParser.getSuccessContext(
           data,
           context,
@@ -43,7 +45,7 @@ export class DelegatorService {
           context,
           startTime,
           options,
-        );
+        ); */
     }
     return this.getStringOrObject(logObject, { json: options.json });
   }
@@ -54,7 +56,7 @@ export class DelegatorService {
     startTime: number,
     options: OgmaInterceptorServiceOptions,
   ): string | LogObject {
-    let logObject: string | LogObject;
+    let logObject: LogObject = {} as any;
     switch (context.getType()) {
       case 'http':
         logObject = this.httpParser.getErrorContext(
@@ -64,7 +66,7 @@ export class DelegatorService {
           options,
         );
         break;
-      case 'ws':
+      /* case 'ws':
         logObject = this.wsParser.getErrorContext(
           error,
           context,
@@ -78,7 +80,7 @@ export class DelegatorService {
           context,
           startTime,
           options,
-        );
+        ); */
     }
     return this.getStringOrObject(logObject, { json: options.json });
   }

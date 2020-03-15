@@ -34,7 +34,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "prebuild:test": "rimraf dist-test",
-    "build:test": "nest build -p tsconfig.test.json",
+    "build:test": "tsc -p tsconfig.test.json",
     "start:test": "node dist-test/main.js",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "tslint -p tsconfig.json -c tslint.json",

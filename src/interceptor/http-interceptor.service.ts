@@ -1,65 +1,75 @@
 import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
-import { color } from 'ogma';
+import { HTTP_CODE_METADATA } from '@nestjs/common/constants';
 import {
   FastifyLikeRequest,
   FastifyLikeResponse,
 } from '../interfaces/fastify-like.interface';
-import { OgmaInterceptorServiceOptions } from '../interfaces/ogma-options.interface';
 import { OgmaRequest, OgmaResponse } from '../interfaces/ogma-types.interface';
-import { InterceptorService } from './interfaces/interceptor-service.interface';
-import { LogObject } from './interfaces/log.interface';
+import { AbstractInterceptorService } from './abstract-interceptor.service';
 
 @Injectable()
-export class HttpInterceptorService implements InterceptorService {
-  private options!: OgmaInterceptorServiceOptions;
-
-  getSuccessContext(
-    data: any,
-    context: ExecutionContext,
-    startTime: number,
-    options: OgmaInterceptorServiceOptions,
-  ): LogObject {
-    this.options = options;
-    return {
-      callerAddress: '127.0.0.1',
-      method: 'GET',
-      callPoint: '/',
-      status: '200',
-      responseTime: 83,
-      contentLength: 42,
-      protocol: 'HTTP/1.1',
-    };
+export class HttpInterceptorService extends AbstractInterceptorService {
+  getCallerIp(context: ExecutionContext): string[] | string {
+    const req = this.getRequest(context);
+    return req.ips.length ? req.ips : req.ip;
   }
 
-  getErrorContext(
-    error: Error | HttpException,
+  getCallPoint(context: ExecutionContext): string {
+    let url: string | undefined;
+    const req = this.getRequest(context);
+    if (this.isFastifyRequest(req)) {
+      url = req.raw.url;
+    } else {
+      url = req.url;
+    }
+    return url || '';
+  }
+
+  getStatus(
     context: ExecutionContext,
-    startTime: number,
-    options: OgmaInterceptorServiceOptions,
-  ): LogObject {
-    this.options = options;
-    return {
-      callerAddress: '127.0.0.1',
-      method: 'GET',
-      callPoint: '/',
-      status: '500',
-      responseTime: 83,
-      contentLength: 42,
-      protocol: 'HTTP/1.1',
-    };
+    inColor: boolean,
+    error?: Error & HttpException,
+  ): string {
+    let status;
+    const res = this.getResponse(context);
+    if (this.isFastifyResponse(res)) {
+      status = res.res.statusCode;
+    } else {
+      status = res.statusCode;
+    }
+    const reflectStatus = this.reflector.get<number>(
+      HTTP_CODE_METADATA,
+      context.getHandler(),
+    );
+    status = reflectStatus ?? status;
+    if (error) {
+      status = this.determineStatusCodeFromError(error);
+    }
+    this.setStatusCode(res, status);
+    return inColor ? this.wrapInColor(status) : status.toString();
+  }
+
+  getMethod(context: ExecutionContext): string {
+    let method: string | undefined;
+    const req = this.getRequest(context);
+    if (this.isFastifyRequest(req)) {
+      method = req.raw.method;
+    } else {
+      method = req.method;
+    }
+    return method ?? 'GET';
+  }
+
+  getProtocol(context: ExecutionContext): string {
+    const req = this.getRequest(context);
+    return `HTTP/${this.getHttpMajor(req)}.${this.getHttpMinor(req)}`;
   }
 
   private getRequest(context: ExecutionContext): OgmaRequest {
-    if (this.options.getRequest) {
-      return this.options.getRequest(context);
-    }
     return context.switchToHttp().getRequest();
   }
 
   private getResponse(context: ExecutionContext): OgmaResponse {
-    if (this.options.getResponse) {
-      return this.options.getResponse(context);
-    }
     return context.switchToHttp().getResponse();
   }
 
@@ -71,13 +81,6 @@ export class HttpInterceptorService implements InterceptorService {
     return Object.keys(res).indexOf('res') !== -1;
   }
 
-  private getStatusCode(res: OgmaResponse): number {
-    if (this.isFastifyResponse(res)) {
-      return res.res.statusCode;
-    }
-    return res.statusCode;
-  }
-
   private setStatusCode(res: OgmaResponse, code: number): void {
     if (this.isFastifyResponse(res)) {
       res.res.statusCode = code;
@@ -85,20 +88,6 @@ export class HttpInterceptorService implements InterceptorService {
       res.statusCode = code;
     }
     return;
-  }
-
-  private getUrl(req: OgmaRequest): string | undefined {
-    if (this.isFastifyRequest(req)) {
-      return req.raw.url;
-    }
-    return req.url;
-  }
-
-  private getMethod(req: OgmaRequest): string | undefined {
-    if (this.isFastifyRequest(req)) {
-      return req.raw.method;
-    }
-    return req.method;
   }
 
   private getHttpMajor(req: OgmaRequest): number {
@@ -115,30 +104,7 @@ export class HttpInterceptorService implements InterceptorService {
     return req.httpVersionMinor;
   }
 
-  private determineStatusCodeFromError(error: HttpException): number {
+  private determineStatusCodeFromError(error: HttpException & Error): number {
     return (error.getStatus && error.getStatus()) || 500;
-  }
-
-  private statusCodeColor(statusCode: number): string {
-    if (this.options.color) {
-      const numericVal = statusCode;
-      if (this.isBetween(numericVal, 0, 200)) {
-        return statusCode.toString();
-      } else if (this.isBetween(numericVal, 200, 300)) {
-        return color.green(statusCode);
-      } else if (this.isBetween(numericVal, 300, 400)) {
-        return color.cyan(statusCode);
-      } else if (this.isBetween(numericVal, 400, 500)) {
-        return color.yellow(statusCode);
-      } else {
-        return color.red(statusCode);
-      }
-    } else {
-      return statusCode.toString();
-    }
-  }
-
-  private isBetween(num: number, min: number, max: number): boolean {
-    return num >= min && num < max;
   }
 }
