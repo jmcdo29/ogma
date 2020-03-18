@@ -24,14 +24,17 @@ export class DelegatorService {
     let logObject: LogObject = {} as any;
     switch (context.getType()) {
       case 'http':
-        logObject = this.httpParser.getSuccessContext(
-          data,
-          context,
-          startTime,
-          options,
-        );
+        // hack to handle graphql context properly
+        if (context.getArgs().length === 3) {
+          logObject = this.httpParser.getSuccessContext(
+            data,
+            context,
+            startTime,
+            options,
+          );
+        }
         break;
-      /* case 'ws':
+      case 'ws':
         logObject = this.wsParser.getSuccessContext(
           data,
           context,
@@ -39,7 +42,7 @@ export class DelegatorService {
           options,
         );
         break;
-      case 'rpc':
+      /* case 'rpc':
         logObject = this.rpcParser.getSuccessContext(
           data,
           context,
@@ -59,14 +62,17 @@ export class DelegatorService {
     let logObject: LogObject = {} as any;
     switch (context.getType()) {
       case 'http':
-        logObject = this.httpParser.getErrorContext(
-          error,
-          context,
-          startTime,
-          options,
-        );
+        // hack to handle graphql context properly
+        if (context.getArgs().length === 3) {
+          logObject = this.httpParser.getErrorContext(
+            error,
+            context,
+            startTime,
+            options,
+          );
+        }
         break;
-      /* case 'ws':
+      case 'ws':
         logObject = this.wsParser.getErrorContext(
           error,
           context,
@@ -74,7 +80,7 @@ export class DelegatorService {
           options,
         );
         break;
-      case 'rpc':
+      /* case 'rpc':
         logObject = this.rpcParser.getErrorContext(
           error,
           context,

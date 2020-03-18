@@ -2,7 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist-test",
-    "declaration": false
+    "declaration": false,
+    "sourceMap": false
   },
-  "exclude": ["node_modules", "src", "dist", "**/*spec.ts"]
+  "include": ["test"],
+  "exclude": ["node_modules", "src", "src/interfaces", "dist", "**/*spec.ts"]
 }

@@ -38,7 +38,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
       callPoint: this.getCallPoint(context),
       status: this.getStatus(context, options.color && !options.json, error),
       responseTime: this.getResponseTime(startTime),
-      contentLength: Buffer.from(error.message || '').byteLength,
+      contentLength: Buffer.from(JSON.stringify(error.message)).byteLength,
       protocol: this.getProtocol(context),
     };
   }
