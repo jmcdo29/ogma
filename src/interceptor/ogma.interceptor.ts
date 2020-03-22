@@ -1,6 +1,7 @@
 import {
   CallHandler,
   ExecutionContext,
+  Inject,
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
@@ -9,7 +10,10 @@ import { OgmaOptions } from 'ogma';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { OgmaInterceptorOptions } from '../interfaces/ogma-options.interface';
-import { OGMA_INTERCEPTOR_SKIP } from '../ogma.constants';
+import {
+  OGMA_INTERCEPTOR_OPTIONS,
+  OGMA_INTERCEPTOR_SKIP,
+} from '../ogma.constants';
 import { OgmaService } from '../ogma.service';
 import { DelegatorService } from './delegator.service';
 import { LogObject } from './interfaces/log.interface';
@@ -19,6 +23,7 @@ export class OgmaInterceptor implements NestInterceptor {
   private json: boolean;
   private color: boolean;
   constructor(
+    @Inject(OGMA_INTERCEPTOR_OPTIONS)
     private readonly options: OgmaInterceptorOptions,
     private readonly service: OgmaService,
     private readonly delegate: DelegatorService,

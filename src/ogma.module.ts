@@ -28,7 +28,17 @@ import {
 import { createOgmaProvider } from './ogma.provider';
 import { OgmaService } from './ogma.service';
 
-@Module({})
+@Module({
+  exports: [
+    OGMA_INTERCEPTOR_OPTIONS,
+    OGMA_SERVICE_OPTIONS,
+    OgmaService,
+    DelegatorService,
+    HttpInterceptorService,
+    WebsocketInterceptorService,
+    RpcInterceptorService,
+  ],
+})
 export class OgmaModule extends createConfigurableDynamicRootModule<
   OgmaModule,
   OgmaModuleOptions
