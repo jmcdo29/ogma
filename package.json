@@ -36,7 +36,6 @@
     "build": "nest build",
     "build:all": "npm run build && npm run build:test",
     "prebuild:test": "rimraf dist-test",
-    "postbuild:test": "rm -rf dist-test/src && mv dist-test/test/* dist-test && rmdir dist-test/test",
     "build:test": "tsc -p tsconfig.test.json",
     "start:test": "node dist-test/main.js",
     "start:test:ws": "node dist-test/main.js ws",

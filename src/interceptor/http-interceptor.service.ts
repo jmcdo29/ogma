@@ -3,8 +3,9 @@ import { HTTP_CODE_METADATA } from '@nestjs/common/constants';
 import {
   FastifyLikeRequest,
   FastifyLikeResponse,
-} from '../interfaces/fastify-like.interface';
-import { OgmaRequest, OgmaResponse } from '../interfaces/ogma-types.interface';
+  OgmaRequest,
+  OgmaResponse,
+} from '../interfaces';
 import { AbstractInterceptorService } from './abstract-interceptor.service';
 
 @Injectable()

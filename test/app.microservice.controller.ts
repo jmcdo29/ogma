@@ -1,7 +1,9 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UseInterceptors } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { AppService } from './app.service';
+import { OgmaInterceptor } from '../dist';
 
+@UseInterceptors(OgmaInterceptor)
 @Controller()
 export class AppMicroserviceController {
   constructor(private readonly appService: AppService) {}

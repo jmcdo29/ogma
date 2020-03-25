@@ -1,17 +1,34 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { OgmaInterceptorServiceOptions } from '../interfaces/ogma-options.interface';
+import { Reflector } from '@nestjs/core';
+import { interceptorErrorMessage, optionalRequire } from '../helpers';
+import { OgmaInterceptorError, OgmaInterceptorServiceOptions } from '../interfaces';
 import { HttpInterceptorService } from './http-interceptor.service';
 import { LogObject } from './interfaces/log.interface';
 import { RpcInterceptorService } from './rpc-interceptor.service';
 import { WebsocketInterceptorService } from './websocket-interceptor.service';
 
+const HttpModule = optionalRequire('@nestjs/platform-express') || optionalRequire('@nestjs/platform-fastify');
+const SocketModule = optionalRequire('@nestjs/websockets');
+const RpcModule = optionalRequire('@nestjs/microservices');
+
 @Injectable()
 export class DelegatorService {
-  constructor(
-    private readonly httpParser: HttpInterceptorService,
-    private readonly wsParser: WebsocketInterceptorService,
-    private readonly rpcParser: RpcInterceptorService,
-  ) {}
+
+  private httpParser: HttpInterceptorService;
+  private wsParser: WebsocketInterceptorService;
+  private rpcParser: RpcInterceptorService;
+
+  constructor(reflector: Reflector) {
+    if (HttpModule) {
+      this.httpParser = new HttpInterceptorService(reflector);
+    }
+    if (SocketModule) {
+      this.wsParser = new WebsocketInterceptorService(reflector);
+    }
+    if (RpcModule) {
+      this.rpcParser = new RpcInterceptorService(reflector);
+    }
+  }
 
   getContextSuccessString(
     data: any,
@@ -35,6 +52,9 @@ export class DelegatorService {
         }
         break;
       case 'ws':
+        if (!this.wsParser) {
+          throw new OgmaInterceptorError(interceptorErrorMessage('@nestjs/websockets', 'websocket'));
+        }
         logObject = this.wsParser.getSuccessContext(
           data,
           context,
@@ -42,13 +62,16 @@ export class DelegatorService {
           options,
         );
         break;
-      /* case 'rpc':
+      case 'rpc':
+        if (!this.rpcParser) {
+          throw new OgmaInterceptorError(interceptorErrorMessage('@nestjs/microservices', 'microservice'));
+        }
         logObject = this.rpcParser.getSuccessContext(
           data,
           context,
           startTime,
           options,
-        ); */
+        );
     }
     return this.getStringOrObject(logObject, { json: options.json });
   }
@@ -80,13 +103,13 @@ export class DelegatorService {
           options,
         );
         break;
-      /* case 'rpc':
+      case 'rpc':
         logObject = this.rpcParser.getErrorContext(
           error,
           context,
           startTime,
           options,
-        ); */
+        );
     }
     return this.getStringOrObject(logObject, { json: options.json });
   }

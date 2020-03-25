@@ -1,7 +1,6 @@
 import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
-import { MESSAGE_METADATA } from '@nestjs/websockets/constants';
-import { OgmaClient } from '../interfaces/ogma-types.interface';
-import { WsLike } from '../interfaces/ws-like.interface';
+import { OgmaWsClient, WsLike } from '../interfaces/';
+import { MESSAGE_METADATA } from '../ogma.constants';
 import { AbstractInterceptorService } from './abstract-interceptor.service';
 
 @Injectable()
@@ -12,14 +11,25 @@ export class WebsocketInterceptorService extends AbstractInterceptorService {
 
   getCallerIp(context: ExecutionContext): string[] | string {
     const client = this.getClient(context);
+    let address: string;
     if (this.isWsClient(client)) {
-      return client._socket.remoteAddress;
+      address = client._socket.remoteAddress;
+    } else {
+      address = client.handshake.address;
     }
-    return client.handshake.address;
+    return address;
   }
 
+  // printing the ws library in case there is confusion
   getMethod(context: ExecutionContext): string {
-    return 'websocket';
+    const client = this.getClient(context);
+    let method: string;
+    if (this.isWsClient(client)) {
+      method = 'ws';
+    } else {
+      method = 'socket.io';
+    }
+    return method;
   }
 
   getProtocol(context: ExecutionContext): string {
@@ -29,16 +39,17 @@ export class WebsocketInterceptorService extends AbstractInterceptorService {
   getStatus(
     context: ExecutionContext,
     inColor: boolean,
-    error?: HttpException | Error,
+    error?: Error | HttpException,
   ): string {
-    return error ? '500' : '200';
+    const status = error ? 500 : 200;
+    return inColor ? this.wrapInColor(status) : status.toString();
   }
 
-  private getClient(context: ExecutionContext): OgmaClient {
+  private getClient(context: ExecutionContext): OgmaWsClient {
     return context.switchToWs().getClient();
   }
 
-  private isWsClient(client: OgmaClient): client is WsLike {
+  private isWsClient(client: OgmaWsClient): client is WsLike {
     return Object.keys(client).indexOf('_socket') !== -1;
   }
 }

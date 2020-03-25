@@ -9,4 +9,7 @@ import { WsLike } from './ws-like.interface';
 
 export type OgmaRequest = FastifyLikeRequest | ExpressLikeRequest;
 export type OgmaResponse = FastifyLikeResponse | ServerResponse;
-export type OgmaClient = SocketIoLike | WsLike;
+export type OgmaWsClient = SocketIoLike | WsLike;
+export type OgmaRpcClient = object;
+
+export class OgmaInterceptorError extends Error {}

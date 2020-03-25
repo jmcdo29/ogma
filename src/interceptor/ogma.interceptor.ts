@@ -9,7 +9,7 @@ import { Reflector } from '@nestjs/core';
 import { OgmaOptions } from 'ogma';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { OgmaInterceptorOptions } from '../interfaces/ogma-options.interface';
+import { OgmaInterceptorOptions } from '../interfaces';
 import {
   OGMA_INTERCEPTOR_OPTIONS,
   OGMA_INTERCEPTOR_SKIP,
@@ -17,6 +17,7 @@ import {
 import { OgmaService } from '../ogma.service';
 import { DelegatorService } from './delegator.service';
 import { LogObject } from './interfaces/log.interface';
+import { TcpContext } from '@nestjs/microservices';
 
 @Injectable()
 export class OgmaInterceptor implements NestInterceptor {
@@ -41,6 +42,8 @@ export class OgmaInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap(
         (data) => {
+          this.service.log(context.switchToRpc().getContext());
+          this.service.log(context.switchToRpc().getContext() instanceof TcpContext)
           if (!this.shouldSkip(context)) {
             logObject = this.delegate.getContextSuccessString(
               data,
