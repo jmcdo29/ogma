@@ -6,7 +6,7 @@ export interface OgmaModuleOptions {
   service?: OgmaServiceOptions;
   interceptor?: OgmaInterceptorOptions | boolean;
 }
-export interface OgmaServiceOptions extends Partial<OgmaOptions> {}
+export type OgmaServiceOptions = Partial<OgmaOptions>;
 export interface OgmaInterceptorOptions {
   skip?(req: OgmaRequest, res: OgmaResponse): boolean;
   getRequest?(context: ExecutionContext): OgmaRequest;

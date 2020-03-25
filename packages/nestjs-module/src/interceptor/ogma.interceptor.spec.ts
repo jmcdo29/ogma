@@ -13,7 +13,7 @@ const method = 'GET';
 const url = '/';
 const time = '50 ms';
 
-function mockExecContext(code: number, type: string = 'http') {
+function mockExecContext(code: number, type = 'http') {
   return createMock<ExecutionContext>({
     switchToHttp: () => ({
       getRequest: jest.fn(),
@@ -315,7 +315,6 @@ describe('OgmaInterceptor testing intercept', () => {
         const observer = Observable.create((obs: Observer<any>) => {
           obs.next(value);
           obs.complete();
-          return;
         });
         interceptor.intercept(context, { handle: () => observer }).subscribe({
           next: (val) => {

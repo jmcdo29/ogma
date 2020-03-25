@@ -1,5 +1,5 @@
 # compiled output
-packages/*/lib/
+lib/
 node_modules/
 *.buildinfo
 

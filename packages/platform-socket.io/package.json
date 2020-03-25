@@ -1,34 +1,20 @@
 {
-  "name": "@ogma/nestjs-module",
+  "name": "@ogma/platform-socket.io",
   "version": "0.1.0",
-  "description": "A NestJS module for the Ogma logger",
+  "description": "A plugin for the OgmaInterceptor to properly handle websocket requests from socket.io",
   "keywords": [
+    "socket.io",
+    "logging",
+    "websocket",
+    "ogma",
     "nestjs",
-    "nest",
-    "logger",
-    "json",
-    "json-logging",
-    "request-loggin",
-    "nestjs-module",
-    "module",
-    "logging"
+    "interceptor"
   ],
   "author": "Jay McDoniel <jmcdo29@gmail.com>",
   "homepage": "https://github.com/jmcdo29/nestjs-ogma#readme",
   "license": "MIT",
   "main": "lib/index.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "dependencies": {
-    "@golevelup/nestjs-modules": "^0.3.1",
-    "@ogma/logger": "^1.0.0"
-  },
-  "peerDependencies": {
-    "@nestjs/common": "^6.0.0",
-    "@nestjs/core": "^6.0.0",
-    "reflect-metadata": "^0.1.0"
-  },
+  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],

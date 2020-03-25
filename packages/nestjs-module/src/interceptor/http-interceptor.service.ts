@@ -88,7 +88,6 @@ export class HttpInterceptorService extends AbstractInterceptorService {
     } else {
       res.statusCode = code;
     }
-    return;
   }
 
   private getHttpMajor(req: OgmaRequest): number {

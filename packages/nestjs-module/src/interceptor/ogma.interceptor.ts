@@ -55,7 +55,6 @@ export class OgmaInterceptor implements NestInterceptor {
             );
             this.log(logObject, context);
           }
-          return;
         },
         (err) => {
           if (!this.shouldSkip(context)) {

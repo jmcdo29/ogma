@@ -24,9 +24,10 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
   },
-  ignorePatterns: ['*.d.ts', 'dist/*'],
+  ignorePatterns: ['*.d.ts', 'dist/*', 'packages/**/node_modules/*'],
   globals: {
     WeakSet: 'readonly',
     Promise: 'readonly',
+    Reflect: 'readonly'
   },
 };

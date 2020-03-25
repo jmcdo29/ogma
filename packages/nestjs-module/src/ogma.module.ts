@@ -112,10 +112,7 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
    * @param context string context for the OgmaService to use in logging
    * @param options optional additional options for creating a new Ogma instance
    */
-  static forFeature(
-    context: string = '',
-    options?: OgmaServiceOptions,
-  ): DynamicModule {
+  static forFeature(context = '', options?: OgmaServiceOptions): DynamicModule {
     return {
       module: OgmaModule,
       imports: [OgmaModule.Deferred],
