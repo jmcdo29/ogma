@@ -1,19 +1,23 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { interceptorErrorMessage, optionalRequire } from '../helpers';
-import { OgmaInterceptorError, OgmaInterceptorServiceOptions } from '../interfaces';
+import {
+  OgmaInterceptorError,
+  OgmaInterceptorServiceOptions,
+} from '../interfaces';
 import { HttpInterceptorService } from './http-interceptor.service';
 import { LogObject } from './interfaces/log.interface';
 import { RpcInterceptorService } from './rpc-interceptor.service';
 import { WebsocketInterceptorService } from './websocket-interceptor.service';
 
-const HttpModule = optionalRequire('@nestjs/platform-express') || optionalRequire('@nestjs/platform-fastify');
+const HttpModule =
+  optionalRequire('@nestjs/platform-express') ||
+  optionalRequire('@nestjs/platform-fastify');
 const SocketModule = optionalRequire('@nestjs/websockets');
 const RpcModule = optionalRequire('@nestjs/microservices');
 
 @Injectable()
 export class DelegatorService {
-
   private httpParser: HttpInterceptorService;
   private wsParser: WebsocketInterceptorService;
   private rpcParser: RpcInterceptorService;
@@ -53,7 +57,9 @@ export class DelegatorService {
         break;
       case 'ws':
         if (!this.wsParser) {
-          throw new OgmaInterceptorError(interceptorErrorMessage('@nestjs/websockets', 'websocket'));
+          throw new OgmaInterceptorError(
+            interceptorErrorMessage('@nestjs/websockets', 'websocket'),
+          );
         }
         logObject = this.wsParser.getSuccessContext(
           data,
@@ -64,7 +70,9 @@ export class DelegatorService {
         break;
       case 'rpc':
         if (!this.rpcParser) {
-          throw new OgmaInterceptorError(interceptorErrorMessage('@nestjs/microservices', 'microservice'));
+          throw new OgmaInterceptorError(
+            interceptorErrorMessage('@nestjs/microservices', 'microservice'),
+          );
         }
         logObject = this.rpcParser.getSuccessContext(
           data,

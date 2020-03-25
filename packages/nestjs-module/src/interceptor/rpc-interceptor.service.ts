@@ -5,7 +5,6 @@ import { Reflector } from '@nestjs/core';
 
 @Injectable()
 export class RpcInterceptorService extends AbstractInterceptorService {
-
   private TcpContext: any;
   private KafkaContext: any;
   private MqttContext: any;
@@ -19,7 +18,14 @@ export class RpcInterceptorService extends AbstractInterceptorService {
   }
 
   private init() {
-    const { TcpContext, KafkaContext, MqttContext, NatsContext, RedisContext, RmqContext } = require('@nestjs/microservices');
+    const {
+      TcpContext,
+      KafkaContext,
+      MqttContext,
+      NatsContext,
+      RedisContext,
+      RmqContext,
+    } = require('@nestjs/microservices');
     this.TcpContext = TcpContext;
     this.KafkaContext = KafkaContext;
     this.MqttContext = MqttContext;
@@ -30,7 +36,10 @@ export class RpcInterceptorService extends AbstractInterceptorService {
 
   // what pattern/request is being hit
   getCallPoint(context: ExecutionContext): string {
-    let pattern: string | object = this.reflector.get<object | string>(MICROSERVICE_METADATA, context.getHandler());
+    let pattern: string | object = this.reflector.get<object | string>(
+      MICROSERVICE_METADATA,
+      context.getHandler(),
+    );
     if (typeof pattern === 'object') {
       pattern = JSON.stringify(pattern);
     }
@@ -77,7 +86,6 @@ export class RpcInterceptorService extends AbstractInterceptorService {
     const status = error ? 500 : 200;
     return inColor ? this.wrapInColor(status) : status.toString();
   }
-
 
   private getRpcContext(context: ExecutionContext) {
     return context.switchToRpc().getContext();

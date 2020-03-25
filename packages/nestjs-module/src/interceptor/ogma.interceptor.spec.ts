@@ -60,10 +60,7 @@ describe.each([
             interceptorOptions,
             ogmaMock as any,
           );
-          Date.now = jest
-            .fn()
-            .mockReturnValue(50)
-            .mockReturnValueOnce(0);
+          Date.now = jest.fn().mockReturnValue(50).mockReturnValueOnce(0);
         });
 
         afterEach(() => {
@@ -168,10 +165,7 @@ describe.each([
 );
 describe('OgmaInterceptor with no color', () => {
   it('should be able to log without color', () => {
-    Date.now = jest
-      .fn()
-      .mockReturnValue(50)
-      .mockReturnValueOnce(0);
+    Date.now = jest.fn().mockReturnValue(50).mockReturnValueOnce(0);
     const infoMock = jest.fn();
     const interceptor = new OgmaInterceptor({ format: 'dev' }, {
       info: infoMock,
@@ -206,10 +200,7 @@ describe('OgmaInterceptor with no color', () => {
 });
 describe('OgmaInterceptor with getRequest and getResponse options', () => {
   it('should run the getRequest and getResponse functions', () => {
-    Date.now = jest
-      .fn()
-      .mockReturnValue(50)
-      .mockReturnValueOnce(0);
+    Date.now = jest.fn().mockReturnValue(50).mockReturnValueOnce(0);
     const ogmaOptions = {
       format: 'dev' as const,
       getRequest: jest

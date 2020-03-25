@@ -1,0 +1,80 @@
+{
+	"name": "@ogma/logger",
+	"version": "1.0.0",
+	"description": "A simple, no-nonsense logging package for NodeJS",
+	"keywords": [
+		"logging",
+		"colors",
+		"cli",
+		"terminal",
+		"nodejs",
+		"typescript"
+	],
+	"author": "Jay McDoniel <jmcdo29@gmail.com>",
+	"homepage": "https://github.com/jmcdo29/nestjs-ogma#readme",
+	"license": "MIT",
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"bin": {
+		"ogma": "./lib/command/index.js"
+  },
+  "scripts": {
+    "benchmark:all": "tsc ./benchmark/ogmaUsageTest.ts && node ./benchmark/ogmaUsageTest.js all && git add ./benchmark/benchmark.md",
+    "build": "rimraf lib && tsc -p tsconfig.build.json",
+    "commit": "git-cz",
+    "format": "prettier --write './src/**/*.ts'",
+    "lint": "eslint --ext .ts ./src/",
+    "test": "jest",
+    "test:ci": "jest --runInBand",
+    "preversion": "npx prettier --write './src/**/*.ts' && npm run lint && npm run build && npm run benchmark:all",
+    "version": "conventional-changelog -p -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "release": "npm publish"
+  },
+	"devDependencies": {
+		"@commitlint/cli": "^8.3.4",
+		"@commitlint/config-conventional": "^8.3.4",
+		"@golevelup/nestjs-testing": "^0.1.2",
+		"@types/jest": "^24.0.25",
+		"@types/pino": "^5.15.1",
+		"@typescript-eslint/eslint-plugin": "^2.15.0",
+		"@typescript-eslint/parser": "^2.15.0",
+		"bunyan": "^1.8.12",
+		"conventional-changelog-cli": "^2.0.31",
+		"cz-conventional-changelog": "^3.0.2",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.9.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"eslint-plugin-sonarjs": "^0.5.0",
+		"husky": "^4.0.5",
+		"jest": "^24.9.0",
+		"lint-staged": "^9.5.0",
+		"npm-check": "^5.9.0",
+		"pino": "^5.15.0",
+		"prettier": "^1.19.1",
+		"rimraf": "^3.0.0",
+		"snyk": "^1.277.3",
+		"ts-jest": "^24.3.0",
+		"typescript": "^3.7.4",
+		"winston": "^3.2.1"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"directories": {
+		"lib": "lib"
+	},
+	"files": [
+		"bin",
+		"lib"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jmcdo29/nestjs-ogma.git"
+	},
+	"bugs": {
+		"url": "https://github.com/jmcdo29/nestjs-ogma/issues"
+	}
+}

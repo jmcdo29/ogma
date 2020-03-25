@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "composite": true,
     "module": "commonjs",
     "declaration": true,
     "removeComments": false,
@@ -10,7 +11,11 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "strict": false,
-    "noUnusedLocals": false
+    "noUnusedLocals": false,
+    "lib": ["ES7"],
+    "paths": {
+      "@ogma/*": ["./*/src"]
+    }
   },
   "exclude": ["node_modules", "dist"]
 }

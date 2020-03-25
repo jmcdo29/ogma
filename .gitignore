@@ -1,7 +1,8 @@
 # compiled output
-/dist
-/dist-test
-/node_modules
+packages/*/lib/
+node_modules/
+*.buildinfo
+
 
 # Logs
 logs

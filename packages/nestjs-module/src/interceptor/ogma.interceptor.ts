@@ -43,7 +43,9 @@ export class OgmaInterceptor implements NestInterceptor {
       tap(
         (data) => {
           this.service.log(context.switchToRpc().getContext());
-          this.service.log(context.switchToRpc().getContext() instanceof TcpContext)
+          this.service.log(
+            context.switchToRpc().getContext() instanceof TcpContext,
+          );
           if (!this.shouldSkip(context)) {
             logObject = this.delegate.getContextSuccessString(
               data,
