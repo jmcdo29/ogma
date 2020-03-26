@@ -5,7 +5,7 @@ import {
   Optional,
   Scope,
 } from '@nestjs/common';
-import { Ogma } from 'ogma';
+import { Ogma } from '@ogma/logger';
 import { OGMA_CONTEXT, OGMA_INSTANCE } from './ogma.constants';
 
 @Injectable({ scope: Scope.TRANSIENT })

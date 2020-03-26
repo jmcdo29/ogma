@@ -1,16 +1,18 @@
-import { ExecutionContext } from '@nestjs/common';
-import { OgmaOptions } from 'ogma';
-import { OgmaRequest, OgmaResponse } from './ogma-types.interface';
+import { OgmaOptions } from '@ogma/logger';
+import { AbstractInterceptorService } from '../interceptor/abstract-interceptor.service';
 
 export interface OgmaModuleOptions {
   service?: OgmaServiceOptions;
   interceptor?: OgmaInterceptorOptions | boolean;
 }
 export type OgmaServiceOptions = Partial<OgmaOptions>;
+
+export type Type<T> = new (...args: any[]) => T;
 export interface OgmaInterceptorOptions {
-  skip?(req: OgmaRequest, res: OgmaResponse): boolean;
-  getRequest?(context: ExecutionContext): OgmaRequest;
-  getResponse?(context: ExecutionContext): OgmaResponse;
+  http?: false | Type<AbstractInterceptorService>;
+  ws?: false | Type<AbstractInterceptorService>;
+  rpc?: false | Type<AbstractInterceptorService>;
+  gql?: false | Type<AbstractInterceptorService>;
 }
 
 export interface OgmaInterceptorServiceOptions extends OgmaInterceptorOptions {

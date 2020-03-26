@@ -1,6 +1,6 @@
 import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { color } from 'ogma';
+import { color } from '@ogma/logger';
 import { OgmaInterceptorServiceOptions } from '../interfaces/ogma-options.interface';
 import { InterceptorService } from './interfaces/interceptor-service.interface';
 import { LogObject } from './interfaces/log.interface';

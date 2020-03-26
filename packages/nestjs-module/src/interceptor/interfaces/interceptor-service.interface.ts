@@ -1,5 +1,5 @@
 import { ExecutionContext, HttpException } from '@nestjs/common';
-import { OgmaInterceptorServiceOptions } from 'src/interfaces/ogma-options.interface';
+import { OgmaInterceptorServiceOptions } from '../../interfaces/ogma-options.interface';
 import { LogObject } from './log.interface';
 
 export interface InterceptorService {

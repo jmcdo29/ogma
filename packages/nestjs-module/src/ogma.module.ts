@@ -1,20 +1,11 @@
-import { createConfigurableDynamicRootModule } from '@golevelup/nestjs-modules';
-import {
-  CallHandler,
-  DynamicModule,
-  ExecutionContext,
-  Module,
-  Scope,
-} from '@nestjs/common';
-import { APP_INTERCEPTOR, Reflector } from '@nestjs/core';
-import { Ogma } from 'ogma';
+import { AsyncModuleConfig } from '@golevelup/nestjs-modules';
+import { DynamicModule, Module, Scope } from '@nestjs/common';
+import { Ogma } from '@ogma/logger';
 import { DelegatorService } from './interceptor/delegator.service';
 import { HttpInterceptorService } from './interceptor/http-interceptor.service';
-import { OgmaInterceptor } from './interceptor/ogma.interceptor';
 import { RpcInterceptorService } from './interceptor/rpc-interceptor.service';
 import { WebsocketInterceptorService } from './interceptor/websocket-interceptor.service';
 import {
-  OgmaInterceptorOptions,
   OgmaModuleOptions,
   OgmaServiceOptions,
 } from './interfaces/ogma-options.interface';
@@ -22,14 +13,16 @@ import {
   OGMA_CONTEXT,
   OGMA_INSTANCE,
   OGMA_INTERCEPTOR_OPTIONS,
-  OGMA_OPTIONS,
   OGMA_SERVICE_OPTIONS,
 } from './ogma.constants';
 import { createOgmaProvider } from './ogma.provider';
 import { OgmaService } from './ogma.service';
+import { OgmaCoreModule } from './ogma-core.module';
 
 @Module({
+  imports: [OgmaCoreModule.Deferred],
   exports: [
+    OgmaCoreModule,
     OGMA_INTERCEPTOR_OPTIONS,
     OGMA_SERVICE_OPTIONS,
     OgmaService,
@@ -39,71 +32,18 @@ import { OgmaService } from './ogma.service';
     RpcInterceptorService,
   ],
 })
-export class OgmaModule extends createConfigurableDynamicRootModule<
-  OgmaModule,
-  OgmaModuleOptions
->(OGMA_OPTIONS, {
-  providers: [
-    HttpInterceptorService,
-    WebsocketInterceptorService,
-    DelegatorService,
-    RpcInterceptorService,
-    OgmaService,
-    {
-      provide: OGMA_INTERCEPTOR_OPTIONS,
-      useFactory: (
-        options: OgmaModuleOptions,
-      ): OgmaInterceptorOptions | boolean =>
-        options.interceptor !== undefined ? options.interceptor : true,
-      inject: [OGMA_OPTIONS],
-    },
-    {
-      provide: OGMA_SERVICE_OPTIONS,
-      useFactory: (options: OgmaModuleOptions) => options.service,
-      inject: [OGMA_OPTIONS],
-    },
-    {
-      provide: APP_INTERCEPTOR,
-      useFactory: (
-        options: OgmaInterceptorOptions,
-        service: OgmaService,
-        delegate: DelegatorService,
-        reflector: Reflector,
-      ) => {
-        let interceptor;
-        if (options) {
-          options = typeof options === 'object' ? options : {};
-          interceptor = new OgmaInterceptor(
-            options,
-            service,
-            delegate,
-            reflector,
-          );
-        } else {
-          interceptor = {
-            intercept: (context: ExecutionContext, next: CallHandler) =>
-              next.handle(),
-          };
-        }
-        return interceptor;
-      },
-      inject: [
-        OGMA_INTERCEPTOR_OPTIONS,
-        OgmaService,
-        DelegatorService,
-        Reflector,
-      ],
-    },
-    {
-      provide: OGMA_INSTANCE,
-      useFactory: (options: OgmaServiceOptions) => createOgmaProvider(options),
-      inject: [OGMA_SERVICE_OPTIONS],
-    },
-  ],
-  exports: [OGMA_INTERCEPTOR_OPTIONS, OGMA_SERVICE_OPTIONS],
-}) {
+export class OgmaModule {
   static ogmaInstance?: Ogma;
-  private static Deferred = OgmaModule.externallyConfigured(OgmaModule, 0);
+
+  static forRoot(options: OgmaModuleOptions): DynamicModule {
+    return OgmaCoreModule.forRoot(OgmaCoreModule, options);
+  }
+
+  static forRootAsync(
+    options: AsyncModuleConfig<OgmaModuleOptions>,
+  ): DynamicModule {
+    return OgmaCoreModule.forRootAsync(OgmaCoreModule, options);
+  }
 
   /**
    *  Creates a new OgmaService based on the given context and possible options.
@@ -115,7 +55,7 @@ export class OgmaModule extends createConfigurableDynamicRootModule<
   static forFeature(context = '', options?: OgmaServiceOptions): DynamicModule {
     return {
       module: OgmaModule,
-      imports: [OgmaModule.Deferred],
+      imports: [OgmaCoreModule.Deferred],
       providers: [
         {
           provide: OGMA_CONTEXT,

@@ -8,13 +8,13 @@
     "experimentalDecorators": true,
     "target": "es2017",
     "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
+    "outDir": "./lib",
+    "baseUrl": "./src",
     "strict": false,
     "noUnusedLocals": false,
     "lib": ["ES7"],
     "paths": {
-      "@ogma/*": ["./*/src"]
+      "@ogma/*": ["../*/src"]
     }
   },
   "exclude": ["node_modules", "dist"]

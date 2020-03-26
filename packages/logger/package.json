@@ -20,7 +20,7 @@
 	},
 	"scripts": {
 		"benchmark:all": "tsc ./benchmark/ogmaUsageTest.ts && node ./benchmark/ogmaUsageTest.js all && git add ./benchmark/benchmark.md",
-		"build": "rimraf lib && tsc -p tsconfig.build.json",
+		"build": "tsc -b tsconfig.build.json",
 		"commit": "git-cz",
 		"format": "prettier --write './src/**/*.ts'",
 		"lint": "eslint --ext .ts ./src/",

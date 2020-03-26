@@ -6,7 +6,7 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { OgmaOptions } from 'ogma';
+import { OgmaOptions } from '@ogma/logger';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { OgmaInterceptorOptions } from '../interfaces';
