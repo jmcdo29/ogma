@@ -1,11 +1,15 @@
 {
   "name": "ogma",
   "version": "0.0.0",
+  "private": true,
   "description": "A NestJS module for the Ogma logger",
   "author": {
     "name": "Jay McDoniel",
     "email": "jmcdo29@gmail.com"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "keywords": [
     "nestjs",
     "nest",
@@ -128,9 +132,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "dependencies": {
-    "@ogma/logger": "file:packages/logger",
-    "@ogma/nestjs-module": "file:packages/nestjs-module"
   }
 }
