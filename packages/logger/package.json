@@ -1,56 +1,56 @@
 {
-	"name": "@ogma/logger",
-	"version": "0.1.0",
-	"description": "A simple, no-nonsense logging package for NodeJS",
-	"keywords": [
-		"logging",
-		"colors",
-		"cli",
-		"terminal",
-		"nodejs",
-		"typescript"
-	],
-	"author": "Jay McDoniel <jmcdo29@gmail.com>",
-	"homepage": "https://github.com/jmcdo29/nestjs-ogma#readme",
-	"license": "MIT",
-	"main": "lib/index.js",
-	"types": "lib/index.d.ts",
-	"bin": {
-		"ogma": "./lib/command/index.js"
-	},
-	"scripts": {
-		"benchmark:all": "tsc ./benchmark/ogmaUsageTest.ts && node ./benchmark/ogmaUsageTest.js all && git add ./benchmark/benchmark.md",
-		"build": "tsc -b tsconfig.build.json",
-		"commit": "git-cz",
-		"format": "prettier --write './src/**/*.ts'",
-		"lint": "eslint --ext .ts ./src/",
-		"test": "jest",
-		"test:ci": "jest --runInBand",
-		"preversion": "npx prettier --write './src/**/*.ts' && npm run lint && npm run build && npm run benchmark:all",
-		"version": "conventional-changelog -p -i CHANGELOG.md -s && git add CHANGELOG.md",
-		"release": "npm publish"
-	},
-	"engines": {
-		"node": ">=10"
-	},
-	"directories": {
-		"lib": "lib"
-	},
-	"files": [
-		"bin",
-		"lib"
-	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/jmcdo29/nestjs-ogma.git"
-	},
-	"bugs": {
-		"url": "https://github.com/jmcdo29/nestjs-ogma/issues"
-	},
-	"devDependencies": {
-		"rxjs": "^6.5.4"
-	}
+  "name": "@ogma/logger",
+  "version": "0.1.0",
+  "description": "A simple, no-nonsense logging package for NodeJS",
+  "keywords": [
+    "logging",
+    "colors",
+    "cli",
+    "terminal",
+    "nodejs",
+    "typescript"
+  ],
+  "author": "Jay McDoniel <jmcdo29@gmail.com>",
+  "homepage": "https://github.com/jmcdo29/nestjs-ogma#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "bin": {
+    "ogma": "./lib/command/index.js"
+  },
+  "scripts": {
+    "benchmark:all": "tsc ./benchmark/ogmaUsageTest.ts && node ./benchmark/ogmaUsageTest.js all && git add ./benchmark/benchmark.md",
+    "build": "tsc -b tsconfig.build.json",
+    "commit": "git-cz",
+    "format": "prettier --write './src/**/*.ts'",
+    "lint": "eslint --ext .ts ./src/",
+    "test": "jest",
+    "test:ci": "jest --runInBand",
+    "preversion": "npx prettier --write './src/**/*.ts' && npm run lint && npm run build && npm run benchmark:all",
+    "version": "conventional-changelog -p -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "release": "npm publish"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmcdo29/nestjs-ogma.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jmcdo29/nestjs-ogma/issues"
+  },
+  "devDependencies": {
+    "rxjs": "^6.5.4"
+  }
 }
