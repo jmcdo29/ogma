@@ -26,7 +26,9 @@
     "url": "git+https://github.com/jmcdo29/nestjs-ogma.git"
   },
   "scripts": {
-    "build": "tsc -b tsconfig.build.json"
+    "build": "tsc -b tsconfig.build.json",
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "bugs": {
     "url": "https://github.com/jmcdo29/nestjs-ogma/issues"
@@ -34,9 +36,11 @@
   "devDependencies": {
     "@nestjs/platform-fastify": "7.0.6",
     "@ogma/nestjs-module": "^0.1.0",
+    "fastify": "^2.13.0",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
+    "@nestjs/platform-fastify": "7.0.6",
     "@ogma/nestjs-module": "^0.1.0",
     "fastify": "^2.13.0"
   }

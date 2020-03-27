@@ -1,14 +1,14 @@
 import { Injectable, ExecutionContext, HttpException } from '@nestjs/common';
+import { HTTP_CODE_METADATA } from '@nestjs/common/constants';
 import { AbstractInterceptorService } from '@ogma/nestjs-module';
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { HTTP_CODE_METADATA } from '@nestjs/common/constants';
 import { ServerResponse } from 'http';
 
 @Injectable()
 export class FastifyInterceptorService extends AbstractInterceptorService {
   getCallerIp(context: ExecutionContext): string[] | string {
     const req = this.getRequest(context);
-    return req.ips.length ? req.ips : req.ip;
+    return req.ips && req.ips.length ? req.ips : req.ip;
   }
 
   getCallPoint(context: ExecutionContext): string {
@@ -33,7 +33,7 @@ export class FastifyInterceptorService extends AbstractInterceptorService {
   ): string {
     let status;
     const res = this.getResponse(context);
-    status = res.status;
+    status = res.res.statusCode;
     const reflectStatus = this.reflector.get<number>(
       HTTP_CODE_METADATA,
       context.getHandler(),
@@ -50,7 +50,7 @@ export class FastifyInterceptorService extends AbstractInterceptorService {
   }
 
   private getResponse(context: ExecutionContext): FastifyReply<ServerResponse> {
-    return context.switchToHttp().getResponse();
+    return context.switchToHttp().getResponse<FastifyReply<ServerResponse>>();
   }
 
   private determineStatusCodeFromError(error: HttpException & Error): number {
