@@ -1,14 +1,8 @@
-import {
-  Inject,
-  Injectable,
-  LoggerService,
-  Optional,
-  Scope,
-} from '@nestjs/common';
+import { Inject, Injectable, LoggerService, Optional } from '@nestjs/common';
 import { Ogma } from '@ogma/logger';
 import { OGMA_CONTEXT, OGMA_INSTANCE } from './ogma.constants';
 
-@Injectable({ scope: Scope.TRANSIENT })
+@Injectable()
 export class OgmaService implements LoggerService {
   private readonly context?: string;
   private readonly ogma: Ogma;

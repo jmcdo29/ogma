@@ -34,9 +34,10 @@
     "@ogma/logger": "^0.1.0"
   },
   "peerDependencies": {
-    "@nestjs/common": "^6.0.0",
-    "@nestjs/core": "^6.0.0",
-    "reflect-metadata": "^0.1.0"
+    "@nestjs/common": "^7.0.0",
+    "@nestjs/core": "^7.0.0",
+    "reflect-metadata": "^0.1.0",
+    "rxjs": "^6.0.0"
   },
   "publishConfig": {
     "access": "public"
@@ -47,5 +48,8 @@
   },
   "bugs": {
     "url": "https://github.com/jmcdo29/nestjs-ogma/issues"
+  },
+  "devDependencies": {
+    "rxjs": "^6.5.4"
   }
 }

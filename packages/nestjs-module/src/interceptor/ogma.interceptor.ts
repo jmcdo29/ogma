@@ -17,7 +17,6 @@ import {
 import { OgmaService } from '../ogma.service';
 import { DelegatorService } from './delegator.service';
 import { LogObject } from './interfaces/log.interface';
-import { TcpContext } from '@nestjs/microservices';
 
 @Injectable()
 export class OgmaInterceptor implements NestInterceptor {
@@ -42,10 +41,7 @@ export class OgmaInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap(
         (data) => {
-          this.service.log(context.switchToRpc().getContext());
-          this.service.log(
-            context.switchToRpc().getContext() instanceof TcpContext,
-          );
+          console.log(this.options);
           if (!this.shouldSkip(context)) {
             logObject = this.delegate.getContextSuccessString(
               data,
@@ -72,10 +68,23 @@ export class OgmaInterceptor implements NestInterceptor {
   }
 
   public shouldSkip(context: ExecutionContext): boolean {
-    return (
+    const decoratorSkip =
       this.reflector.get(OGMA_INTERCEPTOR_SKIP, context.getClass()) ||
-      this.reflector.get(OGMA_INTERCEPTOR_SKIP, context.getHandler())
-    );
+      this.reflector.get(OGMA_INTERCEPTOR_SKIP, context.getHandler());
+    if (decoratorSkip) {
+      return true;
+    }
+    switch (context.getType()) {
+      case 'http':
+        if (context.getArgs().length === 3) {
+          return !this.options.http;
+        }
+        return !this.options.gql;
+      case 'ws':
+        return !this.options.ws;
+      case 'rpc':
+        return !this.options.rpc;
+    }
   }
 
   public log(logObject: string | LogObject, context: ExecutionContext): void {

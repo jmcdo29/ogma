@@ -1,44 +1,32 @@
 import { Ogma, OgmaOptions } from '@ogma/logger';
-import { AbstractInterceptorService } from './interceptor/abstract-interceptor.service';
-import { GqlInterceptorService } from './interceptor/gql-interceptor.service';
-import { HttpInterceptorService } from './interceptor/http-interceptor.service';
-import { RpcInterceptorService } from './interceptor/rpc-interceptor.service';
-import { WebsocketInterceptorService } from './interceptor/websocket-interceptor.service';
-import { Type } from './interfaces';
-import { OgmaCoreModule } from './ogma-core.module';
-import { OgmaModule } from './ogma.module';
+import { Provider } from '@nestjs/common';
+import { OgmaService } from './ogma.service';
+import { OGMA_INSTANCE, OGMA_SERVICE_TOKEN } from './ogma.constants';
 
 /**
  * @internal
  */
 export function createOgmaProvider(options?: Partial<OgmaOptions>): Ogma {
-  OgmaModule.ogmaInstance = new Ogma({
+  return new Ogma({
     ...options,
     application: options?.application || 'Nest',
   });
-  return OgmaModule.ogmaInstance;
 }
 
-export function wsInterceptorProvider(): Type<AbstractInterceptorService> {
-  return OgmaCoreModule.interceptorOptions.ws
-    ? OgmaCoreModule.interceptorOptions.ws
-    : WebsocketInterceptorService;
+export function createProviderToken(topic: string): string {
+  return OGMA_SERVICE_TOKEN + topic;
 }
 
-export function httpInterceptorProvider(): Type<AbstractInterceptorService> {
-  return OgmaCoreModule.interceptorOptions.http
-    ? OgmaCoreModule.interceptorOptions.http
-    : HttpInterceptorService;
-}
-
-export function gqlInterceptorProviders(): Type<AbstractInterceptorService> {
-  return OgmaCoreModule.interceptorOptions.gql
-    ? OgmaCoreModule.interceptorOptions.gql
-    : GqlInterceptorService;
-}
-
-export function rpcInterceptorProvider(): Type<AbstractInterceptorService> {
-  return OgmaCoreModule.interceptorOptions.rpc
-    ? OgmaCoreModule.interceptorOptions.rpc
-    : RpcInterceptorService;
+export function createLoggerProviders(topic: string | Function): Provider[] {
+  topic = typeof topic === 'function' ? topic.name : topic;
+  const token = createProviderToken(topic);
+  return [
+    {
+      inject: [OGMA_INSTANCE],
+      provide: token,
+      useFactory: (ogmaInstance: Ogma): OgmaService => {
+        return new OgmaService(ogmaInstance, topic as string);
+      },
+    },
+  ];
 }

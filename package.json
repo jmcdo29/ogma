@@ -34,7 +34,7 @@
     "start:test": "node dist-test/main.js",
     "start:test:ws": "node dist-test/main.js ws",
     "format": "prettier --write \"packages/**/*.ts\"",
-    "lint": "eslint --ext .ts packages/",
+    "lint": "eslint --ext .ts .",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",

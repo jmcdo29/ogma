@@ -1,5 +1,10 @@
 import { createConfigurableDynamicRootModule } from '@golevelup/nestjs-modules';
-import { CallHandler, ExecutionContext, Module } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  Module,
+  NestInterceptor,
+} from '@nestjs/common';
 import { APP_INTERCEPTOR, Reflector } from '@nestjs/core';
 import { DelegatorService } from './interceptor/delegator.service';
 import { OgmaInterceptor } from './interceptor/ogma.interceptor';
@@ -15,17 +20,18 @@ import {
   OGMA_SERVICE_OPTIONS,
 } from './ogma.constants';
 import { OgmaService } from './ogma.service';
-import {
-  createOgmaProvider,
-  wsInterceptorProvider,
-  httpInterceptorProvider,
-  gqlInterceptorProviders,
-  rpcInterceptorProvider,
-} from './ogma.provider';
+import { createOgmaProvider } from './ogma.provider';
 import { WebsocketInterceptorService } from './interceptor/websocket-interceptor.service';
 import { HttpInterceptorService } from './interceptor/http-interceptor.service';
 import { GqlInterceptorService } from './interceptor/gql-interceptor.service';
 import { RpcInterceptorService } from './interceptor/rpc-interceptor.service';
+
+let ogmaInterceptorDefaults: OgmaInterceptorOptions = {
+  http: HttpInterceptorService,
+  ws: false,
+  rpc: false,
+  gql: false,
+};
 
 @Module({})
 export class OgmaCoreModule extends createConfigurableDynamicRootModule<
@@ -35,18 +41,15 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
   providers: [
     {
       provide: OGMA_INTERCEPTOR_OPTIONS,
+      inject: [OGMA_OPTIONS],
       useFactory: (
         options: OgmaModuleOptions,
-      ): OgmaInterceptorOptions | boolean => {
-        const intOpts = options.interceptor;
-        if (intOpts !== undefined) {
-          if (intOpts === false) {
-            return intOpts;
-          }
-          return OgmaCoreModule.mergeInterceptorDefaults(intOpts);
-        } else {
-          return true;
+      ): OgmaInterceptorOptions | false => {
+        const intOpts = options?.interceptor ?? undefined;
+        if (intOpts === false) {
+          return intOpts;
         }
+        return OgmaCoreModule.mergeInterceptorDefaults(intOpts);
       },
     },
     {
@@ -62,8 +65,9 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
         delegate: DelegatorService,
         reflector: Reflector,
       ) => {
-        let interceptor;
+        let interceptor: NestInterceptor;
         if (options) {
+          console.log(delegate);
           interceptor = new OgmaInterceptor(
             options,
             service,
@@ -91,40 +95,44 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
       inject: [OGMA_SERVICE_OPTIONS],
     },
     {
-      provide: WebsocketInterceptorService,
-      useClass: wsInterceptorProvider(),
+      provide: HttpInterceptorService,
+      useClass: ogmaInterceptorDefaults.http
+        ? ogmaInterceptorDefaults.http
+        : HttpInterceptorService,
     },
     {
-      provide: HttpInterceptorService,
-      useClass: httpInterceptorProvider(),
+      provide: WebsocketInterceptorService,
+      useClass: ogmaInterceptorDefaults.ws
+        ? ogmaInterceptorDefaults.ws
+        : WebsocketInterceptorService,
     },
     {
       provide: GqlInterceptorService,
-      useClass: gqlInterceptorProviders(),
+      useClass: ogmaInterceptorDefaults.gql
+        ? ogmaInterceptorDefaults.gql
+        : GqlInterceptorService,
     },
     {
       provide: RpcInterceptorService,
-      useClass: rpcInterceptorProvider(),
+      useClass: ogmaInterceptorDefaults.rpc
+        ? ogmaInterceptorDefaults.rpc
+        : RpcInterceptorService,
     },
+    OgmaService,
+    DelegatorService,
   ],
 }) {
-  static interceptorOptions: OgmaInterceptorOptions = {
-    http: HttpInterceptorService,
-    ws: false as const,
-    rpc: false as const,
-    gql: false as const,
-  };
   static Deferred = OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0);
 
   static mergeInterceptorDefaults(
     options: OgmaInterceptorOptions | true,
   ): OgmaInterceptorOptions {
-    if (typeof options !== 'boolean') {
-      OgmaCoreModule.interceptorOptions = {
-        ...OgmaCoreModule.interceptorOptions,
+    if (typeof options !== 'boolean' && options !== undefined) {
+      ogmaInterceptorDefaults = {
+        ...ogmaInterceptorDefaults,
         ...options,
       };
     }
-    return OgmaCoreModule.interceptorOptions;
+    return ogmaInterceptorDefaults;
   }
 }

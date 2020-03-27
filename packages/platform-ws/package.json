@@ -30,5 +30,8 @@
   },
   "bugs": {
     "url": "https://github.com/jmcdo29/nestjs-ogma/issues"
+  },
+  "devDependencies": {
+    "rxjs": "^6.5.4"
   }
 }
