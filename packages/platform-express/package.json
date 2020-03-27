@@ -1,0 +1,45 @@
+{
+  "name": "@ogma/platform-express",
+  "version": "0.1.0",
+  "description": "A plugin for the OgmaInterceptor to properly handle HTTP requests from Express",
+  "keywords": [
+    "express",
+    "logging",
+    "ogma",
+    "nestjs",
+    "interceptor",
+    "http"
+  ],
+  "author": "Jay McDoniel <jmcdo29@gmail.com>",
+  "homepage": "https://github.com/jmcdo29/nestjs-ogma#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmcdo29/nestjs-ogma.git"
+  },
+  "scripts": {
+    "build": "tsc -b tsconfig.build.json",
+    "test": "jest",
+    "test:cov": "jest --coverage"
+  },
+  "bugs": {
+    "url": "https://github.com/jmcdo29/nestjs-ogma/issues"
+  },
+  "peerDependencies": {
+    "@ogma/nestjs-module": "^0.1.0",
+    "@types/express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@nestjs/platform-express": "^7.0.6",
+    "@ogma/nestjs-module": "^0.1.0",
+    "@types/express": "^4.17.3"
+  }
+}

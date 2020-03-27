@@ -30,6 +30,7 @@ module.exports = {
         'deps',
         'docs',
         'release',
+        'express',
         'socket.io',
         'fastify',
         'ws',
