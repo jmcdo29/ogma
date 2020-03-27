@@ -1,16 +1,20 @@
-<div align="center">
+<!-- <div align="center">
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jmcdo29_nestjs-ogma&metric=alert_status)](https://sonarcloud.io/dashboard?id=jmcdo29_nestjs-ogma) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Actions Status](https://github.com/jmcdo29/nestjs-ogma/workflows/CI/badge.svg)](https://github.com/jmcdo29/nestjs-ogma/workflows/CI/badge.svg) [![Version](https://badgen.net/npm/v/nestjs-ogma)](https://npmjs.com/package/nestjs-ogma) [![Coffee](https://badgen.net/badge/Buy%20Me/A%20Coffee/purple?icon=kofi)](https://www.buymeacoffee.com/jmcdo29)
 
-</div>
+</div> -->
 
-# nestjs-ogma
+# `@ogma/nestjs-module`
 
 A [NestJS module](https://docs.nestjs.com) for the [Ogma](https://github.com/jmcdo29/ogma) logging package.
 
+## Installation
+
+Installation is pretty simple, just `npm i @ogma/nestjs-module` or `yarn add @ogma/nestjs-module`
+
 ## Usage
 
-The OgmaService class is TRANSIENT scoped, which means that for each time you call `OgmaModule.forFeature()` a new instance of the `OgmaService` is created, and a new context is given to that OgmaService if one is provided. The base Ogma class will also be created as you can pass in options for the ogma class. This allows you to give each of your OgmaService's different logLevel configurations, which can be a big win.
+The OgmaService is a SINGLETON scoped service class in NestJS. That being said, if you want a new instance for each service, you can use the `OgmaModule.forRoot()` method and the `@OgmaLogger()` decorator.
 
 Ogma is a lightweight logger with customization options, that prints your logs in a pretty manner with timestamping, colors, and different levels. See the GitHub repository for Ogma to learn more about configuration and options.
 
@@ -26,6 +30,12 @@ In your root module, import `OgmaModule.forRoot` or `OgmaModule.forRootAsync` to
         color: true,
         json: false,
         application: 'NestJS'
+      },
+      interceptor: {
+        http: ExpressInterceptorService,
+        ws: false,
+        gql: false,
+        rpc: false
       }
     })
   ]
@@ -48,56 +58,57 @@ or async
                 if (err) {
                   throw err;
                 }
-              }
-            }),
-          }
+              })
+          },
+          application: config.getAppName()
         },
-        application: config.getAppName()
+        interceptor: {
+          http: ExpressInterceptorService,
+          ws: false,
+          gql: false,
+          rpc: false
+        }
       }),
       inject: [ConfigService]
-    }),
+    })
   ]
 })
 export class AppModule {}
 ```
 
-From here in each module you need to add the `OgmaService` you can add `OgmaModule.forFeature(context, option)`, where context is the context you want to add to the log and options are `OgmaOptions` you want to pass to override the originally configured options.
-
-> OgmaModule is required to be the first parameter of `forRoot` and `forRootAsync` because of how the `OgmaModule` makes use of an underlying library for creating [DynamicModules](https://docs.nestjs.com/fundamentals/dynamic-modules). Go check it out at [@golevelup/nestjs-modules](https://github.com/golevelup/nestjs/tree/master/packages/modules).
+From here in each module you need to add the `OgmaService` you can add `OgmaModule.forFeature(context)`, where context is the context you want to add to the log.
 
 ```ts
 @Module({
-  imports: [
-    OgmaModule.forFeature(MyService.name, {
-      service: { color: false }
-    })
-  ],
+  imports: [OgmaModule.forFeature(MyService.name)],
   providers: [MyService]
 })
 export class MyModule {}
 ```
 
-The above would set up the OgmaService to add the context of `[MyService]` to every log from within the `MyModule` module, and would tell the `Ogma` instance to not use any colors.
+```ts
+@Injectable()
+export class MyService {
+  constructor(
+    @OgmaLogger(MyService) private readonly logger: OgmaService
+  ) {}
+  // ...
+}
+```
+
+The above would set up the OgmaService to add the context of `[MyService]` to every log from within the `MyModule` module.
 
 ## OgmaInterceptor
 
-Ogma also comes with a built in Interceptor for logging requests made to your server. You can decide to turn the interceptor off by passing `{ interceptor: false }` as part of the options to the `OgmaModule`. By default, the interceptor will be in `production` mode and will output a log like
+Ogma also comes with a built in Interceptor for logging requests made to your server. You can decide to turn the interceptor off by passing `{ interceptor: false }` as part of the options to the `OgmaModule`. The interceptor will need to be told what parsers it should be using for each type of request that can be intercepted. By default, all of these values are set to `false`, but the interceptor will still attempt to bind to the server, which will result in an error. If you would like to not use the interceptor's logging abilities, simple pass `false` to the `interceptor` key in the `OgmaModule.forRoot/Async()` method. If you'd like to know more about _why_ this is the default behavior, please look at the [interceptor design decisions](#interceptor-design-decisions) part of the docs.
 
 ```sh
-[ISOString TimeStamp] [Application Name] PID [Context] [LogLevel]| Remote-Address - method URL HTTP/version Status Response-Time ms - Response-Content-Length
-```
-
-While the other option, `dev` mode, will print out in
-
-```sh
-[ISOString TimeStamp] [Application Name] PID [Context] [LogLevel]| method URL Status Response-Time ms - Response-Content-Length
+[ISOString TimeStamp] [Application Name] PID [Context] [LogLevel]| Remote-Address - method URL protocol Status Response-Time ms - Response-Content-Length
 ```
 
 Where `context` in both cases is the class-method combination of the path that was called. This is especially useful for GraphQL logging where all URLs log from the `/graphql` route.
 
-If you would like to skip any request url path, you can pass in a `skip` option that is a function with `req` and `res` parameters that returns a boolean. `true` to skip, `false` to log. Of course, if the JSON option is passed, then the log will be in a JSON format. All route logs are logged at the `INFO`/`LOG` level, for the sake of being visible at the default level.
-
-> In the `dev` format, the HTTP status is colored with 200's as green, 300's as cyan 400's as yellow and 500's as red. All other HTTP status codes are uncolored.
+If you would like to skip any request url path, you can pass in a decorator either an entire class or just a route handler with the `@OgmaSkip()` decorator.
 
 > Note: Be aware that as this is an interceptor, any errors that happen in middleware, such as Passport's serialization/deserialization and authentication methods through the PassportStrategy.
 
@@ -107,12 +118,24 @@ All configuration options are just that: options. None of them need to be provid
 
 | name | value | default | description |
 | --- | --- | --- | --- |
-| format | `'dev' | 'prod'` | 'prod' | Determines which format the logs will print in, according to the described formats above. |
-| skip | `function(req: Request or FastifyRequest, res: Response or FastifyReply<ServerResponse>): boolean` | N/A | A function to determine if the HTTP request should be logged or not. Useful for ignoring successes or for ignoring specific routes. |
-| getRequest | `function(context: ExecutionContext): Request or FastifyRequest` | N/A | Override the standard way of getting the HTTP request object. Useful for things like GraphQL where you need to first convert the context to the GraphQLContext |
-| getResponse | `function(context: ExecutionContext): Response or FastifyReply<ServerResponse>` | N/A | Exact same as the `getRequest` method, but for the response object. |
+| gql | false or AbstractInterceptorService | false | The GraphQL parser for the OgmaInterceptor |
+| http | false or AbstractInterceptorService | false | The HTTP parser for the OgmaInterceptor |
+| rpc | false or AbstractInterceptorService | false | The Microservice parser for the OgmaInterceptor |
+| ws | false or AbstractInterceptorService | false | The Websocket parser for the OgmaInterceptor |
 
-So long as the interceptors portion of the `OgmaModuleOptions` returns `truthy`, the `OgmaInterceptor` will be bound to your application and will start logging HTTP requests.
+Each of the above options, as mentioned, is false meaning that the requests for that type would not be parsed by the `OgmaInterceptor` and the request would flow as normal.
+
+> Note: The `AbstractInterceptorService` is the class that all `OgmaInterceptorService` parsers should extend, in order to adhere to the call scheme of the built in `DelegatorService`. This allows for easy extension and overwriting of the parsers.
+
+### Interceptor Design Decisions
+
+Due to the incredible complex nature of Nest and its DI system, there needed to be some sort of way to tell users at bootstrap that if the interceptor is to be used, which should be the default behavior, then it should have one of the `@ogma/platform-*` packages installed, **or** a custom parser should be provided. ****Every**** custom parser should `extend` the `AbstractInterceptorService` to ensure that A) Typescript doesn't complain about mismatched types, and B) the `DelegatorService` which handles the calls to each parser, can be sure it is getting back what it expects. If you are really, _really_ sure about what you are doing, you can always override the setting with `as any` to remove the Typescript warnings, but use that at your own risk.
+
+The interceptor was designed to be adaptable, and to be able to work with any context thrown at it, but only if the parser for that context type is installed. The most common parser would be `@ogma/platform-express`, which will work for HTTP requests with the Express server running under the hood (Nest's default). All other parsers provided by the `@ogma` namespace follow a similar naming scheme, and are provided for what Nest can use out of the box (including microservices named in the [microservices chapter](https://docs.nestjs.com/microservices/basics) of the Nest docs.)
+
+### Extending Pre-Built Parsers
+
+As the pre-built parsers are built around Object Oriented Typescript, if you want to change the functionality of one of the pre-built parsers, you can always create a new class that extends the class, change the specific method(s) you want, and then provide that as your parser. All the other methods should still come from the base class and not be affected.
 
 ## Putting it All Together
 

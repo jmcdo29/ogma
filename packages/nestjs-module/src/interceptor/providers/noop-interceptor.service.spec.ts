@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { HttpInterceptorService } from './http-interceptor.service';
+import { NoopInterceptorService } from './noop-interceptor.service';
 
-describe('HttpInterceptorService', () => {
-  let service: HttpInterceptorService;
+describe('NoopInterceptorService', () => {
+  let service: NoopInterceptorService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [HttpInterceptorService],
+      providers: [NoopInterceptorService],
     }).compile();
 
-    service = module.get<HttpInterceptorService>(HttpInterceptorService);
+    service = module.get<NoopInterceptorService>(NoopInterceptorService);
   });
 
   it('should be defined', () => {
@@ -28,10 +28,5 @@ describe('HttpInterceptorService', () => {
         status: '200',
       });
     });
-    it('should return a log object with multiple caller addresses', () => {});
-  });
-
-  describe('error context', () => {
-    it('should return an error log object', () => {});
   });
 });

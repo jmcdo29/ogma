@@ -1,7 +1,10 @@
-import { Ogma, OgmaOptions } from '@ogma/logger';
 import { Provider } from '@nestjs/common';
-import { OgmaService } from './ogma.service';
+import { Reflector } from '@nestjs/core';
+import { Ogma, OgmaOptions } from '@ogma/logger';
 import { OGMA_INSTANCE, OGMA_SERVICE_TOKEN } from './ogma.constants';
+import { OgmaService } from './ogma.service';
+import { AbstractInterceptorService } from './interceptor/providers/abstract-interceptor.service';
+import { OgmaInterceptorOptions, Type } from './interfaces';
 
 /**
  * @internal
@@ -14,7 +17,7 @@ export function createOgmaProvider(options?: Partial<OgmaOptions>): Ogma {
 }
 
 export function createProviderToken(topic: string): string {
-  return OGMA_SERVICE_TOKEN + topic;
+  return OGMA_SERVICE_TOKEN + ':' + topic;
 }
 
 export function createLoggerProviders(topic: string | Function): Provider[] {
@@ -30,3 +33,17 @@ export function createLoggerProviders(topic: string | Function): Provider[] {
     },
   ];
 }
+
+export const interceptorProviderFactory = (
+  type: 'http' | 'gql' | 'ws' | 'rpc',
+  backupClass: Type<AbstractInterceptorService>,
+): ((
+  opt: OgmaInterceptorOptions,
+  reflector: Reflector,
+) => Type<AbstractInterceptorService>) => (
+  intOpts: OgmaInterceptorOptions,
+  reflector: Reflector,
+): Type<AbstractInterceptorService> =>
+  intOpts[type]
+    ? new (intOpts as Type<AbstractInterceptorService>)[type](reflector)
+    : new backupClass(reflector);

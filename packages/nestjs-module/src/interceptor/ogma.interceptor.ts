@@ -15,7 +15,7 @@ import {
   OGMA_INTERCEPTOR_SKIP,
 } from '../ogma.constants';
 import { OgmaService } from '../ogma.service';
-import { DelegatorService } from './delegator.service';
+import { DelegatorService } from './providers/delegator.service';
 import { LogObject } from './interfaces/log.interface';
 
 @Injectable()
@@ -41,7 +41,6 @@ export class OgmaInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap(
         (data) => {
-          console.log(this.options);
           if (!this.shouldSkip(context)) {
             logObject = this.delegate.getContextSuccessString(
               data,

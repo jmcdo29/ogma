@@ -6,8 +6,13 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { APP_INTERCEPTOR, Reflector } from '@nestjs/core';
-import { DelegatorService } from './interceptor/delegator.service';
 import { OgmaInterceptor } from './interceptor/ogma.interceptor';
+import { DelegatorService } from './interceptor/providers/delegator.service';
+import { GqlInterceptorService } from './interceptor/providers/gql-interceptor.service';
+import { HttpInterceptorService } from './interceptor/providers/http-interceptor.service';
+import { NoopInterceptorService } from './interceptor/providers/noop-interceptor.service';
+import { RpcInterceptorService } from './interceptor/providers/rpc-interceptor.service';
+import { WebsocketInterceptorService } from './interceptor/providers/websocket-interceptor.service';
 import {
   OgmaInterceptorOptions,
   OgmaModuleOptions,
@@ -18,16 +23,17 @@ import {
   OGMA_INSTANCE,
   OGMA_OPTIONS,
   OGMA_SERVICE_OPTIONS,
+  OGMA_INTERCEPTOR_PROVIDERS,
+  OgmaInterceptorProviderError,
 } from './ogma.constants';
+import {
+  createOgmaProvider,
+  interceptorProviderFactory,
+} from './ogma.provider';
 import { OgmaService } from './ogma.service';
-import { createOgmaProvider } from './ogma.provider';
-import { WebsocketInterceptorService } from './interceptor/websocket-interceptor.service';
-import { HttpInterceptorService } from './interceptor/http-interceptor.service';
-import { GqlInterceptorService } from './interceptor/gql-interceptor.service';
-import { RpcInterceptorService } from './interceptor/rpc-interceptor.service';
 
-let ogmaInterceptorDefaults: OgmaInterceptorOptions = {
-  http: HttpInterceptorService,
+const ogmaInterceptorDefaults: OgmaInterceptorOptions = {
+  http: false,
   ws: false,
   rpc: false,
   gql: false,
@@ -67,7 +73,6 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
       ) => {
         let interceptor: NestInterceptor;
         if (options) {
-          console.log(delegate);
           interceptor = new OgmaInterceptor(
             options,
             service,
@@ -96,43 +101,43 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
     },
     {
       provide: HttpInterceptorService,
-      useClass: ogmaInterceptorDefaults.http
-        ? ogmaInterceptorDefaults.http
-        : HttpInterceptorService,
+      useFactory: interceptorProviderFactory('http', NoopInterceptorService),
+      inject: OGMA_INTERCEPTOR_PROVIDERS,
     },
     {
       provide: WebsocketInterceptorService,
-      useClass: ogmaInterceptorDefaults.ws
-        ? ogmaInterceptorDefaults.ws
-        : WebsocketInterceptorService,
+      useFactory: interceptorProviderFactory('ws', NoopInterceptorService),
+      inject: OGMA_INTERCEPTOR_PROVIDERS,
     },
     {
       provide: GqlInterceptorService,
-      useClass: ogmaInterceptorDefaults.gql
-        ? ogmaInterceptorDefaults.gql
-        : GqlInterceptorService,
+      useFactory: interceptorProviderFactory('gql', NoopInterceptorService),
+      inject: OGMA_INTERCEPTOR_PROVIDERS,
     },
     {
       provide: RpcInterceptorService,
-      useClass: ogmaInterceptorDefaults.rpc
-        ? ogmaInterceptorDefaults.rpc
-        : RpcInterceptorService,
+      useFactory: interceptorProviderFactory('rpc', NoopInterceptorService),
+      inject: OGMA_INTERCEPTOR_PROVIDERS,
     },
     OgmaService,
     DelegatorService,
   ],
+  exports: [OGMA_INSTANCE],
 }) {
   static Deferred = OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0);
 
   static mergeInterceptorDefaults(
-    options: OgmaInterceptorOptions | true,
+    options: OgmaInterceptorOptions,
   ): OgmaInterceptorOptions {
-    if (typeof options !== 'boolean' && options !== undefined) {
-      ogmaInterceptorDefaults = {
-        ...ogmaInterceptorDefaults,
-        ...options,
-      };
+    const mergedOptions: OgmaInterceptorOptions = {
+      ...ogmaInterceptorDefaults,
+      ...options,
+    };
+    if (
+      Object.keys(mergedOptions).every((key) => mergedOptions[key] === false)
+    ) {
+      throw new Error(OgmaInterceptorProviderError);
     }
-    return ogmaInterceptorDefaults;
+    return mergedOptions;
   }
 }

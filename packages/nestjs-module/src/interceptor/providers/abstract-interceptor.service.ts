@@ -1,9 +1,9 @@
 import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { color } from '@ogma/logger';
-import { OgmaInterceptorServiceOptions } from '../interfaces/ogma-options.interface';
-import { InterceptorService } from './interfaces/interceptor-service.interface';
-import { LogObject } from './interfaces/log.interface';
+import { OgmaInterceptorServiceOptions } from '../../interfaces/ogma-options.interface';
+import { InterceptorService } from '../interfaces/interceptor-service.interface';
+import { LogObject } from '../interfaces/log.interface';
 
 @Injectable()
 export abstract class AbstractInterceptorService implements InterceptorService {

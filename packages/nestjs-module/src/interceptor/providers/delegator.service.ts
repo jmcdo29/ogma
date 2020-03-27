@@ -1,11 +1,11 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { interceptorErrorMessage } from '../helpers';
-import { OgmaInterceptorServiceOptions } from '../interfaces';
+import { interceptorErrorMessage } from '../../helpers';
+import { OgmaInterceptorServiceOptions } from '../../interfaces';
+import { LogObject } from '../interfaces/log.interface';
 import { HttpInterceptorService } from './http-interceptor.service';
-import { LogObject } from './interfaces/log.interface';
-import { RpcInterceptorService } from './rpc-interceptor.service';
-import { WebsocketInterceptorService } from './websocket-interceptor.service';
 import { GqlInterceptorService } from './gql-interceptor.service';
+import { WebsocketInterceptorService } from './websocket-interceptor.service';
+import { RpcInterceptorService } from './rpc-interceptor.service';
 
 @Injectable()
 export class DelegatorService {
@@ -101,9 +101,6 @@ export class DelegatorService {
               'http',
             );
           }
-          if (!options.gql && !this.gqlErrorLogged) {
-            return interceptorErrorMessage('@nestjs/graphql', 'gql');
-          }
           logObject = this.httpParser.getErrorContext(
             error,
             context,
@@ -111,6 +108,9 @@ export class DelegatorService {
             options,
           );
         } else {
+          if (!options.gql && !this.gqlErrorLogged) {
+            return interceptorErrorMessage('@nestjs/graphql', 'gql');
+          }
           logObject = this.gqlParser.getErrorContext(
             error,
             context,
