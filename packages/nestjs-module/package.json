@@ -14,7 +14,7 @@
     "logging"
   ],
   "author": "Jay McDoniel <jmcdo29@gmail.com>",
-  "homepage": "https://github.com/jmcdo29/nestjs-ogma#readme",
+  "homepage": "https://github.com/jmcdo29/ogma#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -44,10 +44,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jmcdo29/nestjs-ogma.git"
+    "url": "git+https://github.com/jmcdo29/ogma.git"
   },
   "bugs": {
-    "url": "https://github.com/jmcdo29/nestjs-ogma/issues"
+    "url": "https://github.com/jmcdo29/ogma/issues"
   },
   "devDependencies": {
     "@nestjs/common": "^7.0.0",

@@ -11,7 +11,7 @@
     "interceptor"
   ],
   "author": "Jay McDoniel <jmcdo29@gmail.com>",
-  "homepage": "https://github.com/jmcdo29/nestjs-ogma#readme",
+  "homepage": "https://github.com/jmcdo29/ogma#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jmcdo29/nestjs-ogma.git"
+    "url": "git+https://github.com/jmcdo29/ogma.git"
   },
   "scripts": {
     "build": "tsc -b tsconfig.build.json",
@@ -31,7 +31,7 @@
     "test:cov": "jest --coverage"
   },
   "bugs": {
-    "url": "https://github.com/jmcdo29/nestjs-ogma/issues"
+    "url": "https://github.com/jmcdo29/ogma/issues"
   },
   "devDependencies": {
     "@nestjs/platform-fastify": "7.0.6",
