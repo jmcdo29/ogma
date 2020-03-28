@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import { Ogma, OgmaOptions } from 'ogma';
+import { Ogma, OgmaOptions } from '@ogma/logger';
 import { OGMA_CONTEXT, OGMA_INSTANCE } from './ogma.constants';
 import { OgmaService } from './ogma.service';
 

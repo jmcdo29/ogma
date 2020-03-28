@@ -1,6 +1,6 @@
-import { Inject, Injectable, LoggerService, Optional } from '@nestjs/common';
+import { Injectable, LoggerService, Optional } from '@nestjs/common';
 import { Ogma } from '@ogma/logger';
-import { OGMA_CONTEXT, OGMA_INSTANCE } from './ogma.constants';
+import { InjectOgma, InjectOgmaContext } from './decorators';
 
 @Injectable()
 export class OgmaService implements LoggerService {
@@ -22,8 +22,8 @@ export class OgmaService implements LoggerService {
   public log = this.info;
 
   constructor(
-    @Inject(OGMA_INSTANCE) ogma?: Ogma,
-    @Optional() @Inject(OGMA_CONTEXT) context?: string,
+    @InjectOgma() ogma?: Ogma,
+    @Optional() @InjectOgmaContext() context?: string,
   ) {
     this.context = context || '';
     this.ogma = ogma ?? new Ogma();

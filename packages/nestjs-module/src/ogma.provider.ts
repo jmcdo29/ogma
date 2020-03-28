@@ -3,7 +3,7 @@ import { Reflector } from '@nestjs/core';
 import { Ogma, OgmaOptions } from '@ogma/logger';
 import { OGMA_INSTANCE, OGMA_SERVICE_TOKEN } from './ogma.constants';
 import { OgmaService } from './ogma.service';
-import { AbstractInterceptorService } from './interceptor/providers/abstract-interceptor.service';
+import { AbstractInterceptorService } from './interceptor/providers';
 import { OgmaInterceptorOptions, Type } from './interfaces';
 
 /**

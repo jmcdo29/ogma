@@ -7,12 +7,14 @@ import {
 } from '@nestjs/common';
 import { APP_INTERCEPTOR, Reflector } from '@nestjs/core';
 import { OgmaInterceptor } from './interceptor/ogma.interceptor';
-import { DelegatorService } from './interceptor/providers/delegator.service';
-import { GqlInterceptorService } from './interceptor/providers/gql-interceptor.service';
-import { HttpInterceptorService } from './interceptor/providers/http-interceptor.service';
-import { NoopInterceptorService } from './interceptor/providers/noop-interceptor.service';
-import { RpcInterceptorService } from './interceptor/providers/rpc-interceptor.service';
-import { WebsocketInterceptorService } from './interceptor/providers/websocket-interceptor.service';
+import {
+  DelegatorService,
+  GqlInterceptorService,
+  HttpInterceptorService,
+  NoopInterceptorService,
+  RpcInterceptorService,
+  WebsocketInterceptorService,
+} from './interceptor/providers';
 import {
   OgmaInterceptorOptions,
   OgmaModuleOptions,
