@@ -1,0 +1,28 @@
+{
+  "name": "@ogma/platform-socket-io-integration",
+  "version": "0.0.0",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "start": "nest start"
+  },
+  "private": true,
+  "dependencies": {
+    "@nestjs/common": "^7.0.0",
+    "@nestjs/core": "^7.0.0",
+    "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/platform-socket.io": "^7.0.0",
+    "@nestjs/websockets": "^7.0.6"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^7.1.1",
+    "@nestjs/testing": "^7.0.0",
+    "@types/socket.io": "1.4.33",
+    "jest": "^25.2.3",
+    "reflect-metadata": "0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "6.5.4",
+    "socket.io": "^2.3.0",
+    "ts-jest": "^25.2.1"
+  }
+}
