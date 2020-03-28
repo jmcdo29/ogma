@@ -2,7 +2,7 @@
   "name": "ogma",
   "version": "0.0.0",
   "private": true,
-  "description": "A NestJS module for the Ogma logger",
+  "description": "The @ogma workspace containing the base logging package, the NestJS module, and all the fun parsers to add in.",
   "author": {
     "name": "Jay McDoniel",
     "email": "jmcdo29@gmail.com"
@@ -26,13 +26,6 @@
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "check": "npm-check -u",
     "commit": "git-cz",
-    "prebuild": "rimraf dist",
-    "build": "nest build",
-    "build:all": "npm run build && npm run build:test",
-    "prebuild:test": "rimraf dist-test",
-    "build:test": "tsc -p tsconfig.test.json",
-    "start:test": "node dist-test/main.js",
-    "start:test:ws": "node dist-test/main.js ws",
     "format": "prettier --write \"packages/**/*.ts\"",
     "lint": "eslint --ext .ts .",
     "test": "jest",
