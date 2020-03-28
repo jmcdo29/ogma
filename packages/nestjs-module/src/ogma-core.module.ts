@@ -1,12 +1,6 @@
 import { createConfigurableDynamicRootModule } from '@golevelup/nestjs-modules';
-import {
-  CallHandler,
-  ExecutionContext,
-  Module,
-  NestInterceptor,
-} from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { APP_INTERCEPTOR, Reflector } from '@nestjs/core';
-import { OgmaInterceptor } from './interceptor/ogma.interceptor';
 import {
   DelegatorService,
   GqlInterceptorService,
@@ -15,31 +9,22 @@ import {
   RpcInterceptorService,
   WebsocketInterceptorService,
 } from './interceptor/providers';
-import {
-  OgmaInterceptorOptions,
-  OgmaModuleOptions,
-  OgmaServiceOptions,
-} from './interfaces';
+import { OgmaModuleOptions } from './interfaces';
 import {
   OGMA_INSTANCE,
   OGMA_INTERCEPTOR_OPTIONS,
   OGMA_INTERCEPTOR_PROVIDERS,
   OGMA_OPTIONS,
   OGMA_SERVICE_OPTIONS,
-  OgmaInterceptorProviderError,
 } from './ogma.constants';
 import {
+  createOgmaInterceptorFactory,
+  createOgmaInterceptorOptionsFactory,
   createOgmaProvider,
+  createOgmaServiceOptions,
   interceptorProviderFactory,
 } from './ogma.provider';
 import { OgmaService } from './ogma.service';
-
-const ogmaInterceptorDefaults: OgmaInterceptorOptions = {
-  http: false,
-  ws: false,
-  rpc: false,
-  gql: false,
-};
 
 @Module({})
 export class OgmaCoreModule extends createConfigurableDynamicRootModule<
@@ -50,45 +35,16 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
     {
       provide: OGMA_INTERCEPTOR_OPTIONS,
       inject: [OGMA_OPTIONS],
-      useFactory: (
-        options: OgmaModuleOptions,
-      ): OgmaInterceptorOptions | false => {
-        const intOpts = options?.interceptor ?? undefined;
-        if (intOpts === false) {
-          return intOpts;
-        }
-        return OgmaCoreModule.mergeInterceptorDefaults(intOpts);
-      },
+      useFactory: createOgmaInterceptorOptionsFactory,
     },
     {
       provide: OGMA_SERVICE_OPTIONS,
-      useFactory: (options: OgmaModuleOptions) => options.service,
+      useFactory: createOgmaServiceOptions,
       inject: [OGMA_OPTIONS],
     },
     {
       provide: APP_INTERCEPTOR,
-      useFactory: (
-        options: OgmaInterceptorOptions | false,
-        service: OgmaService,
-        delegate: DelegatorService,
-        reflector: Reflector,
-      ) => {
-        let interceptor: NestInterceptor;
-        if (options) {
-          interceptor = new OgmaInterceptor(
-            options,
-            service,
-            delegate,
-            reflector,
-          );
-        } else {
-          interceptor = {
-            intercept: (context: ExecutionContext, next: CallHandler) =>
-              next.handle(),
-          };
-        }
-        return interceptor;
-      },
+      useFactory: createOgmaInterceptorFactory,
       inject: [
         OGMA_INTERCEPTOR_OPTIONS,
         OgmaService,
@@ -98,7 +54,7 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
     },
     {
       provide: OGMA_INSTANCE,
-      useFactory: (options: OgmaServiceOptions) => createOgmaProvider(options),
+      useFactory: createOgmaProvider,
       inject: [OGMA_SERVICE_OPTIONS],
     },
     {
@@ -136,19 +92,4 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
   ],
 }) {
   static Deferred = OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0);
-
-  static mergeInterceptorDefaults(
-    options: OgmaInterceptorOptions,
-  ): OgmaInterceptorOptions {
-    const mergedOptions: OgmaInterceptorOptions = {
-      ...ogmaInterceptorDefaults,
-      ...options,
-    };
-    if (
-      Object.keys(mergedOptions).every((key) => mergedOptions[key] === false)
-    ) {
-      throw new Error(OgmaInterceptorProviderError);
-    }
-    return mergedOptions;
-  }
 }

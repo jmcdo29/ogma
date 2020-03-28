@@ -1,10 +1,34 @@
-import { Provider } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  NestInterceptor,
+  Provider,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Ogma, OgmaOptions } from '@ogma/logger';
-import { OGMA_INSTANCE, OGMA_SERVICE_TOKEN } from './ogma.constants';
+import {
+  OGMA_INSTANCE,
+  OGMA_SERVICE_TOKEN,
+  OgmaInterceptorProviderError,
+} from './ogma.constants';
 import { OgmaService } from './ogma.service';
-import { AbstractInterceptorService } from './interceptor/providers';
-import { OgmaInterceptorOptions, Type } from './interfaces';
+import {
+  AbstractInterceptorService,
+  DelegatorService,
+} from './interceptor/providers';
+import {
+  OgmaInterceptorOptions,
+  OgmaModuleOptions,
+  OgmaServiceOptions,
+  Type,
+} from './interfaces';
+import { OgmaInterceptor } from './interceptor/ogma.interceptor';
+
+class NoopInterceptor implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler) {
+    return next.handle();
+  }
+}
 
 /**
  * @internal
@@ -14,6 +38,50 @@ export function createOgmaProvider(options?: Partial<OgmaOptions>): Ogma {
     ...options,
     application: options?.application || 'Nest',
   });
+}
+
+function mergeInterceptorDefaults(
+  options: OgmaInterceptorOptions,
+): OgmaInterceptorOptions {
+  const mergedOptions: OgmaInterceptorOptions = {
+    ...{ http: false, ws: false, rpc: false, gql: false },
+    ...options,
+  };
+  if (Object.keys(mergedOptions).every((key) => mergedOptions[key] === false)) {
+    throw new Error(OgmaInterceptorProviderError);
+  }
+  return mergedOptions;
+}
+
+export function createOgmaInterceptorOptionsFactory(
+  options: OgmaModuleOptions,
+): OgmaInterceptorOptions | false {
+  const intOpts = options?.interceptor ?? undefined;
+  if (intOpts === false) {
+    return intOpts;
+  }
+  return mergeInterceptorDefaults(intOpts);
+}
+
+export function createOgmaServiceOptions(
+  options: OgmaModuleOptions,
+): OgmaServiceOptions {
+  return options.service;
+}
+
+export function createOgmaInterceptorFactory(
+  options: OgmaInterceptorOptions | false,
+  service: OgmaService,
+  delegate: DelegatorService,
+  reflector: Reflector,
+): NestInterceptor {
+  let interceptor: NestInterceptor;
+  if (options) {
+    interceptor = new OgmaInterceptor(options, service, delegate, reflector);
+  } else {
+    interceptor = new NoopInterceptor();
+  }
+  return interceptor;
 }
 
 export function createProviderToken(topic: string): string {

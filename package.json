@@ -24,6 +24,7 @@
   "scripts": {
     "preversion": "npm run format && npm run lint && lerna run build",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "build": "lerna run build",
     "check": "npm-check -u",
     "commit": "git-cz",
     "format": "prettier --write \"packages/**/*.ts\"",

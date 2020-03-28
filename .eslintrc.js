@@ -27,6 +27,7 @@ module.exports = {
       'error',
       { ignoreDeclarationSort: true, ignoreCase: true },
     ],
+    'prettier/prettier': 'warn',
   },
   ignorePatterns: ['*.d.ts', 'dist/*', '**/node_modules/*', 'lib/*'],
   globals: {
