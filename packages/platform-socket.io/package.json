@@ -26,16 +26,26 @@
     "url": "git+https://github.com/jmcdo29/ogma.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "tsc -b tsconfig.build.json",
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "bugs": {
     "url": "https://github.com/jmcdo29/ogma/issues"
   },
   "devDependencies": {
+    "@nestjs/common": "^7.0.6",
+    "@nestjs/core": "^7.0.6",
+    "@nestjs/platform-socket.io": "^7.0.0",
+    "@nestjs/websockets": "^7.0.0",
     "@ogma/nestjs-module": "^0.1.0",
+    "@types/socket.io": "^1.4.33",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
-    "@ogma/nestjs-module": "^0.1.0"
+    "@nestjs/platform-socket.io": "^7.0.0",
+    "@nestjs/websockets": "^7.0.0",
+    "@ogma/nestjs-module": "^0.1.0",
+    "@types/socket.io": "^1.4.33"
   }
 }

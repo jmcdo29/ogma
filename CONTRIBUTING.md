@@ -21,6 +21,10 @@ To build your the project and link the dependencies together you can run `lerna 
 
 When running the integration specific applications in a non--testing context (i.e. starting them locally), make sure to `cd` into the directory, `yarn install` the dependencies, and then run `yarn build && yarn start` to compile and start the server. From there, in a separate terminal, you can use [curl](https://curl.haxx.se/) or [Postman](https://www.postman.com/), or just use the browser directly. For websocket testing, you can use the node REPL (i.e. use `node` from the terminal) and make websocket calls from there.
 
+## Commits
+
+We are using [Conventional Commit]() to help keep commit messages aligned as development continues. The easiest way to get acquainted with what the commit should look like is to run `yarn commit` which will use the `git-cz` cli and walk you through the steps of committing. When asked about the scope, you can checkout the [commitlint.config](./commitlint.config.js) file and look at the `scope-enum` property. Once you've made your commit, prettier and eslint will run and ensure that the new code is up to the standards we have in place.
+
 ## Issues
 
 Please raise an issue, or discuss with me [via email](mailto:me@jaymcdoniel.dev) or [Discord](https://discordapp.com) (PerfectOrphan31#6003) before opening a Pull Request so we can see if they align with the goals of the project.
