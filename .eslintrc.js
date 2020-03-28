@@ -18,17 +18,20 @@ module.exports = {
     jest: true,
   },
   rules: {
-    // 'max-len': ['error', { code: 80, ignoreTemplateLiterals: true }],
     'no-control-regex': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     'sonarjs/cognitive-complexity': ['error', 20],
+    'sort-imports': [
+      'error',
+      { ignoreDeclarationSort: true, ignoreCase: true },
+    ],
   },
-  ignorePatterns: ['*.d.ts', 'dist/*', 'packages/**/node_modules/*'],
+  ignorePatterns: ['*.d.ts', 'dist/*', '**/node_modules/*', 'lib/*'],
   globals: {
     WeakSet: 'readonly',
     Promise: 'readonly',
-    Reflect: 'readonly'
+    Reflect: 'readonly',
   },
 };

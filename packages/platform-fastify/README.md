@@ -1,6 +1,6 @@
 # `@ogma/platform-fastify`
 
-The `FastifyInterceptorService` parser for the `OgmaInterceptor`. This plugin class parses Fastify request and response object to be able to successfully log the data about the request. For more information, check out [the @ogma/nestjs-module](../nestjs-module/README.md) documentation.
+The `FastifyInterceptorParser` parser for the `OgmaInterceptor`. This plugin class parses Fastify request and response object to be able to successfully log the data about the request. For more information, check out [the @ogma/nestjs-module](../nestjs-module/README.md) documentation.
 
 ## Installation
 
@@ -14,7 +14,7 @@ This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaMo
 @Module(
   OgmaModule.forRoot({
     interceptor: {
-      http: FastifyInterceptorService
+      http: FastifyInterceptorParser
     }
   })
 )

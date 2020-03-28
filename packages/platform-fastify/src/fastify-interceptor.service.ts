@@ -1,11 +1,11 @@
-import { Injectable, ExecutionContext, HttpException } from '@nestjs/common';
+import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
 import { HTTP_CODE_METADATA } from '@nestjs/common/constants';
 import { AbstractInterceptorService } from '@ogma/nestjs-module';
-import { FastifyRequest, FastifyReply } from 'fastify';
+import { FastifyReply, FastifyRequest } from 'fastify';
 import { ServerResponse } from 'http';
 
 @Injectable()
-export class FastifyInterceptorService extends AbstractInterceptorService {
+export class FastifyInterceptorParser extends AbstractInterceptorService {
   getCallerIp(context: ExecutionContext): string[] | string {
     const req = this.getRequest(context);
     return req.ips && req.ips.length ? req.ips : req.ip;

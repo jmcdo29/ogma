@@ -1,5 +1,6 @@
 # compiled output
 lib/
+dist/
 node_modules/
 *.tsbuildinfo
 

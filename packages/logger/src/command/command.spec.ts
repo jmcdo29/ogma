@@ -2,10 +2,10 @@ import { createWriteStream, promises } from 'fs';
 import { OgmaLog } from '../interfaces/ogma-log';
 import { ogmaHydrate } from './command';
 import {
-  logKeys,
-  jsonLogs,
-  OgmaLogSet,
   ExpectedOgmaOutput,
+  jsonLogs,
+  logKeys,
+  OgmaLogSet,
   stringLogs,
 } from './command.fixtures';
 import * as messages from './messages';

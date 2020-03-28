@@ -1,6 +1,6 @@
 <!-- <div align="center">
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jmcdo29_nestjs-ogma&metric=alert_status)](https://sonarcloud.io/dashboard?id=jmcdo29_nestjs-ogma) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Actions Status](https://github.com/jmcdo29/ogma/workflows/CI/badge.svg)](https://github.com/jmcdo29/ogma/workflows/CI/badge.svg) [![Version](https://badgen.net/npm/v/nestjs-ogma)](https://npmjs.com/package/nestjs-ogma) [![Coffee](https://badgen.net/badge/Buy%20Me/A%20Coffee/purple?icon=kofi)](https://www.buymeacoffee.com/jmcdo29)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Version](https://badgen.net/npm/v/@ogma/nestjs-module)](https://npmjs.com/package/@ogma/nestjs-module) [![Coffee](https://badgen.net/badge/Buy%20Me/A%20Coffee/purple?icon=kofi)](https://www.buymeacoffee.com/jmcdo29)
 
 </div> -->
 
@@ -32,7 +32,7 @@ In your root module, import `OgmaModule.forRoot` or `OgmaModule.forRootAsync` to
         application: 'NestJS'
       },
       interceptor: {
-        http: ExpressInterceptorService,
+        http: ExpressInterceptorParser,
         ws: false,
         gql: false,
         rpc: false
@@ -63,7 +63,7 @@ or async
           application: config.getAppName()
         },
         interceptor: {
-          http: ExpressInterceptorService,
+          http: ExpressInterceptorParser,
           ws: false,
           gql: false,
           rpc: false
@@ -129,7 +129,7 @@ Each of the above options, as mentioned, is false meaning that the requests for 
 
 ### Interceptor Design Decisions
 
-Due to the incredible complex nature of Nest and its DI system, there needed to be some sort of way to tell users at bootstrap that if the interceptor is to be used, which should be the default behavior, then it should have one of the `@ogma/platform-*` packages installed, **or** a custom parser should be provided. \***\*Every\*\*** custom parser should `extend` the `AbstractInterceptorService` to ensure that A) Typescript doesn't complain about mismatched types, and B) the `DelegatorService` which handles the calls to each parser, can be sure it is getting back what it expects. If you are really, _really_ sure about what you are doing, you can always override the setting with `as any` to remove the Typescript warnings, but use that at your own risk.
+Due to the incredible complex nature of Nest and its DI system, there needed to be some sort of way to tell users at bootstrap that if the interceptor is to be used, which should be the default behavior, then it should have one of the `@ogma/platform-*` packages installed, **or** a custom parser should be provided. **Every** custom parser should `extend` the `AbstractInterceptorService` to ensure that A) Typescript doesn't complain about mismatched types, and B) the `DelegatorService` which handles the calls to each parser, can be sure it is getting back what it expects. If you are really, _really_ sure about what you are doing, you can always override the setting with `as any` to remove the Typescript warnings, but use that at your own risk.
 
 The interceptor was designed to be adaptable, and to be able to work with any context thrown at it, but only if the parser for that context type is installed. The most common parser would be `@ogma/platform-express`, which will work for HTTP requests with the Express server running under the hood (Nest's default). All other parsers provided by the `@ogma` namespace follow a similar naming scheme, and are provided for what Nest can use out of the box (including microservices named in the [microservices chapter](https://docs.nestjs.com/microservices/basics) of the Nest docs.)
 
@@ -139,7 +139,7 @@ As the pre-built parsers are built around Object Oriented Typescript, if you wan
 
 ## Putting it All Together
 
-Okay, so now we're ready to add the `OgmaModule` to our Application. Let's assume we have a `CatsService`, `CatsController` and `CatsModule` and a `ConfigService` and `ConfigModule` in our Application. Let's also assume we want to use a class to asynchronously configure out `OgmaModule`. For now, assume the methods exist on the `ConfigService`. Let's also assume we want to log things in color to our `process.stdout` and that we want the interceptor to skip anything that is not a 400 error or above in production mode.
+Okay, so now we're ready to add the `OgmaModule` to our Application. Let's assume we have a `CatsService`, `CatsController` and `CatsModule` and a `ConfigService` and `ConfigModule` in our Application. Let's also assume we want to use a class to asynchronously configure out `OgmaModule`. For now, assume the methods exist on the `ConfigService`. Let's also assume we want to log things in color to our `process.stdout`.
 
 ```ts
 @Injectable()
@@ -157,7 +157,7 @@ export class OgmaModuleConfig implements ModuleConfigFactory<OgmaModuleOptions> 
         application: this.configService.getAppName() ,
       },
       interceptor: {
-        skip: (req: Request, res: Response) => this.configService.isProd() && res.statusCode < 400
+        http: FastifyInterceptorParser
       }
     }
   }
@@ -166,7 +166,7 @@ export class OgmaModuleConfig implements ModuleConfigFactory<OgmaModuleOptions> 
 
 The `ModuleConfigFactory` is an interface pulled from the [@golevelup/nestjs-module](https://github.com/golevelup/nestjs/tree/master/packages/modules) library, which was used for creating the dynamic module.
 
-> Note: As the `ModuleConfigFactory` is just an interface, the dependency on the `@golevelup/nestjs-factory` package should just be a dev dependency to ensure the typings are correct. Of course, you can also just use a factory instead if you prefer.
+> Note: As the `ModuleConfigFactory` is just an interface, the dependency on the `@golevelup/nestjs-module` package should just be a dev dependency to ensure the typings are correct. Of course, you can also just use a factory instead if you prefer.
 
 Next, in our `AppModule` we can import the `OgmaModule` like so
 
@@ -190,7 +190,7 @@ And now we have the interceptor bound and an `OgmaService` instance created for 
 ```ts
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { logger: false });
-  const logger = await app.resolve<OgmaService>(OgmaService);
+  const logger = app.get<OgmaService>(OgmaService);
   app.useLogger(logger);
   await app.listen(3000);
 }
@@ -204,9 +204,7 @@ If we wanted to add the logger to the `CatsService` we can use the module's `for
 
 ```ts
 @Module({
-  // it is possible to override the initial configuration for this instance of the `OgmaService`, but not necessary.
-  // this will set the value of context to 'CatsService'
-  imports: [OgmaModule.forFeature(CatsService.name)],
+  imports: [OgmaModule.forFeature(CatsService)],
   controllers: [CatsController],
   service: [CatsService]
 })
@@ -218,7 +216,9 @@ And now in the `CatsService` the `OgmaService` can be injected like so:
 ```ts
 @Injectable()
 export class CatsService {
-  constructor(private readonly logger: OgmaService) {}
+  constructor(
+    @OgmaLogger(CatService) private readonly logger: OgmaService
+  ) {}
 }
 ```
 

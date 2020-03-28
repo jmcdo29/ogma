@@ -11,15 +11,15 @@ Any and all contributions are welcome! This is a decently sized project with a g
 5. Push back to your version on GitHub
 6. Raise a Pull Request to the main repository
 
-## Local Testing
+## Development
 
-Besides unit and e2e tests, there is also the ability to just run a local NestJS application with the `OgmaModule` imported into it. This code is already setup and ready to be worked with as necessary, all you need to do is `npm run build:all` to build both the `OgmaModule` code and the NestJS application and then `npm run start:test` to start the test application. From there, you can use Postman, cURL, the Node REPL, or any other method of testing you find pleasing to use.
+We are using [lerna](https://github.com/lerna/lerna) to help manage the monorepo, to build and manage the code, it is _suggested_ to use [yarn](https://classic.yarnpkg.com/en/docs/getting-started) as it has better support for workspaces and automatic linking between the packages. If you are creating a new package inside the monorepo you can use `lerna create` and follow the wizard from there. Make sure you name the package as `@ogma/platform-<platform-name>` to follow the naming scheme of the library.
 
-### Breaking apart the builds
+If you are adding in a new library, please also add in integration tests for the library following the examples in [integration](integration/).
 
-If you need to only recompile the library code, you can use `npm run build` to build the main lib.
+To build your the project and link the dependencies together you can run `lerna run build`.
 
-Similarly if you only need to rebuild the NestJS server, use `npm run build:test`.
+When running the integration specific applications in a non--testing context (i.e. starting them locally), make sure to `cd` into the directory, `yarn install` the dependencies, and then run `yarn build && yarn start` to compile and start the server. From there, in a separate terminal, you can use [curl](https://curl.haxx.se/) or [Postman](https://www.postman.com/), or just use the browser directly. For websocket testing, you can use the node REPL (i.e. use `node` from the terminal) and make websocket calls from there.
 
 ## Issues
 

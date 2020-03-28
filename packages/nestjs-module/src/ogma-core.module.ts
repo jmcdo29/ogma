@@ -19,11 +19,11 @@ import {
   OgmaServiceOptions,
 } from './interfaces';
 import {
-  OGMA_INTERCEPTOR_OPTIONS,
   OGMA_INSTANCE,
+  OGMA_INTERCEPTOR_OPTIONS,
+  OGMA_INTERCEPTOR_PROVIDERS,
   OGMA_OPTIONS,
   OGMA_SERVICE_OPTIONS,
-  OGMA_INTERCEPTOR_PROVIDERS,
   OgmaInterceptorProviderError,
 } from './ogma.constants';
 import {
