@@ -122,7 +122,16 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
     OgmaService,
     DelegatorService,
   ],
-  exports: [OGMA_INSTANCE],
+  exports: [
+    OGMA_INSTANCE,
+    OGMA_INTERCEPTOR_OPTIONS,
+    OgmaService,
+    DelegatorService,
+    HttpInterceptorService,
+    GqlInterceptorService,
+    RpcInterceptorService,
+    WebsocketInterceptorService,
+  ],
 }) {
   static Deferred = OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0);
 
