@@ -4,7 +4,8 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "start": "nest start"
+    "start": "nest start",
+    "visual": "node testScript"
   },
   "private": true,
   "dependencies": {

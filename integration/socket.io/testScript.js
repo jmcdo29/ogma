@@ -9,6 +9,8 @@ function socketCall(message) {
   socket.emit(message, '', cb);
 }
 
+socket.on('exception', cb);
+
 socketCall('message');
 socketCall('throw');
 socketCall('skip');

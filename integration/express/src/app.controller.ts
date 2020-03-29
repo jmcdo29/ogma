@@ -12,7 +12,7 @@ export class AppController {
   }
 
   @Get('status')
-  @HttpCode(204)
+  @HttpCode(202)
   getStatus(): string {
     return this.appService.getHello();
   }

@@ -27,6 +27,7 @@ module.exports = {
         'service',
         'module',
         'interceptor',
+        'integration',
         'deps',
         'docs',
         'release',
