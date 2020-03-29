@@ -29,7 +29,7 @@ module.exports = {
     ],
     'prettier/prettier': 'warn',
   },
-  ignorePatterns: ['*.d.ts', 'dist/*', '**/node_modules/*', 'lib/*'],
+  ignorePatterns: ['*.d.ts', 'dist/*', '**/node_modules/*', 'lib/*', '*.js'],
   globals: {
     WeakSet: 'readonly',
     Promise: 'readonly',

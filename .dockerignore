@@ -1,0 +1,12 @@
+lib/
+.git/
+dist/
+node_modules/
+.github/
+*.log
+.huskyrc
+.vscode/
+Docker/
+tmp/
+*.md
+*.txt
