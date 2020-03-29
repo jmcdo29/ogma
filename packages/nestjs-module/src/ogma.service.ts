@@ -1,8 +1,6 @@
 import { Injectable, LoggerService, Optional } from '@nestjs/common';
 import { Ogma } from '@ogma/logger';
 import { InjectOgma, InjectOgmaContext } from './decorators';
-import * as decs from './decorators';
-console.log(decs);
 @Injectable()
 export class OgmaService implements LoggerService {
   private readonly context?: string;
