@@ -4,7 +4,7 @@ import { AbstractInterceptorService } from '@ogma/nestjs-module';
 import { Request, Response } from 'express';
 
 @Injectable()
-export class ExpressInterceptorParser extends AbstractInterceptorService {
+export class ExpressParser extends AbstractInterceptorService {
   getCallerIp(context: ExecutionContext): string[] | string {
     const req = this.getRequest(context);
     return req.ips.length ? req.ips : req.ip;

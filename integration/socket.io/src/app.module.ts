@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { OgmaModule } from '@ogma/nestjs-module';
-import { SocketioInterceptorParser } from '@ogma/platform-socket.io';
+import { SocketioParser } from '@ogma/platform-socket.io';
 import { AppGateway } from './app.gateway';
 import { AppService } from './app.service';
 
@@ -8,7 +8,7 @@ import { AppService } from './app.service';
   imports: [
     OgmaModule.forRoot({
       interceptor: {
-        ws: SocketioInterceptorParser,
+        ws: SocketioParser,
       },
     }),
   ],

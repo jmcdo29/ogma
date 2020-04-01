@@ -5,7 +5,7 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { ServerResponse } from 'http';
 
 @Injectable()
-export class FastifyInterceptorParser extends AbstractInterceptorService {
+export class FastifyParser extends AbstractInterceptorService {
   getCallerIp(context: ExecutionContext): string[] | string {
     const req = this.getRequest(context);
     return req.ips && req.ips.length ? req.ips : req.ip;

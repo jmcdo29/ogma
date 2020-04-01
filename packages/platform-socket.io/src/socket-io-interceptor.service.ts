@@ -4,7 +4,7 @@ import { AbstractInterceptorService } from '@ogma/nestjs-module';
 import { Socket } from 'socket.io';
 
 @Injectable()
-export class SocketioInterceptorParser extends AbstractInterceptorService {
+export class SocketioParser extends AbstractInterceptorService {
   getCallPoint(context: ExecutionContext): string {
     return this.reflector.get(MESSAGE_METADATA, context.getHandler());
   }
