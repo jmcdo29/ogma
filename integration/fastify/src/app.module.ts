@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { OgmaModule } from '@ogma/nestjs-module';
-import { FastifyInterceptorParser } from '@ogma/platform-fastify';
+import { FastifyParser } from '@ogma/platform-fastify';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -8,7 +8,7 @@ import { AppService } from './app.service';
   imports: [
     OgmaModule.forRoot({
       interceptor: {
-        http: FastifyInterceptorParser,
+        http: FastifyParser,
       },
     }),
   ],
