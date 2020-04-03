@@ -12,10 +12,7 @@
     "baseUrl": "./src",
     "strict": false,
     "noUnusedLocals": false,
-    "lib": ["ES7"],
-    "paths": {
-      "@ogma/*": ["../*/src"]
-    }
+    "lib": ["ES7"]
   },
   "exclude": ["node_modules", "lib"]
 }

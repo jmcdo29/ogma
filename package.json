@@ -34,6 +34,7 @@
     "docker:socket": "yarn docker -t ogma/socket-test -f Docker/socket-io.Dockerfile .",
     "format": "prettier --write \"packages/**/*.ts\"",
     "lint": "eslint --ext .ts .",
+    "setup": "yarn && yarn build && yarn",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
