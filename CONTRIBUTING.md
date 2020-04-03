@@ -7,13 +7,16 @@ Any and all contributions are welcome! This is a decently sized project with a g
 1. Create a fork of the repository
 2. Clone the code to your local machine
 3. Create a new branch with the feature you are working on (e.g. WebSocket-Interceptor) or with the issue number (e.g. issue/42)
-4. Implement your changes, ensure tests are still passing, or add tests if it is a new feature
-5. Push back to your version on GitHub
-6. Raise a Pull Request to the main repository
+4. Run `yarn setup`
+5. Implement your changes, ensure tests are still passing, or add tests if it is a new feature
+6. Push back to your version on GitHub
+7. Raise a Pull Request to the main repository
 
 ## Development
 
 We are using [lerna](https://github.com/lerna/lerna) to help manage the monorepo, to build and manage the code, it is _suggested_ to use [yarn](https://classic.yarnpkg.com/en/docs/getting-started) as it has better support for workspaces and automatic linking between the packages. If you are creating a new package inside the monorepo you can use `lerna create` and follow the wizard from there. Make sure you name the package as `@ogma/platform-<platform-name>` to follow the naming scheme of the library.
+
+When you first clone the project, make sure you run `yarn setup` or create an npm equivalent of it to bootstrap the dependencies together. This script will run an install for all dependencies, build all the current packages, and then run an install once more for yarn to link all local packages together.
 
 If you are adding in a new library, please also add in integration tests for the library following the examples in [integration](integration/).
 
