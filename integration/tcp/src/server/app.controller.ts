@@ -1,13 +1,8 @@
-import {
-  BadRequestException,
-  Controller,
-  UseInterceptors,
-} from '@nestjs/common';
+import { BadRequestException, Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
-import { OgmaInterceptor, OgmaSkip } from '@ogma/nestjs-module';
+import { OgmaSkip } from '@ogma/nestjs-module';
 import { AppService } from './app.service';
 
-@UseInterceptors(OgmaInterceptor)
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
