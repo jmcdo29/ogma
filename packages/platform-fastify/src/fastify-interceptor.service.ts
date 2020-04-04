@@ -38,7 +38,7 @@ export class FastifyParser extends AbstractInterceptorService {
       HTTP_CODE_METADATA,
       context.getHandler(),
     );
-    status = reflectStatus ?? status;
+    status = reflectStatus || status;
     if (error) {
       status = this.determineStatusCodeFromError(error);
     }
