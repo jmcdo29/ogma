@@ -1,6 +1,7 @@
 import { createMock } from '@golevelup/ts-jest';
 import { BadRequestException, ExecutionContext } from '@nestjs/common';
 import { HTTP_CODE_METADATA } from '@nestjs/common/constants';
+import { Reflector } from '@nestjs/core';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
 import { ExpressParser } from './express-interceptor.service';
@@ -13,11 +14,21 @@ const resMock = (status: number) => ({
 
 describe('ExpressParser', () => {
   let parser: ExpressParser;
+  let reflector: Reflector;
   beforeEach(async () => {
     const mod = await Test.createTestingModule({
-      providers: [ExpressParser],
+      providers: [
+        ExpressParser,
+        {
+          provide: Reflector,
+          useValue: {
+            get: jest.fn(() => ''),
+          },
+        },
+      ],
     }).compile();
     parser = mod.get(ExpressParser);
+    reflector = mod.get(Reflector);
   });
   it('should be defined', () => {
     expect(parser).toBeDefined();
@@ -80,15 +91,19 @@ describe('ExpressParser', () => {
       const ctxMock = createMock<ExecutionContext>();
       expect(parser.getStatus(ctxMock, false, new Error())).toBe('500');
     });
-    it.skip('should get the status from the reflector (201)', () => {
+    it('should get the status from the reflector (201)', () => {
       const sampleObject = {
         func: () => '',
       };
-      Reflect.defineMetadata(HTTP_CODE_METADATA, 201, sampleObject.func);
+      jest.spyOn(reflector, 'get').mockReturnValueOnce(201);
       const ctxMock = createMock<ExecutionContext>({
         getHandler: () => sampleObject.func(),
       });
       expect(parser.getStatus(ctxMock, false)).toBe('201');
+      expect(reflector.get).toBeCalledWith(
+        HTTP_CODE_METADATA,
+        sampleObject.func(),
+      );
     });
     it('should get the status in color', () => {
       const ctxMock = createMock<ExecutionContext>({
