@@ -8,7 +8,7 @@ import { ServerResponse } from 'http';
 export class FastifyParser extends AbstractInterceptorService {
   getCallerIp(context: ExecutionContext): string[] | string {
     const req = this.getRequest(context);
-    return req.ips && req.ips.length ? req.ips : req.ip;
+    return req.ips && req.ips.length ? req.ips.join(' ') : req.ip;
   }
 
   getCallPoint(context: ExecutionContext): string {
@@ -18,7 +18,7 @@ export class FastifyParser extends AbstractInterceptorService {
 
   getMethod(context: ExecutionContext): string {
     const req = this.getRequest(context);
-    return req.raw.method;
+    return req.raw.method || 'GET';
   }
 
   getProtocol(context: ExecutionContext): string {
@@ -29,7 +29,7 @@ export class FastifyParser extends AbstractInterceptorService {
   getStatus(
     context: ExecutionContext,
     inColor: boolean,
-    error?: Error & HttpException,
+    error?: Error | HttpException,
   ): string {
     let status;
     const res = this.getResponse(context);
@@ -53,7 +53,7 @@ export class FastifyParser extends AbstractInterceptorService {
     return context.switchToHttp().getResponse<FastifyReply<ServerResponse>>();
   }
 
-  private determineStatusCodeFromError(error: HttpException & Error): number {
-    return (error.getStatus && error.getStatus()) || 500;
+  private determineStatusCodeFromError(error: HttpException | Error): number {
+    return error instanceof HttpException ? error.getStatus() : 500;
   }
 }
