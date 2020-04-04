@@ -7,19 +7,18 @@ import { Request, Response } from 'express';
 export class ExpressParser extends AbstractInterceptorService {
   getCallerIp(context: ExecutionContext): string[] | string {
     const req = this.getRequest(context);
-    return req.ips.length ? req.ips : req.ip;
+    return req.ips.length ? req.ips.join(' ') : req.ip;
   }
 
   getCallPoint(context: ExecutionContext): string {
     const req = this.getRequest(context);
-    const url = req.url;
-    return url || '';
+    return req.url;
   }
 
   getStatus(
     context: ExecutionContext,
     inColor: boolean,
-    error?: Error & HttpException,
+    error?: Error | HttpException,
   ): string {
     let status;
     const res = this.getResponse(context);
@@ -38,7 +37,7 @@ export class ExpressParser extends AbstractInterceptorService {
   getMethod(context: ExecutionContext): string {
     const req = this.getRequest(context);
     const method = req.method;
-    return method ?? 'GET';
+    return method || 'GET';
   }
 
   getProtocol(context: ExecutionContext): string {
@@ -62,7 +61,7 @@ export class ExpressParser extends AbstractInterceptorService {
     return req.httpVersionMinor;
   }
 
-  private determineStatusCodeFromError(error: HttpException & Error): number {
-    return (error.getStatus && error.getStatus()) || 500;
+  private determineStatusCodeFromError(error: HttpException | Error): number {
+    return error instanceof HttpException ? error.getStatus() : 500;
   }
 }
