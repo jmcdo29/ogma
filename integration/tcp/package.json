@@ -1,0 +1,29 @@
+{
+  "name": "@ogma/platform-socket-io-integration",
+  "version": "0.0.0",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "concurrently \"yarn start:server\" \"yarn start:client\"",
+    "start:client": "node dist/client/main.js",
+    "start:server": "node dist/server/main.js",
+    "visual": "node testScript"
+  },
+  "private": true,
+  "dependencies": {
+    "@nestjs/common": "^7.0.0",
+    "@nestjs/core": "^7.0.0",
+    "@nestjs/microservices": "^7.0.0",
+    "@nestjs/platform-express": "^7.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^7.1.1",
+    "@nestjs/testing": "^7.0.0",
+    "concurrently": "^5.1.0",
+    "jest": "^25.2.3",
+    "reflect-metadata": "0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "6.5.4",
+    "ts-jest": "^25.2.1"
+  }
+}
