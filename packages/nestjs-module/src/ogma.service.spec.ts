@@ -3,7 +3,7 @@ import { Ogma, OgmaOptions } from '@ogma/logger';
 import { OGMA_CONTEXT, OGMA_INSTANCE } from './ogma.constants';
 import { OgmaService } from './ogma.service';
 
-jest.mock('ogma');
+jest.mock('@ogma/logger');
 
 const mockStream = {
   write: (message: any) => message,

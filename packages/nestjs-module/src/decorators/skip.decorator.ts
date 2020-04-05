@@ -2,7 +2,7 @@ import { OGMA_INTERCEPTOR_SKIP } from '../ogma.constants';
 
 export function OgmaSkip() {
   return (
-    target: object,
+    target: any,
     key?: string | symbol,
     descriptor?: TypedPropertyDescriptor<any>,
   ) => {

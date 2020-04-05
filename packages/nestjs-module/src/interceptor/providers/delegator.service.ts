@@ -1,5 +1,4 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { interceptorErrorMessage } from '../../helpers';
 import { OgmaInterceptorServiceOptions } from '../../interfaces';
 import { LogObject } from '../interfaces/log.interface';
 import { HttpInterceptorService } from './http-interceptor.service';
@@ -9,11 +8,6 @@ import { RpcInterceptorService } from './rpc-interceptor.service';
 
 @Injectable()
 export class DelegatorService {
-  private httpErrorLogged = false;
-  private wsErrorLogged = false;
-  private rpcErrorLogged = false;
-  private gqlErrorLogged = false;
-
   constructor(
     private readonly httpParser: HttpInterceptorService,
     private readonly wsParser: WebsocketInterceptorService,
@@ -34,12 +28,6 @@ export class DelegatorService {
       case 'http':
         // hack to handle graphql context properly
         if (context.getArgs().length === 3) {
-          if (!options.http && !this.httpErrorLogged) {
-            return interceptorErrorMessage(
-              '@nestjs/platorm-express or @nestjs/platform-fastify',
-              'http',
-            );
-          }
           logObject = this.httpParser.getSuccessContext(
             data,
             context,
@@ -47,9 +35,6 @@ export class DelegatorService {
             options,
           );
         } else {
-          if (!options.gql && !this.gqlErrorLogged) {
-            return interceptorErrorMessage('@nestjs/graphql', 'gql');
-          }
           logObject = this.gqlParser.getSuccessContext(
             data,
             context,
@@ -59,9 +44,6 @@ export class DelegatorService {
         }
         break;
       case 'ws':
-        if (!options.ws && !this.wsErrorLogged) {
-          return interceptorErrorMessage('@nestjs/websockets', 'ws');
-        }
         logObject = this.wsParser.getSuccessContext(
           data,
           context,
@@ -70,9 +52,6 @@ export class DelegatorService {
         );
         break;
       case 'rpc':
-        if (!options.rpc && !this.rpcErrorLogged) {
-          return interceptorErrorMessage('@nestjs/microservices', 'rpc');
-        }
         logObject = this.rpcParser.getSuccessContext(
           data,
           context,
@@ -95,12 +74,6 @@ export class DelegatorService {
       case 'http':
         // hack to handle graphql context properly
         if (context.getArgs().length === 3) {
-          if (!options.http && !this.httpErrorLogged) {
-            return interceptorErrorMessage(
-              '@nestjs/platorm-express or @nestjs/platform-fastify',
-              'http',
-            );
-          }
           logObject = this.httpParser.getErrorContext(
             error,
             context,
@@ -108,9 +81,6 @@ export class DelegatorService {
             options,
           );
         } else {
-          if (!options.gql && !this.gqlErrorLogged) {
-            return interceptorErrorMessage('@nestjs/graphql', 'gql');
-          }
           logObject = this.gqlParser.getErrorContext(
             error,
             context,
@@ -120,9 +90,6 @@ export class DelegatorService {
         }
         break;
       case 'ws':
-        if (!options.ws && !this.wsErrorLogged) {
-          return interceptorErrorMessage('@nestjs/websockets', 'ws');
-        }
         logObject = this.wsParser.getErrorContext(
           error,
           context,
@@ -131,9 +98,6 @@ export class DelegatorService {
         );
         break;
       case 'rpc':
-        if (!options.rpc && !this.rpcErrorLogged) {
-          return interceptorErrorMessage('@nestjs/microservices', 'rpc');
-        }
         logObject = this.rpcParser.getErrorContext(
           error,
           context,
