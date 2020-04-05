@@ -4,9 +4,7 @@
     "rootDir": "./src",
     "outDir": "./lib"
   },
-  "include": [
-    "./src"
-  ],
+  "include": ["./src"],
   "references": [
     {
       "path": "../logger"

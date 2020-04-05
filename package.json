@@ -32,12 +32,12 @@
     "docker:express": "yarn docker -t ogma/express-test -f Docker/express.Dockerfile .",
     "docker:fastify": "yarn docker -t ogma/fastify-test -f Docker/fastify.Dockerfile .",
     "docker:socket": "yarn docker -t ogma/socket-test -f Docker/socket-io.Dockerfile .",
-    "format": "prettier --write \"packages/**/*.ts\"",
+    "format": "prettier --write \"packages/**/*.{ts,js,json}\"",
     "lint": "eslint --ext .ts .",
     "setup": "yarn && yarn build",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
+    "test": "lerna run test",
+    "test:watch": "lerna run test:watch",
+    "test:cov": "lerna run test:cov",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
@@ -85,20 +85,6 @@
     "ts-loader": "^6.2.2",
     "ts-node": "^8.8.1",
     "typescript": "^3.8.3"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
   },
   "engines": {
     "node": ">=10"

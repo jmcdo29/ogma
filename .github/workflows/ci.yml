@@ -25,15 +25,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install
-      run: npm ci
+    - name: install
+      run: yarn
     - name: check format
-      run: npx prettier --check 'src/**/*.ts'
+      run: yarn prettier --check 'src/**/*.ts'
     - name: lint
-      run: npm run lint
-    - name: npm test
-      run: npm run test:cov
-    - name: npm build
-      run: npm run build
+      run: yar run lint
+    - name: test
+      run: yarn run test:cov
+    - name: build
+      run: yarn run build
       env:
         CI: true

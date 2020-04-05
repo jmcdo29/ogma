@@ -18,7 +18,7 @@
     "url": "git+https://github.com/jmcdo29/ogma.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"No tests to run\""
   },
   "bugs": {
     "url": "https://github.com/jmcdo29/ogma/issues"
