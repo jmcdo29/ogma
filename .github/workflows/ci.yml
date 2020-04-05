@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - 'master'
+      - 'monorepo'
   push:
     branches:
       - '*'
@@ -26,14 +27,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: install
-      run: yarn
-    - name: check format
-      run: yarn prettier --check 'src/**/*.ts'
+      run: yarn setup
     - name: lint
-      run: yar run lint
+      run: yarn lint
     - name: test
-      run: yarn run test:cov
-    - name: build
-      run: yarn run build
+      run: yarn test:cov
       env:
         CI: true
