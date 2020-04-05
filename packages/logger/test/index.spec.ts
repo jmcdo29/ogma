@@ -1,4 +1,4 @@
-import { color, Ogma } from './index';
+import { color, Ogma } from '../src';
 
 it('should have color defined as an object', () => {
   expect(color).toBeDefined();

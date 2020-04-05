@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { NoopInterceptorService } from './noop-interceptor.service';
+import { NoopInterceptorService } from '../src/interceptor/providers/noop-interceptor.service';
 
 describe('NoopInterceptorService', () => {
   let service: NoopInterceptorService;

@@ -1,4 +1,4 @@
-import { OgmaLogger } from './ogma-logger.decorator';
+import { OgmaLogger } from '../src';
 
 const func = expect.any(Function);
 

@@ -1,14 +1,16 @@
 import { createMock } from '@golevelup/ts-jest';
 import { ExecutionContext } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { OgmaInterceptorServiceOptions } from '../../interfaces';
-import { LogObject } from '../interfaces/log.interface';
-import { AbstractInterceptorService } from './abstract-interceptor.service';
-import { DelegatorService } from './delegator.service';
-import { GqlInterceptorService } from './gql-interceptor.service';
-import { HttpInterceptorService } from './http-interceptor.service';
-import { RpcInterceptorService } from './rpc-interceptor.service';
-import { WebsocketInterceptorService } from './websocket-interceptor.service';
+import { OgmaInterceptorServiceOptions } from '../src';
+import { LogObject } from '../src/interceptor/interfaces/log.interface';
+import {
+  AbstractInterceptorService,
+  DelegatorService,
+  GqlInterceptorService,
+  HttpInterceptorService,
+  RpcInterceptorService,
+  WebsocketInterceptorService,
+} from '../src/interceptor/providers';
 
 const logProperly = (type: 'http' | 'gql' | 'ws' | 'rpc') =>
   `should log properly for ${type}`;

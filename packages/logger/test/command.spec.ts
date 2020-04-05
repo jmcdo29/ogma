@@ -1,14 +1,14 @@
 import { createWriteStream, promises } from 'fs';
-import { OgmaLog } from '../interfaces/ogma-log';
-import { ogmaHydrate } from './command';
+import { OgmaLog } from '../src/interfaces/ogma-log';
+import { ogmaHydrate } from '../src/command/command';
 import {
   ExpectedOgmaOutput,
   jsonLogs,
   logKeys,
   OgmaLogSet,
   stringLogs,
-} from './command.fixtures';
-import * as messages from './messages';
+} from '../src/command/command.fixtures';
+import * as messages from '../src/command/messages';
 
 const globalIsTTY = process.stdout.isTTY;
 

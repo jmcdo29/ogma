@@ -1,7 +1,7 @@
 import { createMock } from '@golevelup/nestjs-testing';
-import { Color } from '../enums';
-import { OgmaSimpleType } from '../types';
-import { colorize, colorizeCLI } from './colorize';
+import { Color } from '../src/enums';
+import { OgmaSimpleType } from '../src/types';
+import { colorize, colorizeCLI } from '../src/utils/colorize';
 
 const ESC = '\u001B';
 

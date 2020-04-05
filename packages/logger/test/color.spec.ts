@@ -1,4 +1,4 @@
-import { color } from './color';
+import { color } from '../src';
 
 process.stdout.hasColors = () => true;
 

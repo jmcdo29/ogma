@@ -19,16 +19,11 @@
     "ogma": "./lib/command/index.js"
   },
   "scripts": {
-    "benchmark:all": "tsc ./benchmark/ogmaUsageTest.ts && node ./benchmark/ogmaUsageTest.js all && git add ./benchmark/benchmark.md",
-    "build": "tsc -b tsconfig.build.json",
-    "commit": "git-cz",
-    "format": "prettier --write './src/**/*.ts'",
+    "prebuild": "rimraf lib",
+    "build": "tsc -p tsconfig.build.json",
+    "postbuild": "mv ./lib/src/* ./lib && rmdir lib/src",
     "lint": "eslint --ext .ts ./src/",
-    "test": "jest",
-    "test:ci": "jest --runInBand",
-    "preversion": "npx prettier --write './src/**/*.ts' && npm run lint && npm run build && npm run benchmark:all",
-    "version": "conventional-changelog -p -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "release": "npm publish"
+    "test": "jest"
   },
   "engines": {
     "node": ">=10"

@@ -1,13 +1,11 @@
-import { OgmaInterceptor } from './ogma.interceptor';
 import { createMock } from '@golevelup/ts-jest';
 import { ExecutionContext } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import { DelegatorService } from './providers';
-import { OgmaService } from '../ogma.service';
 import { Reflector } from '@nestjs/core';
-import { OgmaSkip } from '../decorators';
-import { OGMA_INTERCEPTOR_OPTIONS } from '../ogma.constants';
+import { Test } from '@nestjs/testing';
 import { of, throwError } from 'rxjs';
+import { OgmaInterceptor, OgmaService, OgmaSkip } from '../src';
+import { DelegatorService } from '../src/interceptor/providers';
+import { OGMA_INTERCEPTOR_OPTIONS } from '../src/ogma.constants';
 
 const shouldSkipFor = (type: 'http' | 'ws' | 'gql' | 'rpc'): string =>
   `should skip for no ${type} parser`;

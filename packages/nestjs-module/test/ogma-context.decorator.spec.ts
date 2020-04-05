@@ -2,7 +2,7 @@ import {
   InjectOgma,
   InjectOgmaContext,
   InjectOgmaInterceptorOptions,
-} from './ogma-context.decorator';
+} from '../src';
 
 const func = expect.any(Function);
 

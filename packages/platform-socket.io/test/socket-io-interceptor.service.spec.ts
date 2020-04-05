@@ -2,9 +2,9 @@ import { createMock } from '@golevelup/ts-jest';
 import { ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Test } from '@nestjs/testing';
-import { color } from '@ogma/logger';
-import { SocketIOParser } from './socket-io-interceptor.service';
 import { MESSAGE_METADATA } from '@nestjs/websockets/constants';
+import { color } from '@ogma/logger';
+import { SocketIOParser } from '../src';
 
 describe('SocketIOParser', () => {
   let parser: SocketIOParser;
