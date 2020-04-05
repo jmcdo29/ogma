@@ -12,8 +12,8 @@ import { InjectOgmaInterceptorOptions } from '../decorators';
 import { OgmaInterceptorOptions } from '../interfaces';
 import { OGMA_INTERCEPTOR_SKIP } from '../ogma.constants';
 import { OgmaService } from '../ogma.service';
-import { DelegatorService } from './providers';
 import { LogObject } from './interfaces/log.interface';
+import { DelegatorService } from './providers';
 
 @Injectable()
 export class OgmaInterceptor implements NestInterceptor {

@@ -18,14 +18,15 @@ describe('NoopInterceptorService', () => {
 
   describe('success context', () => {
     it('should return a success log object', () => {
+      Date.now = () => 133;
       expect(service.getSuccessContext(151, {} as any, 50, {} as any)).toEqual({
-        callerAddress: '127.0.0.1',
-        method: 'GET',
-        callPoint: '/',
+        callerAddress: 'caller ip',
+        method: 'method',
+        callPoint: 'call point',
         responseTime: 83,
-        contentLength: 42,
-        protocol: 'HTTP/1.1',
-        status: '200',
+        contentLength: 151,
+        protocol: 'protocol',
+        status: 'status',
       });
     });
   });

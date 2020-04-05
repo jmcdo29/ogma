@@ -24,7 +24,7 @@ import {
 } from './interfaces';
 import { OgmaInterceptor } from './interceptor/ogma.interceptor';
 
-class NoopInterceptor implements NestInterceptor {
+export class NoopInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler) {
     return next.handle();
   }
@@ -56,7 +56,7 @@ function mergeInterceptorDefaults(
 export function createOgmaInterceptorOptionsFactory(
   options: OgmaModuleOptions,
 ): OgmaInterceptorOptions | false {
-  const intOpts = options?.interceptor ?? undefined;
+  const intOpts = options?.interceptor;
   if (intOpts === false) {
     return intOpts;
   }
