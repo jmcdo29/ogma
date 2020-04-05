@@ -4,23 +4,21 @@ import { HTTP_CODE_METADATA } from '@nestjs/common/constants';
 import { Reflector } from '@nestjs/core';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
-import { FastifyParser } from './fastify-interceptor.service';
+import { ExpressParser } from '../src';
 
 const resMock = (status: number) => ({
   getResponse: () => ({
-    res: {
-      statusCode: status,
-    },
+    statusCode: status,
   }),
 });
 
-describe('FastifyParser', () => {
-  let parser: FastifyParser;
+describe('ExpressParser', () => {
+  let parser: ExpressParser;
   let reflector: Reflector;
   beforeEach(async () => {
     const mod = await Test.createTestingModule({
       providers: [
-        FastifyParser,
+        ExpressParser,
         {
           provide: Reflector,
           useValue: {
@@ -29,7 +27,7 @@ describe('FastifyParser', () => {
         },
       ],
     }).compile();
-    parser = mod.get(FastifyParser);
+    parser = mod.get(ExpressParser);
     reflector = mod.get(Reflector);
   });
   it('should be defined', () => {
@@ -66,9 +64,7 @@ describe('FastifyParser', () => {
       const ctxMock = createMock<ExecutionContext>({
         switchToHttp: () => ({
           getRequest: () => ({
-            raw: {
-              url: '/api/auth/callback?token=123abc',
-            },
+            url: '/api/auth/callback?token=123abc',
           }),
         }),
       });
@@ -122,9 +118,7 @@ describe('FastifyParser', () => {
       const ctxMock = createMock<ExecutionContext>({
         switchToHttp: () => ({
           getRequest: () => ({
-            raw: {
-              method: 'POST',
-            },
+            method: 'POST',
           }),
         }),
       });
@@ -133,9 +127,7 @@ describe('FastifyParser', () => {
     it('should return GET by default', () => {
       const ctxMock = createMock<ExecutionContext>({
         switchToHttp: () => ({
-          getRequest: () => ({
-            raw: {},
-          }),
+          getRequest: () => ({}),
         }),
       });
       expect(parser.getMethod(ctxMock)).toBe('GET');
@@ -147,10 +139,8 @@ describe('FastifyParser', () => {
       const ctxMock = createMock<ExecutionContext>({
         switchToHttp: () => ({
           getRequest: () => ({
-            raw: {
-              httpVersionMajor: 1,
-              httpVersionMinor: 1,
-            },
+            httpVersionMajor: 1,
+            httpVersionMinor: 1,
           }),
         }),
       });

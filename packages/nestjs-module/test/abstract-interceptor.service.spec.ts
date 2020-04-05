@@ -2,7 +2,7 @@ import { createMock } from '@golevelup/ts-jest';
 import { ExecutionContext, HttpException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
-import { AbstractInterceptorService } from './abstract-interceptor.service';
+import { AbstractInterceptorService } from '../src/interceptor/providers/abstract-interceptor.service';
 
 class TestParser extends AbstractInterceptorService {
   getStatus(
@@ -35,8 +35,8 @@ class TestParser extends AbstractInterceptorService {
   }
 }
 
-const colorStatus = (color: string, status: number) =>
-  `should return ${color} for status ${status}`;
+const colorStatus = (colorString: string, status: number) =>
+  `should return ${colorString} for status ${status}`;
 
 describe('AbstractInterceptorService', () => {
   let service: TestParser;

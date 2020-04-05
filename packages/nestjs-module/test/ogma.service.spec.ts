@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { Ogma, OgmaOptions } from '@ogma/logger';
-import { OGMA_CONTEXT, OGMA_INSTANCE } from './ogma.constants';
-import { OgmaService } from './ogma.service';
+import { OgmaService } from '../src';
+import { OGMA_CONTEXT, OGMA_INSTANCE } from '../src/ogma.constants';
 
 jest.mock('@ogma/logger');
 

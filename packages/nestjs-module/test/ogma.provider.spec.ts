@@ -2,16 +2,16 @@ import { createMock } from '@golevelup/ts-jest';
 import { FactoryProvider, Provider } from '@nestjs/common/interfaces';
 import { Reflector } from '@nestjs/core';
 import { Ogma } from '@ogma/logger';
-import { OgmaInterceptor } from './interceptor/ogma.interceptor';
+import { OgmaInterceptor, OgmaService } from '../src';
 import {
   DelegatorService,
   NoopInterceptorService,
-} from './interceptor/providers';
+} from '../src/interceptor/providers';
 import {
   OGMA_INSTANCE,
   OGMA_SERVICE_TOKEN,
   OgmaInterceptorProviderError,
-} from './ogma.constants';
+} from '../src/ogma.constants';
 import {
   createLoggerProviders,
   createOgmaInterceptorFactory,
@@ -19,8 +19,7 @@ import {
   createOgmaProvider,
   createOgmaServiceOptions,
   interceptorProviderFactory,
-} from './ogma.provider';
-import { OgmaService } from './ogma.service';
+} from '../src/ogma.provider';
 
 const noOptions = 'use noop service as back up';
 const withOptions = 'use passed option for interceptor service';

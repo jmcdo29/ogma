@@ -1,5 +1,5 @@
-import { OgmaSkip } from './skip.decorator';
-import { OGMA_INTERCEPTOR_SKIP } from '../ogma.constants';
+import { OgmaSkip } from '../src';
+import { OGMA_INTERCEPTOR_SKIP } from '../src/ogma.constants';
 
 describe('OgmaSkip', () => {
   it('should work on an entire class', () => {

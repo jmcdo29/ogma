@@ -1,7 +1,7 @@
 import { createMock } from '@golevelup/nestjs-testing';
 import { createWriteStream } from 'fs';
-import { LogLevel } from '../enums';
-import { Ogma } from './ogma';
+import { LogLevel } from '../src/enums';
+import { Ogma } from '../src';
 
 const dest = createWriteStream('/dev/null');
 
