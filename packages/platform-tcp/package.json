@@ -26,13 +26,11 @@
     "url": "git+https://github.com/jmcdo29/ogma.git"
   },
   "scripts": {
-<<<<<<< HEAD
-    "test": "echo \"No tests to run\""
-=======
-    "build": "tsc -b tsconfig.build.json",
+    "prebuild": "rimraf lib",
+    "build": "tsc -p tsconfig.build.json",
+    "postbuild": "mv ./lib/src/* ./lib && rmdir lib/src",
     "test": "jest",
     "test:cov": "jest --coverage"
->>>>>>> feat(tcp): implements first draft of tcp parser
   },
   "bugs": {
     "url": "https://github.com/jmcdo29/ogma/issues"
