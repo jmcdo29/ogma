@@ -64,7 +64,7 @@ describe('ExpressParser', () => {
       const ctxMock = createMock<ExecutionContext>({
         switchToHttp: () => ({
           getRequest: () => ({
-            url: '/api/auth/callback?token=123abc',
+            originalUrl: '/api/auth/callback?token=123abc',
           }),
         }),
       });

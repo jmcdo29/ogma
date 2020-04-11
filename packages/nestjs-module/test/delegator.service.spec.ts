@@ -38,11 +38,6 @@ const httpContext = {
   getArgs: () => [1, 2, 3],
 };
 
-const gqlContext = {
-  getType: () => 'http',
-  getArgs: () => [1, 2, 3, 4],
-};
-
 const parsedString = '127.0.0.1 - GET / HTTP/1.1 200 2ms - 5';
 
 describe('DelegatorService', () => {
@@ -103,7 +98,9 @@ describe('DelegatorService', () => {
       );
     });
     it(logProperly('gql'), () => {
-      const ctxMock = createMock<ExecutionContext>(gqlContext);
+      const ctxMock = createMock<ExecutionContext>({
+        getType: () => 'graphql',
+      });
       const spy = spyFactory(gql, 'getSuccessContext').mockReturnValueOnce(
         parserReturn,
       );
@@ -168,7 +165,9 @@ describe('DelegatorService', () => {
       const spy = spyFactory(gql, 'getErrorContext').mockReturnValueOnce(
         parserReturn,
       );
-      const ctxMock = createMock<ExecutionContext>(gqlContext);
+      const ctxMock = createMock<ExecutionContext>({
+        getType: () => 'graphql',
+      });
       expect(
         delegate.getContextErrorString(error, ctxMock, startTime, options),
       ).toBe(parsedString);

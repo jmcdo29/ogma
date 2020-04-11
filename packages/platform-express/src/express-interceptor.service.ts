@@ -12,7 +12,7 @@ export class ExpressParser extends AbstractInterceptorService {
 
   getCallPoint(context: ExecutionContext): string {
     const req = this.getRequest(context);
-    return req.url;
+    return req.originalUrl;
   }
 
   getStatus(
@@ -45,11 +45,11 @@ export class ExpressParser extends AbstractInterceptorService {
     return `HTTP/${this.getHttpMajor(req)}.${this.getHttpMinor(req)}`;
   }
 
-  private getRequest(context: ExecutionContext): Request {
+  getRequest(context: ExecutionContext): Request {
     return context.switchToHttp().getRequest();
   }
 
-  private getResponse(context: ExecutionContext): Response {
+  getResponse(context: ExecutionContext): Response {
     return context.switchToHttp().getResponse();
   }
 

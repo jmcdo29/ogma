@@ -194,7 +194,6 @@ describe('OgmaInterceptor', () => {
     it(shouldSkipFor('http'), () => {
       nullifyOption('http', interceptor);
       const ctxMock = createMock<ExecutionContext>({
-        getArgs: () => [1, 2, 3],
         getType: () => 'http',
       });
       expect(interceptor.shouldSkip(ctxMock)).toBe(true);
@@ -202,8 +201,7 @@ describe('OgmaInterceptor', () => {
     it(shouldSkipFor('gql'), () => {
       nullifyOption('gql', interceptor);
       const ctxMock = createMock<ExecutionContext>({
-        getArgs: () => [1, 2, 3, 4],
-        getType: () => 'http',
+        getType: () => 'graphql',
       });
       expect(interceptor.shouldSkip(ctxMock)).toBe(true);
     });

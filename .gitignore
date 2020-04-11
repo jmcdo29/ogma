@@ -35,3 +35,4 @@ coverage/
 *.tgz
 
 *.txt
+*.gql
