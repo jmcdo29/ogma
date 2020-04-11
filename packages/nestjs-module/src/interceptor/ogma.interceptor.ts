@@ -1,5 +1,6 @@
 import {
   CallHandler,
+  ContextType,
   ExecutionContext,
   Injectable,
   NestInterceptor,
@@ -70,12 +71,11 @@ export class OgmaInterceptor implements NestInterceptor {
     if (decoratorSkip) {
       return true;
     }
-    switch (context.getType()) {
+    switch (context.getType<ContextType | 'graphql'>()) {
       case 'http':
-        if (context.getArgs().length === 3) {
-          return !this.options.http;
-        }
-        return !this.options.gql;
+        return !this.options.http;
+      case 'graphql':
+        return !this.options.gql || !context.getArgByIndex(2).req;
       case 'ws':
         return !this.options.ws;
       case 'rpc':

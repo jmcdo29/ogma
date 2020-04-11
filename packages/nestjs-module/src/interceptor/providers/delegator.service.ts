@@ -1,4 +1,4 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ContextType, ExecutionContext, Injectable } from '@nestjs/common';
 import { OgmaInterceptorServiceOptions } from '../../interfaces';
 import { LogObject } from '../interfaces/log.interface';
 import { HttpInterceptorService } from './http-interceptor.service';
@@ -24,24 +24,22 @@ export class DelegatorService {
     data = data ? JSON.stringify(data) : '';
     data = Buffer.from(data).byteLength;
     let logObject: LogObject = {} as any;
-    switch (context.getType()) {
+    switch (context.getType<ContextType | 'graphql'>()) {
       case 'http':
-        // hack to handle graphql context properly
-        if (context.getArgs().length === 3) {
-          logObject = this.httpParser.getSuccessContext(
-            data,
-            context,
-            startTime,
-            options,
-          );
-        } else {
-          logObject = this.gqlParser.getSuccessContext(
-            data,
-            context,
-            startTime,
-            options,
-          );
-        }
+        logObject = this.httpParser.getSuccessContext(
+          data,
+          context,
+          startTime,
+          options,
+        );
+        break;
+      case 'graphql':
+        logObject = this.gqlParser.getSuccessContext(
+          data,
+          context,
+          startTime,
+          options,
+        );
         break;
       case 'ws':
         logObject = this.wsParser.getSuccessContext(
@@ -70,24 +68,22 @@ export class DelegatorService {
     options: OgmaInterceptorServiceOptions,
   ): string | LogObject {
     let logObject: LogObject = {} as any;
-    switch (context.getType()) {
+    switch (context.getType<ContextType | 'graphql'>()) {
       case 'http':
-        // hack to handle graphql context properly
-        if (context.getArgs().length === 3) {
-          logObject = this.httpParser.getErrorContext(
-            error,
-            context,
-            startTime,
-            options,
-          );
-        } else {
-          logObject = this.gqlParser.getErrorContext(
-            error,
-            context,
-            startTime,
-            options,
-          );
-        }
+        logObject = this.httpParser.getErrorContext(
+          error,
+          context,
+          startTime,
+          options,
+        );
+        break;
+      case 'graphql':
+        logObject = this.gqlParser.getErrorContext(
+          error,
+          context,
+          startTime,
+          options,
+        );
         break;
       case 'ws':
         logObject = this.wsParser.getErrorContext(
