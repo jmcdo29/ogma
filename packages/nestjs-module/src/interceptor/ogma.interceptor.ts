@@ -75,7 +75,10 @@ export class OgmaInterceptor implements NestInterceptor {
       case 'http':
         return !this.options.http;
       case 'graphql':
-        return !this.options.gql || !context.getArgByIndex(2).req;
+        return (
+          !this.options.gql ||
+          context.getArgByIndex(3)?.operation?.operation === 'subscription'
+        );
       case 'ws':
         return !this.options.ws;
       case 'rpc':
