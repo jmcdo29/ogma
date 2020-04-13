@@ -76,11 +76,11 @@ or async
 export class AppModule {}
 ```
 
-From here in each module you need to add the `OgmaService` you can add `OgmaModule.forFeature(context)`, where context is the context you want to add to the log.
+From here in each module you need to add the `OgmaService` you can add `OgmaModule.forFeature(context)`, where context is the context you want to add to the log. This `context` can be either a class object (not an instance) or a string.
 
 ```ts
 @Module({
-  imports: [OgmaModule.forFeature(MyService.name)],
+  imports: [OgmaModule.forFeature(MyService)], // or OgmaModule.forFeature(MyService.name)
   providers: [MyService]
 })
 export class MyModule {}
@@ -90,7 +90,7 @@ export class MyModule {}
 @Injectable()
 export class MyService {
   constructor(
-    @OgmaLogger(MyService) private readonly logger: OgmaService
+    @OgmaLogger(MyService) private readonly logger: OgmaService // or @OgmaLogger(MyService.name)
   ) {}
   // ...
 }
@@ -110,7 +110,7 @@ Where `context` in both cases is the class-method combination of the path that w
 
 If you would like to skip any request url path, you can pass in a decorator either an entire class or just a route handler with the `@OgmaSkip()` decorator.
 
-> Note: Be aware that as this is an interceptor, any errors that happen in middleware, such as Passport's serialization/deserialization and authentication methods through the PassportStrategy.
+> Note: Be aware that as this is an interceptor, any errors that happen in middleware, such as Passport's serialization/deserialization and authentication methods through the PassportStrategy will not be logged in the library. You can use an [ExceptionFilter](https://docs.nestjs.com/exception-filters) to manage that. The same goes for guards due to the [request lifecycle](https://docs.nestjs.com/faq/request-lifecycle)
 
 ### OgmaInterceptor Configuration Options
 

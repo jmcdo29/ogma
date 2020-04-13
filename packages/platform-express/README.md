@@ -14,7 +14,7 @@ This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaMo
 @Module(
   OgmaModule.forRoot({
     interceptor: {
-      http: ExpressInterceptorParser
+      http: ExpressParser
     }
   })
 )

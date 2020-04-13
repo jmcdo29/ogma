@@ -1,11 +1,22 @@
 # `@ogma/platform-tcp`
 
-> TODO: description
+The `TcpParser` parser for the `OgmaInterceptor`. This plugin class parses TCP request and response object to be able to successfully log the data about the request. For more information, check out [the @ogma/nestjs-module](../nestjs-module/README.md) documentation.
+
+## Installation
+
+Nothing special, standard `npm i @ogma/platform-tcp` or `yarn add @ogma/platform-tcp`
 
 ## Usage
 
-```
-const platformTcp = require('@ogma/platform-tcp');
+This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
-// TODO: DEMONSTRATE API
+```ts
+@Module(
+  OgmaModule.forRoot({
+    interceptor: {
+      rpc: TcpParser
+    }
+  })
+)
+export class AppModule {}
 ```
