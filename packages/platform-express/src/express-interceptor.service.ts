@@ -62,6 +62,12 @@ export class ExpressParser extends AbstractInterceptorService {
   }
 
   private determineStatusCodeFromError(error: HttpException | Error): number {
-    return (error as HttpException).getStatus() || 500;
+    let status: number;
+    try {
+      status = (error as HttpException).getStatus();
+    } catch (err) {
+      status = 500;
+    }
+    return status;
   }
 }

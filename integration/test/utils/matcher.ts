@@ -1,4 +1,8 @@
 /* eslint-disable no-redeclare */
+
+import { color } from '@ogma/logger';
+import { isIP } from 'net';
+
 /* eslint-disable @typescript-eslint/no-namespace */
 declare global {
   namespace jest {
@@ -14,7 +18,9 @@ declare global {
 }
 
 const expectMessage = (field: string, expected: string, actual: string) =>
-  `Expected ${field} to be ${expected} but got ${actual}.\n`;
+  `Expected ${field} to be ${color.green(expected)} but got ${color.red(
+    actual,
+  )}.\n`;
 
 expect.extend({
   toBeALogObject(
@@ -37,9 +43,9 @@ expect.extend({
       ,
       recSize,
     ] = received.split(' ');
-    if (!/::\w{4}:(\d{1,3}\.){3}\d{1,3}/.test(recIp)) {
+    if (!isIP(recIp)) {
       pass = false;
-      message += expectMessage('Caller Ip', 'an IP', recIp);
+      message += expectMessage('Caller Ip', 'an IPv4 or IPv6', recIp);
     }
     if (recMethod !== method) {
       pass = false;
