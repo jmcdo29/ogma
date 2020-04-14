@@ -29,14 +29,15 @@
     "docker:express": "yarn docker -t ogma/express-test -f Docker/express.Dockerfile .",
     "docker:fastify": "yarn docker -t ogma/fastify-test -f Docker/fastify.Dockerfile .",
     "docker:socket": "yarn docker -t ogma/socket-test -f Docker/socket-io.Dockerfile .",
-    "format": "prettier --write \"packages/**/*.{ts,js,json}\"",
+    "format": "prettier --write \"{packages,integration}/**/*.ts\"",
     "lint": "eslint --ext .ts .",
     "setup": "yarn && yarn build",
     "test": "lerna run test",
     "test:watch": "lerna run test:watch",
     "test:cov": "lerna run test:cov",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:integration": "jest --config jest-integration.config.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

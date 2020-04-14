@@ -1,7 +1,6 @@
 import { createMock } from '@golevelup/ts-jest';
-import { BadRequestException, ExecutionContext } from '@nestjs/common';
+import { ExecutionContext } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { color } from '@ogma/logger';
 import { Request, Response } from 'express';
 import { GraphQLParser } from '../src';
 
@@ -54,41 +53,6 @@ describe('GraphQLParser', () => {
       const resMock = createMock<Response>();
       const gqlCtx = gqlContextMockFactory({ res: resMock });
       expect(parser.getResponse(gqlCtx)).toEqual(resMock);
-    });
-  });
-  describe('getStatus', () => {
-    it('should get a 200', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), false)).toBe(
-        '200',
-      );
-    });
-    it('should get a 500', () => {
-      expect(
-        parser.getStatus(createMock<ExecutionContext>(), false, new Error()),
-      ).toBe('500');
-    });
-    it('should get a 400', () => {
-      expect(
-        parser.getStatus(
-          createMock<ExecutionContext>(),
-          false,
-          new BadRequestException(),
-        ),
-      ).toBe('400');
-    });
-    it('should get 400 after a serialized error', () => {
-      const err: any = {
-        status: 400,
-        getStatus: () => err.status,
-      };
-      expect(parser.getStatus(createMock<ExecutionContext>(), false, err)).toBe(
-        '400',
-      );
-    });
-    it('should get a colored 200', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(
-        color.green(200),
-      );
     });
   });
 });
