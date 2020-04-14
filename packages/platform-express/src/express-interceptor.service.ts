@@ -62,6 +62,6 @@ export class ExpressParser extends AbstractInterceptorService {
   }
 
   private determineStatusCodeFromError(error: HttpException | Error): number {
-    return error instanceof HttpException ? error.getStatus() : 500;
+    return (error as HttpException).getStatus() || 500;
   }
 }
