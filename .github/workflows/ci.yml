@@ -33,6 +33,6 @@ jobs:
     - name: test
       run: yarn test:cov
     - name: integration test
-      run: yarn test:integration
+      run: yarn test:int
       env:
         CI: true

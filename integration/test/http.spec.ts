@@ -9,11 +9,14 @@ import {
 import { color } from '@ogma/logger';
 import { ExpressParser } from '@ogma/platform-express';
 import { FastifyParser } from '@ogma/platform-fastify';
-import { createWriteStream } from 'fs';
-import { createTestModule, getInterceptor, httpPromise } from './utils';
-import { AppModule } from '../src/http/app.module';
-
-const hello = JSON.stringify({ hello: 'world' });
+import {
+  createTestModule,
+  getInterceptor,
+  hello,
+  httpPromise,
+  serviceOptionsFactory,
+} from './utils';
+import { HttpServerModule } from '../src/http/http-server.module';
 
 describe.each`
   adapter                 | server       | parser
@@ -34,13 +37,8 @@ describe.each`
     let app: INestApplication;
 
     beforeAll(async () => {
-      const modRef = await createTestModule(AppModule, {
-        service: {
-          application: server,
-          stream: process.env.CI
-            ? createWriteStream('/dev/null')
-            : process.stdout,
-        },
+      const modRef = await createTestModule(HttpServerModule, {
+        service: serviceOptionsFactory(server),
         interceptor: { http: parser },
       });
       app = modRef.createNestApplication(adapter);

@@ -43,7 +43,7 @@ expect.extend({
       ,
       recSize,
     ] = received.split(' ');
-    if (!isIP(recIp)) {
+    if (!isIP(recIp) && !isIP(recIp.split(':')[0])) {
       pass = false;
       message += expectMessage('Caller Ip', 'an IPv4 or IPv6', recIp);
     }

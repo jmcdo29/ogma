@@ -1,7 +1,9 @@
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, INestMicroservice } from '@nestjs/common';
 
 // just trust me... I hate this...
-export function getInterceptor(app: INestApplication): string {
+export function getInterceptor(
+  app: INestApplication | INestMicroservice,
+): string {
   return Array.from((app as any).container.getModules().values())
     .filter((module: any) => module.metatype.name === 'OgmaCoreModule')
     .map((module: any) => {

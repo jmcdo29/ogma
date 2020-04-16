@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppService } from '../app.service';
-import { AppResolver } from './app.resolver';
+import { GqlResolver } from './gql.resolver';
 
 @Module({
   imports: [
@@ -10,6 +10,6 @@ import { AppResolver } from './app.resolver';
       autoSchemaFile: 'schema.gql',
     }),
   ],
-  providers: [AppService, AppResolver],
+  providers: [AppService, GqlResolver],
 })
-export class AppModule {}
+export class GqlModule {}

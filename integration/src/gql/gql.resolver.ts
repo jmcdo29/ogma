@@ -5,7 +5,7 @@ import { AppService } from '../app.service';
 import { SimpleObject } from './simple-object.model';
 
 @Resolver(() => SimpleObject)
-export class AppResolver {
+export class GqlResolver {
   constructor(private readonly appService: AppService) {}
 
   @Query(() => SimpleObject)
