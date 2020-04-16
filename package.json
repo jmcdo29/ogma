@@ -37,7 +37,8 @@
     "test:cov": "lerna run test:cov",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "test:integration": "jest --config jest-integration.config.js"
+    "test:int": "jest --config jest-integration.config.js",
+    "test:int:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --config jest-integration.config.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
@@ -59,6 +60,8 @@
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.3",
     "@types/socket.io": "^1.4.33",
+    "@types/socket.io-client": "^1.4.32",
+    "@types/ws": "^7.2.4",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "@typescript-eslint/parser": "^2.15.0",
     "apollo-server-express": "^2.11.0",
@@ -87,7 +90,8 @@
     "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.2",
     "ts-node": "^8.8.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "ws": "^7.2.3"
   },
   "engines": {
     "node": ">=10"

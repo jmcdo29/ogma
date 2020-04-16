@@ -13,7 +13,7 @@ import { AppService } from '../app.service';
 import { SimpleObject } from '../simple-object.model';
 
 @Controller()
-export class AppController {
+export class HttpController {
   constructor(private readonly appService: AppService) {}
 
   @Get()

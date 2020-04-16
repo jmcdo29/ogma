@@ -1,10 +1,11 @@
-import { BadRequestException, Controller } from '@nestjs/common';
+import { BadRequestException, Controller, UseFilters } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { OgmaSkip } from '@ogma/nestjs-module';
-import { AppService } from '../app.service';
+import { AppService } from '../../app.service';
+import { ExceptionFilter } from './exception.filter';
 
 @Controller()
-export class AppController {
+export class RpcServerController {
   constructor(private readonly appService: AppService) {}
 
   @MessagePattern({ cmd: 'message' })
@@ -13,6 +14,7 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'error' })
+  @UseFilters(ExceptionFilter)
   getError() {
     throw new BadRequestException('Borked');
   }
