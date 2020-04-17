@@ -7,7 +7,7 @@ import { GqlResolver } from './gql.resolver';
   imports: [
     GraphQLModule.forRoot({
       context: ({ req, res }) => ({ req, res }),
-      autoSchemaFile: 'schema.gql',
+      autoSchemaFile: true,
     }),
   ],
   providers: [AppService, GqlResolver],

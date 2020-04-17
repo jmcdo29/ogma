@@ -40,7 +40,7 @@ describe.each`
         },
       });
       app = modRef.createNestApplication(adapter);
-      interceptor = modRef.get(getInterceptor(app));
+      interceptor = getInterceptor(app);
       await app.listen(0);
     });
 

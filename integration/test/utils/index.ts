@@ -6,8 +6,8 @@ const stream = process.env.CI ? createWriteStream('/dev/null') : process.stdout;
 
 export * from './createModule';
 export * from './getInterceptor';
+export * from './gql-promise';
 export * from './http-promise';
-export * from './socket-promise';
 export * from './ws-promise';
 export const hello = JSON.stringify({ hello: 'world' });
 export const serviceOptionsFactory = (app: string): OgmaServiceOptions => {

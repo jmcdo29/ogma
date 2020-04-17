@@ -44,7 +44,7 @@ describe.each`
         transport,
         options,
       });
-      interceptor = modRef.get(getInterceptor(rpcServer));
+      interceptor = getInterceptor(rpcServer);
       await rpcServer.listenAsync();
       const clientRef = await Test.createTestingModule({
         imports: [

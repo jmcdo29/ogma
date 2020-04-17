@@ -47,7 +47,7 @@ describe.each`
       }).compile();
       app = modRef.createNestApplication();
       app.useWebSocketAdapter(new adapter(app));
-      interceptor = modRef.get(OgmaInterceptor);
+      interceptor = app.get(OgmaInterceptor);
       await app.listen(0);
     });
 
