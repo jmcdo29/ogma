@@ -22,9 +22,13 @@ If you are adding in a new library, please also add in integration tests for the
 
 To build your the project and link the dependencies together you can run `lerna run build`.
 
-When running the integration specific applications in a non--testing context (i.e. starting them locally), make sure to `cd` into the directory, `yarn install` the dependencies, and then run `yarn build && yarn start` to compile and start the server. From there, in a separate terminal, you can use [curl](https://curl.haxx.se/) or [Postman](https://www.postman.com/), or just use the browser directly. For websocket testing, you can use the node REPL (i.e. use `node` from the terminal) and make websocket calls from there.
+## Testing
 
-It will be left up to contributors to create their own `main.ts` files for working with integration servers. All tests should be running through `jest` using `yarn test:integration` otherwise.
+It will be left up to contributors to create their own `main.ts` files for working with integration servers. All tests should be running through `jest` using `yarn test:int` otherwise.
+
+If you need to run tests for a specific context, use `yarn test:int <context>` (one of: http, ws, gql, rpc) e.g. `yarn test:int http` will run the integration tests for the Express and Fastify parsers.
+
+When it comes to matching log objects, the best approach is to make use of a few helper functions from the [integration/test/utils](./integration/test/utils) directory. There is a custom matcher made for log objects specifically, `toBeALogObject()` that takes in the `method`, `endpoint`, `protocol`, and `status`. This function will end up running a few checks against the passed log object and assess if it is indeed a log object from the interceptor. A good test to look at to get a feel for how this all works is [the HTTP tests](./integration/test/http.spec.ts). Take note as well of the `createTestModule()` and `getInterceptor()` functions. Do your best to follow the tests that are already created and add in the appropriate lines for the `each` methods.
 
 ## Commits
 
