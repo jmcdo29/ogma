@@ -1,11 +1,32 @@
 # `@ogma/platform-graphql-fastify`
 
-> TODO: description
+The `GraphQLFastifyParser` parser for the `OgmaInterceptor`. This plugin class parses GraphQL request and response object to be able to successfully log the data about the request. For more information, check out [the @ogma/nestjs-module](../nestjs-module/README.md) documentation.
+
+## Installation
+
+Nothing special, standard `npm i @ogma/platform-graphql-fastify` or `yarn add @ogma/platform-graphql-fastify`
 
 ## Usage
 
-```
-const platformGraphqlFastify = require('@ogma/platform-graphql-fastify');
+This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
-// TODO: DEMONSTRATE API
+```ts
+@Module(
+  OgmaModule.forRoot({
+    interceptor: {
+      gql: GraphQLFastifyParser
+    }
+  })
+)
+export class AppModule {}
+```
+
+> Note: Due to the nature of subscriptions and the data available from the base ones, it is not possible at this time to log what subscriptions are made in the Ogma fashion.
+
+Because the interceptor needs access to the request and response objects, when configuring the `GraphqlModule` from Nest, you need to add the `req` to the GraphQL context. to do this, while configuring the `GraphqlModule`, set the `context` property as such:
+
+```ts
+GraphqlModule.forRoot({
+  context: ({ req }) => ({ req })
+});
 ```
