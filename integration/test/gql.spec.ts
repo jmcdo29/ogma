@@ -1,11 +1,13 @@
 import { HttpServer, INestApplication } from '@nestjs/common';
 import { ExpressAdapter } from '@nestjs/platform-express';
+import { FastifyAdapter } from '@nestjs/platform-fastify';
 import {
   AbstractInterceptorService,
   OgmaInterceptor,
   Type,
 } from '@ogma/nestjs-module';
 import { GraphQLParser } from '@ogma/platform-graphql';
+import { GraphQLFastifyParser } from '@ogma/platform-graphql-fastify';
 import { GqlModule } from '../src/gql/gql.module';
 import {
   createTestModule,
@@ -16,10 +18,11 @@ import {
 import { color } from '@ogma/logger';
 
 describe.each`
-  adapter                 | server               | parser
-  ${new ExpressAdapter()} | ${'GraphQL Express'} | ${GraphQLParser}
+  adapter                 | server       | parser
+  ${new ExpressAdapter()} | ${'Express'} | ${GraphQLParser}
+  ${new FastifyAdapter()} | ${'Fastify'} | ${GraphQLFastifyParser}
 `(
-  '$server server',
+  'GraphQL $server server',
   ({
     adapter,
     server,
@@ -34,7 +37,7 @@ describe.each`
 
     beforeAll(async () => {
       const modRef = await createTestModule(GqlModule, {
-        service: serviceOptionsFactory(server),
+        service: serviceOptionsFactory(`GraphQL ${server}`),
         interceptor: {
           gql: parser,
         },
