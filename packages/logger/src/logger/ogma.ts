@@ -13,6 +13,7 @@ interface JSONLog {
 
 export class Ogma {
   private options: OgmaOptions;
+  private pid: number;
 
   public fine = this.verbose;
   public log = this.info;
@@ -46,6 +47,7 @@ export class Ogma {
         `Ogma logLevel was set to ${options.logLevel} which does not match a defined logLevel. Falling back to default instead.`,
       );
     }
+    this.pid = process.pid;
   }
 
   private printMessage(
@@ -114,7 +116,7 @@ export class Ogma {
     if (application || this.options.application) {
       json.application = application || this.options.application;
     }
-    json.pid = process.pid;
+    json.pid = this.pid;
     if (context || this.options.context) {
       json.context = context || this.options.context;
     }
@@ -150,7 +152,7 @@ export class Ogma {
         ),
       );
     }
-    arrayString.push(process.pid);
+    arrayString.push(this.pid);
     if (context || this.options.context) {
       arrayString.push(
         colorize(
