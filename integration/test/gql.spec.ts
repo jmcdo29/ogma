@@ -72,9 +72,9 @@ describe.each`
 
       describe.each`
         type          | name             | status
-        ${'query'}    | ${'getQuery'}    | ${200}
-        ${'query'}    | ${'getError'}    | ${400}
-        ${'mutation'} | ${'getMutation'} | ${200}
+        ${'query'}    | ${'getQuery'}    | ${color.green(200)}
+        ${'query'}    | ${'getError'}    | ${color.yellow(400)}
+        ${'mutation'} | ${'getMutation'} | ${color.green(200)}
       `(
         '$type $name',
         ({
@@ -84,7 +84,7 @@ describe.each`
         }: {
           type: string;
           name: string;
-          status: number;
+          status: string;
         }) => {
           it('should log the call', async () => {
             await gqlPromise(baseUrl, {
@@ -95,7 +95,7 @@ describe.each`
               type,
               '/graphql',
               'HTTP/1.1',
-              status === 200 ? color.green(status) : color.yellow(status),
+              status,
             );
           });
         },

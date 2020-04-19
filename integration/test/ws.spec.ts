@@ -22,9 +22,9 @@ import {
 } from './utils';
 
 describe.each`
-  adapter      | server         | parser            | client                                 | protocol  | sendMethod | serializer
-  ${IoAdapter} | ${'Socket.io'} | ${SocketIOParser} | ${(url: string) => Io(url)}            | ${'http'} | ${'emit'}  | ${(message: string) => message}
-  ${WsAdapter} | ${'Websocket'} | ${WsParser}       | ${(url: string) => new WebSocket(url)} | ${'ws'}   | ${'send'}  | ${(message: string) => JSON.stringify({ event: message })}
+  adapter      | server         | parser            | client                                 | protocol  | sendMethod | serializer                                                 | deserializer
+  ${IoAdapter} | ${'Socket.io'} | ${SocketIOParser} | ${(url: string) => Io(url)}            | ${'http'} | ${'emit'}  | ${(message: string) => message}                            | ${(message: string) => JSON.parse(message)}
+  ${WsAdapter} | ${'Websocket'} | ${WsParser}       | ${(url: string) => new WebSocket(url)} | ${'ws'}   | ${'send'}  | ${(message: string) => JSON.stringify({ event: message })} | ${(message: string) => message}
 `(
   '$server server',
   ({
@@ -35,6 +35,7 @@ describe.each`
     protocol,
     sendMethod,
     serializer,
+    deserializer,
   }: {
     adapter: Type<WebSocketAdapter>;
     server: string;
@@ -43,6 +44,7 @@ describe.each`
     protocol: 'http' | 'ws';
     sendMethod: 'send' | 'emit';
     serializer: (message: string) => string;
+    deserializer: (message: string) => string | object;
   }) => {
     let app: INestApplication;
     let interceptor: OgmaInterceptor;
@@ -110,9 +112,7 @@ describe.each`
       );
       it('should get the data from skip but not log', async () => {
         const data = await wsPromise(ws, serializer('skip'), sendMethod);
-        expect(data).toEqual(
-          server === 'Websocket' ? hello : JSON.parse(hello),
-        );
+        expect(data).toEqual(deserializer(hello));
         expect(logSpy).toHaveBeenCalledTimes(0);
       });
     });
