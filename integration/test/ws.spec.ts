@@ -1,5 +1,6 @@
 import { INestApplication, WebSocketAdapter } from '@nestjs/common';
 import { IoAdapter } from '@nestjs/platform-socket.io';
+import { WsAdapter } from '@nestjs/platform-ws';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
 import {
@@ -8,14 +9,22 @@ import {
   Type,
 } from '@ogma/nestjs-module';
 import { SocketIOParser } from '@ogma/platform-socket.io';
+import { WsParser } from '@ogma/platform-ws';
 import * as Io from 'socket.io-client';
 import * as WebSocket from 'ws';
 import { WsModule } from '../src/ws/ws.module';
-import { hello, serviceOptionsFactory, wsPromise } from './utils';
+import {
+  createConnection,
+  hello,
+  serviceOptionsFactory,
+  wsClose,
+  wsPromise,
+} from './utils';
 
 describe.each`
-  adapter      | server         | parser            | client                      | protocol
-  ${IoAdapter} | ${'socket.io'} | ${SocketIOParser} | ${(url: string) => Io(url)} | ${'http'}
+  adapter      | server         | parser            | client                                 | protocol  | sendMethod | serializer
+  ${IoAdapter} | ${'Socket.io'} | ${SocketIOParser} | ${(url: string) => Io(url)}            | ${'http'} | ${'emit'}  | ${(message: string) => message}
+  ${WsAdapter} | ${'Websocket'} | ${WsParser}       | ${(url: string) => new WebSocket(url)} | ${'ws'}   | ${'send'}  | ${(message: string) => JSON.stringify({ event: message })}
 `(
   '$server server',
   ({
@@ -24,12 +33,16 @@ describe.each`
     parser,
     client,
     protocol,
+    sendMethod,
+    serializer,
   }: {
     adapter: Type<WebSocketAdapter>;
     server: string;
     parser: Type<AbstractInterceptorService>;
     client: (url: string) => SocketIOClient.Socket | WebSocket;
     protocol: 'http' | 'ws';
+    sendMethod: 'send' | 'emit';
+    serializer: (message: string) => string;
   }) => {
     let app: INestApplication;
     let interceptor: OgmaInterceptor;
@@ -62,11 +75,11 @@ describe.each`
       beforeAll(async () => {
         let baseUrl = await app.getUrl();
         baseUrl = baseUrl.replace('http', protocol);
-        ws = client(baseUrl);
+        ws = await createConnection(client, baseUrl);
       });
 
-      afterAll(() => {
-        ws.close();
+      afterAll(async () => {
+        await wsClose(ws);
       });
 
       beforeEach(() => {
@@ -84,15 +97,22 @@ describe.each`
       `(
         '$message',
         async ({ message, status }: { message: string; status: string }) => {
-          await wsPromise(ws, message);
+          await wsPromise(ws, serializer(message), sendMethod);
           expect(logSpy).toHaveBeenCalledTimes(1);
           const logObject = logSpy.mock.calls[0][0];
-          expect(logObject).toBeALogObject(server, message, 'WS', status);
+          expect(logObject).toBeALogObject(
+            server.toLowerCase(),
+            message,
+            'WS',
+            status,
+          );
         },
       );
       it('should get the data from skip but not log', async () => {
-        const data = await wsPromise(ws, 'skip');
-        expect(data).toEqual(JSON.parse(hello));
+        const data = await wsPromise(ws, serializer('skip'), sendMethod);
+        expect(data).toEqual(
+          server === 'Websocket' ? hello : JSON.parse(hello),
+        );
         expect(logSpy).toHaveBeenCalledTimes(0);
       });
     });
