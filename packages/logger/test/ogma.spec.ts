@@ -1,4 +1,4 @@
-import { createMock } from '@golevelup/nestjs-testing';
+import { createMock } from '@golevelup/ts-jest';
 import { createWriteStream } from 'fs';
 import { LogLevel } from '../src/enums';
 import { Ogma } from '../src';
