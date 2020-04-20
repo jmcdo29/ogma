@@ -1,4 +1,4 @@
-import { createMock } from '@golevelup/nestjs-testing';
+import { createMock } from '@golevelup/ts-jest';
 import { Color } from '../src/enums';
 import { OgmaSimpleType } from '../src/types';
 import { colorize, colorizeCLI } from '../src/utils/colorize';
