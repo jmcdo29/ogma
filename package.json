@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "description": "The @ogma workspace containing the base logging package, the NestJS module, and all the fun parsers to add in.",
-  "author": "Jay McDoniel <me@jaymcdnoniel.dev>",
+  "author": "Jay McDoniel <me@jaymcdoniel.dev>",
+  "contributors": [
+    "Jeff Minsungkim",
+    "John Biundo",
+    "Ruslan Gonzalez"
+  ],
   "workspaces": [
     "packages/*"
   ],
@@ -16,7 +21,13 @@
     "request-logging",
     "nestjs-module",
     "module",
-    "logging"
+    "logging",
+    "microservice",
+    "http",
+    "gql",
+    "graphql",
+    "websocket",
+    "ws"
   ],
   "scripts": {
     "preversion": "yarn run format && yarn run lint && lerna run build",
@@ -31,7 +42,7 @@
     "test": "lerna run test",
     "test:watch": "lerna run test:watch",
     "test:cov": "lerna run test:cov",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:int": "jest --config jest-integration.config.js",
     "test:int:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --config jest-integration.config.js"
@@ -39,7 +50,6 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@golevelup/nestjs-testing": "^0.1.2",
     "@golevelup/ts-jest": "^0.2.1",
     "@nestjs/cli": "^7.0.2",
     "@nestjs/common": "^7.0.0",
@@ -81,8 +91,6 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.0.0",
-    "snyk": "^1.277.3",
-    "supertest": "^4.0.2",
     "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.2",
     "ts-node": "^8.8.1",

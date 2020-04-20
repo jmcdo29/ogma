@@ -24,3 +24,5 @@ export class AppModule {}
 ### Note
 
 As the Gateway/Websocket context runs in parallel with the HTTP Context, and as the application configuration is not shared between the two, to bind the `OgmaInterceptor` to the GateWay, you **must** use `@UseInterceptor(OgmaInterceptor)` **and** have `OgmaModule.forFeature()` in the `imports` array of the same module.
+
+The method for the `WsParser` is always `websocket` and the `protocol` is always `WS`. Until a better method at determining these values is found, this will be a static value.

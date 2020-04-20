@@ -1,9 +1,3 @@
-<!-- <div align="center">
-
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jmcdo29_ogma&metric=alert_status)](https://sonarcloud.io/dashboard?id=jmcdo29_ogma) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Actions Status](https://github.com/jmcdo29/ogma/workflows/CI/badge.svg)](https://github.com/jmcdo29/ogma/workflows/CI/badge.svg) [![Version](https://badgen.net/npm/v/ogma)](https://npmjs.com/package/ogma) [![Coffee](https://badgen.net/badge/Buy%20Me/A%20Coffee/purple?icon=kofi)](https://www.buymeacoffee.com/jmcdo29)
-
-</div> -->
-
 # `@ogma/logger`
 
 Beautifully simple logging.
@@ -194,4 +188,4 @@ ogma production.log > production.hydrated.log
 
 ## Benchmarks
 
-While Ogma may not boast as being as fast as pino, it is still quick with what it does. You can check out some of the [benchmarks here](./benchmark/benchmark.md).
+Benchmarks will be brought back soon. After moving to the monorepo format, some things got messed up. Rest assured, they'll be back.

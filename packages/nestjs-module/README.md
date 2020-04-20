@@ -1,9 +1,3 @@
-<!-- <div align="center">
-
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Version](https://badgen.net/npm/v/@ogma/nestjs-module)](https://npmjs.com/package/@ogma/nestjs-module) [![Coffee](https://badgen.net/badge/Buy%20Me/A%20Coffee/purple?icon=kofi)](https://www.buymeacoffee.com/jmcdo29)
-
-</div> -->
-
 # `@ogma/nestjs-module`
 
 A [NestJS module](https://docs.nestjs.com) for the [Ogma](https://github.com/jmcdo29/ogma) logging package.
@@ -14,9 +8,9 @@ Installation is pretty simple, just `npm i @ogma/nestjs-module` or `yarn add @og
 
 ## Usage
 
-The OgmaService is a SINGLETON scoped service class in NestJS. That being said, if you want a new instance for each service, you can use the `OgmaModule.forRoot()` method and the `@OgmaLogger()` decorator.
+The OgmaService is a SINGLETON scoped service class in NestJS. That being said, if you want a new instance for each service, you can use the `OgmaModule.forFeature()` method and the `@OgmaLogger()` decorator.
 
-Ogma is a lightweight logger with customization options, that prints your logs in a pretty manner with timestamping, colors, and different levels. See the GitHub repository for Ogma to learn more about configuration and options.
+Ogma is a lightweight logger with customization options, that prints your logs in a pretty manner with timestamping, colors, and different levels. See the [GitHub repository for Ogma](../logger/README.md) to learn more about configuration and options.
 
 ## Configuration
 
@@ -100,13 +94,13 @@ The above would set up the OgmaService to add the context of `[MyService]` to ev
 
 ## OgmaInterceptor
 
-Ogma also comes with a built in Interceptor for logging requests made to your server. You can decide to turn the interceptor off by passing `{ interceptor: false }` as part of the options to the `OgmaModule`. The interceptor will need to be told what parsers it should be using for each type of request that can be intercepted. By default, all of these values are set to `false`, but the interceptor will still attempt to bind to the server, which will result in an error. If you would like to not use the interceptor's logging abilities, simple pass `false` to the `interceptor` key in the `OgmaModule.forRoot/Async()` method. If you'd like to know more about _why_ this is the default behavior, please look at the [interceptor design decisions](#interceptor-design-decisions) part of the docs.
+Ogma also comes with a built in Interceptor for logging requests made to your server. You can decide to turn the interceptor off by passing `{ interceptor: false }` as part of the options to the `OgmaModule`. The interceptor will need to be told what parsers it should be using for each type of request that can be intercepted. By default, all of these values are set to `false`, but the interceptor will still attempt to bind to the server, which will result in an error. If you would like to not use the interceptor's logging abilities, simple pass `false` to the `interceptor` key in the `OgmaModule.forRoot/Async()` method. If you'd like to know more about _why_ this is the default behavior, please look at the [interceptor design decisions](#interceptor-design-decisions) part of the docs. Below is the general form that the interceptor logs will take:
 
 ```sh
 [ISOString TimeStamp] [Application Name] PID [Context] [LogLevel]| Remote-Address - method URL protocol Status Response-Time ms - Response-Content-Length
 ```
 
-Where `context` in both cases is the class-method combination of the path that was called. This is especially useful for GraphQL logging where all URLs log from the `/graphql` route.
+Where `Context` is the class-method combination of the path that was called. This is especially useful for GraphQL logging where all URLs log from the `/graphql` route.
 
 If you would like to skip any request url path, you can pass in a decorator either an entire class or just a route handler with the `@OgmaSkip()` decorator.
 
@@ -132,6 +126,8 @@ Each of the above options, as mentioned, is false meaning that the requests for 
 Due to the incredible complex nature of Nest and its DI system, there needed to be some sort of way to tell users at bootstrap that if the interceptor is to be used, which should be the default behavior, then it should have one of the `@ogma/platform-*` packages installed, **or** a custom parser should be provided. **Every** custom parser should `extend` the `AbstractInterceptorService` to ensure that A) Typescript doesn't complain about mismatched types, and B) the `DelegatorService` which handles the calls to each parser, can be sure it is getting back what it expects. If you are really, _really_ sure about what you are doing, you can always override the setting with `as any` to remove the Typescript warnings, but use that at your own risk.
 
 The interceptor was designed to be adaptable, and to be able to work with any context thrown at it, but only if the parser for that context type is installed. The most common parser would be `@ogma/platform-express`, which will work for HTTP requests with the Express server running under the hood (Nest's default). All other parsers provided by the `@ogma` namespace follow a similar naming scheme, and are provided for what Nest can use out of the box (including microservices named in the [microservices chapter](https://docs.nestjs.com/microservices/basics) of the Nest docs.)
+
+Now, for the reasoning that all parsers are defaulted to false, but the module throws an error if all the options are false, is to A) ensure that the developer does not expect the interceptor to work out of the box, B) ensure that the developer is aware of what parser is being used, and C) ensure that the parser(s) being used are installed without being blindly used (this means Typescript will complain if the class doesn't exist, whereas with JavaScript it _may_ be okay if a linter is not installed).
 
 ### Extending Pre-Built Parsers
 
