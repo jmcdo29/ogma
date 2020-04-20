@@ -1,31 +1,3 @@
-# [0.0.0](https://github.com/jmcdo29/ogma/compare/2.0.4...0.0.0) (2020-04-20)
-
-### Bug Fixes
-
-- **interceptor:** adds case to skip over graphql subscriptions ([1e35310](https://github.com/jmcdo29/ogma/commit/1e35310dcc4f123e6768983779f009340bb9d96e))
-- **module:** set interceptor defaults ([0156994](https://github.com/jmcdo29/ogma/commit/0156994f1561dab5a56d293d34e761685a9f332c))
-- **service:** update printError to include context by default ([31b7819](https://github.com/jmcdo29/ogma/commit/31b7819faf5782d201f8178027b955d9b7a17e49))
-- **tcp:** removes second interceptor binding in integration ([8929d9e](https://github.com/jmcdo29/ogma/commit/8929d9e9495a3e23e5e532055367c1bf004121b2))
-
-### Features
-
-- **express:** implements ExpressInterceptorService for OgmaInterceptor ([bbe6335](https://github.com/jmcdo29/ogma/commit/bbe633560022f21b4775c5dc060a4b015d8873b0))
-- **fastify:** implemets FastifyInterceptorService for OgmaInterceptor ([9f49298](https://github.com/jmcdo29/ogma/commit/9f49298f3ab68fcfa6eda2d6abe93eb2ed33294c))
-- **gql:** implements gql parser for express ([9290504](https://github.com/jmcdo29/ogma/commit/9290504171b32319c73e1ee84c969ef9947a1172)), closes [#14](https://github.com/jmcdo29/ogma/issues/14)
-- **gql-fastify:** implements parser for GraphQL-Fastify ([7ec49bc](https://github.com/jmcdo29/ogma/commit/7ec49bc65540ef4ac59a5ba33ab32ad0bdcc9b7a)), closes [#15](https://github.com/jmcdo29/ogma/issues/15)
-- **interceptor:** adds websockets to OgmaInterceptor's logging ability ([9c47252](https://github.com/jmcdo29/ogma/commit/9c472529705b700c3a7ab7ed4f5425fef5b727d3)), closes [#8](https://github.com/jmcdo29/ogma/issues/8)
-- **interceptor:** creates set up for http/ws/rpc logging ([bef7442](https://github.com/jmcdo29/ogma/commit/bef7442e27127f194d350228544756fbe13afb73)), closes [#7](https://github.com/jmcdo29/ogma/issues/7) [#8](https://github.com/jmcdo29/ogma/issues/8) [#9](https://github.com/jmcdo29/ogma/issues/9)
-- **module:** implements plugin system for interceptor context parser ([d116da3](https://github.com/jmcdo29/ogma/commit/d116da3c0512909e08ddd2a22960a30937bf4bad)), closes [#7](https://github.com/jmcdo29/ogma/issues/7) [#8](https://github.com/jmcdo29/ogma/issues/8) [#9](https://github.com/jmcdo29/ogma/issues/9) [#10](https://github.com/jmcdo29/ogma/issues/10) [#11](https://github.com/jmcdo29/ogma/issues/11)
-- **module:** let base module work for http express ([1bb52a7](https://github.com/jmcdo29/ogma/commit/1bb52a7fa562121f897b03109dfaf8d3b4e5b385))
-- **socket.io:** implements parser for socket.io ([6da8fdb](https://github.com/jmcdo29/ogma/commit/6da8fdb79a57bb7639f2330df73743b2e63cc95f)), closes [#22](https://github.com/jmcdo29/ogma/issues/22)
-- **tcp:** implements first draft of tcp parser ([bf0eb6b](https://github.com/jmcdo29/ogma/commit/bf0eb6b5ce27a30725f04ed341d21d157ad8e46f)), closes [#23](https://github.com/jmcdo29/ogma/issues/23)
-- **tcp:** implements tcp parser and tests ([4b1b8fa](https://github.com/jmcdo29/ogma/commit/4b1b8faaf440fca690766434d68e2014465aa58e))
-- **ws:** implements parser for websocket ([9de8c96](https://github.com/jmcdo29/ogma/commit/9de8c96ab1b71ca56e73613e2379a6df98187203)), closes [#24](https://github.com/jmcdo29/ogma/issues/24)
-
-### Performance Improvements
-
-- **logger:** gets the pid at logger creation instead of at log time ([d8913d0](https://github.com/jmcdo29/ogma/commit/d8913d0905253df2694ca1c542ee96bdf7fcf81a))
-
 # Change Log
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
