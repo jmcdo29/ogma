@@ -1,6 +1,9 @@
 # compiled output
-/dist
-/node_modules
+lib/
+dist/
+node_modules/
+*.tsbuildinfo
+
 
 # Logs
 logs
@@ -14,7 +17,7 @@ lerna-debug.log*
 .DS_Store
 
 # Tests
-/coverage
+coverage/
 /.nyc_output
 
 # IDEs and editors
@@ -30,3 +33,6 @@ lerna-debug.log*
 .vscode/*
 
 *.tgz
+
+*.txt
+*.gql

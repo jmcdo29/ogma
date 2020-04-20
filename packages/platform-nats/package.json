@@ -1,0 +1,44 @@
+{
+  "name": "@ogma/platform-nats",
+  "version": "0.1.0",
+  "description": "A plugin for the OgmaInterceptor to properly handle microservice requests from nats protocols",
+  "keywords": [
+    "nats",
+    "microservice",
+    "logging",
+    "ogma",
+    "nestjs",
+    "interceptor"
+  ],
+  "author": "Jay McDoniel <jmcdo29@gmail.com>",
+  "homepage": "https://github.com/jmcdo29/ogma#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmcdo29/ogma.git"
+  },
+  "scripts": {
+    "test": "echo \"No tests to run\""
+  },
+  "bugs": {
+    "url": "https://github.com/jmcdo29/ogma/issues"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^7.0.6",
+    "@nestjs/core": "^7.0.6",
+    "@ogma/nestjs-module": "^0.1.0",
+    "rxjs": "^6.5.4"
+  },
+  "peerDependencies": {
+    "@ogma/nestjs-module": "^0.1.0"
+  }
+}

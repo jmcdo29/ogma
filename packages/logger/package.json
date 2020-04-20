@@ -1,0 +1,53 @@
+{
+  "name": "@ogma/logger",
+  "version": "0.1.0",
+  "description": "A simple, no-nonsense logging package for NodeJS",
+  "keywords": [
+    "logging",
+    "colors",
+    "cli",
+    "terminal",
+    "nodejs",
+    "typescript"
+  ],
+  "author": "Jay McDoniel <jmcdo29@gmail.com>",
+  "homepage": "https://github.com/jmcdo29/ogma#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "bin": {
+    "ogma": "./lib/command/index.js"
+  },
+  "scripts": {
+    "prebuild": "rimraf lib",
+    "build": "tsc -p tsconfig.build.json",
+    "postbuild": "mv ./lib/src/* ./lib && rmdir lib/src",
+    "lint": "eslint --ext .ts ./src/",
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmcdo29/ogma.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jmcdo29/ogma/issues"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^7.0.6",
+    "@nestjs/core": "^7.0.6",
+    "rxjs": "^6.5.4"
+  }
+}
