@@ -3,6 +3,7 @@ import { ExpressParser } from '@ogma/platform-express';
 import { request } from 'http';
 import * as morgan from 'morgan';
 import { AppModule } from './app.module';
+import { writeBenchmarks } from './benchmark-writer';
 
 type httpMethod = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
 
@@ -81,17 +82,49 @@ async function bootstrapMorganDev(format: 'dev' | 'combined') {
   return times;
 }
 
-Promise.all([
-  bootstrapOgma(),
-  bootstrapMorganDev('dev'),
-  bootstrapMorganDev('combined'),
-  bootstrap(),
-]).then((result) => {
-  const res = {
+async function timePerformance() {
+  const result = await Promise.all([
+    bootstrapOgma(),
+    bootstrapMorganDev('dev'),
+    bootstrapMorganDev('combined'),
+    bootstrap(),
+  ]);
+  return {
     ogma: result[0],
     morganDev: result[1],
     morganCombined: result[2],
     none: result[3],
   };
-  console.log(res);
-});
+}
+
+async function multipleRuns() {
+  const times = [];
+  for (let i = 0; i < 10; i++) {
+    times.push(await timePerformance());
+  }
+  const result = {
+    ogma: {},
+    morganDev: {},
+    morganCombined: {},
+    none: {},
+  };
+  times.reduce((prev, curr) => {
+    for (const runType of Object.keys(curr)) {
+      for (const key of Object.keys(curr[runType])) {
+        if (!result[runType][key]) {
+          result[runType][key] = curr[runType][key];
+        } else {
+          result[runType][key] += curr[runType][key];
+        }
+      }
+    }
+  });
+  Object.keys(result).forEach((runType) => {
+    Object.keys(result[runType]).forEach((key) => {
+      result[runType][key] = result[runType][key] / times.length;
+    });
+  });
+  return result;
+}
+
+multipleRuns().then((result) => writeBenchmarks(result as any));
