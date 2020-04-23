@@ -45,6 +45,7 @@ module.exports = {
         'nats',
         'rmq',
         'redis',
+        'benchmarks',
       ],
     ],
   },
