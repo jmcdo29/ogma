@@ -16,17 +16,22 @@ Ogma is a lightweight logger with customization options, that prints your logs i
 
 In your root module, import `OgmaModule.forRoot` or `OgmaModule.forRootAsync` to apply application wide settings, such as `color`, `json`, and `application`. You can also set a default context as a fallback if no context is passed in the `forFeature` static method. You can use the standard method of async module configuration meaning `useClass`, `useValue`, and `useFactory` are all available methods to work with.
 
+### Synchronous configuration
+
 ```ts
+import { OgmaModule } from '@ogma/nestjs-module';
+import { ExpressParser } from '@ogma/platform-express';
+
 @Module({
   imports: [
-    OgmaModule.forRoot(OgmaModule, {
+    OgmaModule.forRoot({
       service: {
         color: true,
         json: false,
         application: 'NestJS'
       },
       interceptor: {
-        http: ExpressInterceptorParser,
+        http: ExpressParser,
         ws: false,
         gql: false,
         rpc: false
@@ -37,12 +42,15 @@ In your root module, import `OgmaModule.forRoot` or `OgmaModule.forRootAsync` to
 export class AppModule {}
 ```
 
-or async
+### Asynchronous configuration
 
 ```ts
+import { OgmaModule } from '@ogma/nestjs-module';
+import { ExpressParser } from '@ogma/platform-express';
+
 @Module({
   imports: [
-    OgmaModule.forRootAsync(OgmaModule, {
+    OgmaModule.forRootAsync({
       useFactory: (config: ConfigService) => ({
         service: {
           json: config.isProd(),
@@ -57,7 +65,7 @@ or async
           application: config.getAppName()
         },
         interceptor: {
-          http: ExpressInterceptorParser,
+          http: ExpressParser,
           ws: false,
           gql: false,
           rpc: false
@@ -138,6 +146,8 @@ As the pre-built parsers are built around Object Oriented Typescript, if you wan
 Okay, so now we're ready to add the `OgmaModule` to our Application. Let's assume we have a `CatsService`, `CatsController` and `CatsModule` and a `ConfigService` and `ConfigModule` in our Application. Let's also assume we want to use a class to asynchronously configure out `OgmaModule`. For now, assume the methods exist on the `ConfigService`. Let's also assume we want to log things in color to our `process.stdout`.
 
 ```ts
+import { FastifyParser } from '@ogma/platform-fastify';
+
 @Injectable()
 export class OgmaModuleConfig implements ModuleConfigFactory<OgmaModuleOptions> {
 
@@ -153,7 +163,7 @@ export class OgmaModuleConfig implements ModuleConfigFactory<OgmaModuleOptions> 
         application: this.configService.getAppName() ,
       },
       interceptor: {
-        http: FastifyInterceptorParser
+        http: FastifyParser
       }
     }
   }
@@ -171,7 +181,7 @@ Next, in our `AppModule` we can import the `OgmaModule` like so
   imports: [
     CatsModule,
     ConfigModule,
-    OgmaModule.forRootAsync(OgmaModule, {
+    OgmaModule.forRootAsync({
       // configuration class we created above
       useClass: OgmaModuleConfig,
       imports: [ConfigModule]
