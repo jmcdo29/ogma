@@ -78,11 +78,11 @@ export class Ogma {
     const seen = new WeakSet();
     return (key: string, value: any): string => {
       if (typeof value === 'function') {
-        return '[Function]';
+        return this.wrapInBrackets('Function');
       }
       if (typeof value === 'object' && value !== null) {
         if (seen.has(value)) {
-          return '[Circular]';
+          return this.wrapInBrackets('Circular');
         }
         seen.add(value);
       }
@@ -101,7 +101,7 @@ export class Ogma {
   }
 
   private wrapInBrackets(valueToBeWrapper: string): string {
-    return '[' + valueToBeWrapper + ']';
+    return `[${valueToBeWrapper}]`;
   }
 
   private formatJSON(
@@ -139,32 +139,27 @@ export class Ogma {
     if (typeof message === 'object') {
       message = '\n' + JSON.stringify(message, this.circularReplacer(), 2);
     }
-    const arrayString: Array<string | number> = [
-      this.wrapInBrackets(this.getTimestamp()),
-    ];
-    if (application || this.options.application) {
-      arrayString.push(
-        colorize(
-          this.wrapInBrackets(application || this.options.application),
+    application = application || this.options.application;
+    application = application
+      ? `${colorize(
+          this.wrapInBrackets(application),
           Color.YELLOW,
           this.options.color,
           this.options.stream,
-        ),
-      );
-    }
-    arrayString.push(this.pid);
-    if (context || this.options.context) {
-      arrayString.push(
-        colorize(
-          this.wrapInBrackets(context || this.options.context),
+        )} `
+      : '';
+    context = context || this.options.context;
+    context = context
+      ? `${colorize(
+          this.wrapInBrackets(context),
           Color.CYAN,
           this.options.color,
           this.options.stream,
-        ),
-      );
-    }
-    arrayString.push(formattedLevel + '|', message);
-    return arrayString.join(' ');
+        )} `
+      : '';
+    return `${this.getTimestamp()} ${application}${
+      this.pid
+    } ${context}${formattedLevel}| ${message}`;
   }
 
   private getTimestamp(): string {
