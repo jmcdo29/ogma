@@ -7,7 +7,7 @@ import {
   logKeys,
   OgmaLogSet,
   stringLogs,
-} from '../src/command/command.fixtures';
+} from './command.fixtures';
 import * as messages from '../src/command/messages';
 
 const globalIsTTY = process.stdout.isTTY;

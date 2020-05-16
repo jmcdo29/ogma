@@ -151,9 +151,9 @@ I said the logs were beautiful, and to me they absolutely are. Each log is match
 
 ### Example from Command Line
 
-![](Ogma-log.png)
+![](ogma_sample.png)
 
-![](Ogma-log-json.png)
+![](ogma_sample_json.png)
 
 ## Command Line Function
 
