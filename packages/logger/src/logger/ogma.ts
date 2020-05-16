@@ -11,6 +11,10 @@ interface JSONLog {
   application?: string;
 }
 
+function isNil(val: any): boolean {
+  return val === undefined || val === null || val === '';
+}
+
 export class Ogma {
   private options: OgmaOptions;
   private pid: number;
@@ -34,13 +38,11 @@ export class Ogma {
     if (options?.logLevel) {
       options.logLevel = options.logLevel.toUpperCase() as keyof typeof LogLevel;
     }
+    options &&
+      Object.keys(options)
+        .filter((key) => isNil(options[key]))
+        .forEach((key) => delete options[key]);
     this.options = { ...OgmaDefaults, ...options };
-    for (const key of Object.keys(this.options)) {
-      this.options[key] =
-        this.options[key] === undefined || this.options[key] === null
-          ? OgmaDefaults[key]
-          : this.options[key];
-    }
     if (options?.logLevel && LogLevel[options.logLevel] === undefined) {
       this.options.logLevel = OgmaDefaults.logLevel;
       this.warn(
@@ -77,6 +79,9 @@ export class Ogma {
   private circularReplacer(): (key: string, value: any) => string {
     const seen = new WeakSet();
     return (key: string, value: any): string => {
+      if (typeof value === 'symbol') {
+        return this.wrapInBrackets('Symbol');
+      }
       if (typeof value === 'function') {
         return this.wrapInBrackets('Function');
       }
@@ -157,7 +162,7 @@ export class Ogma {
           this.options.stream,
         )} `
       : '';
-    return `${this.getTimestamp()} ${application}${
+    return `${this.wrapInBrackets(this.getTimestamp())} ${application}${
       this.pid
     } ${context}${formattedLevel}| ${message}`;
   }

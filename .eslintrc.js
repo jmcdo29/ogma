@@ -34,5 +34,6 @@ module.exports = {
     WeakSet: 'readonly',
     Promise: 'readonly',
     Reflect: 'readonly',
+    Symbol: 'readonly',
   },
 };

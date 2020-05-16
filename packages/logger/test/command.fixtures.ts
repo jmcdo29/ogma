@@ -1,4 +1,4 @@
-import { OgmaLog } from '../interfaces/ogma-log';
+import { OgmaLog } from '../src/interfaces/ogma-log';
 
 export interface OgmaLogSet {
   silly: OgmaLog;
