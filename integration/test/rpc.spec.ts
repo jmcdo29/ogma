@@ -2,7 +2,12 @@ import { INestApplication, INestMicroservice } from '@nestjs/common';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
-import { OgmaInterceptor } from '@ogma/nestjs-module';
+import {
+  AbstractInterceptorService,
+  OgmaInterceptor,
+  Type,
+} from '@ogma/nestjs-module';
+import { MqttParser } from '@ogma/platform-mqtt';
 import { TcpParser } from '@ogma/platform-tcp';
 import { RpcClientModule } from '../src/rpc/client/rpc-client.module';
 import { RpcServerModule } from '../src/rpc/server/rpc-server.module';
@@ -15,8 +20,9 @@ import {
 } from './utils';
 
 describe.each`
-  server   | transport        | options | protocol
-  ${'TCP'} | ${Transport.TCP} | ${{}}   | ${'IPv4'}
+  server    | transport         | options                             | protocol  | parser
+  ${'TCP'}  | ${Transport.TCP}  | ${{}}                               | ${'IPv4'} | ${TcpParser}
+  ${'MQTT'} | ${Transport.MQTT} | ${{ url: 'mqtt://127.0.0.1:1883' }} | ${'mqtt'} | ${MqttParser}
 `(
   '$server server',
   ({
@@ -24,11 +30,13 @@ describe.each`
     transport,
     options,
     protocol,
+    parser,
   }: {
     server: string;
     transport: number;
     options: any;
     protocol: string;
+    parser: Type<AbstractInterceptorService>;
   }) => {
     let rpcServer: INestMicroservice;
     let rpcClient: INestApplication;
@@ -37,7 +45,7 @@ describe.each`
       const modRef = await createTestModule(RpcServerModule, {
         service: serviceOptionsFactory(server),
         interceptor: {
-          rpc: TcpParser,
+          rpc: parser,
         },
       });
       rpcServer = modRef.createNestMicroservice<MicroserviceOptions>({
