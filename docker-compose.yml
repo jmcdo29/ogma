@@ -8,5 +8,9 @@ services:
   # rabbitmq:
   # kafka:
   # grpc:
-  # nats:
+  nats:
+    image: nats
+    container_name: nats
+    ports:
+      - "4222:4222"
   # redis:

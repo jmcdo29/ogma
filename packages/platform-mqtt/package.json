@@ -44,6 +44,7 @@
   },
   "peerDependencies": {
     "@ogma/nestjs-module": "^0.1.0",
-    "@nestjs/microservices": "^7.0.13"
+    "@nestjs/microservices": "^7.0.0",
+    "mqtt": "^4.0.0"
   }
 }

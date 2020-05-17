@@ -94,6 +94,7 @@
     "lint-staged": "^10.0.8",
     "morgan": "^1.10.0",
     "mqtt": "^4.0.1",
+    "nats": "^1.4.9",
     "pino": "^6.2.0",
     "prettier": "^2.0.1",
     "reflect-metadata": "^0.1.13",
