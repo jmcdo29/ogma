@@ -4,7 +4,7 @@ import { Reflector } from '@nestjs/core';
 import { Test } from '@nestjs/testing';
 import { MESSAGE_METADATA } from '@nestjs/websockets/constants';
 import { color } from '@ogma/logger';
-import { WsParser } from '@ogma/platform-ws';
+import { WsParser } from '../src';
 
 describe('WsParser', () => {
   let parser: WsParser;
