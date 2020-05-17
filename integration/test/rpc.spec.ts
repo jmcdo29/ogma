@@ -8,6 +8,7 @@ import {
   Type,
 } from '@ogma/nestjs-module';
 import { MqttParser } from '@ogma/platform-mqtt';
+import { NatsParser } from '@ogma/platform-nats';
 import { TcpParser } from '@ogma/platform-tcp';
 import { RpcClientModule } from '../src/rpc/client/rpc-client.module';
 import { RpcServerModule } from '../src/rpc/server/rpc-server.module';
@@ -22,7 +23,8 @@ import {
 describe.each`
   server    | transport         | options                             | protocol  | parser
   ${'TCP'}  | ${Transport.TCP}  | ${{}}                               | ${'IPv4'} | ${TcpParser}
-  ${'MQTT'} | ${Transport.MQTT} | ${{ url: 'mqtt://127.0.0.1:1883' }} | ${'mqtt'} | ${MqttParser}
+  ${'MQTT'} | ${Transport.MQTT} | ${{ url: 'mqtt://localhost:1883' }} | ${'mqtt'} | ${MqttParser}
+  ${'NATS'} | ${Transport.NATS} | ${{ url: 'nats://localhost:4222' }} | ${'nats'} | ${NatsParser}
 `(
   '$server server',
   ({
