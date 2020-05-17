@@ -32,5 +32,9 @@ jobs:
       run: yarn lint
     - name: test
       run: yarn test:cov
+    - name: Start Docker Compose
+      run: docker-compose up -d
     - name: integration test
       run: yarn test:int
+    - name: Stop Docker Compose
+      run: docker-compose down

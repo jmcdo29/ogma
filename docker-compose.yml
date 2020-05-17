@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  mqtt: 
+    image: eclipse-mosquitto
+    container_name: mqtt
+    ports:
+      - "1883:1883"
+  # rabbitmq:
+  # kafka:
+  # grpc:
+  # nats:
+  # redis:
