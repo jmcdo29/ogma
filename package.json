@@ -93,7 +93,7 @@
     "lerna": "^3.20.2",
     "lint-staged": "^10.0.8",
     "morgan": "^1.10.0",
-    "npm-check": "^5.9.2",
+    "mqtt": "^4.0.1",
     "pino": "^6.2.0",
     "prettier": "^2.0.1",
     "reflect-metadata": "^0.1.13",

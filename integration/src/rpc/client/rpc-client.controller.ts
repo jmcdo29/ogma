@@ -24,17 +24,17 @@ export class RpcClientController
 
   @Get()
   getMessage() {
-    return this.micro.send({ cmd: 'message' }, {});
+    return this.micro.send({ cmd: 'message' }, { ip: '127.0.0.1' });
   }
 
   @Get('error')
   @UseFilters(ExceptionFilter)
   getError() {
-    return this.micro.send({ cmd: 'error' }, {});
+    return this.micro.send({ cmd: 'error' }, { ip: '127.0.0.1' });
   }
 
   @Get('skip')
   getSkip() {
-    return this.micro.send({ cmd: 'skip' }, {});
+    return this.micro.send({ cmd: 'skip' }, { ip: '127.0.0.1' });
   }
 }

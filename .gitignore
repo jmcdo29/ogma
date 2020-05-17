@@ -36,3 +36,4 @@ coverage/
 
 *.txt
 *.gql
+docker-compose.yml
