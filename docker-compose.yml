@@ -5,7 +5,11 @@ services:
     container_name: mqtt
     ports:
       - "1883:1883"
-  # rabbitmq:
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbit
+    ports:
+      - "5672:5672"
   # kafka:
   # grpc:
   nats:

@@ -2,23 +2,23 @@ import { createMock } from '@golevelup/ts-jest';
 import { ExecutionContext } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
-import { NatsParser } from '../src';
+import { RabbitMqParser } from '../src';
 
-describe('NatsParser', () => {
-  let parser: NatsParser;
+describe('RabbitMqParser', () => {
+  let parser: RabbitMqParser;
 
   beforeEach(async () => {
     const modRef = await Test.createTestingModule({
-      providers: [NatsParser],
+      providers: [RabbitMqParser],
     }).compile();
-    parser = modRef.get(NatsParser);
+    parser = modRef.get(RabbitMqParser);
   });
   describe('getCallPoint', () => {
     it('should get the subject from the client', () => {
       const ctxMock = createMock<ExecutionContext>({
         switchToRpc: () => ({
           getContext: () => ({
-            getSubject: () => JSON.stringify({ cmd: 'message' }),
+            getPattern: () => JSON.stringify({ cmd: 'message' }),
           }),
         }),
       });
@@ -48,8 +48,8 @@ describe('NatsParser', () => {
     });
   });
   describe('getMethod', () => {
-    it('should return "NATS"', () => {
-      expect(parser.getMethod()).toBe('NATS');
+    it('should return "RabbitMQ"', () => {
+      expect(parser.getMethod()).toBe('RabbitMQ');
     });
   });
   describe('getStatus', () => {
@@ -70,8 +70,8 @@ describe('NatsParser', () => {
     });
   });
   describe('getProtocol', () => {
-    it('should return "nats"', () => {
-      expect(parser.getProtocol()).toBe('nats');
+    it('should return "amqp"', () => {
+      expect(parser.getProtocol()).toBe('amqp');
     });
   });
 });
