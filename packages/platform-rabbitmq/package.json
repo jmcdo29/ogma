@@ -19,7 +19,11 @@
     "url": "git+https://github.com/jmcdo29/ogma.git"
   },
   "scripts": {
-    "test": "echo \"No tests to run\""
+    "prebuild": "rimraf lib",
+    "build": "tsc -p tsconfig.build.json",
+    "postbuild": "mv ./lib/src/* ./lib && rmdir lib/src",
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "bugs": {
     "url": "https://github.com/jmcdo29/ogma/issues"
@@ -31,6 +35,9 @@
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
-    "@ogma/nestjs-module": "^0.1.0"
+    "@ogma/nestjs-module": "^0.1.0",
+    "@nestjs/microservices": "^7.0.0",
+    "amqplib": "^0.5.0",
+    "amqp-connection-manager": "^3.2.0"
   }
 }

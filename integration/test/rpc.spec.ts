@@ -9,6 +9,7 @@ import {
 } from '@ogma/nestjs-module';
 import { MqttParser } from '@ogma/platform-mqtt';
 import { NatsParser } from '@ogma/platform-nats';
+import { RabbitMqParser } from '@ogma/platform-rabbitmq';
 import { TcpParser } from '@ogma/platform-tcp';
 import { RpcClientModule } from '../src/rpc/client/rpc-client.module';
 import { RpcServerModule } from '../src/rpc/server/rpc-server.module';
@@ -20,11 +21,23 @@ import {
   serviceOptionsFactory,
 } from './utils';
 
+const tcpOptions = {};
+const mqttOptions = { url: 'mqtt://localhost:1883' };
+const natsOptions = { url: 'nats://localhost:4222' };
+const rabbitOptions = {
+  urls: ['amqp://localhost:5672'],
+  queue: 'cats_queue',
+  queueOptions: {
+    durable: false,
+  },
+};
+
 describe.each`
-  server    | transport         | options                             | protocol  | parser
-  ${'TCP'}  | ${Transport.TCP}  | ${{}}                               | ${'IPv4'} | ${TcpParser}
-  ${'MQTT'} | ${Transport.MQTT} | ${{ url: 'mqtt://localhost:1883' }} | ${'mqtt'} | ${MqttParser}
-  ${'NATS'} | ${Transport.NATS} | ${{ url: 'nats://localhost:4222' }} | ${'nats'} | ${NatsParser}
+  server        | transport         | options          | protocol  | parser
+  ${'TCP'}      | ${Transport.TCP}  | ${tcpOptions}    | ${'IPv4'} | ${TcpParser}
+  ${'MQTT'}     | ${Transport.MQTT} | ${mqttOptions}   | ${'mqtt'} | ${MqttParser}
+  ${'NATS'}     | ${Transport.NATS} | ${natsOptions}   | ${'nats'} | ${NatsParser}
+  ${'RabbitMQ'} | ${Transport.RMQ}  | ${rabbitOptions} | ${'amqp'} | ${RabbitMqParser}
 `(
   '$server server',
   ({
