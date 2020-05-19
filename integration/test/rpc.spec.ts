@@ -1,5 +1,12 @@
 import { INestApplication, INestMicroservice } from '@nestjs/common';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import {
+  MicroserviceOptions,
+  MqttOptions,
+  NatsOptions,
+  RmqOptions,
+  TcpOptions,
+  Transport,
+} from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
 import {
@@ -21,14 +28,17 @@ import {
   serviceOptionsFactory,
 } from './utils';
 
-const tcpOptions = {};
-const mqttOptions = { url: 'mqtt://localhost:1883' };
-const natsOptions = { url: 'nats://localhost:4222' };
-const rabbitOptions = {
+const tcpOptions: TcpOptions['options'] = {};
+const mqttOptions: MqttOptions['options'] = { url: 'mqtt://localhost:1883' };
+const natsOptions: NatsOptions['options'] = { url: 'nats://localhost:4222' };
+const rabbitOptions: RmqOptions['options'] = {
   urls: ['amqp://localhost:5672'],
   queue: 'cats_queue',
   queueOptions: {
     durable: false,
+  },
+  socketOptions: {
+    durable: true,
   },
 };
 
