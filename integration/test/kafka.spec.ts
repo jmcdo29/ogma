@@ -1,4 +1,5 @@
-import { INestApplication, INestMicroservice } from '@nestjs/common';
+it.todo('Implement Kafka test');
+/* import { INestApplication, INestMicroservice } from '@nestjs/common';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
@@ -8,7 +9,7 @@ import { KafkaClientModule } from '../src/kafka/client/kafka-client.module';
 import { KafkaServerModule } from '../src/kafka/server/kafka-server.module';
 import { getInterceptor, hello, httpPromise } from './utils';
 
-describe('kafka test', () => {
+describe.skip('kafka test', () => {
   let interceptor: OgmaInterceptor;
   let server: INestMicroservice;
   let client: INestApplication;
@@ -91,3 +92,4 @@ describe('kafka test', () => {
     });
   });
 });
+ */
