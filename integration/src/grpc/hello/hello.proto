@@ -1,0 +1,19 @@
+syntax="proto3";
+
+package hello;
+
+service HelloService {
+  rpc SayHello (Ip) returns (Greeting) {}
+
+  rpc SayError (Ip) returns (Greeting) {}
+
+  rpc SaySkip (Ip) returns (Greeting) {}
+}
+
+message Greeting {
+  string hello = 1;
+}
+
+message Ip {
+  optional string ip = 1;
+}

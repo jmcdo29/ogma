@@ -1,8 +1,22 @@
 import { INestApplication, INestMicroservice } from '@nestjs/common';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import {
+  MicroserviceOptions,
+  MqttOptions,
+  NatsOptions,
+  RmqOptions,
+  TcpOptions,
+  Transport,
+} from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
-import { OgmaInterceptor } from '@ogma/nestjs-module';
+import {
+  AbstractInterceptorService,
+  OgmaInterceptor,
+  Type,
+} from '@ogma/nestjs-module';
+import { MqttParser } from '@ogma/platform-mqtt';
+import { NatsParser } from '@ogma/platform-nats';
+import { RabbitMqParser } from '@ogma/platform-rabbitmq';
 import { TcpParser } from '@ogma/platform-tcp';
 import { RpcClientModule } from '../src/rpc/client/rpc-client.module';
 import { RpcServerModule } from '../src/rpc/server/rpc-server.module';
@@ -14,9 +28,26 @@ import {
   serviceOptionsFactory,
 } from './utils';
 
+const tcpOptions: TcpOptions['options'] = {};
+const mqttOptions: MqttOptions['options'] = { url: 'mqtt://localhost:1883' };
+const natsOptions: NatsOptions['options'] = { url: 'nats://localhost:4222' };
+const rabbitOptions: RmqOptions['options'] = {
+  urls: ['amqp://localhost:5672'],
+  queue: 'cats_queue',
+  queueOptions: {
+    durable: false,
+  },
+  socketOptions: {
+    durable: true,
+  },
+};
+
 describe.each`
-  server   | transport        | options | protocol
-  ${'TCP'} | ${Transport.TCP} | ${{}}   | ${'IPv4'}
+  server        | transport         | options          | protocol  | parser
+  ${'TCP'}      | ${Transport.TCP}  | ${tcpOptions}    | ${'IPv4'} | ${TcpParser}
+  ${'MQTT'}     | ${Transport.MQTT} | ${mqttOptions}   | ${'mqtt'} | ${MqttParser}
+  ${'NATS'}     | ${Transport.NATS} | ${natsOptions}   | ${'nats'} | ${NatsParser}
+  ${'RabbitMQ'} | ${Transport.RMQ}  | ${rabbitOptions} | ${'amqp'} | ${RabbitMqParser}
 `(
   '$server server',
   ({
@@ -24,11 +55,13 @@ describe.each`
     transport,
     options,
     protocol,
+    parser,
   }: {
     server: string;
     transport: number;
     options: any;
     protocol: string;
+    parser: Type<AbstractInterceptorService>;
   }) => {
     let rpcServer: INestMicroservice;
     let rpcClient: INestApplication;
@@ -37,7 +70,7 @@ describe.each`
       const modRef = await createTestModule(RpcServerModule, {
         service: serviceOptionsFactory(server),
         interceptor: {
-          rpc: TcpParser,
+          rpc: parser,
         },
       });
       rpcServer = modRef.createNestMicroservice<MicroserviceOptions>({

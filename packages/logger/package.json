@@ -23,7 +23,8 @@
     "build": "tsc -p tsconfig.build.json",
     "postbuild": "mv ./lib/src/* ./lib && rmdir lib/src",
     "lint": "eslint --ext .ts ./src/",
-    "test": "jest"
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "engines": {
     "node": ">=10"

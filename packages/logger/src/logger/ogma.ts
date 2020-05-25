@@ -11,6 +11,10 @@ interface JSONLog {
   application?: string;
 }
 
+function isNil(val: any): boolean {
+  return val === undefined || val === null || val === '';
+}
+
 export class Ogma {
   private options: OgmaOptions;
   private pid: number;
@@ -34,13 +38,11 @@ export class Ogma {
     if (options?.logLevel) {
       options.logLevel = options.logLevel.toUpperCase() as keyof typeof LogLevel;
     }
+    options &&
+      Object.keys(options)
+        .filter((key) => isNil(options[key]))
+        .forEach((key) => delete options[key]);
     this.options = { ...OgmaDefaults, ...options };
-    for (const key of Object.keys(this.options)) {
-      this.options[key] =
-        this.options[key] === undefined || this.options[key] === null
-          ? OgmaDefaults[key]
-          : this.options[key];
-    }
     if (options?.logLevel && LogLevel[options.logLevel] === undefined) {
       this.options.logLevel = OgmaDefaults.logLevel;
       this.warn(
@@ -77,12 +79,15 @@ export class Ogma {
   private circularReplacer(): (key: string, value: any) => string {
     const seen = new WeakSet();
     return (key: string, value: any): string => {
+      if (typeof value === 'symbol') {
+        return this.wrapInBrackets('Symbol');
+      }
       if (typeof value === 'function') {
-        return '[Function]';
+        return this.wrapInBrackets('Function');
       }
       if (typeof value === 'object' && value !== null) {
         if (seen.has(value)) {
-          return '[Circular]';
+          return this.wrapInBrackets('Circular');
         }
         seen.add(value);
       }
@@ -101,7 +106,7 @@ export class Ogma {
   }
 
   private wrapInBrackets(valueToBeWrapper: string): string {
-    return '[' + valueToBeWrapper + ']';
+    return `[${valueToBeWrapper}]`;
   }
 
   private formatJSON(
@@ -139,32 +144,27 @@ export class Ogma {
     if (typeof message === 'object') {
       message = '\n' + JSON.stringify(message, this.circularReplacer(), 2);
     }
-    const arrayString: Array<string | number> = [
-      this.wrapInBrackets(this.getTimestamp()),
-    ];
-    if (application || this.options.application) {
-      arrayString.push(
-        colorize(
-          this.wrapInBrackets(application || this.options.application),
+    application = application || this.options.application;
+    application = application
+      ? `${colorize(
+          this.wrapInBrackets(application),
           Color.YELLOW,
           this.options.color,
           this.options.stream,
-        ),
-      );
-    }
-    arrayString.push(this.pid);
-    if (context || this.options.context) {
-      arrayString.push(
-        colorize(
-          this.wrapInBrackets(context || this.options.context),
+        )} `
+      : '';
+    context = context || this.options.context;
+    context = context
+      ? `${colorize(
+          this.wrapInBrackets(context),
           Color.CYAN,
           this.options.color,
           this.options.stream,
-        ),
-      );
-    }
-    arrayString.push(formattedLevel + '|', message);
-    return arrayString.join(' ');
+        )} `
+      : '';
+    return `${this.wrapInBrackets(this.getTimestamp())} ${application}${
+      this.pid
+    } ${context}${formattedLevel}| ${message}`;
   }
 
   private getTimestamp(): string {

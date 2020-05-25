@@ -13,6 +13,7 @@ circularObject.b = {
   c: circularObject,
 };
 circularObject.d = () => 'function';
+circularObject.e = Symbol('hello');
 
 const logLevels = [
   'SILLY',
@@ -135,6 +136,16 @@ describe('Ogma class', () => {
                                     expect(
                                       stdoutSpy.mock.calls[0][0].includes(
                                         '[Circular]',
+                                      ),
+                                    ).toBeTruthy();
+                                    expect(
+                                      stdoutSpy.mock.calls[0][0].includes(
+                                        '[Function]',
+                                      ),
+                                    ).toBeTruthy();
+                                    expect(
+                                      stdoutSpy.mock.calls[0][0].includes(
+                                        '[Symbol]',
                                       ),
                                     ).toBeTruthy();
                                   }
