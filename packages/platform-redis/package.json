@@ -18,7 +18,6 @@
   "files": [
     "lib"
   ],
-  "private": true,
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +26,11 @@
     "url": "git+https://github.com/jmcdo29/ogma.git"
   },
   "scripts": {
-    "test": "echo \"No tests to run\""
+    "prebuild": "rimraf lib",
+    "build": "tsc -p tsconfig.build.json",
+    "postbuild": "mv ./lib/src/* ./lib && rmdir lib/src",
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "bugs": {
     "url": "https://github.com/jmcdo29/ogma/issues"
