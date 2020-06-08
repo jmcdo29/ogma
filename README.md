@@ -30,6 +30,6 @@ Ogma is a no-nonsense logger developed to make logging simple, and easy to read 
 
 ## Contributors
 
-This library is currently being maintained by [myself](https://github.com/jmcdo29), [Jeff Minsungkim](https://github.com/jeffminsungkim), [Ruslan Gonzalez](https://github.com/ruslanguns), and [John Biundo](https://github.com/johnbiundo).
+This library is currently being maintained by [myself](https://github.com/jmcdo29), [Minsung Kim](https://github.com/jeffminsungkim), [Ruslan Gonzalez](https://github.com/ruslanguns), and [John Biundo](https://github.com/johnbiundo).
 
 If you would like to contribute, please checkout the [CONTRIBUTING](./CONTRIBUTING.md) guidelines.
