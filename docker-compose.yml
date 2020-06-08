@@ -41,4 +41,8 @@ services:
     container_name: nats
     ports:
       - "4222:4222"
-  # redis:
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"

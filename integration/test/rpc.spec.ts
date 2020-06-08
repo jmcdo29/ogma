@@ -3,6 +3,7 @@ import {
   MicroserviceOptions,
   MqttOptions,
   NatsOptions,
+  RedisOptions,
   RmqOptions,
   TcpOptions,
   Transport,
@@ -17,6 +18,7 @@ import {
 import { MqttParser } from '@ogma/platform-mqtt';
 import { NatsParser } from '@ogma/platform-nats';
 import { RabbitMqParser } from '@ogma/platform-rabbitmq';
+import { RedisParser } from '@ogma/platform-redis';
 import { TcpParser } from '@ogma/platform-tcp';
 import { RpcClientModule } from '../src/rpc/client/rpc-client.module';
 import { RpcServerModule } from '../src/rpc/server/rpc-server.module';
@@ -41,13 +43,15 @@ const rabbitOptions: RmqOptions['options'] = {
     durable: true,
   },
 };
+const redisOptions: RedisOptions['options'] = { url: 'redis://localhost:6379' };
 
 describe.each`
-  server        | transport         | options          | protocol  | parser
-  ${'TCP'}      | ${Transport.TCP}  | ${tcpOptions}    | ${'IPv4'} | ${TcpParser}
-  ${'MQTT'}     | ${Transport.MQTT} | ${mqttOptions}   | ${'mqtt'} | ${MqttParser}
-  ${'NATS'}     | ${Transport.NATS} | ${natsOptions}   | ${'nats'} | ${NatsParser}
-  ${'RabbitMQ'} | ${Transport.RMQ}  | ${rabbitOptions} | ${'amqp'} | ${RabbitMqParser}
+  server        | transport          | options          | protocol   | parser
+  ${'TCP'}      | ${Transport.TCP}   | ${tcpOptions}    | ${'IPv4'}  | ${TcpParser}
+  ${'MQTT'}     | ${Transport.MQTT}  | ${mqttOptions}   | ${'mqtt'}  | ${MqttParser}
+  ${'NATS'}     | ${Transport.NATS}  | ${natsOptions}   | ${'nats'}  | ${NatsParser}
+  ${'RabbitMQ'} | ${Transport.RMQ}   | ${rabbitOptions} | ${'amqp'}  | ${RabbitMqParser}
+  ${'REDIS'}    | ${Transport.REDIS} | ${redisOptions}  | ${'redis'} | ${RedisParser}
 `(
   '$server server',
   ({
