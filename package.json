@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/config-conventional": "^9.1.1",
     "@golevelup/ts-jest": "^0.2.1",
     "@grpc/proto-loader": "^0.5.4",
     "@nestjs/cli": "^7.0.2",
