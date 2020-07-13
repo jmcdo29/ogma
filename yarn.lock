@@ -542,10 +542,10 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@golevelup/nestjs-modules@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@golevelup/nestjs-modules/-/nestjs-modules-0.4.0.tgz#5efd84de12dc0e74c80e3a7641026a7508384f7b"
-  integrity sha512-PTEUana6AXbOwsjyOt7gfVZYlum/kekWZwU46+F6HmHJNqU9EmrAfUDm4TdX8zSdERbG8cmq9SSAlOPKOi8hOQ==
+"@golevelup/nestjs-modules@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@golevelup/nestjs-modules/-/nestjs-modules-0.4.1.tgz#e24bfa607b715d4df280de9ebcc52f7121cd48f7"
+  integrity sha512-v2GYGtJ8moTfhehavNFBwnHQ+QcgYHssxfqbJZcY4CUqB97E2sWmnAmtgscHDTvHqABOCaq2xvwfw4YTwZU2Ug==
   dependencies:
     shortid "^2.2.14"
 
