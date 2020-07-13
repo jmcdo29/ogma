@@ -3157,10 +3157,10 @@ atomic-sleep@^1.0.0:
   resolved "https://registry.yarnpkg.com/atomic-sleep/-/atomic-sleep-1.0.0.tgz#eb85b77a601fc932cfe432c5acd364a9e2c9075b"
   integrity sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==
 
-avvio@^6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/avvio/-/avvio-6.3.1.tgz#201ec26505551657272cda90c23ef1cb0c7e390a"
-  integrity sha512-jfcOyzK+TVBRae/FrIhlgVIDcGzRzIyDvOq+5e1IkxY141QSVZoe9kKhOwLdYkDBCkOQT6JU/53NkJY0qNrpqw==
+avvio@^6.3.1, avvio@^6.4.1:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/avvio/-/avvio-6.5.0.tgz#d2cf119967fe90d2156afc29de350ced800cdaab"
+  integrity sha512-BmzcZ7gFpyFJsW8G+tfQw8vJNUboA9SDkkHLZ9RAALhvw/rplfWwni8Ee1rA11zj/J7/E5EvZmweusVvTHjWCA==
   dependencies:
     archy "^1.0.0"
     debug "^4.0.0"
@@ -5724,7 +5724,7 @@ fastify-plugin@^1.0.0, fastify-plugin@^1.2.0, fastify-plugin@^1.6.0:
   dependencies:
     semver "^6.3.0"
 
-fastify@2.13.0, fastify@^2.13.0:
+fastify@2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/fastify/-/fastify-2.13.0.tgz#236906311122e38c45c6610cbd09b8818471d9cf"
   integrity sha512-iAFPs1qsYRaVdoAVFqC2Q6BmPsfaUZBnW6Icupjt/eVKD4SolSkg4aAlWJlZl3Nh3MLpCc6O+y3Apg/LVQ5PoA==
@@ -5736,6 +5736,26 @@ fastify@2.13.0, fastify@^2.13.0:
     find-my-way "^2.2.2"
     flatstr "^1.0.12"
     light-my-request "^3.7.2"
+    middie "^4.1.0"
+    pino "^5.17.0"
+    proxy-addr "^2.0.6"
+    readable-stream "^3.6.0"
+    rfdc "^1.1.2"
+    secure-json-parse "^2.1.0"
+    tiny-lru "^7.0.2"
+
+fastify@^2.13.0:
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-2.15.1.tgz#195a068bca87c7b57a83fe81f0aa66e86c6a3992"
+  integrity sha512-pEE1pa5j/vtZeZTbPpFgsJgzLbThcYgiLDw2yZIG8qNZ5LkF1Ew2vbv9k3nTXNxGEPYFBbyNTCKRSj3JbX+FhA==
+  dependencies:
+    abstract-logging "^2.0.0"
+    ajv "^6.12.0"
+    avvio "^6.4.1"
+    fast-json-stringify "^1.18.0"
+    find-my-way "^2.2.2"
+    flatstr "^1.0.12"
+    light-my-request "^3.7.3"
     middie "^4.1.0"
     pino "^5.17.0"
     proxy-addr "^2.0.6"
@@ -7934,10 +7954,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-light-my-request@^3.7.2:
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/light-my-request/-/light-my-request-3.7.3.tgz#b758746f61bd214d5853665133796952a39f5732"
-  integrity sha512-tqVzzSVnxfyqj8ukbgbowGEcftOBdR6nAp/slwshtIou92mzgfHuvEhyL00LZvSifU+dQ37gzlMixGaY2eFl2Q==
+light-my-request@^3.7.2, light-my-request@^3.7.3:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/light-my-request/-/light-my-request-3.8.0.tgz#7da96786e4d479371b25cfd524ee05d5d583dae8"
+  integrity sha512-cIOWmNsgoStysmkzcv2EwvLwMb2hEm6oqKMerG/b5ey9F0we2Qony8cAZgBktmGPYUvPyKsDCzMcYU6fXbpWew==
   dependencies:
     ajv "^6.10.2"
     cookie "^0.4.0"
