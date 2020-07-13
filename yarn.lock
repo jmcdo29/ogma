@@ -8785,13 +8785,14 @@ mqtt-packet@^6.0.0:
     safe-buffer "^5.1.2"
 
 mqtt@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mqtt/-/mqtt-4.0.1.tgz#8bffa46b2b365a459c0bedd90267645418d0f2a5"
-  integrity sha512-sDvB/wI8e3YSSdIxJ74M81lQTFXxg1uFM5/irpQL+IH9crQiW90R69YOnk7UGj9xCqoXBBRPr8fqnkzQUKRYgg==
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mqtt/-/mqtt-4.1.0.tgz#efcfa4acb8789265b951452142054a5b158bef0f"
+  integrity sha512-dBihVZzaB8p9G/2ktSfamiaHmMnpCpP2du08317ZuEX1kBAbZOG9aMJQ11EChXnOX3GKUeiZYaSITueceQKT2A==
   dependencies:
     base64-js "^1.3.0"
     commist "^1.0.0"
     concat-stream "^1.6.2"
+    debug "^4.1.1"
     end-of-stream "^1.4.1"
     es6-map "^0.1.5"
     help-me "^1.0.1"
