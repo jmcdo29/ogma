@@ -41,7 +41,7 @@
     "@ogma/nestjs-module": "^0.1.0",
     "@ogma/platform-express": "^0.1.0",
     "apollo-server-express": "^2.0.0",
-    "graphql": "^14.0.0",
+    "graphql": "^15.3.0",
     "graphql-tools": "^6.0.13",
     "rxjs": "^6.5.4"
   },
