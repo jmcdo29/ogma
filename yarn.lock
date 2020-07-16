@@ -1065,10 +1065,10 @@
   dependencies:
     shortid "^2.2.14"
 
-"@golevelup/ts-jest@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@golevelup/ts-jest/-/ts-jest-0.2.1.tgz#ec00d2c8d7b6519d758dd61af80a47d43db46f9a"
-  integrity sha512-Xwhmq6tRcsHyTnkxRBRCbSACSXFdiU2tUgXaxckELfeHQMyrFnoqWGrF4cPb/EjpVdjmD8nY9Ce2tC8s5wqIGw==
+"@golevelup/ts-jest@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@golevelup/ts-jest/-/ts-jest-0.3.0.tgz#7283286304cf97b17360e78e3ad1d66e719c432f"
+  integrity sha512-/PRdR75+w3slJ/kye8TZqhVCaKymd8xpKChk2CETtsqrqbCCtmIq2ujMc8j7+vhI42umcgDUyyYpVHrnIDsIcw==
 
 "@graphql-toolkit/common@0.9.12":
   version "0.9.12"
