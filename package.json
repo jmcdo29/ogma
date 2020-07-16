@@ -50,7 +50,7 @@
     "test:int:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --config jest-integration.config.js"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
+    "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^8.3.4",
     "@golevelup/ts-jest": "^0.2.1",
     "@grpc/proto-loader": "^0.5.4",
