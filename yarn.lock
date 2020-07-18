@@ -3498,7 +3498,7 @@ apollo-server-express@2.16.0, apollo-server-express@^2.0.0:
     subscriptions-transport-ws "^0.9.16"
     type-is "^1.6.16"
 
-apollo-server-fastify@2.16.0:
+apollo-server-fastify@2.16.0, apollo-server-fastify@^2.16.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/apollo-server-fastify/-/apollo-server-fastify-2.16.0.tgz#56d701547505de6c98d9d176d5586ed56e14d4c2"
   integrity sha512-LubZhYT1Avxelds0yu5leU6mCs76dobNSSqhiUVDrh8kPEqWvCSLaSubSuuRt/8T4hv65zO3lihFx0BU7Lf27A==
