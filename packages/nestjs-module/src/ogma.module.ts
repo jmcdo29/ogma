@@ -25,7 +25,7 @@ export class OgmaModule {
    *
    * @param context string context for the OgmaService to use in logging
    */
-  static forFeature(context: string | Function): DynamicModule {
+  static forFeature(context: string | (() => any)): DynamicModule {
     const providers: Provider[] = createLoggerProviders(context);
     return {
       imports: [OgmaCoreModule.Deferred],

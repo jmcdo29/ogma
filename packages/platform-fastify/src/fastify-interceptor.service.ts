@@ -45,11 +45,11 @@ export class FastifyParser extends AbstractInterceptorService {
     return inColor ? this.wrapInColor(status) : status.toString();
   }
 
-  private getRequest(context: ExecutionContext): FastifyRequest {
+  getRequest(context: ExecutionContext): FastifyRequest {
     return context.switchToHttp().getRequest<FastifyRequest>();
   }
 
-  private getResponse(context: ExecutionContext): FastifyReply<ServerResponse> {
+  getResponse(context: ExecutionContext): FastifyReply<ServerResponse> {
     return context.switchToHttp().getResponse<FastifyReply<ServerResponse>>();
   }
 

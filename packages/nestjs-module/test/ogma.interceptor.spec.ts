@@ -19,6 +19,11 @@ const nullifyOption = (
 
 const logMock = jest.fn();
 
+const httpContext = {
+  getType: () => 'http',
+  getArgs: () => [1, 2, 3],
+};
+
 describe('OgmaInterceptor', () => {
   let interceptor: OgmaInterceptor;
   let delegator: DelegatorService;
@@ -82,10 +87,9 @@ describe('OgmaInterceptor', () => {
         delegateSpy.mockClear();
       });
       it('should log data', (done) => {
-        const ctxMock = createMock<ExecutionContext>({
-          getType: () => 'http',
-          getArgs: () => [1, 2, 3],
-        });
+        const ctxMock = createMock<ExecutionContext>(
+          httpContext as Partial<ExecutionContext>,
+        );
         interceptor.intercept(ctxMock, callHandler).subscribe({
           next: () => {
             return;
@@ -132,10 +136,9 @@ describe('OgmaInterceptor', () => {
         delegateSpy.mockClear();
       });
       it('should log error', (done) => {
-        const ctxMock = createMock<ExecutionContext>({
-          getType: () => 'http',
-          getArgs: () => [1, 2, 3],
-        });
+        const ctxMock = createMock<ExecutionContext>(
+          httpContext as Partial<ExecutionContext>,
+        );
         interceptor.intercept(ctxMock, callHandler).subscribe({
           next: () => {
             throw new Error('Logging data in error');

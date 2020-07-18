@@ -10,8 +10,8 @@ import {
 } from '@ogma/nestjs-module';
 import { SocketIOParser } from '@ogma/platform-socket.io';
 import { WsParser } from '@ogma/platform-ws';
-import * as Io from 'socket.io-client';
-import * as WebSocket from 'ws';
+import Io from 'socket.io-client';
+import WebSocket from 'ws';
 import { WsModule } from '../src/ws/ws.module';
 import {
   createConnection,
@@ -44,7 +44,7 @@ describe.each`
     protocol: 'http' | 'ws';
     sendMethod: 'send' | 'emit';
     serializer: (message: string) => string;
-    deserializer: (message: string) => string | object;
+    deserializer: (message: string) => string | Record<string, unknown>;
   }) => {
     let app: INestApplication;
     let interceptor: OgmaInterceptor;

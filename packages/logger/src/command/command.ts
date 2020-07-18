@@ -20,7 +20,7 @@ function wrapInParens(message: string): string {
   return '[' + message + ']';
 }
 
-function isOgmaFormat(log: object): log is OgmaLog {
+function isOgmaFormat(log: Record<string, unknown>): log is OgmaLog {
   return standardKeys.every((key) =>
     Object.prototype.hasOwnProperty.call(log, key),
   );
@@ -100,7 +100,7 @@ async function rehydrate(
     .map((log) => JSON.parse(log))
     .forEach((log: OgmaLog) => {
       const { time, application, context, pid, level, ...rest } = log;
-      let message: string | object;
+      let message: string | Record<string, unknown>;
       if (rest.message) {
         message = getMessage(log);
       } else {

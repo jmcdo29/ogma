@@ -83,7 +83,9 @@ describe('DelegatorService', () => {
   describe('getContextSuccessString', () => {
     const data = 'someData';
     it(logProperly('http'), () => {
-      const ctxMock = createMock<ExecutionContext>(httpContext);
+      const ctxMock = createMock<ExecutionContext>(
+        httpContext as Partial<ExecutionContext>,
+      );
       const spy = spyFactory(http, 'getSuccessContext').mockReturnValueOnce(
         parserReturn,
       );
@@ -155,7 +157,9 @@ describe('DelegatorService', () => {
       const spy = spyFactory(http, 'getErrorContext').mockReturnValueOnce(
         parserReturn,
       );
-      const ctxMock = createMock<ExecutionContext>(httpContext);
+      const ctxMock = createMock<ExecutionContext>(
+        httpContext as Partial<ExecutionContext>,
+      );
       expect(
         delegate.getContextErrorString(error, ctxMock, startTime, options),
       ).toBe(parsedString);
@@ -203,7 +207,9 @@ describe('DelegatorService', () => {
       const spy = spyFactory(http, 'getSuccessContext').mockReturnValueOnce(
         parserReturn,
       );
-      const ctxMock = createMock<ExecutionContext>(httpContext);
+      const ctxMock = createMock<ExecutionContext>(
+        httpContext as Partial<ExecutionContext>,
+      );
       expect(
         delegate.getContextSuccessString('data', ctxMock, startTime, {
           json: true,
@@ -232,7 +238,9 @@ describe('DelegatorService', () => {
         protocol: 'HTTP/1.1',
         status: '200',
       });
-      const ctxMock = createMock<ExecutionContext>(httpContext);
+      const ctxMock = createMock<ExecutionContext>(
+        httpContext as Partial<ExecutionContext>,
+      );
       expect(
         delegate.getContextSuccessString(null, ctxMock, startTime, options),
       ).toBe('127.0.0.1 - GET / HTTP/1.1 200 2ms - 0');

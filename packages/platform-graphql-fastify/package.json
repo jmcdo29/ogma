@@ -39,9 +39,14 @@
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
     "@ogma/nestjs-module": "^0.1.0",
+    "@ogma/platform-fastify": "^0.1.0",
+    "apollo-server-fastify": "^2.16.0",
+    "graphql": "^15.3.0",
+    "graphql-tools": "^6.0.14",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
-    "@ogma/nestjs-module": "^0.1.0"
+    "@ogma/nestjs-module": "^0.1.0",
+    "@ogma/platform-fastify": "^0.1.0"
   }
 }

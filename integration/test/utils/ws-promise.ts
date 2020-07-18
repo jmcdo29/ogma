@@ -1,4 +1,4 @@
-import * as WebSocket from 'ws';
+import WebSocket from 'ws';
 
 export const createConnection = (
   client: (url: string) => SocketIOClient.Socket | WebSocket,

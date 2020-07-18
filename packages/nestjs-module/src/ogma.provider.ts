@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Ogma, OgmaOptions } from '@ogma/logger';
+import { Observable } from 'rxjs';
 import {
   OGMA_INSTANCE,
   OGMA_SERVICE_TOKEN,
@@ -25,7 +26,7 @@ import {
 import { OgmaInterceptor } from './interceptor/ogma.interceptor';
 
 export class NoopInterceptor implements NestInterceptor {
-  intercept(context: ExecutionContext, next: CallHandler) {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle();
   }
 }
@@ -88,7 +89,7 @@ export function createProviderToken(topic: string): string {
   return OGMA_SERVICE_TOKEN + ':' + topic;
 }
 
-export function createLoggerProviders(topic: string | Function): Provider[] {
+export function createLoggerProviders(topic: string | (() => any)): Provider[] {
   topic = typeof topic === 'function' ? topic.name : topic;
   const token = createProviderToken(topic);
   return [

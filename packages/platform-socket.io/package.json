@@ -41,7 +41,7 @@
     "@nestjs/platform-socket.io": "^7.0.0",
     "@nestjs/websockets": "^7.0.0",
     "@ogma/nestjs-module": "^0.1.0",
-    "@types/socket.io": "^1.4.33",
+    "@types/socket.io": "^2.1.8",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {

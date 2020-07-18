@@ -4,7 +4,10 @@ import { Test } from '@nestjs/testing';
 import { Request, Response } from 'express';
 import { GraphQLParser } from '../src';
 
-const gqlMockFactory = (context: object, info: object) =>
+const gqlMockFactory = (
+  context: Record<string, any>,
+  info: Record<string, any>,
+) =>
   createMock<ExecutionContext>({
     getType: () => 'graphql',
     getHandler: () => 'query',

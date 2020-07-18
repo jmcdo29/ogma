@@ -11,7 +11,8 @@
     "baseUrl": "./src",
     "strict": false,
     "noUnusedLocals": false,
-    "lib": ["ES7"]
+    "lib": ["ES7"],
+    "esModuleInterop": true
   },
   "exclude": ["node_modules", "lib"]
 }

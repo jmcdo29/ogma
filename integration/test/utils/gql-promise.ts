@@ -1,6 +1,6 @@
 import { request } from 'http';
 
-export const gqlPromise = (url: string, query: object) =>
+export const gqlPromise = (url: string, query: Record<string, unknown>) =>
   new Promise((resolve, reject) => {
     const req = request(
       url,
