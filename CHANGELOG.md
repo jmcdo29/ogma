@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/jmcdo29/ogma/compare/v0.1.0...v0.1.1) (2020-07-18)
+
+### Bug Fixes
+
+- **gql:** updates gql types to work with apollo > 2.11 ([a097842](https://github.com/jmcdo29/ogma/commit/a097842cafdf71a45132c99fe9df2515e41d8c5e))
+- **gql-fastify:** update types for graphql-fastify ([83335e6](https://github.com/jmcdo29/ogma/commit/83335e6d7553f1ec48e10fe6b67106633cae6538))
+
+# 0.1.0 (2020-06-08)
+
+### Features
+
+- **benchmarks:** implements benchmarks ([#41](https://github.com/jmcdo29/ogma/issues/41)) ([9c719ef](https://github.com/jmcdo29/ogma/commit/9c719efea0bbd23a03c9f48d76a57dae946b0a8a))
+- **grpc:** implements the grpc parser ([b4fc770](https://github.com/jmcdo29/ogma/commit/b4fc770f990e869026ff7ca758e184efa31f4cb1)), closes [#16](https://github.com/jmcdo29/ogma/issues/16)
+- **kafka:** finishes the work on the kafka parser ([f8048c9](https://github.com/jmcdo29/ogma/commit/f8048c9ad72ac991cc337dbc850b9ae19a3a3f06)), closes [#17](https://github.com/jmcdo29/ogma/issues/17)
+- **kafka:** implements parser for kafka ([4ce590f](https://github.com/jmcdo29/ogma/commit/4ce590f93202b857f9b4d3834c903d5cc122655c)), closes [#17](https://github.com/jmcdo29/ogma/issues/17)
+- **mqtt:** implements the mqtt parser for ogma ([b83b65c](https://github.com/jmcdo29/ogma/commit/b83b65c3de1f9bff78537fb8d14ce2a3222a6587)), closes [#18](https://github.com/jmcdo29/ogma/issues/18)
+- **nats:** implements NatsParser and test cases ([#47](https://github.com/jmcdo29/ogma/issues/47)) ([b9136f8](https://github.com/jmcdo29/ogma/commit/b9136f8e8cd1e024e0d3a0052c5c93d0ad58215f)), closes [#19](https://github.com/jmcdo29/ogma/issues/19)
+- **redis:** implements the redis parser ([5f0ca06](https://github.com/jmcdo29/ogma/commit/5f0ca064ae13237348c548fc6bb7afccbeced836))
+- **rmq:** implements RabbitMQ parser for AMQP requests ([2e44261](https://github.com/jmcdo29/ogma/commit/2e4426140d54d75dc1a68fa72c7bf251484635f3)), closes [#20](https://github.com/jmcdo29/ogma/issues/20)
+
 # [0.1.0](https://github.com/jmcdo29/ogma/compare/v2.0.2...v0.1.0) (2020-04-20)
 
 ### Bug Fixes

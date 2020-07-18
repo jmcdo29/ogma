@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-grpc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A plugin for the OgmaInterceptor to properly handle microservice requests from grpc protocols",
   "keywords": [
     "grpc",
@@ -39,12 +39,12 @@
   "devDependencies": {
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
-    "@ogma/nestjs-module": "^0.1.0",
+    "@ogma/nestjs-module": "^0.1.1",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
-    "@ogma/nestjs-module": "^0.1.0",
     "@nestjs/microservices": "^7.0.0",
+    "@ogma/nestjs-module": "^0.1.0",
     "grpc": "^1.24.0"
   }
 }
