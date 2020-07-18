@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/jmcdo29/ogma/compare/v0.1.1...v0.1.2) (2020-07-18)
+
+### Bug Fixes
+
+- **module:** updates decorators type to accept a class ([1bc3df7](https://github.com/jmcdo29/ogma/commit/1bc3df76ba5f4d66752cd44ab8c34b72843f3292))
+
 ## [0.1.1](https://github.com/jmcdo29/ogma/compare/v0.1.0...v0.1.1) (2020-07-18)
 
 ### Bug Fixes
