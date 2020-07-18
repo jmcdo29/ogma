@@ -23,10 +23,10 @@ export class AppModule {}
 
 > Note: Due to the nature of subscriptions and the data available from the base ones, it is not possible at this time to log what subscriptions are made in the Ogma fashion.
 
-Because the interceptor needs access to the request and response objects, when configuring the `GraphqlModule` from Nest, you need to add the `req` to the GraphQL context. to do this, while configuring the `GraphqlModule`, set the `context` property as such:
+Because the interceptor needs access to the request and response objects, when configuring the `GraphqlModule` from Nest, you need to add the `request` and `reply` to the GraphQL context. to do this, while configuring the `GraphqlModule`, set the `context` property as such:
 
 ```ts
 GraphqlModule.forRoot({
-  context: ({ req }) => ({ req })
+  context: ({ request, reply }) => ({ request, reply })
 });
 ```

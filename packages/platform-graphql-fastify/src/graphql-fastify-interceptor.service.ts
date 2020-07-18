@@ -14,10 +14,10 @@ export class GraphQLFastifyParser extends FastifyParser {
   }
 
   getRequest(context: ExecutionContext): FastifyRequest {
-    return this.getContext(context).getContext().req;
+    return this.getContext(context).getContext().request;
   }
 
   getResponse(context: ExecutionContext): FastifyReply<any> {
-    return this.getContext(context).getContext().res;
+    return this.getContext(context).getContext().reply;
   }
 }

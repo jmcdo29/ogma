@@ -6,13 +6,12 @@ import { GqlResolver } from './gql.resolver';
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      context: ({ req, res, request, reply }) => {
-        if (req && res) {
-          return { req, res };
-        } else if (request && reply) {
-          return { req: request, res: reply };
-        }
-      },
+      context: ({ req, res, request, reply }) => ({
+        req,
+        res,
+        request,
+        reply,
+      }),
       autoSchemaFile: true,
     }),
   ],
