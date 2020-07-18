@@ -89,7 +89,9 @@ export function createProviderToken(topic: string): string {
   return OGMA_SERVICE_TOKEN + ':' + topic;
 }
 
-export function createLoggerProviders(topic: string | (() => any)): Provider[] {
+export function createLoggerProviders(
+  topic: string | (() => any) | Type<any>,
+): Provider[] {
   topic = typeof topic === 'function' ? topic.name : topic;
   const token = createProviderToken(topic);
   return [
