@@ -1,7 +1,7 @@
 import { createMock } from '@golevelup/ts-jest';
 import { createWriteStream } from 'fs';
 import { LogLevel } from '../src/enums';
-import { Ogma } from '../src';
+import { color as Color, Ogma, OgmaOptions } from '../src';
 
 const dest = createWriteStream('/dev/null');
 
@@ -27,222 +27,162 @@ const logLevels = [
   'FATAL',
 ];
 
-const logOptions: Array<keyof typeof LogLevel> = [
-  'OFF',
-  'ALL',
-  'SILLY',
-  'VERBOSE',
-  'FINE',
-  'DEBUG',
-  'INFO',
-  'LOG',
-  'WARN',
-  'ERROR',
-  'FATAL',
-];
-
 const mockStream = createMock<NodeJS.WriteStream>();
 
-const streamOptions: Array<
-  | (Partial<NodeJS.WriteStream> &
-      Pick<NodeJS.WriteStream, 'write' | 'hasColors'>)
-  | undefined
-> = [mockStream, undefined];
-
-const appOptions = ['TEST APP', ''];
-
-const contextOption = ['TEST FUNC', ''];
-
-const colorOptions = [true, false];
-
-const jsonOptions = [true, false];
-
-describe('Ogma class', () => {
+describe('Ogma Class', () => {
   let ogma: Ogma;
-  let stdoutSpy: jest.SpyInstance;
-  // eslint-disable-next-line sonarjs/cognitive-complexity
-  describe.each(appOptions)('application %s', (application: string) => {
-    describe.each(contextOption)('context %s', (context: string) => {
-      describe.each(colorOptions)('color %s', (color: boolean) => {
-        describe.each(jsonOptions)('json %s', (json: boolean) => {
-          describe.each(logOptions)(
-            'log level %s',
-            (logLevel: keyof typeof LogLevel) => {
-              describe.each(streamOptions)(
-                'stream %j',
-                (
-                  stream:
-                    | (Partial<NodeJS.WriteStream> &
-                        Pick<NodeJS.WriteStream, 'write' | 'hasColors'>)
-                    | undefined,
-                ) => {
-                  beforeEach(() => {
-                    ogma = new Ogma({
-                      logLevel,
-                      color,
-                      stream,
-                      json,
-                      context,
-                      application,
-                    });
-                  });
-                  describe.each(appOptions)(
-                    'method application %s',
-                    (methodApplication: string | undefined) => {
-                      describe.each(contextOption)(
-                        'method context %s',
-                        (methodContext: string | undefined) => {
-                          describe.each([
-                            'message',
-                            42,
-                            true,
-                            circularObject,
-                            () => 'func',
-                          ])('calling log method with %j', (logMessage) => {
-                            beforeEach(() => {
-                              if (stream) {
-                                stdoutSpy = jest
-                                  .spyOn(mockStream, 'write')
-                                  .mockImplementation((message) => {
-                                    dest.write(message);
-                                    return true;
-                                  });
-                              } else {
-                                stdoutSpy = jest
-                                  .spyOn(process.stdout, 'write')
-                                  .mockImplementation((message) => {
-                                    dest.write(message);
-                                    return true;
-                                  });
-                              }
-                            });
+  function createOgmaInstance(options: Partial<OgmaOptions>): Ogma {
+    return new Ogma(options);
+  }
+  function mockCallExpectation(ogma: Ogma, expectation: string) {
+    ogma.log('Hello');
+    expect(mockStream.write.mock.calls[0][0]).toEqual(
+      expect.stringContaining(expectation),
+    );
+  }
+  afterEach(() => {
+    mockStream.write.mockReset();
+  });
 
-                            afterEach(() => {
-                              stdoutSpy.mockReset();
-                            });
-                            it.each(logLevels as Array<keyof typeof LogLevel>)(
-                              'should call %s and all above it',
-                              (level) => {
-                                if (
-                                  LogLevel[level] >=
-                                  LogLevel[logLevel || 'INFO']
-                                ) {
-                                  ogma[level.toLowerCase()](
-                                    logMessage,
-                                    methodContext,
-                                    methodApplication,
-                                  );
-                                  if (typeof logMessage === 'object') {
-                                    expect(
-                                      stdoutSpy.mock.calls[0][0].includes(
-                                        '[Circular]',
-                                      ),
-                                    ).toBeTruthy();
-                                    expect(
-                                      stdoutSpy.mock.calls[0][0].includes(
-                                        '[Function]',
-                                      ),
-                                    ).toBeTruthy();
-                                    expect(
-                                      stdoutSpy.mock.calls[0][0].includes(
-                                        '[Symbol]',
-                                      ),
-                                    ).toBeTruthy();
-                                  }
-                                  let levelContainString: string;
-                                  let contextContainString = '';
-                                  let applicationContainString = '';
-                                  if (color && !json) {
-                                    levelContainString = `m${(
-                                      '[' +
-                                      LogLevel[LogLevel[level]] +
-                                      ']'
-                                    ).padEnd(7)}\u001b[0m`;
-                                    if (methodContext || context) {
-                                      contextContainString =
-                                        'm[' +
-                                        (methodContext || context) +
-                                        ']\u001b[0m';
-                                    }
-                                    if (methodApplication || application) {
-                                      applicationContainString =
-                                        'm[' +
-                                        (methodApplication || application) +
-                                        ']\u001b[0m';
-                                    }
-                                  } else if (!json) {
-                                    levelContainString = `${(
-                                      '[' +
-                                      LogLevel[LogLevel[level]] +
-                                      ']'
-                                    ).padEnd(7)}`;
-                                    if (methodContext || context) {
-                                      contextContainString =
-                                        '[' + (methodContext || context) + ']';
-                                    }
-                                    if (methodApplication || application) {
-                                      applicationContainString =
-                                        '[' +
-                                        (methodApplication || application) +
-                                        ']';
-                                    }
-                                  } else {
-                                    levelContainString =
-                                      '"level":"' +
-                                      LogLevel[LogLevel[level]] +
-                                      '"';
-                                    if (methodContext || context) {
-                                      contextContainString =
-                                        '"context":"' +
-                                        (methodContext || context) +
-                                        '"';
-                                    }
-                                    if (methodApplication || application) {
-                                      applicationContainString =
-                                        '"application":"' +
-                                        (methodApplication || application) +
-                                        '"';
-                                    }
-                                  }
-                                  expect(
-                                    stdoutSpy.mock.calls[0][0].includes(
-                                      levelContainString,
-                                    ),
-                                  ).toBeTruthy();
-                                  if (applicationContainString) {
-                                    expect(
-                                      stdoutSpy.mock.calls[0][0].includes(
-                                        applicationContainString,
-                                      ),
-                                    ).toBeTruthy();
-                                  }
-                                  if (contextContainString) {
-                                    expect(
-                                      stdoutSpy.mock.calls[0][0].includes(
-                                        contextContainString,
-                                      ),
-                                    ).toBeTruthy();
-                                  }
-                                  expect(stdoutSpy).toBeCalledTimes(1);
-                                } else {
-                                  expect(stdoutSpy).toBeCalledTimes(0);
-                                }
-                              },
-                            );
-                          });
-                        },
-                      );
-                    },
-                  );
-                },
-              );
-            },
-          );
+  describe.each`
+    color    | expectation
+    ${true}  | ${Color.cyan('[INFO] ') + '| Hello'}
+    ${false} | ${'[INFO] | Hello'}
+  `(
+    'color: $color',
+    ({ color, expectation }: { color: boolean; expectation: string }) => {
+      beforeEach(() => {
+        ogma = createOgmaInstance({
+          color,
+          stream: mockStream,
         });
       });
+      it(color ? 'should write in color' : 'should not write in color', () =>
+        mockCallExpectation(ogma, expectation),
+      );
+    },
+  );
+  describe.each`
+    json     | expectation
+    ${true}  | ${{ time: expect.any(String), pid: expect.any(Number), level: 'INFO', message: 'Hello' }}
+    ${false} | ${null}
+  `(
+    'json $json',
+    ({ json, expectation }: { json: boolean; expectation: any }) => {
+      beforeEach(() => {
+        ogma = createOgmaInstance({ json, stream: mockStream });
+      });
+      it(json ? 'should print in JSON' : 'should not print in JSON', () => {
+        ogma.log('Hello');
+        if (json) {
+          expect(
+            JSON.parse(mockStream.write.mock.calls[0][0] as string),
+          ).toEqual(expect.objectContaining(expectation));
+        } else {
+          expect(mockStream.write.mock.calls[0][0]).toEqual(expect.any(String));
+        }
+      });
+    },
+  );
+  describe.each`
+    context           | expectation
+    ${'test context'} | ${Color.cyan('[test context]')}
+    ${null}           | ${''}
+  `(
+    'context: $context',
+    ({ context, expectation }: { context?: string; expectation: string }) => {
+      beforeEach(() => {
+        ogma = createOgmaInstance({ context, stream: mockStream });
+      });
+      it('should add the context to the log', () =>
+        mockCallExpectation(ogma, expectation));
+    },
+  );
+  describe.each`
+    application   | expectation
+    ${'test app'} | ${Color.yellow('[test app]')}
+    ${null}       | ${''}
+  `(
+    'application: $application',
+    ({
+      application,
+      expectation,
+    }: {
+      application: string;
+      expectation: string;
+    }) => {
+      beforeEach(() => {
+        ogma = createOgmaInstance({ application, stream: mockStream });
+      });
+      it('should add the context to the log', () =>
+        mockCallExpectation(ogma, expectation));
+    },
+  );
+  describe.each`
+    logLevel
+    ${'OFF'}
+    ${'ALL'}
+    ${'SILLY'}
+    ${'VERBOSE'}
+    ${'FINE'}
+    ${'DEBUG'}
+    ${'INFO'}
+    ${'LOG'}
+    ${'WARN'}
+    ${'ERROR'}
+    ${'FATAL'}
+  `(
+    'logLevel: $logLevel',
+    ({ logLevel }: { logLevel: keyof typeof LogLevel }) => {
+      beforeEach(() => {
+        ogma = createOgmaInstance({ logLevel, stream: mockStream });
+      });
+      it('should call according to log level', () => {
+        let ogmaCalls = 0;
+        for (const method of logLevels) {
+          ogma[method.toLowerCase()]('Hello');
+          if (LogLevel[method] >= LogLevel[logLevel]) {
+            ogmaCalls++;
+          }
+        }
+        expect(mockStream.write).toBeCalledTimes(ogmaCalls);
+      });
+    },
+  );
+  it('should manage circular, function, and symbols in objects', () => {
+    ogma = new Ogma({ stream: mockStream });
+    ogma.log(circularObject);
+    expect(mockStream.write).toBeCalledTimes(1);
+    expect(mockStream.write.mock.calls[0][0]).toEqual(
+      expect.stringContaining('[Circular]'),
+    );
+    expect(mockStream.write.mock.calls[0][0]).toEqual(
+      expect.stringContaining('[Function]'),
+    );
+    expect(mockStream.write.mock.calls[0][0]).toEqual(
+      expect.stringContaining('[Symbol]'),
+    );
+  });
+  it('should follow the context, application, and message of a json', () => {
+    ogma = new Ogma({
+      json: true,
+      context: 'json context',
+      application: 'json test',
+      stream: mockStream,
     });
+    ogma.log({ hello: 'world' });
+    expect(mockStream.write.mock.calls[0][0]).toEqual(
+      expect.stringContaining('json context'),
+    );
+    expect(mockStream.write.mock.calls[0][0]).toEqual(
+      expect.stringContaining('json test'),
+    );
+    expect(JSON.parse(mockStream.write.mock.calls[0][0] as string)).toEqual(
+      expect.objectContaining({ hello: 'world' }),
+    );
   });
 });
+
 describe('small ogma tests', () => {
   let ogma: Ogma;
   let stdoutSpy: jest.SpyInstance;
