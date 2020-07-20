@@ -1,3 +1,4 @@
+import { hostname } from 'os';
 import { Color, LogLevel } from '../enums';
 import { OgmaDefaults, OgmaOptions } from '../interfaces';
 import { colorize } from '../utils/colorize';
@@ -9,6 +10,7 @@ interface JSONLog {
   context?: string;
   pid: number;
   application?: string;
+  hostname: string;
 }
 
 function isNil(val: any): boolean {
@@ -18,6 +20,7 @@ function isNil(val: any): boolean {
 export class Ogma {
   private options: OgmaOptions;
   private pid: number;
+  private hostname: string;
 
   public fine = this.verbose;
   public log = this.info;
@@ -50,6 +53,7 @@ export class Ogma {
       );
     }
     this.pid = process.pid;
+    this.hostname = hostname();
   }
 
   private printMessage(
@@ -123,6 +127,7 @@ export class Ogma {
       json.application = application;
     }
     json.pid = this.pid;
+    json.hostname = this.hostname;
     context = context || this.options.context;
     if (context) {
       json.context = context;
@@ -164,7 +169,15 @@ export class Ogma {
           this.options.stream,
         )} `
       : '';
-    return `${this.wrapInBrackets(this.getTimestamp())} ${application}${
+    const hostname = `${colorize(
+      this.wrapInBrackets(this.hostname),
+      Color.MAGENTA,
+      this.options.color,
+      this.options.stream,
+    )}`;
+    return `${this.wrapInBrackets(
+      this.getTimestamp(),
+    )} ${hostname} ${application}${
       this.pid
     } ${context}${formattedLevel}| ${message}`;
   }

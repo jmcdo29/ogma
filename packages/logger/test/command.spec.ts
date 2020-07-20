@@ -1,6 +1,4 @@
 import { createWriteStream, promises } from 'fs';
-import { OgmaLog } from '../src/interfaces/ogma-log';
-import { ogmaHydrate } from '../src/command/command';
 import {
   ExpectedOgmaOutput,
   jsonLogs,
@@ -8,7 +6,9 @@ import {
   OgmaLogSet,
   stringLogs,
 } from './command.fixtures';
+import { ogmaHydrate } from '../src/command/command';
 import * as messages from '../src/command/messages';
+import { OgmaLog } from '../src/interfaces/ogma-log';
 
 const globalIsTTY = process.stdout.isTTY;
 
@@ -71,6 +71,8 @@ const ogmaHydrateTest = async (
   await expect(ogmaHydrate(hydrateArgs)).resolves.not.toThrow();
   expect(readSpy).toBeCalledWith(someFile);
   expect(writeSpy).toBeCalledTimes(1);
+  console.log(writeSpy.mock.calls[0][0].toString());
+  console.log(expectedVal);
   expect(writeSpy).toBeCalledWith(Buffer.from(expectedVal));
   readSpy.mockClear();
 };
