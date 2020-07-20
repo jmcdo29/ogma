@@ -38,15 +38,15 @@ There is also the `printError` method on the `Ogma` class thta takes care of pri
 If for tracing purposes you'd like to add a context to the log, or an application name, you can pass the context to the method related to the logLevel (such as `ogma.debug('debug message, SomeClass.name, 'NestJS')` and Ogma will print
 
 ```sh
-[2019-12-19T23:01:23.900Z] [NestJS] 34760 [SomeClass] [Debug]| debug message
+[2019-12-19T23:01:23.900Z] [hostname] [NestJS] 34760 [SomeClass] [Debug]| debug message
 ```
 
-> Note: If colors are enabled, application will print in Yellow and context will print in Cyan.
+> Note: If colors are enabled, hostname will print in magenta application will print in Yellow and context will print in Cyan.
 
 When application and context are both present, Ogma will print your logs in a form as follows
 
 ```sh
-[ISOString Date] [Application] PID [Context] [LogLevel]| message
+[ISOString Date] [hostname] [Application] PID [Context] [LogLevel]| message
 ```
 
 Examples can be seen below. The JSON structure follows the same form with log level and message being the last two properties.
@@ -107,10 +107,10 @@ I said the logs were beautiful, and to me they absolutely are. Each log is match
 
 ```shell
 # ogma.log('hello')
-[2019-12-11T22:54:58.462Z] 34760 [INFO] | hello
+[2019-12-11T22:54:58.462Z] [hostname] 34760 [INFO] | hello
 
 # ogma.log({a: () => 'hello', b: {c: 'nested'}, d: this});
-[2019-12-11T22:56:02.502Z] 34760 [INFO] |
+[2019-12-11T22:56:02.502Z] [hostname] 34760 [INFO] |
 {
   "a": "[Function]",
   "b": {

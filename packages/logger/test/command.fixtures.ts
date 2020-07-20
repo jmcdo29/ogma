@@ -1,4 +1,8 @@
+import { hostname } from 'os';
 import { OgmaLog } from '../src/interfaces/ogma-log';
+import { color, LogLevel } from '../src';
+
+process.stdout.hasColors = () => true;
 
 export interface OgmaLogSet {
   silly: OgmaLog;
@@ -34,171 +38,187 @@ export const logKeys = [
 
 const time = '2020-01-14T05:47:48.091Z';
 const pid = 13940;
-const hello = 'world';
+const hello = { hello: 'world' };
 const application = 'TestClass';
 const context = 'TestMethod';
+const host = hostname();
 
-const sillyJSON = {
-  time,
-  pid,
-  level: 'SILLY' as const,
-  hello,
-};
-const fineJSON = {
-  time,
-  pid,
-  level: 'FINE' as const,
-  hello,
-};
-const debugJSON = {
-  time,
-  pid,
-  level: 'DEBUG' as const,
-  hello,
-};
-const infoJSON = {
-  time,
-  pid,
-  level: 'INFO' as const,
-  hello,
-};
-const warnJSON = {
-  time,
-  pid,
-  level: 'WARN' as const,
-  hello,
-};
-const errorJSON = {
-  time,
-  pid,
-  level: 'ERROR' as const,
-  hello,
-};
-const fatalJSON = {
-  time,
-  pid,
-  level: 'FATAL' as const,
-  hello,
-};
+function ogmaObjectJSON(level: keyof typeof LogLevel): OgmaLog {
+  return {
+    time,
+    pid,
+    level,
+    ...hello,
+    hostname: host,
+  };
+}
 
 const noAppNoConJSON: OgmaLogSet = {
-  silly: sillyJSON,
-  fine: fineJSON,
-  debug: debugJSON,
-  info: infoJSON,
-  warn: warnJSON,
-  error: errorJSON,
-  fatal: fatalJSON,
+  silly: ogmaObjectJSON('SILLY'),
+  fine: ogmaObjectJSON('FINE'),
+  debug: ogmaObjectJSON('DEBUG'),
+  info: ogmaObjectJSON('INFO'),
+  warn: ogmaObjectJSON('WARN'),
+  error: ogmaObjectJSON('ERROR'),
+  fatal: ogmaObjectJSON('FATAL'),
 };
 
 const noAppJSON: OgmaLogSet = {
-  silly: { ...sillyJSON, context },
-  fine: { ...fineJSON, context },
-  debug: { ...debugJSON, context },
-  info: { ...infoJSON, context },
-  warn: { ...warnJSON, context },
-  error: { ...errorJSON, context },
-  fatal: { ...fatalJSON, context },
+  silly: { ...ogmaObjectJSON('SILLY'), context },
+  fine: { ...ogmaObjectJSON('FINE'), context },
+  debug: { ...ogmaObjectJSON('DEBUG'), context },
+  info: { ...ogmaObjectJSON('INFO'), context },
+  warn: { ...ogmaObjectJSON('WARN'), context },
+  error: { ...ogmaObjectJSON('ERROR'), context },
+  fatal: { ...ogmaObjectJSON('FATAL'), context },
 };
 
 const noConJSON: OgmaLogSet = {
-  silly: { ...sillyJSON, application },
-  fine: { ...fineJSON, application },
-  debug: { ...debugJSON, application },
-  info: { ...infoJSON, application },
-  warn: { ...warnJSON, application },
-  error: { ...errorJSON, application },
-  fatal: { ...fatalJSON, application },
+  silly: { ...ogmaObjectJSON('SILLY'), application },
+  fine: { ...ogmaObjectJSON('FINE'), application },
+  debug: { ...ogmaObjectJSON('DEBUG'), application },
+  info: { ...ogmaObjectJSON('INFO'), application },
+  warn: { ...ogmaObjectJSON('WARN'), application },
+  error: { ...ogmaObjectJSON('ERROR'), application },
+  fatal: { ...ogmaObjectJSON('FATAL'), application },
 };
 
 export const fullJSON: OgmaLogSet = {
-  silly: { ...sillyJSON, context, application },
-  fine: { ...fineJSON, context, application },
-  debug: { ...debugJSON, context, application },
-  info: { ...infoJSON, context, application },
-  warn: { ...warnJSON, context, application },
-  error: { ...errorJSON, context, application },
-  fatal: { ...fatalJSON, context, application },
+  silly: { ...ogmaObjectJSON('SILLY'), context, application },
+  fine: { ...ogmaObjectJSON('FINE'), context, application },
+  debug: { ...ogmaObjectJSON('DEBUG'), context, application },
+  info: { ...ogmaObjectJSON('INFO'), context, application },
+  warn: { ...ogmaObjectJSON('WARN'), context, application },
+  error: { ...ogmaObjectJSON('ERROR'), context, application },
+  fatal: { ...ogmaObjectJSON('FATAL'), context, application },
 };
+
+function hydrateNoAppNoConFactory(level: string): string {
+  return `[${time}] ${color.magenta(
+    '[' + host + ']',
+  )} ${pid} ${level}| ${JSON.stringify(hello)}\n`;
+}
 
 const hydratedNoAppNoCon: ExpectedOgmaOutput = {
-  silly: `[${time}] ${pid} \u001b[35m[SILLY]\u001b[0m| {"hello":"world"}\n`,
-  fine: `[${time}] ${pid} \u001b[32m[FINE] \u001b[0m| {"hello":"world"}\n`,
-  debug: `[${time}] ${pid} \u001b[34m[DEBUG]\u001b[0m| {"hello":"world"}\n`,
-  info: `[${time}] ${pid} \u001b[36m[INFO] \u001b[0m| {"hello":"world"}\n`,
-  warn: `[${time}] ${pid} \u001b[33m[WARN] \u001b[0m| {"hello":"world"}\n`,
-  error: `[${time}] ${pid} \u001b[31m[ERROR]\u001b[0m| {"hello":"world"}\n`,
-  fatal: `[${time}] ${pid} \u001b[31m[FATAL]\u001b[0m| {"hello":"world"}\n`,
+  silly: hydrateNoAppNoConFactory(color.magenta('[SILLY]')),
+  fine: hydrateNoAppNoConFactory(color.green('[FINE] ')),
+  debug: hydrateNoAppNoConFactory(color.blue('[DEBUG]')),
+  info: hydrateNoAppNoConFactory(color.cyan('[INFO] ')),
+  warn: hydrateNoAppNoConFactory(color.yellow('[WARN] ')),
+  error: hydrateNoAppNoConFactory(color.red('[ERROR]')),
+  fatal: hydrateNoAppNoConFactory(color.red('[FATAL]')),
 };
+
+function hydrateNoConFactory(level: string): string {
+  return `[${time}] ${color.magenta('[' + host + ']')} ${color.yellow(
+    '[' + application + ']',
+  )} ${pid} ${level}| ${JSON.stringify(hello)}\n`;
+}
 
 const hydratedNoCon: ExpectedOgmaOutput = {
-  silly: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[35m[SILLY]\u001b[0m| {"hello":"world"}\n`,
-  fine: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[32m[FINE] \u001b[0m| {"hello":"world"}\n`,
-  debug: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[34m[DEBUG]\u001b[0m| {"hello":"world"}\n`,
-  info: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[INFO] \u001b[0m| {"hello":"world"}\n`,
-  warn: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[33m[WARN] \u001b[0m| {"hello":"world"}\n`,
-  error: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[31m[ERROR]\u001b[0m| {"hello":"world"}\n`,
-  fatal: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[31m[FATAL]\u001b[0m| {"hello":"world"}\n`,
+  silly: hydrateNoConFactory(color.magenta('[SILLY]')),
+  fine: hydrateNoConFactory(color.green('[FINE] ')),
+  debug: hydrateNoConFactory(color.blue('[DEBUG]')),
+  info: hydrateNoConFactory(color.cyan('[INFO] ')),
+  warn: hydrateNoConFactory(color.yellow('[WARN] ')),
+  error: hydrateNoConFactory(color.red('[ERROR]')),
+  fatal: hydrateNoConFactory(color.red('[FATAL]')),
 };
+
+function hydrateNoAppFactory(level: string): string {
+  return `[${time}] ${color.magenta('[' + host + ']')} ${pid} ${color.cyan(
+    '[' + context + ']',
+  )} ${level}| ${JSON.stringify(hello)}\n`;
+}
 
 const hydratedNoApp: ExpectedOgmaOutput = {
-  silly: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[35m[SILLY]\u001b[0m| {"hello":"world"}\n`,
-  fine: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[32m[FINE] \u001b[0m| {"hello":"world"}\n`,
-  debug: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[34m[DEBUG]\u001b[0m| {"hello":"world"}\n`,
-  info: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[36m[INFO] \u001b[0m| {"hello":"world"}\n`,
-  warn: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[33m[WARN] \u001b[0m| {"hello":"world"}\n`,
-  error: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[31m[ERROR]\u001b[0m| {"hello":"world"}\n`,
-  fatal: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[31m[FATAL]\u001b[0m| {"hello":"world"}\n`,
+  silly: hydrateNoAppFactory(color.magenta('[SILLY]')),
+  fine: hydrateNoAppFactory(color.green('[FINE] ')),
+  debug: hydrateNoAppFactory(color.blue('[DEBUG]')),
+  info: hydrateNoAppFactory(color.cyan('[INFO] ')),
+  warn: hydrateNoAppFactory(color.yellow('[WARN] ')),
+  error: hydrateNoAppFactory(color.red('[ERROR]')),
+  fatal: hydrateNoAppFactory(color.red('[FATAL]')),
 };
+
+function hydrateFullFactory(level: string): string {
+  return `[${time}] ${color.magenta('[' + host + ']')} ${color.yellow(
+    '[' + application + ']',
+  )} ${pid} ${color.cyan('[' + context + ']')} ${level}| ${JSON.stringify(
+    hello,
+  )}\n`;
+}
 
 const hydratedFull: ExpectedOgmaOutput = {
-  silly: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[35m[SILLY]\u001b[0m| {"hello":"world"}\n`,
-  fine: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[32m[FINE] \u001b[0m| {"hello":"world"}\n`,
-  debug: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[34m[DEBUG]\u001b[0m| {"hello":"world"}\n`,
-  info: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[36m[INFO] \u001b[0m| {"hello":"world"}\n`,
-  warn: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[33m[WARN] \u001b[0m| {"hello":"world"}\n`,
-  error: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[31m[ERROR]\u001b[0m| {"hello":"world"}\n`,
-  fatal: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[31m[FATAL]\u001b[0m| {"hello":"world"}\n`,
+  silly: hydrateFullFactory(color.magenta('[SILLY]')),
+  fine: hydrateFullFactory(color.green('[FINE] ')),
+  debug: hydrateFullFactory(color.blue('[DEBUG]')),
+  info: hydrateFullFactory(color.cyan('[INFO] ')),
+  warn: hydrateFullFactory(color.yellow('[WARN] ')),
+  error: hydrateFullFactory(color.red('[ERROR]')),
+  fatal: hydrateFullFactory(color.red('[FATAL]')),
 };
+
+function hydrateNoAppNoConNoColorFactory(level: string): string {
+  return `[${time}] [${host}] ${pid} ${level}| ${JSON.stringify(hello)}\n`;
+}
 
 const hydratedNoAppNoConNoColor: ExpectedOgmaOutput = {
-  silly: `[${time}] ${pid} [SILLY]| {"hello":"world"}\n`,
-  fine: `[${time}] ${pid} [FINE] | {"hello":"world"}\n`,
-  debug: `[${time}] ${pid} [DEBUG]| {"hello":"world"}\n`,
-  info: `[${time}] ${pid} [INFO] | {"hello":"world"}\n`,
-  warn: `[${time}] ${pid} [WARN] | {"hello":"world"}\n`,
-  error: `[${time}] ${pid} [ERROR]| {"hello":"world"}\n`,
-  fatal: `[${time}] ${pid} [FATAL]| {"hello":"world"}\n`,
+  silly: hydrateNoAppNoConNoColorFactory('[SILLY]'),
+  fine: hydrateNoAppNoConNoColorFactory('[FINE] '),
+  debug: hydrateNoAppNoConNoColorFactory('[DEBUG]'),
+  info: hydrateNoAppNoConNoColorFactory('[INFO] '),
+  warn: hydrateNoAppNoConNoColorFactory('[WARN] '),
+  error: hydrateNoAppNoConNoColorFactory('[ERROR]'),
+  fatal: hydrateNoAppNoConNoColorFactory('[FATAL]'),
 };
+
+function hydrateNoConNoColorFactory(level: string): string {
+  return `[${time}] [${host}] [${application}] ${pid} ${level}| ${JSON.stringify(
+    hello,
+  )}\n`;
+}
 
 const hydratedNoConNoColor: ExpectedOgmaOutput = {
-  silly: `[${time}] [${application}] ${pid} [SILLY]| {"hello":"world"}\n`,
-  fine: `[${time}] [${application}] ${pid} [FINE] | {"hello":"world"}\n`,
-  debug: `[${time}] [${application}] ${pid} [DEBUG]| {"hello":"world"}\n`,
-  info: `[${time}] [${application}] ${pid} [INFO] | {"hello":"world"}\n`,
-  warn: `[${time}] [${application}] ${pid} [WARN] | {"hello":"world"}\n`,
-  error: `[${time}] [${application}] ${pid} [ERROR]| {"hello":"world"}\n`,
-  fatal: `[${time}] [${application}] ${pid} [FATAL]| {"hello":"world"}\n`,
+  silly: hydrateNoConNoColorFactory('[SILLY]'),
+  fine: hydrateNoConNoColorFactory('[FINE] '),
+  debug: hydrateNoConNoColorFactory('[DEBUG]'),
+  info: hydrateNoConNoColorFactory('[INFO] '),
+  warn: hydrateNoConNoColorFactory('[WARN] '),
+  error: hydrateNoConNoColorFactory('[ERROR]'),
+  fatal: hydrateNoConNoColorFactory('[FATAL]'),
 };
+
+function hydrateNoAppNoColorFactory(level: string): string {
+  return `[${time}] [${host}] ${pid} [${context}] ${level}| ${JSON.stringify(
+    hello,
+  )}\n`;
+}
 
 const hydratedNoAppNoColor: ExpectedOgmaOutput = {
-  silly: `[${time}] ${pid} [${context}] [SILLY]| {"hello":"world"}\n`,
-  fine: `[${time}] ${pid} [${context}] [FINE] | {"hello":"world"}\n`,
-  debug: `[${time}] ${pid} [${context}] [DEBUG]| {"hello":"world"}\n`,
-  info: `[${time}] ${pid} [${context}] [INFO] | {"hello":"world"}\n`,
-  warn: `[${time}] ${pid} [${context}] [WARN] | {"hello":"world"}\n`,
-  error: `[${time}] ${pid} [${context}] [ERROR]| {"hello":"world"}\n`,
-  fatal: `[${time}] ${pid} [${context}] [FATAL]| {"hello":"world"}\n`,
+  silly: hydrateNoAppNoColorFactory('[SILLY]'),
+  fine: hydrateNoAppNoColorFactory('[FINE] '),
+  debug: hydrateNoAppNoColorFactory('[DEBUG]'),
+  info: hydrateNoAppNoColorFactory('[INFO] '),
+  warn: hydrateNoAppNoColorFactory('[WARN] '),
+  error: hydrateNoAppNoColorFactory('[ERROR]'),
+  fatal: hydrateNoAppNoColorFactory('[FATAL]'),
 };
 
+function hydrateFullNoColorFactory(level: string): string {
+  return `[${time}] [${host}] [${application}] ${pid} [${context}] ${level}| ${JSON.stringify(
+    hello,
+  )}\n`;
+}
+
 const hydratedFullNoColor: ExpectedOgmaOutput = {
-  silly: `[${time}] [${application}] ${pid} [${context}] [SILLY]| {"hello":"world"}\n`,
-  fine: `[${time}] [${application}] ${pid} [${context}] [FINE] | {"hello":"world"}\n`,
-  debug: `[${time}] [${application}] ${pid} [${context}] [DEBUG]| {"hello":"world"}\n`,
-  info: `[${time}] [${application}] ${pid} [${context}] [INFO] | {"hello":"world"}\n`,
-  warn: `[${time}] [${application}] ${pid} [${context}] [WARN] | {"hello":"world"}\n`,
-  error: `[${time}] [${application}] ${pid} [${context}] [ERROR]| {"hello":"world"}\n`,
-  fatal: `[${time}] [${application}] ${pid} [${context}] [FATAL]| {"hello":"world"}\n`,
+  silly: hydrateFullNoColorFactory('[SILLY]'),
+  fine: hydrateFullNoColorFactory('[FINE] '),
+  debug: hydrateFullNoColorFactory('[DEBUG]'),
+  info: hydrateFullNoColorFactory('[INFO] '),
+  warn: hydrateFullNoColorFactory('[WARN] '),
+  error: hydrateFullNoColorFactory('[ERROR]'),
+  fatal: hydrateFullNoColorFactory('[FATAL]'),
 };
 
 export const jsonLogs = {
@@ -218,167 +238,174 @@ export const jsonLogs = {
 
 const message = 'hello';
 
-const sillyString = {
-  time,
-  pid,
-  level: 'SILLY' as const,
-  message,
-};
-const fineString = {
-  time,
-  pid,
-  level: 'FINE' as const,
-  message,
-};
-const debugString = {
-  time,
-  pid,
-  level: 'DEBUG' as const,
-  message,
-};
-const infoString = {
-  time,
-  pid,
-  level: 'INFO' as const,
-  message,
-};
-const warnString = {
-  time,
-  pid,
-  level: 'WARN' as const,
-  message,
-};
-const errorString = {
-  time,
-  pid,
-  level: 'ERROR' as const,
-  message,
-};
-const fatalString = {
-  time,
-  pid,
-  level: 'FATAL' as const,
-  message,
-};
+function ogmaStringJSON(level: keyof typeof LogLevel): OgmaLog {
+  return {
+    time,
+    pid,
+    level,
+    message,
+    hostname: host,
+  };
+}
 
 const noAppNoConString: OgmaLogSet = {
-  silly: sillyString,
-  fine: fineString,
-  debug: debugString,
-  info: infoString,
-  warn: warnString,
-  error: errorString,
-  fatal: fatalString,
+  silly: ogmaStringJSON('SILLY'),
+  fine: ogmaStringJSON('FINE'),
+  debug: ogmaStringJSON('DEBUG'),
+  info: ogmaStringJSON('INFO'),
+  warn: ogmaStringJSON('WARN'),
+  error: ogmaStringJSON('ERROR'),
+  fatal: ogmaStringJSON('FATAL'),
 };
 
 const noAppString: OgmaLogSet = {
-  silly: { ...sillyString, context },
-  fine: { ...fineString, context },
-  debug: { ...debugString, context },
-  info: { ...infoString, context },
-  warn: { ...warnString, context },
-  error: { ...errorString, context },
-  fatal: { ...fatalString, context },
+  silly: { ...ogmaStringJSON('SILLY'), context },
+  fine: { ...ogmaStringJSON('FINE'), context },
+  debug: { ...ogmaStringJSON('DEBUG'), context },
+  info: { ...ogmaStringJSON('INFO'), context },
+  warn: { ...ogmaStringJSON('WARN'), context },
+  error: { ...ogmaStringJSON('ERROR'), context },
+  fatal: { ...ogmaStringJSON('FATAL'), context },
 };
 
 const noConString: OgmaLogSet = {
-  silly: { ...sillyString, application },
-  fine: { ...fineString, application },
-  debug: { ...debugString, application },
-  info: { ...infoString, application },
-  warn: { ...warnString, application },
-  error: { ...errorString, application },
-  fatal: { ...fatalString, application },
+  silly: { ...ogmaStringJSON('SILLY'), application },
+  fine: { ...ogmaStringJSON('FINE'), application },
+  debug: { ...ogmaStringJSON('DEBUG'), application },
+  info: { ...ogmaStringJSON('INFO'), application },
+  warn: { ...ogmaStringJSON('WARN'), application },
+  error: { ...ogmaStringJSON('ERROR'), application },
+  fatal: { ...ogmaStringJSON('FATAL'), application },
 };
 
 const fullString: OgmaLogSet = {
-  silly: { ...sillyString, context, application },
-  fine: { ...fineString, context, application },
-  debug: { ...debugString, context, application },
-  info: { ...infoString, context, application },
-  warn: { ...warnString, context, application },
-  error: { ...errorString, context, application },
-  fatal: { ...fatalString, context, application },
+  silly: { ...ogmaStringJSON('SILLY'), context, application },
+  fine: { ...ogmaStringJSON('FINE'), context, application },
+  debug: { ...ogmaStringJSON('DEBUG'), context, application },
+  info: { ...ogmaStringJSON('INFO'), context, application },
+  warn: { ...ogmaStringJSON('WARN'), context, application },
+  error: { ...ogmaStringJSON('ERROR'), context, application },
+  fatal: { ...ogmaStringJSON('FATAL'), context, application },
 };
+
+function hydrateNoAppNoConStringFactory(level: string): string {
+  return `[${time}] ${color.magenta(
+    '[' + host + ']',
+  )} ${pid} ${level}| ${message}\n`;
+}
 
 const hydratedNoAppNoConString: ExpectedOgmaOutput = {
-  silly: `[${time}] ${pid} \u001b[35m[SILLY]\u001b[0m| hello\n`,
-  fine: `[${time}] ${pid} \u001b[32m[FINE] \u001b[0m| hello\n`,
-  debug: `[${time}] ${pid} \u001b[34m[DEBUG]\u001b[0m| hello\n`,
-  info: `[${time}] ${pid} \u001b[36m[INFO] \u001b[0m| hello\n`,
-  warn: `[${time}] ${pid} \u001b[33m[WARN] \u001b[0m| hello\n`,
-  error: `[${time}] ${pid} \u001b[31m[ERROR]\u001b[0m| hello\n`,
-  fatal: `[${time}] ${pid} \u001b[31m[FATAL]\u001b[0m| hello\n`,
+  silly: hydrateNoAppNoConStringFactory(color.magenta('[SILLY]')),
+  fine: hydrateNoAppNoConStringFactory(color.green('[FINE] ')),
+  debug: hydrateNoAppNoConStringFactory(color.blue('[DEBUG]')),
+  info: hydrateNoAppNoConStringFactory(color.cyan('[INFO] ')),
+  warn: hydrateNoAppNoConStringFactory(color.yellow('[WARN] ')),
+  error: hydrateNoAppNoConStringFactory(color.red('[ERROR]')),
+  fatal: hydrateNoAppNoConStringFactory(color.red('[FATAL]')),
 };
+
+function hydrateNoConStringFactory(level: string): string {
+  return `[${time}] ${color.magenta('[' + host + ']')} ${color.yellow(
+    '[' + application + ']',
+  )} ${pid} ${level}| ${message}\n`;
+}
 
 const hydratedNoConString: ExpectedOgmaOutput = {
-  silly: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[35m[SILLY]\u001b[0m| hello\n`,
-  fine: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[32m[FINE] \u001b[0m| hello\n`,
-  debug: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[34m[DEBUG]\u001b[0m| hello\n`,
-  info: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[INFO] \u001b[0m| hello\n`,
-  warn: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[33m[WARN] \u001b[0m| hello\n`,
-  error: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[31m[ERROR]\u001b[0m| hello\n`,
-  fatal: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[31m[FATAL]\u001b[0m| hello\n`,
+  silly: hydrateNoConStringFactory(color.magenta('[SILLY]')),
+  fine: hydrateNoConStringFactory(color.green('[FINE] ')),
+  debug: hydrateNoConStringFactory(color.blue('[DEBUG]')),
+  info: hydrateNoConStringFactory(color.cyan('[INFO] ')),
+  warn: hydrateNoConStringFactory(color.yellow('[WARN] ')),
+  error: hydrateNoConStringFactory(color.red('[ERROR]')),
+  fatal: hydrateNoConStringFactory(color.red('[FATAL]')),
 };
+
+function hydrateNoAppStringFactory(level: string): string {
+  return `[${time}] ${color.magenta('[' + host + ']')} ${pid} ${color.cyan(
+    '[' + context + ']',
+  )} ${level}| ${message}\n`;
+}
 
 const hydratedNoAppString: ExpectedOgmaOutput = {
-  silly: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[35m[SILLY]\u001b[0m| hello\n`,
-  fine: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[32m[FINE] \u001b[0m| hello\n`,
-  debug: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[34m[DEBUG]\u001b[0m| hello\n`,
-  info: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[36m[INFO] \u001b[0m| hello\n`,
-  warn: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[33m[WARN] \u001b[0m| hello\n`,
-  error: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[31m[ERROR]\u001b[0m| hello\n`,
-  fatal: `[${time}] ${pid} \u001b[36m[${context}]\u001b[0m \u001b[31m[FATAL]\u001b[0m| hello\n`,
+  silly: hydrateNoAppStringFactory(color.magenta('[SILLY]')),
+  fine: hydrateNoAppStringFactory(color.green('[FINE] ')),
+  debug: hydrateNoAppStringFactory(color.blue('[DEBUG]')),
+  info: hydrateNoAppStringFactory(color.cyan('[INFO] ')),
+  warn: hydrateNoAppStringFactory(color.yellow('[WARN] ')),
+  error: hydrateNoAppStringFactory(color.red('[ERROR]')),
+  fatal: hydrateNoAppStringFactory(color.red('[FATAL]')),
 };
+
+function hydrateFullStringFactory(level: string): string {
+  return `[${time}] ${color.magenta('[' + host + ']')} ${color.yellow(
+    '[' + application + ']',
+  )} ${pid} ${color.cyan('[' + context + ']')} ${level}| ${message}\n`;
+}
 
 const hydratedFullString: ExpectedOgmaOutput = {
-  silly: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[35m[SILLY]\u001b[0m| hello\n`,
-  fine: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[32m[FINE] \u001b[0m| hello\n`,
-  debug: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[34m[DEBUG]\u001b[0m| hello\n`,
-  info: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[36m[INFO] \u001b[0m| hello\n`,
-  warn: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[33m[WARN] \u001b[0m| hello\n`,
-  error: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[31m[ERROR]\u001b[0m| hello\n`,
-  fatal: `[${time}] \u001b[33m[${application}]\u001b[0m ${pid} \u001b[36m[${context}]\u001b[0m \u001b[31m[FATAL]\u001b[0m| hello\n`,
+  silly: hydrateFullStringFactory(color.magenta('[SILLY]')),
+  fine: hydrateFullStringFactory(color.green('[FINE] ')),
+  debug: hydrateFullStringFactory(color.blue('[DEBUG]')),
+  info: hydrateFullStringFactory(color.cyan('[INFO] ')),
+  warn: hydrateFullStringFactory(color.yellow('[WARN] ')),
+  error: hydrateFullStringFactory(color.red('[ERROR]')),
+  fatal: hydrateFullStringFactory(color.red('[FATAL]')),
 };
+
+function hydrateNoAppNoConNoColorStringFactory(level: string): string {
+  return `[${time}] [${host}] ${pid} ${level}| ${message}\n`;
+}
 
 const hydratedNoAppNoConNoColorString: ExpectedOgmaOutput = {
-  silly: `[${time}] ${pid} [SILLY]| hello\n`,
-  fine: `[${time}] ${pid} [FINE] | hello\n`,
-  debug: `[${time}] ${pid} [DEBUG]| hello\n`,
-  info: `[${time}] ${pid} [INFO] | hello\n`,
-  warn: `[${time}] ${pid} [WARN] | hello\n`,
-  error: `[${time}] ${pid} [ERROR]| hello\n`,
-  fatal: `[${time}] ${pid} [FATAL]| hello\n`,
+  silly: hydrateNoAppNoConNoColorStringFactory('[SILLY]'),
+  fine: hydrateNoAppNoConNoColorStringFactory('[FINE] '),
+  debug: hydrateNoAppNoConNoColorStringFactory('[DEBUG]'),
+  info: hydrateNoAppNoConNoColorStringFactory('[INFO] '),
+  warn: hydrateNoAppNoConNoColorStringFactory('[WARN] '),
+  error: hydrateNoAppNoConNoColorStringFactory('[ERROR]'),
+  fatal: hydrateNoAppNoConNoColorStringFactory('[FATAL]'),
 };
+
+function hydrateNoConNoColorStringFactory(level: string): string {
+  return `[${time}] [${host}] [${application}] ${pid} ${level}| ${message}\n`;
+}
 
 const hydratedNoConNoColorString: ExpectedOgmaOutput = {
-  silly: `[${time}] [${application}] ${pid} [SILLY]| hello\n`,
-  fine: `[${time}] [${application}] ${pid} [FINE] | hello\n`,
-  debug: `[${time}] [${application}] ${pid} [DEBUG]| hello\n`,
-  info: `[${time}] [${application}] ${pid} [INFO] | hello\n`,
-  warn: `[${time}] [${application}] ${pid} [WARN] | hello\n`,
-  error: `[${time}] [${application}] ${pid} [ERROR]| hello\n`,
-  fatal: `[${time}] [${application}] ${pid} [FATAL]| hello\n`,
+  silly: hydrateNoConNoColorStringFactory('[SILLY]'),
+  fine: hydrateNoConNoColorStringFactory('[FINE] '),
+  debug: hydrateNoConNoColorStringFactory('[DEBUG]'),
+  info: hydrateNoConNoColorStringFactory('[INFO] '),
+  warn: hydrateNoConNoColorStringFactory('[WARN] '),
+  error: hydrateNoConNoColorStringFactory('[ERROR]'),
+  fatal: hydrateNoConNoColorStringFactory('[FATAL]'),
 };
+
+function hydrateNoAppNoColorStringFactory(level: string): string {
+  return `[${time}] [${host}] ${pid} [${context}] ${level}| ${message}\n`;
+}
 
 const hydratedNoAppNoColorString: ExpectedOgmaOutput = {
-  silly: `[${time}] ${pid} [${context}] [SILLY]| hello\n`,
-  fine: `[${time}] ${pid} [${context}] [FINE] | hello\n`,
-  debug: `[${time}] ${pid} [${context}] [DEBUG]| hello\n`,
-  info: `[${time}] ${pid} [${context}] [INFO] | hello\n`,
-  warn: `[${time}] ${pid} [${context}] [WARN] | hello\n`,
-  error: `[${time}] ${pid} [${context}] [ERROR]| hello\n`,
-  fatal: `[${time}] ${pid} [${context}] [FATAL]| hello\n`,
+  silly: hydrateNoAppNoColorStringFactory('[SILLY]'),
+  fine: hydrateNoAppNoColorStringFactory('[FINE] '),
+  debug: hydrateNoAppNoColorStringFactory('[DEBUG]'),
+  info: hydrateNoAppNoColorStringFactory('[INFO] '),
+  warn: hydrateNoAppNoColorStringFactory('[WARN] '),
+  error: hydrateNoAppNoColorStringFactory('[ERROR]'),
+  fatal: hydrateNoAppNoColorStringFactory('[FATAL]'),
 };
 
+function hydrateFullNoColorStringFactory(level: string): string {
+  return `[${time}] [${host}] [${application}] ${pid} [${context}] ${level}| ${message}\n`;
+}
+
 const hydratedFullNoColorString: ExpectedOgmaOutput = {
-  silly: `[${time}] [${application}] ${pid} [${context}] [SILLY]| hello\n`,
-  fine: `[${time}] [${application}] ${pid} [${context}] [FINE] | hello\n`,
-  debug: `[${time}] [${application}] ${pid} [${context}] [DEBUG]| hello\n`,
-  info: `[${time}] [${application}] ${pid} [${context}] [INFO] | hello\n`,
-  warn: `[${time}] [${application}] ${pid} [${context}] [WARN] | hello\n`,
-  error: `[${time}] [${application}] ${pid} [${context}] [ERROR]| hello\n`,
-  fatal: `[${time}] [${application}] ${pid} [${context}] [FATAL]| hello\n`,
+  silly: hydrateFullNoColorStringFactory('[SILLY]'),
+  fine: hydrateFullNoColorStringFactory('[FINE] '),
+  debug: hydrateFullNoColorStringFactory('[DEBUG]'),
+  info: hydrateFullNoColorStringFactory('[INFO] '),
+  warn: hydrateFullNoColorStringFactory('[WARN] '),
+  error: hydrateFullNoColorStringFactory('[ERROR]'),
+  fatal: hydrateFullNoColorStringFactory('[FATAL]'),
 };
 
 export const stringLogs = {

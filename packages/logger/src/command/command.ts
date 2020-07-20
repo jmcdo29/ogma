@@ -70,6 +70,14 @@ function getContext(context: string, useColor: boolean): string {
   return context;
 }
 
+function getHostname(hostname: string, useColor: boolean): string {
+  hostname = wrapInParens(hostname);
+  if (useColor) {
+    hostname = colorizeCLI(hostname, Color.MAGENTA);
+  }
+  return hostname;
+}
+
 async function rehydrate(
   fileName: string,
   useColor: boolean = process.stdout.isTTY,
@@ -99,7 +107,7 @@ async function rehydrate(
   logs
     .map((log) => JSON.parse(log))
     .forEach((log: OgmaLog) => {
-      const { time, application, context, pid, level, ...rest } = log;
+      const { time, hostname, application, context, pid, level, ...rest } = log;
       let message: string | Record<string, unknown>;
       if (rest.message) {
         message = getMessage(log);
@@ -107,6 +115,7 @@ async function rehydrate(
         message = getMessageFromJSON(rest);
       }
       let logMessage = wrapInParens(time) + ' ';
+      logMessage += getHostname(hostname, useColor) + ' ';
       if (application) {
         logMessage += getApplication(application, useColor) + ' ';
       }
