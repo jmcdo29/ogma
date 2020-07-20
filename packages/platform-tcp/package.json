@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-tcp",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A plugin for the OgmaInterceptor to properly handle microservice requests from tcp protocols",
   "keywords": [
     "tcp",
@@ -38,10 +38,10 @@
   "devDependencies": {
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
-    "@ogma/nestjs-module": "^0.1.2",
+    "@ogma/nestjs-module": "^0.2.0",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
-    "@ogma/nestjs-module": "^0.1.0"
+    "@ogma/nestjs-module": "^0.2.0"
   }
 }
