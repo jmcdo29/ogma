@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/jmcdo29/ogma/compare/v0.1.2...v0.2.1) (2020-07-25)
+
+### Bug Fixes
+
+- **all:** fixes OgmaCoreModule not configured ([c7cd6d7](https://github.com/jmcdo29/ogma/commit/c7cd6d75340e4520153c57e9bd49b4f675292874)), closes [#106](https://github.com/jmcdo29/ogma/issues/106)
+
+### Features
+
+- **module:** adds export for `createProviderToken` ([9b0b43f](https://github.com/jmcdo29/ogma/commit/9b0b43f75030cdf9f071c17493a37f4809c18061))
+
+# 0.2.0 (2020-07-20)
+
+### Features
+
+- **logger:** adds hostname to the log output ([a1f2b8d](https://github.com/jmcdo29/ogma/commit/a1f2b8d0e09ab625143c610781849bfd90fdefc4))
+
 # [0.2.0](https://github.com/jmcdo29/ogma/compare/v0.1.2...v0.2.0) (2020-07-20)
 
 ### Features
