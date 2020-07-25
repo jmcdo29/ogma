@@ -31,8 +31,10 @@
   ],
   "scripts": {
     "preversion": "yarn run format && yarn run lint && yarn build",
+    "postversion": "yarn build:tools && yarn updatePeerDeps",
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
+    "build:tools": "tsc -p tools/tsconfig.json",
     "benchmark:all": "yarn benchmark:interceptor && yarn benchmark:logger",
     "benchmark:interceptor": "rimraf benchmarks/interceptor/dist && tsc -p benchmarks/interceptor/tsconfig.json && node benchmarks/interceptor/dist/main.js",
     "benchmark:logger": "rimraf benchmarks/logger/dist && tsc -p benchmarks/logger/tsconfig.json && node benchmarks/logger/dist/index.js",
@@ -47,7 +49,8 @@
     "test:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:int": "jest --config jest-integration.config.js",
-    "test:int:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --config jest-integration.config.js"
+    "test:int:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --config jest-integration.config.js",
+    "updatePeerDeps": "node tools/peer-update.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
