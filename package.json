@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "preversion": "yarn run format && yarn run lint && yarn build",
-    "postversion": "yarn build:tools && yarn updatePeerDeps",
+    "version": "yarn build:tools && yarn updatePeerDeps",
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --stream",
     "build:tools": "tsc -p tools/tsconfig.json",

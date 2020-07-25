@@ -3,7 +3,7 @@ lib/
 dist/
 node_modules/
 *.tsbuildinfo
-
+tools/*.js
 
 # Logs
 logs
