@@ -1,12 +1,12 @@
 import { AsyncModuleConfig } from '@golevelup/nestjs-modules';
 import { DynamicModule, Module, Provider } from '@nestjs/common';
-import { OgmaModuleOptions } from './interfaces';
+import { OgmaModuleOptions, Type } from './interfaces';
 import { createLoggerProviders } from './ogma.provider';
 import { OgmaCoreModule } from './ogma-core.module';
 
 @Module({
-  imports: [OgmaCoreModule.Deferred],
-  exports: [OgmaCoreModule],
+  /* imports: [OgmaCoreModule.Deferred],
+  exports: [OgmaCoreModule], */
 })
 export class OgmaModule {
   static forRoot(options: OgmaModuleOptions): DynamicModule {
@@ -25,10 +25,10 @@ export class OgmaModule {
    *
    * @param context string context for the OgmaService to use in logging
    */
-  static forFeature(context: string | (() => any)): DynamicModule {
+  static forFeature(context: string | (() => any) | Type<any>): DynamicModule {
     const providers: Provider[] = createLoggerProviders(context);
     return {
-      imports: [OgmaCoreModule.Deferred],
+      imports: [OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0)],
       module: OgmaModule,
       providers,
       exports: providers,

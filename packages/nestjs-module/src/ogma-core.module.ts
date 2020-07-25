@@ -91,5 +91,5 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
     WebsocketInterceptorService,
   ],
 }) {
-  static Deferred = OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0);
+  // static Deferred = OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0);
 }
