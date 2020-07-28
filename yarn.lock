@@ -3470,7 +3470,7 @@ apollo-server-core@2.15.1:
     subscriptions-transport-ws "^0.9.11"
     ws "^6.0.0"
 
-apollo-server-core@^2.15.1, apollo-server-core@^2.16.0, apollo-server-core@^2.16.1:
+apollo-server-core@^2.15.1, apollo-server-core@^2.16.1:
   version "2.16.1"
   resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-2.16.1.tgz#5b5b8245ab9c0cb6c2367ec19ab855dea6ccea3a"
   integrity sha512-nuwn5ZBbmzPwDetb3FgiFFJlNK7ZBFg8kis/raymrjd3eBGdNcOyMTJDl6J9673X9Xqp+dXQmFYDW/G3G8S1YA==
@@ -3533,13 +3533,13 @@ apollo-server-express@2.16.1, apollo-server-express@^2.0.0:
     subscriptions-transport-ws "^0.9.16"
     type-is "^1.6.16"
 
-apollo-server-fastify@2.16.0, apollo-server-fastify@^2.16.0:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/apollo-server-fastify/-/apollo-server-fastify-2.16.0.tgz#56d701547505de6c98d9d176d5586ed56e14d4c2"
-  integrity sha512-LubZhYT1Avxelds0yu5leU6mCs76dobNSSqhiUVDrh8kPEqWvCSLaSubSuuRt/8T4hv65zO3lihFx0BU7Lf27A==
+apollo-server-fastify@2.16.1, apollo-server-fastify@^2.16.0:
+  version "2.16.1"
+  resolved "https://registry.yarnpkg.com/apollo-server-fastify/-/apollo-server-fastify-2.16.1.tgz#7bf50c8776611250fcf11e5b2eef742b94e24011"
+  integrity sha512-gUej8gIjlsCVeBmLX7AlKxuNpRKq8q/cmhq5hz9ona4lCTeu1SlasyDNyw4QE1YITqMcsk883FY5R0xCoV0xCQ==
   dependencies:
     "@apollographql/graphql-playground-html" "1.6.26"
-    apollo-server-core "^2.16.0"
+    apollo-server-core "^2.16.1"
     apollo-server-types "^0.5.1"
     fastify-accepts "^1.0.0"
     fastify-cors "^0.2.0"
