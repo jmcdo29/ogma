@@ -38,7 +38,7 @@
   "devDependencies": {
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
-    "@nestjs/platform-fastify": "7.3.2",
+    "@nestjs/platform-fastify": "7.4.1",
     "@ogma/nestjs-module": "^0.2.1",
     "fastify": "^2.13.0",
     "rxjs": "^6.5.4"
