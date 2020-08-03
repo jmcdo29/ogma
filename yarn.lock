@@ -10648,9 +10648,9 @@ pino@^5.17.0:
     sonic-boom "^0.7.5"
 
 pino@^6.2.0:
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/pino/-/pino-6.4.1.tgz#6173dcdc1e647ae17ddbc4a412d1f12d3d2ab9b5"
-  integrity sha512-1zDSQworQZw14tvqjuW5aj5GV5oUQpV5Bz5wnpVVltVPBzaOoV1Dv+oKn1xNCz2CCkOyZd+kkdlel9lCLBYl+Q==
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/pino/-/pino-6.5.0.tgz#4d3447c0efa75489936c16071bd3abddbaac7e96"
+  integrity sha512-qDIFPZ2h2AMrp+JIWKFUtejiTv5F/+glbizrG9VNvegSCSK6sqnRmerNM9R98/x3RxwKkIf5kJ9q4chXdBdvJA==
   dependencies:
     fast-redact "^2.0.0"
     fast-safe-stringify "^2.0.7"
