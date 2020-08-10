@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-mqtt",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A plugin for the OgmaInterceptor to properly handle microservice requests from mqtt protocols",
   "keywords": [
     "mqtt",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
-    "@ogma/nestjs-module": "^0.2.1",
+    "@ogma/nestjs-module": "^0.2.2",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {

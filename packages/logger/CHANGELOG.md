@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/jmcdo29/ogma/compare/v0.2.1...v0.2.2) (2020-08-10)
+
+### Features
+
+- **logger:** logs Symbol(name) instead of Symbol to be more clear ([137db86](https://github.com/jmcdo29/ogma/commit/137db8685e0646660fb8c72fdea0efb7624cb566))
+
 ## [0.2.1](https://github.com/jmcdo29/ogma/compare/v0.1.2...v0.2.1) (2020-07-25)
 
 # 0.2.0 (2020-07-20)
