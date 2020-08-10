@@ -84,7 +84,7 @@ export class Ogma {
     const seen = new WeakSet();
     return (key: string, value: any): string => {
       if (typeof value === 'symbol') {
-        return this.wrapInBrackets('Symbol');
+        return this.wrapInBrackets(value.toString());
       }
       if (typeof value === 'function') {
         return this.wrapInBrackets('Function');

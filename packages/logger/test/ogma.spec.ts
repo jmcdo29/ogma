@@ -160,7 +160,7 @@ describe('Ogma Class', () => {
       expect.stringContaining('[Function]'),
     );
     expect(mockStream.write.mock.calls[0][0]).toEqual(
-      expect.stringContaining('[Symbol]'),
+      expect.stringContaining('[Symbol(hello)]'),
     );
   });
   it('should follow the context, application, and message of a json', () => {
