@@ -5723,7 +5723,7 @@ duplexer@^0.1.1:
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
   integrity sha1-rOb/gIwc5mtX0ev5eXessCM0z8E=
 
-duplexify@^3.4.2, duplexify@^3.5.1, duplexify@^3.6.0:
+duplexify@^3.4.2, duplexify@^3.6.0:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/duplexify/-/duplexify-3.7.1.tgz#2a4df5317f6ccfd91f86d6fd25d8d8a103b88309"
   integrity sha512-07z8uv2wMyS51kKhD1KsdXJg5WQ6t93RneqRxUHnskXVtlYYkLqM0gqStQZ3pj073g687jPCHrqNfCzawLYh5g==
@@ -9685,7 +9685,7 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
-mqtt-packet@^6.0.0:
+mqtt-packet@^6.3.2:
   version "6.3.2"
   resolved "https://registry.yarnpkg.com/mqtt-packet/-/mqtt-packet-6.3.2.tgz#a737734a9a64e8cffbad7ad9e116d35b912f2e00"
   integrity sha512-i56+2kN6F57KInGtjjfUXSl4xG8u/zOvfaXFLKFAbBXzWkXOmwcmjaSCBPayf2IQCkQU0+h+S2DizCo3CF6gQA==
@@ -9697,9 +9697,9 @@ mqtt-packet@^6.0.0:
     safe-buffer "^5.1.2"
 
 mqtt@^4.0.1:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/mqtt/-/mqtt-4.1.0.tgz#efcfa4acb8789265b951452142054a5b158bef0f"
-  integrity sha512-dBihVZzaB8p9G/2ktSfamiaHmMnpCpP2du08317ZuEX1kBAbZOG9aMJQ11EChXnOX3GKUeiZYaSITueceQKT2A==
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/mqtt/-/mqtt-4.2.0.tgz#74c65f8b926728485ebe1d55297a7ce08e47996f"
+  integrity sha512-CGMLigAKCp0hknWPM15yuZRbVrfQjZCG9Wn3GXDEfY2chDmUi5GT3UQ3OhTtMi7fELYb2s4Q/QiWv+dECQ7ZQg==
   dependencies:
     base64-js "^1.3.0"
     commist "^1.0.0"
@@ -9709,13 +9709,13 @@ mqtt@^4.0.1:
     es6-map "^0.1.5"
     help-me "^1.0.1"
     inherits "^2.0.3"
-    minimist "^1.2.0"
-    mqtt-packet "^6.0.0"
+    minimist "^1.2.5"
+    mqtt-packet "^6.3.2"
     pump "^3.0.0"
     readable-stream "^2.3.6"
     reinterval "^1.1.0"
     split2 "^3.1.0"
-    websocket-stream "^5.1.2"
+    ws "^7.3.1"
     xtend "^4.0.1"
 
 ms@2.0.0:
@@ -13056,11 +13056,6 @@ uid-number@0.0.6:
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
   integrity sha1-DqEOgDXo61uOREnwbaHHMGY7qoE=
 
-ultron@~1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.1.tgz#9fe1536a10a664a65266a1e3ccf85fd36302bc9c"
-  integrity sha512-UIEXBNeYmKptWH6z8ZnqTeS8fV74zG0/eRU9VGkpzz+LIJNs8W/zM/L+7ctCkRrgbNnnR0xxw4bKOr0cW0N0Og==
-
 umask@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/umask/-/umask-1.1.0.tgz#f29cebf01df517912bb58ff9c4e50fde8e33320d"
@@ -13408,18 +13403,6 @@ webpack@4.43.0:
     watchpack "^1.6.1"
     webpack-sources "^1.4.1"
 
-websocket-stream@^5.1.2:
-  version "5.5.2"
-  resolved "https://registry.yarnpkg.com/websocket-stream/-/websocket-stream-5.5.2.tgz#49d87083d96839f0648f5513bbddd581f496b8a2"
-  integrity sha512-8z49MKIHbGk3C4HtuHWDtYX8mYej1wWabjthC/RupM9ngeukU4IWoM46dgth1UOS/T4/IqgEdCDJuMe2039OQQ==
-  dependencies:
-    duplexify "^3.5.1"
-    inherits "^2.0.1"
-    readable-stream "^2.3.3"
-    safe-buffer "^5.1.2"
-    ws "^3.2.0"
-    xtend "^4.0.0"
-
 websocket@1.0.31:
   version "1.0.31"
   resolved "https://registry.yarnpkg.com/websocket/-/websocket-1.0.31.tgz#e5d0f16c3340ed87670e489ecae6144c79358730"
@@ -13638,19 +13621,10 @@ write@1.0.3:
   dependencies:
     mkdirp "^0.5.1"
 
-ws@7.3.1, ws@^7.1.2, ws@^7.2.3:
+ws@7.3.1, ws@^7.1.2, ws@^7.2.3, ws@^7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.3.1.tgz#d0547bf67f7ce4f12a72dfe31262c68d7dc551c8"
   integrity sha512-D3RuNkynyHmEJIpD2qrgVkc9DQ23OrN/moAwZX4L8DfvszsJxpjQuUq3LMx6HoYji9fbIOBY18XWBsAux1ZZUA==
-
-ws@^3.2.0:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-3.3.3.tgz#f1cf84fe2d5e901ebce94efaece785f187a228f2"
-  integrity sha512-nnWLa/NwZSt4KQJu51MYlCcSQ5g7INpOrOMt4XV8j4dqTXdmlUmSHQ8/oLC069ckre0fRsgfvsKwbTdtKLCDkA==
-  dependencies:
-    async-limiter "~1.0.0"
-    safe-buffer "~5.1.0"
-    ultron "~1.1.0"
 
 ws@^5.2.0:
   version "5.2.2"
