@@ -6482,9 +6482,9 @@ fastify@2.15.1:
     tiny-lru "^7.0.2"
 
 fastify@^2.13.0:
-  version "2.15.2"
-  resolved "https://registry.yarnpkg.com/fastify/-/fastify-2.15.2.tgz#fe7bb7723b5ef50cc28684fc2fabc24b3f9ae010"
-  integrity sha512-Inbodl5a/Vb12m2gjD+RRRSByPJByQ38KdxGS5IT4587S1jIn6gWv7pYELPreoGJgzsN5YfC4xsfpQ2Ju4M6iw==
+  version "2.15.3"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-2.15.3.tgz#ba941e9b62175f053ef01c3eea9fa76e91fffed1"
+  integrity sha512-2O+A9SjHpbH/SgDDMA+xIznhx/rDeNuwPIiZSFVU7fwOiiFfQjHmfu21jp22wMmsZ5PYKYFR+pze2TzoAUmOtw==
   dependencies:
     abstract-logging "^2.0.0"
     ajv "^6.12.0"
