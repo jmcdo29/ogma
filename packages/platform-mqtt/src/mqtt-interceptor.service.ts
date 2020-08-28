@@ -35,6 +35,11 @@ export class MqttParser extends AbstractInterceptorService {
     return 'mqtt';
   }
 
+  setRequestId(context: ExecutionContext, requestId: string): void {
+    const client = this.getClient(context) as any;
+    client.requestId = requestId;
+  }
+
   private getClient(context: ExecutionContext): MqttContext {
     return context.switchToRpc().getContext<MqttContext>();
   }

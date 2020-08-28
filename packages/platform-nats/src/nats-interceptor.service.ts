@@ -30,6 +30,11 @@ export class NatsParser extends AbstractInterceptorService {
     return inColor ? this.wrapInColor(status) : status.toString();
   }
 
+  setRequestId(context: ExecutionContext, requestId: string): void {
+    const client = this.getClient(context) as any;
+    client.requestId = requestId;
+  }
+
   private getClient(context: ExecutionContext) {
     return context.switchToRpc().getContext();
   }

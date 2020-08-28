@@ -22,4 +22,8 @@ export class NoopInterceptorService extends AbstractInterceptorService {
   getProtocol(): string {
     return 'protocol';
   }
+
+  setRequestId(): void {
+    return;
+  }
 }

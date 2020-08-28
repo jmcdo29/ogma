@@ -29,6 +29,12 @@ export class WsParser extends AbstractInterceptorService {
     const status = error ? 500 : 200;
     return inColor ? this.wrapInColor(status) : status.toString();
   }
+
+  setRequestId(context: ExecutionContext, requestId: string): void {
+    const client = this.getClient(context) as any;
+    client.requestId = requestId;
+  }
+
   private getClient(context: ExecutionContext): WebSocket {
     return context.switchToWs().getClient<WebSocket>();
   }

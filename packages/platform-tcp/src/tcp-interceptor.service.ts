@@ -35,6 +35,11 @@ export class TcpParser extends AbstractInterceptorService {
     return client.getSocketRef().socket.remoteFamily;
   }
 
+  setRequestId(context: ExecutionContext, requestId: string): void {
+    const client = this.getClient(context) as any;
+    client.requestId = requestId;
+  }
+
   private getClient(context: ExecutionContext): TcpContext {
     return context.switchToRpc().getContext<TcpContext>();
   }

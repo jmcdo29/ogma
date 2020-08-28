@@ -45,6 +45,11 @@ export class ExpressParser extends AbstractInterceptorService {
     return `HTTP/${this.getHttpMajor(req)}.${this.getHttpMinor(req)}`;
   }
 
+  setRequestId(context: ExecutionContext, requestId: string): void {
+    const req = this.getRequest(context) as any;
+    req.requestId = requestId;
+  }
+
   getRequest(context: ExecutionContext): Request {
     return context.switchToHttp().getRequest();
   }

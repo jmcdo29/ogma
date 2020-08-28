@@ -36,6 +36,10 @@ export class OgmaInterceptor implements NestInterceptor {
     const startTime = Date.now();
     const options = { ...this.options, json: this.json, color: this.color };
     let logObject: string | LogObject;
+
+    const requestId = this.generateRequestId();
+    this.delegate.setRequestId(context, requestId);
+
     return next.handle().pipe(
       tap(
         (data) => {
@@ -46,7 +50,7 @@ export class OgmaInterceptor implements NestInterceptor {
               startTime,
               options,
             );
-            this.log(logObject, context);
+            this.log(logObject, context, requestId);
           }
         },
         (err) => {
@@ -57,7 +61,7 @@ export class OgmaInterceptor implements NestInterceptor {
               startTime,
               options,
             );
-            this.log(logObject, context);
+            this.log(logObject, context, requestId);
           }
         },
       ),
@@ -86,10 +90,21 @@ export class OgmaInterceptor implements NestInterceptor {
     }
   }
 
-  public log(logObject: string | LogObject, context: ExecutionContext): void {
+  public log(
+    logObject: string | LogObject,
+    context: ExecutionContext,
+    requestId?: string,
+  ): void {
     this.service.info(
       logObject,
       `${context.getClass().name}#${context.getHandler().name}`,
+      requestId,
     );
+  }
+
+  public generateRequestId(): string {
+    const time = Date.now().toString();
+    const randomNumbers = Math.floor(Math.random() * (1000 - 100) + 100);
+    return time + randomNumbers.toString();
   }
 }

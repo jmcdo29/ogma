@@ -30,7 +30,16 @@ export class GrpcParser extends AbstractInterceptorService {
     return inColor ? this.wrapInColor(status) : status.toString();
   }
 
+  setRequestId(context: ExecutionContext, requestId): void {
+    const grpcContext = this.getGrpcContext(context);
+    grpcContext.requestId = requestId;
+  }
+
   private getData(context: ExecutionContext) {
     return context.switchToRpc().getData();
+  }
+
+  private getGrpcContext(context: ExecutionContext) {
+    return context.switchToRpc().getContext();
   }
 }
