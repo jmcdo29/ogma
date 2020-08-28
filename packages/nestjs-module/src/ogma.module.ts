@@ -1,8 +1,12 @@
 import { AsyncModuleConfig } from '@golevelup/nestjs-modules';
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { OgmaModuleOptions, Type } from './interfaces';
-import { createLoggerProviders } from './ogma.provider';
+import {
+  createLoggerProviders,
+  createRequestScopedLoggerProviders,
+} from './ogma.provider';
 import { OgmaCoreModule } from './ogma-core.module';
+import { OgmaProviederOptions } from './interfaces/ogma-provieder-options.interface';
 
 @Module({
   /* imports: [OgmaCoreModule.Deferred],
@@ -24,14 +28,30 @@ export class OgmaModule {
    * Original options from the `forRoot` or `forRootAsync` options are merged with new options
    *
    * @param context string context for the OgmaService to use in logging
+   * @param options object options in creation of OgmaService
+   * @param options.addRequestId boolean if logger should add requestId to each log
    */
-  static forFeature(context: string | (() => any) | Type<any>): DynamicModule {
-    const providers: Provider[] = createLoggerProviders(context);
+  static forFeature(
+    context: string | (() => any) | Type<any>,
+    options: OgmaProviederOptions = { addRequestId: false },
+  ): DynamicModule {
+    const providers: Provider[] = this.createProviders(context, options);
     return {
       imports: [OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0)],
       module: OgmaModule,
       providers,
       exports: providers,
     };
+  }
+
+  private static createProviders(
+    context: string | (() => any) | Type<any>,
+    options: OgmaProviederOptions = { addRequestId: false },
+  ) {
+    if (options.addRequestId) {
+      return createRequestScopedLoggerProviders(context);
+    }
+
+    return createLoggerProviders(context);
   }
 }

@@ -15,6 +15,23 @@ export class DelegatorService {
     private readonly gqlParser: GqlInterceptorService,
   ) {}
 
+  setRequestId(context: ExecutionContext, requestId: string): void {
+    switch (context.getType<ContextType | 'graphql'>()) {
+      case 'rpc':
+        this.rpcParser.setRequestId(context, requestId);
+        break;
+      case 'http':
+        this.httpParser.setRequestId(context, requestId);
+        break;
+      case 'graphql':
+        this.gqlParser.setRequestId(context, requestId);
+        break;
+      case 'ws':
+        this.wsParser.setRequestId(context, requestId);
+        break;
+    }
+  }
+
   getContextSuccessString(
     data: any,
     context: ExecutionContext,

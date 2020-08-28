@@ -20,6 +20,11 @@ export class FastifyParser extends AbstractInterceptorService {
     return req.raw.method || 'GET';
   }
 
+  setRequestId(context: ExecutionContext, requestId: string) {
+    const req = this.getRequest(context) as any;
+    req.requestId = requestId;
+  }
+
   getProtocol(context: ExecutionContext): string {
     const req = this.getRequest(context);
     return `HTTP/${req.raw.httpVersionMajor}.${req.raw.httpVersionMinor}`;

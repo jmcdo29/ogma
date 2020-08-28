@@ -61,6 +61,8 @@ export abstract class AbstractInterceptorService implements InterceptorService {
 
   abstract getCallPoint(context: ExecutionContext): string;
 
+  abstract setRequestId(context: ExecutionContext, requestId: string): void;
+
   protected wrapInColor(status: number): string {
     let statusString: string;
     if (this.isBetween(status, 100, 300)) {

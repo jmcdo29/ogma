@@ -12,7 +12,8 @@
     "strict": false,
     "noUnusedLocals": false,
     "lib": ["ES7"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", "lib"]
 }
