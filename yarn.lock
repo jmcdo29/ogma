@@ -2193,17 +2193,17 @@
     tslib "2.0.0"
 
 "@nestjs/platform-socket.io@^7.0.0":
-  version "7.4.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-socket.io/-/platform-socket.io-7.4.2.tgz#2016347b85f62eae83439cc915d1753c3706be88"
-  integrity sha512-1sUGPY5ZgaYE2sGu2wp9JVQTh/vkCPFyyZIBCVMPg7h+3VwQkn4js0I14y9KmclpjsYmuwJCmY7nnF+oCCBnSg==
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-socket.io/-/platform-socket.io-7.4.4.tgz#4dd70ed21043430c403baf9ca9d7869717e6a800"
+  integrity sha512-ameDjwT19Ctj9UQ86+mnCcjsT0S6d9Mft5Iwmp3UXc6tmWxLSAZPCAawkbfSXxpkBFI9Qy8LqmZhT7L1o9iIIw==
   dependencies:
     socket.io "2.3.0"
-    tslib "2.0.0"
+    tslib "2.0.1"
 
 "@nestjs/platform-ws@^7.0.0":
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-ws/-/platform-ws-7.4.3.tgz#9e4fa83ab3923cc1df7000c03523d951a75a214d"
-  integrity sha512-+0WDERusUHDZ+tAeCXZ6Xi3gxj5z2nQ1bU+83JltlDBkl6JmeAL3XWF6C0RMBlfD9IcX9SzTKB1Y9AVt1ERTbQ==
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-ws/-/platform-ws-7.4.4.tgz#3807fc476dfde99707f4ea55becaaff5b9b97411"
+  integrity sha512-ieiPLDpI/zlkOU9lo4q/LrVLWD2IQca99vl/BOguqZd0tu0BkRwzy0hVejrucBmD3fIz3/0BBDHS5lWzisgrEw==
   dependencies:
     tslib "2.0.1"
     ws "7.3.1"
