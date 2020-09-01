@@ -1,7 +1,7 @@
 import { Injectable, LoggerService, Optional } from '@nestjs/common';
 import { Ogma } from '@ogma/logger';
 import { InjectOgma, InjectOgmaContext } from './decorators';
-import { RequestContextHost } from '@nestjs/microservices/context/request-context-host';
+import { RequestContext } from './interfaces/request-context.interface';
 
 @Injectable()
 export class OgmaService implements LoggerService {
@@ -25,19 +25,16 @@ export class OgmaService implements LoggerService {
   constructor(
     @InjectOgma() ogma?: Ogma,
     @Optional() @InjectOgmaContext() context?: string,
-    @Optional() private readonly requestContext?: RequestContextHost,
+    @Optional() private readonly requestContext?: RequestContext,
   ) {
     this.context = context || '';
     this.ogma = ogma ?? new Ogma();
   }
 
   private getRequestId(
-    requestContext: RequestContextHost | Record<string, any>,
+    requestContext: RequestContext | Record<string, any>,
   ): string | undefined {
-    if (
-      requestContext instanceof RequestContextHost ||
-      typeof requestContext.getContext !== 'undefined'
-    ) {
+    if (typeof requestContext.getContext !== 'undefined') {
       return requestContext.getContext().requestId;
     }
     return requestContext.requestId;
@@ -124,6 +121,7 @@ export class OgmaService implements LoggerService {
     if (this.requestContext && this.context) {
       requestId = this.getRequestId(this.requestContext);
     }
+    context = context ?? this.context;
     this.ogma.printError(error, context, undefined, requestId);
   }
 
