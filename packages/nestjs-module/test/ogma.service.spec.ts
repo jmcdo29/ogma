@@ -74,6 +74,8 @@ describe('OgmaService', () => {
                 expect(ogmaSpy).toBeCalledWith(
                   error,
                   customContext ?? context ?? '',
+                  undefined,
+                  undefined,
                 );
               });
             });

@@ -22,6 +22,8 @@ const logMock = jest.fn();
 const httpContext = {
   getType: () => 'http',
   getArgs: () => [1, 2, 3],
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setRequestId: () => {},
 };
 
 describe('OgmaInterceptor', () => {
@@ -39,6 +41,8 @@ describe('OgmaInterceptor', () => {
           useValue: {
             getContextSuccessString: () => 'success',
             getContextErrorString: () => 'error',
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            setRequestId: () => {},
           },
         },
         {
@@ -235,7 +239,11 @@ describe('OgmaInterceptor', () => {
         }),
       });
       interceptor.log('logValue', ctxMock);
-      expect(logSpy).toBeCalledWith('logValue', 'className#methodName');
+      expect(logSpy).toBeCalledWith(
+        'logValue',
+        'className#methodName',
+        undefined,
+      );
     });
   });
 });
