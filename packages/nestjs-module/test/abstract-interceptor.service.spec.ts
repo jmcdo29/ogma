@@ -33,6 +33,10 @@ class TestParser extends AbstractInterceptorService {
   getColoredStatus(status: number) {
     return this.wrapInColor(status);
   }
+
+  setRequestId(): void {
+    return;
+  }
 }
 
 const colorStatus = (colorString: string, status: number) =>
