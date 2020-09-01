@@ -2162,9 +2162,9 @@
   integrity sha512-QjZCSMHHy8IW4UUTS49QJQ0NrA8MHv6XevNrPLJwh4n3lN7wY9aSRwd1+cBIUDBXEHRKngcYdPtC4oG0fimw+A==
 
 "@nestjs/microservices@^7.3.2":
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-7.4.3.tgz#67fc69f8109cdcc1d12f5031a0249a1ec806a4f4"
-  integrity sha512-U7IDyf/ZPX/dHeXa9k+rdsvNfsVfhPIFUt+ikum7D4J6NVWe2n9dkR+V7yMKHK9js9BM1FGt+dodTz5do6n8GA==
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-7.4.4.tgz#82d3b9b303a38aee9070cdcbd6a7fef98589e15d"
+  integrity sha512-5DTxJJcQ6d1deTCytwKWXQpB3nyxSnF5VFoMeeuduIszRjhKAETTdEaymk9tInKiTey9tmWf3RTlQa1x7ytglQ==
   dependencies:
     iterare "1.2.1"
     json-socket "0.3.0"
