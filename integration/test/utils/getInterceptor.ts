@@ -7,7 +7,7 @@ export function getInterceptor(
 ): OgmaInterceptor {
   return app.get<OgmaInterceptor>(
     Array.from((app as any).container.getModules().values())
-      .filter((module: any) => module.metatype.name === 'OgmaCoreModule')
+      .filter((module: any) => module.metatype.name === 'RootTestModule')
       .map((module: any) => {
         return Array.from<string>(
           module.providers.keys(),
