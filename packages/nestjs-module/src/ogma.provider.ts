@@ -1,13 +1,6 @@
-import {
-  CallHandler,
-  ExecutionContext,
-  NestInterceptor,
-  Provider,
-  Scope,
-} from '@nestjs/common';
-import { Reflector, REQUEST } from '@nestjs/core';
+import { Provider, Scope } from '@nestjs/common';
+import { REQUEST as CONTEXT, Reflector } from '@nestjs/core';
 import { Ogma, OgmaOptions } from '@ogma/logger';
-import { Observable } from 'rxjs';
 import {
   OGMA_INSTANCE,
   OGMA_REQUEST_SCOPED_SERVICE_TOKEN,
@@ -15,24 +8,14 @@ import {
   OgmaInterceptorProviderError,
 } from './ogma.constants';
 import { OgmaService } from './ogma.service';
-import {
-  AbstractInterceptorService,
-  DelegatorService,
-} from './interceptor/providers';
+import { AbstractInterceptorService } from './interceptor/providers';
 import {
   OgmaInterceptorOptions,
   OgmaModuleOptions,
   OgmaServiceOptions,
   Type,
 } from './interfaces';
-import { OgmaInterceptor } from './interceptor/ogma.interceptor';
 import { RequestContext } from './interfaces/request-context.interface';
-
-export class NoopInterceptor implements NestInterceptor {
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    return next.handle();
-  }
-}
 
 /**
  * @internal
@@ -73,21 +56,6 @@ export function createOgmaServiceOptions(
   return options.service;
 }
 
-export function createOgmaInterceptorFactory(
-  options: OgmaInterceptorOptions | false,
-  service: OgmaService,
-  delegate: DelegatorService,
-  reflector: Reflector,
-): NestInterceptor {
-  let interceptor: NestInterceptor;
-  if (options) {
-    interceptor = new OgmaInterceptor(options, service, delegate, reflector);
-  } else {
-    interceptor = new NoopInterceptor();
-  }
-  return interceptor;
-}
-
 export function createProviderToken(topic: string): string {
   return OGMA_SERVICE_TOKEN + ':' + topic;
 }
@@ -119,7 +87,7 @@ export function createRequestScopedLoggerProviders(
   const token = createRequestScopedProviderToken(topic);
   return [
     {
-      inject: [OGMA_INSTANCE, REQUEST],
+      inject: [OGMA_INSTANCE, CONTEXT],
       provide: token,
       scope: Scope.REQUEST,
       useFactory: (

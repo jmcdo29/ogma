@@ -94,12 +94,15 @@ describe.each`
               query: `${type} ${name}{ ${name}{ hello }}`,
             });
             const logObject = logSpy.mock.calls[0][0];
+            const requestId = logSpy.mock.calls[0][2];
             expect(logObject).toBeALogObject(
               type,
               '/graphql',
               'HTTP/1.1',
               status,
             );
+            expect(typeof requestId).toBe('string');
+            expect(requestId).toHaveLength(16);
           });
         },
       );

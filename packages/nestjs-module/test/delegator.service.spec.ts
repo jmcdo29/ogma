@@ -14,13 +14,15 @@ import {
 
 const logProperly = (type: 'http' | 'gql' | 'ws' | 'rpc') =>
   `should log properly for ${type}`;
+const setRequestIdProperly = (type: 'http' | 'gql' | 'ws' | 'rpc') =>
+  `should set request id properly for ${type}`;
 
 const abstractInterceptorServiceMock = () =>
   createMock<AbstractInterceptorService>();
 
 const spyFactory = (
   parser: AbstractInterceptorService,
-  method: 'getSuccessContext' | 'getErrorContext',
+  method: 'getSuccessContext' | 'getErrorContext' | 'setRequestId',
 ): jest.SpyInstance => jest.spyOn(parser, method);
 
 const parserReturn: LogObject = {
@@ -200,6 +202,41 @@ describe('DelegatorService', () => {
         delegate.getContextErrorString(error, ctxMock, startTime, options),
       ).toBe(parsedString);
       expect(spy).toBeCalledWith(error, ctxMock, startTime, options);
+    });
+  });
+  describe('setRequestId', () => {
+    const requestId = '1598961763272766';
+    it(setRequestIdProperly('rpc'), () => {
+      const spy = spyFactory(rpc, 'setRequestId');
+      const ctxMock = createMock<ExecutionContext>({
+        getType: () => 'rpc',
+      });
+      delegate.setRequestId(ctxMock, requestId);
+      expect(spy).toBeCalledWith(ctxMock, requestId);
+    });
+    it(setRequestIdProperly('http'), () => {
+      const spy = spyFactory(http, 'setRequestId');
+      const ctxMock = createMock<ExecutionContext>(
+        httpContext as Partial<ExecutionContext>,
+      );
+      delegate.setRequestId(ctxMock, requestId);
+      expect(spy).toBeCalledWith(ctxMock, requestId);
+    });
+    it(setRequestIdProperly('ws'), () => {
+      const spy = spyFactory(ws, 'setRequestId');
+      const ctxMock = createMock<ExecutionContext>({
+        getType: () => 'ws',
+      });
+      delegate.setRequestId(ctxMock, requestId);
+      expect(spy).toBeCalledWith(ctxMock, requestId);
+    });
+    it(setRequestIdProperly('gql'), () => {
+      const spy = spyFactory(gql, 'setRequestId');
+      const ctxMock = createMock<ExecutionContext>({
+        getType: () => 'graphql',
+      });
+      delegate.setRequestId(ctxMock, requestId);
+      expect(spy).toBeCalledWith(ctxMock, requestId);
     });
   });
   describe('useJsonFormat', () => {

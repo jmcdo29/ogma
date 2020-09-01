@@ -238,11 +238,11 @@ describe('OgmaInterceptor', () => {
           name: 'methodName',
         }),
       });
-      interceptor.log('logValue', ctxMock);
+      interceptor.log('logValue', ctxMock, '1598961763272766');
       expect(logSpy).toBeCalledWith(
         'logValue',
         'className#methodName',
-        undefined,
+        '1598961763272766',
       );
     });
   });

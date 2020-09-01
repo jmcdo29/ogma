@@ -56,8 +56,8 @@ export class OgmaService implements LoggerService {
    * @param context Optional context if you want to change what the original context was
    * @param requestId Optional id of an request
    */
-  public error(message: any, context?: string, requestId?: string): void {
-    this.printMessage(message, 'error', context, requestId);
+  public error(message: any, context?: string): void {
+    this.printMessage(message, 'error', context);
   }
 
   /**
