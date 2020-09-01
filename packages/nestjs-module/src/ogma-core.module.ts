@@ -1,6 +1,5 @@
 import { createConfigurableDynamicRootModule } from '@golevelup/nestjs-modules';
 import { Module } from '@nestjs/common';
-import { APP_INTERCEPTOR, Reflector } from '@nestjs/core';
 import {
   DelegatorService,
   GqlInterceptorService,
@@ -41,16 +40,6 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
       provide: OGMA_SERVICE_OPTIONS,
       useFactory: createOgmaServiceOptions,
       inject: [OGMA_OPTIONS],
-    },
-    {
-      provide: APP_INTERCEPTOR,
-      useFactory: createOgmaInterceptorFactory,
-      inject: [
-        OGMA_INTERCEPTOR_OPTIONS,
-        OgmaService,
-        DelegatorService,
-        Reflector,
-      ],
     },
     {
       provide: OGMA_INSTANCE,

@@ -20,6 +20,7 @@ import { DelegatorService } from './providers';
 export class OgmaInterceptor implements NestInterceptor {
   private json: boolean;
   private color: boolean;
+
   constructor(
     @InjectOgmaInterceptorOptions()
     private readonly options: OgmaInterceptorOptions,

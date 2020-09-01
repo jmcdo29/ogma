@@ -5,7 +5,7 @@ import {
   Provider,
   Scope,
 } from '@nestjs/common';
-import { ModuleRef, Reflector } from '@nestjs/core';
+import { Reflector, REQUEST } from '@nestjs/core';
 import { Ogma, OgmaOptions } from '@ogma/logger';
 import { Observable } from 'rxjs';
 import {
@@ -26,8 +26,7 @@ import {
   Type,
 } from './interfaces';
 import { OgmaInterceptor } from './interceptor/ogma.interceptor';
-import { CONTEXT } from '@nestjs/microservices';
-import { RequestContextHost } from '@nestjs/microservices/context/request-context-host';
+import { RequestContext } from './interfaces/request-context.interface';
 
 export class NoopInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
@@ -120,12 +119,12 @@ export function createRequestScopedLoggerProviders(
   const token = createRequestScopedProviderToken(topic);
   return [
     {
-      inject: [OGMA_INSTANCE, CONTEXT],
+      inject: [OGMA_INSTANCE, REQUEST],
       provide: token,
       scope: Scope.REQUEST,
       useFactory: (
         ogmaInstance: Ogma,
-        requestContext: RequestContextHost,
+        requestContext: RequestContext,
       ): OgmaService => {
         return new OgmaService(ogmaInstance, topic as string, requestContext);
       },
