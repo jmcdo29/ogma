@@ -76,6 +76,12 @@ describe.each`
         expect(logSpy).toHaveBeenCalledTimes(1);
       }
 
+      function expectRequestId() {
+        const requestId = logSpy.mock.calls[0][2];
+        expect(typeof requestId).toBe('string');
+        expect(requestId).toHaveLength(16);
+      }
+
       describe('/', () => {
         it.each`
           method      | status
@@ -97,12 +103,14 @@ describe.each`
           const data = await httpPromise(baseUrl + '/status');
           expect(data).toEqual(hello);
           expectLogObject('GET', '/status', color.green(202));
+          expectRequestId();
         });
       });
       describe('/error', () => {
         it('should log a 400', async () => {
           await httpPromise(baseUrl + '/error');
           expectLogObject('GET', '/error', color.yellow(400));
+          expectRequestId();
         });
       });
       describe('skip', () => {

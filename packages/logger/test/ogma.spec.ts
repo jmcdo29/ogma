@@ -34,8 +34,16 @@ describe('Ogma Class', () => {
   function createOgmaInstance(options: Partial<OgmaOptions>): Ogma {
     return new Ogma(options);
   }
-  function mockCallExpectation(ogma: Ogma, expectation: string) {
-    ogma.log('Hello');
+  function mockCallExpectation(
+    ogma: Ogma,
+    expectation: string,
+    options: {
+      context?: string;
+      applicaiton?: string;
+      requestId?: string;
+    } = {},
+  ) {
+    ogma.log('Hello', options.context, options.applicaiton, options.requestId);
     expect(mockStream.write.mock.calls[0][0]).toEqual(
       expect.stringContaining(expectation),
     );
@@ -96,6 +104,26 @@ describe('Ogma Class', () => {
       });
       it('should add the context to the log', () =>
         mockCallExpectation(ogma, expectation));
+    },
+  );
+  describe.each`
+    requestId             | expectation
+    ${'1598961763272766'} | ${Color.white('1598961763272766')}
+    ${null}               | ${''}
+  `(
+    'requestId: $requestId',
+    ({
+      requestId,
+      expectation,
+    }: {
+      requestId?: string;
+      expectation: string;
+    }) => {
+      beforeEach(() => {
+        ogma = createOgmaInstance({ stream: mockStream });
+      });
+      it('should add the requestId to the log', () =>
+        mockCallExpectation(ogma, expectation, { requestId }));
     },
   );
   describe.each`

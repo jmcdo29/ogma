@@ -1,23 +1,20 @@
-import { createMock } from '@golevelup/ts-jest';
-import { FactoryProvider, Provider } from '@nestjs/common/interfaces';
-import { Reflector } from '@nestjs/core';
+import { FactoryProvider, Provider, Scope } from '@nestjs/common/interfaces';
+import { REQUEST as CONTEXT, Reflector } from '@nestjs/core';
 import { Ogma } from '@ogma/logger';
-import { OgmaInterceptor, OgmaService } from '../src';
-import {
-  DelegatorService,
-  NoopInterceptorService,
-} from '../src/interceptor/providers';
+import { OgmaService } from '../src';
+import { NoopInterceptorService } from '../src/interceptor/providers';
 import {
   OGMA_INSTANCE,
+  OGMA_REQUEST_SCOPED_SERVICE_TOKEN,
   OGMA_SERVICE_TOKEN,
   OgmaInterceptorProviderError,
 } from '../src/ogma.constants';
 import {
   createLoggerProviders,
-  createOgmaInterceptorFactory,
   createOgmaInterceptorOptionsFactory,
   createOgmaProvider,
   createOgmaServiceOptions,
+  createRequestScopedLoggerProviders,
   interceptorProviderFactory,
 } from '../src/ogma.provider';
 
@@ -84,30 +81,6 @@ describe('createOgmaServiceOptions', () => {
     });
   });
 });
-describe('creteOgmaInterceptorFactory', () => {
-  it('should return a NoopInterceptor', () => {
-    expect(
-      createOgmaInterceptorFactory(
-        false,
-        createMock<OgmaService>(),
-        createMock<DelegatorService>(),
-        createMock<Reflector>(),
-      ) instanceof OgmaInterceptor,
-    ).toBe(false);
-  });
-  it('should return the OgmaInterceptor', () => {
-    expect(
-      createOgmaInterceptorFactory(
-        { http: NoopInterceptorService },
-        createMock<OgmaService>({
-          ogma: { options: { json: false, color: false } },
-        } as any),
-        createMock<DelegatorService>(),
-        createMock<Reflector>(),
-      ) instanceof OgmaInterceptor,
-    ).toBe(true);
-  });
-});
 describe('createLoggerProviders', () => {
   it('should create a provider with a function for token', () => {
     const factory = expect.any(Function);
@@ -128,6 +101,37 @@ describe('createLoggerProviders', () => {
       {
         inject: [OGMA_INSTANCE],
         provide: OGMA_SERVICE_TOKEN + ':TestService',
+        useFactory: factory,
+      },
+    ]);
+    const prov = providers[0];
+    expect((prov as any).useFactory(new Ogma()) instanceof OgmaService).toBe(
+      true,
+    );
+  });
+});
+describe('createRequestScopedLoggerProviders', () => {
+  it('should create a provider with a function for token', () => {
+    const factory = expect.any(Function);
+    expect(createRequestScopedLoggerProviders(OgmaService)).toMatchObject([
+      {
+        inject: [OGMA_INSTANCE, CONTEXT],
+        provide: OGMA_REQUEST_SCOPED_SERVICE_TOKEN + ':OgmaService',
+        scope: Scope.REQUEST,
+        useFactory: factory,
+      },
+    ]);
+  });
+  it('should create a provider with a string for token', () => {
+    const factory = expect.any(Function);
+    const providers: Provider<
+      FactoryProvider<OgmaService>
+    >[] = createRequestScopedLoggerProviders('TestService');
+    expect(providers).toMatchObject([
+      {
+        inject: [OGMA_INSTANCE, CONTEXT],
+        provide: OGMA_REQUEST_SCOPED_SERVICE_TOKEN + ':TestService',
+        scope: Scope.REQUEST,
         useFactory: factory,
       },
     ]);

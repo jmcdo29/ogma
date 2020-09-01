@@ -81,7 +81,11 @@ describe('GrpcParser', () => {
         await httpPromise(baseUrl + url);
         expect(logSpy).toBeCalledTimes(1);
         const logObject = logSpy.mock.calls[0][0];
+        const requestId = logSpy.mock.calls[0][2];
+
         expect(logObject).toBeALogObject('gRPC', endpoint, 'grpc', status);
+        expect(typeof requestId).toBe('string');
+        expect(requestId).toHaveLength(16);
       },
     );
 

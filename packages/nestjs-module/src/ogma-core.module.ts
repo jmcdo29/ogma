@@ -17,7 +17,6 @@ import {
   OGMA_SERVICE_OPTIONS,
 } from './ogma.constants';
 import {
-  createOgmaInterceptorFactory,
   createOgmaInterceptorOptionsFactory,
   createOgmaProvider,
   createOgmaServiceOptions,

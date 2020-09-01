@@ -102,12 +102,16 @@ describe.each`
           await wsPromise(ws, serializer(message), sendMethod);
           expect(logSpy).toHaveBeenCalledTimes(1);
           const logObject = logSpy.mock.calls[0][0];
+          const requestId = logSpy.mock.calls[0][2];
+
           expect(logObject).toBeALogObject(
             server.toLowerCase(),
             message,
             'WS',
             status,
           );
+          expect(typeof requestId).toBe('string');
+          expect(requestId).toHaveLength(16);
         },
       );
       it('should get the data from skip but not log', async () => {
