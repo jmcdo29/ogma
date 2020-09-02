@@ -8,9 +8,7 @@ import { FastifyParser } from '../src';
 
 const resMock = (status: number) => ({
   getResponse: () => ({
-    res: {
-      statusCode: status,
-    },
+    statusCode: status,
   }),
 });
 

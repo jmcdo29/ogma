@@ -17,7 +17,7 @@ export class GraphQLFastifyParser extends FastifyParser {
     return this.getContext(context).getContext().request;
   }
 
-  getResponse(context: ExecutionContext): FastifyReply<any> {
+  getResponse(context: ExecutionContext): FastifyReply {
     return this.getContext(context).getContext().reply;
   }
 }
