@@ -38,6 +38,7 @@
   "devDependencies": {
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
+    "@nestjs/graphql": "^7.0.6",
     "@ogma/nestjs-module": "^0.2.2",
     "@ogma/platform-fastify": "^0.2.2",
     "apollo-server-fastify": "^2.16.0",
