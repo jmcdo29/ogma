@@ -54,7 +54,6 @@ export class OgmaService implements LoggerService {
    * use Ogma to log at the ERROR level
    * @param message What to print to the Ogma instance
    * @param context Optional context if you want to change what the original context was
-   * @param requestId Optional id of an request
    */
   public error(message: any, context?: string): void {
     this.printMessage(message, 'error', context);
@@ -118,7 +117,7 @@ export class OgmaService implements LoggerService {
    */
   public printError(error: Error, context?: string, requestId?: string): void {
     this.printMessage('', 'error', context, requestId);
-    if (this.requestContext && this.context) {
+    if (!requestId && this.requestContext && this.context) {
       requestId = this.getRequestId(this.requestContext);
     }
     context = context ?? this.context;
@@ -132,7 +131,7 @@ export class OgmaService implements LoggerService {
     requestId?: string,
   ): void {
     context = context ?? this.context;
-    if (this.requestContext && this.context) {
+    if (!requestId && this.requestContext && this.context) {
       requestId = this.getRequestId(this.requestContext);
     }
     this.ogma[levelString](message, context, undefined, requestId);
