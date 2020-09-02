@@ -2229,12 +2229,12 @@
     tslib "2.0.0"
 
 "@nestjs/websockets@^7.0.0":
-  version "7.4.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-7.4.2.tgz#9bbd6ed507666a47c52d5c565dc00b0c0f374baa"
-  integrity sha512-jvIX4Kbgtq8ipyy1njHISYcsadGMKP8HrTin4g5GeEmb/WfGg8WV6ApZeAbiHZkaLk/55HqEoAUICEtLNaUWtQ==
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-7.4.4.tgz#2530f2f3d2271e2880be58246271f4c7d505f167"
+  integrity sha512-XT2lRnCiw2d6IpscRFcjjkUFA0FgZYaE3On1pmW8FvQSWlHnu3Izl/TgyySJZNDKpRnmnh4IGFA4GZ6VML//1A==
   dependencies:
     iterare "1.2.1"
-    tslib "2.0.0"
+    tslib "2.0.1"
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
