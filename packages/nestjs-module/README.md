@@ -104,6 +104,8 @@ The above would set up the OgmaService to add the context of `[MyService]` to ev
 
 As mentioned above, you can pass a second parameter to the `forFeature` method to tell `Ogma` that you want this logger to be request scoped and add a request Id to the logs. This request Id is generated **in the interceptor** which is important to note in the case of a request that fails at the Guard or Middleware level, as they will not yet have this ID. You can choose to add your own middleware to create an id if you so choose and retrieve it later. There's also a new decorator for request scoped loggers `@OgmaLoggerRequestScoped()`. This decorator acts **exactly** like the `@OgmaLogger()` decorator, with the same parameters and all, it just uses a different injection token with the form of `OGMA_REQUEST_SCOPED_SERVICE:<Service_Name>`.
 
+> **Warning**: **_[Please make sure you understand the implications of using a request scoped service!](https://docs.nestjs.com/fundamentals/injection-scopes#injection-scopes)_**
+
 ```ts
 @Module({
   imports: [OgmaModule.forFeature(MyService, { addRequestId: true })],
