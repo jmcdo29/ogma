@@ -8,7 +8,7 @@ Installation is pretty simple, just `npm i @ogma/nestjs-module` or `yarn add @og
 
 ## Usage
 
-The OgmaService is a SINGLETON scoped service class in NestJS. That being said, if you want a new instance for each service, you can use the `OgmaModule.forFeature()` method and the `@OgmaLogger()` decorator.
+The OgmaService is a SINGLETON scoped service class in NestJS. That being said, if you want a new instance for each service, you can use the `OgmaModule.forFeature()` method and the `@OgmaLogger()` decorator. When working with `OgmaModule.forFeature()` you can pass an object as the second parameter to determine if you want the logger to be [request scoped](https://docs.nestjs.com/fundamentals/injection-scopes#injection-scopes) or not. This object looks like `{ addRequestId: true|false }`.
 
 Ogma is a lightweight logger with customization options, that prints your logs in a pretty manner with timestamping, colors, and different levels. See the [GitHub repository for Ogma](../logger/README.md) to learn more about configuration and options.
 
@@ -100,17 +100,44 @@ export class MyService {
 
 The above would set up the OgmaService to add the context of `[MyService]` to every log from within the `MyModule` module.
 
+### Request Scoping the Logger
+
+As mentioned above, you can pass a second parameter to the `forFeature` method to tell `Ogma` that you want this logger to be request scoped and add a request Id to the logs. This request Id is generated **in the interceptor** which is important to note in the case of a request that fails at the Guard or Middleware level, as they will not yet have this ID. You can choose to add your own middleware to create an id if you so choose and retrieve it later. There's also a new decorator for request scoped loggers `@OgmaLoggerRequestScoped()`. This decorator acts **exactly** like the `@OgmaLogger()` decorator, with the same parameters and all, it just uses a different injection token with the form of `OGMA_REQUEST_SCOPED_SERVICE:<Service_Name>`.
+
+```ts
+@Module({
+  imports: [OgmaModule.forFeature(MyService, { addRequestId: true })],
+  providers: [MyService]
+})
+export class MyModule {}
+```
+
+```ts
+@Injectable()
+export class MyService {
+  constructor(
+    @OgmaLoggerRequestScoped(MyService)
+    private readonly logger: OgmaService
+  ) {}
+  // ...
+}
+```
+
 ## OgmaInterceptor
 
 Ogma also comes with a built in Interceptor for logging requests made to your server. You can decide to turn the interceptor off by passing `{ interceptor: false }` as part of the options to the `OgmaModule`. The interceptor will need to be told what parsers it should be using for each type of request that can be intercepted. By default, all of these values are set to `false`, but the interceptor will still attempt to bind to the server, which will result in an error. If you would like to not use the interceptor's logging abilities, simple pass `false` to the `interceptor` key in the `OgmaModule.forRoot/Async()` method. If you'd like to know more about _why_ this is the default behavior, please look at the [interceptor design decisions](#interceptor-design-decisions) part of the docs. Below is the general form that the interceptor logs will take:
 
 ```sh
-[ISOString TimeStamp] [Application Name] PID [Context] [LogLevel]| Remote-Address - method URL protocol Status Response-Time ms - Response-Content-Length
+[ISOString TimeStamp] [Application Name] PID RequestID [Context] [LogLevel]| Remote-Address - method URL protocol Status Response-Time ms - Response-Content-Length
 ```
+
+This request ID is generated inside the `OgmaInterceptor` currently by using `Math.random()`. You may extend the logger and modify the `generateRequestId` method to change to it be however you like though.
 
 Where `Context` is the class-method combination of the path that was called. This is especially useful for GraphQL logging where all URLs log from the `/graphql` route.
 
 If you would like to skip any request url path, you can pass in a decorator either an entire class or just a route handler with the `@OgmaSkip()` decorator.
+
+> Note: As of version 0.3.0 the `OgmaInterceptor` is not bound by default, it is still necessary to pass **all** of the expected configuration options due to the way that the dependencies are built. If you would like to bind the interceptor globally, you can still do so using `APP_INTERCEPTOR` in a custom provider. The interceptor is not bound by default anymore to allow for more customization when it comes to the generation of request IDs.
 
 > Note: Be aware that as this is an interceptor, any errors that happen in middleware, such as Passport's serialization/deserialization and authentication methods through the PassportStrategy will not be logged in the library. You can use an [ExceptionFilter](https://docs.nestjs.com/exception-filters) to manage that. The same goes for guards due to the [request lifecycle](https://docs.nestjs.com/faq/request-lifecycle)
 
