@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/jmcdo29/ogma/compare/v0.2.2...v0.3.0) (2020-09-05)
+
+### Bug Fixes
+
+- **all:** fix the failing build for fastify ([f166eab](https://github.com/jmcdo29/ogma/commit/f166eab08405dcaec325d68fa770bac00c27ca1a))
+
+### Features
+
+- **all:** add request id generation and log ([00fd8c7](https://github.com/jmcdo29/ogma/commit/00fd8c7794f546c6265205a1fabfa128fcfb9a83))
+
 ## [0.2.2](https://github.com/jmcdo29/ogma/compare/v0.2.1...v0.2.2) (2020-08-10)
 
 **Note:** Version bump only for package @ogma/platform-fastify

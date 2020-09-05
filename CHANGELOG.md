@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/jmcdo29/ogma/compare/v0.2.2...v0.3.0) (2020-09-05)
+
+### Bug Fixes
+
+- **all:** fix the failing build for fastify ([f166eab](https://github.com/jmcdo29/ogma/commit/f166eab08405dcaec325d68fa770bac00c27ca1a))
+- **module:** add requestId check to printMessage ([97bcda7](https://github.com/jmcdo29/ogma/commit/97bcda716d950b32216fa5e1cc939794fb012340))
+
+### Features
+
+- **all:** add request id generation and log ([00fd8c7](https://github.com/jmcdo29/ogma/commit/00fd8c7794f546c6265205a1fabfa128fcfb9a83))
+- **module:** remove registration of global interceptor ([fdf5ef7](https://github.com/jmcdo29/ogma/commit/fdf5ef72473efec475e833242a5d26878cb7f563))
+
 ## [0.2.2](https://github.com/jmcdo29/ogma/compare/v0.2.1...v0.2.2) (2020-08-10)
 
 ### Features

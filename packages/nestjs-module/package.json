@@ -1,6 +1,6 @@
 {
   "name": "@ogma/nestjs-module",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "A NestJS module for the Ogma logger",
   "keywords": [
     "nestjs",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@golevelup/nestjs-modules": "0.4.1",
-    "@ogma/logger": "^0.2.2"
+    "@ogma/logger": "^0.3.0"
   },
   "peerDependencies": {
     "@nestjs/common": "^7.0.0",
