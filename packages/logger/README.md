@@ -157,7 +157,7 @@ I said the logs were beautiful, and to me they absolutely are. Each log is match
 
 ## Command Line Function
 
-Ogma comes with a built in command line function to rehydrate your json formatted logs back into the human readable format. The command takes one to two arguments, a log file relative to wear the command is run from, and an optional flag to force the cli to print out with color. Find the table below to learn more about the arguments.
+Ogma comes with a built in command line function to rehydrate your json formatted logs back into the human readable format. The command takes one to two arguments, a log file relative to where the command is run from, and an optional flag to force the cli to print out with color. Find the table below to learn more about the arguments.
 
 | argument | required | default | description |
 | --- | --- | --- | --- |
