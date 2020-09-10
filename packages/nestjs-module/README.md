@@ -186,10 +186,10 @@ export class OgmaModuleConfig implements ModuleConfigFactory<OgmaModuleOptions> 
     return {
       service: {
         // returns one of Ogma's log levels, or 'ALL'.
-        logLevel: this.configService.getLogLevel()
+        logLevel: this.configService.getLogLevel(),
         color: true,
         // could be something like 'MyAwesomeNestApp'
-        application: this.configService.getAppName() ,
+        application: this.configService.getAppName(),
       },
       interceptor: {
         http: FastifyParser
@@ -199,7 +199,7 @@ export class OgmaModuleConfig implements ModuleConfigFactory<OgmaModuleOptions> 
 }
 ```
 
-The `ModuleConfigFactory` is an interface pulled from the [@golevelup/nestjs-module](https://github.com/golevelup/nestjs/tree/master/packages/modules) library, which was used for creating the dynamic module.
+The `ModuleConfigFactory` is an interface pulled from the [@golevelup/nestjs-modules](https://github.com/golevelup/nestjs/tree/master/packages/modules) library, which was used for creating the dynamic module.
 
 > Note: As the `ModuleConfigFactory` is just an interface, the dependency on the `@golevelup/nestjs-module` package should just be a dev dependency to ensure the typings are correct. Of course, you can also just use a factory instead if you prefer.
 
