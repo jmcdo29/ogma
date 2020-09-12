@@ -6,7 +6,7 @@ import {
   createRequestScopedLoggerProviders,
 } from './ogma.provider';
 import { OgmaCoreModule } from './ogma-core.module';
-import { OgmaProviederOptions } from './interfaces/ogma-provieder-options.interface';
+import { OgmaProviderOptions } from './interfaces/ogma-provieder-options.interface';
 
 @Module({
   /* imports: [OgmaCoreModule.Deferred],
@@ -33,7 +33,7 @@ export class OgmaModule {
    */
   static forFeature(
     context: string | (() => any) | Type<any>,
-    options: OgmaProviederOptions = { addRequestId: false },
+    options: OgmaProviderOptions = { addRequestId: false },
   ): DynamicModule {
     const providers: Provider[] = this.createProviders(context, options);
     return {
@@ -44,10 +44,35 @@ export class OgmaModule {
     };
   }
 
+  static forFeatures(
+    contexts: Array<
+      | {
+          context: string | (() => any) | Type<any>;
+          options: OgmaProviderOptions;
+        }
+      | string
+      | (() => any)
+      | Type<any>
+    >,
+  ): DynamicModule {
+    const providers: Provider[] = contexts.map((ctx) => {
+      if (typeof ctx === 'object') {
+        return this.createProviders(ctx.context, ctx.options)[0];
+      }
+      return this.createProviders(ctx)[0];
+    });
+    return {
+      module: OgmaModule,
+      imports: [OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0)],
+      providers,
+      exports: providers,
+    };
+  }
+
   private static createProviders(
     context: string | (() => any) | Type<any>,
-    options: OgmaProviederOptions = { addRequestId: false },
-  ) {
+    options: OgmaProviderOptions = { addRequestId: false },
+  ): Provider[] {
     if (options.addRequestId) {
       return createRequestScopedLoggerProviders(context);
     }

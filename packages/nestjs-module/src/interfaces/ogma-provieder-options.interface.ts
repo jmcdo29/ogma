@@ -1,3 +1,3 @@
-export interface OgmaProviederOptions {
+export interface OgmaProviderOptions {
   addRequestId: boolean;
 }
