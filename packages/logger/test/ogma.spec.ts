@@ -181,15 +181,10 @@ describe('Ogma Class', () => {
     ogma = new Ogma({ stream: mockStream });
     ogma.log(circularObject);
     expect(mockStream.write).toBeCalledTimes(1);
-    expect(mockStream.write.mock.calls[0][0]).toEqual(
-      expect.stringContaining('[Circular]'),
-    );
-    expect(mockStream.write.mock.calls[0][0]).toEqual(
-      expect.stringContaining('[Function]'),
-    );
-    expect(mockStream.write.mock.calls[0][0]).toEqual(
-      expect.stringContaining('[Symbol(hello)]'),
-    );
+    const writeString = mockStream.write.mock.calls[0][0];
+    expect(writeString).toEqual(expect.stringContaining('[Circular]'));
+    expect(writeString).toEqual(expect.stringContaining('[Function:'));
+    expect(writeString).toEqual(expect.stringContaining('[Symbol(hello)]'));
   });
   it('should follow the context, application, and message of a json', () => {
     ogma = new Ogma({

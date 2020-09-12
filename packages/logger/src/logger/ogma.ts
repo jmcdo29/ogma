@@ -85,7 +85,8 @@ export class Ogma {
         return this.wrapInBrackets(value.toString());
       }
       if (typeof value === 'function') {
-        return this.wrapInBrackets('Function');
+        console.log(value);
+        return this.wrapInBrackets(`Function: ${value.name || '(anonymous)'}`);
       }
       if (typeof value === 'object' && value !== null) {
         if (seen.has(value)) {
