@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/jmcdo29/ogma/compare/v0.3.0...v0.3.1) (2020-09-12)
+
+### Features
+
+- **logger:** logger will not print function names when objects have funcs ([c496d16](https://github.com/jmcdo29/ogma/commit/c496d163d94dca5d15205b1f79648d11f05550ff))
+
 # [0.3.0](https://github.com/jmcdo29/ogma/compare/v0.2.2...v0.3.0) (2020-09-05)
 
 ### Features

@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-redis",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A plugin for the OgmaInterceptor to properly handle microservice requests from redis protocols",
   "keywords": [
     "redis",
@@ -38,10 +38,10 @@
   "devDependencies": {
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
-    "@ogma/nestjs-module": "^0.3.0",
+    "@ogma/nestjs-module": "^0.3.1",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
-    "@ogma/nestjs-module": "^0.3.0"
+    "@ogma/nestjs-module": "^0.3.1"
   }
 }

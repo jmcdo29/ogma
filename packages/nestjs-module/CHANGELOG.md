@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/jmcdo29/ogma/compare/v0.3.0...v0.3.1) (2020-09-12)
+
+### Features
+
+- **module:** adds a `forFeatures` method to the module ([e7f5df1](https://github.com/jmcdo29/ogma/commit/e7f5df1aab4e9f5b49861b08ed4654bc8dae44dc))
+
 # [0.3.0](https://github.com/jmcdo29/ogma/compare/v0.2.2...v0.3.0) (2020-09-05)
 
 ### Bug Fixes
