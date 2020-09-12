@@ -60,6 +60,7 @@ import { ExpressParser } from '@ogma/platform-express';
                 if (err) {
                   throw err;
                 }
+                return true;
               })
           },
           application: config.getAppName()
@@ -124,6 +125,10 @@ export class MyService {
   // ...
 }
 ```
+
+### forFeature/forFeatures
+
+As of version 0.3.1 there is a `OgmaModule.forFeatures()` method that can accept an array of contexts. This can be a mixed array of classes, strings, and objects, where the objects have a shape of `{ contexts: string | (() => any) | Type<any>, options: OgmaProviderOptions }`. This is useful for when you want to register multiple `OgmaService`s in the same module, such as one logger for the Service and one for the Controller, or for a Service and a Filter.
 
 ## OgmaInterceptor
 
