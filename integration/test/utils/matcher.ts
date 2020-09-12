@@ -8,8 +8,10 @@ const timeRegex = /\d+ms/;
 const sizeRegex = /\d+/;
 
 /* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 declare global {
   namespace jest {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     interface Matchers<R> {
       toBeALogObject(
         method: string,
