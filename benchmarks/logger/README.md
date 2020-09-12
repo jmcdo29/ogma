@@ -6,11 +6,11 @@ Benchmarks were made by testing the logging capabilities of several loggers agai
 
 | Logger | Simple | Long | JSON | Deep |
 | --- | --- | --- | --- | --- |
-| Bunyan | 375.159229ms | 4928.94154ms | 420.335668ms | 458.811827ms |
-| Ogma | 229.933075ms | 2245.650824ms | 352.558238ms | 391.385758ms |
-| Pino | 160.423314ms | 6529.866729ms | 163.253851ms | 443.295177ms |
-| Winston | 470.131286ms | 5411.124633ms | 986.761038ms | 501.628974ms |
+| Bunyan | 354.955363ms | 4067.132908ms | 804.267905ms | 1287.702897ms |
+| Ogma | 260.002731ms | 1938.668793ms | 289.710806ms | 398.153038ms |
+| Pino | 139.931047ms | 5255.606637ms | 406.781887ms | 2781.67296ms |
+| Winston | 462.864598ms | 5052.486821ms | 3371.397049ms | 1742.606749ms |
 
 ## Information
 
-Benchmarks generated on Darwin/darwin x64 18.7.0 ~Intel(R) Core(TM) i7-7660U CPU @ 2.50GHz (cores/threads): 4
+Benchmarks generated on Linux/linux x64 5.4.0-47-generic ~Intel(R) Core(TM) i3-8130U CPU @ 2.20GHz (cores/threads): 4
