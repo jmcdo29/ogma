@@ -2842,7 +2842,7 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@>= 8", "@types/node@^14.0.23":
+"@types/node@*", "@types/node@>= 8":
   version "14.10.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.10.0.tgz#15815dff82c8dc30827f6b1286f865902945095a"
   integrity sha512-SOIyrdADB4cq6eY1F+9iU48iIomFAPltu11LCvA9PKcyEwHadjCFzNVPotAR+oEJA0bCP4Xvvgy+vwu1ZjVh8g==
@@ -3389,7 +3389,7 @@ ajv-keywords@^3.1.0, ajv-keywords@^3.4.1:
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.5.1.tgz#b83ca89c5d42d69031f424cad49aada0236c6957"
   integrity sha512-KWcq3xN8fDjSB+IMoh2VaXVhRI0BBGxoYp3rx7Pkb6z0cFjYR9Q9l4yZqqals0/zsioCmocC5H6UvsGD4MoIBA==
 
-ajv@6.12.3, ajv@^6.1.0, ajv@^6.11.0, ajv@^6.5.5:
+ajv@6.12.3:
   version "6.12.3"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.3.tgz#18c5af38a111ddeb4f2697bd78d68abc1cabd706"
   integrity sha512-4K0cK3L1hsqk9xIb2z9vs/XU+PGJZ9PNpJRDS9YLzmNdX6jmVPfamLvTJr0aDAusnHyCHO6MjzlkAsgtqp9teA==
@@ -3399,7 +3399,7 @@ ajv@6.12.3, ajv@^6.1.0, ajv@^6.11.0, ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.2, ajv@^6.12.4:
+ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.11.0, ajv@^6.12.2, ajv@^6.12.4, ajv@^6.5.5:
   version "6.12.4"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.4.tgz#0614facc4522127fa713445c6bfd3ebd376e2234"
   integrity sha512-eienB2c9qVQs2KWexhkrdMLVDoIQCz5KSeLxwg9Lzk4DOfBtIK9PQwwufcsn1jjGuf9WZmqPMbGxOzfcuphJCQ==
@@ -6668,7 +6668,7 @@ fastify-warning@^0.2.0:
   resolved "https://registry.yarnpkg.com/fastify-warning/-/fastify-warning-0.2.0.tgz#e717776026a4493dc9a2befa44db6d17f618008f"
   integrity sha512-s1EQguBw/9qtc1p/WTY4eq9WMRIACkj+HTcOIK1in4MV5aFaQC9ZCIt0dJ7pr5bIf4lPpHvAtP2ywpTNgs7hqw==
 
-fastify@3.3.0, fastify@^3.3.0:
+fastify@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.3.0.tgz#2649a23a13da6c40c47f24cb7ab3e2f22fbe2646"
   integrity sha512-dAlGT7MoekQ2w5nmoxq1zFL+vFPcgRNBtMaopQIITLeUwesvfso4bX0bXwYO3vPFLoKgGc/p8GwSDyq6t5O3nA==
@@ -6682,6 +6682,27 @@ fastify@3.3.0, fastify@^3.3.0:
     find-my-way "^3.0.0"
     flatstr "^1.0.12"
     light-my-request "^4.0.0"
+    pino "^6.2.1"
+    proxy-addr "^2.0.5"
+    readable-stream "^3.4.0"
+    rfdc "^1.1.4"
+    secure-json-parse "^2.0.0"
+    tiny-lru "^7.0.0"
+
+fastify@^3.3.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.4.0.tgz#2d257d6eba1754382c22aa6957edf78c9f178ef4"
+  integrity sha512-wTHcpMcdezMeCoAFPbFyHbB/EkJjuyJ+c2+lBLmz2miyXzQPCBLXjryVb4R+NArvKHEKbKE+q+sW6KyvTQDGMg==
+  dependencies:
+    abstract-logging "^2.0.0"
+    ajv "^6.12.2"
+    avvio "^7.1.2"
+    fast-json-stringify "^2.2.1"
+    fastify-error "^0.2.0"
+    fastify-warning "^0.2.0"
+    find-my-way "^3.0.0"
+    flatstr "^1.0.12"
+    light-my-request "^4.0.2"
     pino "^6.2.1"
     proxy-addr "^2.0.5"
     readable-stream "^3.4.0"
@@ -9051,7 +9072,7 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-light-my-request@4.0.2, light-my-request@^4.0.0:
+light-my-request@4.0.2, light-my-request@^4.0.0, light-my-request@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/light-my-request/-/light-my-request-4.0.2.tgz#e80ebbbac512f0f45b9e54cb274b8f121248b924"
   integrity sha512-VaiiqR2NtdgYL8zQENPr7FBBVKCGioqa06HYnidj/GC+6jibyZrNCrk6FU8fqe9WWQDqwOtt0UCWLGe0GjyjgA==
@@ -10932,18 +10953,6 @@ pino-std-serializers@^2.4.2:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/pino-std-serializers/-/pino-std-serializers-2.5.0.tgz#40ead781c65a0ce7ecd9c1c33f409d31fe712315"
   integrity sha512-wXqbqSrIhE58TdrxxlfLwU9eDhrzppQDvGhBEr1gYbzzM4KKo3Y63gSjiDXRKLVS2UOXdPNR2v+KnQgNrs+xUg==
-
-pino@^6.2.0:
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/pino/-/pino-6.6.0.tgz#690ca4a98d027b32f2302c3750eced280fbc8dee"
-  integrity sha512-rLfJXX8i2P1VNXZY05fDMI/qK1IQSpKnOg5iNY5TRJn+vKhc9hBg1iCiAuOw3hKEAf54MZMlT8P6T+wgYQYpIA==
-  dependencies:
-    fast-redact "^2.0.0"
-    fast-safe-stringify "^2.0.7"
-    flatstr "^1.0.12"
-    pino-std-serializers "^2.4.2"
-    quick-format-unescaped "^4.0.1"
-    sonic-boom "^1.0.2"
 
 pino@^6.2.0, pino@^6.2.1:
   version "6.6.0"
