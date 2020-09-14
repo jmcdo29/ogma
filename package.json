@@ -53,7 +53,7 @@
     "updatePeerDeps": "node tools/peer-update.js"
   },
   "devDependencies": {
-    "@commitlint/cli": "^9.1.1",
+    "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^9.1.1",
     "@golevelup/ts-jest": "^0.3.0",
     "@grpc/proto-loader": "^0.5.4",
