@@ -6661,7 +6661,7 @@ fastify-warning@^0.2.0:
   resolved "https://registry.yarnpkg.com/fastify-warning/-/fastify-warning-0.2.0.tgz#e717776026a4493dc9a2befa44db6d17f618008f"
   integrity sha512-s1EQguBw/9qtc1p/WTY4eq9WMRIACkj+HTcOIK1in4MV5aFaQC9ZCIt0dJ7pr5bIf4lPpHvAtP2ywpTNgs7hqw==
 
-fastify@3.3.0, fastify@^3.3.0:
+fastify@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.3.0.tgz#2649a23a13da6c40c47f24cb7ab3e2f22fbe2646"
   integrity sha512-dAlGT7MoekQ2w5nmoxq1zFL+vFPcgRNBtMaopQIITLeUwesvfso4bX0bXwYO3vPFLoKgGc/p8GwSDyq6t5O3nA==
@@ -6675,6 +6675,27 @@ fastify@3.3.0, fastify@^3.3.0:
     find-my-way "^3.0.0"
     flatstr "^1.0.12"
     light-my-request "^4.0.0"
+    pino "^6.2.1"
+    proxy-addr "^2.0.5"
+    readable-stream "^3.4.0"
+    rfdc "^1.1.4"
+    secure-json-parse "^2.0.0"
+    tiny-lru "^7.0.0"
+
+fastify@^3.3.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.4.0.tgz#2d257d6eba1754382c22aa6957edf78c9f178ef4"
+  integrity sha512-wTHcpMcdezMeCoAFPbFyHbB/EkJjuyJ+c2+lBLmz2miyXzQPCBLXjryVb4R+NArvKHEKbKE+q+sW6KyvTQDGMg==
+  dependencies:
+    abstract-logging "^2.0.0"
+    ajv "^6.12.2"
+    avvio "^7.1.2"
+    fast-json-stringify "^2.2.1"
+    fastify-error "^0.2.0"
+    fastify-warning "^0.2.0"
+    find-my-way "^3.0.0"
+    flatstr "^1.0.12"
+    light-my-request "^4.0.2"
     pino "^6.2.1"
     proxy-addr "^2.0.5"
     readable-stream "^3.4.0"
@@ -9052,7 +9073,7 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-light-my-request@4.0.2, light-my-request@^4.0.0:
+light-my-request@4.0.2, light-my-request@^4.0.0, light-my-request@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/light-my-request/-/light-my-request-4.0.2.tgz#e80ebbbac512f0f45b9e54cb274b8f121248b924"
   integrity sha512-VaiiqR2NtdgYL8zQENPr7FBBVKCGioqa06HYnidj/GC+6jibyZrNCrk6FU8fqe9WWQDqwOtt0UCWLGe0GjyjgA==
