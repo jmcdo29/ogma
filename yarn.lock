@@ -8954,11 +8954,9 @@ jsprim@^1.2.2:
     verror "1.10.0"
 
 kafkajs@^1.12.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/kafkajs/-/kafkajs-1.13.0.tgz#ee85c6c1ccec9950a9b7ddcead83f70e6b4c1343"
-  integrity sha512-T5lD44PsEPghNCTWlqab+PRepyxDvCLj8t6mC3r4EazKdbXT7m9Ep/UpmeqGMTcjLCcUNP7saT1WWKKlfQ2lqA==
-  dependencies:
-    long "^4.0.0"
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/kafkajs/-/kafkajs-1.14.0.tgz#3d998a77bfde54dc502e8e88690eedf0b21a1ed6"
+  integrity sha512-W+WCekiooY5rJP3Me5N3gWcQ8O6uG6lw0vv9t+sI+WqXKjKwj2+CWIXJy241x+ITE+1M1D19ABSiL2J8lKja5A==
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
