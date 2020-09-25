@@ -82,7 +82,7 @@
     "amqp-connection-manager": "^3.2.0",
     "amqplib": "^0.6.0",
     "apollo-server-express": "2.17.0",
-    "apollo-server-fastify": "2.17.0",
+    "apollo-server-fastify": "2.18.1",
     "bunyan": "^1.8.14",
     "conventional-changelog-cli": "^2.0.31",
     "cz-conventional-changelog": "^3.1.0",
