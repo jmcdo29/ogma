@@ -55,13 +55,14 @@ import { ExpressParser } from '@ogma/platform-express';
         service: {
           json: config.isProd(),
           stream: {
-            write: (message) =>
+            write: (message) => {
               appendFile(config.getLogFile(), message, (err) => {
                 if (err) {
                   throw err;
                 }
                 return true;
-              })
+              });
+            }
           },
           application: config.getAppName()
         },
@@ -183,8 +184,8 @@ Okay, so now we're ready to add the `OgmaModule` to our Application. Let's assum
 import { FastifyParser } from '@ogma/platform-fastify';
 
 @Injectable()
-export class OgmaModuleConfig implements ModuleConfigFactory<OgmaModuleOptions> {
-
+export class OgmaModuleConfig
+  implements ModuleConfigFactory<OgmaModuleOptions> {
   constructor(private readonly configService: ConfigService) {}
 
   createModuleConfig(): OgmaModuleOptions {
@@ -194,12 +195,12 @@ export class OgmaModuleConfig implements ModuleConfigFactory<OgmaModuleOptions> 
         logLevel: this.configService.getLogLevel(),
         color: true,
         // could be something like 'MyAwesomeNestApp'
-        application: this.configService.getAppName(),
+        application: this.configService.getAppName()
       },
       interceptor: {
         http: FastifyParser
       }
-    }
+    };
   }
 }
 ```
