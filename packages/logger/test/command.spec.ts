@@ -41,7 +41,7 @@ const errorSpy = jest
 
 const exitSpy = jest
   .spyOn(process, 'exit')
-  .mockImplementation(() => undefined as never);
+  .mockImplementation(() => '' as never);
 
 const spyOnRead = (fileContents: OgmaLog): jest.SpyInstance => {
   return jest
