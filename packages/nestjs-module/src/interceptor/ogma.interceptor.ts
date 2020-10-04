@@ -10,7 +10,10 @@ import { OgmaOptions } from '@ogma/logger';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { InjectOgmaInterceptorOptions } from '../decorators';
-import { OgmaInterceptorOptions } from '../interfaces';
+import {
+  OgmaInterceptorOptions,
+  OgmaInterceptorServiceOptions,
+} from '../interfaces';
 import { OGMA_INTERCEPTOR_SKIP } from '../ogma.constants';
 import { OgmaService } from '../ogma.service';
 import { LogObject } from './interfaces/log.interface';
@@ -36,37 +39,57 @@ export class OgmaInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const startTime = Date.now();
     const options = { ...this.options, json: this.json, color: this.color };
-    let logObject: string | LogObject;
-
     const requestId = this.generateRequestId();
     this.delegate.setRequestId(context, requestId);
-
     return next.handle().pipe(
       tap(
         (data) => {
-          if (!this.shouldSkip(context)) {
-            logObject = this.delegate.getContextSuccessString(
-              data,
-              context,
-              startTime,
-              options,
-            );
-            this.log(logObject, context, requestId);
-          }
+          this.shouldLogAndDoIt('getContextSuccessString', {
+            data,
+            context,
+            startTime,
+            options,
+            requestId,
+          });
         },
         (err) => {
-          if (!this.shouldSkip(context)) {
-            logObject = this.delegate.getContextErrorString(
-              err,
-              context,
-              startTime,
-              options,
-            );
-            this.log(logObject, context, requestId);
-          }
+          this.shouldLogAndDoIt('getContextErrorString', {
+            data: err,
+            context,
+            startTime,
+            options,
+            requestId,
+          });
         },
       ),
     );
+  }
+
+  public shouldLogAndDoIt(
+    method: 'getContextErrorString' | 'getContextSuccessString',
+    {
+      context,
+      startTime,
+      data,
+      requestId,
+      options,
+    }: {
+      context: ExecutionContext;
+      startTime: number;
+      data: any;
+      requestId: string;
+      options: OgmaInterceptorServiceOptions;
+    },
+  ): void {
+    if (!this.shouldSkip(context)) {
+      const logObject = this.delegate[method](
+        data,
+        context,
+        startTime,
+        options,
+      );
+      this.log(logObject, context, requestId);
+    }
   }
 
   public shouldSkip(context: ExecutionContext): boolean {

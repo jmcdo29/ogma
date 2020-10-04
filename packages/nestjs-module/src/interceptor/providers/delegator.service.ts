@@ -6,6 +6,8 @@ import { GqlInterceptorService } from './gql-interceptor.service';
 import { WebsocketInterceptorService } from './websocket-interceptor.service';
 import { RpcInterceptorService } from './rpc-interceptor.service';
 
+type Parser = 'httpParser' | 'gqlParser' | 'wsParser' | 'rpcParser';
+
 @Injectable()
 export class DelegatorService {
   constructor(
@@ -16,20 +18,8 @@ export class DelegatorService {
   ) {}
 
   setRequestId(context: ExecutionContext, requestId: string): void {
-    switch (context.getType<ContextType | 'graphql'>()) {
-      case 'rpc':
-        this.rpcParser.setRequestId(context, requestId);
-        break;
-      case 'http':
-        this.httpParser.setRequestId(context, requestId);
-        break;
-      case 'graphql':
-        this.gqlParser.setRequestId(context, requestId);
-        break;
-      case 'ws':
-        this.wsParser.setRequestId(context, requestId);
-        break;
-    }
+    const parser: Parser = this.getParser(context.getType());
+    this[parser].setRequestId(context, requestId);
   }
 
   getContextSuccessString(
@@ -40,42 +30,35 @@ export class DelegatorService {
   ): string | LogObject {
     data = data ? JSON.stringify(data) : '';
     data = Buffer.from(data).byteLength;
-    let logObject: LogObject = {} as any;
-    switch (context.getType<ContextType | 'graphql'>()) {
+    const parser: Parser = this.getParser(context.getType());
+    const logObject = this.getContextString({
+      method: 'getSuccessContext',
+      data,
+      context,
+      startTime,
+      options,
+      parser,
+    });
+    return this.getStringOrObject(logObject, { json: options.json });
+  }
+
+  private getParser(type: ContextType | 'graphql'): Parser {
+    let parser: Parser;
+    switch (type) {
       case 'http':
-        logObject = this.httpParser.getSuccessContext(
-          data,
-          context,
-          startTime,
-          options,
-        );
+        parser = 'httpParser';
         break;
       case 'graphql':
-        logObject = this.gqlParser.getSuccessContext(
-          data,
-          context,
-          startTime,
-          options,
-        );
+        parser = 'gqlParser';
         break;
       case 'ws':
-        logObject = this.wsParser.getSuccessContext(
-          data,
-          context,
-          startTime,
-          options,
-        );
+        parser = 'wsParser';
         break;
       case 'rpc':
-        logObject = this.rpcParser.getSuccessContext(
-          data,
-          context,
-          startTime,
-          options,
-        );
+        parser = 'rpcParser';
         break;
     }
-    return this.getStringOrObject(logObject, { json: options.json });
+    return parser;
   }
 
   getContextErrorString(
@@ -84,42 +67,34 @@ export class DelegatorService {
     startTime: number,
     options: OgmaInterceptorServiceOptions,
   ): string | LogObject {
-    let logObject: LogObject = {} as any;
-    switch (context.getType<ContextType | 'graphql'>()) {
-      case 'http':
-        logObject = this.httpParser.getErrorContext(
-          error,
-          context,
-          startTime,
-          options,
-        );
-        break;
-      case 'graphql':
-        logObject = this.gqlParser.getErrorContext(
-          error,
-          context,
-          startTime,
-          options,
-        );
-        break;
-      case 'ws':
-        logObject = this.wsParser.getErrorContext(
-          error,
-          context,
-          startTime,
-          options,
-        );
-        break;
-      case 'rpc':
-        logObject = this.rpcParser.getErrorContext(
-          error,
-          context,
-          startTime,
-          options,
-        );
-        break;
-    }
+    const parser = this.getParser(context.getType());
+    const logObject = this.getContextString({
+      method: 'getErrorContext',
+      data: error,
+      context,
+      startTime,
+      options,
+      parser,
+    });
     return this.getStringOrObject(logObject, { json: options.json });
+  }
+
+  private getContextString({
+    method,
+    data,
+    context,
+    startTime,
+    options,
+    parser,
+  }: {
+    method: 'getErrorContext' | 'getSuccessContext';
+    data: any;
+    context: ExecutionContext;
+    startTime: number;
+    options: OgmaInterceptorServiceOptions;
+    parser: Parser;
+  }): LogObject {
+    return this[parser][method](data, context, startTime, options);
   }
 
   private getStringOrObject(
