@@ -1,14 +1,10 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { TcpContext } from '@nestjs/microservices';
-import { PATTERN_METADATA } from '@nestjs/microservices/constants';
-import { AbstractInterceptorService } from '@ogma/nestjs-module';
+import { RpcInterceptorService } from '@ogma/nestjs-module';
 
 @Injectable()
-export class TcpParser extends AbstractInterceptorService {
+export class TcpParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext): string {
-    return JSON.stringify(
-      this.reflector.get(PATTERN_METADATA, context.getHandler()),
-    );
+    return JSON.stringify(super.getCallPoint(context));
   }
 
   getCallerIp(context: ExecutionContext): string {
@@ -21,15 +17,6 @@ export class TcpParser extends AbstractInterceptorService {
     return 'TCP';
   }
 
-  getStatus(
-    context: ExecutionContext,
-    inColor: boolean,
-    error?: Error | ExecutionContext,
-  ): string {
-    const status = error ? 500 : 200;
-    return inColor ? this.wrapInColor(status) : status.toString();
-  }
-
   getProtocol(context: ExecutionContext): string {
     const client = this.getClient(context);
     return client.getSocketRef().socket.remoteFamily;
@@ -38,9 +25,5 @@ export class TcpParser extends AbstractInterceptorService {
   setRequestId(context: ExecutionContext, requestId: string): void {
     const client = this.getClient(context) as any;
     client.requestId = requestId;
-  }
-
-  private getClient(context: ExecutionContext): TcpContext {
-    return context.switchToRpc().getContext<TcpContext>();
   }
 }

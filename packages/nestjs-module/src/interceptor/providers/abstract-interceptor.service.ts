@@ -43,11 +43,14 @@ export abstract class AbstractInterceptorService implements InterceptorService {
     };
   }
 
-  abstract getStatus(
+  getStatus(
     context: ExecutionContext,
     inColor: boolean,
-    error?: Error | HttpException,
-  ): string;
+    error?: HttpException | Error,
+  ): string {
+    const status = error ? 500 : 200;
+    return inColor ? this.wrapInColor(status) : status.toString();
+  }
 
   abstract getCallerIp(context: ExecutionContext): string[] | string;
 

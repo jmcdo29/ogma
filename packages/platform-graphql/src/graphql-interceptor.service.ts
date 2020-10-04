@@ -6,8 +6,7 @@ import { Request, Response } from 'express';
 @Injectable()
 export class GraphQLParser extends ExpressParser {
   getMethod(context: ExecutionContext): string {
-    const ctx = this.getContext(context);
-    return ctx.getInfo().operation.operation;
+    return this.getContext(context).getInfo().operation.operation;
   }
 
   private getContext(context: ExecutionContext): GqlExecutionContext {

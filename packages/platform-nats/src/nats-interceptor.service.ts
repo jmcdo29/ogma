@@ -1,8 +1,8 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { AbstractInterceptorService } from '@ogma/nestjs-module';
+import { RpcInterceptorService } from '@ogma/nestjs-module';
 
 @Injectable()
-export class NatsParser extends AbstractInterceptorService {
+export class NatsParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext) {
     const client = this.getClient(context);
     return client.getSubject();
@@ -21,25 +21,8 @@ export class NatsParser extends AbstractInterceptorService {
     return 'nats';
   }
 
-  getStatus(
-    context: ExecutionContext,
-    inColor: boolean,
-    error?: Error | ExecutionContext,
-  ): string {
-    const status = error ? 500 : 200;
-    return inColor ? this.wrapInColor(status) : status.toString();
-  }
-
   setRequestId(context: ExecutionContext, requestId: string): void {
     const client = this.getClient(context) as any;
     client.requestId = requestId;
-  }
-
-  private getClient(context: ExecutionContext) {
-    return context.switchToRpc().getContext();
-  }
-
-  private getData(context: ExecutionContext): any {
-    return context.switchToRpc().getData();
   }
 }

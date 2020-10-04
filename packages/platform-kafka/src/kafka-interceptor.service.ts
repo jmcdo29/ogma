@@ -1,9 +1,9 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { KafkaContext } from '@nestjs/microservices';
-import { AbstractInterceptorService } from '@ogma/nestjs-module';
+import { RpcInterceptorService } from '@ogma/nestjs-module';
 
 @Injectable()
-export class KafkaParser extends AbstractInterceptorService {
+export class KafkaParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext) {
     return this.getClient(context).getTopic();
   }
@@ -21,25 +21,12 @@ export class KafkaParser extends AbstractInterceptorService {
     return 'kafka';
   }
 
-  getStatus(
-    context: ExecutionContext,
-    inColor: boolean,
-    error?: Error | ExecutionContext,
-  ): string {
-    const status = error ? 500 : 200;
-    return inColor ? this.wrapInColor(status) : status.toString();
-  }
-
   setRequestId(context: ExecutionContext, requestId: string): void {
     const client = this.getClient(context) as any;
     client.requestId = requestId;
   }
 
-  private getClient(context: ExecutionContext): KafkaContext {
-    return context.switchToRpc().getContext<KafkaContext>();
-  }
-
-  private getData(context: ExecutionContext): any {
-    return context.switchToRpc().getData();
+  getClient(context: ExecutionContext): KafkaContext {
+    return super.getClient(context);
   }
 }

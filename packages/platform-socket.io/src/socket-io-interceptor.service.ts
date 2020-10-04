@@ -1,10 +1,9 @@
-import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
+import { ExecutionContext, Injectable } from '@nestjs/common';
 import { MESSAGE_METADATA } from '@nestjs/websockets/constants';
-import { AbstractInterceptorService } from '@ogma/nestjs-module';
-import { Socket } from 'socket.io';
+import { WebsocketInterceptorService } from '@ogma/nestjs-module';
 
 @Injectable()
-export class SocketIOParser extends AbstractInterceptorService {
+export class SocketIOParser extends WebsocketInterceptorService {
   getCallPoint(context: ExecutionContext): string {
     return this.reflector.get(MESSAGE_METADATA, context.getHandler());
   }
@@ -22,21 +21,8 @@ export class SocketIOParser extends AbstractInterceptorService {
     return 'socket.io';
   }
 
-  getStatus(
-    context: ExecutionContext,
-    inColor: boolean,
-    error?: HttpException | Error,
-  ): string {
-    const status = error ? 500 : 200;
-    return inColor ? this.wrapInColor(status) : status.toString();
-  }
-
   setRequestId(context: ExecutionContext, requestId: string): void {
     const client = this.getClient(context) as any;
     client.requestId = requestId;
-  }
-
-  private getClient(context: ExecutionContext): Socket {
-    return context.switchToWs().getClient<Socket>();
   }
 }

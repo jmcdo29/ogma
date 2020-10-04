@@ -1,9 +1,8 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { RmqContext } from '@nestjs/microservices';
-import { AbstractInterceptorService } from '@ogma/nestjs-module';
+import { RpcInterceptorService } from '@ogma/nestjs-module';
 
 @Injectable()
-export class RabbitMqParser extends AbstractInterceptorService {
+export class RabbitMqParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext) {
     return this.getClient(context).getPattern();
   }
@@ -21,25 +20,8 @@ export class RabbitMqParser extends AbstractInterceptorService {
     return 'amqp';
   }
 
-  getStatus(
-    context: ExecutionContext,
-    inColor: boolean,
-    error?: Error | ExecutionContext,
-  ): string {
-    const status = error ? 500 : 200;
-    return inColor ? this.wrapInColor(status) : status.toString();
-  }
-
   setRequestId(context: ExecutionContext, requestId: string): void {
     const client = this.getClient(context) as any;
     client.requestId = requestId;
-  }
-
-  private getClient(context: ExecutionContext): RmqContext {
-    return context.switchToRpc().getContext<RmqContext>();
-  }
-
-  private getData(context: ExecutionContext) {
-    return context.switchToRpc().getData();
   }
 }
