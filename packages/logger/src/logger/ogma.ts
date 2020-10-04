@@ -147,41 +147,27 @@ export class Ogma {
     if (typeof message === 'object') {
       message = '\n' + JSON.stringify(message, this.circularReplacer(), 2);
     }
-    application = application || this.options.application;
-    application = application
-      ? `${colorize(
-          this.wrapInBrackets(application),
-          Color.YELLOW,
-          this.options.color,
-          this.options.stream,
-        )} `
-      : '';
-    context = context || this.options.context;
-    context = context
-      ? `${colorize(
-          this.wrapInBrackets(context),
-          Color.CYAN,
-          this.options.color,
-          this.options.stream,
-        )} `
-      : '';
-    requestId =
-      requestId && typeof requestId === 'string'
-        ? `${colorize(
-            requestId,
-            Color.WHITE,
-            this.options.color,
-            this.options.stream,
-          )} `
-        : '';
-    const hostname = colorize(
-      this.wrapInBrackets(this.hostname),
-      Color.MAGENTA,
+    application = this.toStreamColor(
+      application || this.options.application,
+      Color.YELLOW,
+    );
+    context = this.toStreamColor(context || this.options.context, Color.CYAN);
+
+    const hostname = this.toStreamColor(this.hostname, Color.MAGENTA);
+    const timestamp = this.wrapInBrackets(this.getTimestamp());
+    return `${timestamp} ${hostname} ${application}${this.pid} ${requestId}${context}${formattedLevel}| ${message}`;
+  }
+
+  private toStreamColor(value: string, color: Color): string {
+    if (!value) {
+      return '';
+    }
+    return colorize(
+      this.wrapInBrackets(value),
+      color,
       this.options.color,
       this.options.stream,
     );
-    const timestamp = this.wrapInBrackets(this.getTimestamp());
-    return `${timestamp} ${hostname} ${application}${this.pid} ${requestId}${context}${formattedLevel}| ${message}`;
   }
 
   private getTimestamp(): string {

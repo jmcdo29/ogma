@@ -108,7 +108,7 @@ describe('Ogma Class', () => {
   );
   describe.each`
     requestId             | expectation
-    ${'1598961763272766'} | ${Color.white('1598961763272766')}
+    ${'1598961763272766'} | ${'1598961763272766'}
     ${null}               | ${''}
   `(
     'requestId: $requestId',
