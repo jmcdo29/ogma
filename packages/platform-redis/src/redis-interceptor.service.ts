@@ -1,14 +1,10 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { PATTERN_METADATA } from '@nestjs/microservices/constants';
-import { AbstractInterceptorService } from '@ogma/nestjs-module';
-import { RedisContext } from '@nestjs/microservices';
+import { RpcInterceptorService } from '@ogma/nestjs-module';
 
 @Injectable()
-export class RedisParser extends AbstractInterceptorService {
+export class RedisParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext): string {
-    return JSON.stringify(
-      this.reflector.get(PATTERN_METADATA, context.getHandler()),
-    );
+    return JSON.stringify(super.getCallPoint(context));
   }
 
   getCallerIp(context: ExecutionContext): any {
@@ -24,25 +20,8 @@ export class RedisParser extends AbstractInterceptorService {
     return 'REDIS';
   }
 
-  getStatus(
-    context: ExecutionContext,
-    inColor: boolean,
-    error?: Error | ExecutionContext,
-  ): string {
-    const status = error ? 500 : 200;
-    return inColor ? this.wrapInColor(status) : status.toString();
-  }
-
   setRequestId(context: ExecutionContext, requestId: string): void {
     const client = this.getClient(context) as any;
     client.requestId = requestId;
-  }
-
-  private getData(context: ExecutionContext): any {
-    return context.switchToRpc().getData();
-  }
-
-  private getClient(context: ExecutionContext): any {
-    return context.switchToRpc().getContext<RedisContext>();
   }
 }

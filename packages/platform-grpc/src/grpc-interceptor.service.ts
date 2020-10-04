@@ -1,11 +1,10 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { PATTERN_METADATA } from '@nestjs/microservices/constants';
-import { AbstractInterceptorService } from '@ogma/nestjs-module';
+import { RpcInterceptorService } from '@ogma/nestjs-module';
 
 @Injectable()
-export class GrpcParser extends AbstractInterceptorService {
+export class GrpcParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext) {
-    return this.reflector.get(PATTERN_METADATA, context.getHandler()).rpc;
+    return super.getCallPoint(context).rpc;
   }
 
   getCallerIp(context: ExecutionContext) {
@@ -21,25 +20,8 @@ export class GrpcParser extends AbstractInterceptorService {
     return 'gRPC';
   }
 
-  getStatus(
-    context: ExecutionContext,
-    inColor: boolean,
-    error?: Error | ExecutionContext,
-  ): string {
-    const status = error ? 500 : 200;
-    return inColor ? this.wrapInColor(status) : status.toString();
-  }
-
   setRequestId(context: ExecutionContext, requestId): void {
-    const grpcContext = this.getGrpcContext(context);
+    const grpcContext = this.getClient(context);
     grpcContext.requestId = requestId;
-  }
-
-  private getData(context: ExecutionContext) {
-    return context.switchToRpc().getData();
-  }
-
-  private getGrpcContext(context: ExecutionContext) {
-    return context.switchToRpc().getContext();
   }
 }
