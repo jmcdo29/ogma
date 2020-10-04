@@ -119,17 +119,11 @@ export class Ogma {
     let json: Partial<JSONLog> = {
       time: this.getTimestamp(),
     };
-    application = application || this.options.application;
-    if (application) {
-      json.application = application;
-    }
+    json.application = application || this.options.application || undefined;
     json.pid = this.pid;
     json.hostname = this.hostname;
     json.requestId = requestId;
-    context = context || this.options.context;
-    if (context) {
-      json.context = context;
-    }
+    json.context = context || this.options.context || undefined;
     json.level = LogLevel[level] as keyof typeof LogLevel;
     if (typeof message === 'object') {
       json = { ...json, ...message };
