@@ -6684,9 +6684,9 @@ fastify@3.3.0:
     tiny-lru "^7.0.0"
 
 fastify@^3.3.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.5.0.tgz#4e46de69e9ac51c80474a08b20b23fbf9e1176aa"
-  integrity sha512-wTd2l3Ndz8LSHBJG4zIwroJfgBdwHN/nilqraDy0GOnhWaCAbtTHaHb8xE6+wn1zPRDnYvmfn1/jStjqTU6UfA==
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.5.1.tgz#753a6909e3154d61fcde7402500ed92177132c1a"
+  integrity sha512-SO/ZZSbbAUrRxxz9zIsf1Ek5qqRux5EN03UF1lJGt/xwFzVpmW4h+p8kRCD08VCL1sItFy2dhFlR8FPaQfRGBw==
   dependencies:
     abstract-logging "^2.0.0"
     ajv "^6.12.2"
