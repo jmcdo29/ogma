@@ -1,11 +1,5 @@
 import { createWriteStream, promises } from 'fs';
-import {
-  ExpectedOgmaOutput,
-  jsonLogs,
-  logKeys,
-  OgmaLogSet,
-  stringLogs,
-} from './command.fixtures';
+import { ExpectedOgmaOutput, jsonLogs, logKeys, OgmaLogSet, stringLogs } from './command.fixtures';
 import { ogmaHydrate } from '../src/command/command';
 import * as messages from '../src/command/messages';
 import { OgmaLog } from '../src/interfaces/ogma-log';
@@ -25,23 +19,17 @@ const dest = createWriteStream('/dev/null');
 
 const levelShouldPass = () => 'Level %s should pass';
 
-const writeSpy = jest
-  .spyOn(process.stdout, 'write')
-  .mockImplementation((message: any) => {
-    dest.write(message);
-    return true;
-  });
+const writeSpy = jest.spyOn(process.stdout, 'write').mockImplementation((message: any) => {
+  dest.write(message);
+  return true;
+});
 
-const errorSpy = jest
-  .spyOn(process.stderr, 'write')
-  .mockImplementation((message: any) => {
-    dest.write(message);
-    return true;
-  });
+const errorSpy = jest.spyOn(process.stderr, 'write').mockImplementation((message: any) => {
+  dest.write(message);
+  return true;
+});
 
-const exitSpy = jest
-  .spyOn(process, 'exit')
-  .mockImplementation(() => '' as never);
+const exitSpy = jest.spyOn(process, 'exit').mockImplementation(() => '' as never);
 
 const spyOnRead = (fileContents: OgmaLog): jest.SpyInstance => {
   return jest
@@ -62,10 +50,7 @@ const someFile = 'someFile';
 
 const hydrateArgs = ['node', '/dev/null', someFile];
 
-const ogmaHydrateTest = async (
-  readVal: OgmaLog,
-  expectedVal: string,
-): Promise<void> => {
+const ogmaHydrateTest = async (readVal: OgmaLog, expectedVal: string): Promise<void> => {
   expect.assertions(4);
   const readSpy = spyOnRead(readVal);
   await expect(ogmaHydrate(hydrateArgs)).resolves.not.toThrow();
@@ -102,33 +87,22 @@ describe.each([
   [true, stringLogs.noConString, stringLogs.hydratedNoConString],
   [true, stringLogs.noAppString, stringLogs.hydratedNoAppString],
   [true, stringLogs.fullString, stringLogs.hydratedFullString],
-  [
-    false,
-    stringLogs.noAppNoConString,
-    stringLogs.hydratedNoAppNoConNoColorString,
-  ],
+  [false, stringLogs.noAppNoConString, stringLogs.hydratedNoAppNoConNoColorString],
   [false, stringLogs.noConString, stringLogs.hydratedNoConNoColorString],
   [false, stringLogs.noAppString, stringLogs.hydratedNoAppNoColorString],
   [false, stringLogs.fullString, stringLogs.hydratedFullNoColorString],
-])(
-  'Hydrate TTY %s index %#',
-  (tty: boolean, logSet: OgmaLogSet, output: ExpectedOgmaOutput) => {
-    beforeEach(() => setTTY(tty));
-    afterEach(() => resetWrite());
-    it.each(logKeys)(levelShouldPass(), async (key: string) => {
-      await ogmaHydrateTest(logSet[key], output[key]);
-    });
-  },
-);
+])('Hydrate TTY %s index %#', (tty: boolean, logSet: OgmaLogSet, output: ExpectedOgmaOutput) => {
+  beforeEach(() => setTTY(tty));
+  afterEach(() => resetWrite());
+  it.each(logKeys)(levelShouldPass(), async (key: string) => {
+    await ogmaHydrateTest(logSet[key], output[key]);
+  });
+});
 
 describe('command line flags', () => {
   afterEach(() => resetWrite());
   it('should set --color to true', async () => {
-    await ogmaHydrateTestWithFlags(
-      jsonLogs.fullJSON.info,
-      jsonLogs.hydratedFull.info,
-      '--color',
-    );
+    await ogmaHydrateTestWithFlags(jsonLogs.fullJSON.info, jsonLogs.hydratedFull.info, '--color');
   });
   it('should set --color=true to true', async () => {
     await ogmaHydrateTestWithFlags(

@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Inject,
-  OnModuleDestroy,
-  OnModuleInit,
-  UseFilters,
-} from '@nestjs/common';
+import { Controller, Get, Inject, OnModuleDestroy, OnModuleInit, UseFilters } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
 import { ExceptionFilter } from './exception.filter';
 
@@ -14,9 +7,7 @@ export class KafkaClientController implements OnModuleInit, OnModuleDestroy {
   constructor(@Inject('KAFKA_SERVICE') private readonly kafka: ClientKafka) {}
 
   async onModuleInit() {
-    ['hello', 'error', 'skip'].forEach((key) =>
-      this.kafka.subscribeToResponseOf(`say.${key}`),
-    );
+    ['hello', 'error', 'skip'].forEach((key) => this.kafka.subscribeToResponseOf(`say.${key}`));
   }
 
   onModuleDestroy() {

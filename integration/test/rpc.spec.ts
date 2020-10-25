@@ -10,11 +10,7 @@ import {
 } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
-import {
-  AbstractInterceptorService,
-  OgmaInterceptor,
-  Type,
-} from '@ogma/nestjs-module';
+import { AbstractInterceptorService, OgmaInterceptor, Type } from '@ogma/nestjs-module';
 import { MqttParser } from '@ogma/platform-mqtt';
 import { NatsParser } from '@ogma/platform-nats';
 import { RabbitMqParser } from '@ogma/platform-rabbitmq';
@@ -136,12 +132,7 @@ describe.each`
           const logObject = logSpy.mock.calls[0][0];
           const requestId = logSpy.mock.calls[0][2];
 
-          expect(logObject).toBeALogObject(
-            server,
-            JSON.stringify(endpoint),
-            protocol,
-            status,
-          );
+          expect(logObject).toBeALogObject(server, JSON.stringify(endpoint), protocol, status);
           expect(typeof requestId).toBe('string');
           expect(requestId).toHaveLength(16);
         },

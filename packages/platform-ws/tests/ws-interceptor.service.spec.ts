@@ -62,23 +62,15 @@ describe('WsParser', () => {
   });
   describe('getStatus', () => {
     it('should return a 200', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), false)).toBe(
-        '200',
-      );
+      expect(parser.getStatus(createMock<ExecutionContext>(), false)).toBe('200');
     });
     it('should return a 500', () => {
       expect(
-        parser.getStatus(
-          createMock<ExecutionContext>(),
-          false,
-          new BadRequestException(),
-        ),
+        parser.getStatus(createMock<ExecutionContext>(), false, new BadRequestException()),
       ).toBe('500');
     });
     it('should return a 200 in green', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(
-        color.green(200),
-      );
+      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(color.green(200));
     });
   });
 });

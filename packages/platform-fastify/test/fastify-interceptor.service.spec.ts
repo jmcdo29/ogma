@@ -70,9 +70,7 @@ describe('FastifyParser', () => {
           }),
         }),
       });
-      expect(parser.getCallPoint(ctxMock)).toBe(
-        '/api/auth/callback?token=123abc',
-      );
+      expect(parser.getCallPoint(ctxMock)).toBe('/api/auth/callback?token=123abc');
     });
   });
 
@@ -85,9 +83,7 @@ describe('FastifyParser', () => {
     });
     it('should get the status from an exception (40x)', () => {
       const ctxMock = createMock<ExecutionContext>();
-      expect(parser.getStatus(ctxMock, false, new BadRequestException())).toBe(
-        '400',
-      );
+      expect(parser.getStatus(ctxMock, false, new BadRequestException())).toBe('400');
     });
     it('should get the status from an error(500)', () => {
       const ctxMock = createMock<ExecutionContext>();
@@ -102,10 +98,7 @@ describe('FastifyParser', () => {
         getHandler: () => sampleObject.func(),
       });
       expect(parser.getStatus(ctxMock, false)).toBe('201');
-      expect(reflector.get).toBeCalledWith(
-        HTTP_CODE_METADATA,
-        sampleObject.func(),
-      );
+      expect(reflector.get).toBeCalledWith(HTTP_CODE_METADATA, sampleObject.func());
     });
     it('should get the status in color', () => {
       const ctxMock = createMock<ExecutionContext>({

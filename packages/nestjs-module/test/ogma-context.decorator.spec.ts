@@ -1,8 +1,4 @@
-import {
-  InjectOgma,
-  InjectOgmaContext,
-  InjectOgmaInterceptorOptions,
-} from '../src';
+import { InjectOgma, InjectOgmaContext, InjectOgmaInterceptorOptions } from '../src';
 
 const func = expect.any(Function);
 

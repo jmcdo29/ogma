@@ -15,17 +15,7 @@ circularObject.b = {
 circularObject.d = () => 'function';
 circularObject.e = Symbol('hello');
 
-const logLevels = [
-  'SILLY',
-  'VERBOSE',
-  'FINE',
-  'DEBUG',
-  'INFO',
-  'LOG',
-  'WARN',
-  'ERROR',
-  'FATAL',
-];
+const logLevels = ['SILLY', 'VERBOSE', 'FINE', 'DEBUG', 'INFO', 'LOG', 'WARN', 'ERROR', 'FATAL'];
 
 const mockStream = createMock<NodeJS.WriteStream>();
 
@@ -39,14 +29,12 @@ describe('Ogma Class', () => {
     expectation: string,
     options: {
       context?: string;
-      applicaiton?: string;
-      requestId?: string;
+      application?: string;
+      correlationId?: string;
     } = {},
   ) {
-    ogma.log('Hello', options.context, options.applicaiton, options.requestId);
-    expect(mockStream.write.mock.calls[0][0]).toEqual(
-      expect.stringContaining(expectation),
-    );
+    ogma.log('Hello', options);
+    expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining(expectation));
   }
   afterEach(() => {
     mockStream.write.mockReset();
@@ -56,74 +44,58 @@ describe('Ogma Class', () => {
     color    | expectation
     ${true}  | ${Color.cyan('[INFO] ') + '| Hello'}
     ${false} | ${'[INFO] | Hello'}
-  `(
-    'color: $color',
-    ({ color, expectation }: { color: boolean; expectation: string }) => {
-      beforeEach(() => {
-        ogma = createOgmaInstance({
-          color,
-          stream: mockStream,
-        });
+  `('color: $color', ({ color, expectation }: { color: boolean; expectation: string }) => {
+    beforeEach(() => {
+      ogma = createOgmaInstance({
+        color,
+        stream: mockStream,
       });
-      it(color ? 'should write in color' : 'should not write in color', () =>
-        mockCallExpectation(ogma, expectation),
-      );
-    },
-  );
+    });
+    it(color ? 'should write in color' : 'should not write in color', () =>
+      mockCallExpectation(ogma, expectation),
+    );
+  });
   describe.each`
     json     | expectation
     ${true}  | ${{ time: expect.any(String), pid: expect.any(Number), level: 'INFO', message: 'Hello' }}
     ${false} | ${null}
-  `(
-    'json $json',
-    ({ json, expectation }: { json: boolean; expectation: any }) => {
-      beforeEach(() => {
-        ogma = createOgmaInstance({ json, stream: mockStream });
-      });
-      it(json ? 'should print in JSON' : 'should not print in JSON', () => {
-        ogma.log('Hello');
-        if (json) {
-          expect(
-            JSON.parse(mockStream.write.mock.calls[0][0] as string),
-          ).toEqual(expect.objectContaining(expectation));
-        } else {
-          expect(mockStream.write.mock.calls[0][0]).toEqual(expect.any(String));
-        }
-      });
-    },
-  );
+  `('json $json', ({ json, expectation }: { json: boolean; expectation: any }) => {
+    beforeEach(() => {
+      ogma = createOgmaInstance({ json, stream: mockStream });
+    });
+    it(json ? 'should print in JSON' : 'should not print in JSON', () => {
+      ogma.log('Hello');
+      if (json) {
+        expect(JSON.parse(mockStream.write.mock.calls[0][0] as string)).toEqual(
+          expect.objectContaining(expectation),
+        );
+      } else {
+        expect(mockStream.write.mock.calls[0][0]).toEqual(expect.any(String));
+      }
+    });
+  });
   describe.each`
     context           | expectation
     ${'test context'} | ${Color.cyan('[test context]')}
     ${null}           | ${''}
-  `(
-    'context: $context',
-    ({ context, expectation }: { context?: string; expectation: string }) => {
-      beforeEach(() => {
-        ogma = createOgmaInstance({ context, stream: mockStream });
-      });
-      it('should add the context to the log', () =>
-        mockCallExpectation(ogma, expectation));
-    },
-  );
+  `('context: $context', ({ context, expectation }: { context?: string; expectation: string }) => {
+    beforeEach(() => {
+      ogma = createOgmaInstance({ context, stream: mockStream });
+    });
+    it('should add the context to the log', () => mockCallExpectation(ogma, expectation));
+  });
   describe.each`
-    requestId             | expectation
+    correlationId         | expectation
     ${'1598961763272766'} | ${'1598961763272766'}
     ${null}               | ${''}
   `(
     'requestId: $requestId',
-    ({
-      requestId,
-      expectation,
-    }: {
-      requestId?: string;
-      expectation: string;
-    }) => {
+    ({ correlationId, expectation }: { correlationId?: string; expectation: string }) => {
       beforeEach(() => {
         ogma = createOgmaInstance({ stream: mockStream });
       });
       it('should add the requestId to the log', () =>
-        mockCallExpectation(ogma, expectation, { requestId }));
+        mockCallExpectation(ogma, expectation, { correlationId }));
     },
   );
   describe.each`
@@ -132,18 +104,11 @@ describe('Ogma Class', () => {
     ${null}       | ${''}
   `(
     'application: $application',
-    ({
-      application,
-      expectation,
-    }: {
-      application: string;
-      expectation: string;
-    }) => {
+    ({ application, expectation }: { application: string; expectation: string }) => {
       beforeEach(() => {
         ogma = createOgmaInstance({ application, stream: mockStream });
       });
-      it('should add the context to the log', () =>
-        mockCallExpectation(ogma, expectation));
+      it('should add the context to the log', () => mockCallExpectation(ogma, expectation));
     },
   );
   describe.each`
@@ -159,24 +124,21 @@ describe('Ogma Class', () => {
     ${'WARN'}
     ${'ERROR'}
     ${'FATAL'}
-  `(
-    'logLevel: $logLevel',
-    ({ logLevel }: { logLevel: keyof typeof LogLevel }) => {
-      beforeEach(() => {
-        ogma = createOgmaInstance({ logLevel, stream: mockStream });
-      });
-      it('should call according to log level', () => {
-        let ogmaCalls = 0;
-        for (const method of logLevels) {
-          ogma[method.toLowerCase()]('Hello');
-          if (LogLevel[method] >= LogLevel[logLevel]) {
-            ogmaCalls++;
-          }
+  `('logLevel: $logLevel', ({ logLevel }: { logLevel: keyof typeof LogLevel }) => {
+    beforeEach(() => {
+      ogma = createOgmaInstance({ logLevel, stream: mockStream });
+    });
+    it('should call according to log level', () => {
+      let ogmaCalls = 0;
+      for (const method of logLevels) {
+        ogma[method.toLowerCase()]('Hello');
+        if (LogLevel[method] >= LogLevel[logLevel]) {
+          ogmaCalls++;
         }
-        expect(mockStream.write).toBeCalledTimes(ogmaCalls);
-      });
-    },
-  );
+      }
+      expect(mockStream.write).toBeCalledTimes(ogmaCalls);
+    });
+  });
   it('should manage circular, function, and symbols in objects', () => {
     ogma = new Ogma({ stream: mockStream });
     ogma.log(circularObject);
@@ -194,12 +156,8 @@ describe('Ogma Class', () => {
       stream: mockStream,
     });
     ogma.log({ hello: 'world' });
-    expect(mockStream.write.mock.calls[0][0]).toEqual(
-      expect.stringContaining('json context'),
-    );
-    expect(mockStream.write.mock.calls[0][0]).toEqual(
-      expect.stringContaining('json test'),
-    );
+    expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining('json context'));
+    expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining('json test'));
     expect(JSON.parse(mockStream.write.mock.calls[0][0] as string)).toEqual(
       expect.objectContaining({ hello: 'world' }),
     );
@@ -211,12 +169,10 @@ describe('small ogma tests', () => {
   let stdoutSpy: jest.SpyInstance;
 
   beforeEach(() => {
-    stdoutSpy = jest
-      .spyOn(process.stdout, 'write')
-      .mockImplementation((message) => {
-        dest.write(message);
-        return true;
-      });
+    stdoutSpy = jest.spyOn(process.stdout, 'write').mockImplementation((message) => {
+      dest.write(message);
+      return true;
+    });
   });
   afterEach(() => {
     stdoutSpy.mockReset();
@@ -230,9 +186,7 @@ describe('small ogma tests', () => {
       ogma.printError(new Error('This is my error'));
       expect(stdoutSpy).toBeCalledTimes(2);
       expect(stdoutSpy.mock.calls[0][0].includes('Error')).toBeTruthy();
-      expect(
-        stdoutSpy.mock.calls[1][0].includes('This is my error'),
-      ).toBeTruthy();
+      expect(stdoutSpy.mock.calls[1][0].includes('This is my error')).toBeTruthy();
     });
   });
 

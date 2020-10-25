@@ -12,13 +12,11 @@ import {
   WebsocketInterceptorService,
 } from '../src/interceptor/providers';
 
-const logProperly = (type: 'http' | 'gql' | 'ws' | 'rpc') =>
-  `should log properly for ${type}`;
+const logProperly = (type: 'http' | 'gql' | 'ws' | 'rpc') => `should log properly for ${type}`;
 const setRequestIdProperly = (type: 'http' | 'gql' | 'ws' | 'rpc') =>
   `should set request id properly for ${type}`;
 
-const abstractInterceptorServiceMock = () =>
-  createMock<AbstractInterceptorService>();
+const abstractInterceptorServiceMock = () => createMock<AbstractInterceptorService>();
 
 const spyFactory = (
   parser: AbstractInterceptorService,
@@ -85,15 +83,11 @@ describe('DelegatorService', () => {
   describe('getContextSuccessString', () => {
     const data = 'someData';
     it(logProperly('http'), () => {
-      const ctxMock = createMock<ExecutionContext>(
-        httpContext as Partial<ExecutionContext>,
+      const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
+      const spy = spyFactory(http, 'getSuccessContext').mockReturnValueOnce(parserReturn);
+      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toBe(
+        parsedString,
       );
-      const spy = spyFactory(http, 'getSuccessContext').mockReturnValueOnce(
-        parserReturn,
-      );
-      expect(
-        delegate.getContextSuccessString(data, ctxMock, startTime, options),
-      ).toBe(parsedString);
       expect(spy).toBeCalledWith(
         Buffer.from(JSON.stringify(data)).byteLength,
         ctxMock,
@@ -105,12 +99,10 @@ describe('DelegatorService', () => {
       const ctxMock = createMock<ExecutionContext>({
         getType: () => 'graphql',
       });
-      const spy = spyFactory(gql, 'getSuccessContext').mockReturnValueOnce(
-        parserReturn,
+      const spy = spyFactory(gql, 'getSuccessContext').mockReturnValueOnce(parserReturn);
+      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toBe(
+        parsedString,
       );
-      expect(
-        delegate.getContextSuccessString(data, ctxMock, startTime, options),
-      ).toBe(parsedString);
       expect(spy).toBeCalledWith(
         Buffer.from(JSON.stringify(data)).byteLength,
         ctxMock,
@@ -122,12 +114,10 @@ describe('DelegatorService', () => {
       const ctxMock = createMock<ExecutionContext>({
         getType: () => 'ws',
       });
-      const spy = spyFactory(ws, 'getSuccessContext').mockReturnValueOnce(
-        parserReturn,
+      const spy = spyFactory(ws, 'getSuccessContext').mockReturnValueOnce(parserReturn);
+      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toBe(
+        parsedString,
       );
-      expect(
-        delegate.getContextSuccessString(data, ctxMock, startTime, options),
-      ).toBe(parsedString);
       expect(spy).toBeCalledWith(
         Buffer.from(JSON.stringify(data)).byteLength,
         ctxMock,
@@ -139,12 +129,10 @@ describe('DelegatorService', () => {
       const ctxMock = createMock<ExecutionContext>({
         getType: () => 'rpc',
       });
-      const spy = spyFactory(rpc, 'getSuccessContext').mockReturnValueOnce(
-        parserReturn,
+      const spy = spyFactory(rpc, 'getSuccessContext').mockReturnValueOnce(parserReturn);
+      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toBe(
+        parsedString,
       );
-      expect(
-        delegate.getContextSuccessString(data, ctxMock, startTime, options),
-      ).toBe(parsedString);
       expect(spy).toBeCalledWith(
         Buffer.from(JSON.stringify(data)).byteLength,
         ctxMock,
@@ -156,51 +144,33 @@ describe('DelegatorService', () => {
   describe('getContextErrorString', () => {
     const error = new Error('Big oof');
     it(logProperly('http'), () => {
-      const spy = spyFactory(http, 'getErrorContext').mockReturnValueOnce(
-        parserReturn,
-      );
-      const ctxMock = createMock<ExecutionContext>(
-        httpContext as Partial<ExecutionContext>,
-      );
-      expect(
-        delegate.getContextErrorString(error, ctxMock, startTime, options),
-      ).toBe(parsedString);
+      const spy = spyFactory(http, 'getErrorContext').mockReturnValueOnce(parserReturn);
+      const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
+      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toBe(parsedString);
       expect(spy).toBeCalledWith(error, ctxMock, startTime, options);
     });
     it(logProperly('gql'), () => {
-      const spy = spyFactory(gql, 'getErrorContext').mockReturnValueOnce(
-        parserReturn,
-      );
+      const spy = spyFactory(gql, 'getErrorContext').mockReturnValueOnce(parserReturn);
       const ctxMock = createMock<ExecutionContext>({
         getType: () => 'graphql',
       });
-      expect(
-        delegate.getContextErrorString(error, ctxMock, startTime, options),
-      ).toBe(parsedString);
+      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toBe(parsedString);
       expect(spy).toBeCalledWith(error, ctxMock, startTime, options);
     });
     it(logProperly('ws'), () => {
-      const spy = spyFactory(ws, 'getErrorContext').mockReturnValueOnce(
-        parserReturn,
-      );
+      const spy = spyFactory(ws, 'getErrorContext').mockReturnValueOnce(parserReturn);
       const ctxMock = createMock<ExecutionContext>({
         getType: () => 'ws',
       });
-      expect(
-        delegate.getContextErrorString(error, ctxMock, startTime, options),
-      ).toBe(parsedString);
+      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toBe(parsedString);
       expect(spy).toBeCalledWith(error, ctxMock, startTime, options);
     });
     it(logProperly('rpc'), () => {
-      const spy = spyFactory(rpc, 'getErrorContext').mockReturnValueOnce(
-        parserReturn,
-      );
+      const spy = spyFactory(rpc, 'getErrorContext').mockReturnValueOnce(parserReturn);
       const ctxMock = createMock<ExecutionContext>({
         getType: () => 'rpc',
       });
-      expect(
-        delegate.getContextErrorString(error, ctxMock, startTime, options),
-      ).toBe(parsedString);
+      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toBe(parsedString);
       expect(spy).toBeCalledWith(error, ctxMock, startTime, options);
     });
   });
@@ -216,9 +186,7 @@ describe('DelegatorService', () => {
     });
     it(setRequestIdProperly('http'), () => {
       const spy = spyFactory(http, 'setRequestId');
-      const ctxMock = createMock<ExecutionContext>(
-        httpContext as Partial<ExecutionContext>,
-      );
+      const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
       delegate.setRequestId(ctxMock, requestId);
       expect(spy).toBeCalledWith(ctxMock, requestId);
     });
@@ -241,12 +209,8 @@ describe('DelegatorService', () => {
   });
   describe('useJsonFormat', () => {
     it('should return as JSON instead of string', () => {
-      const spy = spyFactory(http, 'getSuccessContext').mockReturnValueOnce(
-        parserReturn,
-      );
-      const ctxMock = createMock<ExecutionContext>(
-        httpContext as Partial<ExecutionContext>,
-      );
+      const spy = spyFactory(http, 'getSuccessContext').mockReturnValueOnce(parserReturn);
+      const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
       expect(
         delegate.getContextSuccessString('data', ctxMock, startTime, {
           json: true,
@@ -275,12 +239,10 @@ describe('DelegatorService', () => {
         protocol: 'HTTP/1.1',
         status: '200',
       });
-      const ctxMock = createMock<ExecutionContext>(
-        httpContext as Partial<ExecutionContext>,
+      const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
+      expect(delegate.getContextSuccessString(null, ctxMock, startTime, options)).toBe(
+        '127.0.0.1 - GET / HTTP/1.1 200 2ms - 0',
       );
-      expect(
-        delegate.getContextSuccessString(null, ctxMock, startTime, options),
-      ).toBe('127.0.0.1 - GET / HTTP/1.1 200 2ms - 0');
       expect(spy).toBeCalledWith(0, ctxMock, startTime, options);
     });
   });

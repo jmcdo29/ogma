@@ -1,10 +1,11 @@
-import { Injectable, LoggerService, Optional } from '@nestjs/common';
+import { Injectable, Optional } from '@nestjs/common';
 import { Ogma } from '@ogma/logger';
 import { InjectOgma, InjectOgmaContext } from './decorators';
+import { OgmaServiceMeta } from './interfaces';
 import { RequestContext } from './interfaces/request-context.interface';
 
 @Injectable()
-export class OgmaService implements LoggerService {
+export class OgmaService {
   private readonly context?: string;
   private readonly ogma: Ogma;
 
@@ -31,9 +32,7 @@ export class OgmaService implements LoggerService {
     this.ogma = ogma ?? new Ogma();
   }
 
-  private getRequestId(
-    requestContext: RequestContext | Record<string, any>,
-  ): string | undefined {
+  private getRequestId(requestContext: RequestContext | Record<string, any>): string | undefined {
     if (typeof requestContext.getContext !== 'undefined') {
       return requestContext.getContext().requestId;
     }
@@ -46,8 +45,8 @@ export class OgmaService implements LoggerService {
    * @param context Optional context if you want to change what the original context was
    * @param requestId Optional id of an request
    */
-  public info(message: any, context?: string, requestId?: string): void {
-    this.printMessage(message, 'info', context, requestId);
+  public info(message: any, meta?: OgmaServiceMeta): void {
+    this.printMessage(message, 'info', meta);
   }
 
   /**
@@ -55,8 +54,8 @@ export class OgmaService implements LoggerService {
    * @param message What to print to the Ogma instance
    * @param context Optional context if you want to change what the original context was
    */
-  public error(message: any, context?: string): void {
-    this.printMessage(message, 'error', context);
+  public error(message: any, meta?: OgmaServiceMeta): void {
+    this.printMessage(message, 'error', meta);
   }
 
   /**
@@ -65,8 +64,8 @@ export class OgmaService implements LoggerService {
    * @param context Optional context if you want to change what the original context was
    * @param requestId Optional id of an request
    */
-  public warn(message: any, context?: string, requestId?: string): void {
-    this.printMessage(message, 'warn', context, requestId);
+  public warn(message: any, meta?: OgmaServiceMeta): void {
+    this.printMessage(message, 'warn', meta);
   }
 
   /**
@@ -75,8 +74,8 @@ export class OgmaService implements LoggerService {
    * @param context Optional context if you want to change what the original context was
    * @param requestId Optional id of an request
    */
-  public debug(message: any, context?: string, requestId?: string): void {
-    this.printMessage(message, 'debug', context, requestId);
+  public debug(message: any, meta?: OgmaServiceMeta): void {
+    this.printMessage(message, 'debug', meta);
   }
 
   /**
@@ -85,8 +84,8 @@ export class OgmaService implements LoggerService {
    * @param context Optional context if you want to change what the original context was
    * @param requestId Optional id of an request
    */
-  public fatal(message: any, context?: string, requestId?: string): void {
-    this.printMessage(message, 'fatal', context, requestId);
+  public fatal(message: any, meta?: OgmaServiceMeta): void {
+    this.printMessage(message, 'fatal', meta);
   }
 
   /**
@@ -95,8 +94,8 @@ export class OgmaService implements LoggerService {
    * @param context Optional context if you want to change what the original context was
    * @param requestId Optional id of an request
    */
-  public silly(message: any, context?: string, requestId?: string): void {
-    this.printMessage(message, 'silly', context, requestId);
+  public silly(message: any, meta?: OgmaServiceMeta): void {
+    this.printMessage(message, 'silly', meta);
   }
 
   /**
@@ -105,8 +104,8 @@ export class OgmaService implements LoggerService {
    * @param context Optional context if you want to change what the original context was
    * @param requestId Optional id of an request
    */
-  public verbose(message: any, context?: string, requestId?: string): void {
-    this.printMessage(message, 'verbose', context, requestId);
+  public verbose(message: any, meta?: OgmaServiceMeta): void {
+    this.printMessage(message, 'verbose', meta);
   }
 
   /**
@@ -115,25 +114,24 @@ export class OgmaService implements LoggerService {
    * @param context Optional context if you want to change what the original context was
    * @param requestId Optional id of an request
    */
-  public printError(error: Error, context?: string, requestId?: string): void {
-    this.printMessage('', 'error', context, requestId);
-    if (!requestId && this.requestContext && this.context) {
-      requestId = this.getRequestId(this.requestContext);
+  public printError(error: Error, meta: OgmaServiceMeta = {}): void {
+    this.printMessage('', 'error', meta);
+    if (!meta.correlationId && this.requestContext && this.context) {
+      meta.correlationId = this.getRequestId(this.requestContext);
     }
-    context = context ?? this.context;
-    this.ogma.printError(error, context, undefined, requestId);
+    meta.context = meta.context ?? this.context;
+    this.ogma.printError(error, meta);
   }
 
   private printMessage(
     message: any,
     levelString: Exclude<keyof Ogma, 'printMessage' | 'printError'>,
-    context?: string,
-    requestId?: string,
+    meta: OgmaServiceMeta = {},
   ): void {
-    context = context ?? this.context;
-    if (!requestId && this.requestContext && this.context) {
-      requestId = this.getRequestId(this.requestContext);
+    meta.context = meta.context ?? this.context;
+    if (!meta.correlationId && this.requestContext && this.context) {
+      meta.correlationId = this.getRequestId(this.requestContext);
     }
-    this.ogma[levelString](message, context, undefined, requestId);
+    this.ogma[levelString](message, meta);
   }
 }

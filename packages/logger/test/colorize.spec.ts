@@ -55,9 +55,7 @@ describe('it should not print colors with a stream that does not support colors'
 
 describe('ColorizeCLI', () => {
   it('should print with color', () => {
-    expect(colorizeCLI('hello', Color.BLUE, true)).toBe(
-      `\u001b[3${Color.BLUE}mhello\u001b[0m`,
-    );
+    expect(colorizeCLI('hello', Color.BLUE, true)).toBe(`\u001b[3${Color.BLUE}mhello\u001b[0m`);
   });
   it('should print without color', () => {
     expect(colorizeCLI('hello', Color.BLUE, false)).toBe('hello');

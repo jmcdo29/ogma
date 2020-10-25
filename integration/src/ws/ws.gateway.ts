@@ -1,9 +1,5 @@
 import { SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
-import {
-  BadRequestException,
-  UseFilters,
-  UseInterceptors,
-} from '@nestjs/common';
+import { BadRequestException, UseFilters, UseInterceptors } from '@nestjs/common';
 import { OgmaInterceptor, OgmaSkip } from '@ogma/nestjs-module';
 import { AppService } from '../app.service';
 import { SimpleObject } from '../simple-object.model';

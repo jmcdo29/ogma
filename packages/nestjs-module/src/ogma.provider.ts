@@ -9,12 +9,7 @@ import {
 } from './ogma.constants';
 import { OgmaService } from './ogma.service';
 import { AbstractInterceptorService } from './interceptor/providers';
-import {
-  OgmaInterceptorOptions,
-  OgmaModuleOptions,
-  OgmaServiceOptions,
-  Type,
-} from './interfaces';
+import { OgmaInterceptorOptions, OgmaModuleOptions, OgmaServiceOptions, Type } from './interfaces';
 import { RequestContext } from './interfaces/request-context.interface';
 
 /**
@@ -27,9 +22,7 @@ export function createOgmaProvider(options?: Partial<OgmaOptions>): Ogma {
   });
 }
 
-function mergeInterceptorDefaults(
-  options: OgmaInterceptorOptions,
-): OgmaInterceptorOptions {
+function mergeInterceptorDefaults(options: OgmaInterceptorOptions): OgmaInterceptorOptions {
   const mergedOptions: OgmaInterceptorOptions = {
     ...{ http: false, ws: false, rpc: false, gql: false },
     ...options,
@@ -50,9 +43,7 @@ export function createOgmaInterceptorOptionsFactory(
   return mergeInterceptorDefaults(intOpts);
 }
 
-export function createOgmaServiceOptions(
-  options: OgmaModuleOptions,
-): OgmaServiceOptions {
+export function createOgmaServiceOptions(options: OgmaModuleOptions): OgmaServiceOptions {
   return options.service;
 }
 
@@ -64,9 +55,7 @@ export function createRequestScopedProviderToken(topic: string): string {
   return OGMA_REQUEST_SCOPED_SERVICE_TOKEN + ':' + topic;
 }
 
-export function createLoggerProviders(
-  topic: string | (() => any) | Type<any>,
-): Provider[] {
+export function createLoggerProviders(topic: string | (() => any) | Type<any>): Provider[] {
   topic = typeof topic === 'function' ? topic.name : topic;
   const token = createProviderToken(topic);
   return [
@@ -90,10 +79,7 @@ export function createRequestScopedLoggerProviders(
       inject: [OGMA_INSTANCE, CONTEXT],
       provide: token,
       scope: Scope.REQUEST,
-      useFactory: (
-        ogmaInstance: Ogma,
-        requestContext: RequestContext,
-      ): OgmaService => {
+      useFactory: (ogmaInstance: Ogma, requestContext: RequestContext): OgmaService => {
         return new OgmaService(ogmaInstance, topic as string, requestContext);
       },
     },
@@ -103,10 +89,7 @@ export function createRequestScopedLoggerProviders(
 export const interceptorProviderFactory = (
   type: 'http' | 'gql' | 'ws' | 'rpc',
   backupClass: Type<AbstractInterceptorService>,
-): ((
-  opt: OgmaInterceptorOptions,
-  reflector: Reflector,
-) => Type<AbstractInterceptorService>) => (
+): ((opt: OgmaInterceptorOptions, reflector: Reflector) => Type<AbstractInterceptorService>) => (
   intOpts: OgmaInterceptorOptions,
   reflector: Reflector,
 ): Type<AbstractInterceptorService> =>

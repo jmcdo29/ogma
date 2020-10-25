@@ -1,5 +1,5 @@
 import { createConfigurableDynamicRootModule } from '@golevelup/nestjs-modules';
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import {
   DelegatorService,
   GqlInterceptorService,
@@ -24,6 +24,7 @@ import {
 } from './ogma.provider';
 import { OgmaService } from './ogma.service';
 
+@Global()
 @Module({})
 export class OgmaCoreModule extends createConfigurableDynamicRootModule<
   OgmaCoreModule,
@@ -78,6 +79,4 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
     RpcInterceptorService,
     WebsocketInterceptorService,
   ],
-}) {
-  // static Deferred = OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0);
-}
+}) {}

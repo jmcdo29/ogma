@@ -69,15 +69,7 @@ describe('GrpcParser', () => {
       ${'/error'} | ${color.red(500)}   | ${'SayError'}
     `(
       '$url call',
-      async ({
-        url,
-        status,
-        endpoint,
-      }: {
-        url: string;
-        status: string;
-        endpoint: string;
-      }) => {
+      async ({ url, status, endpoint }: { url: string; status: string; endpoint: string }) => {
         await httpPromise(baseUrl + url);
         expect(logSpy).toBeCalledTimes(1);
         const logObject = logSpy.mock.calls[0][0];

@@ -26,15 +26,7 @@ export interface ExpectedOgmaOutput {
   [key: string]: string;
 }
 
-export const logKeys = [
-  'silly',
-  'fine',
-  'debug',
-  'info',
-  'warn',
-  'error',
-  'fatal',
-];
+export const logKeys = ['silly', 'fine', 'debug', 'info', 'warn', 'error', 'fatal'];
 
 const time = '2020-01-14T05:47:48.091Z';
 const pid = 13940;
@@ -94,9 +86,7 @@ export const fullJSON: OgmaLogSet = {
 };
 
 function hydrateNoAppNoConFactory(level: string): string {
-  return `[${time}] ${color.magenta(
-    '[' + host + ']',
-  )} ${pid} ${level}| ${JSON.stringify(hello)}\n`;
+  return `[${time}] ${color.magenta('[' + host + ']')} ${pid} ${level}| ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoAppNoCon: ExpectedOgmaOutput = {
@@ -144,9 +134,7 @@ const hydratedNoApp: ExpectedOgmaOutput = {
 function hydrateFullFactory(level: string): string {
   return `[${time}] ${color.magenta('[' + host + ']')} ${color.yellow(
     '[' + application + ']',
-  )} ${pid} ${color.cyan('[' + context + ']')} ${level}| ${JSON.stringify(
-    hello,
-  )}\n`;
+  )} ${pid} ${color.cyan('[' + context + ']')} ${level}| ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedFull: ExpectedOgmaOutput = {
@@ -174,9 +162,7 @@ const hydratedNoAppNoConNoColor: ExpectedOgmaOutput = {
 };
 
 function hydrateNoConNoColorFactory(level: string): string {
-  return `[${time}] [${host}] [${application}] ${pid} ${level}| ${JSON.stringify(
-    hello,
-  )}\n`;
+  return `[${time}] [${host}] [${application}] ${pid} ${level}| ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoConNoColor: ExpectedOgmaOutput = {
@@ -190,9 +176,7 @@ const hydratedNoConNoColor: ExpectedOgmaOutput = {
 };
 
 function hydrateNoAppNoColorFactory(level: string): string {
-  return `[${time}] [${host}] ${pid} [${context}] ${level}| ${JSON.stringify(
-    hello,
-  )}\n`;
+  return `[${time}] [${host}] ${pid} [${context}] ${level}| ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoAppNoColor: ExpectedOgmaOutput = {
@@ -289,9 +273,7 @@ const fullString: OgmaLogSet = {
 };
 
 function hydrateNoAppNoConStringFactory(level: string): string {
-  return `[${time}] ${color.magenta(
-    '[' + host + ']',
-  )} ${pid} ${level}| ${message}\n`;
+  return `[${time}] ${color.magenta('[' + host + ']')} ${pid} ${level}| ${message}\n`;
 }
 
 const hydratedNoAppNoConString: ExpectedOgmaOutput = {

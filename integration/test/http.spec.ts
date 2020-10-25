@@ -1,11 +1,7 @@
 import { HttpServer, INestApplication } from '@nestjs/common';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
-import {
-  AbstractInterceptorService,
-  OgmaInterceptor,
-  Type,
-} from '@ogma/nestjs-module';
+import { AbstractInterceptorService, OgmaInterceptor, Type } from '@ogma/nestjs-module';
 import { color } from '@ogma/logger';
 import { ExpressParser } from '@ogma/platform-express';
 import { FastifyParser } from '@ogma/platform-fastify';
@@ -66,11 +62,7 @@ describe.each`
         logSpy.mockClear();
       });
 
-      function expectLogObject(
-        method: string,
-        endpoint: string,
-        status: string,
-      ) {
+      function expectLogObject(method: string, endpoint: string, status: string) {
         const logObject = logSpy.mock.calls[0][0];
         expect(logObject).toBeALogObject(method, endpoint, 'HTTP/1.1', status);
         expect(logSpy).toHaveBeenCalledTimes(1);

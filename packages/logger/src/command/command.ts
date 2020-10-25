@@ -21,9 +21,7 @@ function wrapInParens(message: string): string {
 }
 
 function isOgmaFormat(log: Record<string, unknown>): log is OgmaLog {
-  return standardKeys.every((key) =>
-    Object.prototype.hasOwnProperty.call(log, key),
-  );
+  return standardKeys.every((key) => Object.prototype.hasOwnProperty.call(log, key));
 }
 
 function getColor(level: keyof typeof LogLevel): Color {
@@ -125,19 +123,14 @@ function writeLog(log: OgmaLog, useColor: boolean): void {
   process.stdout.write(Buffer.from(logMessage));
 }
 
-async function rehydrate(
-  fileName: string,
-  useColor: boolean = process.stdout.isTTY,
-) {
+async function rehydrate(fileName: string, useColor: boolean = process.stdout.isTTY) {
   const context = await readPassedFile(fileName);
   const logs = context.split('\n').filter((log) => log);
   if (!logs.every(ogmaFormatCheck)) {
     process.stderr.write(messages.badFormat);
     return process.exit(1);
   }
-  logs
-    .map((log) => JSON.parse(log))
-    .forEach((log: OgmaLog) => writeLog(log, useColor));
+  logs.map((log) => JSON.parse(log)).forEach((log: OgmaLog) => writeLog(log, useColor));
 }
 
 function missingFile() {

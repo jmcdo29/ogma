@@ -29,9 +29,7 @@ describe('GrpcParser', () => {
   describe('getCallPoint', () => {
     it('should return the reflected metadata pattern', () => {
       const funcMock = () => 'string';
-      const reflectSpy = jest
-        .spyOn(reflector, 'get')
-        .mockReturnValueOnce({ rpc: 'SayHello' });
+      const reflectSpy = jest.spyOn(reflector, 'get').mockReturnValueOnce({ rpc: 'SayHello' });
       const ctxMock = createMock<ExecutionContext>({
         getHandler: funcMock,
       });
@@ -67,19 +65,13 @@ describe('GrpcParser', () => {
   });
   describe('getStatus', () => {
     it('should return a 200', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), false)).toBe(
-        '200',
-      );
+      expect(parser.getStatus(createMock<ExecutionContext>(), false)).toBe('200');
     });
     it('should return a 500', () => {
-      expect(
-        parser.getStatus(createMock<ExecutionContext>(), false, new Error()),
-      ).toBe('500');
+      expect(parser.getStatus(createMock<ExecutionContext>(), false, new Error())).toBe('500');
     });
     it('should return a 200 in color', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(
-        color.green(200),
-      );
+      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(color.green(200));
     });
   });
   describe('getProtocol', () => {

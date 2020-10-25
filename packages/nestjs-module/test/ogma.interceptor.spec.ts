@@ -10,10 +10,7 @@ import { OGMA_INTERCEPTOR_OPTIONS } from '../src/ogma.constants';
 const shouldSkipFor = (type: 'http' | 'ws' | 'gql' | 'rpc'): string =>
   `should skip for no ${type} parser`;
 
-const nullifyOption = (
-  type: 'http' | 'ws' | 'gql' | 'rpc',
-  interceptor: OgmaInterceptor,
-): void => {
+const nullifyOption = (type: 'http' | 'ws' | 'gql' | 'rpc', interceptor: OgmaInterceptor): void => {
   (interceptor as any).options[type] = false;
 };
 
@@ -91,9 +88,7 @@ describe('OgmaInterceptor', () => {
         delegateSpy.mockClear();
       });
       it('should log data', (done) => {
-        const ctxMock = createMock<ExecutionContext>(
-          httpContext as Partial<ExecutionContext>,
-        );
+        const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
         interceptor.intercept(ctxMock, callHandler).subscribe({
           next: () => {
             return;
@@ -114,20 +109,18 @@ describe('OgmaInterceptor', () => {
       it('should not log data', (done) => {
         jest.spyOn(reflector, 'get').mockReturnValueOnce(true);
 
-        interceptor
-          .intercept(createMock<ExecutionContext>(), callHandler)
-          .subscribe({
-            next: () => {
-              return;
-            },
-            error: () => {
-              throw new Error('Logging Error in data');
-            },
-            complete: () => {
-              expect(delegateSpy).toBeCalledTimes(0);
-              done();
-            },
-          });
+        interceptor.intercept(createMock<ExecutionContext>(), callHandler).subscribe({
+          next: () => {
+            return;
+          },
+          error: () => {
+            throw new Error('Logging Error in data');
+          },
+          complete: () => {
+            expect(delegateSpy).toBeCalledTimes(0);
+            done();
+          },
+        });
       });
     });
     describe('log error', () => {
@@ -140,37 +133,32 @@ describe('OgmaInterceptor', () => {
         delegateSpy.mockClear();
       });
       it('should log error', (done) => {
-        const ctxMock = createMock<ExecutionContext>(
-          httpContext as Partial<ExecutionContext>,
-        );
+        const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
         interceptor.intercept(ctxMock, callHandler).subscribe({
           next: () => {
             throw new Error('Logging data in error');
           },
           error: () => {
-            expect(delegateSpy).toBeCalledWith(
-              new Error('Big oof'),
-              ctxMock,
-              0,
-              { json: false, color: false, http: true },
-            );
+            expect(delegateSpy).toBeCalledWith(new Error('Big oof'), ctxMock, 0, {
+              json: false,
+              color: false,
+              http: true,
+            });
             done();
           },
         });
       });
       it('should not log error', (done) => {
         jest.spyOn(reflector, 'get').mockReturnValueOnce(true);
-        interceptor
-          .intercept(createMock<ExecutionContext>(), callHandler)
-          .subscribe({
-            next: () => {
-              throw new Error('Logging data in error');
-            },
-            error: () => {
-              expect(delegateSpy).toBeCalledTimes(0);
-              done();
-            },
-          });
+        interceptor.intercept(createMock<ExecutionContext>(), callHandler).subscribe({
+          next: () => {
+            throw new Error('Logging data in error');
+          },
+          error: () => {
+            expect(delegateSpy).toBeCalledTimes(0);
+            done();
+          },
+        });
       });
     });
   });
@@ -239,11 +227,10 @@ describe('OgmaInterceptor', () => {
         }),
       });
       interceptor.log('logValue', ctxMock, '1598961763272766');
-      expect(logSpy).toBeCalledWith(
-        'logValue',
-        'className#methodName',
-        '1598961763272766',
-      );
+      expect(logSpy).toBeCalledWith('logValue', {
+        context: 'className#methodName',
+        correlationId: '1598961763272766',
+      });
     });
   });
 });

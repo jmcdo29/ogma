@@ -10,9 +10,6 @@ export * from './gql-promise';
 export * from './http-promise';
 export * from './ws-promise';
 export const hello = JSON.stringify({ hello: 'world' });
-export const serviceOptionsFactory = (
-  app: string,
-  json = false,
-): OgmaServiceOptions => {
+export const serviceOptionsFactory = (app: string, json = false): OgmaServiceOptions => {
   return { application: app, stream, json };
 };

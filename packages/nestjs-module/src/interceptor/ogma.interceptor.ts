@@ -7,15 +7,13 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { OgmaOptions } from '@ogma/logger';
-import { Observable } from 'rxjs';
+import { MonoTypeOperatorFunction, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { InjectOgmaInterceptorOptions } from '../decorators';
-import {
-  OgmaInterceptorOptions,
-  OgmaInterceptorServiceOptions,
-} from '../interfaces';
+import { OgmaInterceptorOptions } from '../interfaces';
 import { OGMA_INTERCEPTOR_SKIP } from '../ogma.constants';
 import { OgmaService } from '../ogma.service';
+import { InterceptorMeta } from './interfaces/interceptor-service.interface';
 import { LogObject } from './interfaces/log.interface';
 import { DelegatorService } from './providers';
 
@@ -39,56 +37,32 @@ export class OgmaInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const startTime = Date.now();
     const options = { ...this.options, json: this.json, color: this.color };
-    const requestId = this.generateRequestId();
-    this.delegate.setRequestId(context, requestId);
-    return next.handle().pipe(
-      tap(
-        (data) => {
-          this.shouldLogAndDoIt('getContextSuccessString', {
-            data,
-            context,
-            startTime,
-            options,
-            requestId,
-          });
-        },
-        (err) => {
-          this.shouldLogAndDoIt('getContextErrorString', {
-            data: err,
-            context,
-            startTime,
-            options,
-            requestId,
-          });
-        },
-      ),
+    const correlationId = this.generateRequestId();
+    this.delegate.setRequestId(context, correlationId);
+    return next.handle().pipe(this.rxJsLogTap({ context, startTime, options, correlationId }));
+  }
+
+  public rxJsLogTap(meta: InterceptorMeta): MonoTypeOperatorFunction<void> {
+    return tap(
+      (data) => {
+        const info = { ...meta, data };
+        this.shouldLogAndDoIt('Success', info);
+      },
+      (err) => {
+        const info = { ...meta, data: err };
+        this.shouldLogAndDoIt('Error', info);
+      },
     );
   }
 
   public shouldLogAndDoIt(
-    method: 'getContextErrorString' | 'getContextSuccessString',
-    {
-      context,
-      startTime,
-      data,
-      requestId,
-      options,
-    }: {
-      context: ExecutionContext;
-      startTime: number;
-      data: any;
-      requestId: string;
-      options: OgmaInterceptorServiceOptions;
-    },
+    method: 'Error' | 'Success',
+    { context, startTime, data, correlationId, options }: InterceptorMeta & { data: any },
   ): void {
+    const callMethod = `getContext${method}String`;
     if (!this.shouldSkip(context)) {
-      const logObject = this.delegate[method](
-        data,
-        context,
-        startTime,
-        options,
-      );
-      this.log(logObject, context, requestId);
+      const logObject = this.delegate[callMethod](data, context, startTime, options);
+      this.log(logObject, context, correlationId);
     }
   }
 
@@ -104,8 +78,7 @@ export class OgmaInterceptor implements NestInterceptor {
         return !this.options.http;
       case 'graphql':
         return (
-          !this.options.gql ||
-          context.getArgByIndex(3)?.operation?.operation === 'subscription'
+          !this.options.gql || context.getArgByIndex(3)?.operation?.operation === 'subscription'
         );
       case 'ws':
         return !this.options.ws;
@@ -117,13 +90,12 @@ export class OgmaInterceptor implements NestInterceptor {
   public log(
     logObject: string | LogObject,
     context: ExecutionContext,
-    requestId?: string,
+    correlationId?: string,
   ): void {
-    this.service.info(
-      logObject,
-      `${context.getClass().name}#${context.getHandler().name}`,
-      requestId,
-    );
+    this.service.info(logObject, {
+      context: `${context.getClass().name}#${context.getHandler().name}`,
+      correlationId,
+    });
   }
 
   public generateRequestId(): string {

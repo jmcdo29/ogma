@@ -4,18 +4,11 @@ import { AbstractInterceptorService } from './abstract-interceptor.service';
 
 @Injectable()
 export abstract class HttpInterceptorService extends AbstractInterceptorService {
-  getStatus(
-    context: ExecutionContext,
-    inColor: boolean,
-    error?: HttpException | Error,
-  ): string {
+  getStatus(context: ExecutionContext, inColor: boolean, error?: HttpException | Error): string {
     let status: number;
     const res = this.getResponse(context);
     status = res.statusCode;
-    const reflectStatus = this.reflector.get<number>(
-      HTTP_CODE_METADATA,
-      context.getHandler(),
-    );
+    const reflectStatus = this.reflector.get<number>(HTTP_CODE_METADATA, context.getHandler());
     status = reflectStatus || status;
     if (error) {
       status = this.determineStatusCodeFromError(error);
