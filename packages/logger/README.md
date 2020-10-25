@@ -35,7 +35,7 @@ There is also the `printError` method on the `Ogma` class thta takes care of pri
 
 #### Adding Context and Application Name
 
-If for tracing purposes you'd like to add a context to the log, or an application name, you can pass the context to the method related to the logLevel (such as `ogma.debug('debug message, SomeClass.name, 'NestJS')` and Ogma will print
+If for tracing purposes you'd like to add a context to the log, or an application name, you can pass the context to the method related to the logLevel (such as `ogma.debug('debug message, { context: SomeClass.name, application: 'NestJS' })` and Ogma will print
 
 ```sh
 [2019-12-19T23:01:23.900Z] [hostname] [NestJS] 34760 [SomeClass] [Debug]| debug message
@@ -57,7 +57,7 @@ Examples can be seen below. The JSON structure follows the same form with log le
 | --- | --- | --- |
 | logLevel | one of the above log levels (default: INFO) | for determining this instance of Ogma's log level |
 | color | boolean (default: true) | determine if color should attempt to be used. NOTE: Color will not be used if the current terminal does not support it |
-| stream | NodeJS.WriteStream OR NodeJS.WritableStream (default: process.stdout) | the output mechanism used to know how to write logs |
+| stream | { write: (message: any) => void, hasColor?: () => boolean } | the output mechanism used to know how to write logs |
 | json | boolean (default: false) | print the logs in a JSON format |
 | context | string optional | a context for the Ogma class to work with. |
 | application | string optional | an application name for Ogma to print |
