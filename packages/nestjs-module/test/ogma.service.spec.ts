@@ -62,21 +62,17 @@ describe('OgmaService', () => {
               it.each(['hello', 42, { key: 'value' }])(
                 'should call with value %o',
                 (value: any) => {
-                  service[level](value, customContext);
+                  service[level](value, { context: customContext });
                   expect(ogmaSpy).toBeCalledTimes(1);
                 },
               );
               it('should be able to call "callError"', () => {
                 const error = new Error('This is my error');
                 ogmaSpy = jest.spyOn(Ogma.prototype, 'printError');
-                service.printError(error, customContext);
+                service.printError(error, { context: customContext });
+                const foundContext = customContext ?? context ?? '';
                 expect(ogmaSpy).toBeCalledTimes(1);
-                expect(ogmaSpy).toBeCalledWith(
-                  error,
-                  customContext ?? context ?? '',
-                  undefined,
-                  undefined,
-                );
+                expect(ogmaSpy).toBeCalledWith(error, { context: foundContext });
               });
             });
           },
@@ -89,9 +85,7 @@ describe('OgmaService', () => {
 describe.each([new Ogma(), undefined])(
   'OgmaService with difference instances',
   (instance: Ogma | undefined) => {
-    it(`should still be defined with instance ${
-      instance ? 'new' : 'undefined'
-    }`, () => {
+    it(`should still be defined with instance ${instance ? 'new' : 'undefined'}`, () => {
       const service = new OgmaService(instance);
       expect(service).toHaveProperty('ogma');
       expect(service).toBeDefined();

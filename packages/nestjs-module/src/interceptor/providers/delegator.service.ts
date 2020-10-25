@@ -97,10 +97,7 @@ export class DelegatorService {
     return this[parser][method](data, context, startTime, options);
   }
 
-  private getStringOrObject(
-    data: LogObject,
-    options: { json: boolean },
-  ): string | LogObject {
+  private getStringOrObject(data: LogObject, options: { json: boolean }): string | LogObject {
     return options.json
       ? data
       : `${data.callerAddress} - ${data.method} ${data.callPoint} ${data.protocol} ${data.status} ${data.responseTime}ms - ${data.contentLength}`;

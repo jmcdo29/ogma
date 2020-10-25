@@ -1,4 +1,5 @@
 import { Color } from '../enums';
+import { OgmaStream } from '../interfaces';
 import { OgmaSimpleType } from '../types';
 
 const ESC = '\x1B';
@@ -7,13 +8,9 @@ export function colorize(
   value: OgmaSimpleType,
   color: Color = Color.WHITE,
   useColor = true,
-  stream: Partial<NodeJS.WritableStream | NodeJS.WriteStream> = process.stdout,
+  stream: OgmaStream = process.stdout,
 ): string {
-  if (
-    (stream as NodeJS.WriteStream).hasColors &&
-    (stream as NodeJS.WriteStream).hasColors() &&
-    useColor
-  ) {
+  if (stream.hasColors && stream.hasColors() && useColor) {
     value = `${ESC}[3${color}m${value}${ESC}[0m`;
   }
   return value.toString();

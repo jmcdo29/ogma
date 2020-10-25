@@ -3,10 +3,7 @@ import { ExecutionContext } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { GraphQLFastifyParser } from '../src';
 
-const gqlMockFactory = (
-  context: Record<string, unknown>,
-  info: Record<string, unknown>,
-) =>
+const gqlMockFactory = (context: Record<string, unknown>, info: Record<string, unknown>) =>
   createMock<ExecutionContext>({
     getType: () => 'graphql',
     getHandler: () => 'query',

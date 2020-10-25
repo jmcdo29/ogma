@@ -1,25 +1,17 @@
 import { AsyncModuleConfig } from '@golevelup/nestjs-modules';
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { OgmaModuleOptions, Type } from './interfaces';
-import {
-  createLoggerProviders,
-  createRequestScopedLoggerProviders,
-} from './ogma.provider';
+import { createLoggerProviders, createRequestScopedLoggerProviders } from './ogma.provider';
 import { OgmaCoreModule } from './ogma-core.module';
 import { OgmaProviderOptions } from './interfaces/ogma-provieder-options.interface';
 
-@Module({
-  /* imports: [OgmaCoreModule.Deferred],
-  exports: [OgmaCoreModule], */
-})
+@Module({})
 export class OgmaModule {
   static forRoot(options: OgmaModuleOptions): DynamicModule {
     return OgmaCoreModule.forRoot(OgmaCoreModule, options);
   }
 
-  static forRootAsync(
-    options: AsyncModuleConfig<OgmaModuleOptions>,
-  ): DynamicModule {
+  static forRootAsync(options: AsyncModuleConfig<OgmaModuleOptions>): DynamicModule {
     return OgmaCoreModule.forRootAsync(OgmaCoreModule, options);
   }
 
@@ -37,7 +29,7 @@ export class OgmaModule {
   ): DynamicModule {
     const providers: Provider[] = this.createProviders(context, options);
     return {
-      imports: [OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0)],
+      imports: [OgmaCoreModule],
       module: OgmaModule,
       providers,
       exports: providers,
@@ -63,7 +55,7 @@ export class OgmaModule {
     });
     return {
       module: OgmaModule,
-      imports: [OgmaCoreModule.externallyConfigured(OgmaCoreModule, 0)],
+      imports: [OgmaCoreModule],
       providers,
       exports: providers,
     };

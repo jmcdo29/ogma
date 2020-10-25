@@ -43,11 +43,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
     };
   }
 
-  getStatus(
-    context: ExecutionContext,
-    inColor: boolean,
-    error?: HttpException | Error,
-  ): string {
+  getStatus(context: ExecutionContext, inColor: boolean, error?: HttpException | Error): string {
     const status = error ? 500 : 200;
     return inColor ? this.wrapInColor(status) : status.toString();
   }
@@ -82,11 +78,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
     return statusString;
   }
 
-  protected isBetween(
-    comparator: number,
-    bottom: number,
-    top: number,
-  ): boolean {
+  protected isBetween(comparator: number, bottom: number, top: number): boolean {
     return comparator >= bottom && comparator < top;
   }
 }

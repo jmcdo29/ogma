@@ -15,8 +15,6 @@ describe('OgmaSkip', () => {
       }
     }
     const testClass = new TestClass();
-    expect(
-      Reflect.getMetadata(OGMA_INTERCEPTOR_SKIP, testClass.shouldSkip),
-    ).toBe(true);
+    expect(Reflect.getMetadata(OGMA_INTERCEPTOR_SKIP, testClass.shouldSkip)).toBe(true);
   });
 });

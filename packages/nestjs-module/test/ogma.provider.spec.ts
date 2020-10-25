@@ -34,9 +34,7 @@ describe('createOgmaProvider', () => {
 });
 describe('createOgmaInterceptorOptionsFactory', () => {
   it('should return false', () => {
-    expect(
-      createOgmaInterceptorOptionsFactory({ interceptor: false }),
-    ).toBeFalsy();
+    expect(createOgmaInterceptorOptionsFactory({ interceptor: false })).toBeFalsy();
   });
   it('should return the merged options', () => {
     expect(
@@ -94,9 +92,9 @@ describe('createLoggerProviders', () => {
   });
   it('should create a provider with a string for token', () => {
     const factory = expect.any(Function);
-    const providers: Provider<
-      FactoryProvider<OgmaService>
-    >[] = createLoggerProviders('TestService');
+    const providers: Provider<FactoryProvider<OgmaService>>[] = createLoggerProviders(
+      'TestService',
+    );
     expect(providers).toMatchObject([
       {
         inject: [OGMA_INSTANCE],
@@ -105,9 +103,7 @@ describe('createLoggerProviders', () => {
       },
     ]);
     const prov = providers[0];
-    expect((prov as any).useFactory(new Ogma()) instanceof OgmaService).toBe(
-      true,
-    );
+    expect((prov as any).useFactory(new Ogma()) instanceof OgmaService).toBe(true);
   });
 });
 describe('createRequestScopedLoggerProviders', () => {
@@ -124,9 +120,9 @@ describe('createRequestScopedLoggerProviders', () => {
   });
   it('should create a provider with a string for token', () => {
     const factory = expect.any(Function);
-    const providers: Provider<
-      FactoryProvider<OgmaService>
-    >[] = createRequestScopedLoggerProviders('TestService');
+    const providers: Provider<FactoryProvider<OgmaService>>[] = createRequestScopedLoggerProviders(
+      'TestService',
+    );
     expect(providers).toMatchObject([
       {
         inject: [OGMA_INSTANCE, CONTEXT],
@@ -136,9 +132,7 @@ describe('createRequestScopedLoggerProviders', () => {
       },
     ]);
     const prov = providers[0];
-    expect((prov as any).useFactory(new Ogma()) instanceof OgmaService).toBe(
-      true,
-    );
+    expect((prov as any).useFactory(new Ogma()) instanceof OgmaService).toBe(true);
   });
 });
 describe('interceptorProviderFactory', () => {

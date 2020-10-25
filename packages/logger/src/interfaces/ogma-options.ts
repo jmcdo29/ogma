@@ -1,13 +1,14 @@
 import { LogLevel } from '../enums';
+import { OgmaStream } from './ogma-stream';
 
 export interface OgmaOptions {
   logLevel: keyof typeof LogLevel;
   color: boolean;
-  stream: Partial<NodeJS.WritableStream | NodeJS.WriteStream> &
-    Pick<NodeJS.WritableStream, 'write'>;
+  stream: OgmaStream;
   json: boolean;
   context: string;
   application: string;
+  verbose?: boolean;
   [index: string]: any;
 }
 
@@ -18,4 +19,5 @@ export const OgmaDefaults: OgmaOptions = {
   json: false,
   context: '',
   application: '',
+  verbose: false,
 };

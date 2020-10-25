@@ -5,11 +5,7 @@ import { color } from '@ogma/logger';
 import { AbstractInterceptorService } from '../src/interceptor/providers/abstract-interceptor.service';
 
 class TestParser extends AbstractInterceptorService {
-  getStatus(
-    context: ExecutionContext,
-    inColor: boolean,
-    error?: Error | HttpException,
-  ): string {
+  getStatus(context: ExecutionContext, inColor: boolean, error?: Error | HttpException): string {
     const status = error ? 500 : 200;
     return inColor ? this.wrapInColor(status) : status.toString();
   }

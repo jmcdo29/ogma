@@ -13,27 +13,18 @@ declare global {
   namespace jest {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     interface Matchers<R> {
-      toBeALogObject(
-        method: string,
-        endpoint: string,
-        protocol: string,
-        status: string,
-      ): R;
+      toBeALogObject(method: string, endpoint: string, protocol: string, status: string): R;
     }
   }
 }
 
 const expectMessage = (field: string, expected: string, actual: string) =>
-  `Expected ${field} to be ${color.green(expected)} but got ${color.red(
-    actual,
-  )}.\n`;
+  `Expected ${field} to be ${color.green(expected)} but got ${color.red(actual)}.\n`;
 
 const returnMessage = (pass: boolean, message: string) => ({
   pass,
   message: () =>
-    pass
-      ? 'This matcher is not made to work with negation. Please do not use it'
-      : message,
+    pass ? 'This matcher is not made to work with negation. Please do not use it' : message,
 });
 
 const doTest = (
@@ -98,17 +89,9 @@ expect.extend({
       recTime: string,
       recSize: string;
     if (typeof received === 'string') {
-      [
-        recIp,
-        ,
-        recMethod,
-        recEndpoint,
-        recProto,
-        recStatus,
-        recTime,
-        ,
-        recSize,
-      ] = received.split(' ');
+      [recIp, , recMethod, recEndpoint, recProto, recStatus, recTime, , recSize] = received.split(
+        ' ',
+      );
     } else {
       ({
         callerAddress: recIp as any,

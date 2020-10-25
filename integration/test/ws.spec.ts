@@ -3,23 +3,13 @@ import { IoAdapter } from '@nestjs/platform-socket.io';
 import { WsAdapter } from '@nestjs/platform-ws';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
-import {
-  AbstractInterceptorService,
-  OgmaInterceptor,
-  Type,
-} from '@ogma/nestjs-module';
+import { AbstractInterceptorService, OgmaInterceptor, Type } from '@ogma/nestjs-module';
 import { SocketIOParser } from '@ogma/platform-socket.io';
 import { WsParser } from '@ogma/platform-ws';
 import Io from 'socket.io-client';
 import WebSocket from 'ws';
 import { WsModule } from '../src/ws/ws.module';
-import {
-  createConnection,
-  hello,
-  serviceOptionsFactory,
-  wsClose,
-  wsPromise,
-} from './utils';
+import { createConnection, hello, serviceOptionsFactory, wsClose, wsPromise } from './utils';
 
 describe.each`
   adapter      | server         | parser            | client                                 | protocol  | sendMethod | serializer                                                 | deserializer
@@ -96,24 +86,16 @@ describe.each`
         message      | status
         ${'message'} | ${color.green(200)}
         ${'throw'}   | ${color.red(500)}
-      `(
-        '$message',
-        async ({ message, status }: { message: string; status: string }) => {
-          await wsPromise(ws, serializer(message), sendMethod);
-          expect(logSpy).toHaveBeenCalledTimes(1);
-          const logObject = logSpy.mock.calls[0][0];
-          const requestId = logSpy.mock.calls[0][2];
+      `('$message', async ({ message, status }: { message: string; status: string }) => {
+        await wsPromise(ws, serializer(message), sendMethod);
+        expect(logSpy).toHaveBeenCalledTimes(1);
+        const logObject = logSpy.mock.calls[0][0];
+        const requestId = logSpy.mock.calls[0][2];
 
-          expect(logObject).toBeALogObject(
-            server.toLowerCase(),
-            message,
-            'WS',
-            status,
-          );
-          expect(typeof requestId).toBe('string');
-          expect(requestId).toHaveLength(16);
-        },
-      );
+        expect(logObject).toBeALogObject(server.toLowerCase(), message, 'WS', status);
+        expect(typeof requestId).toBe('string');
+        expect(requestId).toHaveLength(16);
+      });
       it('should get the data from skip but not log', async () => {
         const data = await wsPromise(ws, serializer('skip'), sendMethod);
         expect(data).toEqual(deserializer(hello));
