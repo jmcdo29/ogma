@@ -1,8 +1,5 @@
 import { WriteStream } from 'fs';
-import {
-  createLogger as WinstonLogger,
-  transports as WinstonTransports,
-} from 'winston';
+import { createLogger as WinstonLogger, transports as WinstonTransports } from 'winston';
 
 export function createWinstonLogger(stream: WriteStream) {
   return WinstonLogger({

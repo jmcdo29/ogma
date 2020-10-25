@@ -9,10 +9,7 @@ type LogResult = {
     [index in LogType]?: number;
   };
 };
-function makeRow(
-  name: string,
-  rowResult: { [index in LogType]: number },
-): string {
+function makeRow(name: string, rowResult: { [index in LogType]: number }): string {
   return `| ${name} | ${rowResult.simple}ms | ${rowResult.long}ms | ${rowResult.json}ms | ${rowResult.deep}ms |\n`;
 }
 
