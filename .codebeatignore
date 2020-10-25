@@ -1,2 +1,2 @@
-benchmarks/*
-tools/*
+benchmarks/**
+tools/**
