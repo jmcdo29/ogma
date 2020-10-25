@@ -15,9 +15,7 @@ function readDirectory(dir: string): string[] {
 }
 
 function getPackageJSON(packageName: string): packageJSON {
-  const packageString = readFileSync(
-    `./packages/${packageName}/package.json`,
-  ).toString();
+  const packageString = readFileSync(`./packages/${packageName}/package.json`).toString();
   return JSON.parse(packageString);
 }
 
@@ -28,18 +26,14 @@ function populateVersionMap(packageObject: packageJSON): packageJSON {
 
 function hasOgmaPeerDep(packageObject: packageJSON): boolean {
   return packageObject.peerDependencies
-    ? Object.keys(packageObject.peerDependencies).some(
-        (key) => !!versionMap[key],
-      )
+    ? Object.keys(packageObject.peerDependencies).some((key) => !!versionMap[key])
     : false;
 }
 
 function updatePeerDep(packageObject: packageJSON): packageJSON {
   Object.keys(packageObject.peerDependencies)
     .filter((key) => !!versionMap[key])
-    .forEach(
-      (key) => (packageObject.peerDependencies[key] = '^' + versionMap[key]),
-    );
+    .forEach((key) => (packageObject.peerDependencies[key] = '^' + versionMap[key]));
   return packageObject;
 }
 
@@ -48,11 +42,7 @@ function updatePackageJSON(packageObject: packageJSON): void {
     `./packages/${packageObject.name.replace('@ogma/', '')}/package.json`,
     Buffer.from(JSON.stringify(packageObject, null, 2) + '\n'),
   );
-  console.log(
-    `Updated ${color.blue('package.json')} for ${color.green(
-      packageObject.name,
-    )}`,
-  );
+  console.log(`Updated ${color.blue('package.json')} for ${color.green(packageObject.name)}`);
 }
 
 function bootstrap() {

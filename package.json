@@ -40,7 +40,7 @@
     "benchmark:logger": "rimraf benchmarks/logger/dist && tsc -p benchmarks/logger/tsconfig.json && node benchmarks/logger/dist/index.js",
     "check": "npm-check -u",
     "commit": "git-cz",
-    "format": "prettier --write \"{packages,integration,benchmarks,tool}/**/*.ts\"",
+    "format": "prettier --write \"{packages,integration,benchmarks,tools}/**/*.ts\"",
     "lint": "eslint --ext .ts .",
     "setup": "yarn && yarn build",
     "test": "lerna run test",
