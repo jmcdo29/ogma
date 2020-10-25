@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-nats",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A plugin for the OgmaInterceptor to properly handle microservice requests from nats protocols",
   "keywords": [
     "nats",
@@ -39,12 +39,12 @@
   "devDependencies": {
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
-    "@ogma/nestjs-module": "^0.4.0",
+    "@ogma/nestjs-module": "^0.4.1",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
     "@nestjs/microservices": "^7.0.0",
-    "@ogma/nestjs-module": "^0.4.0",
+    "@ogma/nestjs-module": "^0.4.1",
     "nats": "^1.4.0"
   }
 }

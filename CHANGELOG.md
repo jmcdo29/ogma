@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/jmcdo29/ogma/compare/v0.4.0...v0.4.1) (2020-10-25)
+
+### Bug Fixes
+
+- **service:** fixes logger methods to follow `LoggerService` interface ([f1fd191](https://github.com/jmcdo29/ogma/commit/f1fd191d068182293af8261986ce43b442bb95ca))
+
 # [0.4.0](https://github.com/jmcdo29/ogma/compare/v0.3.1...v0.4.0) (2020-10-25)
 
 ### Bug Fixes
