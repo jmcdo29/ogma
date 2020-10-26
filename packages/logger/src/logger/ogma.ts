@@ -117,7 +117,7 @@ export class Ogma {
 
     const hostname = this.toStreamColor(this.hostname, Color.MAGENTA);
     const timestamp = this.wrapInBrackets(this.getTimestamp());
-    return `${timestamp} ${hostname} ${application} ${this.pid} ${correlationId}${context}${formattedLevel}| ${message}`;
+    return `${timestamp} ${formattedLevel} ${hostname} ${application} ${this.pid} ${correlationId} ${context} ${message}`;
   }
 
   private toStreamColor(value: string, color: Color): string {

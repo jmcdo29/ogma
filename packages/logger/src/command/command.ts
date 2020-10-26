@@ -109,6 +109,7 @@ function writeLog(log: OgmaLog, useColor: boolean): void {
     message = getMessageFromJSON(rest);
   }
   let logMessage = wrapInParens(time) + ' ';
+  logMessage += getLevel(level, useColor) + ' ';
   logMessage += getHostname(hostname, useColor) + ' ';
   if (application) {
     logMessage += getApplication(application, useColor) + ' ';
@@ -117,8 +118,6 @@ function writeLog(log: OgmaLog, useColor: boolean): void {
   if (context) {
     logMessage += getContext(context, useColor) + ' ';
   }
-  logMessage += getLevel(level, useColor);
-  logMessage += '| ';
   logMessage += message + '\n';
   process.stdout.write(Buffer.from(logMessage));
 }
