@@ -86,7 +86,7 @@ export const fullJSON: OgmaLogSet = {
 };
 
 function hydrateNoAppNoConFactory(level: string): string {
-  return `[${time}] ${color.magenta('[' + host + ']')} ${pid} ${level}| ${JSON.stringify(hello)}\n`;
+  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${pid} ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoAppNoCon: ExpectedOgmaOutput = {
@@ -100,9 +100,9 @@ const hydratedNoAppNoCon: ExpectedOgmaOutput = {
 };
 
 function hydrateNoConFactory(level: string): string {
-  return `[${time}] ${color.magenta('[' + host + ']')} ${color.yellow(
+  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${color.yellow(
     '[' + application + ']',
-  )} ${pid} ${level}| ${JSON.stringify(hello)}\n`;
+  )} ${pid} ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoCon: ExpectedOgmaOutput = {
@@ -116,9 +116,9 @@ const hydratedNoCon: ExpectedOgmaOutput = {
 };
 
 function hydrateNoAppFactory(level: string): string {
-  return `[${time}] ${color.magenta('[' + host + ']')} ${pid} ${color.cyan(
+  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${pid} ${color.cyan(
     '[' + context + ']',
-  )} ${level}| ${JSON.stringify(hello)}\n`;
+  )} ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoApp: ExpectedOgmaOutput = {
@@ -132,9 +132,9 @@ const hydratedNoApp: ExpectedOgmaOutput = {
 };
 
 function hydrateFullFactory(level: string): string {
-  return `[${time}] ${color.magenta('[' + host + ']')} ${color.yellow(
+  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${color.yellow(
     '[' + application + ']',
-  )} ${pid} ${color.cyan('[' + context + ']')} ${level}| ${JSON.stringify(hello)}\n`;
+  )} ${pid} ${color.cyan('[' + context + ']')} ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedFull: ExpectedOgmaOutput = {
@@ -148,7 +148,7 @@ const hydratedFull: ExpectedOgmaOutput = {
 };
 
 function hydrateNoAppNoConNoColorFactory(level: string): string {
-  return `[${time}] [${host}] ${pid} ${level}| ${JSON.stringify(hello)}\n`;
+  return `[${time}] ${level} [${host}] ${pid} ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoAppNoConNoColor: ExpectedOgmaOutput = {
@@ -162,7 +162,7 @@ const hydratedNoAppNoConNoColor: ExpectedOgmaOutput = {
 };
 
 function hydrateNoConNoColorFactory(level: string): string {
-  return `[${time}] [${host}] [${application}] ${pid} ${level}| ${JSON.stringify(hello)}\n`;
+  return `[${time}] ${level} [${host}] [${application}] ${pid} ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoConNoColor: ExpectedOgmaOutput = {
@@ -176,7 +176,7 @@ const hydratedNoConNoColor: ExpectedOgmaOutput = {
 };
 
 function hydrateNoAppNoColorFactory(level: string): string {
-  return `[${time}] [${host}] ${pid} [${context}] ${level}| ${JSON.stringify(hello)}\n`;
+  return `[${time}] ${level} [${host}] ${pid} [${context}] ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoAppNoColor: ExpectedOgmaOutput = {
@@ -190,7 +190,7 @@ const hydratedNoAppNoColor: ExpectedOgmaOutput = {
 };
 
 function hydrateFullNoColorFactory(level: string): string {
-  return `[${time}] [${host}] [${application}] ${pid} [${context}] ${level}| ${JSON.stringify(
+  return `[${time}] ${level} [${host}] [${application}] ${pid} [${context}] ${JSON.stringify(
     hello,
   )}\n`;
 }
@@ -273,7 +273,7 @@ const fullString: OgmaLogSet = {
 };
 
 function hydrateNoAppNoConStringFactory(level: string): string {
-  return `[${time}] ${color.magenta('[' + host + ']')} ${pid} ${level}| ${message}\n`;
+  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${pid} ${message}\n`;
 }
 
 const hydratedNoAppNoConString: ExpectedOgmaOutput = {
@@ -287,9 +287,9 @@ const hydratedNoAppNoConString: ExpectedOgmaOutput = {
 };
 
 function hydrateNoConStringFactory(level: string): string {
-  return `[${time}] ${color.magenta('[' + host + ']')} ${color.yellow(
+  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${color.yellow(
     '[' + application + ']',
-  )} ${pid} ${level}| ${message}\n`;
+  )} ${pid} ${message}\n`;
 }
 
 const hydratedNoConString: ExpectedOgmaOutput = {
@@ -303,9 +303,9 @@ const hydratedNoConString: ExpectedOgmaOutput = {
 };
 
 function hydrateNoAppStringFactory(level: string): string {
-  return `[${time}] ${color.magenta('[' + host + ']')} ${pid} ${color.cyan(
+  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${pid} ${color.cyan(
     '[' + context + ']',
-  )} ${level}| ${message}\n`;
+  )} ${message}\n`;
 }
 
 const hydratedNoAppString: ExpectedOgmaOutput = {
@@ -319,9 +319,9 @@ const hydratedNoAppString: ExpectedOgmaOutput = {
 };
 
 function hydrateFullStringFactory(level: string): string {
-  return `[${time}] ${color.magenta('[' + host + ']')} ${color.yellow(
+  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${color.yellow(
     '[' + application + ']',
-  )} ${pid} ${color.cyan('[' + context + ']')} ${level}| ${message}\n`;
+  )} ${pid} ${color.cyan('[' + context + ']')} ${message}\n`;
 }
 
 const hydratedFullString: ExpectedOgmaOutput = {
@@ -335,7 +335,7 @@ const hydratedFullString: ExpectedOgmaOutput = {
 };
 
 function hydrateNoAppNoConNoColorStringFactory(level: string): string {
-  return `[${time}] [${host}] ${pid} ${level}| ${message}\n`;
+  return `[${time}] ${level} [${host}] ${pid} ${message}\n`;
 }
 
 const hydratedNoAppNoConNoColorString: ExpectedOgmaOutput = {
@@ -349,7 +349,7 @@ const hydratedNoAppNoConNoColorString: ExpectedOgmaOutput = {
 };
 
 function hydrateNoConNoColorStringFactory(level: string): string {
-  return `[${time}] [${host}] [${application}] ${pid} ${level}| ${message}\n`;
+  return `[${time}] ${level} [${host}] [${application}] ${pid} ${message}\n`;
 }
 
 const hydratedNoConNoColorString: ExpectedOgmaOutput = {
@@ -363,7 +363,7 @@ const hydratedNoConNoColorString: ExpectedOgmaOutput = {
 };
 
 function hydrateNoAppNoColorStringFactory(level: string): string {
-  return `[${time}] [${host}] ${pid} [${context}] ${level}| ${message}\n`;
+  return `[${time}] ${level} [${host}] ${pid} [${context}] ${message}\n`;
 }
 
 const hydratedNoAppNoColorString: ExpectedOgmaOutput = {
@@ -377,7 +377,7 @@ const hydratedNoAppNoColorString: ExpectedOgmaOutput = {
 };
 
 function hydrateFullNoColorStringFactory(level: string): string {
-  return `[${time}] [${host}] [${application}] ${pid} [${context}] ${level}| ${message}\n`;
+  return `[${time}] ${level} [${host}] [${application}] ${pid} [${context}] ${message}\n`;
 }
 
 const hydratedFullNoColorString: ExpectedOgmaOutput = {

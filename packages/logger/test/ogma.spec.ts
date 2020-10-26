@@ -42,8 +42,8 @@ describe('Ogma Class', () => {
 
   describe.each`
     color    | expectation
-    ${true}  | ${Color.cyan('[INFO] ') + '| Hello'}
-    ${false} | ${'[INFO] | Hello'}
+    ${true}  | ${Color.cyan('[INFO] ')}
+    ${false} | ${'[INFO] '}
   `('color: $color', ({ color, expectation }: { color: boolean; expectation: string }) => {
     beforeEach(() => {
       ogma = createOgmaInstance({
