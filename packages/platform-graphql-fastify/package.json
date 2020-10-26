@@ -43,7 +43,7 @@
     "@ogma/platform-fastify": "^0.4.1",
     "apollo-server-fastify": "^2.16.0",
     "graphql": "^15.3.0",
-    "graphql-tools": "^6.0.14",
+    "graphql-tools": "^7.0.0",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {

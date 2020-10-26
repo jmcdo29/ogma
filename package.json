@@ -93,7 +93,7 @@
     "express": "^4.17.0",
     "fastify": "^3.3.0",
     "graphql": "^15.3.0",
-    "graphql-tools": "^6.0.14",
+    "graphql-tools": "^7.0.0",
     "grpc": "^1.24.2",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
