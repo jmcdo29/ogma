@@ -1,6 +1,6 @@
 import { Controller, Get, Inject, OnModuleInit, UseFilters } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { ExceptionFilter } from './exception.filter';
+import { ExceptionFilter } from './../../shared/exception.filter';
 import { HelloService } from './hello-service.interface';
 
 @Controller()

@@ -2,7 +2,7 @@ import { BadRequestException, Controller, UseFilters } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
 import { OgmaSkip } from '@ogma/nestjs-module';
 import { AppService } from '../../app.service';
-import { ExceptionFilter } from './exception.filter';
+import { ExceptionFilter } from './../../shared/server-exception.filter';
 
 @Controller()
 export class GrpcServerController {

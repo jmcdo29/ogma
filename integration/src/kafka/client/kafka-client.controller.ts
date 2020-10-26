@@ -1,6 +1,6 @@
 import { Controller, Get, Inject, OnModuleDestroy, OnModuleInit, UseFilters } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
-import { ExceptionFilter } from './exception.filter';
+import { ExceptionFilter } from './../../shared/exception.filter';
 
 @Controller()
 export class KafkaClientController implements OnModuleInit, OnModuleDestroy {

@@ -7,7 +7,7 @@ import {
   UseFilters,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { ExceptionFilter } from './exception.filter';
+import { ExceptionFilter } from './../../shared/exception.filter';
 
 @Controller()
 export class RpcClientController implements OnApplicationBootstrap, OnApplicationShutdown {
