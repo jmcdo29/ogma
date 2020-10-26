@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-fastify",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A plugin for the OgmaInterceptor to properly handle HTTP requests from Fastify",
   "keywords": [
     "fastify",
@@ -39,13 +39,13 @@
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
     "@nestjs/platform-fastify": "7.4.4",
-    "@ogma/nestjs-module": "^0.4.1",
+    "@ogma/nestjs-module": "^0.4.2",
     "fastify": "^3.3.0",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
     "@nestjs/platform-fastify": "^7.0.0",
-    "@ogma/nestjs-module": "^0.4.1",
+    "@ogma/nestjs-module": "^0.4.2",
     "fastify": ">=2.13.0"
   }
 }

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/jmcdo29/ogma/compare/v0.4.1...v0.4.2) (2020-10-26)
+
+### Bug Fixes
+
+- OFF means no logs ([bde8068](https://github.com/jmcdo29/ogma/commit/bde80689453b4339fc2180f5593d00117825b3f0))
+
+### Features
+
+- **logger:** move log level to earlier in the log ([da00caa](https://github.com/jmcdo29/ogma/commit/da00caa0060371725d513e1d2eb1d1be0657b230))
+
 ## [0.4.1](https://github.com/jmcdo29/ogma/compare/v0.4.0...v0.4.1) (2020-10-25)
 
 ### Bug Fixes

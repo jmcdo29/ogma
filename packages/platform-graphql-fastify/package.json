@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-graphql-fastify",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A plugin for the OgmaInterceptor to proplery handle GQL requests with an Fastify server",
   "keywords": [
     "fastify",
@@ -39,15 +39,15 @@
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
     "@nestjs/graphql": "^7.0.6",
-    "@ogma/nestjs-module": "^0.4.1",
-    "@ogma/platform-fastify": "^0.4.1",
+    "@ogma/nestjs-module": "^0.4.2",
+    "@ogma/platform-fastify": "^0.4.2",
     "apollo-server-fastify": "^2.16.0",
     "graphql": "^15.3.0",
     "graphql-tools": "^7.0.0",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
-    "@ogma/nestjs-module": "^0.4.1",
-    "@ogma/platform-fastify": "^0.4.1"
+    "@ogma/nestjs-module": "^0.4.2",
+    "@ogma/platform-fastify": "^0.4.2"
   }
 }
