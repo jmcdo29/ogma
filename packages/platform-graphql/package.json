@@ -42,7 +42,7 @@
     "@ogma/platform-express": "^0.4.1",
     "apollo-server-express": "^2.0.0",
     "graphql": "^15.3.0",
-    "graphql-tools": "^6.0.13",
+    "graphql-tools": "^7.0.0",
     "rxjs": "^6.5.4"
   },
   "peerDependencies": {
