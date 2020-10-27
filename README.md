@@ -1,6 +1,6 @@
 <div align="center">
 
-![CI](https://github.com/jmcdo29/ogma/workflows/CI/badge.svg) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Coffee](https://badgen.net/badge/Buy%20Me/A%20Coffee/purple?icon=kofi)](https://www.buymeacoffee.com/jmcdo29) [![codebeat badge](https://codebeat.co/badges/5cf9002d-edc1-42f2-93fb-996fa28c4227)](https://codebeat.co/projects/github-com-jmcdo29-ogma-master)
+![CI](https://github.com/jmcdo29/ogma/workflows/CI/badge.svg) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Coffee](https://badgen.net/badge/Buy%20Me/A%20Coffee/purple?icon=kofi)](https://www.buymeacoffee.com/jmcdo29) [![codebeat badge](https://codebeat.co/badges/5cf9002d-edc1-42f2-93fb-996fa28c4227)](https://codebeat.co/projects/github-com-jmcdo29-ogma-main)
 
 </div>
 
