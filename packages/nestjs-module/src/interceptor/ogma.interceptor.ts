@@ -37,7 +37,7 @@ export class OgmaInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const startTime = Date.now();
     const options = { ...this.options, json: this.json, color: this.color };
-    const correlationId = this.generateRequestId();
+    const correlationId = this.generateRequestId(context);
     this.delegate.setRequestId(context, correlationId);
     return next.handle().pipe(this.rxJsLogTap({ context, startTime, options, correlationId }));
   }
@@ -98,7 +98,8 @@ export class OgmaInterceptor implements NestInterceptor {
     });
   }
 
-  public generateRequestId(): string {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public generateRequestId(context?: ExecutionContext): string {
     const time = Date.now().toString();
     const randomNumbers = Math.floor(Math.random() * (1000 - 100) + 100);
     return time + randomNumbers.toString();
