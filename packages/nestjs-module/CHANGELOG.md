@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/jmcdo29/ogma/compare/v0.4.2...v0.4.3) (2020-10-30)
+
+### Features
+
+- **interceptor:** `getRequestId` now optionally accepts ExecutionContext ([130b9e6](https://github.com/jmcdo29/ogma/commit/130b9e6a773e78a356d9d3f07670e8296858f236)), closes [#326](https://github.com/jmcdo29/ogma/issues/326)
+
 ## [0.4.2](https://github.com/jmcdo29/ogma/compare/v0.4.1...v0.4.2) (2020-10-26)
 
 **Note:** Version bump only for package @ogma/nestjs-module
