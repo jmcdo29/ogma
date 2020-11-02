@@ -2269,13 +2269,13 @@
   integrity sha512-FfQsZK5K1OvvGqjPHCJtrNTLlKLg7bLuphtCRTFb5K2P98JTfslauMbT7bS8huOoK/86HMNmNoHR/EVLAd4FzA==
 
 "@nestjs/microservices@^7.3.2":
-  version "7.4.4"
-  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-7.4.4.tgz#82d3b9b303a38aee9070cdcbd6a7fef98589e15d"
-  integrity sha512-5DTxJJcQ6d1deTCytwKWXQpB3nyxSnF5VFoMeeuduIszRjhKAETTdEaymk9tInKiTey9tmWf3RTlQa1x7ytglQ==
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-7.5.1.tgz#d9f15722ddf0c1beb0b897a3084a7fbc734a9738"
+  integrity sha512-hKP47RlzcEH61aPqLh64HAKC5sFxrqfg64t8uz9J/ObZmYSDoFvf6NI4HgfRzqNf8+P3XTPbixJAwYoJShMx8w==
   dependencies:
     iterare "1.2.1"
     json-socket "0.3.0"
-    tslib "2.0.1"
+    tslib "2.0.3"
 
 "@nestjs/platform-express@^7.0.6", "@nestjs/platform-express@^7.3.2":
   version "7.4.4"
@@ -13262,15 +13262,15 @@ tslib@2.0.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
   integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
 
+tslib@2.0.3, tslib@~2.0.0, tslib@~2.0.1:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
+  integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
+
 tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-
-tslib@~2.0.0, tslib@~2.0.1:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
-  integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
 tsutils@^3.17.1:
   version "3.17.1"
