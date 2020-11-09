@@ -50,7 +50,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:int": "jest --config jest-integration.config.js",
     "test:int:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --config jest-integration.config.js",
-    "updatePeerDeps": "node tools/peer-update.js"
+    "updatePeerDeps": "node tools/peer-update.js",
+    "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -84,6 +85,7 @@
     "apollo-server-express": "2.18.2",
     "apollo-server-fastify": "2.18.2",
     "bunyan": "^1.8.14",
+    "codeclimate-test-reporter": "^0.5.1",
     "conventional-changelog-cli": "^2.0.31",
     "cz-conventional-changelog": "^3.1.0",
     "eslint": "^7.4.0",
@@ -109,7 +111,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.0.0",
-    "ts-jest": "^26.1.3",
+    "ts-jest": "^26.4.4-alpha.0",
     "ts-loader": "^8.0.1",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2",

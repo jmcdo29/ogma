@@ -37,6 +37,11 @@ jobs:
       run: yarn test:int
     - name: Stop Docker Compose
       run: docker-compose down
+    - name: Send Coverage
+      run: yarn sendCoverage
+      env:
+        CODECLIMATE_API_HOST: https://codebeat.co/webhooks/code_coverage
+        CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
   
   analyze:
     name: Analyze
