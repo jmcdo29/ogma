@@ -12783,10 +12783,10 @@ ts-invariant@^0.4.0, ts-invariant@^0.4.4:
   dependencies:
     tslib "^1.9.3"
 
-ts-jest@^26.4.4-alpha.0:
-  version "26.4.4"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-26.4.4.tgz#61f13fb21ab400853c532270e52cc0ed7e502c49"
-  integrity sha512-3lFWKbLxJm34QxyVNNCgXX1u4o/RV0myvA2y2Bxm46iGIjKlaY0own9gIckbjZJPn+WaJEnfPPJ20HHGpoq4yg==
+ts-jest@^27.0.0-alpha.0:
+  version "27.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-27.0.0-alpha.0.tgz#adc555835924644b49ac85eae6b8421b5a2aeef7"
+  integrity sha512-yFSzPqEBey4p3973/p0ZLf+eDKL5qDZrltjWwCc8EjL3X1u8t1BbRQygPFJsV/e4xTGxW+SafL5zPIhujJyaFw==
   dependencies:
     "@types/jest" "26.x"
     bs-logger "0.x"
