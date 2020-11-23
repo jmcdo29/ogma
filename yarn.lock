@@ -2323,12 +2323,12 @@
     tslib "2.0.3"
 
 "@nestjs/platform-ws@^7.0.0":
-  version "7.5.3"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-ws/-/platform-ws-7.5.3.tgz#5ad32e19ee7a532b5987ac9cdcc0ebb657dbc6dc"
-  integrity sha512-28djReDSgL09VbDzVSYZQtGSJavN1nCaQ7ZqeQe7gS1FctvpVKFbuEKEZ9UjM5WT4cShQb5ODfvSqjof/3JODg==
+  version "7.5.5"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-ws/-/platform-ws-7.5.5.tgz#6e262145a83214cd50b4965102a92af102c6371a"
+  integrity sha512-gpcxt45wSlwGNNAukbKOcLwGPV5xNBKJ1YwDho0pZ1gR0jPatsGn+q2YnEVzxsIX466popMX+lc9wlG4XuOp2g==
   dependencies:
     tslib "2.0.3"
-    ws "7.3.1"
+    ws "7.4.0"
 
 "@nestjs/schematics@^7.0.0", "@nestjs/schematics@^7.1.0":
   version "7.2.2"
@@ -13539,10 +13539,10 @@ write@1.0.3:
   dependencies:
     mkdirp "^0.5.1"
 
-ws@7.3.1, ws@^7.1.2, ws@^7.2.3, ws@^7.3.1:
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-7.3.1.tgz#d0547bf67f7ce4f12a72dfe31262c68d7dc551c8"
-  integrity sha512-D3RuNkynyHmEJIpD2qrgVkc9DQ23OrN/moAwZX4L8DfvszsJxpjQuUq3LMx6HoYji9fbIOBY18XWBsAux1ZZUA==
+ws@7.4.0, ws@^7.1.2, ws@^7.2.3, ws@^7.3.1:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.0.tgz#a5dd76a24197940d4a8bb9e0e152bb4503764da7"
+  integrity sha512-kyFwXuV/5ymf+IXhS6f0+eAFvydbaBW3zjpT6hUdAh/hbVjTIB5EHBGi0bPoCLSK2wcuz3BrEkB9LrYv1Nm4NQ==
 
 ws@^5.2.0:
   version "5.2.2"
