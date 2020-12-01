@@ -12800,9 +12800,9 @@ ts-invariant@^0.4.0, ts-invariant@^0.4.4:
     tslib "^1.9.3"
 
 ts-jest@^27.0.0-alpha.0:
-  version "27.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-27.0.0-alpha.0.tgz#adc555835924644b49ac85eae6b8421b5a2aeef7"
-  integrity sha512-yFSzPqEBey4p3973/p0ZLf+eDKL5qDZrltjWwCc8EjL3X1u8t1BbRQygPFJsV/e4xTGxW+SafL5zPIhujJyaFw==
+  version "27.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-27.0.0-alpha.1.tgz#fe08a5ab69463d6b82d45d24ffe40ccfb26d7cd9"
+  integrity sha512-NM1yK0zimMU9qQRoZBuKLTG/UkGqNdJc00wj9SY/CGUghqDnzEnmEJUlpAPCvaa5sZFleDWzeIDTE+9KP9AnZw==
   dependencies:
     "@types/jest" "26.x"
     bs-logger "0.x"
