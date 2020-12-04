@@ -6594,10 +6594,32 @@ fastify-warning@^0.2.0:
   resolved "https://registry.yarnpkg.com/fastify-warning/-/fastify-warning-0.2.0.tgz#e717776026a4493dc9a2befa44db6d17f618008f"
   integrity sha512-s1EQguBw/9qtc1p/WTY4eq9WMRIACkj+HTcOIK1in4MV5aFaQC9ZCIt0dJ7pr5bIf4lPpHvAtP2ywpTNgs7hqw==
 
-fastify@3.8.0, fastify@^3.3.0:
+fastify@3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.8.0.tgz#455bfa70394322247050c330d0e52532b349662d"
   integrity sha512-w57/uvyQWzF/KSr9CbWQ5nfTqSSfYcmrems9Lc3VvtrAF7EsLbfZQBQZul6xwvE1uEfxA4nGdoUKqpU7xiv7cw==
+  dependencies:
+    abstract-logging "^2.0.0"
+    ajv "^6.12.2"
+    avvio "^7.1.2"
+    fast-json-stringify "^2.2.1"
+    fastify-error "^0.2.0"
+    fastify-warning "^0.2.0"
+    find-my-way "^3.0.5"
+    flatstr "^1.0.12"
+    light-my-request "^4.2.0"
+    pino "^6.2.1"
+    proxy-addr "^2.0.5"
+    readable-stream "^3.4.0"
+    rfdc "^1.1.4"
+    secure-json-parse "^2.0.0"
+    semver "^7.3.2"
+    tiny-lru "^7.0.0"
+
+fastify@^3.3.0:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.9.1.tgz#fe7faba92c72fb90054c5f3422965e34142f4cdf"
+  integrity sha512-J+JyYc2PH7N6KxrG0d3d2V0HRPdBMpxp3eKdGcDtemTvXhuQKFHFLQ+WkeFLShkcGDsf+/vBV+NMK8Ki97/OTg==
   dependencies:
     abstract-logging "^2.0.0"
     ajv "^6.12.2"
