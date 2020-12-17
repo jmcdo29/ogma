@@ -2297,15 +2297,15 @@
     multer "1.4.2"
     tslib "2.0.3"
 
-"@nestjs/platform-fastify@7.6.1", "@nestjs/platform-fastify@^7.0.0":
-  version "7.6.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-fastify/-/platform-fastify-7.6.1.tgz#06812fc345e0b76c54e7466dab22884b74dab934"
-  integrity sha512-EYCG5IyStzndCP2L+TA+6y39yqKO+AxkTIkh2aI3eoz1LScr7Vna52gXj6NxOaVLmTQW1RMjNzrbsWYNRMHyNQ==
+"@nestjs/platform-fastify@7.6.3", "@nestjs/platform-fastify@^7.0.0":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-fastify/-/platform-fastify-7.6.3.tgz#18ff3eaba2c43bacf66d7f265763759a7afa065a"
+  integrity sha512-ZzMdc6LfS4XI/2+rCLjPFvyztJ1wGv0XWLnStzQabuQ7/nyWoFCy5a70jlexxkYJsCX9QRZ6RYCmnB53Bbr+xA==
   dependencies:
-    fastify "3.9.1"
+    fastify "3.9.2"
     fastify-cors "5.1.0"
     fastify-formbody "5.0.0"
-    light-my-request "4.3.0"
+    light-my-request "4.4.1"
     middie "5.2.0"
     path-to-regexp "3.2.0"
     tslib "2.0.3"
@@ -6624,29 +6624,7 @@ fastify-warning@^0.2.0:
   resolved "https://registry.yarnpkg.com/fastify-warning/-/fastify-warning-0.2.0.tgz#e717776026a4493dc9a2befa44db6d17f618008f"
   integrity sha512-s1EQguBw/9qtc1p/WTY4eq9WMRIACkj+HTcOIK1in4MV5aFaQC9ZCIt0dJ7pr5bIf4lPpHvAtP2ywpTNgs7hqw==
 
-fastify@3.9.1:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.9.1.tgz#fe7faba92c72fb90054c5f3422965e34142f4cdf"
-  integrity sha512-J+JyYc2PH7N6KxrG0d3d2V0HRPdBMpxp3eKdGcDtemTvXhuQKFHFLQ+WkeFLShkcGDsf+/vBV+NMK8Ki97/OTg==
-  dependencies:
-    abstract-logging "^2.0.0"
-    ajv "^6.12.2"
-    avvio "^7.1.2"
-    fast-json-stringify "^2.2.1"
-    fastify-error "^0.2.0"
-    fastify-warning "^0.2.0"
-    find-my-way "^3.0.5"
-    flatstr "^1.0.12"
-    light-my-request "^4.2.0"
-    pino "^6.2.1"
-    proxy-addr "^2.0.5"
-    readable-stream "^3.4.0"
-    rfdc "^1.1.4"
-    secure-json-parse "^2.0.0"
-    semver "^7.3.2"
-    tiny-lru "^7.0.0"
-
-fastify@^3.3.0:
+fastify@3.9.2, fastify@^3.3.0:
   version "3.9.2"
   resolved "https://registry.yarnpkg.com/fastify/-/fastify-3.9.2.tgz#20007d1a558cf8c88a8ef2936b4e484553fdf706"
   integrity sha512-8VEf4l6a2tdtrYQQwgT9Zh2/OvOgE4Sf6cDNMduAnKZ44CXrT0tXuH/uQkXuxqMAW27ZOy4jeexBl8CFaECntg==
@@ -8959,10 +8937,10 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-light-my-request@4.3.0, light-my-request@^4.2.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/light-my-request/-/light-my-request-4.3.0.tgz#0178dfe7f298089df976f8e4cc0e10998be50aad"
-  integrity sha512-WrEvI7V41ZbEUe0bsfuS170QrYSVADKA0JiWyK/lVtm4Ra26pl9CYKBdlr823/s37N2wMJze8YNkHbg11aZWAw==
+light-my-request@4.4.1, light-my-request@^4.2.0:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/light-my-request/-/light-my-request-4.4.1.tgz#bfa2220316eef4f6465bf2f0667780da6b7f6a71"
+  integrity sha512-FDNRF2mYjthIRWE7O8d/X7AzDx4otQHl4/QXbu3Q/FRwBFcgb+ZoDaUd5HwN53uQXLAiw76osN+Va0NEaOW6rQ==
   dependencies:
     ajv "^6.12.2"
     cookie "^0.4.0"
