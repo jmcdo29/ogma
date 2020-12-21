@@ -2297,10 +2297,10 @@
     multer "1.4.2"
     tslib "2.0.3"
 
-"@nestjs/platform-fastify@7.6.3", "@nestjs/platform-fastify@^7.0.0":
-  version "7.6.3"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-fastify/-/platform-fastify-7.6.3.tgz#18ff3eaba2c43bacf66d7f265763759a7afa065a"
-  integrity sha512-ZzMdc6LfS4XI/2+rCLjPFvyztJ1wGv0XWLnStzQabuQ7/nyWoFCy5a70jlexxkYJsCX9QRZ6RYCmnB53Bbr+xA==
+"@nestjs/platform-fastify@7.6.4", "@nestjs/platform-fastify@^7.0.0":
+  version "7.6.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-fastify/-/platform-fastify-7.6.4.tgz#42b0a4f5e65e1c979bb7c2eb7bb48c28aaad12be"
+  integrity sha512-XqjR0bmCSXwEbQYMu5trBVNEb9DSDcS1tiEob4NF7WUcqFE6ilxuGpagNbQFgweUyOFkF578361xPTngL3dMgg==
   dependencies:
     fastify "3.9.2"
     fastify-cors "5.1.0"
