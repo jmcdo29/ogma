@@ -2344,9 +2344,9 @@
     tslib "2.0.3"
 
 "@nestjs/websockets@^7.0.0":
-  version "7.6.3"
-  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-7.6.3.tgz#cc6af316bc469c0b12254e5db3d40085fd8cf3b2"
-  integrity sha512-RRISPXkPTmnWedeA5Af1qJKTTJdZ7DIsX+OlqrOJD8rg4T1DBS3qDv1T95yCPGEngmlVPTc1vCdQ5//+jBLEfg==
+  version "7.6.4"
+  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-7.6.4.tgz#27fbb34882e2d73784a7cce5ebb009d9875c02d6"
+  integrity sha512-tURSsEvhb1WJmuPkACgj40U2sSpiEr46Z0eKf3XkPpddzy8HxUhaoWbYTmM9PEBqiJgzLAxZN0x9L+WV3TGGdg==
   dependencies:
     iterare "1.2.1"
     tslib "2.0.3"
