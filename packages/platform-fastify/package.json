@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-fastify",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "A plugin for the OgmaInterceptor to properly handle HTTP requests from Fastify",
   "keywords": [
     "fastify",

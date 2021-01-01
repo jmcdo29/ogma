@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.4](https://github.com/jmcdo29/ogma/compare/v0.4.3...v0.4.4) (2021-01-01)
+
+### Bug Fixes
+
+- **gql:** interceptors now work with subscriptions ([55ba385](https://github.com/jmcdo29/ogma/commit/55ba385d2635ac5c9bf92bbd4ea2555d5c14bcd7))
+
 ## [0.4.3](https://github.com/jmcdo29/ogma/compare/v0.4.2...v0.4.3) (2020-10-30)
 
 ### Features
