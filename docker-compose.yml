@@ -1,21 +1,21 @@
-version: "3.3"
+version: '3.3'
 services:
-  mqtt: 
+  mqtt:
     image: eclipse-mosquitto
     container_name: mqtt
     ports:
-      - "1883:1883"
+      - '1883:1883'
   rabbitmq:
     image: rabbitmq
     container_name: rabbit
     ports:
-      - "5672:5672"
+      - '5672:5672'
   # zookeeper:
   #   container_name: kafka-zookeeper
   #   hostname: zookeeper
   #   image: confluentinc/cp-zookeeper:5.3.2
   #   ports:
-  #     - "2181:2181"
+  #     - '2181:2181'
   #   environment:
   #     ZOOKEEPER_CLIENT_PORT: 2181
   #     ZOOKEEPER_TICK_TIME: 2000
@@ -26,8 +26,8 @@ services:
   #   depends_on:
   #     - zookeeper
   #   ports:
-  #     - "29092:29092"
-  #     - "9092:9092"
+  #     - '29092:29092'
+  #     - '9092:9092'
   #   environment:
   #     KAFKA_BROKER_ID: 1
   #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -35,14 +35,13 @@ services:
   #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
   #     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
   #     KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-  # grpc:
   nats:
     image: nats
     container_name: nats
     ports:
-      - "4222:4222"
+      - '4222:4222'
   redis:
     image: redis
     container_name: redis
     ports:
-      - "6379:6379"
+      - '6379:6379'

@@ -10,8 +10,8 @@ export class KafkaClientController implements OnModuleInit, OnModuleDestroy {
     ['hello', 'error', 'skip'].forEach((key) => this.kafka.subscribeToResponseOf(`say.${key}`));
   }
 
-  onModuleDestroy() {
-    this.kafka.close();
+  async onModuleDestroy() {
+    await this.kafka.close();
   }
 
   @Get()

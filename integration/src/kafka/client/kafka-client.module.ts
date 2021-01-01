@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-// import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 import { KafkaClientController } from './kafka-client.controller';
 
 @Module({
   imports: [
-    /* ClientsModule.register([
+    ClientsModule.register([
       {
         name: 'KAFKA_SERVICE',
         transport: Transport.KAFKA,
@@ -18,7 +18,7 @@ import { KafkaClientController } from './kafka-client.controller';
           },
         },
       },
-    ]), */
+    ]),
   ],
   controllers: [KafkaClientController],
 })

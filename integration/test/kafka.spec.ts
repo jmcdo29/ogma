@@ -3,28 +3,30 @@ it.todo('Implement Kafka test');
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
 import { color } from '@ogma/logger';
-import { OgmaInterceptor, OgmaModule } from '@ogma/nestjs-module';
+import { OgmaInterceptor } from '@ogma/nestjs-module';
 import { KafkaParser } from '@ogma/platform-kafka';
 import { KafkaClientModule } from '../src/kafka/client/kafka-client.module';
 import { KafkaServerModule } from '../src/kafka/server/kafka-server.module';
-import { getInterceptor, hello, httpPromise } from './utils';
+import {
+  createTestModule,
+  getInterceptor,
+  hello,
+  httpPromise,
+  serviceOptionsFactory,
+} from './utils';
 
-describe.skip('kafka test', () => {
+describe('kafka test', () => {
   let interceptor: OgmaInterceptor;
   let server: INestMicroservice;
   let client: INestApplication;
 
   beforeAll(async () => {
-    const serverModRef = await Test.createTestingModule({
-      imports: [
-        KafkaServerModule,
-        OgmaModule.forRoot({
-          interceptor: {
-            rpc: KafkaParser,
-          },
-        }),
-      ],
-    }).compile();
+    const serverModRef = await createTestModule(KafkaServerModule, {
+      service: serviceOptionsFactory('kafka'),
+      interceptor: {
+        rpc: KafkaParser,
+      },
+    });
     server = serverModRef.createNestMicroservice<MicroserviceOptions>({
       transport: Transport.KAFKA,
       options: {
@@ -69,15 +71,7 @@ describe.skip('kafka test', () => {
       ${'/error'} | ${color.red(500)}   | ${'say.error'}
     `(
       '$url call',
-      async ({
-        url,
-        status,
-        endpoint,
-      }: {
-        url: string;
-        status: string;
-        endpoint: string;
-      }) => {
+      async ({ url, status, endpoint }: { url: string; status: string; endpoint: string }) => {
         await httpPromise(baseUrl + url);
         expect(logSpy).toBeCalledTimes(1);
         const logObject = logSpy.mock.calls[0][0];
@@ -92,4 +86,4 @@ describe.skip('kafka test', () => {
     });
   });
 });
- */
+*/
