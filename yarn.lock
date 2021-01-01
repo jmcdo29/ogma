@@ -3574,7 +3574,7 @@ apollo-server-core@2.16.1:
     subscriptions-transport-ws "^0.9.11"
     ws "^6.0.0"
 
-apollo-server-core@^2.15.1, apollo-server-core@^2.18.2, apollo-server-core@^2.19.1:
+apollo-server-core@^2.15.1, apollo-server-core@^2.19.1:
   version "2.19.1"
   resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-2.19.1.tgz#18cb74004297fe61689862b8faf00b30a5a30ce7"
   integrity sha512-5EVmcY8Ij7Ywwu+Ze4VaUhZBcxl8t5ztcSatJrKMd4HYlEHyaNGBV2itfpyqAthxfdMbGKqlpeCHmTGSqDcNpA==
@@ -3642,20 +3642,7 @@ apollo-server-express@2.19.1, apollo-server-express@^2.0.0:
     subscriptions-transport-ws "^0.9.16"
     type-is "^1.6.16"
 
-apollo-server-fastify@2.18.2:
-  version "2.18.2"
-  resolved "https://registry.yarnpkg.com/apollo-server-fastify/-/apollo-server-fastify-2.18.2.tgz#3d2c3736cead664b922d2364028270fd3bca2f7f"
-  integrity sha512-RVFke3EHUsfeHPQWWRpUwl9jyKpHHwSe4+htqSn59CoRzQJ/qtqZAy3dfLH4r3CkeNixdnLyRsoCK1E4+70weg==
-  dependencies:
-    "@apollographql/graphql-playground-html" "1.6.26"
-    apollo-server-core "^2.18.2"
-    apollo-server-types "^0.6.0"
-    fastify-accepts "^1.0.0"
-    fastify-cors "^0.2.0"
-    graphql-subscriptions "^1.0.0"
-    graphql-tools "^4.0.0"
-
-apollo-server-fastify@^2.16.0:
+apollo-server-fastify@2.19.1, apollo-server-fastify@^2.16.0:
   version "2.19.1"
   resolved "https://registry.yarnpkg.com/apollo-server-fastify/-/apollo-server-fastify-2.19.1.tgz#9ee779020b3c1a86d373a992b5f8d0006619d5ae"
   integrity sha512-CyEdQA5IaCzj8TNizUs2A5kWF2FwejLZgVNCaU2QuyoD1sRJuBGcAT3qrmP4KAf6v0FkiRyWPbxUkCczW5DnDg==
@@ -3698,7 +3685,7 @@ apollo-server-types@^0.5.1:
     apollo-server-caching "^0.5.2"
     apollo-server-env "^2.4.5"
 
-apollo-server-types@^0.6.0, apollo-server-types@^0.6.2:
+apollo-server-types@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/apollo-server-types/-/apollo-server-types-0.6.2.tgz#3e97d26c580c5e4bd1cc50dbfe9d2ac26b812ab5"
   integrity sha512-LgSKgAStiDzpUSLYwJoAmy0W8nkxx/ExMmgEPgEYVi6dKPkUmtu561J970PhGdYH+D79ke3g87D+plkUkgfnlQ==
