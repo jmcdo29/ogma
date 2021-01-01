@@ -20,4 +20,13 @@ export class GraphQLFastifyParser extends FastifyParser {
   getResponse(context: ExecutionContext): FastifyReply {
     return this.getContext(context).getContext().reply;
   }
+
+  setRequestId(context: ExecutionContext, requestId: string): void {
+    const ctx = this.getContext(context).getContext();
+    if (ctx.request) {
+      ctx.request.requestId = requestId;
+    } else {
+      ctx.requestId = requestId;
+    }
+  }
 }
