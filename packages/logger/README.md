@@ -149,37 +149,6 @@ I said the logs were beautiful, and to me they absolutely are. Each log is match
 }
 ```
 
-## Command Line Function
-
-Ogma comes with a built in command line function to rehydrate your json formatted logs back into the human readable format. The command takes one to two arguments, a log file relative to where the command is run from, and an optional flag to force the cli to print out with color. Find the table below to learn more about the arguments.
-
-| argument | required | default | description |
-| --- | --- | --- | --- |
-| file | yes | none | The log file to be "hydrated". This file should contain newline separated Ogma formatted JSON logs. |
-| --color | no | terminal's TTY argument | you can pass `--color` or `--color=true` to force colors to be used. `--color=false` will force the command to not print the logs back out in color. Depending on the terminal you are using, colors may not be used by default. |
-
-The arguments can be passed in any order for ease of use.
-
-### Example
-
-An example of the command's usage could be like so:
-
-```sh
-ogma production.log --color
-```
-
-or if you have a TTY enabled command prompt
-
-```sh
-ogma production.log
-```
-
-As this prints out to `process.stdout` it is possible to pipe this output to another file using the `>` operator. Like so:
-
-```sh
-ogma production.log > production.hydrated.log
-```
-
 ## Benchmarks
 
 Benchmarks will be brought back soon. After moving to the monorepo format, some things got messed up. Rest assured, they'll be back.

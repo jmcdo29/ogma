@@ -15,9 +15,6 @@
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "bin": {
-    "ogma": "./lib/command/index.js"
-  },
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "tsc -p tsconfig.build.json",

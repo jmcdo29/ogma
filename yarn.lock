@@ -2123,7 +2123,7 @@
     webpack "5.9.0"
     webpack-node-externals "2.5.2"
 
-"@nestjs/common@^7.0.0", "@nestjs/common@^7.0.6", "@nestjs/common@^7.3.2":
+"@nestjs/common@^7.0.0", "@nestjs/common@^7.0.6", "@nestjs/common@^7.3.2", "@nestjs/common@^7.6.5":
   version "7.6.5"
   resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-7.6.5.tgz#d6e9435453eef2d1b492384ca27fa23358744949"
   integrity sha512-WvBJd71ktaCRm9KTURVqn1YMyUzsOIkvezjP7WEpP9DVqQUOFVvn6/osJGZky/qL+zE4P7NBNyoXM94bpYvMwQ==
@@ -2133,7 +2133,7 @@
     tslib "2.0.3"
     uuid "8.3.2"
 
-"@nestjs/core@^7.0.0", "@nestjs/core@^7.0.6", "@nestjs/core@^7.3.2":
+"@nestjs/core@^7.0.0", "@nestjs/core@^7.0.6", "@nestjs/core@^7.3.2", "@nestjs/core@^7.6.5":
   version "7.6.5"
   resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-7.6.5.tgz#93c642d1abf8d3f09f8f78c262814eaf83bc2ad6"
   integrity sha512-syRpXT09RDMySs1BLQSXJfq1NXGfG4VmF9hZYGef+/QWqTRfSMEDEH5MsCCLt2lK3AZnOXE9BQwWKeNBhKLplA==
