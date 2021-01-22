@@ -1,0 +1,17 @@
+{
+  "name": "@ogma/benchmark-interceptor",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nest start"
+  },
+  "dependencies": {
+    "@nestjs/common": "^7.6.5",
+    "@nestjs/core": "^7.5.4",
+    "morgan": "1.10.0",
+    "@nestjs/platform-express": "^7.5.4",
+    "@ogma/nestjs-module": "workspace:*",
+    "@ogma/platform-express": "workspace:*",
+    "@nestjs/cli": "^7.5.4"
+  }
+}

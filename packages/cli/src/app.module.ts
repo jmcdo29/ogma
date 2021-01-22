@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
-import { CommandService } from './command.service';
+import { FileService } from './file.service';
+import { OgmaCommand } from './ogma.command';
+import { OgmaGetterService } from './ogma-getters.service';
 
 @Module({
-  providers: [CommandService],
+  providers: [OgmaCommand, FileService, OgmaGetterService],
 })
 export class AppModule {}
