@@ -8,11 +8,14 @@
     "target": "es2017",
     "sourceMap": false,
     "outDir": "./lib",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "strict": false,
     "noUnusedLocals": false,
     "lib": ["ES7"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@ogma/*": ["packages/*/lib/index.d.ts"] 
+    }
   },
   "exclude": ["node_modules", "lib"]
 }

@@ -48,6 +48,11 @@
   "dependencies": {
     "@nestjs/common": "^7.6.5",
     "@nestjs/core": "^7.6.5",
-    "@ogma/logger": "^0.4.2"
+    "@ogma/logger": "^0.4.2",
+    "nest-commander": "^1.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^7.6.5",
+    "nest-commander-testing": "^1.0.0"
   }
 }

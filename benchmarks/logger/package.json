@@ -1,0 +1,15 @@
+{
+  "name": "@ogma/benchmark-logger",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "rimraf dist && tsc -p tsconfig.json && node dist/index"
+  },
+  "dependencies": {
+    "pino": "6.11.0",
+    "bunyan": "1.8.15",
+    "winston": "3.3.3",
+    "@ogma/logger": "workspace:*",
+    "rimraf": "3.0.2"
+  }
+}
