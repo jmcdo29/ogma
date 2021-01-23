@@ -6,6 +6,6 @@ module.exports = {
     '^.+\\.ts$': 'ts-jest',
   },
   coverageDirectory: './coverage',
-  collectCoverageFrom: ['src/**/*.ts', '!**/*.module.ts'],
+  collectCoverageFrom: ['src/**/*.ts', '!**/{*.module,index,main}.ts'],
   testEnvironment: 'node',
 };

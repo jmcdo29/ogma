@@ -14,7 +14,8 @@
     "lib": ["ES7"],
     "esModuleInterop": true,
     "paths": {
-      "@ogma/*": ["packages/*/lib/index.d.ts"] 
+      "@ogma/*": ["packages/*/lib/"],
+      "@ogma/logger/*": ["packages/logger/lib/*"]
     }
   },
   "exclude": ["node_modules", "lib"]

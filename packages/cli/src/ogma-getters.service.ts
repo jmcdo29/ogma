@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Color, LogLevel } from '@ogma/logger';
-import { colorizeCLI } from '@ogma/logger/lib/utils';
 import { OgmaLog } from './ogma-file.interface';
 
 @Injectable()
 export class OgmaGetterService {
+  private ESC = '\x1B';
   getMessage(log: OgmaLog, rest: Record<string, string>): string {
     return log.message || JSON.stringify(rest);
   }
@@ -36,9 +36,16 @@ export class OgmaGetterService {
   getVal(val: string, useColor: boolean, color: Color): string {
     val = this.wrapInParens(val);
     if (useColor) {
-      val = colorizeCLI(val, color);
+      val = this.colorizeCLI(val, color);
     }
     return val;
+  }
+
+  private colorizeCLI(value: string, color: Color = Color.WHITE, useColor = true): string {
+    if (useColor) {
+      value = `${this.ESC}[3${color}m${value}${this.ESC}[0m`;
+    }
+    return value.toString();
   }
 
   wrapInParens(val: string): string {
@@ -48,7 +55,7 @@ export class OgmaGetterService {
   getLevel(level: keyof typeof LogLevel, useColor: boolean): string {
     let retString = this.wrapInParens(level).padEnd(7, ' ');
     if (useColor) {
-      retString = colorizeCLI(retString, this.getLevelColor(level));
+      retString = this.colorizeCLI(retString, this.getLevelColor(level));
     }
     return retString;
   }

@@ -23,6 +23,13 @@
     "test": "jest",
     "test:cov": "jest --coverage"
   },
+  "devDependencies": {
+    "@golevelup/ts-jest": "^0.3.1",
+    "@types/jest": "^26.0.20",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.0.0"
+  },
   "engines": {
     "node": ">=10"
   },
@@ -30,7 +37,6 @@
     "lib": "lib"
   },
   "files": [
-    "bin",
     "lib"
   ],
   "publishConfig": {
@@ -42,10 +48,5 @@
   },
   "bugs": {
     "url": "https://github.com/jmcdo29/ogma/issues"
-  },
-  "devDependencies": {
-    "@nestjs/common": "^7.0.6",
-    "@nestjs/core": "^7.0.6",
-    "rxjs": "^6.5.4"
   }
 }

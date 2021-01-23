@@ -1,3 +1,4 @@
+import * as SocketIOClient from 'socket.io-client';
 import WebSocket from 'ws';
 
 export const createConnection = (

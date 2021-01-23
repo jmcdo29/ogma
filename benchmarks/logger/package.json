@@ -3,13 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "rimraf dist && tsc -p tsconfig.json && node dist/index"
+    "prebuild": "rimraf dist",
+    "build": "tsc -p tsconfig.json",
+    "prestart": "pnpm build",
+    "start": "node dist/index"
   },
   "dependencies": {
-    "pino": "6.11.0",
-    "bunyan": "1.8.15",
-    "winston": "3.3.3",
     "@ogma/logger": "workspace:*",
-    "rimraf": "3.0.2"
+    "bunyan": "1.8.15",
+    "pino": "6.11.0",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "3.0.2",
+    "rxjs": "^6.6.3",
+    "typescript": "^4.0.0",
+    "winston": "3.3.3"
   }
 }
