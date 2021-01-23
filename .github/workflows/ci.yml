@@ -17,8 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
-    needs: analyze
+        node-version: [14.x]
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -27,18 +26,26 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Start Docker Compose
       run: docker-compose up -d
-    - name: install
-      run: yarn setup
-    - name: lint
-      run: yarn lint
-    - name: test
-      run: yarn test:cov
-    - name: integration test
-      run: yarn test:int
+    - name: Install pnpm
+      run: npm i -g pnpm
+    - name: Install deps
+      run: pnpm i
+    - name: Build Project
+      run: pnpm build
+    - name: Run Linter
+      run: pnpm lint
+    - name: Run Unit Tests
+      run: pnpm test:cov
+    - name: Run Integration Tests
+      run: pnpm test:int
     - name: Stop Docker Compose
       run: docker-compose down
+    - name: Merge Coverages
+      run: pnpm coverage
+    - name: Debug Coverage
+      run: cat coverage/lcov.info
     - name: Send Coverage
-      run: yarn sendCoverage
+      run: pnpm sendCoverage
       env:
         CODECLIMATE_API_HOST: https://codebeat.co/webhooks/code_coverage
         CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
@@ -63,11 +70,6 @@ jobs:
         # We must fetch at least the immediate parents so that if this is
         # a pull request then we can checkout the head.
         fetch-depth: 2
-
-    # If this run was triggered by a pull request event, then checkout
-    # the head of the pull request instead of the merge commit.
-    - run: git checkout HEAD^2
-      if: ${{ github.event_name == 'pull_request' }}
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL

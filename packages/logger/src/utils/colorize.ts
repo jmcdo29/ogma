@@ -15,14 +15,3 @@ export function colorize(
   }
   return value.toString();
 }
-
-export function colorizeCLI(
-  value: OgmaSimpleType,
-  color: Color = Color.WHITE,
-  useColor = true,
-): string {
-  if (useColor) {
-    value = `${ESC}[3${color}m${value}${ESC}[0m`;
-  }
-  return value.toString();
-}
