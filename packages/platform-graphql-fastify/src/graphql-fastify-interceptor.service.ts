@@ -5,6 +5,7 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 
 @Injectable()
 export class GraphQLFastifyParser extends FastifyParser {
+  protected reqName = 'request';
   getMethod(context: ExecutionContext): string {
     return this.getContext(context).getInfo().operation.operation;
   }
@@ -19,14 +20,5 @@ export class GraphQLFastifyParser extends FastifyParser {
 
   getResponse(context: ExecutionContext): FastifyReply {
     return this.getContext(context).getContext().reply;
-  }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const ctx = this.getContext(context).getContext();
-    if (ctx.request) {
-      ctx.request.requestId = requestId;
-    } else {
-      ctx.requestId = requestId;
-    }
   }
 }

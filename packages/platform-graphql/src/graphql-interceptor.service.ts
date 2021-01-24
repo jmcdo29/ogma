@@ -5,6 +5,7 @@ import { Request, Response } from 'express';
 
 @Injectable()
 export class GraphQLParser extends ExpressParser {
+  protected reqName = 'req';
   getMethod(context: ExecutionContext): string {
     return this.getContext(context).getInfo().operation.operation;
   }
@@ -18,14 +19,5 @@ export class GraphQLParser extends ExpressParser {
 
   getResponse(context: ExecutionContext): Response {
     return this.getContext(context).getContext().res;
-  }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const ctx = this.getContext(context).getContext();
-    if (ctx.req) {
-      ctx.req.requestId = requestId;
-    } else {
-      ctx.requestId = requestId;
-    }
   }
 }
