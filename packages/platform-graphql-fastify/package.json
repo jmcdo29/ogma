@@ -58,8 +58,8 @@
   },
   "peerDependencies": {
     "@nestjs/graphql": "^7.0.0",
-    "@ogma/nestjs-module": "0.4.3",
-    "@ogma/platform-fastify": "0.4.3"
+    "@ogma/nestjs-module": "^1.0.0",
+    "@ogma/platform-fastify": "^1.0.0"
   },
   "peerDependenciesMeta": {
     "@ogma/nestjs-module": {
