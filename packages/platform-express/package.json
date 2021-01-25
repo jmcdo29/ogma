@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-express",
-  "version": "0.4.3",
+  "version": "1.0.0",
   "description": "A plugin for the OgmaInterceptor to properly handle HTTP requests from Express",
   "keywords": [
     "express",
@@ -37,7 +37,7 @@
   },
   "peerDependencies": {
     "@nestjs/platform-express": "^7.0.0",
-    "@ogma/nestjs-module": "^1.0.0"
+    "@ogma/nestjs-module": "0.4.3"
   },
   "peerDependenciesMeta": {
     "@nestjs/platform-express": {

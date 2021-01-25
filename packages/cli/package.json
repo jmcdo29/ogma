@@ -1,6 +1,6 @@
 {
   "name": "@ogma/cli",
-  "version": "0.4.3",
+  "version": "1.0.0",
   "description": "A CLI to re-hydrate JSON logs back to a dev readable format, colors included.",
   "keywords": [
     "cli",

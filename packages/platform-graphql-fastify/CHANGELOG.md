@@ -1,5 +1,19 @@
 # Change Log
 
+## 1.0.0
+
+### Major Changes
+
+- bbf66f6: Major release of @ogma
+
+  The `ogma` command has been moved from `@ogma/logger` to `@ogma/cli`. There are no other breaking changes. This change was made to keep the package size as small as possible and to keep the code clean and maintainable.
+
+### Patch Changes
+
+- Updated dependencies [bbf66f6]
+  - @ogma/nestjs-module@1.0.0
+  - @ogma/platform-fastify@1.0.0
+
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [0.4.4](https://github.com/jmcdo29/ogma/compare/v0.4.3...v0.4.4) (2021-01-01)

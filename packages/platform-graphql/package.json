@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-graphql",
-  "version": "0.4.4",
+  "version": "1.0.0",
   "description": "A plugin for the OgmaInterceptor to proplery handle GQL requests with an Express server",
   "keywords": [
     "GraphQL",
@@ -40,7 +40,7 @@
     "@nestjs/core": "^7.0.0",
     "@nestjs/graphql": "^7.0.0",
     "@nestjs/testing": "^7.6.5",
-    "@ogma/logger": "workspace: *",
+    "@ogma/logger": "workspace:*",
     "@ogma/nestjs-module": "workspace:*",
     "@ogma/platform-express": "workspace:*",
     "@types/jest": "^26.0.20",
@@ -57,8 +57,8 @@
   },
   "peerDependencies": {
     "@nestjs/graphql": "^7.0.0",
-    "@ogma/nestjs-module": "^1.0.0",
-    "@ogma/platform-express": "^1.0.0"
+    "@ogma/nestjs-module": "0.4.3",
+    "@ogma/platform-express": "0.4.3"
   },
   "peerDependenciesMeta": {
     "@nestjs/graphql": {

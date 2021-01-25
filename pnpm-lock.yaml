@@ -343,7 +343,7 @@ importers:
       '@nestjs/core': ^7.0.0
       '@nestjs/graphql': ^7.0.0
       '@nestjs/testing': ^7.6.5
-      '@ogma/logger': 'workspace: *'
+      '@ogma/logger': 'workspace:*'
       '@ogma/nestjs-module': workspace:*
       '@ogma/platform-express': workspace:*
       '@types/jest': ^26.0.20
@@ -419,7 +419,7 @@ importers:
       '@nestjs/core': ^7.0.6
       '@nestjs/microservices': ^7.0.0
       '@nestjs/testing': ^7.6.5
-      '@ogma/logger': 'workspace: *'
+      '@ogma/logger': 'workspace:*'
       '@ogma/nestjs-module': workspace:*
       '@types/jest': ^26.0.20
       jest: ^26.6.3
@@ -448,8 +448,8 @@ importers:
       '@nestjs/core': ^7.0.6
       '@nestjs/microservices': ^7.0.0
       '@nestjs/testing': ^7.6.5
-      '@ogma/logger': 'workspace: *'
-      '@ogma/nestjs-module': 'workspace: *'
+      '@ogma/logger': 'workspace:*'
+      '@ogma/nestjs-module': 'workspace:*'
       '@types/jest': ^26.0.20
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -477,8 +477,8 @@ importers:
       '@nestjs/core': ^7.0.6
       '@nestjs/microservices': ^7.0.0
       '@nestjs/testing': ^7.6.5
-      '@ogma/logger': 'workspace: *'
-      '@ogma/nestjs-module': 'workspace: *'
+      '@ogma/logger': 'workspace:*'
+      '@ogma/nestjs-module': 'workspace:*'
       '@types/jest': ^26.0.20
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -506,8 +506,8 @@ importers:
       '@nestjs/core': ^7.0.6
       '@nestjs/microservices': ^7.0.0
       '@nestjs/testing': ^7.6.5
-      '@ogma/logger': 'workspaces: *'
-      '@ogma/nestjs-module': 'workspace: *'
+      '@ogma/logger': 'workspace:*'
+      '@ogma/nestjs-module': 'workspace:*'
       '@types/jest': ^26.0.20
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -535,8 +535,8 @@ importers:
       '@nestjs/core': ^7.0.6
       '@nestjs/microservices': ^7.0.0
       '@nestjs/testing': ^7.6.5
-      '@ogma/logger': 'workspaces: *'
-      '@ogma/nestjs-module': 'workspace: *'
+      '@ogma/logger': 'workspace:*'
+      '@ogma/nestjs-module': 'workspace:*'
       '@types/jest': ^26.0.20
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -565,8 +565,8 @@ importers:
       '@nestjs/core': ^7.0.6
       '@nestjs/microservices': ^7.0.0
       '@nestjs/testing': ^7.6.5
-      '@ogma/logger': 'workspace: *'
-      '@ogma/nestjs-module': 'workspace: *'
+      '@ogma/logger': 'workspace:*'
+      '@ogma/nestjs-module': 'workspace:*'
       '@types/jest': ^26.0.20
       jest: ^26.6.3
       redis: ^3.0.0
@@ -598,8 +598,8 @@ importers:
       '@nestjs/platform-socket.io': ^7.0.0
       '@nestjs/testing': ^7.6.5
       '@nestjs/websockets': ^7.0.0
-      '@ogma/logger': 'workspace: *'
-      '@ogma/nestjs-module': 'workspace: *'
+      '@ogma/logger': 'workspace:*'
+      '@ogma/nestjs-module': 'workspace:*'
       '@types/jest': ^26.0.20
       '@types/socket.io': ^2.1.8
       jest: ^26.6.3
@@ -628,8 +628,8 @@ importers:
       '@nestjs/core': ^7.0.6
       '@nestjs/microservices': ^7.0.0
       '@nestjs/testing': ^7.6.5
-      '@ogma/logger': 'workspace: *'
-      '@ogma/nestjs-module': 'workspace: *'
+      '@ogma/logger': 'workspace:*'
+      '@ogma/nestjs-module': 'workspace:*'
       '@types/jest': ^26.0.20
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -659,7 +659,7 @@ importers:
       '@nestjs/platform-ws': ^7.0.0
       '@nestjs/testing': ^7.6.5
       '@nestjs/websockets': ^7.0.0
-      '@ogma/logger': 'workspace: *'
+      '@ogma/logger': 'workspace:*'
       '@ogma/nestjs-module': workspace:*
       '@types/jest': ^26.0.20
       jest: ^26.6.3
