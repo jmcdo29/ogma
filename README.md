@@ -12,7 +12,8 @@ Ogma is a no-nonsense logger developed to make logging simple, and easy to read 
 
 | Package | Description |
 | --- | --- |
-| [@ogma/logger](packages/logger) | The base logger package that has the core implementation. Can be used from anything, does not need to be NestJS. Also contains the ogma binary fro log rehydration |
+| [@ogma/cli](packages/cli) | The `ogma` command that can rehydrate ogma logs from JSON to human friendly formats |
+| [@ogma/logger](packages/logger) | The base logger package that has the core implementation. Can be used from anything, does not need to be NestJS. |
 | [@ogma/nestjs-module](packages/nestjs-module) | The core module package that sets up the `OgmaService` and `OgmaInterceptor` |
 | [@ogma/platform-express](packages/platform-express) | A plugin for the OgmaInterceptor to properly handle HTTP requests from [Express](http://expressjs.com) |
 | [@ogma/platform-fastify](packages/platform-fastify) | An HTTP plugin to properly log [Fastify](https://www.fastify.io/) requests |
