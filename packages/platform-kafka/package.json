@@ -37,6 +37,7 @@
     "url": "https://github.com/jmcdo29/ogma/issues"
   },
   "devDependencies": {
+    "@golevelup/ts-jest": "^0.3.1",
     "@nestjs/common": "^7.0.6",
     "@nestjs/core": "^7.0.6",
     "@nestjs/microservices": "^7.0.0",
@@ -44,7 +45,6 @@
     "@ogma/logger": "workspace:*",
     "@ogma/nestjs-module": "workspace:*",
     "@types/jest": "^26.0.20",
-    "@golevelup/ts-jest": "^0.3.1",
     "jest": "^26.6.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.3",
