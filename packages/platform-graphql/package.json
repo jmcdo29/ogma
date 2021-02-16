@@ -45,7 +45,7 @@
     "@ogma/platform-express": "workspace:*",
     "@types/jest": "^26.0.20",
     "apollo-server-express": "^2.0.0",
-    "class-transformer": "^0.3.2",
+    "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "graphql": "^15.5.0",
     "graphql-tools": "^7",
