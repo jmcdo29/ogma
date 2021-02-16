@@ -5,6 +5,8 @@ services:
     container_name: mqtt
     ports:
       - '1883:1883'
+    volumes:
+      - ./mosquitto:/mosquitto/
   rabbitmq:
     image: rabbitmq
     container_name: rabbit
