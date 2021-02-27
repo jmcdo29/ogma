@@ -25,7 +25,7 @@ To use Ogma, first you'll need to instantiate an instance of the Ogma class. You
 - ERROR: For errors about things that _are_ a problem. Colored with Red.
 - FATAL: Yeah, you should call someone at 3AM if this log ever shows up. Colored with Red.
 
-When discussing log levels, Ogma will print at the level provided and anything under the level as shown above, so if 'SILLY' is set, all logs will be show; if 'WARN' is set as the logLevel, only 'WARN', 'ERROR', and 'FATAL' logs will be shown. The only exclusion to this rule if 'OFF', which prints nothing through Ogma.
+When discussing log levels, Ogma will print at the level provided and anything under the level as shown above, so if 'SILLY' is set, all logs will be shown; if 'WARN' is set as the logLevel, only 'WARN', 'ERROR', and 'FATAL' logs will be shown. The only exclusion to this rule is 'OFF', which prints nothing through Ogma.
 
 When colors are enabled, the color mentioned above will be the color the level string is printed in.
 
@@ -64,7 +64,7 @@ Examples can be seen below. The JSON structure follows the same form with log le
 
 #### Using Files instead of a console
 
-> Note: Ogma will try to use colors if they are available, but will otherwise ignore the color option if `stream.hasColors()` return false.
+> Note: Ogma will try to use colors if they are available, but will otherwise ignore the color option if `stream.hasColors()` returns false.
 
 If you want to use a file to hold your logs instead of a console/terminal/bash you can pass in a stream of your own to the options like so:
 
