@@ -44,7 +44,8 @@
     "test:int": "pnpm run test --filter @ogma/integration",
     "test:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
     "updatePeerDeps": "node tools/peer-update.js",
-    "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info"
+    "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.13.1",
@@ -69,26 +70,6 @@
   },
   "engines": {
     "node": ">=10"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "*.ts": [
-      "prettier --write",
-      "eslint --ext ts"
-    ],
-    "*.{md,html,json,js}": [
-      "prettier --write"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "resolutions": {
     "axios": "^0.19.0"
