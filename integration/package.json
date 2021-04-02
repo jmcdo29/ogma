@@ -42,7 +42,7 @@
     "apollo-server-fastify": "2.19.2",
     "express": "4.17.1",
     "fastify": "3.10.1",
-    "graphql": "^14.0.0",
+    "graphql": "^15.0.0",
     "graphql-tools": "7.0.2",
     "grpc": "1.24.4",
     "jest": "26.4.2",
