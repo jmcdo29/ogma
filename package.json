@@ -72,6 +72,6 @@
     "node": ">=10"
   },
   "resolutions": {
-    "axios": "^0.19.0"
+    "apollo-cache-control": "0.12.0"
   }
 }
