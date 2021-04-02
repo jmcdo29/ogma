@@ -162,6 +162,16 @@ describe('Ogma Class', () => {
       expect.objectContaining({ hello: 'world' }),
     );
   });
+  it('should log the error name and message on the same line', () => {
+    ogma = new Ogma({ stream: mockStream });
+    const err = new Error('This is an error');
+    ogma.log(err);
+    const mockCall: string = mockStream.write.mock.calls[0][0].toString();
+    expect(mockCall).toEqual(expect.stringContaining(`${err.name}: ${err.message}`));
+    expect(mockCall).not.toEqual(expect.stringContaining(err.stack));
+    const newLines = mockCall.split('\n;');
+    expect(newLines.length).toBe(1);
+  });
 });
 
 describe('small ogma tests', () => {
