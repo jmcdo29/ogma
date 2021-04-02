@@ -28,7 +28,6 @@
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "tsc -p tsconfig.build.json",
-    "postbuild": "mv ./lib/src/* ./lib && rmdir lib/src",
     "test": "jest",
     "test:cov": "jest --coverage"
   },

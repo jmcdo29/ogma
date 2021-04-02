@@ -34,7 +34,6 @@
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "nest build",
-    "postbuild": "mv ./lib/src/* ./lib && rmdir lib/src",
     "lint": "eslint --ext .ts ./src/",
     "test": "jest",
     "test:cov": "jest --coverage"
