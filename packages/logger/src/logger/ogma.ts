@@ -23,14 +23,14 @@ export class Ogma {
         .filter((key) => isNil(options[key]))
         .forEach((key) => delete options[key]);
     this.options = { ...OgmaDefaults, ...options };
+    this.pid = process.pid;
+    this.hostname = hostname();
     if (options?.logLevel && LogLevel[options.logLevel] === undefined) {
       this.options.logLevel = OgmaDefaults.logLevel;
       this.warn(
         `Ogma logLevel was set to ${options.logLevel} which does not match a defined logLevel. Falling back to default instead.`,
       );
     }
-    this.pid = process.pid;
-    this.hostname = hostname();
   }
 
   private printMessage(message: any, options: PrintMessageOptions): void {
@@ -109,15 +109,18 @@ export class Ogma {
     message: any,
     { application = '', correlationId = '', formattedLevel, context = '' }: PrintMessageOptions,
   ): string {
-    if (typeof message === 'object') {
+    if (typeof message === 'object' && !(message instanceof Error)) {
       message = '\n' + JSON.stringify(message, this.circularReplacer(), 2);
     }
     application = this.toStreamColor(application || this.options.application, Color.YELLOW);
     context = this.toStreamColor(context || this.options.context, Color.CYAN);
+    correlationId &&= this.wrapInBrackets(correlationId);
 
     const hostname = this.toStreamColor(this.hostname, Color.MAGENTA);
     const timestamp = this.wrapInBrackets(this.getTimestamp());
-    return `${timestamp} ${formattedLevel} ${hostname} ${application} ${this.pid} ${correlationId} ${context} ${message}`;
+    return `${timestamp} ${formattedLevel} ${hostname} ${application} ${this.wrapInBrackets(
+      this.pid.toString(),
+    )} ${correlationId} ${context} ${message}`;
   }
 
   private toStreamColor(value: string, color: Color): string {
