@@ -35,7 +35,7 @@
     "benchmark": "pnpm run start --filter '@ogma/bench*'",
     "commit": "git-cz",
     "precoverage": "tsc -p ./tools/tsconfig.json",
-    "coverage": "node ./tools/coverage-merge",
+    "coverage": "pnpm precoverage && node ./tools/coverage-merge && pnpm postcoverage",
     "postcoverage": "nyc merge coverage-tmp coverage/coverage-final.json && nyc report -t coverage --report-dir coverage --reporter=lcov",
     "format": "prettier --write \"{packages,integration,benchmarks,tools}/**/*.ts\"",
     "lint": "eslint --ext .ts .",
@@ -45,7 +45,8 @@
     "test:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
     "updatePeerDeps": "node tools/peer-update.js",
     "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.14.1",
