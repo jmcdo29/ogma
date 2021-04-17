@@ -1,6 +1,6 @@
+import { Color, LogLevel, OgmaLog } from '@ogma/common';
 import { hostname } from 'os';
-import { Color, LogLevel } from '../enums';
-import { OgmaDefaults, OgmaLog, OgmaOptions, PrintMessageOptions } from '../interfaces';
+import { OgmaDefaults, OgmaOptions, PrintMessageOptions } from '../interfaces';
 import { OgmaPrintOptions } from '../interfaces/ogma-print-options';
 import { colorize, isNil } from '../utils';
 

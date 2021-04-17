@@ -1,6 +1,4 @@
-import { Color } from '../enums';
-import { OgmaStream } from '../interfaces';
-import { OgmaSimpleType } from '../types';
+import { Color, OgmaSimpleType, OgmaStream } from '@ogma/common';
 
 const ESC = '\x1B';
 

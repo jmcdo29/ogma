@@ -1,5 +1,4 @@
-import { Color } from '../enums';
-import { OgmaSimpleType } from '../types';
+import { Color, OgmaSimpleType } from '@ogma/common';
 import { colorize } from './colorize';
 
 export const color = {

@@ -1,4 +1,4 @@
-import { LogLevel } from '../enums';
+import { LogLevel } from './level.enum';
 
 export interface OgmaLog {
   time: string;

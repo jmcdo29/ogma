@@ -1,5 +1,4 @@
-import { LogLevel } from '../enums';
-import { OgmaStream } from './ogma-stream';
+import { LogLevel, OgmaStream } from '@ogma/common';
 
 export interface OgmaOptions {
   logLevel: keyof typeof LogLevel;
@@ -15,7 +14,9 @@ export interface OgmaOptions {
 export const OgmaDefaults: OgmaOptions = {
   logLevel: 'INFO',
   color: true,
-  stream: process.stdout,
+  stream: process
+    ? process.stdout
+    : { hasColors: () => false, getColorDepth: () => 1, write: console.log },
   json: false,
   context: '',
   application: '',

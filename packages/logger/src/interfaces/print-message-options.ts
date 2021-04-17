@@ -1,4 +1,4 @@
-import { LogLevel } from '../enums';
+import { LogLevel } from '@ogma/common';
 
 export interface PrintMessageOptions {
   level: LogLevel;
