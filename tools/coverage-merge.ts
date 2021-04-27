@@ -6,26 +6,30 @@ import { join } from 'path';
 
 const packageDir = 'packages';
 const integrationDir = 'integration';
-const coverageDir = 'coverage-tmp';
+const coverageTempDir = 'coverage-tmp';
+const coverageFinal = 'coverage-final.json';
+const coverageDir = 'coverage';
 
 async function readPackagesDirectory(): Promise<string[]> {
   return promises.readdir(packageDir);
 }
 
 async function readCoverageFile(directory: string): Promise<Buffer> {
-  return promises.readFile(
-    join(process.cwd(), packageDir, directory, 'coverage', 'coverage-final.json'),
-  );
+  return promises.readFile(join(process.cwd(), packageDir, directory, coverageDir, coverageFinal));
 }
 
 async function readIntegrationCoverage(): Promise<Buffer> {
-  return promises.readFile(join(process.cwd(), integrationDir, 'coverage', 'coverage-final.json'));
+  return promises.readFile(join(process.cwd(), integrationDir, coverageDir, coverageFinal));
 }
 
 async function mapCoverages(directories: string[]): Promise<Record<string, Buffer>> {
   const coverages: Record<string, Buffer> = {};
   for (const direct of directories) {
-    coverages[direct] = await readCoverageFile(direct);
+    try {
+      coverages[direct] = await readCoverageFile(direct);
+    } catch {
+      // no-op
+    }
   }
   return coverages;
 }
@@ -33,20 +37,20 @@ async function mapCoverages(directories: string[]): Promise<Record<string, Buffe
 async function writeCoveragesToSingleDir(coverages: Record<string, Buffer>): Promise<void> {
   for (const key of Object.keys(coverages)) {
     await promises.writeFile(
-      join(process.cwd(), coverageDir, key + '-coverage.json'),
+      join(process.cwd(), coverageTempDir, key + '-coverage.json'),
       coverages[key],
     );
   }
 }
 
 async function migrateCoverage(): Promise<void> {
-  if (existsSync(join(process.cwd(), coverageDir))) {
-    await promises.rm(coverageDir, { recursive: true });
+  if (existsSync(join(process.cwd(), coverageTempDir))) {
+    await promises.rm(coverageTempDir, { recursive: true });
   }
   const directories = await readPackagesDirectory();
   const coverages = await mapCoverages(directories);
   coverages['integration'] = await readIntegrationCoverage();
-  await promises.mkdir(join(process.cwd(), coverageDir));
+  await promises.mkdir(join(process.cwd(), coverageTempDir));
   await writeCoveragesToSingleDir(coverages);
 }
 
