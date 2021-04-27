@@ -46,6 +46,8 @@ module.exports = {
         'rmq',
         'redis',
         'benchmarks',
+        'cli',
+        'styler',
       ],
     ],
   },
