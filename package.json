@@ -35,7 +35,7 @@
     "benchmark": "pnpm run start --filter '@ogma/bench*'",
     "commit": "git-cz",
     "precoverage": "tsc -p ./tools/tsconfig.json",
-    "coverage": "pnpm precoverage && node ./tools/coverage-merge && pnpm postcoverage",
+    "coverage": "node ./tools/coverage-merge",
     "postcoverage": "nyc merge coverage-tmp coverage/coverage-final.json && nyc report -t coverage --report-dir coverage --reporter=lcov",
     "format": "prettier --write \"{packages,integration,benchmarks,tools}/**/*.ts\"",
     "lint": "eslint --ext .ts .",
