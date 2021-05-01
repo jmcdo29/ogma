@@ -157,6 +157,7 @@ export class Styler {
   }
 
   public constructor(private readonly stream: Pick<OgmaStream, 'getColorDepth'> = process.stdout) {}
+
   public apply(val: string | number | boolean) {
     const retString = `${this.stylesToApply.join('')}${val}\x1B[0m`;
     this.stylesToApply = [];
@@ -198,6 +199,9 @@ export class Styler {
       } else {
         colorVal = colorVal.toString();
       }
+    }
+    if (this.stream.getColorDepth() === 1) {
+      return this.addStyle('no-style');
     }
     return this.addStyle(applyStyle, colorVal);
   }

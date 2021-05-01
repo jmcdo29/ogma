@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Color, LogLevel } from '@ogma/logger';
+import { Color, LogLevel } from '@ogma/common';
 import { OgmaLog } from './ogma-file.interface';
 
 @Injectable()

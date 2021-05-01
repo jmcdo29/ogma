@@ -1,4 +1,4 @@
-import { LogLevel } from '@ogma/logger';
+import { LogLevel } from '@ogma/common';
 
 export interface OgmaLog {
   time: string;

@@ -33,7 +33,8 @@
   "dependencies": {
     "@golevelup/nestjs-modules": "0.4.1",
     "@ogma/common": "workspace:*",
-    "@ogma/logger": "workspace:*"
+    "@ogma/logger": "workspace:*",
+    "@ogma/styler": "workspace:*"
   },
   "peerDependencies": {
     "@nestjs/common": "^7.0.0",

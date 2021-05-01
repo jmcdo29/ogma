@@ -1,3 +1,5 @@
+const { join } = require('path');
+
 module.exports = {
   moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: 'src',
@@ -8,4 +10,6 @@ module.exports = {
   coverageDirectory: './coverage',
   collectCoverageFrom: ['src/**/*.ts', '!**/{*.module,index,main}.ts'],
   testEnvironment: 'node',
+  // maybe find a better  way to set this up
+  globalSetup: join(process.cwd(), '..', '..', 'jest.setup.js'),
 };

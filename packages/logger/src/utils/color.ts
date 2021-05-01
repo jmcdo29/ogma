@@ -1,6 +1,9 @@
 import { Color, OgmaSimpleType } from '@ogma/common';
 import { colorize } from './colorize';
 
+/**
+ * @deprecated use `@ogma/styler` instead
+ */
 export const color = {
   /**
    * Print your text in red. Send in a OgmaSimpleType and the output will be red.

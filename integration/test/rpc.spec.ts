@@ -9,7 +9,7 @@ import {
   Transport,
 } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { AbstractInterceptorService, OgmaInterceptor, Type } from '@ogma/nestjs-module';
 import { MqttParser } from '@ogma/platform-mqtt';
 import { NatsParser } from '@ogma/platform-nats';
@@ -113,9 +113,9 @@ describe.each`
       });
 
       it.each`
-        url         | status              | endpoint
-        ${'/'}      | ${color.green(200)} | ${{ cmd: 'message' }}
-        ${'/error'} | ${color.red(500)}   | ${{ cmd: 'error' }}
+        url         | status                    | endpoint
+        ${'/'}      | ${style.green.apply(200)} | ${{ cmd: 'message' }}
+        ${'/error'} | ${style.red.apply(500)}   | ${{ cmd: 'error' }}
       `(
         '$url call',
         async ({

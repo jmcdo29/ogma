@@ -1,6 +1,6 @@
 import { createMock } from '@golevelup/ts-jest';
 import { createWriteStream } from 'fs';
-import { LogLevel } from '../src/enums';
+import { LogLevel } from '@ogma/common';
 import { color as Color, Ogma, OgmaOptions } from '../src';
 
 const dest = createWriteStream('/dev/null');

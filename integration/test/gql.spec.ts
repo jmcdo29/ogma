@@ -6,7 +6,7 @@ import { GraphQLParser } from '@ogma/platform-graphql';
 import { GraphQLFastifyParser } from '@ogma/platform-graphql-fastify';
 import { GqlModule } from '../src/gql/gql.module';
 import { createTestModule, getInterceptor, gqlPromise, serviceOptionsFactory } from './utils';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 
 describe.each`
   adapter                 | server       | parser
@@ -66,9 +66,9 @@ describe.each`
 
       describe.each`
         type          | name             | status
-        ${'query'}    | ${'getQuery'}    | ${color.green(200)}
-        ${'query'}    | ${'getError'}    | ${color.yellow(400)}
-        ${'mutation'} | ${'getMutation'} | ${color.green(200)}
+        ${'query'}    | ${'getQuery'}    | ${style.green.apply(200)}
+        ${'query'}    | ${'getError'}    | ${style.yellow.apply(400)}
+        ${'mutation'} | ${'getMutation'} | ${style.green.apply(200)}
       `('$type $name', ({ type, name, status }: { type: string; name: string; status: string }) => {
         it('should log the call', async () => {
           await gqlPromise(baseUrl, {

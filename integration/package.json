@@ -34,6 +34,7 @@
     "@ogma/platform-socket.io": "workspace:*",
     "@ogma/platform-tcp": "workspace:*",
     "@ogma/platform-ws": "workspace:*",
+    "@ogma/styler": "workspace:*",
     "@types/socket.io": "^2.1.13",
     "@types/socket.io-client": "^1.4.36",
     "amqp-connection-manager": "^3.2.2",

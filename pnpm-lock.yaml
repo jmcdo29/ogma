@@ -121,6 +121,7 @@ importers:
       '@ogma/platform-socket.io': workspace:*
       '@ogma/platform-tcp': workspace:*
       '@ogma/platform-ws': workspace:*
+      '@ogma/styler': workspace:*
       '@types/socket.io': ^2.1.13
       '@types/socket.io-client': ^1.4.36
       amqp-connection-manager: ^3.2.2
@@ -171,6 +172,7 @@ importers:
       '@ogma/platform-socket.io': link:../packages/platform-socket.io
       '@ogma/platform-tcp': link:../packages/platform-tcp
       '@ogma/platform-ws': link:../packages/platform-ws
+      '@ogma/styler': link:../packages/styler
       '@types/socket.io': 2.1.13
       '@types/socket.io-client': 1.4.36
       amqp-connection-manager: 3.2.2_amqplib@0.6.0
@@ -202,7 +204,8 @@ importers:
       '@nestjs/common': ^7.6.15
       '@nestjs/core': ^7.6.15
       '@nestjs/testing': ^7.6.15
-      '@ogma/logger': workspace:*
+      '@ogma/common': workspace:*
+      '@ogma/styler': workspace:*
       jest: 26.4.2
       nest-commander: ^1.0.2
       nest-commander-testing: ^1.0.1
@@ -213,49 +216,39 @@ importers:
     dependencies:
       '@nestjs/common': 7.6.15_8e6d4b7501d9d25f42cbf34563d4f5bc
       '@nestjs/core': 7.6.15_2ef5148cf119d2e6a2825daac1d64a18
-      '@ogma/logger': link:../logger
+      '@ogma/common': link:../common
       nest-commander: 1.0.2_a5e284bf185e3b13e505d42d771fb371
       reflect-metadata: 0.1.13
       rxjs: 6.6.7
     devDependencies:
       '@nestjs/cli': 7.6.0
       '@nestjs/testing': 7.6.15_a5e284bf185e3b13e505d42d771fb371
+      '@ogma/styler': link:../styler
       jest: 26.4.2
       nest-commander-testing: 1.0.1_fc21674570be1313efa8451e9b94f658
       ts-jest: 26.5.4_jest@26.4.2+typescript@4.2.3
       typescript: 4.2.3
 
-  packages/color:
-    specifiers:
-      '@types/jest': ^26.0.22
-      jest: ^26.6.3
-      ts-jest: ^26.5.4
-      typescript: ^4.2.3
-    devDependencies:
-      '@types/jest': 26.0.22
-      jest: 26.6.3
-      ts-jest: 26.5.4_jest@26.6.3+typescript@4.2.3
-      typescript: 4.2.3
-
   packages/common:
     specifiers:
-      '@types/jest': ^26.0.22
-      jest: ^26.6.3
-      ts-jest: ^26.5.4
+      rimraf: ^3.0.2
       typescript: ^4.2.3
     devDependencies:
-      '@types/jest': 26.0.22
-      jest: 26.6.3
-      ts-jest: 26.5.4_jest@26.6.3+typescript@4.2.3
+      rimraf: 3.0.2
       typescript: 4.2.3
 
   packages/logger:
     specifiers:
       '@golevelup/ts-jest': ^0.3.1
+      '@ogma/common': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       jest: ^26.6.3
       ts-jest: ^26.5.4
       typescript: ^4.2.3
+    dependencies:
+      '@ogma/common': link:../common
+      '@ogma/styler': link:../styler
     devDependencies:
       '@golevelup/ts-jest': 0.3.1
       '@types/jest': 26.0.22
@@ -270,7 +263,9 @@ importers:
       '@nestjs/common': ^7.6.15
       '@nestjs/core': ^7.6.15
       '@nestjs/testing': ^7.6.15
+      '@ogma/common': workspace:*
       '@ogma/logger': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -279,7 +274,9 @@ importers:
       typescript: ^4.2.3
     dependencies:
       '@golevelup/nestjs-modules': 0.4.1
+      '@ogma/common': link:../common
       '@ogma/logger': link:../logger
+      '@ogma/styler': link:../styler
     devDependencies:
       '@golevelup/ts-jest': 0.3.1
       '@nestjs/common': 7.6.15_8e6d4b7501d9d25f42cbf34563d4f5bc
@@ -715,6 +712,23 @@ importers:
       jest: 26.6.3
       reflect-metadata: 0.1.13
       rxjs: 6.6.7
+      ts-jest: 26.5.4_jest@26.6.3+typescript@4.2.3
+      typescript: 4.2.3
+
+  packages/styler:
+    specifiers:
+      '@ogma/common': workspace:*
+      '@types/jest': ^26.0.22
+      jest: ^26.6.3
+      rimraf: ^3.0.2
+      ts-jest: ^26.5.4
+      typescript: ^4.2.3
+    dependencies:
+      '@ogma/common': link:../common
+    devDependencies:
+      '@types/jest': 26.0.22
+      jest: 26.6.3
+      rimraf: 3.0.2
       ts-jest: 26.5.4_jest@26.6.3+typescript@4.2.3
       typescript: 4.2.3
 

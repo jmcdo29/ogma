@@ -1,5 +1,5 @@
 import { Command, CommandRunner, Option } from 'nest-commander';
-import { Color } from '@ogma/logger';
+import { Color } from '@ogma/common';
 import { FileService } from './file.service';
 import { badFormat } from './messages';
 import { OgmaLog } from './ogma-file.interface';

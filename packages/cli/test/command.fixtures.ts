@@ -1,6 +1,7 @@
 import { hostname } from 'os';
 import { OgmaLog } from '../src/ogma-file.interface';
-import { color, LogLevel } from '@ogma/logger';
+import { LogLevel } from '@ogma/common';
+import { style } from '@ogma/styler';
 
 process.stdout.hasColors = () => true;
 
@@ -86,65 +87,67 @@ export const fullJSON: OgmaLogSet = {
 };
 
 function hydrateNoAppNoConFactory(level: string): string {
-  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${pid} ${JSON.stringify(hello)}\n`;
+  return `[${time}] ${level} ${style.magenta.apply('[' + host + ']')} ${pid} ${JSON.stringify(
+    hello,
+  )}\n`;
 }
 
 const hydratedNoAppNoCon: ExpectedOgmaOutput = {
-  silly: hydrateNoAppNoConFactory(color.magenta('[SILLY]')),
-  fine: hydrateNoAppNoConFactory(color.green('[FINE] ')),
-  debug: hydrateNoAppNoConFactory(color.blue('[DEBUG]')),
-  info: hydrateNoAppNoConFactory(color.cyan('[INFO] ')),
-  warn: hydrateNoAppNoConFactory(color.yellow('[WARN] ')),
-  error: hydrateNoAppNoConFactory(color.red('[ERROR]')),
-  fatal: hydrateNoAppNoConFactory(color.red('[FATAL]')),
+  silly: hydrateNoAppNoConFactory(style.magenta.apply('[SILLY]')),
+  fine: hydrateNoAppNoConFactory(style.green.apply('[FINE] ')),
+  debug: hydrateNoAppNoConFactory(style.blue.apply('[DEBUG]')),
+  info: hydrateNoAppNoConFactory(style.cyan.apply('[INFO] ')),
+  warn: hydrateNoAppNoConFactory(style.yellow.apply('[WARN] ')),
+  error: hydrateNoAppNoConFactory(style.red.apply('[ERROR]')),
+  fatal: hydrateNoAppNoConFactory(style.red.apply('[FATAL]')),
 };
 
 function hydrateNoConFactory(level: string): string {
-  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${color.yellow(
+  return `[${time}] ${level} ${style.magenta.apply('[' + host + ']')} ${style.yellow.apply(
     '[' + application + ']',
   )} ${pid} ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoCon: ExpectedOgmaOutput = {
-  silly: hydrateNoConFactory(color.magenta('[SILLY]')),
-  fine: hydrateNoConFactory(color.green('[FINE] ')),
-  debug: hydrateNoConFactory(color.blue('[DEBUG]')),
-  info: hydrateNoConFactory(color.cyan('[INFO] ')),
-  warn: hydrateNoConFactory(color.yellow('[WARN] ')),
-  error: hydrateNoConFactory(color.red('[ERROR]')),
-  fatal: hydrateNoConFactory(color.red('[FATAL]')),
+  silly: hydrateNoConFactory(style.magenta.apply('[SILLY]')),
+  fine: hydrateNoConFactory(style.green.apply('[FINE] ')),
+  debug: hydrateNoConFactory(style.blue.apply('[DEBUG]')),
+  info: hydrateNoConFactory(style.cyan.apply('[INFO] ')),
+  warn: hydrateNoConFactory(style.yellow.apply('[WARN] ')),
+  error: hydrateNoConFactory(style.red.apply('[ERROR]')),
+  fatal: hydrateNoConFactory(style.red.apply('[FATAL]')),
 };
 
 function hydrateNoAppFactory(level: string): string {
-  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${pid} ${color.cyan(
+  return `[${time}] ${level} ${style.magenta.apply('[' + host + ']')} ${pid} ${style.cyan.apply(
     '[' + context + ']',
   )} ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedNoApp: ExpectedOgmaOutput = {
-  silly: hydrateNoAppFactory(color.magenta('[SILLY]')),
-  fine: hydrateNoAppFactory(color.green('[FINE] ')),
-  debug: hydrateNoAppFactory(color.blue('[DEBUG]')),
-  info: hydrateNoAppFactory(color.cyan('[INFO] ')),
-  warn: hydrateNoAppFactory(color.yellow('[WARN] ')),
-  error: hydrateNoAppFactory(color.red('[ERROR]')),
-  fatal: hydrateNoAppFactory(color.red('[FATAL]')),
+  silly: hydrateNoAppFactory(style.magenta.apply('[SILLY]')),
+  fine: hydrateNoAppFactory(style.green.apply('[FINE] ')),
+  debug: hydrateNoAppFactory(style.blue.apply('[DEBUG]')),
+  info: hydrateNoAppFactory(style.cyan.apply('[INFO] ')),
+  warn: hydrateNoAppFactory(style.yellow.apply('[WARN] ')),
+  error: hydrateNoAppFactory(style.red.apply('[ERROR]')),
+  fatal: hydrateNoAppFactory(style.red.apply('[FATAL]')),
 };
 
 function hydrateFullFactory(level: string): string {
-  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${color.yellow(
+  return `[${time}] ${level} ${style.magenta.apply('[' + host + ']')} ${style.yellow.apply(
     '[' + application + ']',
-  )} ${pid} ${color.cyan('[' + context + ']')} ${JSON.stringify(hello)}\n`;
+  )} ${pid} ${style.cyan.apply('[' + context + ']')} ${JSON.stringify(hello)}\n`;
 }
 
 const hydratedFull: ExpectedOgmaOutput = {
-  silly: hydrateFullFactory(color.magenta('[SILLY]')),
-  fine: hydrateFullFactory(color.green('[FINE] ')),
-  debug: hydrateFullFactory(color.blue('[DEBUG]')),
-  info: hydrateFullFactory(color.cyan('[INFO] ')),
-  warn: hydrateFullFactory(color.yellow('[WARN] ')),
-  error: hydrateFullFactory(color.red('[ERROR]')),
-  fatal: hydrateFullFactory(color.red('[FATAL]')),
+  silly: hydrateFullFactory(style.magenta.apply('[SILLY]')),
+  fine: hydrateFullFactory(style.green.apply('[FINE] ')),
+  debug: hydrateFullFactory(style.blue.apply('[DEBUG]')),
+  info: hydrateFullFactory(style.cyan.apply('[INFO] ')),
+  warn: hydrateFullFactory(style.yellow.apply('[WARN] ')),
+  error: hydrateFullFactory(style.red.apply('[ERROR]')),
+  fatal: hydrateFullFactory(style.red.apply('[FATAL]')),
 };
 
 function hydrateNoAppNoConNoColorFactory(level: string): string {
@@ -273,65 +276,65 @@ const fullString: OgmaLogSet = {
 };
 
 function hydrateNoAppNoConStringFactory(level: string): string {
-  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${pid} ${message}\n`;
+  return `[${time}] ${level} ${style.magenta.apply('[' + host + ']')} ${pid} ${message}\n`;
 }
 
 const hydratedNoAppNoConString: ExpectedOgmaOutput = {
-  silly: hydrateNoAppNoConStringFactory(color.magenta('[SILLY]')),
-  fine: hydrateNoAppNoConStringFactory(color.green('[FINE] ')),
-  debug: hydrateNoAppNoConStringFactory(color.blue('[DEBUG]')),
-  info: hydrateNoAppNoConStringFactory(color.cyan('[INFO] ')),
-  warn: hydrateNoAppNoConStringFactory(color.yellow('[WARN] ')),
-  error: hydrateNoAppNoConStringFactory(color.red('[ERROR]')),
-  fatal: hydrateNoAppNoConStringFactory(color.red('[FATAL]')),
+  silly: hydrateNoAppNoConStringFactory(style.magenta.apply('[SILLY]')),
+  fine: hydrateNoAppNoConStringFactory(style.green.apply('[FINE] ')),
+  debug: hydrateNoAppNoConStringFactory(style.blue.apply('[DEBUG]')),
+  info: hydrateNoAppNoConStringFactory(style.cyan.apply('[INFO] ')),
+  warn: hydrateNoAppNoConStringFactory(style.yellow.apply('[WARN] ')),
+  error: hydrateNoAppNoConStringFactory(style.red.apply('[ERROR]')),
+  fatal: hydrateNoAppNoConStringFactory(style.red.apply('[FATAL]')),
 };
 
 function hydrateNoConStringFactory(level: string): string {
-  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${color.yellow(
+  return `[${time}] ${level} ${style.magenta.apply('[' + host + ']')} ${style.yellow.apply(
     '[' + application + ']',
   )} ${pid} ${message}\n`;
 }
 
 const hydratedNoConString: ExpectedOgmaOutput = {
-  silly: hydrateNoConStringFactory(color.magenta('[SILLY]')),
-  fine: hydrateNoConStringFactory(color.green('[FINE] ')),
-  debug: hydrateNoConStringFactory(color.blue('[DEBUG]')),
-  info: hydrateNoConStringFactory(color.cyan('[INFO] ')),
-  warn: hydrateNoConStringFactory(color.yellow('[WARN] ')),
-  error: hydrateNoConStringFactory(color.red('[ERROR]')),
-  fatal: hydrateNoConStringFactory(color.red('[FATAL]')),
+  silly: hydrateNoConStringFactory(style.magenta.apply('[SILLY]')),
+  fine: hydrateNoConStringFactory(style.green.apply('[FINE] ')),
+  debug: hydrateNoConStringFactory(style.blue.apply('[DEBUG]')),
+  info: hydrateNoConStringFactory(style.cyan.apply('[INFO] ')),
+  warn: hydrateNoConStringFactory(style.yellow.apply('[WARN] ')),
+  error: hydrateNoConStringFactory(style.red.apply('[ERROR]')),
+  fatal: hydrateNoConStringFactory(style.red.apply('[FATAL]')),
 };
 
 function hydrateNoAppStringFactory(level: string): string {
-  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${pid} ${color.cyan(
+  return `[${time}] ${level} ${style.magenta.apply('[' + host + ']')} ${pid} ${style.cyan.apply(
     '[' + context + ']',
   )} ${message}\n`;
 }
 
 const hydratedNoAppString: ExpectedOgmaOutput = {
-  silly: hydrateNoAppStringFactory(color.magenta('[SILLY]')),
-  fine: hydrateNoAppStringFactory(color.green('[FINE] ')),
-  debug: hydrateNoAppStringFactory(color.blue('[DEBUG]')),
-  info: hydrateNoAppStringFactory(color.cyan('[INFO] ')),
-  warn: hydrateNoAppStringFactory(color.yellow('[WARN] ')),
-  error: hydrateNoAppStringFactory(color.red('[ERROR]')),
-  fatal: hydrateNoAppStringFactory(color.red('[FATAL]')),
+  silly: hydrateNoAppStringFactory(style.magenta.apply('[SILLY]')),
+  fine: hydrateNoAppStringFactory(style.green.apply('[FINE] ')),
+  debug: hydrateNoAppStringFactory(style.blue.apply('[DEBUG]')),
+  info: hydrateNoAppStringFactory(style.cyan.apply('[INFO] ')),
+  warn: hydrateNoAppStringFactory(style.yellow.apply('[WARN] ')),
+  error: hydrateNoAppStringFactory(style.red.apply('[ERROR]')),
+  fatal: hydrateNoAppStringFactory(style.red.apply('[FATAL]')),
 };
 
 function hydrateFullStringFactory(level: string): string {
-  return `[${time}] ${level} ${color.magenta('[' + host + ']')} ${color.yellow(
+  return `[${time}] ${level} ${style.magenta.apply('[' + host + ']')} ${style.yellow.apply(
     '[' + application + ']',
-  )} ${pid} ${color.cyan('[' + context + ']')} ${message}\n`;
+  )} ${pid} ${style.cyan.apply('[' + context + ']')} ${message}\n`;
 }
 
 const hydratedFullString: ExpectedOgmaOutput = {
-  silly: hydrateFullStringFactory(color.magenta('[SILLY]')),
-  fine: hydrateFullStringFactory(color.green('[FINE] ')),
-  debug: hydrateFullStringFactory(color.blue('[DEBUG]')),
-  info: hydrateFullStringFactory(color.cyan('[INFO] ')),
-  warn: hydrateFullStringFactory(color.yellow('[WARN] ')),
-  error: hydrateFullStringFactory(color.red('[ERROR]')),
-  fatal: hydrateFullStringFactory(color.red('[FATAL]')),
+  silly: hydrateFullStringFactory(style.magenta.apply('[SILLY]')),
+  fine: hydrateFullStringFactory(style.green.apply('[FINE] ')),
+  debug: hydrateFullStringFactory(style.blue.apply('[DEBUG]')),
+  info: hydrateFullStringFactory(style.cyan.apply('[INFO] ')),
+  warn: hydrateFullStringFactory(style.yellow.apply('[WARN] ')),
+  error: hydrateFullStringFactory(style.red.apply('[ERROR]')),
+  fatal: hydrateFullStringFactory(style.red.apply('[FATAL]')),
 };
 
 function hydrateNoAppNoConNoColorStringFactory(level: string): string {

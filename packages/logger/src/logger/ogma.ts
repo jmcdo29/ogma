@@ -1,4 +1,5 @@
-import { Color, LogLevel, OgmaLog } from '@ogma/common';
+import { Color, LogLevel, OgmaLog, OgmaStream } from '@ogma/common';
+import { style, Styler } from '@ogma/styler';
 import { hostname } from 'os';
 import { OgmaDefaults, OgmaOptions, PrintMessageOptions } from '../interfaces';
 import { OgmaPrintOptions } from '../interfaces/ogma-print-options';
@@ -8,13 +9,18 @@ export class Ogma {
   private options: OgmaOptions;
   private pid: number;
   private hostname: string;
+  private styler: Styler;
 
   public fine = this.verbose;
   public log = this.info;
 
   [index: string]: any;
 
-  constructor(options?: Partial<OgmaOptions>) {
+  constructor(
+    options?: Omit<Partial<OgmaOptions>, 'stream'> & {
+      stream?: Pick<OgmaStream, 'write'> & { getColorDepth?: () => number };
+    },
+  ) {
     if (options?.logLevel) {
       options.logLevel = options.logLevel.toUpperCase() as keyof typeof LogLevel;
     }
@@ -22,7 +28,7 @@ export class Ogma {
       Object.keys(options)
         .filter((key) => isNil(options[key]))
         .forEach((key) => delete options[key]);
-    this.options = { ...OgmaDefaults, ...options };
+    this.options = { ...OgmaDefaults, ...(options as OgmaOptions) };
     this.pid = process.pid;
     this.hostname = hostname();
     if (options?.logLevel && LogLevel[options.logLevel] === undefined) {
@@ -31,6 +37,13 @@ export class Ogma {
         `Ogma logLevel was set to ${options.logLevel} which does not match a defined logLevel. Falling back to default instead.`,
       );
     }
+    if (!this.options.stream.getColorDepth) {
+      this.options.stream.getColorDepth = () =>
+        (this.options.stream.hasColors && this.options.stream.hasColors()) || this.options.color
+          ? 4
+          : process?.stdout.getColorDepth() ?? 1;
+    }
+    this.styler = style.child(this.options.stream);
   }
 
   private printMessage(message: any, options: PrintMessageOptions): void {
@@ -72,7 +85,7 @@ export class Ogma {
 
   private toColor(level: LogLevel, color: Color): string {
     const levelString = this.wrapInBrackets(LogLevel[level]).padEnd(7);
-    return colorize(levelString, color, this.options.color, this.options.stream);
+    return colorize(levelString, color, this.styler, this.options.color);
   }
 
   private wrapInBrackets(valueToBeWrapper: string): string {
@@ -127,7 +140,7 @@ export class Ogma {
     if (!value) {
       return '';
     }
-    return colorize(this.wrapInBrackets(value), color, this.options.color, this.options.stream);
+    return colorize(this.wrapInBrackets(value), color, this.styler, this.options.color);
   }
 
   private getTimestamp(): string {

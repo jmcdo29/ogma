@@ -1,9 +1,12 @@
 {
   "name": "@ogma/common",
+  "version": "0.0.1",
   "description": "A package for the @ogma packages to have centralized typings.",
   "files": [
     "lib"
   ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "tsc -p tsconfig.build.json"

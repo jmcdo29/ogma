@@ -1,15 +1,14 @@
-import { Color, OgmaSimpleType, OgmaStream } from '@ogma/common';
-
-const ESC = '\x1B';
+import { Color, OgmaSimpleType } from '@ogma/common';
+import { style as styler, Styler } from '@ogma/styler';
 
 export function colorize(
   value: OgmaSimpleType,
   color: Color = Color.WHITE,
+  style: Styler = styler,
   useColor = true,
-  stream: OgmaStream = process.stdout,
 ): string {
-  if (stream.hasColors && stream.hasColors() && useColor) {
-    value = `${ESC}[3${color}m${value}${ESC}[0m`;
+  if (useColor) {
+    value = style.color(color).apply(value);
   }
   return value.toString();
 }
