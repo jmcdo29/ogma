@@ -1,7 +1,7 @@
 import { createMock } from '@golevelup/ts-jest';
 import { ExecutionContext, HttpException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { AbstractInterceptorService } from '../src/interceptor/providers/abstract-interceptor.service';
 
 class TestParser extends AbstractInterceptorService {
@@ -46,22 +46,23 @@ describe('AbstractInterceptorService', () => {
       providers: [TestParser],
     }).compile();
     service = mod.get(TestParser);
+    process.stdout.getColorDepth = () => 8;
   });
   describe('get colored status', () => {
     it(colorStatus('green', 200), () => {
-      expect(service.getColoredStatus(200)).toBe(color.green(200));
+      expect(service.getColoredStatus(200)).toBe(style.green.apply(200));
     });
     it(colorStatus('cyan', 300), () => {
-      expect(service.getColoredStatus(300)).toBe(color.cyan(300));
+      expect(service.getColoredStatus(300)).toBe(style.cyan.apply(300));
     });
     it(colorStatus('yellow', 400), () => {
-      expect(service.getColoredStatus(400)).toBe(color.yellow(400));
+      expect(service.getColoredStatus(400)).toBe(style.yellow.apply(400));
     });
     it(colorStatus('red', 500), () => {
-      expect(service.getColoredStatus(500)).toBe(color.red(500));
+      expect(service.getColoredStatus(500)).toBe(style.red.apply(500));
     });
     it(colorStatus('white', 600), () => {
-      expect(service.getColoredStatus(600)).toBe(color.white(600));
+      expect(service.getColoredStatus(600)).toBe(style.white.apply(600));
     });
   });
   describe('getErrorContext', () => {

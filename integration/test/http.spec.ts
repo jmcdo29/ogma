@@ -2,7 +2,7 @@ import { HttpServer, INestApplication } from '@nestjs/common';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { AbstractInterceptorService, OgmaInterceptor, Type } from '@ogma/nestjs-module';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { ExpressParser } from '@ogma/platform-express';
 import { FastifyParser } from '@ogma/platform-fastify';
 import {
@@ -87,21 +87,21 @@ describe.each`
             method: method,
           });
           expect(data).toEqual(hello);
-          expectLogObject(method, '/', color.green(status));
+          expectLogObject(method, '/', style.green.apply(status));
         });
       });
       describe('/status', () => {
         it('should log a 202 instead of 200', async () => {
           const data = await httpPromise(baseUrl + '/status');
           expect(data).toEqual(hello);
-          expectLogObject('GET', '/status', color.green(202));
+          expectLogObject('GET', '/status', style.green.apply(202));
           expectRequestId();
         });
       });
       describe('/error', () => {
         it('should log a 400', async () => {
           await httpPromise(baseUrl + '/error');
-          expectLogObject('GET', '/error', color.yellow(400));
+          expectLogObject('GET', '/error', style.yellow.apply(400));
           expectRequestId();
         });
       });

@@ -1,6 +1,6 @@
 import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { OgmaInterceptorServiceOptions } from '../../interfaces/ogma-options.interface';
 import { InterceptorService } from '../interfaces/interceptor-service.interface';
 import { LogObject } from '../interfaces/log.interface';
@@ -65,15 +65,15 @@ export abstract class AbstractInterceptorService implements InterceptorService {
   protected wrapInColor(status: number): string {
     let statusString: string;
     if (this.isBetween(status, 100, 300)) {
-      statusString = color.green(status);
+      statusString = style.green.apply(status);
     } else if (this.isBetween(status, 300, 400)) {
-      statusString = color.cyan(status);
+      statusString = style.cyan.apply(status);
     } else if (this.isBetween(status, 400, 500)) {
-      statusString = color.yellow(status);
+      statusString = style.yellow.apply(status);
     } else if (this.isBetween(status, 500, 600)) {
-      statusString = color.red(status);
+      statusString = style.red.apply(status);
     } else {
-      statusString = color.white(status);
+      statusString = style.white.apply(status);
     }
     return statusString;
   }

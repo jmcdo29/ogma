@@ -1,16 +1,11 @@
 import { createMock } from '@golevelup/ts-jest';
-import { Color } from '../src/enums';
-import { OgmaSimpleType } from '../src/types';
+import { Color, OgmaSimpleType } from '@ogma/common';
+import { style } from '../../styler/lib';
 import { colorize } from '../src/utils/colorize';
 
-const ESC = '\u001B';
+const ESC = '\x1B';
 
-describe.each([
-  [{ processColor: true, useColor: true }],
-  [{ processColor: true, useColor: false }],
-  [{ processColor: false, useColor: true }],
-  [{ processColor: false, useColor: false }],
-])('colorize %j', (options) => {
+describe.each([[{ useColor: true }], [{ useColor: false }]])('colorize %j', (options) => {
   describe.each([
     ['red', Color.RED],
     ['green', Color.GREEN],
@@ -21,9 +16,9 @@ describe.each([
     ['white', Color.WHITE],
   ])('print in %s', (colorName, colorEnum) => {
     it.each(['hello', 42, true])('print %o', (value: OgmaSimpleType) => {
-      process.stdout.hasColors = () => options.processColor;
-      const retVal = colorize(value, colorEnum as Color, options.useColor);
-      if (!options.useColor || !options.processColor) {
+      const styler = style.child(process.stdout);
+      const retVal = colorize(value, colorEnum as Color, styler, options.useColor);
+      if (!options.useColor) {
         expect(retVal).toBe(value.toString());
       } else {
         expect(retVal).toBe(ESC + '[3' + colorEnum + 'm' + value + ESC + '[0m');
@@ -42,13 +37,8 @@ describe('colorize defaults', () => {
 });
 describe('it should not print colors with a stream that does not support colors', () => {
   it('should still print', () => {
-    expect(
-      colorize(
-        'hello',
-        Color.BLUE,
-        true,
-        createMock<NodeJS.WriteStream>({ hasColors: () => false }),
-      ),
-    ).toBe('hello');
+    expect(colorize('hello', Color.BLUE, style.child({ getColorDepth: () => 1 }), true)).toBe(
+      'hello\x1B[0m',
+    );
   });
 });

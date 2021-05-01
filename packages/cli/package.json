@@ -47,7 +47,7 @@
   "dependencies": {
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
-    "@ogma/logger": "workspace:*",
+    "@ogma/common": "workspace:*",
     "nest-commander": "^1.0.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.7"
@@ -55,6 +55,7 @@
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",
     "@nestjs/testing": "^7.6.15",
+    "@ogma/styler": "workspace:*",
     "jest": "26.4.2",
     "nest-commander-testing": "^1.0.1",
     "ts-jest": "^26.5.4",

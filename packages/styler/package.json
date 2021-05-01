@@ -1,5 +1,6 @@
 {
   "name": "@ogma/styler",
+  "version": "0.0.1",
   "description": "A package for the @ogma packages to deal with adding color and string styling to terminal logs",
   "files": [
     "lib"
@@ -10,6 +11,9 @@
     "prebuild": "rimraf lib",
     "build": "tsc -p tsconfig.build.json",
     "test": "jest"
+  },
+  "dependencies": {
+    "@ogma/common": "workspace:*"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",

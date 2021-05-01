@@ -1,7 +1,7 @@
 import { INestApplication, INestMicroservice } from '@nestjs/common';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { GrpcParser } from '@ogma/platform-grpc';
 import { OgmaInterceptor } from '@ogma/nestjs-module';
 import { join } from 'path';
@@ -64,9 +64,9 @@ describe('GrpcParser', () => {
     });
 
     it.each`
-      url         | status              | endpoint
-      ${'/'}      | ${color.green(200)} | ${'SayHello'}
-      ${'/error'} | ${color.red(500)}   | ${'SayError'}
+      url         | status                    | endpoint
+      ${'/'}      | ${style.green.apply(200)} | ${'SayHello'}
+      ${'/error'} | ${style.red.apply(500)}   | ${'SayError'}
     `(
       '$url call',
       async ({ url, status, endpoint }: { url: string; status: string; endpoint: string }) => {

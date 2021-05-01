@@ -1,12 +1,13 @@
 import { Test } from '@nestjs/testing';
 import { Ogma, OgmaOptions } from '@ogma/logger';
-import { OgmaService } from '../src';
+import { OgmaService, OgmaServiceOptions } from '../src';
 import { OGMA_CONTEXT, OGMA_INSTANCE } from '../src/ogma.constants';
 
 jest.mock('@ogma/logger');
 
 const mockStream = {
   write: (message: any) => message,
+  hasColors: () => true,
 };
 
 describe('OgmaService', () => {
@@ -18,7 +19,7 @@ describe('OgmaService', () => {
       describe.each([
         { logLevel: 'ALL' as const, color: true },
         { color: false, stream: mockStream },
-      ])('should work with options %o', (options: Partial<OgmaOptions>) => {
+      ])('should work with options %o', (options: Partial<OgmaServiceOptions>) => {
         describe.each(['Custom_Context', undefined])(
           'calling with custom context %s',
           (customContext: string | undefined) => {

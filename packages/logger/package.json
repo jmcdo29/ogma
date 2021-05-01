@@ -23,7 +23,8 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
-    "@ogma/common": "workspace:*"
+    "@ogma/common": "workspace:*",
+    "@ogma/styler": "workspace:*"
   },
   "devDependencies": {
     "@golevelup/ts-jest": "^0.3.1",
