@@ -2,7 +2,7 @@ it.todo('Implement Kafka test');
 /* import { INestApplication, INestMicroservice } from '@nestjs/common';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';;
 import { OgmaInterceptor } from '@ogma/nestjs-module';
 import { KafkaParser } from '@ogma/platform-kafka';
 import { KafkaClientModule } from '../src/kafka/client/kafka-client.module';
@@ -67,8 +67,8 @@ describe('kafka test', () => {
 
     it.each`
       url         | status              | endpoint
-      ${'/'}      | ${color.green(200)} | ${'say.hello'}
-      ${'/error'} | ${color.red(500)}   | ${'say.error'}
+      ${'/'}      | ${style.green.apply(200)} | ${'say.hello'}
+      ${'/error'} | ${style.red.apply(500)}   | ${'say.error'}
     `(
       '$url call',
       async ({ url, status, endpoint }: { url: string; status: string; endpoint: string }) => {

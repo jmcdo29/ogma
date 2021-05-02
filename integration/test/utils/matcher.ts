@@ -1,6 +1,6 @@
 /* eslint-disable no-redeclare */
 
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { isIP } from 'net';
 import { LogObject } from '@ogma/nestjs-module/lib/interceptor/interfaces/log.interface';
 
@@ -19,7 +19,7 @@ declare global {
 }
 
 const expectMessage = (field: string, expected: string, actual: string) =>
-  `Expected ${field} to be ${color.green(expected)} but got ${color.red(actual)}.\n`;
+  `Expected ${field} to be ${style.green.apply(expected)} but got ${style.red.apply(actual)}.\n`;
 
 const returnMessage = (pass: boolean, message: string) => ({
   pass,

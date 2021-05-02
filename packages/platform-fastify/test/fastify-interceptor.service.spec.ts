@@ -3,7 +3,7 @@ import { BadRequestException, ExecutionContext } from '@nestjs/common';
 import { HTTP_CODE_METADATA } from '@nestjs/common/constants';
 import { Reflector } from '@nestjs/core';
 import { Test } from '@nestjs/testing';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { FastifyParser } from '../src';
 
 const resMock = (status: number) => ({
@@ -104,7 +104,7 @@ describe('FastifyParser', () => {
       const ctxMock = createMock<ExecutionContext>({
         switchToHttp: () => resMock(200),
       });
-      expect(parser.getStatus(ctxMock, true)).toBe(color.green(200));
+      expect(parser.getStatus(ctxMock, true)).toBe(style.green.apply(200));
     });
   });
 

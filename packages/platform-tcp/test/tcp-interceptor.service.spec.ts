@@ -3,7 +3,7 @@ import { ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { PATTERN_METADATA } from '@nestjs/microservices/constants';
 import { Test } from '@nestjs/testing';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { TcpParser } from '../src';
 
 describe('TcpParser', () => {
@@ -82,7 +82,7 @@ describe('TcpParser', () => {
       expect(parser.getStatus(createMock<ExecutionContext>(), false, new Error())).toBe('500');
     });
     it('should return a 200 in color', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(color.green(200));
+      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(style.green.apply(200));
     });
   });
 });

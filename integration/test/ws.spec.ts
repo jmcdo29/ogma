@@ -2,7 +2,7 @@ import { INestApplication, WebSocketAdapter } from '@nestjs/common';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { WsAdapter } from '@nestjs/platform-ws';
 import { Test } from '@nestjs/testing';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { AbstractInterceptorService, OgmaInterceptor, Type } from '@ogma/nestjs-module';
 import { SocketIOParser } from '@ogma/platform-socket.io';
 import { WsParser } from '@ogma/platform-ws';
@@ -84,8 +84,8 @@ describe.each`
 
       it.each`
         message      | status
-        ${'message'} | ${color.green(200)}
-        ${'throw'}   | ${color.red(500)}
+        ${'message'} | ${style.green.apply(200)}
+        ${'throw'}   | ${style.red.apply(500)}
       `('$message', async ({ message, status }: { message: string; status: string }) => {
         await wsPromise(ws, serializer(message), sendMethod);
         expect(logSpy).toHaveBeenCalledTimes(1);
