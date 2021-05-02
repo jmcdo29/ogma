@@ -29,10 +29,7 @@ describe.each([[{ useColor: true }], [{ useColor: false }]])('colorize %j', (opt
 });
 describe('colorize defaults', () => {
   it('should print with defaults', () => {
-    const hasColors = process.stdout.hasColors;
-    process.stdout.hasColors = () => true;
     expect(colorize('hello')).toBe(ESC + '[38;5;7mhello' + ESC + '[0m');
-    process.stdout.hasColors = hasColors;
   });
 });
 describe('it should not print colors with a stream that does not support colors', () => {

@@ -4,6 +4,7 @@ import { Style } from './style.enum';
 export class Styler {
   private stylesToApply = [];
   private colorDepth = 16;
+  private useStyle = true;
   public get black() {
     return this.sgr(Style.BLACK);
   }
@@ -43,10 +44,10 @@ export class Styler {
   public get yellow() {
     return this.sgr(Style.YELLOW);
   }
-  public get bYellow() {
+  public get yellowBg() {
     return this.sgr(Style.YELLOWBG);
   }
-  public get yellowBg() {
+  public get bYellow() {
     return this.sgr(Style.BRIGHTYELLOW);
   }
 
@@ -157,6 +158,9 @@ export class Styler {
     if (process.env.NO_COLOR || process.env.NODE_DISABLE_COLOR) {
       this.colorDepth = 1;
     }
+    if (process.env.NO_STYLE) {
+      this.useStyle = false;
+    }
   }
 
   public apply(val: string | number | boolean) {
@@ -193,7 +197,9 @@ export class Styler {
    * @link https://en.wikipedia.org/wiki/ANSI_escape_code#SGR
    */
   private sgr(val: number | string): this {
-    this.stylesToApply.push(`\x1B[${val.toString()}m`);
+    if (this.useStyle) {
+      this.stylesToApply.push(`\x1B[${val.toString()}m`);
+    }
     return this;
   }
 }

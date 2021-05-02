@@ -56,7 +56,7 @@ Examples can be seen below. The JSON structure follows the same form with log le
 | name | type | use |
 | --- | --- | --- |
 | logLevel | one of the above log levels (default: INFO) | for determining this instance of Ogma's log level |
-| color | boolean (default: true) | determine if color should attempt to be used. NOTE: Color will not be used if the current terminal does not support it |
+| color | boolean (default: true) | determine if color should attempt to be used. NOTE: Ogma only does not use color if there is an explicit `getColorDepth` of 1 or `NO_COLOR` or `NODE_DISABLE_COLOR` is set |
 | stream | { write: (message: any) => void, hasColor?: () => boolean } | the output mechanism used to know how to write logs |
 | json | boolean (default: false) | print the logs in a JSON format |
 | context | string optional | a context for the Ogma class to work with. |
@@ -64,7 +64,7 @@ Examples can be seen below. The JSON structure follows the same form with log le
 
 #### Using Files instead of a console
 
-> Note: Ogma will try to use colors if they are available, but will otherwise ignore the color option if `stream.hasColors()` returns false.
+> Note: Ogma will try to use colors if they are available, and by default will do so. If the current `stream` has a `getColorDepth` method, that will be used to determine the color's possible outputs. If you want to override this, to force colors you can use the [`FORCE_COLOR` env variable (0,1,2,3)](https://nodejs.org/api/tty.html#tty_writestream_getcolordepth_env) or to disable them you can use the [`NO_COLOR` or `NODE_DISABLE_COLOR` env variable](https://nodejs.org/api/tty.html#tty_writestream_getcolordepth_env).
 
 If you want to use a file to hold your logs instead of a console/terminal/bash you can pass in a stream of your own to the options like so:
 

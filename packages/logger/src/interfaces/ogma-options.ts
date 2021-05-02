@@ -14,9 +14,7 @@ export interface OgmaOptions {
 export const OgmaDefaults: OgmaOptions = {
   logLevel: 'INFO',
   color: true,
-  stream: process
-    ? process.stdout
-    : { hasColors: () => false, getColorDepth: () => 1, write: console.log },
+  stream: process ? process.stdout : { getColorDepth: () => 1, write: console.log },
   json: false,
   context: '',
   application: '',

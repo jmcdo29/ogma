@@ -1,7 +1,5 @@
 import { color } from '../src';
 
-process.stdout.hasColors = () => true;
-
 describe.each([
   ['red', '1'],
   ['green', '2'],
