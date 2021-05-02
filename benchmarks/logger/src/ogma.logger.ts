@@ -1,7 +1,7 @@
 import { Ogma } from '@ogma/logger';
 import { WriteStream } from 'fs';
 
-export function createOgmaLogger(stream: WriteStream & { hasColors: () => boolean }) {
+export function createOgmaLogger(stream: WriteStream) {
   return new Ogma({
     application: 'Ogma Bench',
     stream,

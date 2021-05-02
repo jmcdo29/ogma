@@ -3,8 +3,6 @@ import { OgmaLog } from '../src/ogma-file.interface';
 import { LogLevel } from '@ogma/common';
 import { style } from '@ogma/styler';
 
-process.stdout.hasColors = () => true;
-
 export interface OgmaLogSet {
   silly: OgmaLog;
   fine: OgmaLog;

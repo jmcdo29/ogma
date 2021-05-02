@@ -28,6 +28,7 @@ Ogma is a no-nonsense logger developed to make logging simple, and easy to read 
 | [@ogma/platform-socket.io](packages/platform-socket.io) | A Gateway plugin to properly log [Socket.io](https://socket.io) requests |
 | [@ogma/platform-tcp](packages/platform-tcp) | A microservice plugin to properly log [TCP](https://docs.nestjs.com/microservices/basics) requests |
 | [@ogma/platform-ws](packages/platform-ws) | A Gateway plugin to properly log [WS](https://github.com/websockets/ws) requests |
+| [@ogma/styler](packages/styler)] | A package for string styling. Similar to [chalk](https://github.com/chalk/chalk) just made as a part of the `@ogma/` namespace. |
 
 ## Contributors
 

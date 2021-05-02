@@ -9,7 +9,6 @@ export interface OgmaModuleOptions {
 export type OgmaServiceOptions = Partial<
   Omit<Partial<OgmaOptions>, 'stream'> & {
     stream?: Pick<OgmaStream, 'write'> & {
-      hasColors?: () => boolean;
       getColorDepth?: () => number;
     };
   }

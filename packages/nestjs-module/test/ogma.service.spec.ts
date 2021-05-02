@@ -7,7 +7,6 @@ jest.mock('@ogma/logger');
 
 const mockStream = {
   write: (message: any) => message,
-  hasColors: () => true,
 };
 
 describe('OgmaService', () => {

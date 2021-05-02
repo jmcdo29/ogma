@@ -5,8 +5,6 @@ import { color as Color, Ogma, OgmaOptions } from '../src';
 
 const dest = createWriteStream('/dev/null');
 
-process.stdout.hasColors = () => true;
-
 const circularObject: any = {};
 circularObject.a = 'hello';
 circularObject.b = {

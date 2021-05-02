@@ -39,9 +39,7 @@ export class Ogma {
     }
     if (!this.options.stream.getColorDepth) {
       this.options.stream.getColorDepth = () =>
-        (this.options.stream.hasColors && this.options.stream.hasColors()) || this.options.color
-          ? 4
-          : process?.stdout.getColorDepth() ?? 1;
+        this.options.color ? 4 : process?.stdout.getColorDepth() ?? 1;
     }
     this.styler = style.child(this.options.stream);
   }
