@@ -12,7 +12,7 @@ describe.each([
   ['white', '7'],
 ])('built in color function', (colorString: string, num: string) => {
   it('should print in ' + colorString, () => {
-    const regex = new RegExp('\\u001b\\[3' + num + 'mhello\\u001b\\[0m');
+    const regex = new RegExp('\\u001b\\[38;5;' + num + 'mhello\\u001b\\[0m');
     expect(regex.test((color as any)[colorString]('hello'))).toBe(true);
   });
 });

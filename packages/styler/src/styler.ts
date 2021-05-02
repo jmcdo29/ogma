@@ -1,162 +1,163 @@
 import { OgmaStream } from '@ogma/common';
+import { Style } from './style.enum';
 
 export class Styler {
   private stylesToApply = [];
-  protected colorMap = {
-    black: '0',
-    red: '1',
-    green: '2',
-    yellow: '3',
-    blue: '4',
-    magenta: '5',
-    cyan: '6',
-    white: '7',
-  };
-
+  private colorDepth = 16;
   public get black() {
-    return this.color(this.colorMap.black);
+    return this.sgr(Style.BLACK);
   }
   public get blackBg() {
-    return this.bgColor(this.colorMap.black);
+    return this.sgr(Style.BLACKBG);
   }
   public get bBlack() {
-    return this.brightColor(this.colorMap.black);
+    return this.sgr(Style.BRIGHTBLACK);
   }
   public get bBlackBg() {
-    return this.brightColor(this.colorMap.black);
+    return this.sgr(Style.BRIGHTBLACKBG);
   }
   public get red() {
-    return this.color(this.colorMap.red);
+    return this.sgr(Style.RED);
   }
   public get redBg() {
-    return this.bgColor(this.colorMap.red);
+    return this.sgr(Style.REDBG);
   }
   public get bRed() {
-    return this.brightColor(this.colorMap.red);
+    return this.sgr(Style.BRIGHTRED);
   }
   public get bRedBg() {
-    return this.brightBgColor(this.colorMap.red);
+    return this.sgr(Style.BRIGHTREDBG);
   }
   public get green() {
-    return this.color(this.colorMap.green);
+    return this.sgr(Style.GREEN);
   }
   public get greenBg() {
-    return this.bgColor(this.colorMap.green);
+    return this.sgr(Style.GREENBG);
   }
   public get bGreen() {
-    return this.brightColor(this.colorMap.green);
+    return this.sgr(Style.BRIGHTGREEN);
   }
   public get bGreenBg() {
-    return this.brightBgColor(this.colorMap.green);
+    return this.sgr(Style.BRIGHTGREENBG);
   }
   public get yellow() {
-    return this.color(this.colorMap.yellow);
+    return this.sgr(Style.YELLOW);
   }
   public get bYellow() {
-    return this.brightColor(this.colorMap.yellow);
+    return this.sgr(Style.YELLOWBG);
   }
   public get yellowBg() {
-    return this.bgColor(this.colorMap.yellow);
+    return this.sgr(Style.BRIGHTYELLOW);
   }
 
   public get bYellowBg() {
-    return this.brightBgColor(this.colorMap.yellow);
+    return this.sgr(Style.BRIGHTYELLOWBG);
   }
   public get blue() {
-    return this.color(this.colorMap.blue);
+    return this.sgr(Style.BLUE);
   }
   public get blueBg() {
-    return this.bgColor(this.colorMap.blue);
+    return this.sgr(Style.BLUEBG);
   }
   public get bBlue() {
-    return this.brightColor(this.colorMap.blue);
+    return this.sgr(Style.BRIGHTBLUE);
   }
   public get bBlueBg() {
-    return this.brightBgColor(this.colorMap.blue);
+    return this.sgr(Style.BRIGHTBLUEBG);
   }
   public get magenta() {
-    return this.color(this.colorMap.magenta);
+    return this.sgr(Style.MAGENTA);
   }
   public get magentaBg() {
-    return this.bgColor(this.colorMap.magenta);
+    return this.sgr(Style.MAGENTABG);
   }
   public get bMagenta() {
-    return this.brightColor(this.colorMap.magenta);
+    return this.sgr(Style.BRIGHTMAGENTA);
   }
   public get bMagentaBg() {
-    return this.brightBgColor(this.colorMap.magenta);
+    return this.sgr(Style.BRIGHTMAGENTABG);
   }
   public get cyan() {
-    return this.color(this.colorMap.cyan);
+    return this.sgr(Style.CYAN);
   }
   public get cyanBg() {
-    return this.bgColor(this.colorMap.cyan);
+    return this.sgr(Style.CYANBG);
   }
   public get bCyan() {
-    return this.brightColor(this.colorMap.cyan);
+    return this.sgr(Style.BRIGHTCYAN);
   }
   public get bCyanBg() {
-    return this.brightBgColor(this.colorMap.cyan);
+    return this.sgr(Style.BIRGHTCYANBG);
   }
   public get white() {
-    return this.color(this.colorMap.white);
+    return this.sgr(Style.WHITE);
   }
   public get whiteBg() {
-    return this.bgColor(this.colorMap.white);
+    return this.sgr(Style.WHITEBG);
   }
   public get bWhite() {
-    return this.brightColor(this.colorMap.white);
+    return this.sgr(Style.BRIGHTWHIET);
   }
   public get bWhiteBg() {
-    return this.brightBgColor(this.colorMap.white);
+    return this.sgr(Style.BRIGHTWHITEBG);
   }
   public get bold() {
-    return this.addStyle('bold');
+    return this.sgr(Style.BOLD);
   }
   public get faint() {
-    return this.addStyle('faint');
+    return this.sgr(Style.FAINT);
   }
   public get italic() {
-    return this.addStyle('italic');
+    return this.sgr(Style.ITALIC);
   }
   public get underline() {
-    return this.addStyle('underline');
+    return this.sgr(Style.UNDERLINE);
   }
   public get blink() {
-    return this.addStyle('blink');
+    return this.sgr(Style.BLINK);
   }
   public get fastBlink() {
-    return this.addStyle('fast-blink');
+    return this.sgr(Style.FASTBLINK);
   }
   public get invert() {
-    return this.addStyle('invert');
+    return this.sgr(Style.INVERT);
   }
   public get strikeThrough() {
-    return this.addStyle('strike');
+    return this.sgr(Style.STRIKE);
   }
   public get doubleUnderline() {
-    return this.addStyle('double-underline');
+    return this.sgr(Style.DOUBLEUNDERLINE);
   }
   public get reveal() {
-    return this.addStyle('reveal');
+    return this.sgr(Style.REVEAL);
   }
   public get framed() {
-    return this.addStyle('framed');
+    return this.sgr(Style.FRAMED);
   }
   public get encircled() {
-    return this.addStyle('encircled');
+    return this.sgr(Style.ENCIRCLED);
   }
   public get overlined() {
-    return this.addStyle('overlined');
+    return this.sgr(Style.OVERLINED);
   }
   public get superscript() {
-    return this.addStyle('super');
+    return this.sgr(Style.SUPER);
   }
   public get subscript() {
-    return this.addStyle('sub');
+    return this.sgr(Style.SUB);
   }
 
-  public constructor(private readonly stream: Pick<OgmaStream, 'getColorDepth'> = process.stdout) {}
+  public constructor(stream: Pick<OgmaStream, 'getColorDepth'> = process.stdout) {
+    if (stream.getColorDepth) {
+      this.colorDepth = stream.getColorDepth();
+    }
+    if (process.env.FORCE_COLOR) {
+      this.colorDepth = [1, 4, 8, 24][Number.parseInt(process.env.FORCE_COLOR)] ?? this.colorDepth;
+    }
+    if (process.env.NO_COLOR || process.env.NODE_DISABLE_COLOR) {
+      this.colorDepth = 1;
+    }
+  }
 
   public apply(val: string | number | boolean) {
     const retString = `${this.stylesToApply.join('')}${val}\x1B[0m`;
@@ -168,121 +169,31 @@ export class Styler {
     return this.color(colorVal, 'background');
   }
 
-  public brightBgColor(colorVal: string | number): this {
-    return this.brightColor(colorVal, 'background');
-  }
-
-  public brightColor(
-    colorVal: string | number,
-    position: 'foreground' | 'background' = 'foreground',
-  ): this {
-    return this.color(colorVal, position, true);
-  }
-
   public color(
     colorVal: string | number,
     position: 'foreground' | 'background' = 'foreground',
-    bright = false,
   ): this {
     let applyStyle = '';
     if (position === 'foreground') {
-      applyStyle = 'color';
+      applyStyle = `${Style.COLOR};5;${colorVal}`;
     } else {
-      applyStyle = 'colorbg';
+      applyStyle = `${Style.BGCOLOR};5;${colorVal}`;
     }
-    if (bright) {
-      applyStyle = `b${applyStyle}`;
+    if (this.colorDepth === 1) {
+      return this;
     }
-    if (typeof colorVal === 'number') {
-      if (colorVal > 8) {
-        colorVal = `8;5;${colorVal}`;
-      } else {
-        colorVal = colorVal.toString();
-      }
-    }
-    if (this.stream.getColorDepth() === 1) {
-      return this.addStyle('no-style');
-    }
-    return this.addStyle(applyStyle, colorVal);
+    return this.sgr(applyStyle);
   }
 
   public child(stream?: Pick<OgmaStream, 'getColorDepth'>): Styler {
     return new Styler(stream);
   }
+
   /**
    * @link https://en.wikipedia.org/wiki/ANSI_escape_code#SGR
    */
-  private addStyle(style: string, modification?: string) {
-    let styleToAdd = '';
-    switch (style) {
-      case 'bold':
-        styleToAdd = this.sgr(1);
-        break;
-      case 'faint':
-        styleToAdd = this.sgr(2);
-        break;
-      case 'italic':
-        styleToAdd = this.sgr(3);
-        break;
-      case 'underline':
-        styleToAdd = this.sgr(4);
-        break;
-      case 'blink':
-        styleToAdd = this.sgr(5);
-        break;
-      case 'fast-blink':
-        styleToAdd = this.sgr(6);
-        break;
-      case 'invert':
-        styleToAdd = this.sgr(7);
-        break;
-      case 'conceal':
-        styleToAdd = this.sgr(8);
-        break;
-      case 'strike':
-        styleToAdd = this.sgr(9);
-        break;
-      case 'double-underline':
-        styleToAdd = this.sgr(21);
-        break;
-      case 'reveal':
-        styleToAdd = this.sgr(22);
-        break;
-      case 'color':
-        styleToAdd = this.sgr(`3${modification}`);
-        break;
-      case 'colorbg':
-        styleToAdd = this.sgr(`4${modification}`);
-        break;
-      case 'framed':
-        styleToAdd = this.sgr(51);
-        break;
-      case 'encircled':
-        styleToAdd = this.sgr(52);
-        break;
-      case 'overlined':
-        styleToAdd = this.sgr(53);
-        break;
-      case 'super':
-        styleToAdd = this.sgr(73);
-        break;
-      case 'sub':
-        styleToAdd = this.sgr(74);
-        break;
-      case 'bcolor':
-        styleToAdd = this.sgr(`9${modification}`);
-        break;
-      case 'bcolorbg':
-        styleToAdd = this.sgr(`10${modification}`);
-        break;
-      default:
-        break;
-    }
-    this.stylesToApply.push(styleToAdd);
+  private sgr(val: number | string): this {
+    this.stylesToApply.push(`\x1B[${val.toString()}m`);
     return this;
-  }
-
-  private sgr(val: number | string): string {
-    return `\x1B[${val.toString()}m`;
   }
 }

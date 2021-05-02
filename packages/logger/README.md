@@ -93,7 +93,7 @@ No console logging package is complete without color, and because of that `Ogma`
 To make use of the utility functions you'll need to import the `color` method and pass in your string to the desired color like so:
 
 ```ts
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 
 color.blue('This will be blue');
 // returns '\u001b[34mThis will be blue\u001b[0m'

@@ -3,7 +3,7 @@ import { ExecutionContext } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { KafkaParser } from '../src';
 import { Reflector } from '@nestjs/core';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 
 describe('KafkaParser', () => {
   let parser: KafkaParser;
@@ -79,7 +79,7 @@ describe('KafkaParser', () => {
       expect(parser.getStatus(createMock<ExecutionContext>(), false, new Error())).toBe('500');
     });
     it('should return a 200 in color', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(color.green(200));
+      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(style.green.apply(200));
     });
   });
   describe('getProtocol', () => {

@@ -1,7 +1,7 @@
 import { createMock } from '@golevelup/ts-jest';
 import { ExecutionContext } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { NatsParser } from '../src';
 
 describe('NatsParser', () => {
@@ -58,7 +58,7 @@ describe('NatsParser', () => {
       expect(parser.getStatus(createMock<ExecutionContext>(), false, new Error())).toBe('500');
     });
     it('should return a 200 in color', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(color.green(200));
+      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(style.green.apply(200));
     });
   });
   describe('getProtocol', () => {

@@ -3,7 +3,7 @@ import { BadRequestException, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Test } from '@nestjs/testing';
 import { MESSAGE_METADATA } from '@nestjs/websockets/constants';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 import { WsParser } from '../src';
 
 describe('WsParser', () => {
@@ -70,7 +70,7 @@ describe('WsParser', () => {
       ).toBe('500');
     });
     it('should return a 200 in green', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(color.green(200));
+      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(style.green.apply(200));
     });
   });
 });

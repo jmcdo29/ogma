@@ -10,6 +10,7 @@ importers:
       '@changesets/cli': ^2.14.1
       '@commitlint/cli': ^11.0.0
       '@commitlint/config-conventional': ^11.0.0
+      '@ogma/styler': workspace:*
       '@typescript-eslint/eslint-plugin': ^4.20.0
       '@typescript-eslint/parser': ^4.20.0
       codeclimate-test-reporter: ^0.5.1
@@ -30,6 +31,7 @@ importers:
       '@changesets/cli': 2.14.1
       '@commitlint/cli': 11.0.0
       '@commitlint/config-conventional': 11.0.0
+      '@ogma/styler': link:packages/styler
       '@typescript-eslint/eslint-plugin': 4.20.0_7448dc1756632cc6400f187319207d38
       '@typescript-eslint/parser': 4.20.0_eslint@7.23.0+typescript@4.2.3
       codeclimate-test-reporter: 0.5.1
@@ -55,6 +57,7 @@ importers:
       '@nestjs/platform-express': ^7.6.15
       '@ogma/nestjs-module': workspace:*
       '@ogma/platform-express': workspace:*
+      '@ogma/styler': workspace:*
       morgan: 1.10.0
       reflect-metadata: ^0.1.13
       rimraf: ^3.0.2
@@ -72,10 +75,13 @@ importers:
       rimraf: 3.0.2
       rxjs: 6.6.7
       typescript: 4.2.3
+    devDependencies:
+      '@ogma/styler': link:../../packages/styler
 
   benchmarks/logger:
     specifiers:
       '@ogma/logger': workspace:*
+      '@ogma/styler': workspace:*
       bunyan: 1.8.15
       pino: 6.11.0
       reflect-metadata: ^0.1.13
@@ -92,6 +98,8 @@ importers:
       rxjs: 6.6.7
       typescript: 4.2.3
       winston: 3.3.3
+    devDependencies:
+      '@ogma/styler': link:../../packages/styler
 
   integration:
     specifiers:
@@ -172,7 +180,6 @@ importers:
       '@ogma/platform-socket.io': link:../packages/platform-socket.io
       '@ogma/platform-tcp': link:../packages/platform-tcp
       '@ogma/platform-ws': link:../packages/platform-ws
-      '@ogma/styler': link:../packages/styler
       '@types/socket.io': 2.1.13
       '@types/socket.io-client': 1.4.36
       amqp-connection-manager: 3.2.2_amqplib@0.6.0
@@ -196,6 +203,7 @@ importers:
       ts-jest: 26.4.4_jest@26.4.2
       ws: 7.4.1
     devDependencies:
+      '@ogma/styler': link:../packages/styler
       graphql: 14.7.0
 
   packages/cli:
@@ -231,9 +239,11 @@ importers:
 
   packages/common:
     specifiers:
+      '@ogma/styler': workspace:*
       rimraf: ^3.0.2
       typescript: ^4.2.3
     devDependencies:
+      '@ogma/styler': link:../styler
       rimraf: 3.0.2
       typescript: 4.2.3
 
@@ -298,6 +308,7 @@ importers:
       '@nestjs/testing': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/express': ^4.17.11
       '@types/jest': ^26.0.22
       jest: ^26.6.3
@@ -313,6 +324,7 @@ importers:
       '@nestjs/testing': 7.6.15_1c895fe2530e9c7ea231db6d21b4ac4c
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/express': 4.17.11
       '@types/jest': 26.0.22
       jest: 26.6.3
@@ -330,6 +342,7 @@ importers:
       '@nestjs/testing': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       fastify: ^3.14.1
       jest: ^26.6.3
@@ -345,6 +358,7 @@ importers:
       '@nestjs/testing': 7.6.15_a5e284bf185e3b13e505d42d771fb371
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/jest': 26.0.22
       fastify: 3.14.1
       jest: 26.6.3
@@ -446,6 +460,7 @@ importers:
       '@nestjs/testing': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -460,6 +475,7 @@ importers:
       '@nestjs/testing': 7.6.15_36fd7ebc82ee63f2e69d36d03902f53d
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/jest': 26.0.22
       jest: 26.6.3
       reflect-metadata: 0.1.13
@@ -476,6 +492,7 @@ importers:
       '@nestjs/testing': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -490,6 +507,7 @@ importers:
       '@nestjs/testing': 7.6.15_36fd7ebc82ee63f2e69d36d03902f53d
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/jest': 26.0.22
       jest: 26.6.3
       reflect-metadata: 0.1.13
@@ -506,6 +524,7 @@ importers:
       '@nestjs/testing': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -520,6 +539,7 @@ importers:
       '@nestjs/testing': 7.6.15_36fd7ebc82ee63f2e69d36d03902f53d
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/jest': 26.0.22
       jest: 26.6.3
       reflect-metadata: 0.1.13
@@ -536,6 +556,7 @@ importers:
       '@nestjs/testing': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -550,6 +571,7 @@ importers:
       '@nestjs/testing': 7.6.15_36fd7ebc82ee63f2e69d36d03902f53d
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/jest': 26.0.22
       jest: 26.6.3
       reflect-metadata: 0.1.13
@@ -566,6 +588,7 @@ importers:
       '@nestjs/testing': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -580,6 +603,7 @@ importers:
       '@nestjs/testing': 7.6.15_36fd7ebc82ee63f2e69d36d03902f53d
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/jest': 26.0.22
       jest: 26.6.3
       reflect-metadata: 0.1.13
@@ -596,6 +620,7 @@ importers:
       '@nestjs/testing': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       jest: ^26.6.3
       redis: ^3.1.0
@@ -611,6 +636,7 @@ importers:
       '@nestjs/testing': 7.6.15_36fd7ebc82ee63f2e69d36d03902f53d
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/jest': 26.0.22
       jest: 26.6.3
       redis: 3.1.0
@@ -629,6 +655,7 @@ importers:
       '@nestjs/websockets': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       '@types/socket.io': ^2.1.13
       jest: ^26.6.3
@@ -645,6 +672,7 @@ importers:
       '@nestjs/websockets': 7.6.15_ee85dd4d1195054ef85be608c1ad8c77
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/jest': 26.0.22
       '@types/socket.io': 2.1.13
       jest: 26.6.3
@@ -662,6 +690,7 @@ importers:
       '@nestjs/testing': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -676,6 +705,7 @@ importers:
       '@nestjs/testing': 7.6.15_36fd7ebc82ee63f2e69d36d03902f53d
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/jest': 26.0.22
       jest: 26.6.3
       reflect-metadata: 0.1.13
@@ -693,6 +723,7 @@ importers:
       '@nestjs/websockets': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
+      '@ogma/styler': workspace:*
       '@types/jest': ^26.0.22
       jest: ^26.6.3
       reflect-metadata: ^0.1.13
@@ -708,6 +739,7 @@ importers:
       '@nestjs/websockets': 7.6.15_ee85dd4d1195054ef85be608c1ad8c77
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
+      '@ogma/styler': link:../styler
       '@types/jest': 26.0.22
       jest: 26.6.3
       reflect-metadata: 0.1.13

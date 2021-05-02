@@ -4,7 +4,7 @@ import { Test } from '@nestjs/testing';
 import { MqttParser } from '../src';
 import { Reflector } from '@nestjs/core';
 import { PATTERN_METADATA } from '@nestjs/microservices/constants';
-import { color } from '@ogma/logger';
+import { style } from '@ogma/styler';
 
 describe('MQTTParser', () => {
   let parser: MqttParser;
@@ -86,7 +86,7 @@ describe('MQTTParser', () => {
       expect(parser.getStatus(createMock<ExecutionContext>(), false, new Error())).toBe('500');
     });
     it('should return a 200 in color', () => {
-      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(color.green(200));
+      expect(parser.getStatus(createMock<ExecutionContext>(), true)).toBe(style.green.apply(200));
     });
   });
   describe('getProtocol', () => {
