@@ -1,8 +1,7 @@
 import { Command, CommandRunner, Option } from 'nest-commander';
-import { Color } from '@ogma/common';
+import { Color, OgmaLog } from '@ogma/common';
 import { FileService } from './file.service';
 import { badFormat } from './messages';
-import { OgmaLog } from './ogma-file.interface';
 import { OgmaGetterService } from './ogma-getters.service';
 
 @Command({
@@ -55,9 +54,9 @@ export class OgmaCommand implements CommandRunner {
   }
 
   private writeLog(log: OgmaLog, color: boolean): void {
-    const { time, hostname, application, context, pid, level, ...rest } = log;
+    const { time, hostname, application, context, pid, ool, level, ...rest } = log;
     let logMessage = this.ogmaGetter.wrapInParens(time) + ' ';
-    logMessage += this.ogmaGetter.getLevel(level, color) + ' ';
+    logMessage += this.ogmaGetter.getLevel(ool, color) + ' ';
     logMessage += this.ogmaGetter.getVal(hostname, color, Color.MAGENTA) + ' ';
     if (application) {
       logMessage += this.ogmaGetter.getVal(application, color, Color.YELLOW) + ' ';

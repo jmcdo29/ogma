@@ -1,6 +1,5 @@
 import { hostname } from 'os';
-import { OgmaLog } from '../src/ogma-file.interface';
-import { LogLevel } from '@ogma/common';
+import { OgmaLog, OgmaWritableLevel } from '@ogma/common';
 import { style } from '@ogma/styler';
 
 export interface OgmaLogSet {
@@ -34,11 +33,12 @@ const application = 'TestClass';
 const context = 'TestMethod';
 const host = hostname();
 
-function ogmaObjectJSON(level: keyof typeof LogLevel): OgmaLog {
+function ogmaObjectJSON(level: OgmaWritableLevel): OgmaLog {
   return {
     time,
     pid,
     level,
+    ool: level,
     ...hello,
     hostname: host,
   };
@@ -223,11 +223,12 @@ export const jsonLogs = {
 
 const message = 'hello';
 
-function ogmaStringJSON(level: keyof typeof LogLevel): OgmaLog {
+function ogmaStringJSON(level: OgmaWritableLevel): OgmaLog {
   return {
     time,
     pid,
     level,
+    ool: level,
     message,
     hostname: host,
   };

@@ -1,8 +1,8 @@
+import { OgmaLog } from '@ogma/common';
 import { createWriteStream, promises } from 'fs';
 import { CommandTestFactory } from 'nest-commander-testing';
 import { ExpectedOgmaOutput, jsonLogs, logKeys, OgmaLogSet, stringLogs } from './command.fixtures';
 import { AppModule } from '../src/app.module';
-import { OgmaLog } from '../src/ogma-file.interface';
 import { OgmaCommand } from '../src/ogma.command';
 
 const globalIsTTY = process.stdout.isTTY;
@@ -35,7 +35,7 @@ const someFile = 'someFile';
 
 const hydrateArgs = [someFile];
 
-const ogmaHydrate = async (args: string[]): Promise<void> => {
+const ogmaHydrate = async (_args: string[]): Promise<void> => {
   const commandModule = await CommandTestFactory.createTestingCommand({
     imports: [AppModule],
   }).compile();
