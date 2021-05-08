@@ -1,4 +1,3 @@
-import { createMock } from '@golevelup/ts-jest';
 import { Color, OgmaSimpleType } from '@ogma/common';
 import { style } from '../../styler/lib';
 import { colorize } from '../src/utils/colorize';
@@ -21,20 +20,20 @@ describe.each([[{ useColor: true }], [{ useColor: false }]])('colorize %j', (opt
       if (!options.useColor) {
         expect(retVal).toBe(value.toString());
       } else {
-        expect(retVal).toBe(ESC + '[38;5;' + colorEnum + 'm' + value + ESC + '[0m');
-        expect(/^\u001b\[38;5;\d{1}m\w{2,5}\u001b\[0m$/.test(retVal)).toBeTruthy();
+        expect(retVal).toBe(ESC + '[3' + colorEnum + 'm' + value + ESC + '[0m');
+        expect(/^\u001b\[3\d{1}m\w{2,5}\u001b\[0m$/.test(retVal)).toBeTruthy();
       }
     });
   });
 });
 describe('colorize defaults', () => {
   it('should print with defaults', () => {
-    expect(colorize('hello')).toBe(ESC + '[38;5;7mhello' + ESC + '[0m');
+    expect(colorize('hello')).toBe(ESC + '[37mhello' + ESC + '[0m');
   });
 });
 describe('it should not print colors with a stream that does not support colors', () => {
   it('should still print', () => {
-    process.env.NO_COLORS;
+    process.env.NO_COLOR = 'true';
     expect(colorize('hello', Color.BLUE, style.child({ getColorDepth: () => 1 }), true)).toBe(
       'hello\x1B[0m',
     );

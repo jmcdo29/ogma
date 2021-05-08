@@ -197,6 +197,12 @@ export class Styler {
    * @link https://en.wikipedia.org/wiki/ANSI_escape_code#SGR
    */
   private sgr(val: number | string): this {
+    if (
+      (this.colorDepth === 1 && ['3', '4', '9'].includes(val.toString()[0])) ||
+      val.toString().substr(0, 2) === '10'
+    ) {
+      return this;
+    }
     if (this.useStyle) {
       this.stylesToApply.push(`\x1B[${val.toString()}m`);
     }

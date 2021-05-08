@@ -1,4 +1,4 @@
-import { Color, LogLevel, OgmaLog, OgmaStream } from '@ogma/common';
+import { Color, LogLevel, OgmaLog, OgmaWritableLevel } from '@ogma/common';
 import { style, Styler } from '@ogma/styler';
 import { hostname } from 'os';
 import { OgmaDefaults, OgmaOptions, PrintMessageOptions } from '../interfaces';
@@ -16,11 +16,7 @@ export class Ogma {
 
   [index: string]: any;
 
-  constructor(
-    options?: Omit<Partial<OgmaOptions>, 'stream'> & {
-      stream?: Pick<OgmaStream, 'write'> & { getColorDepth?: () => number };
-    },
-  ) {
+  constructor(options?: Partial<OgmaOptions>) {
     if (options?.logLevel) {
       options.logLevel = options.logLevel.toUpperCase() as keyof typeof LogLevel;
     }
@@ -82,7 +78,7 @@ export class Ogma {
   }
 
   private toColor(level: LogLevel, color: Color): string {
-    const levelString = this.wrapInBrackets(LogLevel[level]).padEnd(7);
+    const levelString = this.wrapInBrackets(this.options.levelMap[LogLevel[level]]).padEnd(7);
     return colorize(levelString, color, this.styler, this.options.color);
   }
 
@@ -103,7 +99,8 @@ export class Ogma {
     json.hostname = this.hostname;
     json.correlationId = correlationId;
     json.context = context || this.options.context || undefined;
-    json.level = LogLevel[level] as keyof typeof LogLevel;
+    json.level = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
+    json.ool = LogLevel[level] as OgmaWritableLevel;
     if (typeof message === 'object') {
       json = { ...json, ...message };
       delete json.message;

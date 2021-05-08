@@ -1,7 +1,8 @@
 import { createMock } from '@golevelup/ts-jest';
 import { createWriteStream } from 'fs';
 import { LogLevel } from '@ogma/common';
-import { color as Color, Ogma, OgmaOptions } from '../src';
+import { style } from '@ogma/styler';
+import { Ogma, OgmaOptions } from '../src';
 
 const dest = createWriteStream('/dev/null');
 
@@ -32,7 +33,9 @@ describe('Ogma Class', () => {
     } = {},
   ) {
     ogma.log('Hello', options);
-    expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining(expectation));
+    expect(mockStream.write.mock.calls[0][0].toString().replace(/\x1B/g, '\\x1B')).toEqual(
+      expect.stringContaining(expectation.replace(/\x1B/g, '\\x1B')),
+    );
   }
   afterEach(() => {
     mockStream.write.mockReset();
@@ -40,7 +43,7 @@ describe('Ogma Class', () => {
 
   describe.each`
     color    | expectation
-    ${true}  | ${Color.cyan('[INFO] ')}
+    ${true}  | ${style.cyan.apply('[INFO] ')}
     ${false} | ${'[INFO] '}
   `('color: $color', ({ color, expectation }: { color: boolean; expectation: string }) => {
     beforeEach(() => {
@@ -74,7 +77,7 @@ describe('Ogma Class', () => {
   });
   describe.each`
     context           | expectation
-    ${'test context'} | ${Color.cyan('[test context]')}
+    ${'test context'} | ${style.cyan.apply('[test context]')}
     ${null}           | ${''}
   `('context: $context', ({ context, expectation }: { context?: string; expectation: string }) => {
     beforeEach(() => {
@@ -98,7 +101,7 @@ describe('Ogma Class', () => {
   );
   describe.each`
     application   | expectation
-    ${'test app'} | ${Color.yellow('[test app]')}
+    ${'test app'} | ${style.yellow.apply('[test app]')}
     ${null}       | ${''}
   `(
     'application: $application',
@@ -208,6 +211,57 @@ describe('small ogma tests', () => {
     it('should run the if with options but no logLevel', () => {
       ogma = new Ogma({ color: false });
       expect(stdoutSpy).toBeCalledTimes(0);
+    });
+  });
+  describe('Custom Log Level Map', () => {
+    it.only('Should use the map for JSON', () => {
+      const mockStream = {
+        write: jest.fn(),
+      };
+      const ogma = new Ogma({
+        levelMap: {
+          SILLY: 'NSILLY',
+          WARN: 'NWARN',
+          ERROR: 'NERROR',
+          FATAL: 'NFATAL',
+          DEBUG: 'NDEBUG',
+          FINE: 'NFINE',
+          INFO: 'NINFO',
+        },
+        stream: mockStream,
+        json: true,
+      });
+      ogma.info('Hello World!');
+      const loggedValue = JSON.parse(mockStream.write.mock.calls[0][0]);
+      expect(loggedValue.ool).toBe('INFO');
+      expect(loggedValue.level).toBe('NINFO');
+    });
+    it('Should use the map for stream', () => {
+      const mockStream = {
+        write: jest.fn(),
+      };
+      const ogma = new Ogma({
+        levelMap: {
+          SILLY: 'NSILLY',
+          WARN: 'NWARN',
+          ERROR: 'NERROR',
+          FATAL: 'NFATAL',
+          DEBUG: 'NDEBUG',
+          FINE: 'NFINE',
+          INFO: 'NINFO',
+        },
+        stream: mockStream,
+      });
+      ogma.info('Hello World!');
+      expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining('[NINFO]'));
+    });
+    it('Should use the default map if none given', () => {
+      const mockStream = {
+        write: jest.fn(),
+      };
+      const ogma = new Ogma({ stream: mockStream });
+      ogma.info('Hello World');
+      expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining('[INFO]'));
     });
   });
 });
