@@ -8,7 +8,7 @@ export function colorize(
   useColor = true,
 ): string {
   if (useColor) {
-    value = style.color(color).apply(value);
+    value = style[Color[color].toLowerCase()].apply(value);
   }
   return value.toString();
 }

@@ -1,4 +1,4 @@
-import { LogLevel } from './level.enum';
+import { OgmaWritableLevel } from './level.enum';
 
 export interface OgmaLog {
   time: string;
@@ -6,7 +6,8 @@ export interface OgmaLog {
   application?: string;
   context?: string;
   message?: string;
-  level: keyof typeof LogLevel;
+  level: string;
   pid: string | number;
+  ool: OgmaWritableLevel;
   [key: string]: any;
 }

@@ -1,18 +1,11 @@
 import { OgmaOptions } from '@ogma/logger';
-import { OgmaStream } from '../../../common/lib';
 import { AbstractInterceptorService } from '../interceptor/providers/abstract-interceptor.service';
 
 export interface OgmaModuleOptions {
   service?: OgmaServiceOptions;
   interceptor: OgmaInterceptorOptions | false;
 }
-export type OgmaServiceOptions = Partial<
-  Omit<Partial<OgmaOptions>, 'stream'> & {
-    stream?: Pick<OgmaStream, 'write'> & {
-      getColorDepth?: () => number;
-    };
-  }
->;
+export type OgmaServiceOptions = Partial<OgmaOptions>;
 
 export type Type<T> = new (...args: any[]) => T;
 export interface OgmaInterceptorOptions {

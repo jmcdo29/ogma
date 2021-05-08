@@ -11,3 +11,5 @@ export enum LogLevel {
   FINE = LogLevel.VERBOSE,
   SILLY = LogLevel.ALL,
 }
+
+export type OgmaWritableLevel = Exclude<keyof typeof LogLevel, 'OFF' | 'ALL' | 'LOG' | 'VERBOSE'>;
