@@ -1,4 +1,4 @@
-import { Color, LogLevel, OgmaLog, OgmaWritableLevel } from '@ogma/common';
+import { Color, LogLevel, OgmaLog, OgmaStream, OgmaWritableLevel } from '@ogma/common';
 import { style, Styler } from '@ogma/styler';
 import { hostname } from 'os';
 import { OgmaDefaults, OgmaOptions, PrintMessageOptions } from '../interfaces';
@@ -37,7 +37,7 @@ export class Ogma {
       this.options.stream.getColorDepth = () =>
         this.options.color ? 4 : process?.stdout.getColorDepth() ?? 1;
     }
-    this.styler = style.child(this.options.stream);
+    this.styler = style.child(this.options.stream as Pick<OgmaStream, 'getColorDepth'>);
   }
 
   private printMessage(message: any, options: PrintMessageOptions): void {

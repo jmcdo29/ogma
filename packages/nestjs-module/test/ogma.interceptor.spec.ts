@@ -13,14 +13,16 @@ const shouldSkipFor = (type: 'http' | 'ws' | 'gql' | 'rpc'): string =>
 const nullifyOption = (type: 'http' | 'ws' | 'gql' | 'rpc', interceptor: OgmaInterceptor): void => {
   (interceptor as any).options[type] = false;
 };
+const noop = () => {
+  /* no-op */
+};
 
 const logMock = jest.fn();
 
 const httpContext = {
   getType: () => 'http',
   getArgs: () => [1, 2, 3],
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setRequestId: () => {},
+  setRequestId: noop,
 };
 
 describe('OgmaInterceptor', () => {
@@ -38,8 +40,7 @@ describe('OgmaInterceptor', () => {
           useValue: {
             getContextSuccessString: () => 'success',
             getContextErrorString: () => 'error',
-            // eslint-disable-next-line @typescript-eslint/no-empty-function
-            setRequestId: () => {},
+            setRequestId: noop,
           },
         },
         {

@@ -31,7 +31,7 @@ console.log(style.blue.yellowBg.underline.apply('Hello World!'));
 // prints \x1B[34m\x1B[43m\x1B[4mHello World!\x1B[0m
 ```
 
-![blue-yellow-bg-underline](blue-yellowbg-underline.png)
+![blue-yellow-bg-underline](https://ogma-docs-images.s3-us-west-2.amazonaws.com/blue-yellowbg-underline.png)
 
 ## What styles are available?
 
