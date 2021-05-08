@@ -10,7 +10,6 @@ importers:
       '@changesets/cli': ^2.14.1
       '@commitlint/cli': ^11.0.0
       '@commitlint/config-conventional': ^11.0.0
-      '@ogma/styler': workspace:*
       '@typescript-eslint/eslint-plugin': ^4.20.0
       '@typescript-eslint/parser': ^4.20.0
       codeclimate-test-reporter: ^0.5.1
@@ -31,7 +30,6 @@ importers:
       '@changesets/cli': 2.14.1
       '@commitlint/cli': 11.0.0
       '@commitlint/config-conventional': 11.0.0
-      '@ogma/styler': link:packages/styler
       '@typescript-eslint/eslint-plugin': 4.20.0_7448dc1756632cc6400f187319207d38
       '@typescript-eslint/parser': 4.20.0_eslint@7.23.0+typescript@4.2.3
       codeclimate-test-reporter: 0.5.1
