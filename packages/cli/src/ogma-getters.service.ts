@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Color, LogLevel } from '@ogma/common';
-import { OgmaLog } from './ogma-file.interface';
+import { Color, OgmaLog, OgmaWritableLevel } from '@ogma/common';
 
 @Injectable()
 export class OgmaGetterService {
@@ -8,7 +7,7 @@ export class OgmaGetterService {
   getMessage(log: OgmaLog, rest: Record<string, string>): string {
     return log.message || JSON.stringify(rest);
   }
-  getLevelColor(level: keyof typeof LogLevel): Color {
+  getLevelColor(level: OgmaWritableLevel): Color {
     let color: Color;
     switch (level) {
       case 'SILLY':
@@ -52,7 +51,7 @@ export class OgmaGetterService {
     return `[${val}]`;
   }
 
-  getLevel(level: keyof typeof LogLevel, useColor: boolean): string {
+  getLevel(level: OgmaWritableLevel, useColor: boolean): string {
     let retString = this.wrapInParens(level).padEnd(7, ' ');
     if (useColor) {
       retString = this.colorizeCLI(retString, this.getLevelColor(level));
