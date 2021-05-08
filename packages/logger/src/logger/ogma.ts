@@ -52,8 +52,14 @@ export class Ogma {
     }
     this.options.stream.write(`${logString}\n`);
     if (this.options.verbose && !this.options.json) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { context, application, correlationId, level, formattedLevel, ...meta } = options;
+      const {
+        context: _context,
+        application: _application,
+        correlationId: _correlationId,
+        level: _level,
+        formattedLevel: _formattedLevel,
+        ...meta
+      } = options;
       this.options.stream.write(this.formatStream(meta, options));
     }
   }
