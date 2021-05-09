@@ -2,7 +2,7 @@ import './utils';
 import { style } from '../src';
 import { Styler } from '../src/styler';
 
-type ColorConst = 'blue';
+type ColorConst = 'black' | 'red' | 'yellow' | 'green' | 'blue' | 'magenta' | 'cyan' | 'white';
 
 const hello = 'Hello World!';
 

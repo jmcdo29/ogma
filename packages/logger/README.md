@@ -57,10 +57,11 @@ Examples can be seen below. The JSON structure follows the same form with log le
 | --- | --- | --- |
 | logLevel | one of the above log levels (default: INFO) | for determining this instance of Ogma's log level |
 | color | boolean (default: true) | determine if color should attempt to be used. NOTE: Ogma only does not use color if there is an explicit `getColorDepth` of 1 or `NO_COLOR` or `NODE_DISABLE_COLOR` is set |
-| stream | { write: (message: any) => void, hasColor?: () => boolean } | the output mechanism used to know how to write logs |
+| stream | { write: (message: any) => void, getColorDepth?: () => number } | the output mechanism used to know how to write logs |
 | json | boolean (default: false) | print the logs in a JSON format |
 | context | string optional | a context for the Ogma class to work with. |
 | application | string optional | an application name for Ogma to print |
+| levelMap | an object with the above levels as the keys and strings as the vales | a way to provide custom log levels in the event that there are mappings the developer wants to support |
 
 #### Using Files instead of a console
 
@@ -82,13 +83,13 @@ fileWriter.log('Logging to File');
 
 #### JSON Logging
 
-If the `json` option is passed as `true` then regardless of `color` Ogma will print your message along with system information in a single line JSON object (i.e. no newline characters). View the sample below to get a better idea of Ogma's output.
-
-> Note: if you log an object, the `message` property will be removed and the object will be a part of the raw JSON format. If you want the object to show up under the `message` property, you can add `JSON.stringify(obj).replace(/\"/g, '')`. Just be aware that circular objects will still be problematic unless you add a circular replacer.
+If the `json` option is passed as `true` then regardless of `color` Ogma will print your message along with system information in a single line JSON object (i.e. no newline characters). View the sample below to get a better idea of Ogma's output. Ogma will add an `ool` property to the JSON logs or `Ogma Original Level`. This is in case there is a custom levelMap passed and allows the CLI to still transform the output back into Ogma's standard format.
 
 ### Applying color to Text
 
 As of version 2, it is suggested to use the separate [`@ogma/styler`](../styler) package. This package is what Ogma uses under the hood to do the basic coloring, and will provide a cleaner and more verbose API.
+
+Using the non-JSON mode, color is attempted to be applied by default. This is determined by checking the current environment (if there is a global `process` variable) and if there is, what `stdout.getColorDepth()` returns. If a custom stream is passed instead, a `getColorDepth` method can be added to the stream object which should return a 1, 4, 8, or 24. If no `getColorDepth()` is present, but the `color` option is true, Ogma will set the method to return `4` for you. If you want to disable colors completely, you can either set `color` to be `false` or you can set the `NO_COLOR` environment variable.
 
 ### Example of what the logs look like
 
@@ -152,4 +153,4 @@ I said the logs were beautiful, and to me they absolutely are. Each log is match
 
 ## Benchmarks
 
-Benchmarks will be brought back soon. After moving to the monorepo format, some things got messed up. Rest assured, they'll be back.
+[You can view the benchmark results against popular loggers here](../../benchmarks/logger/).

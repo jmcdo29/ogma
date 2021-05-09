@@ -264,4 +264,18 @@ describe('small ogma tests', () => {
       expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining('[INFO]'));
     });
   });
+  describe('JSON with message prop', () => {
+    it('should still have the message property', () => {
+      ogma = new Ogma({ json: true });
+      ogma.log({ message: 'Hello World!' });
+      expect(stdoutSpy.mock.calls[0][0]).toEqual(
+        expect.objectContaining({
+          time: expect.any(String),
+          level: 'INFO',
+          ool: 'INFO',
+          message: 'Hello World!',
+        }),
+      );
+    });
+  });
 });
