@@ -7,7 +7,6 @@ import {
   OGMA_INSTANCE,
   OGMA_REQUEST_SCOPED_SERVICE_TOKEN,
   OGMA_SERVICE_TOKEN,
-  OgmaInterceptorProviderError,
 } from '../src/ogma.constants';
 import {
   createLoggerProviders,
@@ -55,7 +54,7 @@ describe('createOgmaInterceptorOptionsFactory', () => {
       createOgmaInterceptorOptionsFactory({
         interceptor: {},
       }),
-    ).toThrowError(OgmaInterceptorProviderError);
+    ).not.toThrowError();
   });
 });
 describe('createOgmaServiceOptions', () => {

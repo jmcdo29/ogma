@@ -19,7 +19,8 @@ In your root module, import `OgmaModule.forRoot` or `OgmaModule.forRootAsync` to
 ### Synchronous configuration
 
 ```ts
-import { OgmaModule } from '@ogma/nestjs-module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { OgmaInterceptor, OgmaModule } from '@ogma/nestjs-module';
 import { ExpressParser } from '@ogma/platform-express';
 
 @Module({
@@ -37,6 +38,12 @@ import { ExpressParser } from '@ogma/platform-express';
         rpc: false
       }
     })
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: OgmaInterceptor
+    }
   ]
 })
 export class AppModule {}
@@ -45,8 +52,11 @@ export class AppModule {}
 ### Asynchronous configuration
 
 ```ts
-import { OgmaModule } from '@ogma/nestjs-module';
+import { ConfigService } from '@nestjs/config';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { OgmaInterceptor, OgmaModule } from '@ogma/nestjs-module';
 import { ExpressParser } from '@ogma/platform-express';
+import { appendFile } from 'fs';
 
 @Module({
   imports: [
@@ -75,6 +85,12 @@ import { ExpressParser } from '@ogma/platform-express';
       }),
       inject: [ConfigService]
     })
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: OgmaInterceptor
+    }
   ]
 })
 export class AppModule {}
@@ -129,11 +145,15 @@ export class MyService {
 
 ### forFeature/forFeatures
 
-As of version 0.3.1 there is a `OgmaModule.forFeatures()` method that can accept an array of contexts. This can be a mixed array of classes, strings, and objects, where the objects have a shape of `{ contexts: string | (() => any) | Type<any>, options: OgmaProviderOptions }`. This is useful for when you want to register multiple `OgmaService`s in the same module, such as one logger for the Service and one for the Controller, or for a Service and a Filter.
+Normally to create a new provider with a separate context you'll use the`forFeature` method and pass in a string or a class. e.g. `OgmaModule.forFeature(FooService)`. This will create the proper injection token for `@OgmaLogger(FooService)`.
+
+There is also the `forFeatures` method which takes in a parameter for multiple features to be created. This parameter can be a mixed array of classes, strings, and objects, where the objects have a shape of `{ contexts: string | (() => any) | Type<any>, options: OgmaProviderOptions }`. This is useful for when you want to register multiple `OgmaService`s in the same module, such as one logger for the Service and one for the Controller, or for a Service and a Filter.
 
 ## OgmaInterceptor
 
-Ogma also comes with a built in Interceptor for logging requests made to your server. You can decide to turn the interceptor off by passing `{ interceptor: false }` as part of the options to the `OgmaModule`. The interceptor will need to be told what parsers it should be using for each type of request that can be intercepted. By default, all of these values are set to `false`, but the interceptor will still attempt to bind to the server, which will result in an error. If you would like to not use the interceptor's logging abilities, simple pass `false` to the `interceptor` key in the `OgmaModule.forRoot/Async()` method. If you'd like to know more about _why_ this is the default behavior, please look at the [interceptor design decisions](#interceptor-design-decisions) part of the docs. Below is the general form that the interceptor logs will take:
+Ogma also comes with a built in Interceptor for logging requests made to your server. The interceptor is **by default** not bound to the server. To bind the interceptor, you can either use `@useInterceptor` on the route handlers you want to automatically log, or use the global binding with the provider `{provide: APP_INTERCEPTOR, useClass: OgmaInterceptor}`. You _can_ also use `app.useGlobalInterceptors()`, but this is not encouraged, as the interceptor requires several dependencies.
+
+The interceptor will need to be told what parsers it should be using for each type of request that can be intercepted. By default, all of these values are set to `false`, and if you try to bind the interceptor without setting a parser, you will end up with errors when running the server. If you'd like to know more about _why_ this is the default behavior, please look at the [interceptor design decisions](#interceptor-design-decisions) part of the docs. Below is the general form that the interceptor logs will take:
 
 ```sh
 [ISOString TimeStamp] [Application Name] PID RequestID [Context] [LogLevel]| Remote-Address - method URL protocol Status Response-Time ms - Response-Content-Length
@@ -144,8 +164,6 @@ This request ID is generated inside the `OgmaInterceptor` currently by using `Ma
 Where `Context` is the class-method combination of the path that was called. This is especially useful for GraphQL logging where all URLs log from the `/graphql` route.
 
 If you would like to skip any request url path, you can pass in a decorator either an entire class or just a route handler with the `@OgmaSkip()` decorator.
-
-> Note: As of version 0.3.0 the `OgmaInterceptor` is not bound by default, it is still necessary to pass **all** of the expected configuration options due to the way that the dependencies are built. If you would like to bind the interceptor globally, you can still do so using `APP_INTERCEPTOR` in a custom provider. The interceptor is not bound by default anymore to allow for more customization when it comes to the generation of request IDs.
 
 > Note: Be aware that as this is an interceptor, any errors that happen in middleware, such as Passport's serialization/deserialization and authentication methods through the PassportStrategy will not be logged in the library. You can use an [ExceptionFilter](https://docs.nestjs.com/exception-filters) to manage that. The same goes for guards due to the [request lifecycle](https://docs.nestjs.com/faq/request-lifecycle)
 
@@ -170,7 +188,7 @@ Due to the incredible complex nature of Nest and its DI system, there needed to 
 
 The interceptor was designed to be adaptable, and to be able to work with any context thrown at it, but only if the parser for that context type is installed. The most common parser would be `@ogma/platform-express`, which will work for HTTP requests with the Express server running under the hood (Nest's default). All other parsers provided by the `@ogma` namespace follow a similar naming scheme, and are provided for what Nest can use out of the box (including microservices named in the [microservices chapter](https://docs.nestjs.com/microservices/basics) of the Nest docs.)
 
-Now, for the reasoning that all parsers are defaulted to false, but the module throws an error if all the options are false, is to A) ensure that the developer does not expect the interceptor to work out of the box, B) ensure that the developer is aware of what parser is being used, and C) ensure that the parser(s) being used are installed without being blindly used (this means Typescript will complain if the class doesn't exist, whereas with JavaScript it _may_ be okay if a linter is not installed).
+Now, for the reasoning that all parsers are defaulted to false is to A) ensure that the developer does not expect the interceptor to work out of the box, B) ensure that the developer is aware of what parser is being used, and C) ensure that the parser(s) being used are installed without being blindly used (this means Typescript will complain if the class doesn't exist, whereas with JavaScript it _may_ be okay if a linter is not installed).
 
 ### Extending Pre-Built Parsers
 
