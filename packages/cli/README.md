@@ -30,3 +30,9 @@ As this prints out to `process.stdout` it is possible to pipe this output to ano
 ```sh
 ogma production.log > production.hydrated.log
 ```
+
+## Demo
+
+<div align="center">
+  <img src="https://ogma-docs-images.s3-us-west-2.amazonaws.com/ogma-cli.gif" alt="Ogma CLI gif" width="1200"/>
+</div>
