@@ -109,7 +109,7 @@ export class Ogma {
     json.ool = LogLevel[level] as OgmaWritableLevel;
     if (typeof message === 'object') {
       json = { ...json, ...message };
-      delete json.message;
+      // delete json.message;
     } else {
       json.message = message;
     }
