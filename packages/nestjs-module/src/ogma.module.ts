@@ -7,8 +7,8 @@ import { OgmaProviderOptions } from './interfaces/ogma-provieder-options.interfa
 
 @Module({})
 export class OgmaModule {
-  static forRoot(options: OgmaModuleOptions): DynamicModule {
-    return OgmaCoreModule.forRoot(OgmaCoreModule, options);
+  static forRoot(options?: OgmaModuleOptions): DynamicModule {
+    return OgmaCoreModule.forRoot(OgmaCoreModule, options || {});
   }
 
   static forRootAsync(options: AsyncModuleConfig<OgmaModuleOptions>): DynamicModule {

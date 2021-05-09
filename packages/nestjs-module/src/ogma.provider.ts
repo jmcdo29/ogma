@@ -5,7 +5,6 @@ import {
   OGMA_INSTANCE,
   OGMA_REQUEST_SCOPED_SERVICE_TOKEN,
   OGMA_SERVICE_TOKEN,
-  OgmaInterceptorProviderError,
 } from './ogma.constants';
 import { OgmaService } from './ogma.service';
 import { AbstractInterceptorService } from './interceptor/providers';
@@ -27,9 +26,6 @@ function mergeInterceptorDefaults(options: OgmaInterceptorOptions): OgmaIntercep
     ...{ http: false, ws: false, rpc: false, gql: false },
     ...options,
   };
-  if (Object.keys(mergedOptions).every((key) => mergedOptions[key] === false)) {
-    throw new Error(OgmaInterceptorProviderError);
-  }
   return mergedOptions;
 }
 

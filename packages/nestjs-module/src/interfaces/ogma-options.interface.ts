@@ -3,7 +3,7 @@ import { AbstractInterceptorService } from '../interceptor/providers/abstract-in
 
 export interface OgmaModuleOptions {
   service?: OgmaServiceOptions;
-  interceptor: OgmaInterceptorOptions | false;
+  interceptor?: OgmaInterceptorOptions | false;
 }
 export type OgmaServiceOptions = Partial<OgmaOptions>;
 
