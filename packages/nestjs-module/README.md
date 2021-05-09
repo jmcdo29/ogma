@@ -265,6 +265,14 @@ export class CatsService {
 
 And now `this.logger` is available in your `CatsService` class.
 
+## Demo
+
+Below is what the `OgmaInterceptor` _can_ do. These are the logs I usually see during the integration testing, and show off just what is capable in terms of the metadata captured on requests.
+
+<div align="center">
+  <img src="https://ogma-docs-images.s3-us-west-2.amazonaws.com/ogma-interceptor.gif" alt="Ogma Interceptor Gif" width="1200"/>
+</div>
+
 ## Get in Touch
 
 If there is something that needs to be addressed in regards to the module, feel free to [make an issue](https://github.com/jmcdo29/ogma/issues/new). If you are looking to contact me, you can either [email me](mailto:me@jaymcdoniel.dev), or [find me on discord](https://discord.com) as `PerfectOrphan31#6003`.

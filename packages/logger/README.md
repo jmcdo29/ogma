@@ -88,18 +88,7 @@ If the `json` option is passed as `true` then regardless of `color` Ogma will pr
 
 ### Applying color to Text
 
-No console logging package is complete without color, and because of that `Ogma` exports some utility methods for wrapping text in color, so long as your terminal of choice supports 3/4-bit color. You can find the the color reference in the screenshot below.
-
-To make use of the utility functions you'll need to import the `color` method and pass in your string to the desired color like so:
-
-```ts
-import { style } from '@ogma/styler';
-
-color.blue('This will be blue');
-// returns '\u001b[34mThis will be blue\u001b[0m'
-```
-
-This will wrap the string `"This will be blue"` in the expected escape sequence and color value as well as reset the color afterwards so no other strings are affected.
+As of version 2, it is suggested to use the separate [`@ogma/styler`](../styler) package. This package is what Ogma uses under the hood to do the basic coloring, and will provide a cleaner and more verbose API.
 
 ### Example of what the logs look like
 
@@ -148,6 +137,18 @@ I said the logs were beautiful, and to me they absolutely are. Each log is match
   }
 }
 ```
+
+#### Standard String Logging
+
+<div align="center">
+  <img src="https://ogma-docs-images.s3-us-west-2.amazonaws.com/ogma-demo.gif" alt="Ogma String Logging" width="1200"/>
+</div>
+
+#### JSON Logging
+
+<div align="center">
+  <img src="https://ogma-docs-images.s3-us-west-2.amazonaws.com/ogma-json-demo.gif" alt="Ogma JSON Logging" width="1200"/>
+</div>
 
 ## Benchmarks
 
