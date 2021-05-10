@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-ws",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A plugin for the OgmaInterceptor to properly handle websocket requests from ws",
   "keywords": [
     "ws",
@@ -54,7 +54,7 @@
   "peerDependencies": {
     "@nestjs/platform-ws": "^7.0.0",
     "@nestjs/websockets": "^7.0.0.",
-    "@ogma/nestjs-module": "^1.0.0",
+    "@ogma/nestjs-module": "^2.0.0",
     "ws": "^7.4.2"
   },
   "peerDependenciesMeta": {

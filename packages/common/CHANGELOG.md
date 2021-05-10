@@ -1,6 +1,6 @@
-# @ogma/cli
+# @ogma/common
 
-## 2.0.0
+## 1.0.0
 
 ### Major Changes
 
@@ -27,21 +27,3 @@
   # How to Upgrade
 
   I tried to make this is painless as possible in terms of breaking changes. For the most part, you should just be able to upgrade with no problems. If you have a stream with `hasColor` you will need to remove that method. You may want to add in the `getColorDepth` method, but can also just use `FORCE_COLOR` if necessary.
-
-### Patch Changes
-
-- Updated dependencies [8bea02f]
-  - @ogma/common@1.0.0
-
-## 1.0.0
-
-### Major Changes
-
-- bbf66f6: Major release of @ogma
-
-  The `ogma` command has been moved from `@ogma/logger` to `@ogma/cli`. There are no other breaking changes. This change was made to keep the package size as small as possible and to keep the code clean and maintainable.
-
-### Patch Changes
-
-- Updated dependencies [bbf66f6]
-  - @ogma/logger@1.0.0
