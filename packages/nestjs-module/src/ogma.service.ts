@@ -65,9 +65,9 @@ export class OgmaService implements LoggerService {
     context: OgmaServiceMeta | string = {},
   ): void {
     let meta: OgmaServiceMeta = {};
-    if (typeof trace === 'string') {
-      trace = meta;
-      meta = {};
+    if (typeof trace === 'object') {
+      meta = trace;
+      trace = '';
     }
     if (context && typeof context === 'string') {
       meta.context = context;
