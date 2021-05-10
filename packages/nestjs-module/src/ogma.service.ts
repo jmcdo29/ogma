@@ -54,15 +54,24 @@ export class OgmaService implements LoggerService {
   }
 
   /**
-   * use Ogma to log at the ERROR level
+   * use Ogma to log at the ERROR level. You can provide a stack trace as well.
    * @param message What to print to the Ogma instance
-   * @param context Optional context if you want to change what the original context was
+   * @param meta additional information you can print about the log OR the stack trace to print
+   * @param context a string for the context in which the error log was called. This can be provided as a part of the meta, or as a third paramter to stay in line with Nest's LoggerService
    */
-  public error(message: any, meta?: OgmaServiceMeta | string): void {
+  public error(message: any, meta?: OgmaServiceMeta | string, context?: string): void {
+    let trace: string;
     if (typeof meta === 'string') {
-      meta = { context: meta };
+      trace = meta;
+      meta = {};
+    }
+    if (context) {
+      meta.context = context;
     }
     this.printMessage(message, 'error', meta);
+    if (trace) {
+      this.printMessage(trace, 'error', meta);
+    }
   }
 
   /**

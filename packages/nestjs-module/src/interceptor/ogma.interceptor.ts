@@ -17,6 +17,9 @@ import { InterceptorMeta } from './interfaces/interceptor-service.interface';
 import { LogObject } from './interfaces/log.interface';
 import { DelegatorService } from './providers';
 
+/**
+ * An interceptor to handle logging for just about any kind of request that Nest can handle
+ */
 @Injectable()
 export class OgmaInterceptor implements NestInterceptor {
   private json: boolean;
@@ -66,6 +69,14 @@ export class OgmaInterceptor implements NestInterceptor {
     }
   }
 
+  /**
+   * A method to determine if a request should be logged or not. This is determined by several factors:
+   * 1) If `@OgmaSkip()` decorator is present on the class or the handler, the request should not be logged
+   * 2) If the request is from a GQL subscription, it should not be logged
+   * 3) if the request is for a contextType that does not have a parser installed and passed in the options, it should not be logged
+   * @param context the execution context
+   * @returns a boolean on if the request should not be logged
+   */
   public shouldSkip(context: ExecutionContext): boolean {
     const decoratorSkip =
       this.reflector.get(OGMA_INTERCEPTOR_SKIP, context.getClass()) ||
@@ -98,6 +109,11 @@ export class OgmaInterceptor implements NestInterceptor {
     });
   }
 
+  /**
+   * A method to generate a new correlationId on each request
+   * @param _context The execution context object
+   * @returns a string that represents the correlationId
+   */
   public generateRequestId(_context?: ExecutionContext): string {
     const time = Date.now().toString();
     const randomNumbers = Math.floor(Math.random() * (1000 - 100) + 100);

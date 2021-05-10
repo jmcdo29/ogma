@@ -26,10 +26,20 @@ export abstract class HttpInterceptorService extends AbstractInterceptorService 
     return status;
   }
 
+  /**
+   * A helper method to get the response object
+   * @param context execution context from Nest
+   * @returns the adapter's response object
+   */
   getResponse(context: ExecutionContext) {
     return context.switchToHttp().getResponse();
   }
 
+  /**
+   * A helper method to get the request object
+   * @param context execution context from Nest
+   * @returns the adapter's request object
+   */
   getRequest(context: ExecutionContext) {
     return context.switchToHttp().getRequest();
   }

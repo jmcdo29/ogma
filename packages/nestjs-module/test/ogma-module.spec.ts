@@ -20,7 +20,7 @@ const interceptorOptions = {
 
 const noIntOptions = {};
 
-const allOptions = {
+const allOptions: OgmaModuleOptions = {
   service: {
     color: true,
     application: 'JEST',
