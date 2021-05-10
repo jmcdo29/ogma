@@ -7,6 +7,11 @@ export abstract class WebsocketInterceptorService extends AbstractInterceptorSer
     return this.reflector.get<string>('message', context.getHandler());
   }
 
+  /**
+   * A helper method to get the websocket client from the Nest Execution Context
+   * @param context execution context from Nest
+   * @returns the client object for the websocket adapter
+   */
   getClient(context: ExecutionContext) {
     return context.switchToWs().getClient();
   }

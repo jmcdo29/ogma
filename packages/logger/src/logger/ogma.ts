@@ -14,7 +14,13 @@ export class Ogma {
   private hostname: string;
   private styler: Styler;
 
+  /**
+   * An alias for `ogma.verbose`. `FINE` is what is printed as the log level
+   */
   public fine = this.verbose;
+  /**
+   * An alias for `ogma.info`. `INFO` is what is printed as the log level
+   */
   public log = this.info;
 
   [index: string]: any;

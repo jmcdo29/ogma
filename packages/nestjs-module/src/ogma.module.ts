@@ -3,20 +3,35 @@ import { DynamicModule, Module, Provider } from '@nestjs/common';
 import { OgmaModuleOptions, Type } from './interfaces';
 import { createLoggerProviders, createRequestScopedLoggerProviders } from './ogma.provider';
 import { OgmaCoreModule } from './ogma-core.module';
-import { OgmaProviderOptions } from './interfaces/ogma-provieder-options.interface';
+import { OgmaProviderOptions } from './interfaces/ogma-provider-options.interface';
 
+/**
+ * The NestJS module for the Ogma Logger. Not much to say here
+ */
 @Module({})
 export class OgmaModule {
+  /**
+   * Synchronous registration of the OgmaModule for NestJS. The options you can pass
+   * are optional, and if nothing is passed the default value is `{}`
+   * @param options The options for the OgmaModule
+   * @returns a configured dynamic module for Nest to worry about later
+   */
   static forRoot(options?: OgmaModuleOptions): DynamicModule {
     return OgmaCoreModule.forRoot(OgmaCoreModule, options || {});
   }
 
+  /**
+   * Asynchronous registration of the OgmaModule for NestJS.
+   * @param options Asynchronous NestJS Module options for the OgmaModule
+   * @returns a configured dynamic module for Nest to worry about later
+   * @see https://dev.to/nestjs/advanced-nestjs-how-to-build-completely-dynamic-nestjs-modules-1370
+   */
   static forRootAsync(options: AsyncModuleConfig<OgmaModuleOptions>): DynamicModule {
     return OgmaCoreModule.forRootAsync(OgmaCoreModule, options);
   }
 
   /**
-   *  Creates a new OgmaService based on the given context and possible options.
+   * Creates a new OgmaService based on the given context and possible options.
    * Original options from the `forRoot` or `forRootAsync` options are merged with new options
    *
    * @param context string context for the OgmaService to use in logging
@@ -36,6 +51,10 @@ export class OgmaModule {
     };
   }
 
+  /**
+   * Creates several new OgmaServices based on the given contexts and possible options.
+   * Original options from the `forRoot` or `forRootAsync` options are merged with new options
+   */
   static forFeatures(
     contexts: Array<
       | {
