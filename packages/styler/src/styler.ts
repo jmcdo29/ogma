@@ -163,6 +163,12 @@ export class Styler {
     }
   }
 
+  /**
+   * The final method in a style chain that applies all of the styles to the value.
+   * If there are no styles to apply, the value is returned untouched.
+   * @param val the value to add styling to
+   * @returns A string that has the proper SGR values
+   */
   public apply(val: string | number | boolean) {
     let retString = `${this.stylesToApply.join('')}${val}`;
     if (this.stylesToApply.length) {
@@ -172,10 +178,22 @@ export class Styler {
     return retString;
   }
 
+  /**
+   * A helper method for easily setting the background color
+   * @param colorVal The numeric value or string value for the color to apply
+   */
   public bgColor(colorVal: string | number): this {
     return this.color(colorVal, 'background');
   }
 
+  /**
+   * A helper method for setting the color for a string. This color is in the form of `[38;5;<number>m`. This format comes from the 8-bit color rendition. See the linked table for more options
+   *
+   * If the `colorDepth` for the styler is `1`, then no sgr will be added to the styles to apply.
+   * @param colorVal The numeric value or string value for the color to apply
+   * @param position background or foreground. Defaults to foreground
+   * @see https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
+   */
   public color(
     colorVal: string | number,
     position: 'foreground' | 'background' = 'foreground',
@@ -192,6 +210,11 @@ export class Styler {
     return this.sgr(applyStyle);
   }
 
+  /**
+   * A method for creating a new instance of the Styler class. This is useful for when you want to have one stream for your logger and a different one set for the styler (forced colors). Or it is useful in general for test cases.
+   * @param stream a new stream instance
+   * @returns a new Styler instance
+   */
   public child(stream?: Pick<OgmaStream, 'getColorDepth'>): Styler {
     return new Styler(stream);
   }
