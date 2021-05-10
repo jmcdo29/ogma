@@ -35,7 +35,7 @@ describe('it should not print colors with a stream that does not support colors'
   it('should still print', () => {
     process.env.NO_COLOR = 'true';
     expect(colorize('hello', Color.BLUE, style.child({ getColorDepth: () => 1 }), true)).toBe(
-      'hello\x1B[0m',
+      'hello',
     );
   });
 });
