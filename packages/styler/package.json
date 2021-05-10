@@ -1,6 +1,6 @@
 {
   "name": "@ogma/styler",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A package for the @ogma packages to deal with adding color and string styling to terminal logs",
   "files": [
     "lib"

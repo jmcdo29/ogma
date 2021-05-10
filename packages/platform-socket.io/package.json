@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-socket.io",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A plugin for the OgmaInterceptor to properly handle websocket requests from socket.io",
   "keywords": [
     "socket.io",
@@ -55,7 +55,7 @@
   "peerDependencies": {
     "@nestjs/platform-socket.io": "^7.0.0",
     "@nestjs/websockets": "^7.0.0",
-    "@ogma/nestjs-module": "^1.0.0",
+    "@ogma/nestjs-module": "^2.0.0",
     "socket.io": "^2.0.0"
   },
   "peerDependenciesMeta": {
