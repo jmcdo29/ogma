@@ -23,8 +23,6 @@ export class Ogma {
    */
   public log = this.info;
 
-  [index: string]: any;
-
   constructor(options?: Partial<OgmaOptions>) {
     if (options?.logLevel) {
       options.logLevel = options.logLevel.toUpperCase() as keyof typeof LogLevel;
@@ -251,7 +249,7 @@ export class Ogma {
   public fatal(message: any, meta?: OgmaPrintOptions): void {
     this.printMessage(message, {
       level: LogLevel.FATAL,
-      formattedLevel: this.style.redBg.white.underline.apply(
+      formattedLevel: this.styler.redBg.white.underline.apply(
         this.wrapInBrackets(LogLevel[LogLevel.FATAL]),
       ),
       ...meta,
