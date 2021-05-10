@@ -5,6 +5,9 @@ import { OgmaDefaults, OgmaOptions, PrintMessageOptions } from '../interfaces';
 import { OgmaPrintOptions } from '../interfaces/ogma-print-options';
 import { colorize, isNil } from '../utils';
 
+/**
+ * The main logger instance
+ */
 export class Ogma {
   private options: OgmaOptions;
   private pid: number;
@@ -148,6 +151,12 @@ export class Ogma {
     return new Date().toISOString();
   }
 
+  /**
+   * Make a log at the least important level possible. Could be fun for Easter Eggs if you like adding those in.
+   * Prints the level in a magenta color
+   * @param message what to log
+   * @param meta any additional information you want to add
+   */
   public silly(message: any, meta?: OgmaPrintOptions): void {
     this.printMessage(message, {
       level: LogLevel.SILLY,
@@ -156,6 +165,12 @@ export class Ogma {
     });
   }
 
+  /**
+   * Make a log at the `fine` or `verbose` level. Great for adding in some nitty gritty details.
+   * Prints the level in a green color
+   * @param message what to log
+   * @param meta any additional information you want to add
+   */
   public verbose(message: any, meta?: OgmaPrintOptions): void {
     this.printMessage(message, {
       level: LogLevel.VERBOSE,
@@ -164,6 +179,12 @@ export class Ogma {
     });
   }
 
+  /**
+   * Make a log at the `debug` level. Good for quick messages while debugging that shouldn't make it to production.
+   * Prints the level in a blue color
+   * @param message what to log
+   * @param meta any additional information you want to add
+   */
   public debug(message: any, meta?: OgmaPrintOptions): void {
     this.printMessage(message, {
       level: LogLevel.DEBUG,
@@ -172,6 +193,12 @@ export class Ogma {
     });
   }
 
+  /**
+   * Makes a log at the `info` level. This is where most of the logging is done generally.
+   * Prints the level in a cyan color
+   * @param message what to log
+   * @param meta any additional information you want to add
+   */
   public info(message: any, meta?: OgmaPrintOptions): void {
     this.printMessage(message, {
       level: LogLevel.INFO,
@@ -180,6 +207,12 @@ export class Ogma {
     });
   }
 
+  /**
+   * Makes a log at the `info` level. This is where most of the logging is done generally.
+   * Prints the level in a cyan color
+   * @param message what to log
+   * @param meta any additional information you want to add
+   */
   public warn(message: any, meta?: OgmaPrintOptions): void {
     this.printMessage(message, {
       level: LogLevel.WARN,
@@ -188,6 +221,12 @@ export class Ogma {
     });
   }
 
+  /**
+   * Makes a log at the `info` level. This is where most of the logging is done generally.
+   * Prints the level in a cyan color
+   * @param message what to log
+   * @param meta any additional information you want to add
+   */
   public error(message: any, meta?: OgmaPrintOptions): void {
     this.printMessage(message, {
       level: LogLevel.ERROR,
@@ -196,14 +235,31 @@ export class Ogma {
     });
   }
 
+  /**
+   * Makes a log at the `fatal` level. This is for mission critical problems. Usually if a `fatal` log is made, someone should be getting a call at 3AM.
+   * Prints the level in a red background with white underline and lettering
+   * Prints the level in a cyan color
+   * @param message what to log
+   * @param meta any additional information you want to add
+   */
   public fatal(message: any, meta?: OgmaPrintOptions): void {
     this.printMessage(message, {
       level: LogLevel.FATAL,
-      formattedLevel: this.toColor(LogLevel.FATAL, Color.RED),
+      formattedLevel: style.redBg.white.underline.apply(
+        this.wrapInBrackets(LogLevel[LogLevel.FATAL]),
+      ),
       ...meta,
     });
   }
 
+  /**
+   * Splits up the error between it's name, message, and stack.
+   * The name is logged at the `error` level,
+   * the message at the `warn` level,
+   * and the stack trace at the `verbose` level.
+   * @param error The error to print
+   * @param meta any additional information you want to add
+   */
   public printError(error: Error, meta?: OgmaPrintOptions): void {
     this.error(error.name, meta);
     this.warn(error.message, meta);
