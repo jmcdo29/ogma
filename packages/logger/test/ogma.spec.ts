@@ -214,7 +214,7 @@ describe('small ogma tests', () => {
     });
   });
   describe('Custom Log Level Map', () => {
-    it.only('Should use the map for JSON', () => {
+    it('Should use the map for JSON', () => {
       const mockStream = {
         write: jest.fn(),
       };
@@ -268,7 +268,7 @@ describe('small ogma tests', () => {
     it('should still have the message property', () => {
       ogma = new Ogma({ json: true });
       ogma.log({ message: 'Hello World!' });
-      expect(stdoutSpy.mock.calls[0][0]).toEqual(
+      expect(JSON.parse(stdoutSpy.mock.calls[0][0])).toEqual(
         expect.objectContaining({
           time: expect.any(String),
           level: 'INFO',
