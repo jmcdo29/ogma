@@ -7,6 +7,9 @@
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "tsc -p tsconfig.build.json"
