@@ -41,12 +41,20 @@ describe('@ogma/styler', () => {
   });
   describe('color constants', () => {
     describe.each`
-      depth | prefixCreator
-      ${1}  | ${() => ''}
-      ${4}  | ${(val: string) => `\x1B[3${val}m`}
+      depth | prefixCreator                       | expectMethod
+      ${1}  | ${() => hello}                      | ${'toBe'}
+      ${4}  | ${(val: string) => `\x1B[3${val}m`} | ${'toBeStringStyledWith'}
     `(
       'processes color depth = $depth',
-      ({ prefixCreator, depth }: { prefixCreator: (val: string) => string; depth: number }) => {
+      ({
+        prefixCreator,
+        depth,
+        expectMethod,
+      }: {
+        prefixCreator: (val: string) => string;
+        depth: number;
+        expectMethod: string;
+      }) => {
         let styler: Styler;
         beforeEach(() => {
           styler = style.child({ getColorDepth: () => depth });
@@ -65,7 +73,7 @@ describe('@ogma/styler', () => {
           'should apply $code for $color',
           ({ color, code }: { color: ColorConst; code: string }) => {
             const colored = styler[color].apply(hello);
-            expect(colored).toBeStringStyledWith(prefixCreator(code));
+            expect(colored)[expectMethod](prefixCreator(code));
           },
         );
       },
@@ -75,6 +83,24 @@ describe('@ogma/styler', () => {
     it('should apply blue, underlined, and blinking', () => {
       const mixed = style.underline.blink.blue.apply(hello);
       expect(mixed).toBeStringStyledWith('\x1B[4m', '\x1B[5m', '\x1B[34m');
+    });
+  });
+  describe('Off Scenarios', () => {
+    it('should still log styles, but not colors for NO_COLOR', () => {
+      const ogNO_COLOR = process.env.NO_COLOR;
+      process.env.NO_COLOR = 'true';
+      const ncStyle = style.child();
+      expect(ncStyle.blue.apply(hello)).toBe(hello);
+      expect(ncStyle.underline.apply('Hello World!')).toBeStringStyledWith('\x1B[4m');
+      expect(ncStyle.bBlue.blueBg.apply(hello)).toBe(hello);
+      process.env.NO_COLOR = ogNO_COLOR;
+    });
+    it('should apply no styling if NO_STYLE is set', () => {
+      const ogNO_STYLE = process.env.NO_STYLE;
+      process.env.NO_STYLE = 'true';
+      const nsStyle = style.child();
+      expect(nsStyle.blue.underline.blink.apply(hello)).toBe(hello);
+      process.env.NO_STYLE = ogNO_STYLE;
     });
   });
 });

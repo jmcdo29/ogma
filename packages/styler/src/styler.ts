@@ -164,7 +164,10 @@ export class Styler {
   }
 
   public apply(val: string | number | boolean) {
-    const retString = `${this.stylesToApply.join('')}${val}\x1B[0m`;
+    let retString = `${this.stylesToApply.join('')}${val}`;
+    if (this.stylesToApply.length) {
+      retString += '\x1B[0m';
+    }
     this.stylesToApply = [];
     return retString;
   }
@@ -198,7 +201,9 @@ export class Styler {
    */
   private sgr(val: number | string): this {
     if (
-      (this.colorDepth === 1 && ['3', '4', '9'].includes(val.toString()[0])) ||
+      (this.colorDepth === 1 &&
+        val.toString().length >= 2 &&
+        ['3', '4', '9'].includes(val.toString()[0])) ||
       val.toString().substr(0, 2) === '10'
     ) {
       return this;
