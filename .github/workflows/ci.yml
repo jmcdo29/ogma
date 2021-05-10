@@ -45,6 +45,7 @@ jobs:
     - name: Debug Coverage
       run: cat coverage/lcov.info
     - name: Send Coverage
+      if:  ${{ !contains(github.event.pull_request.user.login, 'dependabot') }}
       run: pnpm sendCoverage
       env:
         CODECLIMATE_API_HOST: https://codebeat.co/webhooks/code_coverage
