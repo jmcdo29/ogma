@@ -336,7 +336,7 @@ importers:
       '@golevelup/ts-jest': ^0.3.1
       '@nestjs/common': ^7.6.15
       '@nestjs/core': ^7.6.15
-      '@nestjs/platform-fastify': 7.6.13
+      '@nestjs/platform-fastify': 7.6.15
       '@nestjs/testing': ^7.6.15
       '@ogma/logger': workspace:*
       '@ogma/nestjs-module': workspace:*
@@ -352,7 +352,7 @@ importers:
       '@golevelup/ts-jest': 0.3.1
       '@nestjs/common': 7.6.15_8e6d4b7501d9d25f42cbf34563d4f5bc
       '@nestjs/core': 7.6.15_2ef5148cf119d2e6a2825daac1d64a18
-      '@nestjs/platform-fastify': 7.6.13_a5e284bf185e3b13e505d42d771fb371
+      '@nestjs/platform-fastify': 7.6.15_a5e284bf185e3b13e505d42d771fb371
       '@nestjs/testing': 7.6.15_a5e284bf185e3b13e505d42d771fb371
       '@ogma/logger': link:../logger
       '@ogma/nestjs-module': link:../nestjs-module
@@ -3008,15 +3008,15 @@ packages:
       tslib: 2.0.3
     dev: false
 
-  /@nestjs/platform-fastify/7.6.13_a5e284bf185e3b13e505d42d771fb371:
-    resolution: {integrity: sha512-wZ6ALoyovb8aRjMieROndi+bjzkuBilh3qBAV3sorjwpD8NSRrI/j4DsUdDcmexDfPSZH+mj9Bi7Z5cFtdjiRg==}
+  /@nestjs/platform-fastify/7.6.15_a5e284bf185e3b13e505d42d771fb371:
+    resolution: {integrity: sha512-WwtVaIKw3+5zSCANr3oquPbwwd1yEhpSMwPzLj9TZLwQ0KusqT+dH6xNYOQV9Gk8M/ZjubPxZCeIIuTRirHwBg==}
     peerDependencies:
       '@nestjs/common': ^7.0.0
       '@nestjs/core': ^7.0.0
     dependencies:
       '@nestjs/common': 7.6.15_8e6d4b7501d9d25f42cbf34563d4f5bc
       '@nestjs/core': 7.6.15_2ef5148cf119d2e6a2825daac1d64a18
-      fastify: 3.12.0
+      fastify: 3.14.0
       fastify-cors: 5.2.0
       fastify-formbody: 5.0.0
       light-my-request: 4.4.1
@@ -6699,8 +6699,8 @@ packages:
       - supports-color
     dev: false
 
-  /fastify/3.12.0:
-    resolution: {integrity: sha512-xSVzP88dkwBRl/vSm8AnMB3ICOd5p0M/ea9fJWOx0WnC8x4r1WfOUUEHeyxcwlfWoiDDtsHe7DwyeSPrfmfzqQ==}
+  /fastify/3.14.0:
+    resolution: {integrity: sha512-a6W2iVPJMOaULqCykJ5nFRtnoknqt9K3b6rqAQcGjT/O2Hy+vvo+9/+cL2907KN0iF/91Ke+XQluKrVNF6+Z7w==}
     engines: {node: '>=10.16.0'}
     dependencies:
       '@fastify/proxy-addr': 3.0.0
@@ -6710,7 +6710,7 @@ packages:
       fast-json-stringify: 2.5.3
       fastify-error: 0.3.0
       fastify-warning: 0.2.0
-      find-my-way: 3.0.5
+      find-my-way: 4.1.0
       flatstr: 1.0.12
       light-my-request: 4.4.1
       pino: 6.11.2
@@ -6862,6 +6862,7 @@ packages:
       fast-decode-uri-component: 1.0.1
       safe-regex2: 2.0.0
       semver-store: 0.3.0
+    dev: false
 
   /find-my-way/4.1.0:
     resolution: {integrity: sha512-UBD94MdO6cBi6E97XA0fBA9nwqw+xG5x1TYIPHats33gEi/kNqy7BWHAWx8QHCQQRSU5Txc0JiD8nzba39gvMQ==}

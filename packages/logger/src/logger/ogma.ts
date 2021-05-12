@@ -41,10 +41,23 @@ export class Ogma {
       );
     }
     if (!this.options.stream.getColorDepth) {
-      this.options.stream.getColorDepth = () =>
-        this.options.color ? 4 : process?.stdout.getColorDepth() ?? 1;
+      this.setStreamColorDepth();
     }
     this.styler = style.child(this.options.stream as Pick<OgmaStream, 'getColorDepth'>);
+  }
+
+  private setStreamColorDepth(): void {
+    let colorDepthVal: number;
+    if (this.options.color) {
+      colorDepthVal = 4;
+    }
+    if (this.options.color === false) {
+      colorDepthVal = 1;
+    }
+    if (!colorDepthVal && this.options.stream !== process.stdout && process.stdout.getColorDepth) {
+      colorDepthVal = process.stdout.getColorDepth();
+    }
+    this.options.stream.getColorDepth = () => colorDepthVal ?? 1;
   }
 
   private printMessage(message: any, options: PrintMessageOptions): void {
