@@ -89,9 +89,8 @@ expect.extend({
       recTime: string,
       recSize: string;
     if (typeof received === 'string') {
-      [recIp, , recMethod, recEndpoint, recProto, recStatus, recTime, , recSize] = received.split(
-        ' ',
-      );
+      [recIp, , recMethod, recEndpoint, recProto, recStatus, recTime, , recSize] =
+        received.split(' ');
     } else {
       ({
         callerAddress: recIp as any,

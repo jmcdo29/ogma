@@ -82,13 +82,12 @@ export function createRequestScopedLoggerProviders(
   ];
 }
 
-export const interceptorProviderFactory = (
-  type: 'http' | 'gql' | 'ws' | 'rpc',
-  backupClass: Type<AbstractInterceptorService>,
-): ((opt: OgmaInterceptorOptions, reflector: Reflector) => Type<AbstractInterceptorService>) => (
-  intOpts: OgmaInterceptorOptions,
-  reflector: Reflector,
-): Type<AbstractInterceptorService> =>
-  intOpts[type]
-    ? new (intOpts as Type<AbstractInterceptorService>)[type](reflector)
-    : new backupClass(reflector);
+export const interceptorProviderFactory =
+  (
+    type: 'http' | 'gql' | 'ws' | 'rpc',
+    backupClass: Type<AbstractInterceptorService>,
+  ): ((opt: OgmaInterceptorOptions, reflector: Reflector) => Type<AbstractInterceptorService>) =>
+  (intOpts: OgmaInterceptorOptions, reflector: Reflector): Type<AbstractInterceptorService> =>
+    intOpts[type]
+      ? new (intOpts as Type<AbstractInterceptorService>)[type](reflector)
+      : new backupClass(reflector);

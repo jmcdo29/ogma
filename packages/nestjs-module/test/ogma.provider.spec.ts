@@ -91,9 +91,8 @@ describe('createLoggerProviders', () => {
   });
   it('should create a provider with a string for token', () => {
     const factory = expect.any(Function);
-    const providers: Provider<FactoryProvider<OgmaService>>[] = createLoggerProviders(
-      'TestService',
-    );
+    const providers: Provider<FactoryProvider<OgmaService>>[] =
+      createLoggerProviders('TestService');
     expect(providers).toMatchObject([
       {
         inject: [OGMA_INSTANCE],
@@ -119,9 +118,8 @@ describe('createRequestScopedLoggerProviders', () => {
   });
   it('should create a provider with a string for token', () => {
     const factory = expect.any(Function);
-    const providers: Provider<FactoryProvider<OgmaService>>[] = createRequestScopedLoggerProviders(
-      'TestService',
-    );
+    const providers: Provider<FactoryProvider<OgmaService>>[] =
+      createRequestScopedLoggerProviders('TestService');
     expect(providers).toMatchObject([
       {
         inject: [OGMA_INSTANCE, CONTEXT],
