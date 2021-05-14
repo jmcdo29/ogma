@@ -36,7 +36,7 @@
   },
   "peerDependencies": {
     "@nestjs/platform-express": "^7.0.0",
-    "@ogma/nestjs-module": "^2.0.0"
+    "@ogma/nestjs-module": "^2.0.1"
   },
   "peerDependenciesMeta": {
     "@nestjs/platform-express": {

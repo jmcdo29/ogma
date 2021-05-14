@@ -53,7 +53,7 @@
   },
   "peerDependencies": {
     "@nestjs/microservices": "^7.0.0",
-    "@ogma/nestjs-module": "^2.0.0",
+    "@ogma/nestjs-module": "^2.0.1",
     "grpc": "^1.24.0"
   },
   "peerDependenciesMeta": {
