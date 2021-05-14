@@ -11,11 +11,11 @@
   "dependencies": {
     "@ogma/logger": "workspace:*",
     "bunyan": "1.8.15",
-    "pino": "6.11.0",
+    "pino": "6.11.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "^6.6.7",
-    "typescript": "^4.2.3",
+    "typescript": "^4.2.4",
     "winston": "3.3.3"
   },
   "devDependencies": {
