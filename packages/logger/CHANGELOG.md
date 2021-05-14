@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.1
+
+### Patch Changes
+
+- 85fd2f4: Ogma no longer assigns \`getColorDepth\` if `options.stream` is `process.stdout`
+
 ## 2.0.0
 
 ### Major Changes
