@@ -44,7 +44,7 @@
     "@ogma/nestjs-module": "workspace:*",
     "@ogma/styler": "workspace:*",
     "@types/jest": "^26.0.23",
-    "jest": "^26.6.3",
+    "jest": "^27.0.1",
     "redis": "^3.1.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.7",
