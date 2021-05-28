@@ -213,6 +213,31 @@ describe('small ogma tests', () => {
       expect(stdoutSpy).toBeCalledTimes(0);
     });
   });
+  describe('Custom Level Key', () => {
+    it('Should use the custom key with custom level map', () => {
+      const mockStream = {
+        write: jest.fn(),
+      };
+      const ogma = new Ogma({
+        levelKey: 'severity',
+        levelMap: {
+          SILLY: 'NSILLY',
+          WARN: 'NWARN',
+          ERROR: 'NERROR',
+          FATAL: 'NFATAL',
+          DEBUG: 'NDEBUG',
+          FINE: 'NFINE',
+          INFO: 'NINFO',
+        },
+        stream: mockStream,
+        json: true,
+      });
+      ogma.info('Hello World!');
+      const loggedValue = JSON.parse(mockStream.write.mock.calls[0][0]);
+      expect(loggedValue.severity).toBeDefined();
+      expect(loggedValue.severity).toEqual(loggedValue.level);
+    });
+  });
   describe('Custom Log Level Map', () => {
     it('Should use the map for JSON', () => {
       const mockStream = {

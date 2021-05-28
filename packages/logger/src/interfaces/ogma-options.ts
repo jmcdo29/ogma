@@ -58,6 +58,7 @@ export interface OgmaOptions {
     }
    */
   levelMap?: Record<OgmaWritableLevel, string>;
+  levelKey?: string;
   [index: string]: any;
 }
 

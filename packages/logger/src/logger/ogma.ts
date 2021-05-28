@@ -120,13 +120,17 @@ export class Ogma {
       time: this.getTimestamp(),
     };
     delete meta.formattedLevel;
+    const mappedLevel = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
     json.application = application || this.options.application || undefined;
     json.pid = this.pid;
     json.hostname = this.hostname;
     json.correlationId = correlationId;
     json.context = context || this.options.context || undefined;
-    json.level = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
+    json.level = mappedLevel;
     json.ool = LogLevel[level] as OgmaWritableLevel;
+    if (this.options.levelKey) {
+      json[this.options.levelKey] = mappedLevel;
+    }
     if (typeof message === 'object') {
       json = { ...json, ...message };
       // delete json.message;
