@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- 90d2d53: add 'levelKey' option
+
 ## 2.0.1
 
 ### Patch Changes

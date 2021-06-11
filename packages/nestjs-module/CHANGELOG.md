@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [90d2d53]
+  - @ogma/logger@2.1.0
+
 ## 2.0.1
 
 ### Patch Changes
