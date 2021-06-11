@@ -8,8 +8,9 @@
     "prestart": "pnpm build",
     "start": "node dist/index"
   },
-  "dependencies": {
+  "devDependencies": {
     "@ogma/logger": "workspace:*",
+    "@ogma/styler": "workspace:*",
     "bunyan": "1.8.15",
     "pino": "6.11.3",
     "reflect-metadata": "^0.1.13",
@@ -17,8 +18,5 @@
     "rxjs": "^6.6.7",
     "typescript": "^4.2.4",
     "winston": "3.3.3"
-  },
-  "devDependencies": {
-    "@ogma/styler": "workspace:*"
   }
 }
