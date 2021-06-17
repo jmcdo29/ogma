@@ -1,0 +1,108 @@
+{
+  "version": 2,
+  "projects": {
+    "benchmark-interceptor": {
+      "root": "benchmarks/interceptor",
+      "type": "library"
+    },
+    "benchmark-logger": {
+      "root": "benchmarks/logger",
+      "type": "library"
+    },
+    "cli": {
+      "root": "packages/cli",
+      "type": "library",
+      "sourceRoot": "packages/cli/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "options": {
+            "externalDependencies": "all",
+            "outputPath": "dist/apps/cli",
+            "main": "packages/cli/src/main.ts",
+            "tsConfig": "packages/cli/tsconfig.build.json",
+            "generatePackageJson": true
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/cli/jest.config.js"
+          }
+        }
+      }
+    },
+    "common": {
+      "root": "packages/common",
+      "type": "library"
+    },
+    "integration": {
+      "root": "integration",
+      "type": "library"
+    },
+    "logger": {
+      "root": "packages/logger",
+      "type": "library"
+    },
+    "nestjs-module": {
+      "root": "packages/nestjs-module",
+      "type": "library"
+    },
+    "platform-express": {
+      "root": "packages/platform-express",
+      "type": "library"
+    },
+    "platform-fastify": {
+      "root": "packages/platform-fastify",
+      "type": "library"
+    },
+    "platform-graphql": {
+      "root": "packages/platform-graphql",
+      "type": "library"
+    },
+    "platform-graphql-fastify": {
+      "root": "packages/platform-graphql-fastify",
+      "type": "library"
+    },
+    "platform-grpc": {
+      "root": "packages/platform-grpc",
+      "type": "library"
+    },
+    "platform-kafka": {
+      "root": "packages/platform-kafka",
+      "type": "library"
+    },
+    "platform-mqtt": {
+      "root": "packages/platform-mqtt",
+      "type": "library"
+    },
+    "platform-nats": {
+      "root": "packages/platform-nats",
+      "type": "library"
+    },
+    "platform-rabbitmq": {
+      "root": "packages/platform-rabbitmq",
+      "type": "library"
+    },
+    "platform-redis": {
+      "root": "packages/platform-redis",
+      "type": "library"
+    },
+    "platform-socket.io": {
+      "root": "packages/platform-socket.io",
+      "type": "library"
+    },
+    "platform-tcp": {
+      "root": "packages/platform-tcp",
+      "type": "library"
+    },
+    "platform-ws": {
+      "root": "packages/platform-ws",
+      "type": "library"
+    },
+    "styler": {
+      "root": "packages/styler",
+      "type": "library"
+    }
+  }
+}
