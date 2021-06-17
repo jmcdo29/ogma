@@ -33,7 +33,7 @@
   },
   "scripts": {
     "prebuild": "rimraf lib",
-    "build": "nest build",
+    "abuild": "nest build",
     "lint": "eslint --ext .ts ./src/",
     "test": "jest",
     "test:cov": "jest --coverage"

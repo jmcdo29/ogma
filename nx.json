@@ -1,0 +1,91 @@
+{
+  "npmScope": "ogma",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "test", "lint", "package", "prepare"],
+        "strictlyOrderedTargets": ["build", "package", "prepare"],
+        "accessToken":""
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "projects": {
+    "benchmark-interceptor": {
+      "implicitDependencies": []
+    },
+    "benchmark-logger": {
+      "implicitDependencies": []
+    },
+    "cli": {
+      "implicitDependencies": []
+    },
+    "common": {
+      "implicitDependencies": []
+    },
+    "integration": {
+      "implicitDependencies": []
+    },
+    "logger": {
+      "implicitDependencies": []
+    },
+    "nestjs-module": {
+      "implicitDependencies": []
+    },
+    "platform-express": {
+      "implicitDependencies": []
+    },
+    "platform-fastify": {
+      "implicitDependencies": []
+    },
+    "platform-graphql": {
+      "implicitDependencies": []
+    },
+    "platform-graphql-fastify": {
+      "implicitDependencies": []
+    },
+    "platform-grpc": {
+      "implicitDependencies": []
+    },
+    "platform-kafka": {
+      "implicitDependencies": []
+    },
+    "platform-mqtt": {
+      "implicitDependencies": []
+    },
+    "platform-nats": {
+      "implicitDependencies": []
+    },
+    "platform-rabbitmq": {
+      "implicitDependencies": []
+    },
+    "platform-redis": {
+      "implicitDependencies": []
+    },
+    "platform-socket.io": {
+      "implicitDependencies": []
+    },
+    "platform-tcp": {
+      "implicitDependencies": []
+    },
+    "platform-ws": {
+      "implicitDependencies": []
+    },
+    "styler": {
+      "implicitDependencies": []
+    }
+  },
+  "affected": {
+    "defaultBase": "main"
+  }
+}

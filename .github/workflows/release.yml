@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+env:
+  NX_BRANCH: ${{ github.event.pull_request.head.ref }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+
 jobs:
   release:
     name: Release
