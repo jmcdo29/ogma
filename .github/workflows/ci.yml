@@ -45,6 +45,7 @@ jobs:
     - name: Run Integration Tests
       run: pnpm test:int -- --base=HEAD~1
     - name: Stop Nx Cloud Agents
+      run: pnpx -y nx-cloud stop-all-agents
     - name: Stop Docker Compose
       run: docker-compose down
     - name: Merge Coverages

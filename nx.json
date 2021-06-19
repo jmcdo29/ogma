@@ -14,7 +14,7 @@
       "options": {
         "cacheableOperations": ["build", "test", "lint", "package", "prepare"],
         "strictlyOrderedTargets": ["build", "package", "prepare"],
-        "accessToken":""
+        "accessToken":"",
         "canTrackAnalytics": false,
         "showUsageWarnings": true
       }
