@@ -33,6 +33,9 @@
     "common": {
       "implicitDependencies": []
     },
+    "coverage": {
+      "implicitDependencies": []
+    },
     "integration": {
       "implicitDependencies": []
     },
