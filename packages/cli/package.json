@@ -13,9 +13,6 @@
   "author": "Jay McDoniel <jmcdo29@gmail.com>",
   "homepage": "https://github.com/jmcdo29/ogma",
   "license": "MIT",
-  "bin": {
-    "ogma": "./lib/main.js"
-  },
   "publishConfig": {
     "access": "public"
   },

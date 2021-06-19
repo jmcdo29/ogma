@@ -49,7 +49,8 @@
             "main": "packages/cli/src/main.ts",
             "tsConfig": "packages/cli/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/cli/package.json"
+            "packageJson": "packages/cli/package.json",
+            "cli": true
           }
         },
         "test": {
@@ -73,6 +74,24 @@
             "tsConfig": "packages/common/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/common/package.json"
+          }
+        }
+      }
+    },
+    "coverage": {
+      "root": "tools",
+      "type": "library",
+      "sourceRoot": "tools",
+      "targets": {
+        "collect": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "./node_modules/.bin/tsc -p ./tools/tsconfig.json",
+              "node ./tools/coverage-merge",
+              "./node_modules/.bin/nyc merge coverage-tmp coverage/coverage-final.json && ./node_modules/.bin/nyc report -t coverage --report-dir coverage --reporter=lcov"
+            ],
+            "parallel": false
           }
         }
       }
