@@ -13,16 +13,8 @@
   "author": "Jay McDoniel <jmcdo29@gmail.com>",
   "homepage": "https://github.com/jmcdo29/ogma",
   "license": "MIT",
-  "main": "lib/main.js",
-  "types": "lib/index.d.ts",
   "bin": {
     "ogma": "./lib/main.js"
-  },
-  "files": [
-    "lib"
-  ],
-  "directories": {
-    "lib": "lib"
   },
   "publishConfig": {
     "access": "public"
@@ -33,7 +25,7 @@
   },
   "scripts": {
     "prebuild": "rimraf lib",
-    "abuild": "nest build",
+    "build": "nest build",
     "lint": "eslint --ext .ts ./src/",
     "test": "jest",
     "test:cov": "jest --coverage"

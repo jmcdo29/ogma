@@ -1,9 +1,8 @@
 import { WriteStream } from 'fs';
 
-import * as PinoLogger from 'pino';
-
+import { pino } from 'pino';
 export function createPinoLogger(stream: WriteStream) {
-  return PinoLogger(
+  return pino(
     {
       level: 'info',
       name: 'Pino Bench',

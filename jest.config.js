@@ -10,4 +10,12 @@ module.exports = {
   coverageDirectory: './coverage',
   collectCoverageFrom: ['src/**/*.ts', '!**/{*.module,index,main}.ts'],
   testEnvironment: 'node',
+  globals: {
+    'ts-jest': {
+      tsconfig: './tsconfig.spec.json',
+    },
+  },
+  moduleNameMapper: {
+    '^@ogma/(.*)$': '<rootDir>/../$1/src',
+  },
 };

@@ -12,11 +12,6 @@
   "author": "Jay McDoniel <jmcdo29@gmail.com>",
   "homepage": "https://github.com/jmcdo29/ogma#readme",
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "lib"
-  ],
   "publishConfig": {
     "access": "public"
   },
