@@ -13,13 +13,6 @@
   "author": "Jay McDoniel <jmcdo29@gmail.com>",
   "homepage": "https://github.com/jmcdo29/ogma#readme",
   "license": "MIT",
-  "scripts": {
-    "prebuild": "rimraf lib",
-    "build": "tsc -p tsconfig.build.json",
-    "lint": "eslint --ext .ts ./src/",
-    "test": "jest",
-    "test:cov": "jest --coverage"
-  },
   "dependencies": {
     "@ogma/common": "workspace:*",
     "@ogma/styler": "workspace:*"

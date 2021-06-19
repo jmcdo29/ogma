@@ -19,12 +19,6 @@
   "directories": {
     "lib": "lib"
   },
-  "scripts": {
-    "prebuild": "rimraf lib",
-    "build": "tsc -p tsconfig.build.json",
-    "test": "jest",
-    "test:cov": "jest --coverage"
-  },
   "dependencies": {
     "@golevelup/nestjs-modules": "0.4.2",
     "@ogma/common": "workspace:*",

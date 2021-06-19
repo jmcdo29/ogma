@@ -5,12 +5,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "prebuild": "rimraf lib",
-    "build": "tsc -p tsconfig.build.json",
-    "test": "jest",
-    "test:cov": "jest --coverage"
-  },
   "dependencies": {
     "@ogma/common": "workspace:*"
   },

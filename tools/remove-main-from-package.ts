@@ -17,8 +17,9 @@ dirs.forEach((dir) => {
   delete packageJson.types;
   delete packageJson.files;
   delete packageJson.scripts;
-  Object.keys(packageJson.dependencies)
+  Object.keys(packageJson.dependencies ?? {})
     .filter((dep) => !Object.keys(mainDeps).includes(dep))
+    .filter((dep) => !dep.includes('@ogma'))
     .forEach((dep) => (mainDeps[dep] = packageJson.dependencies[dep]));
   writeFileSync(`packages/${dir}/package.json`, JSON.stringify(packageJson, null, 2));
 });
