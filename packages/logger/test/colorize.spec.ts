@@ -1,5 +1,5 @@
 import { Color, OgmaSimpleType } from '@ogma/common';
-import { style } from '../../styler/lib';
+import { style } from '@ogma/styler';
 import { colorize } from '../src/utils/colorize';
 
 const ESC = '\x1B';

@@ -2,11 +2,6 @@
   "name": "@ogma/common",
   "version": "1.0.0",
   "description": "A package for the @ogma packages to have centralized typings.",
-  "files": [
-    "lib"
-  ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },

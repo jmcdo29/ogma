@@ -16,4 +16,9 @@ module.exports = {
   moduleNameMapper: {
     '@ogma/(.*)': '<rootDir>/packages/$1/src',
   },
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+    },
+  },
 };

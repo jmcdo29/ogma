@@ -1,3 +1,4 @@
+import { Ogma } from '@ogma/logger';
 import { randomBytes } from 'crypto';
 import { createWriteStream } from 'fs';
 import { performance, PerformanceObserver } from 'perf_hooks';
@@ -7,7 +8,10 @@ import { createOgmaLogger } from './ogma.logger';
 import { createPinoLogger } from './pino.logger';
 import { createWinstonLogger } from './winston.logger';
 
-const deepJSON = {
+const ogma = new Ogma({ application: 'Logger Benchmarks' });
+ogma.log('Starting the benchmark');
+
+const deepJSON: Record<string, any> = {
   a: () => 'string',
   b: Math.round(Math.random() * Math.random() * 1000),
   // using "this" makes a really complex JSON to log, including circulars
@@ -15,6 +19,7 @@ const deepJSON = {
   d: 'regular string',
   e: true,
 };
+deepJSON.f = deepJSON;
 
 type LoggerName = 'Ogma' | 'Bunyan' | 'Winston' | 'Pino';
 type LogType = 'simple' | 'json' | 'deep' | 'long';
@@ -30,10 +35,10 @@ const loggers: Array<{
   name: LoggerName;
   logger: { info: (message: any) => void };
 }> = [
-  { name: 'Ogma', logger: createOgmaLogger(stream as any) },
   { name: 'Bunyan', logger: createBunyanLogger(stream as any) },
-  { name: 'Winston', logger: createWinstonLogger(stream as any) },
+  { name: 'Ogma', logger: createOgmaLogger(stream as any) },
   { name: 'Pino', logger: createPinoLogger(stream as any) },
+  { name: 'Winston', logger: createWinstonLogger(stream as any) },
 ];
 
 function writeLogs(logger: { info: (message: any) => void }, message: any) {
@@ -80,3 +85,4 @@ const obs = new PerformanceObserver((items) => {
 obs.observe({ entryTypes: ['measure'], buffered: true });
 
 benchAll();
+ogma.log('Finished the benchmark');

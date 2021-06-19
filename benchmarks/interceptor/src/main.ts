@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { Ogma } from '@ogma/logger';
 import { ExpressParser } from '@ogma/platform-express';
 import { request } from 'http';
 import * as morgan from 'morgan';
@@ -46,7 +47,7 @@ async function getTimes(url: string) {
 }
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { logger: false });
   await app.listen(0);
   const baseUrl = await app.getUrl();
   const times = await getTimes(baseUrl);
@@ -73,7 +74,7 @@ async function bootstrapOgma() {
 }
 
 async function bootstrapMorganDev(format: 'dev' | 'combined') {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { logger: false });
   app.use(morgan(format));
   await app.listen(0);
   const baseUrl = await app.getUrl();
@@ -126,5 +127,8 @@ async function multipleRuns() {
   });
   return result;
 }
-
-multipleRuns().then((result) => writeBenchmarks(result as any));
+const ogma = new Ogma({ application: 'Interceptor Benchmark' });
+ogma.log('Starting Benchmark');
+multipleRuns()
+  .then((result) => writeBenchmarks(result as any))
+  .then(() => ogma.log('Finished the Benchmark'));

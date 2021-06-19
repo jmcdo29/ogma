@@ -6,13 +6,13 @@
 
 ## Results
 
-| Request Logger | GET    | POST    | PUT     | PATCH   | DELETE  |
-| -------------- | ------ | ------- | ------- | ------- | ------- |
-| ogma           | 9.2 ms | 10.8 ms | 10.6 ms | 12 ms   | 10.8 ms |
-| morganDev      | 8.3 ms | 10.7 ms | 10.2 ms | 10.9 ms | 11.6 ms |
-| morganCombined | 8.3 ms | 10.7 ms | 10.2 ms | 11 ms   | 11.7 ms |
-| none           | 9 ms   | 10.5 ms | 10.3 ms | 12.1 ms | 10.9 ms |
+| Request Logger | GET    | POST   | PUT    | PATCH  | DELETE |
+| -------------- | ------ | ------ | ------ | ------ | ------ |
+| ogma           | 3.6 ms | 2.9 ms | 3 ms   | 3.2 ms | 3.2 ms |
+| morganDev      | 2.8 ms | 3.1 ms | 3.2 ms | 3 ms   | 3 ms   |
+| morganCombined | 3.2 ms | 3.1 ms | 3 ms   | 3.1 ms | 3 ms   |
+| none           | 3.4 ms | 3 ms   | 3 ms   | 3.3 ms | 3 ms   |
 
 ## Information
 
-Benchmarks generated on Linux/linux x64 5.4.0-64-generic ~Intel(R) Core(TM) i3-8130U CPU @ 2.20GHz (cores/threads): 4
+Benchmarks generated on Linux/linux x64 5.11.0-7614-generic ~Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz (cores/threads): 12
