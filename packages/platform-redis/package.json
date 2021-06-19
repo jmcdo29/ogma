@@ -20,12 +20,6 @@
     "type": "git",
     "url": "git+https://github.com/jmcdo29/ogma.git"
   },
-  "scripts": {
-    "prebuild": "rimraf lib",
-    "build": "tsc -p tsconfig.build.json",
-    "test": "jest",
-    "test:cov": "jest --coverage"
-  },
   "bugs": {
     "url": "https://github.com/jmcdo29/ogma/issues"
   },
