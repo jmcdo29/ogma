@@ -36,13 +36,13 @@ jobs:
     - name: Install deps
       run: pnpm i --frozen-lockfile=false
     - name: Build Project
-      run: pnpm build
+      run: pnpm build -- --base=HEAD~1
     - name: Run Linter
       run: pnpm lint
     - name: Run Unit Tests
-      run: pnpm test:cov
+      run: pnpm test:cov -- --base=HEAD~1
     - name: Run Integration Tests
-      run: pnpm test:int
+      run: pnpm test:int -- --base=HEAD~1
     - name: Stop Docker Compose
       run: docker-compose down
     - name: Merge Coverages
