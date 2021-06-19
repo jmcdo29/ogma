@@ -1,0 +1,11 @@
+{
+  "name": "benchmark-interceptor",
+  "private": true,
+  "_moduleAliases": {
+    "@ogma/common": "dist/packages/common/src",
+    "@ogma/logger": "dist/packages/logger/src",
+    "@ogma/nestjs-module": "dist/packages/nestjs-module/src",
+    "@ogma/platform-express": "dist/packages/platform-express/src",
+    "@ogma/styler": "dist/packages/styler/src"
+  }
+}

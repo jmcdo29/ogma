@@ -1,17 +1,8 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "removeComments": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es2017",
-    "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./src",
-    "strict": false,
-    "noUnusedLocals": false,
-    "lib": ["ES7"]
+    "rootDir": "../.."
   },
-  "include": ["./src"]
+  "include": ["src"]
 }

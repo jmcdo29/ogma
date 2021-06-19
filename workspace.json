@@ -7,20 +7,14 @@
       "sourceRoot": "benchmarks/interceptor/src",
       "targets": {
         "bench": {
-          "executor": "@nrwl/node:execute",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "buildTarget": "benchmark-interceptor:build",
-            "inspect": true,
-            "port": 9229,
-            "watch": false
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:build",
-          "options": {
-            "outputPath": "benchmarks/interceptor/dist",
-            "main": "benchmarks/interceptor/src/main.ts",
-            "tsConfig": "benchmarks/interceptor/tsconfig.json"
+            "cwd": "benchmarks/interceptor",
+            "commands": [
+              "../../node_modules/.bin/tsc -p tsconfig.build.json",
+              "node -r module-alias/register dist/benchmarks/interceptor/src/main"
+            ],
+            "parallel": false
           }
         }
       }
@@ -31,20 +25,14 @@
       "type": "library",
       "targets": {
         "bench": {
-          "executor": "@nrwl/node:execute",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "buildTarget": "benchmark-logger:build",
-            "inspect": true,
-            "port": 9229,
-            "watch": false
-          }
-        },
-        "build": {
-          "executor": "@nrwl/node:build",
-          "options": {
-            "outputPath": "benchmarks/logger/dist",
-            "main": "benchmarks/logger/src/index.ts",
-            "tsConfig": "benchmarks/logger/tsconfig.json"
+            "cwd": "benchmarks/logger",
+            "commands": [
+              "../../node_modules/.bin/tsc -p tsconfig.json",
+              "node dist/benchmarks/logger/src/index"
+            ],
+            "parallel": false
           }
         }
       }

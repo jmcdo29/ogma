@@ -47,7 +47,7 @@ Benchmarks generated on ${os.type()}/${os.platform()} ${os.arch()} ${os.release(
     os.cpus()[0].model
   } (cores/threads): ${os.cpus().length}
 `;
-  const ws = createWriteStream(join(__dirname, '..', 'README.md'));
+  const ws = createWriteStream(join(process.cwd(), 'README.md'));
   ws.write(Buffer.from(benchmarks));
   ws.close();
 }

@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { Ogma } from '@ogma/logger';
 import { ExpressParser } from '@ogma/platform-express';
 import { request } from 'http';
-import * as morgan from 'morgan';
+import morgan from 'morgan';
 import { AppModule } from './app.module';
 import { writeBenchmarks } from './benchmark-writer';
 
