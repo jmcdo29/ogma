@@ -8,10 +8,10 @@
 
 | Request Logger | GET    | POST   | PUT    | PATCH  | DELETE |
 | -------------- | ------ | ------ | ------ | ------ | ------ |
-| ogma           | 3.6 ms | 2.9 ms | 3 ms   | 3.2 ms | 3.2 ms |
-| morganDev      | 2.8 ms | 3.1 ms | 3.2 ms | 3 ms   | 3 ms   |
-| morganCombined | 3.2 ms | 3.1 ms | 3 ms   | 3.1 ms | 3 ms   |
-| none           | 3.4 ms | 3 ms   | 3 ms   | 3.3 ms | 3 ms   |
+| ogma           | 3.5 ms | 3 ms   | 3.1 ms | 3.3 ms | 3.3 ms |
+| morganDev      | 3.3 ms | 2.9 ms | 3.3 ms | 3.1 ms | 3.1 ms |
+| morganCombined | 3.1 ms | 2.9 ms | 3.4 ms | 3 ms   | 3.2 ms |
+| none           | 3.1 ms | 3.2 ms | 3.3 ms | 3.2 ms | 3.2 ms |
 
 ## Information
 
