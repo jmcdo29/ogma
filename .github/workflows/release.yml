@@ -42,3 +42,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  agent_1:
+    runs-on: ubuntu-latest
+    name: Agent 1
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm install
+      - run: npx nx-cloud start-agent
