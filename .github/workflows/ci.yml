@@ -124,6 +124,12 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm install
-      - run: npx nx-cloud start-agent
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}- uses: actions/setup-node@v1
+      - name: Install pnpm
+        run: npm i -g pnpm
+      - name: Install deps
+        run: pnpm i --frozen-lockfile=false- run: npm install
+      - run: pnpx -y nx-cloud start-agent
