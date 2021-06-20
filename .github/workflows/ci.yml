@@ -122,12 +122,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Agent 1
     timeout-minutes: 60
+    strategy:
+      matrix:
+        node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}- uses: actions/setup-node@v1
+          node-version: ${{ matrix.node-version }}1
       - name: Install pnpm
         run: npm i -g pnpm
       - name: Install deps
