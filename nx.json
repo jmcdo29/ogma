@@ -12,7 +12,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "test", "lint", "package", "prepare", "e2e"],
+        "cacheableOperations": ["build", "test", "lint", "package", "prepare"],
         "strictlyOrderedTargets": ["build", "package", "prepare"],
         "canTrackAnalytics": false,
         "showUsageWarnings": true
