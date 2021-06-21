@@ -76,7 +76,7 @@
     "@types/express-serve-static-core": "^4.17.21",
     "@types/jest": "26.0.8",
     "@types/morgan": "^1.9.2",
-    "@types/socket.io": "^2",
+    "@types/socket.io": "^3",
     "@types/socket.io-client": "^1",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
