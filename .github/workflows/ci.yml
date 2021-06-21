@@ -44,13 +44,17 @@ jobs:
     - name: Run Unit Tests
       run: pnpm test:cov -- --base=HEAD~1
     - name: Run Integration Tests
-      run: NX_CLOUD_DISTRIBUTED_EXECUTION=false pnpm test:int -- --base=HEAD~1
+      run: pnpm test:int -- --base=HEAD~1
+      env:
+        NX_CLOUD_DISTRIBUTED_EXECUTION: false
     - name: Stop Nx Cloud Agents
       run: pnpx -y nx-cloud stop-all-agents
     - name: Stop Docker Compose
       run: docker-compose down
     - name: Merge Coverages
       run: pnpm coverage
+      env:
+        NX_CLOUD_DISTRIBUTED_EXECUTION: false
     - name: Debug Coverage
       run: cat coverage/lcov.info
     - name: Send Coverage
