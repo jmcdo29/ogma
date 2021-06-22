@@ -99,7 +99,7 @@
     "graphql-tools": "^7.0.5",
     "grpc": "^1.24.10",
     "husky": "^6.0.0",
-    "jest": "^26.6.3",
+    "jest": "^27.0.5",
     "kafkajs": "^1.15.0",
     "lint-staged": "^11.0.0",
     "module-alias": "^2.2.2",
