@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "@golevelup/nestjs-modules": "0.4.2",
-    "@ogma/common": "workspace:*",
-    "@ogma/logger": "workspace:*",
-    "@ogma/styler": "workspace:*"
+    "@ogma/common": "1.0.0",
+    "@ogma/logger": "2.1.0",
+    "@ogma/styler": "1.0.0"
   },
   "peerDependencies": {
     "@nestjs/common": "^7.0.0",
