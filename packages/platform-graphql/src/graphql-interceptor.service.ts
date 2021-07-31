@@ -14,7 +14,8 @@ export class GraphQLParser extends ExpressParser {
     return GqlExecutionContext.create(context);
   }
   getRequest(context: ExecutionContext): Request {
-    return this.getContext(context).getContext().req;
+    // For subscriptions, we need to get the connection from the context, not the req.
+    return this.getContext(context).getContext().req || this.getContext(context).getContext().connection;
   }
 
   getResponse(context: ExecutionContext): Response {
