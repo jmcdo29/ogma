@@ -32,7 +32,7 @@
     "common": {
       "implicitDependencies": []
     },
-    "coverage": {
+    "tools": {
       "implicitDependencies": []
     },
     "integration": {

@@ -1,22 +1,12 @@
 import { readFileSync, writeFileSync } from 'fs';
+import { join } from 'path';
 
-const projectExcludes = ['benchmark-interceptor', 'benchmark-logger', 'integration'];
+const projectExcludes = ['benchmark-interceptor', 'benchmark-logger', 'integration', 'tools'];
 const mainOverrides = {
   cli: 'main.ts',
 };
 
-const generateBuild = (projectName: string) => {
-  return {
-    executor: '@nrwl/node:build',
-    options: {
-      externalDependencies: 'all',
-      outputPath: `dist/${projectName}`,
-      main: `packages/${projectName}/src/${mainOverrides[projectName] ?? 'index.ts'}`,
-      tsConfig: `packages/${projectName}/tsconfig.build.json`,
-      generatePackageJson: true,
-    },
-  };
-};
+const workspaceFile = join(process.cwd(), 'workspace.json');
 
 const generateTest = (projectName: string) => {
   return {
@@ -32,12 +22,28 @@ const generatePackage = (projectName: string) => {
   return {
     executor: '@nrwl/node:package',
     options: {
-      outputPath: `dist/apps/${projectName}`,
+      outputPath: `dist/${projectName}`,
       main: `packages/${projectName}/src/${mainOverrides[projectName] ?? 'index.ts'}`,
       tsConfig: `packages/${projectName}/tsconfig.build.json`,
       deleteOutputPath: true,
       packageJson: `packages/${projectName}/package.json`,
     },
+  };
+};
+
+const generatePublish = (projectName: string) => {
+  return {
+    executor: '@nrwl/workspace:run-command',
+    options: {
+      cwd: `dist/${projectName}`,
+      command: 'pnpm publish',
+    },
+    dependsOn: [
+      {
+        target: 'build',
+        projects: 'self',
+      },
+    ],
   };
 };
 
@@ -49,15 +55,16 @@ const generateProject = (projectName: string) => {
     targets: {
       build: generatePackage(projectName),
       test: generateTest(projectName),
+      publish: generatePublish(projectName),
     },
   };
 };
 
-const generateLint = (projectName: string) => {
+const _generateLint = (_projectName: string) => {
   /* no op for now */
 };
 
-const workspace = JSON.parse(readFileSync('./workspace.json').toString());
+const workspace = JSON.parse(readFileSync(workspaceFile).toString());
 
 Object.keys(workspace.projects)
   .filter((key) => !projectExcludes.includes(key))
@@ -65,4 +72,4 @@ Object.keys(workspace.projects)
     workspace.projects[key] = generateProject(key);
   });
 
-writeFileSync('./workspace.json', JSON.stringify(workspace, null, 2));
+writeFileSync(workspaceFile, JSON.stringify(workspace, null, 2));

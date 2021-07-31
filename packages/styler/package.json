@@ -6,7 +6,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ogma/common": "workspace:*"
+    "@ogma/common": "1.0.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
