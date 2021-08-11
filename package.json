@@ -65,7 +65,7 @@
     "@nrwl/cli": "latest",
     "@nrwl/eslint-plugin-nx": "12.4.0",
     "@nrwl/jest": "12.4.0",
-    "@nrwl/linter": "12.4.0",
+    "@nrwl/linter": "12.6.6",
     "@nrwl/nest": "^12.4.0",
     "@nrwl/node": "^12.4.0",
     "@nrwl/nx-cloud": "latest",
