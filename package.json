@@ -46,6 +46,7 @@
     "nx": "nx"
   },
   "devDependencies": {
+    "@apollo/gateway": "^0.40.0",
     "@changesets/cli": "^2.17.0",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
@@ -117,6 +118,7 @@
     "socket.io": "^4.2.0",
     "socket.io-client": "^4.2.0",
     "ts-jest": "^26.5.6",
+    "ts-morph": "^12.0.0",
     "typescript": "^4.4.2",
     "winston": "^3.3.3",
     "ws": "^7.5.4"
