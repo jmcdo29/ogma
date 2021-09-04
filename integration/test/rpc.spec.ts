@@ -18,13 +18,7 @@ import { RedisParser } from '@ogma/platform-redis';
 import { TcpParser } from '@ogma/platform-tcp';
 import { RpcClientModule } from '../src/rpc/client/rpc-client.module';
 import { RpcServerModule } from '../src/rpc/server/rpc-server.module';
-import {
-  createTestModule,
-  getInterceptor,
-  hello,
-  httpPromise,
-  serviceOptionsFactory,
-} from './utils';
+import { createTestModule, hello, httpPromise, serviceOptionsFactory } from './utils';
 
 const tcpOptions: TcpOptions['options'] = {};
 const mqttOptions: MqttOptions['options'] = { url: 'mqtt://localhost:1883' };
@@ -77,8 +71,8 @@ describe.each`
         transport,
         options,
       });
-      interceptor = getInterceptor(rpcServer);
-      await rpcServer.listenAsync();
+      interceptor = rpcServer.get(OgmaInterceptor);
+      await rpcServer.listen();
       const clientRef = await Test.createTestingModule({
         imports: [
           RpcClientModule.register({

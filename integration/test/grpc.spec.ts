@@ -7,13 +7,7 @@ import { OgmaInterceptor } from '@ogma/nestjs-module';
 import { join } from 'path';
 import { GrpcServerModule } from '../src/grpc/server/grpc-server.module';
 import { GrpcClientModule } from '../src/grpc/client/grpc-client.module';
-import {
-  createTestModule,
-  getInterceptor,
-  hello,
-  httpPromise,
-  serviceOptionsFactory,
-} from './utils';
+import { createTestModule, hello, httpPromise, serviceOptionsFactory } from './utils';
 
 describe('GrpcParser', () => {
   let rpcServer: INestMicroservice;
@@ -33,8 +27,8 @@ describe('GrpcParser', () => {
         package: 'hello',
       },
     });
-    interceptor = getInterceptor(rpcServer);
-    await rpcServer.listenAsync();
+    interceptor = rpcServer.get(OgmaInterceptor);
+    await rpcServer.listen();
     const clientRef = await Test.createTestingModule({
       imports: [GrpcClientModule],
     }).compile();

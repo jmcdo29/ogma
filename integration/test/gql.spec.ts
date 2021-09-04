@@ -5,7 +5,7 @@ import { AbstractInterceptorService, OgmaInterceptor, Type } from '@ogma/nestjs-
 import { GraphQLParser } from '@ogma/platform-graphql';
 import { GraphQLFastifyParser } from '@ogma/platform-graphql-fastify';
 import { GqlModule } from '../src/gql/gql.module';
-import { createTestModule, getInterceptor, gqlPromise, serviceOptionsFactory } from './utils';
+import { createTestModule, gqlPromise, serviceOptionsFactory } from './utils';
 import { style } from '@ogma/styler';
 
 describe.each`
@@ -34,7 +34,7 @@ describe.each`
         },
       });
       app = modRef.createNestApplication(adapter);
-      interceptor = getInterceptor(app);
+      interceptor = app.get(OgmaInterceptor);
       await app.listen(0);
     });
 
