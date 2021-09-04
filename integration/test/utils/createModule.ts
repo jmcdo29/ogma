@@ -11,9 +11,10 @@ export async function createTestModule(
   return Test.createTestingModule({
     imports: [AppModule, OgmaModule.forRoot(options)],
     providers: [
+      OgmaInterceptor,
       {
         provide: APP_INTERCEPTOR,
-        useClass: OgmaInterceptor,
+        useExisting: OgmaInterceptor,
       },
     ],
   }).compile();

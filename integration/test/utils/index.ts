@@ -5,7 +5,6 @@ import { OgmaServiceOptions } from '@ogma/nestjs-module';
 const stream = process.env.CI ? createWriteStream('/dev/null') : process.stdout;
 process.stdout.getColorDepth = () => 8;
 export * from './createModule';
-export * from './getInterceptor';
 export * from './gql-promise';
 export * from './http-promise';
 export * from './ws-promise';

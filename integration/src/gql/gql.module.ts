@@ -16,6 +16,7 @@ import { GqlResolver } from './gql.resolver';
         };
       },
       autoSchemaFile: true,
+      playground: false,
       // installSubscriptionHandlers: true,
     }),
   ],

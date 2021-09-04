@@ -5,13 +5,7 @@ import { AbstractInterceptorService, OgmaInterceptor, Type } from '@ogma/nestjs-
 import { style } from '@ogma/styler';
 import { ExpressParser } from '@ogma/platform-express';
 import { FastifyParser } from '@ogma/platform-fastify';
-import {
-  createTestModule,
-  getInterceptor,
-  hello,
-  httpPromise,
-  serviceOptionsFactory,
-} from './utils';
+import { createTestModule, hello, httpPromise, serviceOptionsFactory } from './utils';
 import { HttpServerModule } from '../src/http/http-server.module';
 
 describe.each`
@@ -38,7 +32,7 @@ describe.each`
         interceptor: { http: parser },
       });
       app = modRef.createNestApplication(adapter);
-      interceptor = getInterceptor(app);
+      interceptor = app.get(OgmaInterceptor);
       await app.listen(0);
     });
 
