@@ -1,7 +1,5 @@
 name: 'Run Build, Lint, Format Check, Tests, and Coverage Collection'
 description: 'Run the required actions'
-inputs:
-  description: 
 runs:
   using: 'composite'
   steps:
