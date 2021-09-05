@@ -23,9 +23,9 @@ jobs:
     if: ${{ github.event_name != 'pull_request' }}
     steps:
       - uses: actions/checkout@v2
-          name: Checkout [main]
-          with:
-            fetch-depth: 0
+        name: Checkout [main]
+        with:
+          fetch-depth: 0
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v1
       - name: Use Node.js 14
