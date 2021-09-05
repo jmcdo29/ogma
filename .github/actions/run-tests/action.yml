@@ -5,33 +5,45 @@ runs:
   steps:
     - name: Start Docker Compose
       run: docker-compose up -d
+      shell: bash
     - name: Install pnpm
       run: npm i -g pnpm
+      shell: bash
     - name: Install deps
       run: pnpm i --frozen-lockfile=false
+      shell: bash
     - name: Build Project
       run: pnpm build
+      shell: bash
     - name: Run Linter
       run: pnpm lint
+      shell: bash
     - name: Run Unit Tests
       run: pnpm test:cov
+      shell: bash
     - name: Run Integration Tests
       run: pnpm test:int
+      shell: bash
       env:
         NX_CLOUD_DISTRIBUTED_EXECUTION: false
     - name: Stop Nx Cloud Agents
       run: pnpx -y nx-cloud stop-all-agents
+      shell: bash
     - name: Stop Docker Compose
       run: docker-compose down
+      shell: bash
     - name: Merge Coverages
       run: pnpm coverage
+      shell: bash
       env:
         NX_CLOUD_DISTRIBUTED_EXECUTION: false
     - name: Debug Coverage
       run: cat coverage/lcov.info
+      shell: bash
     - name: Send Coverage
       if:  ${{ !contains(github.event.pull_request.user.login, 'dependabot') }}
       run: pnpm sendCoverage
+      shell: bash
       env:
         CODECLIMATE_API_HOST: https://codebeat.co/webhooks/code_coverage
         CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
