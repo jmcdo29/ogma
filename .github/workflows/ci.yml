@@ -87,6 +87,18 @@ jobs:
         MERGE_LABELS: ""
         MERGE_METHOD: rebase
 
+  send-coverage:
+    runs-on: ubuntu-latest
+    needs: [pr, main]
+    steps:
+      - name: Send Coverage
+        if:  ${{ !contains(github.event.pull_request.user.login, 'dependabot') }}
+        run: pnpm sendCoverage
+        shell: bash
+        env:
+          CODECLIMATE_API_HOST: https://codebeat.co/webhooks/code_coverage
+          CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
+
   agents:
     runs-on: ubuntu-latest
     name: Agent 1

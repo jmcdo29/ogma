@@ -1,5 +1,7 @@
 name: 'Run Build, Lint, Format Check, Tests, and Coverage Collection'
 description: 'Run the required actions'
+inputs:
+  description: 
 runs:
   using: 'composite'
   steps:
@@ -40,10 +42,3 @@ runs:
     - name: Debug Coverage
       run: cat coverage/lcov.info
       shell: bash
-    - name: Send Coverage
-      if:  ${{ !contains(github.event.pull_request.user.login, 'dependabot') }}
-      run: pnpm sendCoverage
-      shell: bash
-      env:
-        CODECLIMATE_API_HOST: https://codebeat.co/webhooks/code_coverage
-        CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
