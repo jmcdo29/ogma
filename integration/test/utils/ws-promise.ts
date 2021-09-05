@@ -1,10 +1,10 @@
-import * as SocketIOClient from 'socket.io-client';
+import { Socket } from 'socket.io-client';
 import WebSocket from 'ws';
 
 export const createConnection = (
-  client: (url: string) => SocketIOClient.Socket | WebSocket,
+  client: (url: string) => Socket | WebSocket,
   url: string,
-): Promise<SocketIOClient.Socket | WebSocket> =>
+): Promise<Socket | WebSocket> =>
   new Promise((resolve, reject) => {
     const socket = client(url);
     if (Object.getOwnPropertyDescriptor(socket, 'io')) {
@@ -19,7 +19,7 @@ export const createConnection = (
   });
 
 export const wsPromise = (
-  ws: WebSocket | SocketIOClient.Socket,
+  ws: WebSocket | Socket,
   message: string,
   sendMethod: 'send' | 'emit',
 ): Promise<any> =>
@@ -30,7 +30,7 @@ export const wsPromise = (
       }
     });
     ws.on('message', (data) => {
-      resolve(data);
+      resolve(data.toString());
       return false;
     });
     ws.on('error', (err) => {
@@ -44,11 +44,21 @@ export const wsPromise = (
       reject('Unexpected-response');
     });
   });
-export const wsClose = (ws: WebSocket | SocketIOClient.Socket): Promise<void> =>
-  new Promise((resolve, reject) => {
-    ws.close();
-    ws.on('close', () => {
-      resolve();
-    });
+export const wsClose = (ws: WebSocket | Socket): Promise<void> =>
+  new Promise<void>((resolve, reject) => {
+    if (wsIsWebsocket(ws)) {
+      ws.onclose = () => {
+        return resolve();
+      };
+    } else {
+      ws.on('disconnect', () => {
+        resolve();
+      });
+    }
     ws.on('error', (err) => reject(err));
+    ws.close();
   });
+
+const wsIsWebsocket = (ws: unknown): ws is WebSocket => {
+  return ws instanceof WebSocket;
+};

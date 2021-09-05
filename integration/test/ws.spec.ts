@@ -6,7 +6,7 @@ import { style } from '@ogma/styler';
 import { AbstractInterceptorService, OgmaInterceptor, Type } from '@ogma/nestjs-module';
 import { SocketIOParser } from '@ogma/platform-socket.io';
 import { WsParser } from '@ogma/platform-ws';
-import Io from 'socket.io-client';
+import Io, { Socket } from 'socket.io-client';
 import WebSocket from 'ws';
 import { WsModule } from '../src/ws/ws.module';
 import { createConnection, hello, serviceOptionsFactory, wsClose, wsPromise } from './utils';
@@ -30,7 +30,7 @@ describe.each`
     adapter: Type<WebSocketAdapter>;
     server: string;
     parser: Type<AbstractInterceptorService>;
-    client: (url: string) => SocketIOClient.Socket | WebSocket;
+    client: (url: string) => Socket | WebSocket;
     protocol: 'http' | 'ws';
     sendMethod: 'send' | 'emit';
     serializer: (message: string) => string;
@@ -62,7 +62,7 @@ describe.each`
 
     describe('messages', () => {
       let logSpy: jest.SpyInstance;
-      let ws: WebSocket | SocketIOClient.Socket;
+      let ws: WebSocket | Socket;
 
       beforeAll(async () => {
         let baseUrl = await app.getUrl();
