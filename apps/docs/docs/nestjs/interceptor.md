@@ -1,192 +1,61 @@
-You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/).
-
-## Markdown Syntax
-
-To serve as an example page when styling markdown based Docusaurus sites.
-
-## Headers
-
-# H1 - Create the best documentation
-
-## H2 - Create the best documentation
-
-### H3 - Create the best documentation
-
-#### H4 - Create the best documentation
-
-##### H5 - Create the best documentation
-
-###### H6 - Create the best documentation
-
+---
+id: interceptor
+title: NestJS Interceptor
 ---
 
-## Emphasis
+# @ogma/nestjs-module Interceptor
 
-Emphasis, aka italics, with _asterisks_ or _underscores_.
+Now the interceptor is a pretty impressive piece of work with what all it does to gether information. At a very high level, the interceptor will create a unique id for the request based on the current time of the request and `Math.random()`. You can override the `generateRequestId` method to modify this if you would like.
 
-Strong emphasis, aka bold, with **asterisks** or **underscores**.
+## What the Interceptor Does
 
-Combined emphasis with **asterisks and _underscores_**.
-
-Strikethrough uses two tildes. ~~Scratch this.~~
-
----
-
-## Lists
-
-1. First ordered list item
-1. Another item
-   - Unordered sub-list.
-1. Actual numbers don't matter, just that it's a number
-   1. Ordered sub-list
-1. And another item.
-
-- Unordered list can use asterisks
-
-* Or minuses
-
-- Or pluses
-
----
-
-## Links
-
-[I'm an inline-style link](https://www.google.com/)
-
-[I'm an inline-style link with title](https://www.google.com/ "Google's Homepage")
-
-[I'm a reference-style link][arbitrary case-insensitive reference text]
-
-[You can use numbers for reference-style link definitions][1]
-
-Or leave it empty and use the [link text itself].
-
-URLs and URLs in angle brackets will automatically get turned into links. http://www.example.com/ or <http://www.example.com/> and sometimes example.com (but not on GitHub, for example).
-
-Some text to show that the reference links can follow later.
-
-[arbitrary case-insensitive reference text]: https://www.mozilla.org/
-[1]: http://slashdot.org/
-[link text itself]: http://www.reddit.com/
-
----
-
-## Images
-
-Here's our logo (hover to see the title text):
-
-Inline-style: ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 'Logo Title Text 1')
-
-Reference-style: ![alt text][logo]
-
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 'Logo Title Text 2'
-
----
-
-## Code
-
-```javascript
-var s = 'JavaScript syntax highlighting';
-alert(s);
-```
-
-```python
-s = "Python syntax highlighting"
-print(s)
-```
+The interceptor is designed to be an intelligent request logger that logs the regular metadata Ogma providers along with information about the request such as the caller's IP address, the route hit, how long the request took to get through the interceptor, the protocol used, what request method was used, the status of the request, and the length of the returned content, along with setting the `context` for each log to be the hit route handler class and route handler method. That's a lot of information to throw at you in words, so for an example, you may see something like
 
 ```
-No language indicated, so no syntax highlighting.
-But let's throw in a <b>tag</b>.
+[2021-09-06T18:50:22.767Z] [INFO]  [computer-name] [application] [138639] [1630954222762841] [HttpController#getHello] ::1 - GET / HTTP/1.1 200 3ms - 17
 ```
-
-```js {2}
-function highlightMe() {
-  console.log('This line can be highlighted!');
-}
-```
-
----
-
-## Tables
-
-Colons can be used to align columns.
-
-| Tables        |      Are      |   Cool |
-| ------------- | :-----------: | -----: |
-| col 3 is      | right-aligned | \$1600 |
-| col 2 is      |   centered    |   \$12 |
-| zebra stripes |   are neat    |    \$1 |
-
-There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.
-
-| Markdown | Less      | Pretty     |
-| -------- | --------- | ---------- |
-| _Still_  | `renders` | **nicely** |
-| 1        | 2         | 3          |
-
----
-
-## Blockquotes
-
-> Blockquotes are very handy in email to emulate reply text. This line is part of the same quote.
-
-Quote break.
-
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can _put_ **Markdown** into a blockquote.
-
----
-
-## Inline HTML
-
-<dl>
-  <dt>Definition list</dt>
-  <dd>Is something people use sometimes.</dd>
-
-  <dt>Markdown in HTML</dt>
-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
-</dl>
-
----
-
-## Line Breaks
-
-Here's a line for us to start with.
-
-This line is separated from the one above by two newlines, so it will be a _separate paragraph_.
-
-This line is also a separate paragraph, but... This line is only separated by a single newline, so it's a separate line in the _same paragraph_.
-
----
-
-## Admonitions
 
 :::note
 
-This is a note
+Be aware that as this is an interceptor, any errors that happen in middleware, such as Passport's serialization/deserialization and authentication methods through the PassportStrategy will not be logged in the library. You can use an [ExceptionFilter](https://docs.nestjs.com/exception-filters) to manage that. The same goes for guards due to the [request lifecycle](https://docs.nestjs.com/faq/request-lifecycle)
 
 :::
 
-:::tip
+## Binding the Interceptor
 
-This is a tip
+While `@ogma/nestjs-module` has the interceptor, it's still up to the developer to bind the interceptor to the server, so it can log the metadata about these requests. This can either be done using `@UseInterceptors()` or `app.useGlobalInterceptors`, but the most reliable method, due to all of the injected dependencies for the interceptor, would be to use a [custom provider](https://docs.nestjs.com/fundamentals/custom-providers) and the `APP_INTERCEPTOR` like follows:
+
+```ts
+@Module({
+  imports: [OgmaModule.forRoot(ogmaModuleOptions)],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: OgmaInterceptor
+    }
+  ]
+})
+export class AppModule {}
+```
+
+## Interceptor Design Decisions
+
+Due to the incredible complex nature of Nest and its DI system, there needed to be some sort of way to tell users at bootstrap that if the interceptor is to be used, which should be the default behavior, then it should have one of the `@ogma/platform-*` packages installed, **or** a custom parser should be provided. **Every** custom parser should `extend` the `AbstractInterceptorService` to ensure that A) Typescript doesn't complain about mismatched types, and B) the `DelegatorService` which handles the calls to each parser, can be sure it is getting back what it expects. If you are really, _really_ sure about what you are doing, you can always override the setting with `as any` to remove the Typescript warnings, but use that at your own risk.
+
+The interceptor was designed to be adaptable, and to be able to work with any context thrown at it, but only if the parser for that context type is installed. The most common parser would be [`@ogma/platform-express`](./http/platform-express), which will work for HTTP requests with the Express server running under the hood (Nest's default). All other parsers provided by the `@ogma` namespace follow a similar naming scheme, and are provided for what Nest can use out of the box (including microservices named in the [microservices chapter](https://docs.nestjs.com/microservices/basics) of the Nest docs.)
+
+Now, for the reasoning that all parsers are defaulted to false is to A) ensure that the developer does not expect the interceptor to work out of the box, B) ensure that the developer is aware of what parser is being used, and C) ensure that the parser(s) being used are installed without being blindly used (this means Typescript will complain if the class doesn't exist, whereas with JavaScript it _may_ be okay if a linter is not installed).
+
+:::info
+
+For more notes on extending the pre-built parsers, or for how to create your own parser, please view the [custom parser](./custom) section of the docs.
 
 :::
 
-:::important
+## Demo
 
-This is important
+Below is what the `OgmaInterceptor` _can_ do. These are the logs I usually see during the integration testing, and show off just what is capable in terms of the metadata captured on requests.
 
-:::
-
-:::caution
-
-This is a caution
-
-:::
-
-:::warning
-
-This is a warning
-
-:::
+<div align="center">
+  <img src="https://ogma-docs-images.s3-us-west-2.amazonaws.com/ogma-interceptor.gif" alt="Ogma Interceptor Gif" width="1200"/>
+</div>

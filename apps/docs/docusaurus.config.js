@@ -62,7 +62,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/jmcdo29/ogma/edit/main/website/',
+          editUrl: 'https://github.com/jmcdo29/ogma/edit/main/apps/docs',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

@@ -11,14 +11,14 @@ const setPrefix = (prefix, docs) => {
 module.exports = {
   mySidebar: [
     {
-      type: 'category',
+      type: 'doc',
       label: 'Introduction',
-      items: setPrefix('introduction', ['motivation', 'installation']),
+      id: 'introduction',
     },
     {
-      type: 'category',
+      type: 'doc',
       label: 'Logger',
-      items: setPrefix('logger', ['package']),
+      id: 'logger',
     },
     {
       label: 'NestJS',
@@ -27,7 +27,7 @@ module.exports = {
         {
           type: 'category',
           label: 'Module',
-          items: setPrefix('nestjs', ['module', 'service', 'interceptor']),
+          items: setPrefix('nestjs', ['module', 'service', 'interceptor', 'example']),
         },
         {
           type: 'category',
@@ -54,9 +54,9 @@ module.exports = {
           items: setPrefix('nestjs/ws', ['overview']),
         },
         {
-          type: 'category',
+          type: 'doc',
           label: 'Custom',
-          items: setPrefix('nestjs/custom', ['custom']),
+          id: 'nestjs/custom',
         },
       ],
     },

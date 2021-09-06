@@ -46,16 +46,16 @@ export class OgmaInterceptor implements NestInterceptor {
   }
 
   public rxJsLogTap(meta: InterceptorMeta): MonoTypeOperatorFunction<void> {
-    return tap(
-      (data) => {
+    return tap({
+      next: (data) => {
         const info = { ...meta, data };
         this.shouldLogAndDoIt('Success', info);
       },
-      (err) => {
+      error: (err) => {
         const info = { ...meta, data: err };
         this.shouldLogAndDoIt('Error', info);
       },
-    );
+    });
   }
 
   public shouldLogAndDoIt(
