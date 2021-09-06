@@ -4,7 +4,7 @@ String formatting, made easy.
 
 ## Why Not [Chalk](https://github.com/chalk/chalk)?
 
-Mostly this package was created for academic purposes and better understanding terminal [SGRs](https://en.wikipedia.org/wiki/ANSI_escape_code#SGR), but I also like to know the code I'm using and how it works. Chalk is great, but the use of chaining _or_ using the property as a mehtod s a bit strange to me. With `@ogma/styler` I was able to use `getter`s for option chaining, a `const enum` for all the SGR values, and a single method for finalizing the application to the string that is being styled.
+Mostly this package was created for academic purposes and better understanding terminal [SGRs](https://en.wikipedia.org/wiki/ANSI_escape_code#SGR), but I also like to know the code I'm using and how it works. Chalk is great, but the use of chaining _or_ using the property as a method is a bit strange to me. With `@ogma/styler` I was able to use `getter`s for option chaining, a `const enum` for all the SGR values, and a single method for finalizing the application to the string that is being styled.
 
 With all that said, if you like Chalk, use Chalk. It's a great trusted package.
 
