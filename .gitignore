@@ -37,3 +37,7 @@ coverage-tmp/
 
 *.txt
 *.gql
+
+# Generated Docusaurus files
+.docusaurus/
+.cache-loader/
