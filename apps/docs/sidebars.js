@@ -46,12 +46,21 @@ module.exports = {
         {
           type: 'category',
           label: 'Microservices',
-          items: setPrefix('nestjs/rpc', ['overview']),
+          items: setPrefix('nestjs/rpc', [
+            'overview',
+            'grpc',
+            'kafka',
+            'mqtt',
+            'nats',
+            'rabbitmq',
+            'redis',
+            'tcp',
+          ]),
         },
         {
           type: 'category',
           label: 'Websockets',
-          items: setPrefix('nestjs/ws', ['overview']),
+          items: setPrefix('nestjs/ws', ['overview', 'socket.io', 'ws']),
         },
         {
           type: 'doc',

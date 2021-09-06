@@ -12,7 +12,7 @@ Now the interceptor is a pretty impressive piece of work with what all it does t
 The interceptor is designed to be an intelligent request logger that logs the regular metadata Ogma providers along with information about the request such as the caller's IP address, the route hit, how long the request took to get through the interceptor, the protocol used, what request method was used, the status of the request, and the length of the returned content, along with setting the `context` for each log to be the hit route handler class and route handler method. That's a lot of information to throw at you in words, so for an example, you may see something like
 
 ```
-[2021-09-06T18:50:22.767Z] [INFO]  [computer-name] [application] [138639] [1630954222762841] [HttpController#getHello] ::1 - GET / HTTP/1.1 200 3ms - 17
+[2021-09-06T18:50:22.767Z] [INFO]  [jay-pop] [application] [138639] [1630954222762841] [HttpController#getHello] ::1 - GET / HTTP/1.1 200 3ms - 17
 ```
 
 :::note
