@@ -30,6 +30,12 @@ And as `OgmaService` implements Nest's `LoggerService` you can simply use the `L
 
 If you are using a request scoped logger, denoted by adding `{ addRequestId: true }` in the `OgmaModule.forFeature()`, then you'll need to use `@OgmaLoggerRequestScoped()` instead of `@OgmaLogger()`. This is to keep the injection tokens easily separated under the hood.
 
+:::warning
+
+**_[Please make sure you understand the implications of using a request scoped service!](https://docs.nestjs.com/fundamentals/injection-scopes#injection-scopes)_**
+
+:::
+
 ## Methods
 
 For the most part, all of the methods for the `OgmaService` are the same as using `Ogma` directly, with the exception of being able to pass `application` to the optional `meta` parameter.
