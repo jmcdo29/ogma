@@ -93,6 +93,9 @@
     },
     "styler": {
       "implicitDependencies": []
+    },
+    "docs": {
+      "tags": []
     }
   },
   "affected": {
