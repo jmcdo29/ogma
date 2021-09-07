@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-redis",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A plugin for the OgmaInterceptor to properly handle microservice requests from redis protocols",
   "keywords": [
     "redis",
