@@ -1,5 +1,23 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- 5e51fdc: Update package versions to work with Nest v8
+
+  # Breaking Changes
+
+  For `@ogma/nestjs-module` and all of the `@ogma/platform-*` packages, Nest v8 is the supported package version. Nest v7 may still continue to work, but has no guarantees. Also, RxJS is upgraded to v7 to stay inline with Nest's expectations.
+
+  # Why the change was made
+
+  To stay current with Nest.
+
+  # How to upgrade
+
+  Upgrade with Nest v8. There shouldn't be any breaking underlying changes, but you can never be too careful with coded upgrades.
+
 ## 2.0.2
 
 ### Patch Changes
