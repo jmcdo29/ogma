@@ -42,7 +42,7 @@
     "test:int": "nx run-many --target=e2e --all",
     "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info",
     "prepare": "husky install",
-    "release": "pnpm build -- --exclude=tools,docs && changeset publish",
+    "release": "nx affected --target=publish",
     "nx": "nx",
     "deploy": "nx deploy docs"
   },
