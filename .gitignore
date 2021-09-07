@@ -1,6 +1,7 @@
 # compiled output
 lib/
 dist/
+tmp/
 node_modules/
 *.tsbuildinfo
 tools/*.js
