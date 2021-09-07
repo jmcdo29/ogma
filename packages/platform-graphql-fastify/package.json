@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-graphql-fastify",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A plugin for the OgmaInterceptor to proplery handle GQL requests with an Fastify server",
   "keywords": [
     "fastify",

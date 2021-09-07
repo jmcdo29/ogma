@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- 329f92a: Set the main file in the package.json correctly based on the proper publish method
+
 ## 3.0.0
 
 ### Major Changes
