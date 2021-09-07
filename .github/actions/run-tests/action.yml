@@ -33,7 +33,7 @@ runs:
       run: docker-compose down
       shell: bash
     - name: Merge Coverages
-      run: pnpm coverage
+      run: pnpm coverage -- --skip-nx-cache
       shell: bash
       env:
         NX_CLOUD_DISTRIBUTED_EXECUTION: false
