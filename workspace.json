@@ -7,7 +7,7 @@
       "sourceRoot": "benchmarks/interceptor/src",
       "targets": {
         "bench": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commandss",
           "options": {
             "cwd": "benchmarks/interceptor",
             "commands": [
@@ -25,7 +25,7 @@
       "type": "library",
       "targets": {
         "bench": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commandss",
           "options": {
             "cwd": "benchmarks/logger",
             "commands": [
@@ -60,7 +60,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/cli",
             "command": "pnpm publish"
@@ -90,7 +90,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/common",
             "command": "pnpm publish"
@@ -110,14 +110,14 @@
       "sourceRoot": "tools",
       "targets": {
         "build": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commandss",
           "options": {
             "cwd": "./tools/",
             "command": "../node_modules/.bin/tsc"
           }
         },
         "collect": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commandss",
           "options": {
             "commands": [
               "node ./tools/coverage-merge",
@@ -137,7 +137,7 @@
           ]
         },
         "setup": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commandss",
           "options": {
             "command": "node .//tools/setup-workspace"
           },
@@ -186,7 +186,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/logger",
             "command": "pnpm publish"
@@ -223,7 +223,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/nestjs-module",
             "command": "pnpm publish"
@@ -260,7 +260,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-express",
             "command": "pnpm publish"
@@ -297,7 +297,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-fastify",
             "command": "pnpm publish"
@@ -334,7 +334,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-graphql",
             "command": "pnpm publish"
@@ -371,7 +371,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-graphql-fastify",
             "command": "pnpm publish"
@@ -408,7 +408,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-grpc",
             "command": "pnpm publish"
@@ -445,7 +445,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-kafka",
             "command": "pnpm publish"
@@ -482,7 +482,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-mqtt",
             "command": "pnpm publish"
@@ -519,7 +519,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-nats",
             "command": "pnpm publish"
@@ -556,7 +556,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-rabbitmq",
             "command": "pnpm publish"
@@ -593,7 +593,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-redis",
             "command": "pnpm publish"
@@ -630,7 +630,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-socket.io",
             "command": "pnpm publish"
@@ -667,7 +667,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-tcp",
             "command": "pnpm publish"
@@ -704,7 +704,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/platform-ws",
             "command": "pnpm publish"
@@ -741,7 +741,7 @@
           }
         },
         "publish": {
-          "executor": "@nrwl/workspace:run-command",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "dist/styler",
             "command": "pnpm publish"
@@ -773,7 +773,7 @@
           }
         },
         "deploy": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commandss",
           "options": {
             "command": "pnpm docusaurus deploy --out-dir dist/apps/docs --config apps/docs/docusaurus.config.js --skip-build"
           }
