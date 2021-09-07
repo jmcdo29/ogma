@@ -52,5 +52,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - run: npm install
+      - name: Install pnpm
+        run: npm i -g pnpm
+
+      - name: Install Dependencies
+        run: pnpm i --frozen-lockfile=false
       - run: npx nx-cloud start-agent
