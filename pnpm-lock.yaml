@@ -45,6 +45,7 @@ importers:
       '@types/express-serve-static-core': ^4.17.24
       '@types/jest': 27.0.1
       '@types/morgan': ^1.9.3
+      '@types/node': ^14
       '@types/ws': ^7.4.7
       '@typescript-eslint/eslint-plugin': ^4.30.0
       '@typescript-eslint/parser': ^4.30.0
@@ -131,10 +132,11 @@ importers:
       '@types/express-serve-static-core': 4.17.24
       '@types/jest': 27.0.1
       '@types/morgan': 1.9.3
+      '@types/node': 14.17.14
       '@types/ws': 7.4.7
       '@typescript-eslint/eslint-plugin': 4.30.0_8a8a2d3eaa9257455a03c16dce5f55b3
       '@typescript-eslint/parser': 4.30.0_eslint@7.32.0+typescript@4.4.2
-      amqp-connection-manager: 3.6.0_amqplib@0.8.0
+      amqp-connection-manager: 3.6.0_04b2724a431315b83f2ef0ddb6a1019e
       amqplib: 0.8.0
       apollo-server-express: 3.3.0_express@4.17.1+graphql@15.5.2
       apollo-server-fastify: 3.3.0_fastify@3.20.2+graphql@15.5.2
@@ -3514,7 +3516,7 @@ packages:
       '@nestjs/common': 8.0.6_7de7ece315067f012f2001b6a7f20971
       '@nestjs/core': 8.0.6_fa53f7c1dc2283eca792d5092cf47941
       '@nestjs/websockets': 8.0.6_d9cb7157596bf7c6176480174d173b36
-      amqp-connection-manager: 3.6.0_amqplib@0.8.0
+      amqp-connection-manager: 3.6.0_04b2724a431315b83f2ef0ddb6a1019e
       amqplib: 0.8.0
       iterare: 1.2.1
       json-socket: 0.3.0
@@ -3713,7 +3715,7 @@ packages:
       '@nrwl/tao': 12.8.0
       ejs: 3.1.6
       ignore: 5.1.8
-      rxjs: 6.5.5
+      rxjs: 6.6.7
       semver: 7.3.4
       tslib: 2.3.1
     dev: true
@@ -3854,8 +3856,8 @@ packages:
       enquirer: 2.3.6
       fs-extra: 9.1.0
       jsonc-parser: 3.0.0
-      rxjs: 6.5.5
-      rxjs-for-await: 0.0.2_rxjs@6.5.5
+      rxjs: 6.6.7
+      rxjs-for-await: 0.0.2_rxjs@6.6.7
       semver: 7.3.4
       tmp: 0.2.1
       tslib: 2.3.1
@@ -3884,7 +3886,7 @@ packages:
       npm-run-all: 4.1.5
       open: 7.4.2
       prettier: 2.3.2
-      rxjs: 6.5.5
+      rxjs: 6.6.7
       semver: 7.3.4
       tmp: 0.2.1
       tslib: 2.3.1
@@ -5098,7 +5100,7 @@ packages:
     resolution: {integrity: sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=}
     dev: true
 
-  /amqp-connection-manager/3.6.0_amqplib@0.8.0:
+  /amqp-connection-manager/3.6.0_04b2724a431315b83f2ef0ddb6a1019e:
     resolution: {integrity: sha512-oa1OAIgdJLiyltknBhwdM0IlET9i1lpnhv6GVan43o3p2LrwG/ogOoixoTN7ZUxlaH9+E8NktcP9kEtgfLSklg==}
     engines: {node: '>=10.0.0', npm: '>5.0.0'}
     peerDependencies:
@@ -5106,7 +5108,7 @@ packages:
     dependencies:
       amqplib: 0.8.0
       promise-breaker: 5.0.0
-      ts-node: 10.2.1_typescript@4.4.2
+      ts-node: 10.2.1_d7d681058e4c969a99d022d4f7844478
       typescript: 4.4.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -5588,7 +5590,7 @@ packages:
   /axios/0.21.1:
     resolution: {integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==}
     dependencies:
-      follow-redirects: 1.14.3_debug@4.3.2
+      follow-redirects: 1.14.3
     transitivePeerDependencies:
       - debug
     dev: true
@@ -5596,7 +5598,7 @@ packages:
   /axios/0.21.3:
     resolution: {integrity: sha512-JtoZ3Ndke/+Iwt5n+BgSli/3idTvpt5OjKyoCmz4LX5+lPiY5l7C1colYezhlxThjNa/NhngCUWZSZFypIFuaA==}
     dependencies:
-      follow-redirects: 1.14.3_debug@4.3.2
+      follow-redirects: 1.14.3
     transitivePeerDependencies:
       - debug
     dev: true
@@ -9206,7 +9208,7 @@ packages:
     resolution: {integrity: sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==}
     dev: true
 
-  /follow-redirects/1.14.3_debug@4.3.2:
+  /follow-redirects/1.14.3:
     resolution: {integrity: sha512-3MkHxknWMUtb23apkgz/83fDoe+y+qr0TdgacGIA7bew+QLBo3vdgEN2xEsuXNivpFy4CyDhBBZnNZOtalmenw==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -9214,8 +9216,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dependencies:
-      debug: 4.3.2_supports-color@6.1.0
     dev: true
 
   /for-in/1.0.2:
@@ -10207,7 +10207,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.3_debug@4.3.2
+      follow-redirects: 1.14.3
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -15384,14 +15384,6 @@ packages:
       aproba: 1.2.0
     dev: true
 
-  /rxjs-for-await/0.0.2_rxjs@6.5.5:
-    resolution: {integrity: sha512-IJ8R/ZCFMHOcDIqoABs82jal00VrZx8Xkgfe7TOKoaRPAW5nH/VFlG23bXpeGdrmtqI9UobFPgUKgCuFc7Lncw==}
-    peerDependencies:
-      rxjs: ^6.0.0
-    dependencies:
-      rxjs: 6.5.5
-    dev: true
-
   /rxjs-for-await/0.0.2_rxjs@6.6.7:
     resolution: {integrity: sha512-IJ8R/ZCFMHOcDIqoABs82jal00VrZx8Xkgfe7TOKoaRPAW5nH/VFlG23bXpeGdrmtqI9UobFPgUKgCuFc7Lncw==}
     peerDependencies:
@@ -16907,7 +16899,7 @@ packages:
       code-block-writer: 10.1.1
     dev: true
 
-  /ts-node/10.2.1_typescript@4.4.2:
+  /ts-node/10.2.1_d7d681058e4c969a99d022d4f7844478:
     resolution: {integrity: sha512-hCnyOyuGmD5wHleOQX6NIjJtYVIO8bPP8F2acWkB4W06wdlkgyvJtubO/I9NkI88hCFECbsEgoLc0VNkYmcSfw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
@@ -16927,6 +16919,7 @@ packages:
       '@tsconfig/node12': 1.0.9
       '@tsconfig/node14': 1.0.1
       '@tsconfig/node16': 1.0.2
+      '@types/node': 14.17.14
       acorn: 8.4.1
       acorn-walk: 8.1.1
       arg: 4.1.3
