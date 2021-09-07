@@ -1,6 +1,6 @@
 {
   "name": "@ogma/nestjs-module",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A NestJS module for the Ogma logger",
   "keywords": [
     "nestjs",
@@ -18,6 +18,9 @@
   "license": "MIT",
   "directories": {
     "lib": "lib"
+  },
+  "dependencies": {
+    "@golevelup/nestjs-modules": "^0.4.2"
   },
   "peerDependencies": {
     "@nestjs/common": "^8.0.0",
