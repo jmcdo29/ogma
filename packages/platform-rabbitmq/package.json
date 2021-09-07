@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-rabbitmq",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A plugin for the OgmaInterceptor to properly handle microservice requests from amqp protocols",
   "author": "Jay McDoniel <jmcdo29@gmail.com>",
   "homepage": "https://github.com/jmcdo29/ogma#readme",
