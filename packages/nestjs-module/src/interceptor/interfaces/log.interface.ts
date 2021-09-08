@@ -52,3 +52,12 @@ export interface LogObject {
    */
   contentLength: number;
 }
+
+export interface MetaLogObject extends LogObject {
+  meta?: unknown;
+}
+
+export interface DelegatorContextReturn {
+  meta?: unknown;
+  log: LogObject | string;
+}

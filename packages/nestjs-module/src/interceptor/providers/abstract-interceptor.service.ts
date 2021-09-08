@@ -3,7 +3,7 @@ import { Reflector } from '@nestjs/core';
 import { style } from '@ogma/styler';
 import { OgmaInterceptorServiceOptions } from '../../interfaces/ogma-options.interface';
 import { InterceptorService } from '../interfaces/interceptor-service.interface';
-import { LogObject } from '../interfaces/log.interface';
+import { MetaLogObject } from '../interfaces/log.interface';
 
 @Injectable()
 export abstract class AbstractInterceptorService implements InterceptorService {
@@ -23,7 +23,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
-  ): LogObject {
+  ): MetaLogObject {
     return {
       callerAddress: this.getCallerIp(context),
       method: this.getMethod(context),
@@ -32,6 +32,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
       contentLength: dataLength,
       protocol: this.getProtocol(context),
       status: this.getStatus(context, options.color && !options.json),
+      meta: this.getMeta(context),
     };
   }
 
@@ -49,7 +50,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
-  ): LogObject {
+  ): MetaLogObject {
     return {
       callerAddress: this.getCallerIp(context),
       method: this.getMethod(context),
@@ -58,6 +59,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
       responseTime: this.getResponseTime(startTime),
       contentLength: Buffer.from(JSON.stringify(error.message)).byteLength,
       protocol: this.getProtocol(context),
+      meta: this.getMeta(context),
     };
   }
 
@@ -71,6 +73,15 @@ export abstract class AbstractInterceptorService implements InterceptorService {
   getStatus(_context: ExecutionContext, inColor: boolean, error?: HttpException | Error): string {
     const status = error ? 500 : 200;
     return inColor ? this.wrapInColor(status) : status.toString();
+  }
+
+  /**
+   * A helper method to allow devs the ability to pass in extra metadata when it comes to the interceptor
+   * @param context The ExecutionContext
+   * @returns whatever metadata you want to add in on a second log line. This can be a string, an object, anything
+   */
+  getMeta(_context: ExecutionContext): unknown {
+    return;
   }
 
   /**
@@ -88,7 +99,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    *
    * Microservice: Request or Reply
    *
-   * Websockets: unknown at momentHTTP: HTTP Verb
+   * Websockets: unknown at moment
    *
    * @param context the execution context
    */

@@ -64,8 +64,11 @@ export class OgmaInterceptor implements NestInterceptor {
   ): void {
     const callMethod = `getContext${method}String`;
     if (!this.shouldSkip(context)) {
-      const logObject = this.delegate[callMethod](data, context, startTime, options);
+      const { meta, log: logObject } = this.delegate[callMethod](data, context, startTime, options);
       this.log(logObject, context, correlationId);
+      if (meta) {
+        this.log(meta, context, correlationId);
+      }
     }
   }
 

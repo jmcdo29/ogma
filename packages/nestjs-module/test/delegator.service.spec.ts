@@ -38,7 +38,7 @@ const httpContext = {
   getArgs: () => [1, 2, 3],
 };
 
-const parsedString = '127.0.0.1 - GET / HTTP/1.1 200 2ms - 5';
+const parsedString = { log: '127.0.0.1 - GET / HTTP/1.1 200 2ms - 5', meta: undefined };
 
 describe('DelegatorService', () => {
   let delegate: DelegatorService;
@@ -85,7 +85,7 @@ describe('DelegatorService', () => {
     it(logProperly('http'), () => {
       const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
       const spy = spyFactory(http, 'getSuccessContext').mockReturnValueOnce(parserReturn);
-      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toBe(
+      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toEqual(
         parsedString,
       );
       expect(spy).toBeCalledWith(
@@ -100,7 +100,7 @@ describe('DelegatorService', () => {
         getType: () => 'graphql',
       });
       const spy = spyFactory(gql, 'getSuccessContext').mockReturnValueOnce(parserReturn);
-      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toBe(
+      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toEqual(
         parsedString,
       );
       expect(spy).toBeCalledWith(
@@ -115,7 +115,7 @@ describe('DelegatorService', () => {
         getType: () => 'ws',
       });
       const spy = spyFactory(ws, 'getSuccessContext').mockReturnValueOnce(parserReturn);
-      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toBe(
+      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toEqual(
         parsedString,
       );
       expect(spy).toBeCalledWith(
@@ -130,7 +130,7 @@ describe('DelegatorService', () => {
         getType: () => 'rpc',
       });
       const spy = spyFactory(rpc, 'getSuccessContext').mockReturnValueOnce(parserReturn);
-      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toBe(
+      expect(delegate.getContextSuccessString(data, ctxMock, startTime, options)).toEqual(
         parsedString,
       );
       expect(spy).toBeCalledWith(
@@ -146,7 +146,9 @@ describe('DelegatorService', () => {
     it(logProperly('http'), () => {
       const spy = spyFactory(http, 'getErrorContext').mockReturnValueOnce(parserReturn);
       const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
-      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toBe(parsedString);
+      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toEqual(
+        parsedString,
+      );
       expect(spy).toBeCalledWith(error, ctxMock, startTime, options);
     });
     it(logProperly('gql'), () => {
@@ -154,7 +156,9 @@ describe('DelegatorService', () => {
       const ctxMock = createMock<ExecutionContext>({
         getType: () => 'graphql',
       });
-      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toBe(parsedString);
+      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toEqual(
+        parsedString,
+      );
       expect(spy).toBeCalledWith(error, ctxMock, startTime, options);
     });
     it(logProperly('ws'), () => {
@@ -162,7 +166,9 @@ describe('DelegatorService', () => {
       const ctxMock = createMock<ExecutionContext>({
         getType: () => 'ws',
       });
-      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toBe(parsedString);
+      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toEqual(
+        parsedString,
+      );
       expect(spy).toBeCalledWith(error, ctxMock, startTime, options);
     });
     it(logProperly('rpc'), () => {
@@ -170,7 +176,9 @@ describe('DelegatorService', () => {
       const ctxMock = createMock<ExecutionContext>({
         getType: () => 'rpc',
       });
-      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toBe(parsedString);
+      expect(delegate.getContextErrorString(error, ctxMock, startTime, options)).toEqual(
+        parsedString,
+      );
       expect(spy).toBeCalledWith(error, ctxMock, startTime, options);
     });
   });
@@ -216,7 +224,7 @@ describe('DelegatorService', () => {
           json: true,
           color: false,
         }),
-      ).toEqual(parserReturn);
+      ).toEqual({ log: parserReturn, meta: undefined });
       expect(spy).toBeCalledWith(
         Buffer.from(JSON.stringify('data')).byteLength,
         ctxMock,
@@ -240,9 +248,10 @@ describe('DelegatorService', () => {
         status: '200',
       });
       const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
-      expect(delegate.getContextSuccessString(null, ctxMock, startTime, options)).toBe(
-        '127.0.0.1 - GET / HTTP/1.1 200 2ms - 0',
-      );
+      expect(delegate.getContextSuccessString(null, ctxMock, startTime, options)).toEqual({
+        log: '127.0.0.1 - GET / HTTP/1.1 200 2ms - 0',
+        meta: undefined,
+      });
       expect(spy).toBeCalledWith(0, ctxMock, startTime, options);
     });
   });
