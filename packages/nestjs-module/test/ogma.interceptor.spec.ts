@@ -38,8 +38,12 @@ describe('OgmaInterceptor', () => {
         {
           provide: DelegatorService,
           useValue: {
-            getContextSuccessString: () => 'success',
-            getContextErrorString: () => 'error',
+            getContextSuccessString: () => ({
+              log: 'success',
+            }),
+            getContextErrorString: () => ({
+              log: 'error',
+            }),
             setRequestId: noop,
           },
         },
@@ -74,6 +78,9 @@ describe('OgmaInterceptor', () => {
     ogmaService = mod.get(OgmaService);
     reflector = mod.get(Reflector);
   });
+  afterEach(() => {
+    logMock.mockReset();
+  });
   it('should be defined', () => {
     expect(interceptor).toBeDefined();
   });
@@ -103,6 +110,7 @@ describe('OgmaInterceptor', () => {
               json: false,
               http: true,
             });
+            expect(logMock).toBeCalledTimes(1);
             done();
           },
         });
@@ -119,6 +127,31 @@ describe('OgmaInterceptor', () => {
           },
           complete: () => {
             expect(delegateSpy).toBeCalledTimes(0);
+            expect(logMock).toBeCalledTimes(0);
+            done();
+          },
+        });
+      });
+      it('should log the data and the meta', (done) => {
+        delegateSpy = jest.spyOn(delegator, 'getContextSuccessString').mockReturnValueOnce({
+          log: 'success',
+          meta: { key: 'value' },
+        });
+        const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
+        interceptor.intercept(ctxMock, callHandler).subscribe({
+          next: () => {
+            return;
+          },
+          error: () => {
+            throw new Error('Logging Error in data');
+          },
+          complete: () => {
+            expect(delegateSpy).toBeCalledWith('something', ctxMock, 0, {
+              color: false,
+              json: false,
+              http: true,
+            });
+            expect(logMock).toBeCalledTimes(2);
             done();
           },
         });
@@ -126,7 +159,7 @@ describe('OgmaInterceptor', () => {
     });
     describe('log error', () => {
       let delegateSpy: jest.SpyInstance;
-      const callHandler = { handle: () => throwError(new Error('Big oof')) };
+      const callHandler = { handle: () => throwError(() => new Error('Big oof')) };
       beforeEach(() => {
         delegateSpy = jest.spyOn(delegator, 'getContextErrorString');
       });
@@ -145,6 +178,7 @@ describe('OgmaInterceptor', () => {
               color: false,
               http: true,
             });
+            expect(logMock).toBeCalledTimes(1);
             done();
           },
         });
@@ -157,6 +191,28 @@ describe('OgmaInterceptor', () => {
           },
           error: () => {
             expect(delegateSpy).toBeCalledTimes(0);
+            expect(logMock).toBeCalledTimes(0);
+            done();
+          },
+        });
+      });
+      it('should log the error and the meta', (done) => {
+        delegateSpy = jest.spyOn(delegator, 'getContextErrorString').mockReturnValueOnce({
+          log: 'error',
+          meta: { key: 'value' },
+        });
+        const ctxMock = createMock<ExecutionContext>(httpContext as Partial<ExecutionContext>);
+        interceptor.intercept(ctxMock, callHandler).subscribe({
+          next: () => {
+            throw new Error('Logging data in error');
+          },
+          error: () => {
+            expect(delegateSpy).toBeCalledWith(new Error('Big oof'), ctxMock, 0, {
+              json: false,
+              color: false,
+              http: true,
+            });
+            expect(logMock).toBeCalledTimes(2);
             done();
           },
         });

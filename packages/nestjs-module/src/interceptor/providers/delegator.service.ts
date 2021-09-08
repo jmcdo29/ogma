@@ -1,6 +1,6 @@
 import { ContextType, ExecutionContext, Injectable } from '@nestjs/common';
 import { OgmaInterceptorServiceOptions } from '../../interfaces';
-import { LogObject } from '../interfaces/log.interface';
+import { DelegatorContextReturn, LogObject, MetaLogObject } from '../interfaces/log.interface';
 import { HttpInterceptorService } from './http-interceptor.service';
 import { GqlInterceptorService } from './gql-interceptor.service';
 import { WebsocketInterceptorService } from './websocket-interceptor.service';
@@ -27,11 +27,11 @@ export class DelegatorService {
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
-  ): string | LogObject {
+  ): DelegatorContextReturn {
     data = data ? JSON.stringify(data) : '';
     data = Buffer.from(data).byteLength;
     const parser: Parser = this.getParser(context.getType());
-    const logObject = this.getContextString({
+    const { meta, ...logObject } = this.getContextString({
       method: 'getSuccessContext',
       data,
       context,
@@ -39,7 +39,7 @@ export class DelegatorService {
       options,
       parser,
     });
-    return this.getStringOrObject(logObject, { json: options.json });
+    return { meta, log: this.getStringOrObject(logObject, { json: options.json }) };
   }
 
   private getParser(type: ContextType | 'graphql'): Parser {
@@ -66,9 +66,9 @@ export class DelegatorService {
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
-  ): string | LogObject {
+  ): DelegatorContextReturn {
     const parser = this.getParser(context.getType());
-    const logObject = this.getContextString({
+    const { meta, ...logObject } = this.getContextString({
       method: 'getErrorContext',
       data: error,
       context,
@@ -76,7 +76,7 @@ export class DelegatorService {
       options,
       parser,
     });
-    return this.getStringOrObject(logObject, { json: options.json });
+    return { meta, log: this.getStringOrObject(logObject, { json: options.json }) };
   }
 
   private getContextString({
@@ -93,7 +93,7 @@ export class DelegatorService {
     startTime: number;
     options: OgmaInterceptorServiceOptions;
     parser: Parser;
-  }): LogObject {
+  }): MetaLogObject {
     return this[parser][method](data, context, startTime, options);
   }
 
