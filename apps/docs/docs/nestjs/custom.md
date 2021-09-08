@@ -103,6 +103,15 @@ abstract class AbstractInterceptorService
   }
 
   /**
+   * A helper method to allow devs the ability to pass in extra metadata when it comes to the interceptor
+   * @param context The ExecutionContext
+   * @returns whatever metadata you want to add in on a second log line. This can be a string, an object, anything
+   */
+  getMeta(_context: ExecutionContext): unknown {
+    return;
+  }
+
+  /**
    * A helper method to get the Ip of the calling client
    * @param context the execution context
    */
@@ -182,6 +191,16 @@ abstract class AbstractInterceptorService
   }
 }
 ```
+
+## Logging Additional Data
+
+If you would like to log extra data, such as the request body, you can extend any of the existing parsers, or create your own, and add the logic to the `getMeta` method. This extra metadata will be logged out on a second line with the same `ClassName#handlerMethod` context and the same `correlationId` for easy tracking.
+
+:::note
+
+This is only available in `@ogma/nestjs-module@3.1.0` and higher
+
+:::
 
 ## Other Abstract Classes
 
