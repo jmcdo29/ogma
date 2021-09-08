@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- 384fc2b: Extra metadata can now be logged in interceptors by using a custom parser and the `getMeta` method
+
 ## 3.0.1
 
 ### Patch Changes
