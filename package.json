@@ -132,7 +132,7 @@
     "typescript": "^4.4.2",
     "url-loader": "^4.1.1",
     "winston": "^3.3.3",
-    "ws": "7.5.4"
+    "ws": "8.2.2"
   },
   "engines": {
     "node": ">=10"
