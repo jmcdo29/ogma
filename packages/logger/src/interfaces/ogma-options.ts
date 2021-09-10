@@ -59,6 +59,37 @@ export interface OgmaOptions {
    */
   levelMap?: Record<OgmaWritableLevel, string>;
   levelKey?: string;
+  /**
+   * an array of words that should be replaced while logging.  useful for sensitive information like passwords.
+   *
+   * **Note**: Ths will only affect objects that are being logged, not direct string
+   *
+   * e.g.
+   * ```ts
+   * ogma.log({
+   *   username: 'user1',
+   *   password: 'somepassword'
+   * })
+   * ```
+   * Will log
+   * ```
+   * {
+   *   username: 'user1',
+   *   password: '************'
+   * }
+   * ```
+   * While
+   * ```ts
+   * ogma.log('password=somepassword')
+   * ```
+   * will log
+   * ```
+   * password=somepassword
+   * ```
+   *
+   * Use with caution as determining if properties should be restricted does take away from _some_ performance
+   */
+  masks?: string[];
   [index: string]: any;
 }
 
@@ -79,4 +110,5 @@ export const OgmaDefaults: OgmaOptions = {
     INFO: 'INFO',
     FINE: 'FINE',
   },
+  masks: [],
 };

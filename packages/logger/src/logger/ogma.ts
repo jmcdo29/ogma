@@ -99,6 +99,9 @@ export class Ogma {
         }
         seen.add(value);
       }
+      if (this.options.masks.includes(key)) {
+        return '*'.repeat(value.toString().length);
+      }
       return value;
     };
   }
