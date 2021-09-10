@@ -303,4 +303,18 @@ describe('small ogma tests', () => {
       );
     });
   });
+  describe('Censor passed values', () => {
+    it.each`
+      json
+      ${false}
+      ${true}
+    `('should censor the "password" value (json: $json)', ({ json }: { json: boolean }) => {
+      ogma = new Ogma({ json, masks: ['password'] });
+      ogma.log({ username: 'something', password: 'mask this' });
+      expect(stdoutSpy.mock.calls[0][0]).toEqual(
+        expect.stringMatching(/"username":\s?"something",/),
+      );
+      expect(stdoutSpy.mock.calls[0][0]).toEqual(expect.stringMatching(/"password":\s?"\*{9}"/));
+    });
+  });
 });

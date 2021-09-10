@@ -1,10 +1,11 @@
 import { OgmaStream } from '@ogma/common';
 import { Ogma } from '@ogma/logger';
 
-export function createOgmaLogger(stream: OgmaStream) {
+export function createOgmaWithMasksLogger(stream: OgmaStream) {
   return new Ogma({
-    application: 'Ogma Bench',
+    application: 'Ogma Mask Bench',
     stream,
     logLevel: 'INFO',
+    masks: ['d'],
   });
 }

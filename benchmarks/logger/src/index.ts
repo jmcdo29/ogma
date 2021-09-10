@@ -5,6 +5,7 @@ import { performance, PerformanceObserver } from 'perf_hooks';
 import { writeBenchmarks } from './benchmark-writer';
 import { createBunyanLogger } from './bunyan.logger';
 import { createOgmaLogger } from './ogma.logger';
+import { createOgmaWithMasksLogger } from './omga-with-masks.logger';
 import { createPinoLogger } from './pino.logger';
 import { createWinstonLogger } from './winston.logger';
 
@@ -21,7 +22,7 @@ const deepJSON: Record<string, any> = {
 };
 deepJSON.f = deepJSON;
 
-type LoggerName = 'Ogma' | 'Bunyan' | 'Winston' | 'Pino';
+type LoggerName = 'Ogma' | 'Ogma With Masks' | 'Bunyan' | 'Winston' | 'Pino';
 type LogType = 'simple' | 'json' | 'deep' | 'long';
 type LogResult = {
   [index in LoggerName]: {
@@ -35,10 +36,11 @@ const loggers: Array<{
   name: LoggerName;
   logger: { info: (message: any) => void };
 }> = [
-  { name: 'Bunyan', logger: createBunyanLogger(stream as any) },
-  { name: 'Ogma', logger: createOgmaLogger(stream as any) },
-  { name: 'Pino', logger: createPinoLogger(stream as any) },
-  { name: 'Winston', logger: createWinstonLogger(stream as any) },
+  { name: 'Bunyan', logger: createBunyanLogger(stream) },
+  { name: 'Ogma', logger: createOgmaLogger(stream) },
+  { name: 'Ogma With Masks', logger: createOgmaWithMasksLogger(stream) },
+  { name: 'Pino', logger: createPinoLogger(stream) },
+  { name: 'Winston', logger: createWinstonLogger(stream) },
 ];
 
 function writeLogs(logger: { info: (message: any) => void }, message: any) {
@@ -71,6 +73,7 @@ const obs = new PerformanceObserver((items) => {
   const results: LogResult = {
     Bunyan: {},
     Ogma: {},
+    'Ogma With Masks': {},
     Pino: {},
     Winston: {},
   };
