@@ -87,7 +87,7 @@ export interface OgmaOptions {
    * password=somepassword
    * ```
    *
-   * Use with caution as determining if properties should be restricted does take away from _some_ performance
+   * Use with caution as determining if properties should be restricted may take away from _some_ performance
    */
   masks?: string[];
   [index: string]: any;

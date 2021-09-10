@@ -65,6 +65,13 @@ Examples can be seen below. The JSON structure follows the same form with log le
 | context | string optional | a context for the Ogma class to work with. |
 | application | string optional | an application name for Ogma to print |
 | levelMap | an object with the above levels as the keys and strings as the vales | a way to provide custom log levels in the event that there are mappings the developer wants to support |
+| masks | string[] | An array of words that should be replaced while logging. useful for sensitive information like passwords. |
+
+:::note
+
+Using `masks` can lead to some performance degradations, due to the need to determine what values to block.
+
+:::
 
 ### Using Files instead of a console
 

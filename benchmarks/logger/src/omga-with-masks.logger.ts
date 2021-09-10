@@ -6,6 +6,6 @@ export function createOgmaWithMasksLogger(stream: OgmaStream) {
     application: 'Ogma Mask Bench',
     stream,
     logLevel: 'INFO',
-    masks: ['d'],
+    masks: ['d', 'hello'],
   });
 }

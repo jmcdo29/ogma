@@ -22,7 +22,7 @@ const deepJSON: Record<string, any> = {
 };
 deepJSON.f = deepJSON;
 
-type LoggerName = 'Ogma' | 'Ogma With Masks' | 'Bunyan' | 'Winston' | 'Pino';
+type LoggerName = 'Ogma' | 'OgmaMasks' | 'Bunyan' | 'Winston' | 'Pino';
 type LogType = 'simple' | 'json' | 'deep' | 'long';
 type LogResult = {
   [index in LoggerName]: {
@@ -38,7 +38,7 @@ const loggers: Array<{
 }> = [
   { name: 'Bunyan', logger: createBunyanLogger(stream) },
   { name: 'Ogma', logger: createOgmaLogger(stream) },
-  { name: 'Ogma With Masks', logger: createOgmaWithMasksLogger(stream) },
+  { name: 'OgmaMasks', logger: createOgmaWithMasksLogger(stream) },
   { name: 'Pino', logger: createPinoLogger(stream) },
   { name: 'Winston', logger: createWinstonLogger(stream) },
 ];
@@ -73,13 +73,13 @@ const obs = new PerformanceObserver((items) => {
   const results: LogResult = {
     Bunyan: {},
     Ogma: {},
-    'Ogma With Masks': {},
+    OgmaMasks: {},
     Pino: {},
     Winston: {},
   };
   items.getEntries().forEach((logRes) => {
     const [logName, logType] = logRes.name.split(' ');
-    results[logName][logType] = logRes.duration;
+    results[logName][logType] = logRes.duration.toFixed(1);
   });
   writeBenchmarks(results);
   performance.clearMarks();
