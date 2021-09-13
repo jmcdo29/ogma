@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.3
+
+### Patch Changes
+
+- b730b78: resolve bad deployment of socket.io package
+
 ## 3.0.2
 
 ### Patch Changes
