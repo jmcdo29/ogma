@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- e65b9d2: Once again fixing the bad publish
+
 ## 3.0.3
 
 ### Patch Changes
