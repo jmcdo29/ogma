@@ -22,6 +22,9 @@ jobs:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
 
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v
+
       - name: Setup Node.js 14.x
         uses: actions/setup-node@master
         with:
@@ -32,6 +35,9 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile=false
+
+      - name: Build Projects
+        run: pnpm build:affected
 
       - name: Update Workspace file
         run: sed -e s/'packages/'dist/ pnpm-workspace.yaml > pnpm-new.yaml && mv pnpm-new.yaml pnpm-worksapce.yaml
@@ -46,18 +52,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  #  agent_1:
-  #    runs-on: ubuntu-latest
-  #    name: Agent 1
-  #    timeout-minutes: 60
-  #    steps:
-  #      - uses: actions/checkout@v2
-  #      - uses: actions/setup-node@v1
-  #        with:
-  #          node-version: 14.x
-  #      - name: Install pnpm
-  #        run: npm i -g pnpm
-          #
-  #      - name: Install Dependencies
-  #        run: pnpm i --frozen-lockfile=false
-  #      - run: npx nx-cloud start-agent
+    agent_1:
+      runs-on: ubuntu-latest
+      name: Agent 1
+      timeout-minutes: 60
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v1
+          with:
+            node-version: 14.x
+        - name: Install pnpm
+          run: npm i -g pnpm
+          
+        - name: Install Dependencies
+          run: pnpm i --frozen-lockfile=false
+        - run: npx nx-cloud start-agent

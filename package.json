@@ -32,6 +32,7 @@
   "scripts": {
     "preversion": "pnpm format && pnpm lint && pnpm build",
     "build": "nx run-many --target=build --all",
+    "build:affected": "nx affected:build",
     "benchmark": "nx affected:bench",
     "commit": "git-cz",
     "coverage": "nx run tools:collect",
