@@ -52,18 +52,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    agent_1:
-      runs-on: ubuntu-latest
-      name: Agent 1
-      timeout-minutes: 60
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v1
-          with:
-            node-version: 14.x
-        - name: Install pnpm
-          run: npm i -g pnpm
-          
-        - name: Install Dependencies
-          run: pnpm i --frozen-lockfile=false
-        - run: npx nx-cloud start-agent
+  agent_1:
+    runs-on: ubuntu-latest
+    name: Agent 1
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Install pnpm
+        run: npm i -g pnpm
+        
+      - name: Install Dependencies
+        run: pnpm i --frozen-lockfile=false
+      - run: npx nx-cloud start-agent
