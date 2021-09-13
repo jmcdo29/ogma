@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- 8973523: Fix the peer dependencies for socket.io and @nestjs/plaltform-socket.io
+
 ## 3.0.1
 
 ### Patch Changes
