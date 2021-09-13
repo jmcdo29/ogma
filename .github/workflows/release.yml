@@ -52,6 +52,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Stop Nx Cloud Agents
+        run: pnpx -y nx-cloud stop-all-agent
+
   agent_1:
     runs-on: ubuntu-latest
     name: Agent 1
