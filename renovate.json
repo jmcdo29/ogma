@@ -1,5 +1,32 @@
 {
-  "extends": [
-    "config:base"
+  "extends": ["schedule:earlyMondays", "config:base"],
+  "labels": ["dependencies"],
+  "semanticCommits": true,
+  "vulnerabilityAlerts": false,
+  "enabledManagers": ["npm"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": [".*"],
+      "excludePackagePatterns": ["^@nestjs/.*"],
+      "excludePackageNames": [],
+      "enabled": false
+    },
+    {
+      "groupName": "NestJS",
+      "matchPackagePatterns": ["^@nestjs/.*"],
+      "rangeStrategy": "bump",
+      "enabled": true
+    },
+    {
+      "groupName": "Nest Commander",
+      "matchPackagePatterns": ["^nest-commander.*"],
+      "rangeStrategy": "bump",
+      "enabled": true
+    },
+    {
+      "groupName": "Nx Dependencies",
+      "matchPackagePatterns": ["^@nrwl/.*"],
+      "rangeStrategy": "bump",
+      "enabled": true
   ]
 }
