@@ -28,5 +28,6 @@
       "matchPackagePatterns": ["^@nrwl/.*"],
       "rangeStrategy": "bump",
       "enabled": true
+    }
   ]
 }
