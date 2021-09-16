@@ -27,6 +27,6 @@
     "url": "https://github.com/jmcdo29/ogma/issues"
   },
   "dependencies": {
-    "nest-commander": "2.1.0"
+    "nest-commander": "2.2.0"
   }
 }
