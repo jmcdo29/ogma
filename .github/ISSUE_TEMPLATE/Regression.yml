@@ -1,0 +1,76 @@
+name: "\U0001F4A5 Regression"
+description: "Report an unexpected behavior while upgrading your @ogma/nestjs-module version!"
+title: "[Regression]:"
+labels: ["type: bug :sob:"]
+body:
+  - type: checkboxes
+    attributes:
+      label: "Is there an existing issue that is already proposing this?"
+      description: "Please search [here](./?q=is%3Aissue) to see if an issue already exists for the feature you are requesting"
+      options:
+      - label: "I have searched the existing issues"
+        required: true
+
+  - type: input
+    attributes:
+      label: "Potential Commit/PR that introduced the regression"
+      description: "If you have time to investigate, what PR/date/version introduced this issue"
+      placeholder: "PR #123 or commit 5b3c4a4"
+
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: "Describe the regression"
+      description: "A clear and concise description of what the regression is"
+
+  - type: textarea
+    attributes:
+      label: "Minimum reproduction code"
+      description: |
+        Please share a git repo, a gist, or step-by-step instructions. [Wtf is a minimum reproduction?](https://jmcdo29.github.io/wtf-is-a-minimum-reproduction)
+        **Tip:** If you leave a minimum repository, we will help you faster!
+      placeholder: |
+        ```ts
+
+        ```
+
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: "Expected behavior"
+      description: "A clear and concise description of what you expected to happend (or code)"
+
+  - type: input
+    validations:
+      required: true
+    attributes:
+      label: "Package version"
+      description: "Which version of `@ogma/nestjs-module` are you using?"
+      placeholder: "X.Y.Z"
+
+  - type: checkboxes
+    attributes:
+      label: "Affected platforms"
+      options:
+      - label: "Express"
+      - label: "Fastify"
+      - label: "Graphql"
+      - label: "Graphql-Fastify"
+      - label: "gRPC"
+      - label: "Kafka"
+      - label: "MQTT"
+      - label: "NATS"
+      - label: "RabbitMQ"
+      - label: "Redis"
+      - label: "Socket.io"
+      - label: "TCP"
+      - label: "WS"
+
+  - type: textarea
+    attributes:
+      label: "Other"
+      description: |
+        Anything else relevant? eg: Logs, OS version, IDE, package manager, etc.
+        **Tip:** You can attach images, recordings or log files by clicking this area to highlight it and then dragging files in
