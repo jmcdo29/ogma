@@ -77,7 +77,7 @@ jobs:
 
   auto-merge:
     needs: pr
-    if: contains(github.event.pull_request.user.login, 'dependabot')
+    if: contains(github.event.pull_request.user.login, 'dependabot') || contains(github.event.pull_request.user.login, 'renovate')
     runs-on: ubuntu-latest
     steps:
     - name: automerge
@@ -92,7 +92,7 @@ jobs:
     needs: [pr, main]
     steps:
       - name: Send Coverage
-        if:  ${{ !contains(github.event.pull_request.user.login, 'dependabot') }}
+        if:  ${{ !contains(github.event.pull_request.user.login, 'dependabot') ||contains(github.event.pull_request.user.login, 'renovate') }}
         run: pnpm sendCoverage
         shell: bash
         env:
