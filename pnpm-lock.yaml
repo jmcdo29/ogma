@@ -189,9 +189,9 @@ importers:
 
   packages/cli:
     specifiers:
-      nest-commander: 2.1.0
+      nest-commander: 2.3.1
     dependencies:
-      nest-commander: 2.1.0_67f7e5db8827badcb202b1d38f6b1aea
+      nest-commander: 2.3.1_67f7e5db8827badcb202b1d38f6b1aea
 
   packages/common:
     specifiers: {}
@@ -5435,11 +5435,11 @@ packages:
   /ansi-regex/5.0.0:
     resolution: {integrity: sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg==}
     engines: {node: '>=8'}
+    dev: true
 
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
-    dev: true
 
   /ansi-styles/3.2.1:
     resolution: {integrity: sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==}
@@ -7034,6 +7034,12 @@ packages:
   /commander/8.1.0:
     resolution: {integrity: sha512-mf45ldcuHSYShkplHHGKWb4TrmwQadxOn7v4WuhDJy0ZVoY5JFajaRDKD0PNe5qXzBX0rhovjTnP6Kz9LETcuA==}
     engines: {node: '>= 12'}
+    dev: true
+
+  /commander/8.2.0:
+    resolution: {integrity: sha512-LLKxDvHeL91/8MIyTAD5BFMNtoIwztGPMiM/7Bl8rIPmHCZXRxmSWr91h57dpOpnQ6jIUqEWdXE/uBYMfiVZDA==}
+    engines: {node: '>= 12'}
+    dev: false
 
   /commist/1.1.0:
     resolution: {integrity: sha512-rraC8NXWOEjhADbZe9QBNzLAN5Q3fsTPQtBV+fEVj6xKIgDgNiEVE6ZNfHpZOqfQ21YUzfVNUXLOEZquYvQPPg==}
@@ -10744,6 +10750,27 @@ packages:
       string-width: 4.2.2
       strip-ansi: 6.0.0
       through: 2.3.8
+    dev: true
+
+  /inquirer/8.2.0:
+    resolution: {integrity: sha512-0crLweprevJ02tTuA6ThpoAERAGyVILC4sS74uib58Xf/zSr1/ZWtmm7D5CI+bSQEaA04f0K7idaHpQbSWgiVQ==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      cli-cursor: 3.1.0
+      cli-width: 3.0.0
+      external-editor: 3.1.0
+      figures: 3.2.0
+      lodash: 4.17.21
+      mute-stream: 0.0.8
+      ora: 5.4.1
+      run-async: 2.4.1
+      rxjs: 7.3.0
+      string-width: 4.2.2
+      strip-ansi: 6.0.0
+      through: 2.3.8
+    dev: false
 
   /internal-ip/4.3.0:
     resolution: {integrity: sha512-S1zBo1D6zcsyuC6PMmY5+55YMILQ9av8lotMx447Bq6SAgo/sDK6y6uUKmuYhW7eacnIhFfsPmCNYdDzsnnDCg==}
@@ -13619,19 +13646,6 @@ packages:
       nest-commander: 2.2.0_67f7e5db8827badcb202b1d38f6b1aea
     dev: true
 
-  /nest-commander/2.1.0_67f7e5db8827badcb202b1d38f6b1aea:
-    resolution: {integrity: sha512-T4SBnUM4ggoGxO4sriVPYoFTbq9YBokAYFBW6uRN3fJ+85auPEqETzx2SqDMomEy0211B+5854v7mMOVQetuAw==}
-    peerDependencies:
-      '@nestjs/common': ^8.0.0
-      '@nestjs/core': ^8.0.0
-    dependencies:
-      '@golevelup/nestjs-discovery': 2.3.1
-      '@nestjs/common': 8.0.6_7de7ece315067f012f2001b6a7f20971
-      '@nestjs/core': 8.0.6_fa53f7c1dc2283eca792d5092cf47941
-      commander: 8.1.0
-      inquirer: 8.1.2
-    dev: false
-
   /nest-commander/2.2.0_67f7e5db8827badcb202b1d38f6b1aea:
     resolution: {integrity: sha512-AThXgG+XgBjWt0JMZyO+KFOog/W321ozRnGOTSLoOj05IxfGIHeL1jpIRg9u8g0PkoXG367d5ZlMc0m6xF/Eow==}
     peerDependencies:
@@ -13644,6 +13658,19 @@ packages:
       commander: 8.1.0
       inquirer: 8.1.2
     dev: true
+
+  /nest-commander/2.3.1_67f7e5db8827badcb202b1d38f6b1aea:
+    resolution: {integrity: sha512-SzqOrqOaz49bIVtKUUQjCIH2NY6bBydA/ZwA3jQOYLDnGjb29/W+dwE1vnH511rMrP7zGFCpOHpht8N6MKKq3w==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0
+      '@nestjs/core': ^8.0.0
+    dependencies:
+      '@golevelup/nestjs-discovery': 2.3.1
+      '@nestjs/common': 8.0.6_7de7ece315067f012f2001b6a7f20971
+      '@nestjs/core': 8.0.6_fa53f7c1dc2283eca792d5092cf47941
+      commander: 8.2.0
+      inquirer: 8.2.0
+    dev: false
 
   /nice-try/1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
@@ -17070,7 +17097,7 @@ packages:
     resolution: {integrity: sha512-AuvKTrTfQNYNIctbR1K/YGTR1756GycPsg7b9bdV9Duqur4gv6aKqHXah67Z8ImS7WEz5QVcOtlfW2rZEugt6w==}
     engines: {node: '>=8'}
     dependencies:
-      ansi-regex: 5.0.0
+      ansi-regex: 5.0.1
 
   /strip-bom-string/1.0.0:
     resolution: {integrity: sha1-5SEekiQ2n7uB1jOi8ABE3IztrZI=}
