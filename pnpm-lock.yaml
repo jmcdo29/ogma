@@ -189,9 +189,9 @@ importers:
 
   packages/cli:
     specifiers:
-      nest-commander: 2.3.1
+      nest-commander: 2.3.2
     dependencies:
-      nest-commander: 2.3.1_67f7e5db8827badcb202b1d38f6b1aea
+      nest-commander: 2.3.2_67f7e5db8827badcb202b1d38f6b1aea
 
   packages/common:
     specifiers: {}
@@ -13778,8 +13778,8 @@ packages:
       inquirer: 8.1.2
     dev: true
 
-  /nest-commander/2.3.1_67f7e5db8827badcb202b1d38f6b1aea:
-    resolution: {integrity: sha512-SzqOrqOaz49bIVtKUUQjCIH2NY6bBydA/ZwA3jQOYLDnGjb29/W+dwE1vnH511rMrP7zGFCpOHpht8N6MKKq3w==}
+  /nest-commander/2.3.2_67f7e5db8827badcb202b1d38f6b1aea:
+    resolution: {integrity: sha512-nFIm54jabkrsIh7lMyWawoz8VDgc/ec7sp96HFWUCxaRRfvIxUxVyiUv3hyzib4fKHa5ctml0E4N5xUuL5Z4kw==}
     peerDependencies:
       '@nestjs/common': ^8.0.0
       '@nestjs/core': ^8.0.0
