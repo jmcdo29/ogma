@@ -27,7 +27,7 @@
   "peerDependencies": {
     "@nestjs/microservices": "^8.0.0",
     "@ogma/nestjs-module": "^3.0.0",
-    "nats": "^1.4.0"
+    "nats": "^1.4.0 || ^2.0.0"
   },
   "peerDependenciesMeta": {
     "@nestjs/microservices": {
