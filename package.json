@@ -139,6 +139,7 @@
     "node": ">=10"
   },
   "resolutions": {
-    "apollo-cache-control": "0.14.0"
+    "apollo-cache-control": "0.14.0",
+    "axios": "0.21.4"
   }
 }
