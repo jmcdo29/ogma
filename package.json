@@ -48,7 +48,7 @@
     "deploy": "nx deploy docs"
   },
   "devDependencies": {
-    "@apollo/gateway": "^0.40.0",
+    "@apollo/gateway": "0.40.0",
     "@changesets/cli": "^2.17.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
@@ -92,8 +92,8 @@
     "@typescript-eslint/parser": "^4.30.0",
     "amqp-connection-manager": "^3.6.0",
     "amqplib": "^0.8.0",
-    "apollo-server-express": "^3.3.0",
-    "apollo-server-fastify": "^3.3.0",
+    "apollo-server-express": "3.3.0",
+    "apollo-server-fastify": "3.3.0",
     "bunyan": "^1.8.15",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.0",
@@ -139,6 +139,6 @@
     "node": ">=10"
   },
   "resolutions": {
-    "apollo-cache-control": "0.12.0"
+    "apollo-cache-control": "0.14.0"
   }
 }
