@@ -27,7 +27,7 @@
     "@nestjs/platform-ws": "^8.0.0",
     "@nestjs/websockets": "^8.0.0.",
     "@ogma/nestjs-module": "^3.0.0",
-    "ws": "^7.4.2"
+    "ws": "^7.4.2 || ^8.0.0"
   },
   "peerDependenciesMeta": {
     "@nestjs/websockets": {

@@ -46,7 +46,7 @@ importers:
       '@types/jest': 27.0.2
       '@types/morgan': ^1.9.3
       '@types/node': ^14
-      '@types/ws': ^7.4.7
+      '@types/ws': 8.2.0
       '@typescript-eslint/eslint-plugin': ^4.30.0
       '@typescript-eslint/parser': ^4.30.0
       amqp-connection-manager: ^3.6.0
@@ -92,7 +92,7 @@ importers:
       typescript: ^4.4.2
       url-loader: ^4.1.1
       winston: ^3.3.3
-      ws: 7.5.5
+      ws: 8.2.3
     devDependencies:
       '@apollo/gateway': 0.42.1_graphql@15.5.2
       '@changesets/cli': 2.17.0
@@ -133,7 +133,7 @@ importers:
       '@types/jest': 27.0.2
       '@types/morgan': 1.9.3
       '@types/node': 14.17.14
-      '@types/ws': 7.4.7
+      '@types/ws': 8.2.0
       '@typescript-eslint/eslint-plugin': 4.30.0_8a8a2d3eaa9257455a03c16dce5f55b3
       '@typescript-eslint/parser': 4.30.0_eslint@7.32.0+typescript@4.4.2
       amqp-connection-manager: 3.6.0_04b2724a431315b83f2ef0ddb6a1019e
@@ -179,7 +179,7 @@ importers:
       typescript: 4.4.2
       url-loader: 4.1.1
       winston: 3.3.3
-      ws: 7.5.5
+      ws: 8.2.3
 
   benchmarks/interceptor:
     specifiers: {}
@@ -4807,8 +4807,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /@types/ws/7.4.7:
-    resolution: {integrity: sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww==}
+  /@types/ws/8.2.0:
+    resolution: {integrity: sha512-cyeefcUCgJlEk+hk2h3N+MqKKsPViQgF5boi9TTHSK+PoR9KWBb/C5ccPcDyAqgsbAYHTwulch725DV84+pSpg==}
     dependencies:
       '@types/node': 16.7.10
     dev: true
@@ -18991,6 +18991,19 @@ packages:
 
   /ws/8.2.0:
     resolution: {integrity: sha512-uYhVJ/m9oXwEI04iIVmgLmugh2qrZihkywG9y5FfZV2ATeLIzHf93qs+tUNqlttbQK957/VX3mtwAS+UfIwA4g==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: true
+
+  /ws/8.2.3:
+    resolution: {integrity: sha512-wBuoj1BDpC6ZQ1B7DWQBYVLphPWkm8i9Y0/3YdHjHKHiohOJ1ws+3OccDWtH+PoC9DZD5WOTrJvNbWvjS6JWaA==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
