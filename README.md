@@ -35,3 +35,7 @@ Ogma is a no-nonsense logger developed to make logging simple, and easy to read 
 This library is currently being maintained by [myself](https://github.com/jmcdo29), [Minsung Kim](https://github.com/jeffminsungkim), [Ruslan Gonzalez](https://github.com/ruslanguns), and [John Biundo](https://github.com/johnbiundo).
 
 If you would like to contribute, please checkout the [CONTRIBUTING](./CONTRIBUTING.md) guidelines.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
