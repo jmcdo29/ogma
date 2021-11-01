@@ -1,25 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { Subject } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { Readable } from 'stream';
 
 @Injectable()
 export class StreamService {
-  readFromStream(stream: Readable): Subject<string> {
-    const subject$ = new Subject<string>();
-    let data = '';
+  readFromStream(stream: Readable): Observable<string> {
     stream.on('readable', () => {
-      let chunk;
-      while (null !== (chunk = stream.read())) {
-        data += chunk.toString();
+      while (null !== stream.read()) {
+        /* no op for data event */
       }
-      subject$.next(data);
     });
-    stream.on('end', () => {
-      subject$.complete();
-    });
-    stream.on('error', (err) => {
-      subject$.error(err);
-    });
-    return subject$;
+    return fromEvent(stream, 'data').pipe(
+      filter((val) => Buffer.isBuffer(val)),
+      map((val: Buffer) => val.toString('utf-8')),
+    );
   }
 }
