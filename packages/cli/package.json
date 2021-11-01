@@ -28,5 +28,8 @@
   },
   "dependencies": {
     "nest-commander": "2.3.3"
+  },
+  "bin": {
+    "ogma": "./src/main.js"
   }
 }

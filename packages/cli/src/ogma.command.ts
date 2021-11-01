@@ -1,12 +1,14 @@
 import { Command, CommandRunner, Option } from 'nest-commander';
 import { Color, OgmaLog } from '@ogma/common';
+import { filter, map, tap } from 'rxjs/operators';
 import { FileService } from './file.service';
 import { badFormat } from './messages';
 import { OgmaGetterService } from './ogma-getters.service';
+import { StreamService } from './stream.service';
 
 @Command({
   name: 'hydrate',
-  arguments: '<file>',
+  arguments: '[file]',
   description: 'Hydrate a file from being a JSON Ogma log to a dev friendly format',
   argsDescription: {
     file: 'The file to be parsed from JSON to dev format',
@@ -16,16 +18,17 @@ import { OgmaGetterService } from './ogma-getters.service';
 export class OgmaCommand implements CommandRunner {
   constructor(
     private readonly fileService: FileService,
+    private readonly streamService: StreamService,
     private readonly ogmaGetter: OgmaGetterService,
   ) {}
   private ogmaKeys = ['time', 'pid', 'level'];
 
   async run(params: string[], options: { color: boolean }): Promise<void> {
-    const logs = await this.readFile(params[0]);
-    if (!logs.every((log) => this.checkOgmaFormat(log))) {
-      throw new Error(badFormat);
+    if (params[0]) {
+      await this.runForFile(params[0], options);
+    } else {
+      await this.runForStdin(options);
     }
-    logs.map((log) => JSON.parse(log)).forEach((log: OgmaLog) => this.writeLog(log, options.color));
   }
 
   @Option({
@@ -37,8 +40,32 @@ export class OgmaCommand implements CommandRunner {
     return val ? JSON.parse(val) : true;
   }
 
+  private async runForStdin(options: { color: boolean }): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const log$ = this.streamService.readFromStream(process.stdin);
+      log$
+        .pipe(
+          filter((log) => !this.checkOgmaFormat(log)),
+          map((jsonLogString) => JSON.parse(jsonLogString)),
+          tap((logString) => this.writeLog(logString, options.color)),
+        )
+        .subscribe({
+          error: reject,
+          complete: resolve,
+        });
+    });
+  }
+
+  private async runForFile(fileName: string, options: { color: boolean }): Promise<void> {
+    const logs = await this.readFile(fileName);
+    if (!logs.every((log) => this.checkOgmaFormat(log))) {
+      throw new Error(badFormat);
+    }
+    logs.map((log) => JSON.parse(log)).forEach((log: OgmaLog) => this.writeLog(log, options.color));
+  }
+
   private async readFile(fileName: string): Promise<string[]> {
-    return (await this.fileService.read(fileName)).split('\n').filter((log) => log);
+    return (await this.fileService.read(fileName)).split('\n');
   }
 
   private checkOgmaFormat(log: string): boolean {
