@@ -1,7 +1,7 @@
 import { Command, CommandRunner, Option } from 'nest-commander';
 import { Color, OgmaLog } from '@ogma/common';
 import { from, iif, of } from 'rxjs';
-import { filter, map, mergeMap, tap } from 'rxjs/operators';
+import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
 import { FileService } from './file.service';
 import { badFormat } from './messages';
 import { OgmaGetterService } from './ogma-getters.service';
@@ -43,7 +43,7 @@ export class OgmaCommand implements CommandRunner {
 
   private async runForStdin(options: { color: boolean }): Promise<void> {
     return new Promise((resolve, reject) => {
-      const log$ = this.streamService.readFromStream(process.stdin);
+      const { log: log$, done: done$ } = this.streamService.readFromStream(process.stdin);
       log$
         .pipe(
           mergeMap((val) => {
@@ -52,6 +52,7 @@ export class OgmaCommand implements CommandRunner {
           filter((log) => this.checkOgmaFormat(log)),
           map((jsonLogString) => JSON.parse(jsonLogString)),
           tap((logString) => this.writeLog(logString, options.color)),
+          takeUntil(done$),
         )
         .subscribe({
           error: reject,
