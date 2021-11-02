@@ -5,15 +5,13 @@ import { Readable } from 'stream';
 
 @Injectable()
 export class StreamService {
-  readFromStream(stream: Readable): Observable<string> {
-    stream.on('readable', () => {
-      while (null !== stream.read()) {
-        /* no op for data event */
-      }
-    });
-    return fromEvent(stream, 'data').pipe(
-      filter((val) => Buffer.isBuffer(val)),
-      map((val: Buffer) => val.toString('utf-8')),
-    );
+  readFromStream(stream: Readable): { log: Observable<string>; done: Observable<any> } {
+    return {
+      log: fromEvent(stream, 'data').pipe(
+        filter((val) => Buffer.isBuffer(val)),
+        map((val: Buffer) => val.toString('utf-8')),
+      ),
+      done: fromEvent(stream, 'end').pipe(map(() => true)),
+    };
   }
 }
