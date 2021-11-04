@@ -1,5 +1,11 @@
 # @ogma/cli
 
+## 2.1.2
+
+### Patch Changes
+
+- e7619e6: Trying a second publish to publish the js not ts
+
 ## 2.1.1
 
 ### Patch Changes
