@@ -1,5 +1,11 @@
 # @ogma/cli
 
+## 2.1.1
+
+### Patch Changes
+
+- bc6cdc8: Fix a bad publish from an incorrect workspace file
+
 ## 2.1.0
 
 ### Minor Changes
