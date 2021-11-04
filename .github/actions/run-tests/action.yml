@@ -40,3 +40,8 @@ runs:
     - name: Debug Coverage
       run: cat coverage/lcov.info
       shell: bash
+    - name: Upload Coverage
+      uses: actions/upload-artifact@master
+      with:
+        name: coverage
+        path: coverage/lcov.info
