@@ -93,6 +93,14 @@ jobs:
     needs: [pr, main]
     if: always() && ( !contains(github.event.pull_request.user.login, 'dependabot') || !contains(github.event.pull_request.user.login, 'renovate') )
     steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Download Coverage
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage
+
       - name: Use Node
         uses: actions/setup-node@v2
         with:
@@ -103,7 +111,7 @@ jobs:
 
       - name: Install deps
         run: pnpm i --frozen-lockfile=false
-        
+
       - name: Send Coverage
         run: pnpm sendCoverage
         shell: bash
