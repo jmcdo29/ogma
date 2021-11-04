@@ -53,7 +53,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Stop Nx Cloud Agents
-        run: pnpx -y nx-cloud stop-all-agent
+        run: pnpx -y nx-cloud stop-all-agents
 
   agent_1:
     runs-on: ubuntu-latest
@@ -69,4 +69,4 @@ jobs:
         
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile=false
-      - run: npx nx-cloud start-agent
+      - run: pnpx -y nx-cloud start-agent
