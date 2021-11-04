@@ -49,7 +49,8 @@
             "main": "packages/cli/src/main.ts",
             "tsConfig": "packages/cli/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/cli/package.json"
+            "packageJson": "packages/cli/package.json",
+            "assets": ["packages/cli/*.md"]
           }
         },
         "test": {
@@ -58,19 +59,6 @@
             "jestConfig": "packages/cli/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/cli",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -86,21 +74,16 @@
             "main": "packages/common/src/index.ts",
             "tsConfig": "packages/common/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/common/package.json"
+            "packageJson": "packages/common/package.json",
+            "assets": ["packages/common/*.md"]
           }
         },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
+        "test": {
+          "executor": "@nrwl/jest:jest",
           "options": {
-            "cwd": "dist/common",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
+            "jestConfig": "packages/common/jest.config.js",
+            "codeCoverage": true
+          }
         }
       }
     },
@@ -175,7 +158,8 @@
             "main": "packages/logger/src/index.ts",
             "tsConfig": "packages/logger/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/logger/package.json"
+            "packageJson": "packages/logger/package.json",
+            "assets": ["packages/logger/*.md"]
           }
         },
         "test": {
@@ -184,19 +168,6 @@
             "jestConfig": "packages/logger/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/logger",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -212,7 +183,8 @@
             "main": "packages/nestjs-module/src/index.ts",
             "tsConfig": "packages/nestjs-module/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/nestjs-module/package.json"
+            "packageJson": "packages/nestjs-module/package.json",
+            "assets": ["packages/nestjs-module/*.md"]
           }
         },
         "test": {
@@ -221,19 +193,6 @@
             "jestConfig": "packages/nestjs-module/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/nestjs-module",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -249,7 +208,8 @@
             "main": "packages/platform-express/src/index.ts",
             "tsConfig": "packages/platform-express/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-express/package.json"
+            "packageJson": "packages/platform-express/package.json",
+            "assets": ["packages/platform-express/*.md"]
           }
         },
         "test": {
@@ -258,19 +218,6 @@
             "jestConfig": "packages/platform-express/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-express",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -286,7 +233,8 @@
             "main": "packages/platform-fastify/src/index.ts",
             "tsConfig": "packages/platform-fastify/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-fastify/package.json"
+            "packageJson": "packages/platform-fastify/package.json",
+            "assets": ["packages/platform-fastify/*.md"]
           }
         },
         "test": {
@@ -295,19 +243,6 @@
             "jestConfig": "packages/platform-fastify/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-fastify",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -323,7 +258,8 @@
             "main": "packages/platform-graphql/src/index.ts",
             "tsConfig": "packages/platform-graphql/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-graphql/package.json"
+            "packageJson": "packages/platform-graphql/package.json",
+            "assets": ["packages/platform-graphql/*.md"]
           }
         },
         "test": {
@@ -332,19 +268,6 @@
             "jestConfig": "packages/platform-graphql/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-graphql",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -360,7 +283,8 @@
             "main": "packages/platform-graphql-fastify/src/index.ts",
             "tsConfig": "packages/platform-graphql-fastify/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-graphql-fastify/package.json"
+            "packageJson": "packages/platform-graphql-fastify/package.json",
+            "assets": ["packages/platform-graphql-fastify/*.md"]
           }
         },
         "test": {
@@ -369,19 +293,6 @@
             "jestConfig": "packages/platform-graphql-fastify/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-graphql-fastify",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -397,7 +308,8 @@
             "main": "packages/platform-grpc/src/index.ts",
             "tsConfig": "packages/platform-grpc/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-grpc/package.json"
+            "packageJson": "packages/platform-grpc/package.json",
+            "assets": ["packages/platform-grpc/*.md"]
           }
         },
         "test": {
@@ -406,19 +318,6 @@
             "jestConfig": "packages/platform-grpc/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-grpc",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -434,7 +333,8 @@
             "main": "packages/platform-kafka/src/index.ts",
             "tsConfig": "packages/platform-kafka/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-kafka/package.json"
+            "packageJson": "packages/platform-kafka/package.json",
+            "assets": ["packages/platform-kafka/*.md"]
           }
         },
         "test": {
@@ -443,19 +343,6 @@
             "jestConfig": "packages/platform-kafka/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-kafka",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -471,7 +358,8 @@
             "main": "packages/platform-mqtt/src/index.ts",
             "tsConfig": "packages/platform-mqtt/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-mqtt/package.json"
+            "packageJson": "packages/platform-mqtt/package.json",
+            "assets": ["packages/platform-mqtt/*.md"]
           }
         },
         "test": {
@@ -480,19 +368,6 @@
             "jestConfig": "packages/platform-mqtt/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-mqtt",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -508,7 +383,8 @@
             "main": "packages/platform-nats/src/index.ts",
             "tsConfig": "packages/platform-nats/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-nats/package.json"
+            "packageJson": "packages/platform-nats/package.json",
+            "assets": ["packages/platform-nats/*.md"]
           }
         },
         "test": {
@@ -517,19 +393,6 @@
             "jestConfig": "packages/platform-nats/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-nats",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -545,7 +408,8 @@
             "main": "packages/platform-rabbitmq/src/index.ts",
             "tsConfig": "packages/platform-rabbitmq/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-rabbitmq/package.json"
+            "packageJson": "packages/platform-rabbitmq/package.json",
+            "assets": ["packages/platform-rabbitmq/*.md"]
           }
         },
         "test": {
@@ -554,19 +418,6 @@
             "jestConfig": "packages/platform-rabbitmq/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-rabbitmq",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -582,7 +433,8 @@
             "main": "packages/platform-redis/src/index.ts",
             "tsConfig": "packages/platform-redis/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-redis/package.json"
+            "packageJson": "packages/platform-redis/package.json",
+            "assets": ["packages/platform-redis/*.md"]
           }
         },
         "test": {
@@ -591,19 +443,6 @@
             "jestConfig": "packages/platform-redis/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-redis",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -619,7 +458,8 @@
             "main": "packages/platform-socket.io/src/index.ts",
             "tsConfig": "packages/platform-socket.io/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-socket.io/package.json"
+            "packageJson": "packages/platform-socket.io/package.json",
+            "assets": ["packages/platform-socket.io/*.md"]
           }
         },
         "test": {
@@ -628,19 +468,6 @@
             "jestConfig": "packages/platform-socket.io/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-socket.io",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -656,7 +483,8 @@
             "main": "packages/platform-tcp/src/index.ts",
             "tsConfig": "packages/platform-tcp/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-tcp/package.json"
+            "packageJson": "packages/platform-tcp/package.json",
+            "assets": ["packages/platform-tcp/*.md"]
           }
         },
         "test": {
@@ -665,19 +493,6 @@
             "jestConfig": "packages/platform-tcp/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-tcp",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -693,7 +508,8 @@
             "main": "packages/platform-ws/src/index.ts",
             "tsConfig": "packages/platform-ws/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/platform-ws/package.json"
+            "packageJson": "packages/platform-ws/package.json",
+            "assets": ["packages/platform-ws/*.md"]
           }
         },
         "test": {
@@ -702,19 +518,6 @@
             "jestConfig": "packages/platform-ws/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/platform-ws",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
@@ -730,7 +533,8 @@
             "main": "packages/styler/src/index.ts",
             "tsConfig": "packages/styler/tsconfig.build.json",
             "deleteOutputPath": true,
-            "packageJson": "packages/styler/package.json"
+            "packageJson": "packages/styler/package.json",
+            "assets": ["packages/styler/*.md"]
           }
         },
         "test": {
@@ -739,43 +543,30 @@
             "jestConfig": "packages/styler/jest.config.js",
             "codeCoverage": true
           }
-        },
-        "publish": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "cwd": "dist/styler",
-            "command": "pnpm publish"
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            }
-          ]
         }
       }
     },
     "docs": {
-      "projectType": "application",
-      "root": "apps/docs",
-      "sourceRoot": "apps/docs/src",
+      "root": "packages/docs",
+      "type": "library",
+      "sourceRoot": "packages/docs/src",
       "targets": {
         "build": {
-          "executor": "@nx-plus/docusaurus:browser",
+          "executor": "@nrwl/node:package",
           "options": {
-            "outputPath": "dist/apps/docs"
+            "outputPath": "dist/docs",
+            "main": "packages/docs/src/index.ts",
+            "tsConfig": "packages/docs/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/docs/package.json",
+            "assets": ["packages/docs/*.md"]
           }
         },
-        "serve": {
-          "executor": "@nx-plus/docusaurus:dev-server",
+        "test": {
+          "executor": "@nrwl/jest:jest",
           "options": {
-            "port": 3000
-          }
-        },
-        "deploy": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "pnpm docusaurus deploy --out-dir dist/apps/docs --config apps/docs/docusaurus.config.js --skip-build"
+            "jestConfig": "packages/docs/jest.config.js",
+            "codeCoverage": true
           }
         }
       }

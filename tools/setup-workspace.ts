@@ -27,23 +27,8 @@ const generatePackage = (projectName: string) => {
       tsConfig: `packages/${projectName}/tsconfig.build.json`,
       deleteOutputPath: true,
       packageJson: `packages/${projectName}/package.json`,
+      assets: [`packages/${projectName}/*.md`],
     },
-  };
-};
-
-const generatePublish = (projectName: string) => {
-  return {
-    executor: '@nrwl/workspace:run-command',
-    options: {
-      cwd: `dist/${projectName}`,
-      command: 'pnpm publish',
-    },
-    dependsOn: [
-      {
-        target: 'build',
-        projects: 'self',
-      },
-    ],
   };
 };
 
@@ -55,7 +40,6 @@ const generateProject = (projectName: string) => {
     targets: {
       build: generatePackage(projectName),
       test: generateTest(projectName),
-      publish: generatePublish(projectName),
     },
   };
 };
