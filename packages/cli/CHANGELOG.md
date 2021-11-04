@@ -1,5 +1,11 @@
 # @ogma/cli
 
+## 2.1.4
+
+### Patch Changes
+
+- 7a329ce: Add dependency on reflect-metadata
+
 ## 2.1.2
 
 ### Patch Changes
