@@ -139,8 +139,5 @@
   "resolutions": {
     "apollo-cache-control": "0.14.0",
     "axios": "~0.21.0"
-  },
-  "dependencies": {
-    "@ogma/cli": "^2.0.0"
   }
 }
