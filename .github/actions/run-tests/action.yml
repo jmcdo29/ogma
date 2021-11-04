@@ -19,7 +19,7 @@ runs:
       run: pnpm lint
       shell: bash
     - name: Run Unit Tests
-      run: pnpm test:cov
+      run: pnpm test
       shell: bash
     - name: Run Integration Tests
       run: pnpm test:int
