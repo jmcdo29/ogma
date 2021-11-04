@@ -547,26 +547,26 @@
       }
     },
     "docs": {
-      "root": "packages/docs",
-      "type": "library",
-      "sourceRoot": "packages/docs/src",
+      "projectType": "application",
+      "root": "apps/docs",
+      "sourceRoot": "apps/docs/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nx-plus/docusaurus:browser",
           "options": {
-            "outputPath": "dist/docs",
-            "main": "packages/docs/src/index.ts",
-            "tsConfig": "packages/docs/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/docs/package.json",
-            "assets": ["packages/docs/*.md"]
+            "outputPath": "dist/apps/docs"
           }
         },
-        "test": {
-          "executor": "@nrwl/jest:jest",
+        "serve": {
+          "executor": "@nx-plus/docusaurus:dev-server",
           "options": {
-            "jestConfig": "packages/docs/jest.config.js",
-            "codeCoverage": true
+            "port": 3000
+          }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "pnpm docusaurus deploy --out-dir dist/apps/docs --config apps/docs/docusaurus.config.js --skip-build"
           }
         }
       }

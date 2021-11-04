@@ -1,7 +1,13 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-const projectExcludes = ['benchmark-interceptor', 'benchmark-logger', 'integration', 'tools'];
+const projectExcludes = [
+  'benchmark-interceptor',
+  'benchmark-logger',
+  'integration',
+  'tools',
+  'docs',
+];
 const mainOverrides = {
   cli: 'main.ts',
 };
