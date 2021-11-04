@@ -93,7 +93,7 @@ jobs:
     needs: [pr, main]
     steps:
       - name: Send Coverage
-        if:  ${{ !contains(github.event.pull_request.user.login, 'dependabot') ||contains(github.event.pull_request.user.login, 'renovate') }}
+        if:  ${{ !contains(github.event.pull_request.user.login, 'dependabot') || !contains(github.event.pull_request.user.login, 'renovate') }}
         run: pnpm sendCoverage
         shell: bash
         env:
