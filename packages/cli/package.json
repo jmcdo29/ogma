@@ -29,7 +29,8 @@
   "dependencies": {
     "@nestjs/common": "8.1.2",
     "@nestjs/core": "8.1.2",
-    "nest-commander": "^2.0.0"
+    "nest-commander": "^2.0.0",
+    "reflect-metadata": "0.1.13"
   },
   "bin": {
     "ogma": "./src/main.js"
