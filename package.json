@@ -9,9 +9,6 @@
     "John Biundo",
     "Ruslan Gonzalez"
   ],
-  "workspaces": [
-    "packages/*"
-  ],
   "keywords": [
     "nestjs",
     "nest",
