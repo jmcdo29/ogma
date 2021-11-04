@@ -1,5 +1,13 @@
 # @ogma/cli
 
+## 2.1.0
+
+### Minor Changes
+
+- 81b3501: Allow the CLI to accept process.stdin so it can be piped to.
+
+  Now, if you want to have `json: true` always set in your `Ogma` config, but you still want to get the pretty dev logs, you can use something to the extent of `pnpm start:dev | ogma` and ogma will pretty print each line as it comes in.
+
 ## 2.0.0
 
 ### Major Changes
