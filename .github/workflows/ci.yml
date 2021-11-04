@@ -91,10 +91,20 @@ jobs:
   send-coverage:
     runs-on: ubuntu-latest
     needs: [pr, main]
-    if: always()
+    if: always() && ( !contains(github.event.pull_request.user.login, 'dependabot') || !contains(github.event.pull_request.user.login, 'renovate') )
     steps:
+      - name: Use Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      - name: Install pnpm
+        run: npm i -g pnpm
+
+      - name: Install deps
+        run: pnpm i --frozen-lockfile=false
+        
       - name: Send Coverage
-        if:  ${{ !contains(github.event.pull_request.user.login, 'dependabot') || !contains(github.event.pull_request.user.login, 'renovate') }}
         run: pnpm sendCoverage
         shell: bash
         env:
