@@ -1,6 +1,6 @@
 import { Command, CommandRunner, Option } from 'nest-commander';
 import { Color, OgmaLog } from '@ogma/common';
-import { from, iif, of } from 'rxjs';
+import { from, iif, Observable, of, OperatorFunction, pipe } from 'rxjs';
 import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
 import { FileService } from './file.service';
 import { badFormat } from './messages';
@@ -44,21 +44,26 @@ export class OgmaCommand implements CommandRunner {
   private async runForStdin(options: { color: boolean }): Promise<void> {
     return new Promise((resolve, reject) => {
       const { log: log$, done: done$ } = this.streamService.readFromStream(process.stdin);
-      log$
-        .pipe(
-          mergeMap((val) => {
-            return iif(() => val.includes('\n'), from(val.split('\n')), of(val));
-          }),
-          filter((log) => this.checkOgmaFormat(log)),
-          map((jsonLogString) => JSON.parse(jsonLogString)),
-          tap((logString) => this.writeLog(logString, options.color)),
-          takeUntil(done$),
-        )
-        .subscribe({
-          error: reject,
-          complete: resolve,
-        });
+      log$.pipe(this.streamLogOps(options, done$)).subscribe({
+        error: reject,
+        complete: resolve,
+      });
     });
+  }
+
+  private streamLogOps(
+    options: { color: boolean },
+    done$: Observable<any>,
+  ): OperatorFunction<string, Record<string, unknown>> {
+    return pipe(
+      mergeMap((val) => {
+        return iif(() => val.includes('\n'), from(val.split('\n')), of(val));
+      }),
+      filter((log) => this.checkOgmaFormat(log)),
+      map((jsonLogString) => JSON.parse(jsonLogString)),
+      tap((logString) => this.writeLog(logString, options.color)),
+      takeUntil(done$),
+    );
   }
 
   private async runForFile(fileName: string, options: { color: boolean }): Promise<void> {
