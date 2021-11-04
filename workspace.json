@@ -77,13 +77,6 @@
             "packageJson": "packages/common/package.json",
             "assets": ["packages/common/*.md"]
           }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/common/jest.config.js",
-            "codeCoverage": true
-          }
         }
       }
     },
