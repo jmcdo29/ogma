@@ -86,7 +86,7 @@ importers:
       reflect-metadata: ^0.1.13
       rimraf: ^3.0.2
       rxjs: ^7.3.0
-      socket.io: 4.3.1
+      socket.io: 4.3.2
       socket.io-client: 4.3.2
       ts-jest: ^27.0.5
       ts-morph: ^12.0.0
@@ -173,7 +173,7 @@ importers:
       reflect-metadata: 0.1.13
       rimraf: 3.0.2
       rxjs: 7.4.0
-      socket.io: 4.3.1
+      socket.io: 4.3.2
       socket.io-client: 4.3.2
       ts-jest: 27.0.7_2c4ca6574207836d1023f54689cc81ac
       ts-morph: 12.1.0
@@ -15858,6 +15858,22 @@ packages:
 
   /socket.io/4.3.1:
     resolution: {integrity: sha512-HC5w5Olv2XZ0XJ4gOLGzzHEuOCfj3G0SmoW3jLHYYh34EVsIr3EkW9h6kgfW+K3TFEcmYy8JcPWe//KUkBp5jA==}
+    engines: {node: '>=10.0.0'}
+    dependencies:
+      accepts: 1.3.7
+      base64id: 2.0.0
+      debug: 4.3.2
+      engine.io: 6.0.0
+      socket.io-adapter: 2.3.2
+      socket.io-parser: 4.0.4
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
+  /socket.io/4.3.2:
+    resolution: {integrity: sha512-6S5tV4jcY6dbZ/lLzD6EkvNWI3s81JO6ABP/EpvOlK1NPOcIj3AS4khi6xXw6JlZCASq82HQV4SapfmVMMl2dg==}
     engines: {node: '>=10.0.0'}
     dependencies:
       accepts: 1.3.7
