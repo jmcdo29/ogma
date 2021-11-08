@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 overrides:
   apollo-cache-control: 0.14.0
-  axios: ~0.21.0
+  axios: ~0.24.0
 
 importers:
 
@@ -3425,7 +3425,7 @@ packages:
       class-validator:
         optional: true
     dependencies:
-      axios: 0.21.4
+      axios: 0.24.0
       class-transformer: 0.4.0
       class-validator: 0.13.1
       iterare: 1.2.1
@@ -3453,7 +3453,7 @@ packages:
       class-validator:
         optional: true
     dependencies:
-      axios: 0.21.4
+      axios: 0.24.0
       class-transformer: 0.4.0
       class-validator: 0.13.1
       iterare: 1.2.1
@@ -4007,7 +4007,7 @@ packages:
     resolution: {integrity: sha512-Ut1/UR2RiRM79mYpKNKqmQtvPpxzGl3Hyka9TlmyIlciUtkK25cp/ou38+B1oe0wil9OY0wHr3omcVm2OUwZKg==}
     hasBin: true
     dependencies:
-      axios: 0.21.4
+      axios: 0.24.0
       chalk: 4.1.0
       node-machine-id: 1.1.12
       rxjs: 6.5.5
@@ -5802,8 +5802,8 @@ packages:
     resolution: {integrity: sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==}
     dev: true
 
-  /axios/0.21.4:
-    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
+  /axios/0.24.0:
+    resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
     dependencies:
       follow-redirects: 1.14.5
     transitivePeerDependencies:
@@ -17557,7 +17557,7 @@ packages:
     engines: {node: '>=10.0.0'}
     hasBin: true
     dependencies:
-      axios: 0.21.4
+      axios: 0.24.0
       joi: 17.4.2
       lodash: 4.17.21
       minimist: 1.2.5
