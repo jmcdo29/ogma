@@ -46,7 +46,7 @@
     "@apollo/gateway": "0.43.1",
     "@changesets/cli": "^2.17.0",
     "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
     "@docusaurus/core": "^2.0.0-alpha.70",
     "@docusaurus/preset-classic": "^2.0.0-alpha.70",
     "@golevelup/nestjs-modules": "^0.4.2",
