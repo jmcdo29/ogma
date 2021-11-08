@@ -78,7 +78,7 @@ importers:
       nest-commander: ^2.0.0
       nest-commander-testing: ^2.0.0
       nyc: ^15.1.0
-      pino: 7.0.2
+      pino: 7.1.0
       prettier: ^2.3.2
       react: 17.0.2
       react-dom: 17.0.2
@@ -165,7 +165,7 @@ importers:
       nest-commander: 2.3.3_bbf59b1cbf49bba2b2f47e404ee3cb27
       nest-commander-testing: 2.0.1_d8f603c457f92bb11ab4464ad6503084
       nyc: 15.1.0
-      pino: 7.0.2
+      pino: 7.1.0
       prettier: 2.4.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -9283,6 +9283,18 @@ packages:
       debug:
         optional: true
 
+  /follow-redirects/1.14.5_debug@4.3.2:
+    resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.2_supports-color@6.1.0
+    dev: true
+
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -10253,7 +10265,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.5
+      follow-redirects: 1.14.5_debug@4.3.2
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -13797,11 +13809,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /pino-abstract-transport/0.4.0:
-    resolution: {integrity: sha512-Znl3f1ntZnDG+NpCyJyJDS+lkrlRSbgQBkV3eqNAvet/QHql6rhKLc4DuYRlwfc3fvV611O9NXPm5pbT9AJ50g==}
+  /pino-abstract-transport/0.5.0:
+    resolution: {integrity: sha512-+KAgmVeqXYbTtU2FScx1XS3kNyfZ5TrXY07V96QnUSFqo2gAqlvmaxH67Lj7SWazqsMabf+58ctdTcBgnOLUOQ==}
     dependencies:
       duplexify: 4.1.2
-      split2: 3.2.2
+      split2: 4.1.0
     dev: true
 
   /pino-std-serializers/3.2.0:
@@ -13825,20 +13837,20 @@ packages:
       sonic-boom: 1.4.1
     dev: true
 
-  /pino/7.0.2:
-    resolution: {integrity: sha512-ArRw6tLKDi+AaOenkxfs4pqdaQuEXKTuNtsMaa8W0muAGINntBGethgskfPhQRDC18I+zgcDpEVRrWNCKKIP2w==}
+  /pino/7.1.0:
+    resolution: {integrity: sha512-EdNpwNxlNK2gt48V4P8uvGmfTH7yW+in4MAMGgU69ovtNQqBj+kA3xGjgPQHMXo5vr4rq+vWuBgNiz/LmfK++A==}
     hasBin: true
     dependencies:
       fast-redact: 3.0.2
       fastify-warning: 0.2.0
       get-caller-file: 2.0.5
-      json-stringify-safe: 5.0.1
       on-exit-leak-free: 0.2.0
-      pino-abstract-transport: 0.4.0
+      pino-abstract-transport: 0.5.0
       pino-std-serializers: 4.0.0
       quick-format-unescaped: 4.0.4
+      safe-stable-stringify: 2.2.0
       sonic-boom: 2.3.1
-      thread-stream: 0.11.2
+      thread-stream: 0.12.1
     dev: true
 
   /pirates/4.0.1:
@@ -15484,6 +15496,11 @@ packages:
     resolution: {integrity: sha512-ERq4hUjKDbJfE4+XtZLFPCDi8Vb1JqaxAPTxWFLBx8XcAlf9Bda/ZJdVezs/NAfsMQScyIlUMx+Yeu7P7rx5jw==}
     dev: true
 
+  /safe-stable-stringify/2.2.0:
+    resolution: {integrity: sha512-C6AuMdYPuPV/P1leplHNu0lgc2LAElq/g3TdoksDCIVtBhr78o/CH03bt/9SKqugFbKU9CUjsNlCu0fjtQzQUw==}
+    engines: {node: '>=10'}
+    dev: true
+
   /safer-buffer/2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
@@ -16155,6 +16172,11 @@ packages:
       readable-stream: 3.6.0
     dev: true
 
+  /split2/4.1.0:
+    resolution: {integrity: sha512-VBiJxFkxiXRlUIeyMQi8s4hgvKCSjtknJv/LVYbrgALPwf5zSKmEwV9Lst25AkvMDnvxODugjdl6KZgwKM1WYQ==}
+    engines: {node: '>= 10.x'}
+    dev: true
+
   /sprintf-js/1.0.3:
     resolution: {integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=}
     dev: true
@@ -16691,8 +16713,8 @@ packages:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
 
-  /thread-stream/0.11.2:
-    resolution: {integrity: sha512-C/Yl5e5+UF3Rn2Fo8DzNb4jeM1/YnhIgfx9bFDNbFSnWZHPDJquZr6cM3DG33+8lcUrw7tmEv/ziZAc9urFSww==}
+  /thread-stream/0.12.1:
+    resolution: {integrity: sha512-eFgcefesjNohVbqtNG/rh54HekZeId2xbuVXZpP5PBXTe5S+WIBfAFTbh2KRa4o/4pocgWTOTfnS0MaGOEiFTA==}
     dev: true
 
   /throat/6.0.1:
