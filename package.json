@@ -81,7 +81,7 @@
     "@types/express-serve-static-core": "^4.17.24",
     "@types/jest": "27.0.2",
     "@types/morgan": "^1.9.3",
-    "@types/node": "^14.17.32",
+    "@types/node": "16.11.6",
     "@types/ws": "8.2.0",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
