@@ -44,7 +44,7 @@ importers:
       '@types/bunyan': ^1.8.7
       '@types/express': ^4.17.13
       '@types/express-serve-static-core': ^4.17.24
-      '@types/jest': 27.0.2
+      '@types/jest': 27.0.3
       '@types/morgan': ^1.9.3
       '@types/node': 16.11.7
       '@types/ws': 8.2.0
@@ -124,14 +124,14 @@ importers:
       '@nrwl/linter': 12.10.0
       '@nrwl/nest': 12.10.0_prettier@2.4.1+typescript@4.4.4
       '@nrwl/node': 12.10.0_prettier@2.4.1+typescript@4.4.4
-      '@nrwl/nx-cloud': 12.5.2
+      '@nrwl/nx-cloud': 12.5.4
       '@nrwl/tao': 12.10.0
       '@nrwl/workspace': 12.10.0_prettier@2.4.1
       '@nx-plus/docusaurus': 12.2.0_@nrwl+workspace@12.10.0
       '@types/bunyan': 1.8.7
       '@types/express': 4.17.13
       '@types/express-serve-static-core': 4.17.24
-      '@types/jest': 27.0.2
+      '@types/jest': 27.0.3
       '@types/morgan': 1.9.3
       '@types/node': 16.11.7
       '@types/ws': 8.2.0
@@ -175,7 +175,7 @@ importers:
       rxjs: 7.4.0
       socket.io: 4.4.0
       socket.io-client: 4.4.0
-      ts-jest: 27.0.7_2c4ca6574207836d1023f54689cc81ac
+      ts-jest: 27.0.7_b626c82449d36ccae0aa7169b15092e6
       ts-morph: 12.1.0
       typescript: 4.4.4
       url-loader: 4.1.1
@@ -3962,8 +3962,8 @@ packages:
       - webpack-command
     dev: true
 
-  /@nrwl/nx-cloud/12.5.2:
-    resolution: {integrity: sha512-Ut1/UR2RiRM79mYpKNKqmQtvPpxzGl3Hyka9TlmyIlciUtkK25cp/ou38+B1oe0wil9OY0wHr3omcVm2OUwZKg==}
+  /@nrwl/nx-cloud/12.5.4:
+    resolution: {integrity: sha512-FHNTF0S1dMPddDstY6MUjZ30f99wVnZ46Q8r5plASxBPUvPAqPI8TRYzYTcPSAcf7s5NB3lAnLXw0wvN+8+4Ig==}
     hasBin: true
     dependencies:
       axios: 0.24.0
@@ -4480,8 +4480,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/27.0.2:
-    resolution: {integrity: sha512-4dRxkS/AFX0c5XW6IPMNOydLn2tEhNhJV7DnYK+0bjoJZ+QTmfucBlihX7aoEsh/ocYtkLC73UbnBXBXIxsULA==}
+  /@types/jest/27.0.3:
+    resolution: {integrity: sha512-cmmwv9t7gBYt7hNKH5Spu7Kuu/DotGa+Ff+JGRKZ4db5eh8PnKS4LuebJ3YLUoyOyIHraTGyULn23YtEAm0VSg==}
     dependencies:
       jest-diff: 27.3.1
       pretty-format: 27.3.1
@@ -16900,7 +16900,7 @@ packages:
     resolution: {integrity: sha512-3IVX4nI6B5cc31/GFFE+i8ey/N2eA0CZDbo6n0yrz0zDX8ZJ8djmU1p+XRz7G3is0F3bB3pu2pAroFdAWQKU3w==}
     dev: true
 
-  /ts-jest/27.0.7_2c4ca6574207836d1023f54689cc81ac:
+  /ts-jest/27.0.7_b626c82449d36ccae0aa7169b15092e6:
     resolution: {integrity: sha512-O41shibMqzdafpuP+CkrOL7ykbmLh+FqQrXEmV9CydQ5JBk0Sj0uAEF5TNNe94fZWKm3yYvWa/IbyV4Yg1zK2Q==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -16918,7 +16918,7 @@ packages:
       babel-jest:
         optional: true
     dependencies:
-      '@types/jest': 27.0.2
+      '@types/jest': 27.0.3
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 27.3.1
