@@ -70,7 +70,7 @@ importers:
       husky: ^7.0.2
       jest: ^27.1.0
       kafkajs: ^1.15.0
-      lint-staged: 12.0.2
+      lint-staged: 12.0.3
       module-alias: ^2.2.2
       morgan: ^1.10.0
       mqtt: ^4.2.8
@@ -157,7 +157,7 @@ importers:
       husky: 7.0.4
       jest: 27.3.1
       kafkajs: 1.15.0
-      lint-staged: 12.0.2
+      lint-staged: 12.0.3
       module-alias: 2.2.2
       morgan: 1.10.0
       mqtt: 4.2.8
@@ -9260,18 +9260,6 @@ packages:
       debug:
         optional: true
 
-  /follow-redirects/1.14.5_debug@4.3.2:
-    resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.2_supports-color@6.1.0
-    dev: true
-
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -10247,7 +10235,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.5_debug@4.3.2
+      follow-redirects: 1.14.5
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -11964,8 +11952,8 @@ packages:
     resolution: {integrity: sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=}
     dev: true
 
-  /lint-staged/12.0.2:
-    resolution: {integrity: sha512-tpCvACqc7bykziGJmXG0G8YG2RaCrWiDBwmrP9wU7i/3za9JMOvCECQmXjw/sO4ICC70ApVwyqixS1htQX9Haw==}
+  /lint-staged/12.0.3:
+    resolution: {integrity: sha512-/NwNQjrhqz+AjV+e0URbtphvpHNcNdR/W6p9GxO+qIg7cxCxy0uKYO0xORQhZamp1BPjIhRUWsjbLnwEIiPHgQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -11974,18 +11962,17 @@ packages:
       commander: 8.3.0
       cosmiconfig: 7.0.1
       debug: 4.3.2_supports-color@9.0.2
+      enquirer: 2.3.6
       execa: 5.1.1
-      listr2: 3.13.3
+      listr2: 3.13.3_enquirer@2.3.6
       micromatch: 4.0.4
       normalize-path: 3.0.0
       object-inspect: 1.11.0
       string-argv: 0.3.1
       supports-color: 9.0.2
-    transitivePeerDependencies:
-      - enquirer
     dev: true
 
-  /listr2/3.13.3:
+  /listr2/3.13.3_enquirer@2.3.6:
     resolution: {integrity: sha512-VqAgN+XVfyaEjSaFewGPcDs5/3hBbWVaX1VgWv2f52MF7US45JuARlArULctiB44IIcEk3JF7GtoFCLqEdeuPA==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
@@ -11994,6 +11981,7 @@ packages:
       cli-truncate: 2.1.0
       clone: 2.1.2
       colorette: 2.0.16
+      enquirer: 2.3.6
       log-update: 4.0.0
       p-map: 4.0.0
       rxjs: 7.4.0
