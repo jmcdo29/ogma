@@ -90,7 +90,7 @@
     "apollo-server-express": "3.5.0",
     "apollo-server-fastify": "3.5.0",
     "bunyan": "^1.8.15",
-    "class-transformer": "^0.4.0",
+    "class-transformer": "0.5.0",
     "class-validator": "^0.13.0",
     "clsx": "^1.1.1",
     "codeclimate-test-reporter": "^0.5.1",
