@@ -70,7 +70,7 @@ importers:
       husky: ^7.0.2
       jest: ^27.1.0
       kafkajs: ^1.15.0
-      lint-staged: 12.1.1
+      lint-staged: 12.1.2
       module-alias: ^2.2.2
       morgan: ^1.10.0
       mqtt: ^4.2.8
@@ -157,7 +157,7 @@ importers:
       husky: 7.0.4
       jest: 27.3.1
       kafkajs: 1.15.0
-      lint-staged: 12.1.1
+      lint-staged: 12.1.2
       module-alias: 2.2.2
       morgan: 1.10.0
       mqtt: 4.2.8
@@ -11961,8 +11961,8 @@ packages:
     resolution: {integrity: sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=}
     dev: true
 
-  /lint-staged/12.1.1:
-    resolution: {integrity: sha512-zOmteWgJwTfZXcj6vXSnjeDDI/fvkKI2KOqRdc84ZFc2ZMDKXEeiTITtaskE3HiNrHraFmYVBpnMSZHngLoogA==}
+  /lint-staged/12.1.2:
+    resolution: {integrity: sha512-bSMcQVqMW98HLLLR2c2tZ+vnDCnx4fd+0QJBQgN/4XkdspGRPc8DGp7UuOEBe1ApCfJ+wXXumYnJmU+wDo7j9A==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
