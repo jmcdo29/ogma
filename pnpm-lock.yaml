@@ -190,14 +190,14 @@ importers:
 
   packages/cli:
     specifiers:
-      '@nestjs/common': 8.2.2
-      '@nestjs/core': 8.2.2
+      '@nestjs/common': 8.2.3
+      '@nestjs/core': 8.2.3
       nest-commander: ^2.0.0
       reflect-metadata: 0.1.13
     dependencies:
-      '@nestjs/common': 8.2.2_7694782ac3f9798f759026b88f2a6265
-      '@nestjs/core': 8.2.2_5cfbf281a5f4e29ecdeef133671c0a56
-      nest-commander: 2.3.3_85c4c0e028995b7d710082e2a98cc178
+      '@nestjs/common': 8.2.3_7694782ac3f9798f759026b88f2a6265
+      '@nestjs/core': 8.2.3_588f28fdb046592638842b65634896db
+      nest-commander: 2.3.3_4e195730d90113ce1578bd999274c7a8
       reflect-metadata: 0.1.13
 
   packages/common:
@@ -3396,8 +3396,8 @@ packages:
       - debug
     dev: true
 
-  /@nestjs/common/8.2.2_7694782ac3f9798f759026b88f2a6265:
-    resolution: {integrity: sha512-Qy8GUFwV34YCw34fbFkyBi9bhDPPBacVhZMUxVUmnoqBL8GEdSpPDzW6epbl+IF1Q6TACK5L8WvTkd5V3/Eifw==}
+  /@nestjs/common/8.2.3_7694782ac3f9798f759026b88f2a6265:
+    resolution: {integrity: sha512-slXVVMc9tZG6ZaARXkTUsSqZbkEcc0hVKb4mPLxS9mjXmDspUleGQakZ5OzniiEWqzO299BVlEbm6TGyoGbpNg==}
     peerDependencies:
       cache-manager: '*'
       class-transformer: '*'
@@ -3457,8 +3457,8 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@nestjs/core/8.2.2_5cfbf281a5f4e29ecdeef133671c0a56:
-    resolution: {integrity: sha512-89ChFrPfePOlcEqpCYU+tExsGZTXxyieVIrRZXqxxbxhS6sf2VqF84zXK9NhVqISZdDwGmDTy+yKu0k2h/FHVA==}
+  /@nestjs/core/8.2.3_588f28fdb046592638842b65634896db:
+    resolution: {integrity: sha512-CP/Z+uTEdblTZQXRf+xvZHvESZ6v2vxX/YaRcpJDv/ytgxxOafmOJ/RDKSzNOGBkt8kVwYNFpWXzzll4P5AJ0g==}
     requiresBuild: true
     peerDependencies:
       '@nestjs/common': ^8.0.0
@@ -3475,7 +3475,7 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': 8.2.2_7694782ac3f9798f759026b88f2a6265
+      '@nestjs/common': 8.2.3_7694782ac3f9798f759026b88f2a6265
       '@nestjs/microservices': 8.1.2_94ac50c85226c6049c39e5a1348d8dd4
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
@@ -5749,7 +5749,7 @@ packages:
   /axios/0.24.0:
     resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
     dependencies:
-      follow-redirects: 1.14.5
+      follow-redirects: 1.14.5_debug@4.3.2
     transitivePeerDependencies:
       - debug
 
@@ -9258,7 +9258,7 @@ packages:
     resolution: {integrity: sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==}
     dev: true
 
-  /follow-redirects/1.14.5:
+  /follow-redirects/1.14.5_debug@4.3.2:
     resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -9266,6 +9266,8 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dependencies:
+      debug: 4.3.2_supports-color@6.1.0
 
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
@@ -10242,7 +10244,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.5
+      follow-redirects: 1.14.5_debug@4.3.2
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -12938,15 +12940,15 @@ packages:
       nest-commander: 2.3.3_bbf59b1cbf49bba2b2f47e404ee3cb27
     dev: true
 
-  /nest-commander/2.3.3_85c4c0e028995b7d710082e2a98cc178:
+  /nest-commander/2.3.3_4e195730d90113ce1578bd999274c7a8:
     resolution: {integrity: sha512-VzYVgJhGff+Td/FjaENwud3lhm3MHfRy8I3/OpDGmqwOfmMWHSkVd1aPVi3CqIUozGbH4KNrh9uw7TCQHld9uw==}
     peerDependencies:
       '@nestjs/common': ^8.0.0
       '@nestjs/core': ^8.0.0
     dependencies:
       '@golevelup/nestjs-discovery': 2.3.1
-      '@nestjs/common': 8.2.2_7694782ac3f9798f759026b88f2a6265
-      '@nestjs/core': 8.2.2_5cfbf281a5f4e29ecdeef133671c0a56
+      '@nestjs/common': 8.2.3_7694782ac3f9798f759026b88f2a6265
+      '@nestjs/core': 8.2.3_588f28fdb046592638842b65634896db
       commander: 8.2.0
       inquirer: 8.2.0
     dev: false
