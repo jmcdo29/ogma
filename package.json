@@ -43,7 +43,7 @@
     "deploy": "nx deploy docs"
   },
   "devDependencies": {
-    "@apollo/gateway": "0.44.0",
+    "@apollo/gateway": "0.44.1",
     "@changesets/cli": "^2.17.0",
     "@commitlint/cli": "15.0.0",
     "@commitlint/config-conventional": "15.0.0",
