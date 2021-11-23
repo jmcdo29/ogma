@@ -89,7 +89,7 @@ importers:
       socket.io: 4.4.0
       socket.io-client: 4.4.0
       ts-jest: ^27.0.5
-      ts-morph: 13.0.1
+      ts-morph: 13.0.2
       typescript: ^4.4.2
       url-loader: ^4.1.1
       winston: ^3.3.3
@@ -110,7 +110,7 @@ importers:
       '@mdx-js/react': 1.6.22_react@17.0.2
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
-      '@nestjs/graphql': 9.1.1_0c3e05f12d301f25e8c26992a8191cd2
+      '@nestjs/graphql': 9.1.1_fec05319bb571cceffde40f943ec3be5
       '@nestjs/microservices': 8.1.2_94ac50c85226c6049c39e5a1348d8dd4
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/platform-fastify': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
@@ -176,7 +176,7 @@ importers:
       socket.io: 4.4.0
       socket.io-client: 4.4.0
       ts-jest: 27.0.7_b626c82449d36ccae0aa7169b15092e6
-      ts-morph: 13.0.1
+      ts-morph: 13.0.2
       typescript: 4.4.4
       url-loader: 4.1.1
       winston: 3.3.3
@@ -3490,7 +3490,7 @@ packages:
       uuid: 8.3.2
     dev: false
 
-  /@nestjs/graphql/9.1.1_0c3e05f12d301f25e8c26992a8191cd2:
+  /@nestjs/graphql/9.1.1_fec05319bb571cceffde40f943ec3be5:
     resolution: {integrity: sha512-NHMR+VRHFeHBa8/ACy9RnyMVv/581VvXDWenpPFW5RFnZiy4aNeUDCv6sdCh/EydE4CpWzmdliuUei+NrlLWEQ==}
     peerDependencies:
       '@apollo/federation': ^0.26.0 || ^0.27.0 || ^0.29.0 || ^0.33.0
@@ -3538,7 +3538,7 @@ packages:
       normalize-path: 3.0.0
       reflect-metadata: 0.1.13
       subscriptions-transport-ws: 0.9.19_graphql@15.7.2
-      ts-morph: 13.0.1
+      ts-morph: 13.0.2
       tslib: 2.3.1
       uuid: 8.3.2
       ws: 8.2.3
@@ -4327,8 +4327,8 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: true
 
-  /@ts-morph/common/0.12.1:
-    resolution: {integrity: sha512-V2JI295qFTusoR0vlFQb5ddNUlYuaLWIvNBU3uZFQgrABYSoEkKzdJabvsL4iPpgAR+CF+gTjepBK/s0KyaNAw==}
+  /@ts-morph/common/0.12.2:
+    resolution: {integrity: sha512-m5KjptpIf1K0t0QL38uE+ol1n+aNn9MgRq++G3Zym1FlqfN+rThsXlp3cAgib14pIeXF7jk3UtJQOviwawFyYg==}
     dependencies:
       fast-glob: 3.2.7
       minimatch: 3.0.4
@@ -9267,18 +9267,6 @@ packages:
       debug:
         optional: true
 
-  /follow-redirects/1.14.5_debug@4.3.2:
-    resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.2_supports-color@6.1.0
-    dev: true
-
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -10254,7 +10242,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.5_debug@4.3.2
+      follow-redirects: 1.14.5
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -16965,10 +16953,10 @@ packages:
       typescript: 4.4.4
     dev: true
 
-  /ts-morph/13.0.1:
-    resolution: {integrity: sha512-nJQm/Yz8utWAqieZHkY5Phphzi62kulNEOiliqnarzGpPBrWSsdn2Pz+DP7gulwyg/LRaFifvtSAsbvxylwAnw==}
+  /ts-morph/13.0.2:
+    resolution: {integrity: sha512-SjeeHaRf/mFsNeR3KTJnx39JyEOzT4e+DX28gQx5zjzEOuFs2eGrqeN2PLKs/+AibSxPmzV7RD8nJVKmFJqtLA==}
     dependencies:
-      '@ts-morph/common': 0.12.1
+      '@ts-morph/common': 0.12.2
       code-block-writer: 11.0.0
     dev: true
 
