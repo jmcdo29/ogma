@@ -47,7 +47,7 @@ importers:
       '@types/jest': 27.0.3
       '@types/morgan': ^1.9.3
       '@types/node': 16.11.10
-      '@types/ws': 8.2.0
+      '@types/ws': 8.2.1
       '@typescript-eslint/eslint-plugin': 5.4.0
       '@typescript-eslint/parser': 5.4.0
       amqp-connection-manager: ^3.6.0
@@ -134,7 +134,7 @@ importers:
       '@types/jest': 27.0.3
       '@types/morgan': 1.9.3
       '@types/node': 16.11.10
-      '@types/ws': 8.2.0
+      '@types/ws': 8.2.1
       '@typescript-eslint/eslint-plugin': 5.4.0_8fbd82ef37e23da98dfca9805cf945cd
       '@typescript-eslint/parser': 5.4.0_eslint@8.3.0+typescript@4.4.4
       amqp-connection-manager: 3.7.0_amqplib@0.8.0
@@ -4619,8 +4619,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /@types/ws/8.2.0:
-    resolution: {integrity: sha512-cyeefcUCgJlEk+hk2h3N+MqKKsPViQgF5boi9TTHSK+PoR9KWBb/C5ccPcDyAqgsbAYHTwulch725DV84+pSpg==}
+  /@types/ws/8.2.1:
+    resolution: {integrity: sha512-SqQ+LhVZaJi7c7sYVkjWALDigi/Wy7h7Iu72gkQp8Y8OWw/DddEVBrTSKu86pQftV2+Gm8lYM61hadPKqyaIeg==}
     dependencies:
       '@types/node': 16.11.10
     dev: true
