@@ -32,9 +32,9 @@ importers:
       '@nestjs/testing': ^8.0.6
       '@nestjs/websockets': ^8.0.6
       '@nrwl/cli': ^12
-      '@nrwl/eslint-plugin-nx': 12.10.0
-      '@nrwl/jest': 12.10.0
-      '@nrwl/linter': 12.10.0
+      '@nrwl/eslint-plugin-nx': 12.10.1
+      '@nrwl/jest': 12.10.1
+      '@nrwl/linter': 12.10.1
       '@nrwl/nest': ^12.8.0
       '@nrwl/node': ^12.8.0
       '@nrwl/nx-cloud': latest
@@ -119,9 +119,9 @@ importers:
       '@nestjs/testing': 8.1.2_1e35032b61d47d10f6f59af9cb5bf3b9
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
       '@nrwl/cli': 12.10.0
-      '@nrwl/eslint-plugin-nx': 12.10.0_14fea1d77e5f78c42d51ab430a4b2c34
-      '@nrwl/jest': 12.10.0
-      '@nrwl/linter': 12.10.0
+      '@nrwl/eslint-plugin-nx': 12.10.1_14fea1d77e5f78c42d51ab430a4b2c34
+      '@nrwl/jest': 12.10.1
+      '@nrwl/linter': 12.10.1
       '@nrwl/nest': 12.10.0_prettier@2.4.1+typescript@4.4.4
       '@nrwl/node': 12.10.0_prettier@2.4.1+typescript@4.4.4
       '@nrwl/nx-cloud': 12.5.4
@@ -975,7 +975,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.14.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3_@babel+core@7.12.9
       '@babel/plugin-transform-parameters': 7.16.0_@babel+core@7.12.9
     dev: true
@@ -3142,7 +3142,7 @@ packages:
     dependencies:
       '@bcoe/v8-coverage': 0.2.3
       '@jest/console': 27.3.1
-      '@jest/test-result': 27.2.2
+      '@jest/test-result': 27.3.1
       '@jest/transform': 27.3.1
       '@jest/types': 27.2.5
       chalk: 4.1.2
@@ -3156,8 +3156,8 @@ packages:
       istanbul-lib-source-maps: 4.0.1
       istanbul-reports: 3.0.5
       jest-haste-map: 27.3.1
-      jest-resolve: 27.2.2
-      jest-util: 27.2.0
+      jest-resolve: 27.3.1
+      jest-util: 27.3.1
       jest-worker: 27.3.1
       slash: 3.0.0
       source-map: 0.6.1
@@ -3788,6 +3788,17 @@ packages:
       yargs-parser: 20.0.0
     dev: true
 
+  /@nrwl/cli/12.10.1:
+    resolution: {integrity: sha512-fFwjQ4/Qb7GEkUR8vtiKzDDvd6UtGYsqTvL5sN3pT9Y3SNbeVnriKyDmfG2towoxornMxiKSN/g8VHp6udlK1w==}
+    hasBin: true
+    dependencies:
+      '@nrwl/tao': 12.10.1
+      chalk: 4.1.0
+      v8-compile-cache: 2.3.0
+      yargs: 15.4.1
+      yargs-parser: 20.0.0
+    dev: true
+
   /@nrwl/devkit/12.10.0:
     resolution: {integrity: sha512-we0K5Hn48BXh77SV5GVSPfRJeIHNCVFSn+feLbnKz3G60Tk3wFEEFhDABA8cCfTKDxMESSjZoWBy4ZcVg0EX0g==}
     dependencies:
@@ -3799,14 +3810,25 @@ packages:
       tslib: 2.3.1
     dev: true
 
-  /@nrwl/eslint-plugin-nx/12.10.0_14fea1d77e5f78c42d51ab430a4b2c34:
-    resolution: {integrity: sha512-bm0PjAYWuVw2b6fJ0oBSyGvtVIwhXXrznQ5H8kiwoHU3H58W4gu+OSnaMjDXT5ZCUsuTEV1fmI7GynJLGBtzDw==}
+  /@nrwl/devkit/12.10.1:
+    resolution: {integrity: sha512-l8S5uNVONiaHN0ieaFsx1BwVn2NluxhORzIVd1vjxP/f5yR302nHMG2MKhjkWd0DPjI7rnngaWC3WsH06SptWg==}
+    dependencies:
+      '@nrwl/tao': 12.10.1
+      ejs: 3.1.6
+      ignore: 5.1.8
+      rxjs: 6.6.7
+      semver: 7.3.4
+      tslib: 2.3.1
+    dev: true
+
+  /@nrwl/eslint-plugin-nx/12.10.1_14fea1d77e5f78c42d51ab430a4b2c34:
+    resolution: {integrity: sha512-PARz0xnGDIql2c0l5GgsLi32bIK762H09t4ni7/Et9xS+WjG9LlkmcrRPLkiDCTjlmum/qmD+agM4iMJkhTuwA==}
     peerDependencies:
       '@typescript-eslint/parser': ~4.31.1
       eslint-config-prettier: ^8.1.0
     dependencies:
-      '@nrwl/devkit': 12.10.0
-      '@nrwl/workspace': 12.10.0_prettier@2.4.1+ts-node@9.1.1
+      '@nrwl/devkit': 12.10.1
+      '@nrwl/workspace': 12.10.1_prettier@2.4.1+ts-node@9.1.1
       '@typescript-eslint/experimental-utils': 4.31.2_eslint@8.4.0+typescript@4.4.4
       '@typescript-eslint/parser': 5.6.0_eslint@8.4.0+typescript@4.4.4
       confusing-browser-globals: 1.0.10
@@ -3846,12 +3868,34 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@nrwl/jest/12.10.0_ts-node@9.1.1:
-    resolution: {integrity: sha512-Tqrl/d6y+fGWV9j8bCReLhhfnioAA8yPC9Y6EUevxPuuuW0AUwRZp8slhx7mCiWNh9nLCkMO7PcwD+4L39kzjQ==}
+  /@nrwl/jest/12.10.1:
+    resolution: {integrity: sha512-ta7HpHn9+fdOtCXmJJWkLXO7ggD6FcusjzOsmtlMy2LIZG9hp4CjtEecdImmtIR2zvYBCBQfk+4mos8JF1qfyA==}
     dependencies:
       '@jest/reporters': 27.2.2
       '@jest/test-result': 27.2.2
-      '@nrwl/devkit': 12.10.0
+      '@nrwl/devkit': 12.10.1
+      chalk: 4.1.0
+      identity-obj-proxy: 3.0.0
+      jest-config: 27.2.2
+      jest-resolve: 27.2.2
+      jest-util: 27.2.0
+      rxjs: 6.6.7
+      tslib: 2.3.1
+    transitivePeerDependencies:
+      - bufferutil
+      - canvas
+      - node-notifier
+      - supports-color
+      - ts-node
+      - utf-8-validate
+    dev: true
+
+  /@nrwl/jest/12.10.1_ts-node@9.1.1:
+    resolution: {integrity: sha512-ta7HpHn9+fdOtCXmJJWkLXO7ggD6FcusjzOsmtlMy2LIZG9hp4CjtEecdImmtIR2zvYBCBQfk+4mos8JF1qfyA==}
+    dependencies:
+      '@jest/reporters': 27.2.2
+      '@jest/test-result': 27.2.2
+      '@nrwl/devkit': 12.10.1
       chalk: 4.1.0
       identity-obj-proxy: 3.0.0
       jest-config: 27.2.2_ts-node@9.1.1
@@ -3886,11 +3930,29 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@nrwl/linter/12.10.0_ts-node@9.1.1:
-    resolution: {integrity: sha512-GULnMm3vMh1QEq6QUzZWV+AYB2NlZnov0Pj6tdtqXTjS+mOXkLYP/k8Vfb4ZEPVNSwHyjRZY08A5sbeRnurD2w==}
+  /@nrwl/linter/12.10.1:
+    resolution: {integrity: sha512-bOgEPWghTzqPZALhay18h9b0IHw7n+W+v+i9jWyVkl3lQjA4GVcJKspj5UMXGQd8Y1LEJhFc9BfuoIYs9c/fzQ==}
     dependencies:
-      '@nrwl/devkit': 12.10.0
-      '@nrwl/jest': 12.10.0_ts-node@9.1.1
+      '@nrwl/devkit': 12.10.1
+      '@nrwl/jest': 12.10.1
+      glob: 7.1.4
+      minimatch: 3.0.4
+      tmp: 0.2.1
+      tslib: 2.3.1
+    transitivePeerDependencies:
+      - bufferutil
+      - canvas
+      - node-notifier
+      - supports-color
+      - ts-node
+      - utf-8-validate
+    dev: true
+
+  /@nrwl/linter/12.10.1_ts-node@9.1.1:
+    resolution: {integrity: sha512-bOgEPWghTzqPZALhay18h9b0IHw7n+W+v+i9jWyVkl3lQjA4GVcJKspj5UMXGQd8Y1LEJhFc9BfuoIYs9c/fzQ==}
+    dependencies:
+      '@nrwl/devkit': 12.10.1
+      '@nrwl/jest': 12.10.1_ts-node@9.1.1
       glob: 7.1.4
       minimatch: 3.0.4
       tmp: 0.2.1
@@ -3993,6 +4055,23 @@ packages:
       yargs-parser: 20.0.0
     dev: true
 
+  /@nrwl/tao/12.10.1:
+    resolution: {integrity: sha512-Fg6JjMCF7hM0N4i3bEuj8YxInczYmk0PrfzY3s1n5SJDViy6koqkZFpC3nFOmRtqZy9C+ghmVGPh8Zm3dT56ag==}
+    hasBin: true
+    dependencies:
+      chalk: 4.1.0
+      enquirer: 2.3.6
+      fs-extra: 9.1.0
+      jsonc-parser: 3.0.0
+      nx: 12.10.1
+      rxjs: 6.6.7
+      rxjs-for-await: 0.0.2_rxjs@6.6.7
+      semver: 7.3.4
+      tmp: 0.2.1
+      tslib: 2.3.1
+      yargs-parser: 20.0.0
+    dev: true
+
   /@nrwl/workspace/12.10.0_prettier@2.4.1:
     resolution: {integrity: sha512-3efkh/0DEOmQXnA2SlBcEk21QiM0vPaJt73CiYnocm1oy7/ngZDyhxYFxOJkVtsfRvR69Etj2JLonbIWa4Za5w==}
     peerDependencies:
@@ -4033,15 +4112,15 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@nrwl/workspace/12.10.0_prettier@2.4.1+ts-node@9.1.1:
-    resolution: {integrity: sha512-3efkh/0DEOmQXnA2SlBcEk21QiM0vPaJt73CiYnocm1oy7/ngZDyhxYFxOJkVtsfRvR69Etj2JLonbIWa4Za5w==}
+  /@nrwl/workspace/12.10.1_prettier@2.4.1+ts-node@9.1.1:
+    resolution: {integrity: sha512-14tkbJ2xYnKg3ZXUp+Uul+8uKLhzwFSq53vDg0qSMOszsRdw3ukgFvQHAUwVEDtQ4kNJtmUDaTqIRUE//6UCEQ==}
     peerDependencies:
       prettier: ^2.3.0
     dependencies:
-      '@nrwl/cli': 12.10.0
-      '@nrwl/devkit': 12.10.0
-      '@nrwl/jest': 12.10.0_ts-node@9.1.1
-      '@nrwl/linter': 12.10.0_ts-node@9.1.1
+      '@nrwl/cli': 12.10.1
+      '@nrwl/devkit': 12.10.1
+      '@nrwl/jest': 12.10.1_ts-node@9.1.1
+      '@nrwl/linter': 12.10.1_ts-node@9.1.1
       '@parcel/watcher': 2.0.0-alpha.11
       chalk: 4.1.0
       chokidar: 3.5.2
@@ -11165,9 +11244,9 @@ packages:
       jest-get-type: 27.3.1
       jest-jasmine2: 27.3.1
       jest-regex-util: 27.0.6
-      jest-resolve: 27.2.2
+      jest-resolve: 27.3.1
       jest-runner: 27.3.1
-      jest-util: 27.2.0
+      jest-util: 27.3.1
       jest-validate: 27.3.1
       micromatch: 4.0.4
       pretty-format: 27.3.1
@@ -11202,9 +11281,9 @@ packages:
       jest-get-type: 27.3.1
       jest-jasmine2: 27.3.1
       jest-regex-util: 27.0.6
-      jest-resolve: 27.2.2
+      jest-resolve: 27.3.1
       jest-runner: 27.3.1
-      jest-util: 27.2.0
+      jest-util: 27.3.1
       jest-validate: 27.3.1
       micromatch: 4.0.4
       pretty-format: 27.3.1
@@ -11453,7 +11532,7 @@ packages:
       graceful-fs: 4.2.8
       jest-haste-map: 27.3.1
       jest-pnp-resolver: 1.2.2_jest-resolve@27.2.2
-      jest-util: 27.2.0
+      jest-util: 27.3.1
       jest-validate: 27.3.1
       resolve: 1.20.0
       slash: 3.0.0
@@ -13165,7 +13244,14 @@ packages:
     resolution: {integrity: sha512-LpCfZCWsVEtmD2SI1j2KRaw1uIyn4DJ3eRzsjnDYitbq38aORpkvYO+L0zVMZRNDSYSRGTsuj0nHCS3OOxK/Cg==}
     hasBin: true
     dependencies:
-      '@nrwl/cli': 12.10.0
+      '@nrwl/cli': 12.10.1
+    dev: true
+
+  /nx/12.10.1:
+    resolution: {integrity: sha512-bDGTsY1waTh7OVLG2YRgTN7dkQ3bWgELGWxFUUdTMUw5+61mnuADGSgGRW75lm9pzBvU2IuSval96JtLxwzt7w==}
+    hasBin: true
+    dependencies:
+      '@nrwl/cli': 12.10.1
     dev: true
 
   /nyc/15.1.0:
@@ -16684,7 +16770,7 @@ packages:
     dependencies:
       commander: 2.20.3
       source-map: 0.6.1
-      source-map-support: 0.5.19
+      source-map-support: 0.5.20
     dev: true
 
   /terser/5.9.0:
