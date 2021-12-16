@@ -70,7 +70,7 @@
     "@nrwl/eslint-plugin-nx": "12.10.1",
     "@nrwl/jest": "12.10.1",
     "@nrwl/linter": "12.10.1",
-    "@nrwl/nest": "^12.8.0",
+    "@nrwl/nest": "^13.3.6",
     "@nrwl/node": "^12.8.0",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/tao": "^12",
