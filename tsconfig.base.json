@@ -8,7 +8,7 @@
     "target": "es2017",
     "sourceMap": false,
     "outDir": "./lib",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "strict": false,
     "noUnusedLocals": false,
     "lib": ["ES7"],

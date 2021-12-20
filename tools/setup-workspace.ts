@@ -30,7 +30,7 @@ const generatePackage = (projectName: string) => {
     options: {
       outputPath: `dist/${projectName}`,
       main: `packages/${projectName}/src/${mainOverrides[projectName] ?? 'index.ts'}`,
-      tsConfig: `packages/${projectName}/tsconfig.build.json`,
+      tsConfig: `packages/${projectName}/tsconfig.json`,
       deleteOutputPath: true,
       packageJson: `packages/${projectName}/package.json`,
       assets: [`packages/${projectName}/*.md`],
