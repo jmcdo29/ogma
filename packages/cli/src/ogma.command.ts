@@ -67,11 +67,15 @@ export class OgmaCommand implements CommandRunner {
   }
 
   private async runForFile(fileName: string, options: { color: boolean }): Promise<void> {
-    const logs = await this.readFile(fileName);
+    const logs = (await this.readFile(fileName)).filter((log) => log.trim().length !== 0);
     if (!logs.every((log) => this.checkOgmaFormat(log))) {
       throw new Error(badFormat);
     }
-    logs.map((log) => JSON.parse(log)).forEach((log: OgmaLog) => this.writeLog(log, options.color));
+    logs
+      .map((log) => {
+        return JSON.parse(log);
+      })
+      .forEach((log: OgmaLog) => this.writeLog(log, options.color));
   }
 
   private async readFile(fileName: string): Promise<string[]> {

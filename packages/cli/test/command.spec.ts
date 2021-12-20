@@ -112,3 +112,22 @@ describe.skip('command line flags', () => {
     );
   });
 });
+
+describe('with blank line', () => {
+  it('should not error when there is a blank line', async () => {
+    jest
+      .spyOn(promises, 'readFile')
+      .mockResolvedValueOnce(
+        Buffer.from(
+          JSON.stringify({ hostname: 'test', level: 'INFO', ool: 'INFO', pid: 1, time: '1' }) +
+            '\n' +
+            JSON.stringify({ hostname: 'test', level: 'INFO', ool: 'INFO', pid: 1, time: '1' }) +
+            '\n' +
+            JSON.stringify({ hostname: 'test', level: 'INFO', ool: 'INFO', pid: 1, time: '1' }) +
+            '\n',
+        ),
+      );
+    await expect(ogmaHydrate(hydrateArgs)).resolves.not.toThrowError();
+    expect(writeSpy).toBeCalledTimes(3);
+  });
+});
