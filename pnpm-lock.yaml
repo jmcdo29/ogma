@@ -8,7 +8,7 @@ importers:
 
   .:
     specifiers:
-      '@apollo/gateway': 0.44.1
+      '@apollo/gateway': 0.45.0
       '@changesets/cli': ^2.17.0
       '@commitlint/cli': 15.0.0
       '@commitlint/config-conventional': 15.0.0
@@ -95,7 +95,7 @@ importers:
       winston: ^3.3.3
       ws: 8.3.0
     devDependencies:
-      '@apollo/gateway': 0.44.1_graphql@15.7.2
+      '@apollo/gateway': 0.45.0_graphql@15.7.2
       '@changesets/cli': 2.17.0
       '@commitlint/cli': 15.0.0
       '@commitlint/config-conventional': 15.0.0
@@ -110,7 +110,7 @@ importers:
       '@mdx-js/react': 1.6.22_react@17.0.2
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
-      '@nestjs/graphql': 9.1.1_fec05319bb571cceffde40f943ec3be5
+      '@nestjs/graphql': 9.1.1_ab39fa8496e54620d96219c9f8d84887
       '@nestjs/microservices': 8.1.2_94ac50c85226c6049c39e5a1348d8dd4
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/platform-fastify': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
@@ -437,15 +437,15 @@ packages:
       lodash.xorby: 4.7.0
     dev: true
 
-  /@apollo/gateway/0.44.1_graphql@15.7.2:
-    resolution: {integrity: sha512-d/6lWbz7hDmaEHucnx3qNmjohH0XENeF0Sok7EuN2mOkQA5NqMA0izGSRQAK5gby6vaxq58tk+nZxyvEocIW3Q==}
+  /@apollo/gateway/0.45.0_graphql@15.7.2:
+    resolution: {integrity: sha512-amfZeJsQC2ETALEJNX4mVkJFiICRSn+WQePkvy5caHIeye1NF1KK6JKtqogfKxUALjFd7n1KOAEDcicJjNEDhg==}
     engines: {node: '>=12.13.0 <17.0'}
     peerDependencies:
       graphql: ^15.7.2
     dependencies:
       '@apollo/core-schema': 0.2.0_graphql@15.7.2
       '@apollo/federation': 0.33.8_graphql@15.7.2
-      '@apollo/query-planner': 0.6.1_graphql@15.7.2
+      '@apollo/query-planner': 0.6.3_graphql@15.7.2
       '@opentelemetry/api': 1.0.3
       '@types/node-fetch': 2.5.12
       apollo-graphql: 0.9.5_graphql@15.7.2
@@ -458,7 +458,7 @@ packages:
       graphql: 15.7.2
       loglevel: 1.7.1
       make-fetch-happen: 8.0.14
-      pretty-format: 26.6.2
+      pretty-format: 27.3.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -483,8 +483,8 @@ packages:
       long: 4.0.0
     dev: true
 
-  /@apollo/query-planner/0.6.1_graphql@15.7.2:
-    resolution: {integrity: sha512-W3kiLRiGps9btB+xNgSvZ+EVRMR3ihi7RHBg8NwQWp/pjDlclhdC24ZxkugC3u4+JBb1zlE9fbgp59AK41YGJA==}
+  /@apollo/query-planner/0.6.3_graphql@15.7.2:
+    resolution: {integrity: sha512-fJBmh3W06u4RIsjFNh2cRa25kDeyqB2WMLVWfUZjF/nqtkKC+/PxwIy/cCKcTYVg3/OteEVAFZwsI+txWRnkeg==}
     engines: {node: '>=12.13.0 <17.0'}
     peerDependencies:
       graphql: ^15.5.3
@@ -493,7 +493,7 @@ packages:
       chalk: 4.1.2
       deep-equal: 2.0.5
       graphql: 15.7.2
-      pretty-format: 26.6.2
+      pretty-format: 27.3.1
     dev: true
 
   /@apollo/subgraph/0.1.5_graphql@15.7.2:
@@ -3270,17 +3270,6 @@ packages:
       - supports-color
     dev: true
 
-  /@jest/types/26.6.2:
-    resolution: {integrity: sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ==}
-    engines: {node: '>= 10.14.2'}
-    dependencies:
-      '@types/istanbul-lib-coverage': 2.0.3
-      '@types/istanbul-reports': 3.0.1
-      '@types/node': 16.11.15
-      '@types/yargs': 15.0.14
-      chalk: 4.1.2
-    dev: true
-
   /@jest/types/27.2.5:
     resolution: {integrity: sha512-nmuM4VuDtCZcY+eTpw+0nvstwReMsjPoj7ZR80/BbixulhLaiX+fbv8oeLW8WZlJMcsGQsTmMKT/iTZu1Uy/lQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
@@ -3490,7 +3479,7 @@ packages:
       uuid: 8.3.2
     dev: false
 
-  /@nestjs/graphql/9.1.1_fec05319bb571cceffde40f943ec3be5:
+  /@nestjs/graphql/9.1.1_ab39fa8496e54620d96219c9f8d84887:
     resolution: {integrity: sha512-NHMR+VRHFeHBa8/ACy9RnyMVv/581VvXDWenpPFW5RFnZiy4aNeUDCv6sdCh/EydE4CpWzmdliuUei+NrlLWEQ==}
     peerDependencies:
       '@apollo/federation': ^0.26.0 || ^0.27.0 || ^0.29.0 || ^0.33.0
@@ -3520,7 +3509,7 @@ packages:
       ts-morph:
         optional: true
     dependencies:
-      '@apollo/gateway': 0.44.1_graphql@15.7.2
+      '@apollo/gateway': 0.45.0_graphql@15.7.2
       '@graphql-tools/merge': 6.2.5_graphql@15.7.2
       '@graphql-tools/schema': 7.1.5_graphql@15.7.2
       '@graphql-tools/utils': 7.10.0_graphql@15.7.2
@@ -4706,12 +4695,6 @@ packages:
 
   /@types/yargs-parser/20.2.1:
     resolution: {integrity: sha512-7tFImggNeNBVMsn0vLrpn1H1uPrUBdnARPTpZoitY37ZrdJREzf7I16tMrlK3hen349gr1NYh8CmZQa7CTG6Aw==}
-    dev: true
-
-  /@types/yargs/15.0.14:
-    resolution: {integrity: sha512-yEJzHoxf6SyQGhBhIYGXQDSCkJjB6HohDShto7m8vaKg9Yp0Yn8+71J9eakh2bnPg6BfsH9PRMhiRTZnd4eXGQ==}
-    dependencies:
-      '@types/yargs-parser': 20.2.1
     dev: true
 
   /@types/yargs/16.0.4:
@@ -14438,16 +14421,6 @@ packages:
     dependencies:
       lodash: 4.17.21
       renderkid: 3.0.0
-    dev: true
-
-  /pretty-format/26.6.2:
-    resolution: {integrity: sha512-7AeGuCYNGmycyQbCqd/3PWH4eOoX/OiCa0uphp57NVTeAGdJGaAliecxwBDHYQCIvrW7aDBZCYeNTP/WX69mkg==}
-    engines: {node: '>= 10'}
-    dependencies:
-      '@jest/types': 26.6.2
-      ansi-regex: 5.0.1
-      ansi-styles: 4.3.0
-      react-is: 17.0.2
     dev: true
 
   /pretty-format/27.3.1:
