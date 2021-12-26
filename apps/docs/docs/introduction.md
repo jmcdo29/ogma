@@ -10,7 +10,7 @@ The first question you'll probably ask yourself is "Why is there another logger 
 
 ## Installation
 
-Installation is pretty simple, choose your favorite package manager and install [`@ogma/logger`](./logger). If you're working with [NestJS](https://docs.nestjs.com) you can install [`@ogma/nestjs-module`](http://localhost:3000/ogma/docs/nestjs/module) instead and `@ogma/logger` will be installed for you.
+Installation is pretty simple, choose your favorite package manager and install [`@ogma/logger`](./logger). If you're working with [NestJS](https://docs.nestjs.com) you can install [`@ogma/nestjs-module`](https://jmcdo29.github.io/ogma/docs/nestjs/module/) instead and `@ogma/logger` will be installed for you.
 
 :::note
 
