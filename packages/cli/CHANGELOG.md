@@ -1,5 +1,11 @@
 # @ogma/cli
 
+## 2.1.5
+
+### Patch Changes
+
+- 7b5781b: CLI no longer dies on newlines
+
 ## 2.1.4
 
 ### Patch Changes
