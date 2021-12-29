@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- d0217ad: patch: remove extra blank line print from `printError`.
+
 ## 3.1.0
 
 ### Minor Changes
