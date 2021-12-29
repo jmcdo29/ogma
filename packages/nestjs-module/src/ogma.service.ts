@@ -152,7 +152,6 @@ export class OgmaService implements LoggerService {
    * @param requestId Optional id of an request
    */
   public printError(error: Error, meta: OgmaServiceMeta = {}): void {
-    this.printMessage('', 'error', meta);
     if (!meta.correlationId && this.requestContext && this.context) {
       meta.correlationId = this.getRequestId(this.requestContext);
     }
