@@ -85,7 +85,7 @@
     "@types/ws": "8.2.2",
     "@typescript-eslint/eslint-plugin": "5.9.0",
     "@typescript-eslint/parser": "5.9.0",
-    "amqp-connection-manager": "^3.6.0",
+    "amqp-connection-manager": "4.0.0",
     "amqplib": "^0.8.0",
     "apollo-server-express": "3.5.0",
     "apollo-server-fastify": "3.5.0",
