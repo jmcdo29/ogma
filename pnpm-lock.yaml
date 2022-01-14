@@ -93,7 +93,7 @@ importers:
       typescript: ^4.4.2
       url-loader: ^4.1.1
       winston: ^3.3.3
-      ws: 8.4.1
+      ws: 8.4.2
     devDependencies:
       '@apollo/gateway': 0.45.1_graphql@15.7.2
       '@changesets/cli': 2.17.0
@@ -180,7 +180,7 @@ importers:
       typescript: 4.4.4
       url-loader: 4.1.1
       winston: 3.3.3
-      ws: 8.4.1
+      ws: 8.4.2
 
   benchmarks/interceptor:
     specifiers: {}
@@ -18291,8 +18291,8 @@ packages:
         optional: true
     dev: true
 
-  /ws/8.4.1:
-    resolution: {integrity: sha512-6eqQ4yN2y2xv8b+BgbkUzPPyfo/PDl3VOWb06ZE0jIFYwuHMsMQN6F7o84yxJYCblfCRAxzpU59We4Rr4w0Luw==}
+  /ws/8.4.2:
+    resolution: {integrity: sha512-Kbk4Nxyq7/ZWqr/tarI9yIt/+iNNFOjBXEWgTb4ydaNHBNGgvf2QHbS9fdfsndfjFlFwEd4Al+mw83YkaD10ZA==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
