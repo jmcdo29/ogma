@@ -301,4 +301,4 @@ Please make sure that any and all pull requests follow the code standards enforc
 
 ## License
 
-NestJS-Ogma has an [MIT License]('./../LICENSE).
+NestJS-Ogma has an [MIT License](https://github.com/jmcdo29/ogma/blob/main/LICENSE).
