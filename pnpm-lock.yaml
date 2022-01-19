@@ -10,7 +10,7 @@ importers:
     specifiers:
       '@apollo/gateway': 0.45.1
       '@changesets/cli': ^2.17.0
-      '@commitlint/cli': 16.0.2
+      '@commitlint/cli': 16.0.3
       '@commitlint/config-conventional': 16.0.0
       '@docusaurus/core': ^2.0.0-alpha.70
       '@docusaurus/preset-classic': ^2.0.0-alpha.70
@@ -97,7 +97,7 @@ importers:
     devDependencies:
       '@apollo/gateway': 0.45.1_graphql@15.7.2
       '@changesets/cli': 2.17.0
-      '@commitlint/cli': 16.0.2_@types+node@16.11.21
+      '@commitlint/cli': 16.0.3_@types+node@16.11.21
       '@commitlint/config-conventional': 16.0.0
       '@docusaurus/core': 2.0.0-beta.8_react-dom@17.0.2+react@17.0.2
       '@docusaurus/preset-classic': 2.0.0-beta.8_react-dom@17.0.2+react@17.0.2
@@ -2045,8 +2045,8 @@ packages:
       prettier: 1.19.1
     dev: true
 
-  /@commitlint/cli/16.0.2_@types+node@16.11.21:
-    resolution: {integrity: sha512-Jt7iaBjoLGC5Nq4dHPTvTYnqPGkElFPBtTXTvBpTgatZApczyjI2plE0oG4GYWPp1suHIS/VdVDOMpPZjGVusg==}
+  /@commitlint/cli/16.0.3_@types+node@16.11.21:
+    resolution: {integrity: sha512-SB1od4/1ek5SShNKjKgUdpqiVNulNVgCkjkV4Zz9zLKrxn3sPcgvXMQNh/wy0/T4WPUVgHrHGcxWYOYXxrGwpg==}
     engines: {node: '>=v12'}
     hasBin: true
     dependencies:
