@@ -50,7 +50,7 @@ importers:
       '@types/ws': 8.2.2
       '@typescript-eslint/eslint-plugin': 5.10.0
       '@typescript-eslint/parser': 5.10.0
-      amqp-connection-manager: 4.0.0
+      amqp-connection-manager: 4.0.1
       amqplib: ^0.8.0
       apollo-server-express: 3.6.1
       apollo-server-fastify: 3.6.1
@@ -111,7 +111,7 @@ importers:
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
       '@nestjs/graphql': 9.1.1_55139e1e5155b2c1b7c1162191d260e0
-      '@nestjs/microservices': 8.1.2_8d1ed2c60361215a2aa43c245df33b7d
+      '@nestjs/microservices': 8.1.2_27888b114d2acc25ca0c6b61b39c5433
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/platform-fastify': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/platform-socket.io': 8.1.2_e78e598718264c136039edb9506b897e
@@ -137,7 +137,7 @@ importers:
       '@types/ws': 8.2.2
       '@typescript-eslint/eslint-plugin': 5.10.0_fd076181b13111cc5515123987ef8061
       '@typescript-eslint/parser': 5.10.0_eslint@8.7.0+typescript@4.4.4
-      amqp-connection-manager: 4.0.0_amqplib@0.8.0
+      amqp-connection-manager: 4.0.1_amqplib@0.8.0
       amqplib: 0.8.0
       apollo-server-express: 3.6.1_express@4.17.1+graphql@15.7.2
       apollo-server-fastify: 3.6.1_fastify@3.22.1+graphql@15.7.2
@@ -3447,7 +3447,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/microservices': 8.1.2_8d1ed2c60361215a2aa43c245df33b7d
+      '@nestjs/microservices': 8.1.2_27888b114d2acc25ca0c6b61b39c5433
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
       '@nuxtjs/opencollective': 0.3.2
@@ -3480,7 +3480,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 8.2.3_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/microservices': 8.1.2_8d1ed2c60361215a2aa43c245df33b7d
+      '@nestjs/microservices': 8.1.2_27888b114d2acc25ca0c6b61b39c5433
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
       '@nuxtjs/opencollective': 0.3.2
@@ -3567,7 +3567,7 @@ packages:
       reflect-metadata: 0.1.13
     dev: true
 
-  /@nestjs/microservices/8.1.2_8d1ed2c60361215a2aa43c245df33b7d:
+  /@nestjs/microservices/8.1.2_27888b114d2acc25ca0c6b61b39c5433:
     resolution: {integrity: sha512-7BnKIa3+w6a/1vJO5euE+RTP6ejwlpGRdoAQ64BTpReHxboFzX7C4Zb6cnM84x1AIl/xe8x+fDoUztxJn4LSiA==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -3607,7 +3607,7 @@ packages:
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
-      amqp-connection-manager: 4.0.0_amqplib@0.8.0
+      amqp-connection-manager: 4.0.1_amqplib@0.8.0
       amqplib: 0.8.0
       iterare: 1.2.1
       json-socket: 0.3.0
@@ -3718,7 +3718,7 @@ packages:
       optional: 0.1.4
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
-      '@nestjs/microservices': 8.1.2_8d1ed2c60361215a2aa43c245df33b7d
+      '@nestjs/microservices': 8.1.2_27888b114d2acc25ca0c6b61b39c5433
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       tslib: 2.3.1
     dev: true
@@ -5388,8 +5388,8 @@ packages:
     resolution: {integrity: sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=}
     dev: true
 
-  /amqp-connection-manager/4.0.0_amqplib@0.8.0:
-    resolution: {integrity: sha512-qG/ooVZ40RUvUzZYDAZrEJO1T1+YvOMWq5SK1DHrJXjM7qSrGEKhrGtAiijhJomyvBBlPku2wLsc4lNobIVdSw==}
+  /amqp-connection-manager/4.0.1_amqplib@0.8.0:
+    resolution: {integrity: sha512-3PSpV0gzTzSe4myVZ1RPQ0g0mR5UWr4QUihCgkNoZBEFflCVdeidZxL9x8/9A3H6A3TH5YQPPpfqOtBrohwqSw==}
     engines: {node: '>=10.0.0', npm: '>5.0.0'}
     peerDependencies:
       amqplib: '*'
@@ -9428,18 +9428,6 @@ packages:
       debug:
         optional: true
 
-  /follow-redirects/1.14.5_debug@4.3.3:
-    resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.3_supports-color@6.1.0
-    dev: true
-
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -10410,7 +10398,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.5_debug@4.3.3
+      follow-redirects: 1.14.5
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
