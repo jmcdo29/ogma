@@ -17,7 +17,8 @@
             "parallel": false
           }
         }
-      }
+      },
+      "implicitDependencies": []
     },
     "benchmark-logger": {
       "root": "benchmarks/logger",
@@ -35,7 +36,8 @@
             "parallel": false
           }
         }
-      }
+      },
+      "implicitDependencies": []
     },
     "cli": {
       "root": "packages/cli",
@@ -60,7 +62,8 @@
             "codeCoverage": true
           }
         }
-      }
+      },
+      "implicitDependencies": []
     },
     "common": {
       "root": "packages/common",
@@ -78,7 +81,464 @@
             "assets": ["packages/common/*.md"]
           }
         }
-      }
+      },
+      "implicitDependencies": []
+    },
+    "docs": {
+      "projectType": "application",
+      "root": "apps/docs",
+      "sourceRoot": "apps/docs/src",
+      "targets": {
+        "build": {
+          "executor": "@nx-plus/docusaurus:browser",
+          "options": {
+            "outputPath": "dist/apps/docs"
+          }
+        },
+        "serve": {
+          "executor": "@nx-plus/docusaurus:dev-server",
+          "options": {
+            "port": 3000
+          }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "pnpm docusaurus deploy --out-dir dist/apps/docs --config apps/docs/docusaurus.config.js --skip-build"
+          }
+        }
+      },
+      "tags": []
+    },
+    "integration": {
+      "root": "integration",
+      "type": "library",
+      "sourceRoot": "integration/src",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "integration/jest.config.js"
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "logger": {
+      "root": "packages/logger",
+      "type": "library",
+      "sourceRoot": "packages/logger/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/logger",
+            "main": "packages/logger/src/index.ts",
+            "tsConfig": "packages/logger/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/logger/package.json",
+            "assets": ["packages/logger/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/logger/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "nestjs-module": {
+      "root": "packages/nestjs-module",
+      "type": "library",
+      "sourceRoot": "packages/nestjs-module/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/nestjs-module",
+            "main": "packages/nestjs-module/src/index.ts",
+            "tsConfig": "packages/nestjs-module/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/nestjs-module/package.json",
+            "assets": ["packages/nestjs-module/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/nestjs-module/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-express": {
+      "root": "packages/platform-express",
+      "type": "library",
+      "sourceRoot": "packages/platform-express/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-express",
+            "main": "packages/platform-express/src/index.ts",
+            "tsConfig": "packages/platform-express/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-express/package.json",
+            "assets": ["packages/platform-express/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-express/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-fastify": {
+      "root": "packages/platform-fastify",
+      "type": "library",
+      "sourceRoot": "packages/platform-fastify/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-fastify",
+            "main": "packages/platform-fastify/src/index.ts",
+            "tsConfig": "packages/platform-fastify/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-fastify/package.json",
+            "assets": ["packages/platform-fastify/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-fastify/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-graphql": {
+      "root": "packages/platform-graphql",
+      "type": "library",
+      "sourceRoot": "packages/platform-graphql/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-graphql",
+            "main": "packages/platform-graphql/src/index.ts",
+            "tsConfig": "packages/platform-graphql/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-graphql/package.json",
+            "assets": ["packages/platform-graphql/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-graphql/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-graphql-fastify": {
+      "root": "packages/platform-graphql-fastify",
+      "type": "library",
+      "sourceRoot": "packages/platform-graphql-fastify/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-graphql-fastify",
+            "main": "packages/platform-graphql-fastify/src/index.ts",
+            "tsConfig": "packages/platform-graphql-fastify/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-graphql-fastify/package.json",
+            "assets": ["packages/platform-graphql-fastify/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-graphql-fastify/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-grpc": {
+      "root": "packages/platform-grpc",
+      "type": "library",
+      "sourceRoot": "packages/platform-grpc/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-grpc",
+            "main": "packages/platform-grpc/src/index.ts",
+            "tsConfig": "packages/platform-grpc/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-grpc/package.json",
+            "assets": ["packages/platform-grpc/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-grpc/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-kafka": {
+      "root": "packages/platform-kafka",
+      "type": "library",
+      "sourceRoot": "packages/platform-kafka/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-kafka",
+            "main": "packages/platform-kafka/src/index.ts",
+            "tsConfig": "packages/platform-kafka/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-kafka/package.json",
+            "assets": ["packages/platform-kafka/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-kafka/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-mqtt": {
+      "root": "packages/platform-mqtt",
+      "type": "library",
+      "sourceRoot": "packages/platform-mqtt/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-mqtt",
+            "main": "packages/platform-mqtt/src/index.ts",
+            "tsConfig": "packages/platform-mqtt/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-mqtt/package.json",
+            "assets": ["packages/platform-mqtt/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-mqtt/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-nats": {
+      "root": "packages/platform-nats",
+      "type": "library",
+      "sourceRoot": "packages/platform-nats/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-nats",
+            "main": "packages/platform-nats/src/index.ts",
+            "tsConfig": "packages/platform-nats/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-nats/package.json",
+            "assets": ["packages/platform-nats/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-nats/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-rabbitmq": {
+      "root": "packages/platform-rabbitmq",
+      "type": "library",
+      "sourceRoot": "packages/platform-rabbitmq/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-rabbitmq",
+            "main": "packages/platform-rabbitmq/src/index.ts",
+            "tsConfig": "packages/platform-rabbitmq/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-rabbitmq/package.json",
+            "assets": ["packages/platform-rabbitmq/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-rabbitmq/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-redis": {
+      "root": "packages/platform-redis",
+      "type": "library",
+      "sourceRoot": "packages/platform-redis/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-redis",
+            "main": "packages/platform-redis/src/index.ts",
+            "tsConfig": "packages/platform-redis/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-redis/package.json",
+            "assets": ["packages/platform-redis/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-redis/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-socket.io": {
+      "root": "packages/platform-socket.io",
+      "type": "library",
+      "sourceRoot": "packages/platform-socket.io/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-socket.io",
+            "main": "packages/platform-socket.io/src/index.ts",
+            "tsConfig": "packages/platform-socket.io/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-socket.io/package.json",
+            "assets": ["packages/platform-socket.io/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-socket.io/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-tcp": {
+      "root": "packages/platform-tcp",
+      "type": "library",
+      "sourceRoot": "packages/platform-tcp/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-tcp",
+            "main": "packages/platform-tcp/src/index.ts",
+            "tsConfig": "packages/platform-tcp/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-tcp/package.json",
+            "assets": ["packages/platform-tcp/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-tcp/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "platform-ws": {
+      "root": "packages/platform-ws",
+      "type": "library",
+      "sourceRoot": "packages/platform-ws/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/platform-ws",
+            "main": "packages/platform-ws/src/index.ts",
+            "tsConfig": "packages/platform-ws/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/platform-ws/package.json",
+            "assets": ["packages/platform-ws/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/platform-ws/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
+    },
+    "styler": {
+      "root": "packages/styler",
+      "type": "library",
+      "sourceRoot": "packages/styler/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/styler",
+            "main": "packages/styler/src/index.ts",
+            "tsConfig": "packages/styler/tsconfig.build.json",
+            "deleteOutputPath": true,
+            "packageJson": "packages/styler/package.json",
+            "assets": ["packages/styler/*.md"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "packages/styler/jest.config.js",
+            "codeCoverage": true
+          }
+        }
+      },
+      "implicitDependencies": []
     },
     "tools": {
       "root": "tools",
@@ -124,445 +584,8 @@
             }
           ]
         }
-      }
-    },
-    "integration": {
-      "root": "integration",
-      "type": "library",
-      "sourceRoot": "integration/src",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "integration/jest.config.js"
-          }
-        }
-      }
-    },
-    "logger": {
-      "root": "packages/logger",
-      "type": "library",
-      "sourceRoot": "packages/logger/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/logger",
-            "main": "packages/logger/src/index.ts",
-            "tsConfig": "packages/logger/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/logger/package.json",
-            "assets": ["packages/logger/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/logger/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "nestjs-module": {
-      "root": "packages/nestjs-module",
-      "type": "library",
-      "sourceRoot": "packages/nestjs-module/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/nestjs-module",
-            "main": "packages/nestjs-module/src/index.ts",
-            "tsConfig": "packages/nestjs-module/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/nestjs-module/package.json",
-            "assets": ["packages/nestjs-module/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/nestjs-module/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-express": {
-      "root": "packages/platform-express",
-      "type": "library",
-      "sourceRoot": "packages/platform-express/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-express",
-            "main": "packages/platform-express/src/index.ts",
-            "tsConfig": "packages/platform-express/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-express/package.json",
-            "assets": ["packages/platform-express/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-express/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-fastify": {
-      "root": "packages/platform-fastify",
-      "type": "library",
-      "sourceRoot": "packages/platform-fastify/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-fastify",
-            "main": "packages/platform-fastify/src/index.ts",
-            "tsConfig": "packages/platform-fastify/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-fastify/package.json",
-            "assets": ["packages/platform-fastify/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-fastify/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-graphql": {
-      "root": "packages/platform-graphql",
-      "type": "library",
-      "sourceRoot": "packages/platform-graphql/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-graphql",
-            "main": "packages/platform-graphql/src/index.ts",
-            "tsConfig": "packages/platform-graphql/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-graphql/package.json",
-            "assets": ["packages/platform-graphql/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-graphql/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-graphql-fastify": {
-      "root": "packages/platform-graphql-fastify",
-      "type": "library",
-      "sourceRoot": "packages/platform-graphql-fastify/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-graphql-fastify",
-            "main": "packages/platform-graphql-fastify/src/index.ts",
-            "tsConfig": "packages/platform-graphql-fastify/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-graphql-fastify/package.json",
-            "assets": ["packages/platform-graphql-fastify/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-graphql-fastify/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-grpc": {
-      "root": "packages/platform-grpc",
-      "type": "library",
-      "sourceRoot": "packages/platform-grpc/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-grpc",
-            "main": "packages/platform-grpc/src/index.ts",
-            "tsConfig": "packages/platform-grpc/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-grpc/package.json",
-            "assets": ["packages/platform-grpc/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-grpc/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-kafka": {
-      "root": "packages/platform-kafka",
-      "type": "library",
-      "sourceRoot": "packages/platform-kafka/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-kafka",
-            "main": "packages/platform-kafka/src/index.ts",
-            "tsConfig": "packages/platform-kafka/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-kafka/package.json",
-            "assets": ["packages/platform-kafka/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-kafka/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-mqtt": {
-      "root": "packages/platform-mqtt",
-      "type": "library",
-      "sourceRoot": "packages/platform-mqtt/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-mqtt",
-            "main": "packages/platform-mqtt/src/index.ts",
-            "tsConfig": "packages/platform-mqtt/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-mqtt/package.json",
-            "assets": ["packages/platform-mqtt/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-mqtt/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-nats": {
-      "root": "packages/platform-nats",
-      "type": "library",
-      "sourceRoot": "packages/platform-nats/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-nats",
-            "main": "packages/platform-nats/src/index.ts",
-            "tsConfig": "packages/platform-nats/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-nats/package.json",
-            "assets": ["packages/platform-nats/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-nats/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-rabbitmq": {
-      "root": "packages/platform-rabbitmq",
-      "type": "library",
-      "sourceRoot": "packages/platform-rabbitmq/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-rabbitmq",
-            "main": "packages/platform-rabbitmq/src/index.ts",
-            "tsConfig": "packages/platform-rabbitmq/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-rabbitmq/package.json",
-            "assets": ["packages/platform-rabbitmq/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-rabbitmq/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-redis": {
-      "root": "packages/platform-redis",
-      "type": "library",
-      "sourceRoot": "packages/platform-redis/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-redis",
-            "main": "packages/platform-redis/src/index.ts",
-            "tsConfig": "packages/platform-redis/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-redis/package.json",
-            "assets": ["packages/platform-redis/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-redis/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-socket.io": {
-      "root": "packages/platform-socket.io",
-      "type": "library",
-      "sourceRoot": "packages/platform-socket.io/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-socket.io",
-            "main": "packages/platform-socket.io/src/index.ts",
-            "tsConfig": "packages/platform-socket.io/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-socket.io/package.json",
-            "assets": ["packages/platform-socket.io/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-socket.io/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-tcp": {
-      "root": "packages/platform-tcp",
-      "type": "library",
-      "sourceRoot": "packages/platform-tcp/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-tcp",
-            "main": "packages/platform-tcp/src/index.ts",
-            "tsConfig": "packages/platform-tcp/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-tcp/package.json",
-            "assets": ["packages/platform-tcp/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-tcp/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "platform-ws": {
-      "root": "packages/platform-ws",
-      "type": "library",
-      "sourceRoot": "packages/platform-ws/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/platform-ws",
-            "main": "packages/platform-ws/src/index.ts",
-            "tsConfig": "packages/platform-ws/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/platform-ws/package.json",
-            "assets": ["packages/platform-ws/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/platform-ws/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "styler": {
-      "root": "packages/styler",
-      "type": "library",
-      "sourceRoot": "packages/styler/src",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/styler",
-            "main": "packages/styler/src/index.ts",
-            "tsConfig": "packages/styler/tsconfig.build.json",
-            "deleteOutputPath": true,
-            "packageJson": "packages/styler/package.json",
-            "assets": ["packages/styler/*.md"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/styler/jest.config.js",
-            "codeCoverage": true
-          }
-        }
-      }
-    },
-    "docs": {
-      "projectType": "application",
-      "root": "apps/docs",
-      "sourceRoot": "apps/docs/src",
-      "targets": {
-        "build": {
-          "executor": "@nx-plus/docusaurus:browser",
-          "options": {
-            "outputPath": "dist/apps/docs"
-          }
-        },
-        "serve": {
-          "executor": "@nx-plus/docusaurus:dev-server",
-          "options": {
-            "port": 3000
-          }
-        },
-        "deploy": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "pnpm docusaurus deploy --out-dir dist/apps/docs --config apps/docs/docusaurus.config.js --skip-build"
-          }
-        }
-      }
+      },
+      "implicitDependencies": []
     }
   }
 }
