@@ -83,7 +83,7 @@
     "@types/morgan": "^1.9.3",
     "@types/node": "16.11.21",
     "@types/ws": "8.2.2",
-    "@typescript-eslint/eslint-plugin": "5.10.0",
+    "@typescript-eslint/eslint-plugin": "5.10.1",
     "@typescript-eslint/parser": "5.10.0",
     "amqp-connection-manager": "4.0.1",
     "amqplib": "^0.8.0",
