@@ -23,79 +23,9 @@
         "cacheableOperations": ["build", "test", "lint", "package", "prepare"],
         "strictlyOrderedTargets": ["build", "package", "prepare"],
         "canTrackAnalytics": false,
-        "showUsageWarnings": true
+        "showUsageWarnings": true,
+        "parallel": 1
       }
-    }
-  },
-  "projects": {
-    "benchmark-interceptor": {
-      "implicitDependencies": []
-    },
-    "benchmark-logger": {
-      "implicitDependencies": []
-    },
-    "cli": {
-      "implicitDependencies": []
-    },
-    "common": {
-      "implicitDependencies": []
-    },
-    "tools": {
-      "implicitDependencies": []
-    },
-    "integration": {
-      "implicitDependencies": []
-    },
-    "logger": {
-      "implicitDependencies": []
-    },
-    "nestjs-module": {
-      "implicitDependencies": []
-    },
-    "platform-express": {
-      "implicitDependencies": []
-    },
-    "platform-fastify": {
-      "implicitDependencies": []
-    },
-    "platform-graphql": {
-      "implicitDependencies": []
-    },
-    "platform-graphql-fastify": {
-      "implicitDependencies": []
-    },
-    "platform-grpc": {
-      "implicitDependencies": []
-    },
-    "platform-kafka": {
-      "implicitDependencies": []
-    },
-    "platform-mqtt": {
-      "implicitDependencies": []
-    },
-    "platform-nats": {
-      "implicitDependencies": []
-    },
-    "platform-rabbitmq": {
-      "implicitDependencies": []
-    },
-    "platform-redis": {
-      "implicitDependencies": []
-    },
-    "platform-socket.io": {
-      "implicitDependencies": []
-    },
-    "platform-tcp": {
-      "implicitDependencies": []
-    },
-    "platform-ws": {
-      "implicitDependencies": []
-    },
-    "styler": {
-      "implicitDependencies": []
-    },
-    "docs": {
-      "tags": []
     }
   },
   "affected": {
