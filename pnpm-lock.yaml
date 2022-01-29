@@ -78,7 +78,7 @@ importers:
       nest-commander: ^2.0.0
       nest-commander-testing: ^2.0.0
       nyc: ^15.1.0
-      pino: 7.6.4
+      pino: 7.6.5
       prettier: ^2.3.2
       react: 17.0.2
       react-dom: 17.0.2
@@ -165,7 +165,7 @@ importers:
       nest-commander: 2.3.3_bbf59b1cbf49bba2b2f47e404ee3cb27
       nest-commander-testing: 2.0.1_d8f603c457f92bb11ab4464ad6503084
       nyc: 15.1.0
-      pino: 7.6.4
+      pino: 7.6.5
       prettier: 2.4.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -13394,8 +13394,8 @@ packages:
       sonic-boom: 1.4.1
     dev: true
 
-  /pino/7.6.4:
-    resolution: {integrity: sha512-ktibPg3ttWONxYQ2Efk1zYbIvofD5zdd/ReoujK84ggEp0REflb9TsXavSjt8u1CdT2mMJe9QQ3ZpyOQxUKipA==}
+  /pino/7.6.5:
+    resolution: {integrity: sha512-38tAwlJ7HevMENHD5FZE+yxSlAH5Wg3FoOjbB3MX2j3/kgpOEkmDHhTVKkecR57qxD5doHo2yi9nac94gqqbiQ==}
     hasBin: true
     dependencies:
       fast-redact: 3.0.2
