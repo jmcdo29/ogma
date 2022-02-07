@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Ogma',
   tagline: 'Beautifully simple logging',
-  url: 'https://ogma.jaymcdoniel.dev',
+  url: 'https://ogma.jaymcdoniel.dev/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
