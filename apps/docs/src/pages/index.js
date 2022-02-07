@@ -54,6 +54,28 @@ function Feature({ imageUrl, title, description }) {
   );
 }
 
+function Header({ siteConfig }) {
+  return (
+    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+      <div className="container">
+        <h1 className="hero__title">{siteConfig.title}</h1>
+        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <div className={styles.buttons}>
+          <Link
+            className={clsx(
+              'button button--outline button--secondary button--lg',
+              styles.getStarted,
+            )}
+            to={useBaseUrl('docs/')}
+          >
+            Get Started
+          </Link>
+        </div>
+      </div>
+    </header>
+  );
+}
+
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
@@ -62,23 +84,7 @@ function Home() {
       title={`${siteConfig.title} | Beautifully Simple Logging`}
       description="Description will go into a meta tag in <head />"
     >
-      <header className={clsx('hero hero--primary', styles.heroBanner)}>
-        <div className="container">
-          <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <div className={styles.buttons}>
-            <Link
-              className={clsx(
-                'button button--outline button--secondary button--lg',
-                styles.getStarted,
-              )}
-              to={useBaseUrl('docs/')}
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Header siteConfig={siteConfig} />
       <main>
         {features && features.length > 0 && (
           <section className={styles.features}>
