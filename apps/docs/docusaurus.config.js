@@ -1,8 +1,8 @@
 module.exports = {
   title: 'Ogma',
   tagline: 'Beautifully simple logging',
-  url: 'https://jmcdo29.github.io',
-  baseUrl: '/ogma/',
+  url: 'https://ogma.jaymcdoniel.dev',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
