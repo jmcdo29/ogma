@@ -1,41 +1,55 @@
 import { Color, OgmaSimpleType } from '@ogma/common';
 import { style } from '@ogma/styler';
+import { match } from 'assert';
+import { suite } from 'uvu';
+import { is } from 'uvu/assert';
 import { colorize } from '../src/utils/colorize';
 
 const ESC = '\x1B';
 
-describe.each([[{ useColor: true }], [{ useColor: false }]])('colorize %j', (options) => {
-  describe.each([
-    ['red', Color.RED],
-    ['green', Color.GREEN],
-    ['yellow', Color.YELLOW],
-    ['blue', Color.BLUE],
-    ['magenta', Color.MAGENTA],
-    ['cyan', Color.CYAN],
-    ['white', Color.WHITE],
-  ])('print in %s', (colorName, colorEnum) => {
-    it.each(['hello', 42, true])('print %o', (value: OgmaSimpleType) => {
-      const styler = style.child(process.stdout);
-      const retVal = colorize(value, colorEnum as Color, styler, options.useColor);
-      if (!options.useColor) {
-        expect(retVal).toBe(value.toString());
-      } else {
-        expect(retVal).toBe(ESC + '[3' + colorEnum + 'm' + value + ESC + '[0m');
-        expect(/^\u001b\[3\d{1}m\w{2,5}\u001b\[0m$/.test(retVal)).toBeTruthy();
-      }
-    });
-  });
+for (const colored of [true, false]) {
+  for (const colorVal of [
+    Color.RED,
+    Color.GREEN,
+    Color.YELLOW,
+    Color.BLUE,
+    Color.MAGENTA,
+    Color.CYAN,
+    Color.WHITE,
+  ]) {
+    const ColorSuite = suite(`colorize with colors ${colored} for color ${Color[colorVal]}`);
+    for (const val of ['hello', 42, true]) {
+      ColorSuite(`colorize ${val}`, () => {
+        const styler = style.child(process.stdout);
+        const retVal = colorize(val, colorVal, styler, colored);
+        if (!colored) {
+          is(retVal, val.toString());
+        } else {
+          is(retVal, `${ESC}[3${colorVal}m${val}${ESC}[0m`);
+          match(retVal, /^\x1B\[3\d{1}m\w{2,5}\x1B\[0m$/);
+        }
+      });
+    }
+    ColorSuite.run();
+  }
+}
+
+const DefaultImplSuite = suite('colorize defaults');
+DefaultImplSuite('it should still print', () => {
+  is(colorize('hello'), `${ESC}[37mhello${ESC}[0m`);
 });
-describe('colorize defaults', () => {
-  it('should print with defaults', () => {
-    expect(colorize('hello')).toBe(ESC + '[37mhello' + ESC + '[0m');
-  });
+DefaultImplSuite.run();
+
+const NoColorSuite = suite<{ noColorVal: any }>('No colors for streams that do not support them', {
+  noColorVal: process.env.NO_COLOR,
 });
-describe('it should not print colors with a stream that does not support colors', () => {
-  it('should still print', () => {
-    process.env.NO_COLOR = 'true';
-    expect(colorize('hello', Color.BLUE, style.child({ getColorDepth: () => 1 }), true)).toBe(
-      'hello',
-    );
-  });
+NoColorSuite.before(() => {
+  process.env.NO_COLOR = 'true';
 });
+NoColorSuite.after(({ noColorVal }) => {
+  process.env.NO_COLOR = noColorVal;
+});
+NoColorSuite('it should still print, just without the SGRs', () => {
+  is(colorize('hello', Color.BLUE, style.child({ getColorDepth: () => 1 }), true), 'hello');
+});
+NoColorSuite.run();
