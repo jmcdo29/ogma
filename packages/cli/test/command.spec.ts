@@ -1,5 +1,5 @@
 import { promises } from 'fs';
-import * as hanbi from 'hanbi';
+import { Stub, stubMethod } from 'hanbi';
 import { CommandTestFactory } from 'nest-commander-testing';
 import { Socket } from 'net';
 import { suite } from 'uvu';
@@ -25,7 +25,7 @@ for (const useTty of [true, false]) {
     for (const keySet of ['noAppNoCon', 'noApp', 'noCon', 'full']) {
       const logVal = logSet[`${keySet}`];
       const expected = logSet[`${keySet}${useTty ? '' : 'NoColor'}Hydrated`];
-      const LogSuite = suite<{ writeSpy: hanbi.Stub<Socket['write']>; tty: boolean }>(
+      const LogSuite = suite<{ writeSpy: Stub<Socket['write']>; tty: boolean }>(
         `Hydrate TTY ${useTty} ${keySet}`,
         {
           writeSpy: undefined,
@@ -36,7 +36,7 @@ for (const useTty of [true, false]) {
         process.stdout.isTTY = useTty;
       });
       LogSuite.before.each((context) => {
-        context.writeSpy = hanbi.stubMethod(process.stdout, 'write');
+        context.writeSpy = stubMethod(process.stdout, 'write');
         // context.writeSpy.passThrough();
       });
       LogSuite.after.each(({ writeSpy }) => {
@@ -48,7 +48,7 @@ for (const useTty of [true, false]) {
       });
       for (const level of logKeys) {
         LogSuite(`${level}`, async ({ writeSpy }) => {
-          const readSpy = hanbi.stubMethod(promises, 'readFile');
+          const readSpy = stubMethod(promises, 'readFile');
           readSpy.returns(Promise.resolve(Buffer.from(JSON.stringify(logVal[level]))));
           await ogmaHydrate(hydrateArgs);
           ok(readSpy.calledWith('someFile'));
@@ -62,18 +62,18 @@ for (const useTty of [true, false]) {
   }
 }
 
-const BlankLineSuite = suite<{ writeSpy: hanbi.Stub<any> }>('Blank Lines in JSON file', {
+const BlankLineSuite = suite<{ writeSpy: Stub<any> }>('Blank Lines in JSON file', {
   writeSpy: undefined,
 });
 BlankLineSuite.before.each((context) => {
-  context.writeSpy = hanbi.stubMethod(process.stdout, 'write');
+  context.writeSpy = stubMethod(process.stdout, 'write');
 });
 BlankLineSuite.after.each(({ writeSpy }) => {
   writeSpy.reset();
   writeSpy.restore();
 });
 BlankLineSuite('No errors', async ({ writeSpy }) => {
-  const readFileStub = hanbi.stubMethod(promises, 'readFile');
+  const readFileStub = stubMethod(promises, 'readFile');
   readFileStub.returns(
     Promise.resolve(
       Buffer.from(
