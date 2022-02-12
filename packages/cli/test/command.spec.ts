@@ -1,35 +1,12 @@
-import { OgmaLog } from '@ogma/common';
-import { createWriteStream, promises } from 'fs';
+import { promises } from 'fs';
+import * as hanbi from 'hanbi';
 import { CommandTestFactory } from 'nest-commander-testing';
-import { ExpectedOgmaOutput, jsonLogs, logKeys, OgmaLogSet, stringLogs } from './command.fixtures';
+import { Socket } from 'net';
+import { suite } from 'uvu';
+import { equal, is, ok } from 'uvu/assert';
+import { jsonLogs, logKeys, stringLogs } from './command.fixtures';
 import { AppModule } from '../src/app.module';
 import { OgmaCommand } from '../src/ogma.command';
-
-const globalIsTTY = process.stdout.isTTY;
-
-const dest = createWriteStream('/dev/null');
-
-const levelShouldPass = () => 'Level %s should pass';
-
-const writeSpy = jest.spyOn(process.stdout, 'write').mockImplementation((message: any) => {
-  dest.write(message);
-  return true;
-});
-
-const spyOnRead = (fileContents: OgmaLog): jest.SpyInstance => {
-  return jest
-    .spyOn(promises, 'readFile')
-    .mockResolvedValueOnce(Buffer.from(JSON.stringify(fileContents)));
-};
-
-const setTTY = (isTTY: boolean) => {
-  process.stdout.isTTY = isTTY;
-};
-
-const resetWrite = () => {
-  writeSpy.mockClear();
-  process.stdout.isTTY = globalIsTTY;
-};
 
 const someFile = 'someFile';
 
@@ -43,91 +20,75 @@ const ogmaHydrate = async (_args: string[]): Promise<void> => {
   await command.run([someFile], { color: process.stdout.isTTY });
 };
 
-const ogmaHydrateTest = async (readVal: OgmaLog, expectedVal: string): Promise<void> => {
-  expect.assertions(4);
-  const readSpy = spyOnRead(readVal);
-  await expect(ogmaHydrate(hydrateArgs)).resolves.not.toThrow();
-  expect(readSpy).toBeCalledWith(someFile);
-  expect(writeSpy).toBeCalledTimes(1);
-  expect(writeSpy).toBeCalledWith(Buffer.from(expectedVal));
-  readSpy.mockClear();
-};
-
-const ogmaHydrateTestWithFlags = async (
-  readVal: OgmaLog,
-  expectedVal: string,
-  flag: string,
-): Promise<void> => {
-  expect.assertions(4);
-  const readSpy = spyOnRead(readVal);
-  await expect(ogmaHydrate([...hydrateArgs, flag])).resolves.not.toThrow();
-  expect(readSpy).toBeCalledWith(someFile);
-  expect(writeSpy).toBeCalledTimes(1);
-  expect(writeSpy).toBeCalledWith(Buffer.from(expectedVal));
-  readSpy.mockRestore();
-};
-
-describe.each([
-  [true, jsonLogs.noAppNoConJSON, jsonLogs.hydratedNoAppNoCon],
-  [true, jsonLogs.noConJSON, jsonLogs.hydratedNoCon],
-  [true, jsonLogs.noAppJSON, jsonLogs.hydratedNoApp],
-  [true, jsonLogs.fullJSON, jsonLogs.hydratedFull],
-  [false, jsonLogs.noAppNoConJSON, jsonLogs.hydratedNoAppNoConNoColor],
-  [false, jsonLogs.noConJSON, jsonLogs.hydratedNoConNoColor],
-  [false, jsonLogs.noAppJSON, jsonLogs.hydratedNoAppNoColor],
-  [false, jsonLogs.fullJSON, jsonLogs.hydratedFullNoColor],
-  [true, stringLogs.noAppNoConString, stringLogs.hydratedNoAppNoConString],
-  [true, stringLogs.noConString, stringLogs.hydratedNoConString],
-  [true, stringLogs.noAppString, stringLogs.hydratedNoAppString],
-  [true, stringLogs.fullString, stringLogs.hydratedFullString],
-  [false, stringLogs.noAppNoConString, stringLogs.hydratedNoAppNoConNoColorString],
-  [false, stringLogs.noConString, stringLogs.hydratedNoConNoColorString],
-  [false, stringLogs.noAppString, stringLogs.hydratedNoAppNoColorString],
-  [false, stringLogs.fullString, stringLogs.hydratedFullNoColorString],
-])('Hydrate TTY %s index %#', (tty: boolean, logSet: OgmaLogSet, output: ExpectedOgmaOutput) => {
-  beforeEach(() => setTTY(tty));
-  afterEach(() => resetWrite());
-  it.each(logKeys)(levelShouldPass(), async (key: string) => {
-    await ogmaHydrateTest(logSet[key], output[key]);
-  });
-});
-
-describe.skip('command line flags', () => {
-  afterEach(() => resetWrite());
-  it('should set --color to true', async () => {
-    await ogmaHydrateTestWithFlags(jsonLogs.fullJSON.info, jsonLogs.hydratedFull.info, '--color');
-  });
-  it('should set --color=true to true', async () => {
-    await ogmaHydrateTestWithFlags(
-      jsonLogs.fullJSON.info,
-      jsonLogs.hydratedFull.info,
-      '--color=true',
-    );
-  });
-  it('should set --color=false to false', async () => {
-    await ogmaHydrateTestWithFlags(
-      jsonLogs.fullJSON.info,
-      jsonLogs.hydratedFullNoColor.info,
-      '--color=false',
-    );
-  });
-});
-
-describe('with blank line', () => {
-  it('should not error when there is a blank line', async () => {
-    jest
-      .spyOn(promises, 'readFile')
-      .mockResolvedValueOnce(
-        Buffer.from(
-          JSON.stringify({ hostname: 'test', level: 'INFO', ool: 'INFO', pid: 1, time: '1' }) +
-            '\n' +
-            JSON.stringify({ hostname: 'test', level: 'INFO', ool: 'INFO', pid: 1, time: '1' }) +
-            '\n' +
-            JSON.stringify({ hostname: 'test', level: 'INFO', ool: 'INFO', pid: 1, time: '1' }) +
-            '\n',
-        ),
+for (const useTty of [true, false]) {
+  for (const logSet of [jsonLogs, stringLogs]) {
+    for (const keySet of ['noAppNoCon', 'noApp', 'noCon', 'full']) {
+      const logVal = logSet[`${keySet}`];
+      const expected = logSet[`${keySet}${useTty ? '' : 'NoColor'}Hydrated`];
+      const LogSuite = suite<{ writeSpy: hanbi.Stub<Socket['write']>; tty: boolean }>(
+        `Hydrate TTY ${useTty} ${keySet}`,
+        {
+          writeSpy: undefined,
+          tty: process.stdout.isTTY,
+        },
       );
-    await expect(ogmaHydrate(hydrateArgs)).resolves.not.toThrowError();
-    expect(writeSpy).toBeCalledTimes(3);
-  });
+      LogSuite.before(() => {
+        process.stdout.isTTY = useTty;
+      });
+      LogSuite.before.each((context) => {
+        context.writeSpy = hanbi.stubMethod(process.stdout, 'write');
+        // context.writeSpy.passThrough();
+      });
+      LogSuite.after.each(({ writeSpy }) => {
+        writeSpy.reset();
+        writeSpy.restore();
+      });
+      LogSuite.after(({ tty }) => {
+        process.stdout.isTTY = tty;
+      });
+      for (const level of logKeys) {
+        LogSuite(`${level}`, async ({ writeSpy }) => {
+          const readSpy = hanbi.stubMethod(promises, 'readFile');
+          readSpy.returns(Promise.resolve(Buffer.from(JSON.stringify(logVal[level]))));
+          await ogmaHydrate(hydrateArgs);
+          ok(readSpy.calledWith('someFile'));
+          is(writeSpy.callCount, 1);
+          equal(writeSpy.firstCall.args[0], Buffer.from(expected[level]));
+        });
+      }
+
+      LogSuite.run();
+    }
+  }
+}
+
+const BlankLineSuite = suite<{ writeSpy: hanbi.Stub<any> }>('Blank Lines in JSON file', {
+  writeSpy: undefined,
 });
+BlankLineSuite.before.each((context) => {
+  context.writeSpy = hanbi.stubMethod(process.stdout, 'write');
+});
+BlankLineSuite.after.each(({ writeSpy }) => {
+  writeSpy.reset();
+  writeSpy.restore();
+});
+BlankLineSuite('No errors', async ({ writeSpy }) => {
+  const readFileStub = hanbi.stubMethod(promises, 'readFile');
+  readFileStub.returns(
+    Promise.resolve(
+      Buffer.from(
+        JSON.stringify({ hostname: 'test', level: 'INFO', ool: 'INFO', pid: 1, time: '1' }) +
+          '\n' +
+          JSON.stringify({ hostname: 'test', level: 'INFO', ool: 'INFO', pid: 1, time: '1' }) +
+          '\n' +
+          JSON.stringify({ hostname: 'test', level: 'INFO', ool: 'INFO', pid: 1, time: '1' }) +
+          '\n',
+      ),
+    ),
+  );
+  await ogmaHydrate(hydrateArgs);
+  is(readFileStub.callCount, 1);
+  is(writeSpy.callCount, 3);
+});
+
+BlankLineSuite.run();

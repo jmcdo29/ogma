@@ -207,18 +207,18 @@ const hydratedFullNoColor: ExpectedOgmaOutput = {
 };
 
 export const jsonLogs = {
-  noAppNoConJSON,
-  noAppJSON,
-  noConJSON,
-  fullJSON,
-  hydratedNoAppNoCon,
-  hydratedNoApp,
-  hydratedNoCon,
-  hydratedFull,
-  hydratedNoAppNoConNoColor,
-  hydratedNoAppNoColor,
-  hydratedNoConNoColor,
-  hydratedFullNoColor,
+  noAppNoCon: noAppNoConJSON,
+  noApp: noAppJSON,
+  noCon: noConJSON,
+  full: fullJSON,
+  noAppNoConHydrated: hydratedNoAppNoCon,
+  noAppHydrated: hydratedNoApp,
+  noConHydrated: hydratedNoCon,
+  fullHydrated: hydratedFull,
+  noAppNoConNoColorHydrated: hydratedNoAppNoConNoColor,
+  noAppNoColorHydrated: hydratedNoAppNoColor,
+  noConNoColorHydrated: hydratedNoConNoColor,
+  fullNoColorHydrated: hydratedFullNoColor,
 };
 
 const message = 'hello';
@@ -393,16 +393,16 @@ const hydratedFullNoColorString: ExpectedOgmaOutput = {
 };
 
 export const stringLogs = {
-  noAppNoConString,
-  noAppString,
-  noConString,
-  fullString,
-  hydratedNoAppNoConString,
-  hydratedNoAppString,
-  hydratedNoConString,
-  hydratedFullString,
-  hydratedNoAppNoConNoColorString,
-  hydratedNoAppNoColorString,
-  hydratedNoConNoColorString,
-  hydratedFullNoColorString,
+  noAppNoCon: noAppNoConString,
+  noApp: noAppString,
+  noCon: noConString,
+  full: fullString,
+  noAppNoConHydrated: hydratedNoAppNoConString,
+  noAppHydrated: hydratedNoAppString,
+  noConHydrated: hydratedNoConString,
+  fullHydrated: hydratedFullString,
+  noAppNoConNoColorHydrated: hydratedNoAppNoConNoColorString,
+  noAppNoColorHydrated: hydratedNoAppNoColorString,
+  noConNoColorHydrated: hydratedNoConNoColorString,
+  fullNoColorHydrated: hydratedFullNoColorString,
 };
