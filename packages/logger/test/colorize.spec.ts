@@ -1,4 +1,4 @@
-import { Color, OgmaSimpleType } from '@ogma/common';
+import { Color } from '@ogma/common';
 import { style } from '@ogma/styler';
 import { match } from 'assert';
 import { suite } from 'uvu';
@@ -40,14 +40,12 @@ DefaultImplSuite('it should still print', () => {
 });
 DefaultImplSuite.run();
 
-const NoColorSuite = suite<{ noColorVal: any }>('No colors for streams that do not support them', {
-  noColorVal: process.env.NO_COLOR,
-});
+const NoColorSuite = suite('No colors for streams that do not support them');
 NoColorSuite.before(() => {
   process.env.NO_COLOR = 'true';
 });
-NoColorSuite.after(({ noColorVal }) => {
-  process.env.NO_COLOR = noColorVal;
+NoColorSuite.after(() => {
+  delete process.env.NO_COLOR;
 });
 NoColorSuite('it should still print, just without the SGRs', () => {
   is(colorize('hello', Color.BLUE, style.child({ getColorDepth: () => 1 }), true), 'hello');

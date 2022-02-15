@@ -1,5 +1,8 @@
+import { test } from 'uvu';
+import { ok } from 'uvu/assert';
 import { Ogma } from '../src';
 
-it('should have Ogma defined as an object', () => {
-  expect(Ogma).toBeDefined();
+test('should have the main export be defined', () => {
+  ok(Ogma);
 });
+test.run();
