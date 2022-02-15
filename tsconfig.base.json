@@ -13,7 +13,6 @@
     "noUnusedLocals": false,
     "lib": ["ES7"],
     "esModuleInterop": true,
-    "preserveSymlinks": true,
     "paths": {
       "@ogma/*": ["packages/*/src/"]
     }

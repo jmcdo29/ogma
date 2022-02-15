@@ -1,10 +1,10 @@
-import { createMock } from '@golevelup/ts-jest';
-import { createWriteStream } from 'fs';
 import { LogLevel } from '@ogma/common';
 import { style } from '@ogma/styler';
+import { spy, Stub } from 'hanbi';
+import { Socket } from 'net';
+import { suite } from 'uvu';
+import { is, match, not, ok } from 'uvu/assert';
 import { Ogma, OgmaOptions } from '../src';
-
-const dest = createWriteStream('/dev/null');
 
 const circularObject: any = {};
 circularObject.a = 'hello';
@@ -16,305 +16,270 @@ circularObject.e = Symbol('hello');
 
 const logLevels = ['SILLY', 'VERBOSE', 'FINE', 'DEBUG', 'INFO', 'LOG', 'WARN', 'ERROR', 'FATAL'];
 
-const mockStream = createMock<NodeJS.WriteStream>();
-
-describe('Ogma Class', () => {
-  let ogma: Ogma;
-  function createOgmaInstance(options: Partial<OgmaOptions>): Ogma {
-    return new Ogma(options);
-  }
-  function mockCallExpectation(
-    ogma: Ogma,
-    expectation: string,
-    options: {
-      context?: string;
-      application?: string;
-      correlationId?: string;
-    } = {},
-  ) {
-    ogma.log('Hello', options);
-    expect(mockStream.write.mock.calls[0][0].toString().replace(/\x1B/g, '\\x1B')).toEqual(
-      expect.stringContaining(expectation.replace(/\x1B/g, '\\x1B')),
-    );
-  }
-  afterEach(() => {
-    mockStream.write.mockReset();
-  });
-
-  describe.each`
-    color    | expectation
-    ${true}  | ${style.cyan.apply('[INFO] ')}
-    ${false} | ${'[INFO] '}
-  `('color: $color', ({ color, expectation }: { color: boolean; expectation: string }) => {
-    beforeEach(() => {
-      ogma = createOgmaInstance({
-        color,
-        stream: mockStream,
-      });
-    });
-    it(color ? 'should write in color' : 'should not write in color', () =>
-      mockCallExpectation(ogma, expectation),
-    );
-  });
-  describe.each`
-    json     | expectation
-    ${true}  | ${{ time: expect.any(String), pid: expect.any(Number), level: 'INFO', message: 'Hello' }}
-    ${false} | ${null}
-  `('json $json', ({ json, expectation }: { json: boolean; expectation: any }) => {
-    beforeEach(() => {
-      ogma = createOgmaInstance({ json, stream: mockStream });
-    });
-    it(json ? 'should print in JSON' : 'should not print in JSON', () => {
+const OgmaSuite = suite<{
+  writeSpy: Stub<Socket['write']>;
+  ogmaFactory: (options?: Partial<Exclude<OgmaOptions, 'stream'>>) => Ogma;
+  getFirstCallString: (spy: Stub<Socket['write']>) => string;
+  getSpyArg: (spy: Stub<any>, prop: 'firstCall' | 'lastCall') => string;
+  tty: boolean;
+  colorDepth: number;
+}>('Ogma Tests', {
+  writeSpy: undefined,
+  ogmaFactory: undefined,
+  getFirstCallString: (spy) => spy.firstCall.args[0].toString(),
+  getSpyArg: (spy, prop) => spy[prop].args[0].toString(),
+  tty: undefined,
+  colorDepth: undefined,
+});
+OgmaSuite.before((context) => {
+  context.tty = process.stdout.isTTY;
+  process.stdout.isTTY = true;
+  context.colorDepth = process.stdout.getColorDepth();
+  process.stdout.getColorDepth = () => 4;
+});
+OgmaSuite.before.each((context) => {
+  context.writeSpy = spy();
+  context.ogmaFactory = (options = {}) =>
+    new Ogma({ stream: { write: context.writeSpy.handler, getColorDepth: () => 4 }, ...options });
+});
+OgmaSuite.after(({ tty, colorDepth }) => {
+  process.stdout.isTTY = tty;
+  process.stdout.getColorDepth = () => colorDepth;
+});
+for (const color of [true, false]) {
+  OgmaSuite(
+    `It should${color ? '' : ' not'} log in color`,
+    ({ ogmaFactory, writeSpy, getFirstCallString }) => {
+      const ogma = ogmaFactory({ color });
       ogma.log('Hello');
+      const matcher = color ? match : not.match;
+      matcher(getFirstCallString(writeSpy), style.cyan.apply('[INFO] '));
+    },
+  );
+}
+for (const json of [true, false]) {
+  OgmaSuite(
+    `It should write in ${json ? 'json' : 'a string'}`,
+    ({ ogmaFactory, writeSpy, getFirstCallString }) => {
+      const ogma = ogmaFactory({ json });
+      ogma.log('Hello');
+      const loggedVal = getFirstCallString(writeSpy);
       if (json) {
-        expect(JSON.parse(mockStream.write.mock.calls[0][0] as string)).toEqual(
-          expect.objectContaining(expectation),
-        );
+        const loggedJSON = JSON.parse(loggedVal);
+        match(loggedJSON.time, /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1,3}Z/);
+        match(loggedJSON.pid, /\d{1,5}/);
+        is(loggedJSON.level, 'INFO');
+        is(loggedJSON.message, 'Hello');
       } else {
-        expect(mockStream.write.mock.calls[0][0]).toEqual(expect.any(String));
+        not.match(loggedVal, /[{}]/);
       }
-    });
-  });
-  describe.each`
-    context           | expectation
-    ${'test context'} | ${style.cyan.apply('[test context]')}
-    ${null}           | ${''}
-  `('context: $context', ({ context, expectation }: { context?: string; expectation: string }) => {
-    beforeEach(() => {
-      ogma = createOgmaInstance({ context, stream: mockStream });
-    });
-    it('should add the context to the log', () => mockCallExpectation(ogma, expectation));
-  });
-  describe.each`
-    correlationId         | expectation
-    ${'1598961763272766'} | ${'1598961763272766'}
-    ${null}               | ${''}
-  `(
-    'requestId: $requestId',
-    ({ correlationId, expectation }: { correlationId?: string; expectation: string }) => {
-      beforeEach(() => {
-        ogma = createOgmaInstance({ stream: mockStream });
-      });
-      it('should add the requestId to the log', () =>
-        mockCallExpectation(ogma, expectation, { correlationId }));
     },
   );
-  describe.each`
-    application   | expectation
-    ${'test app'} | ${style.yellow.apply('[test app]')}
-    ${null}       | ${''}
-  `(
-    'application: $application',
-    ({ application, expectation }: { application: string; expectation: string }) => {
-      beforeEach(() => {
-        ogma = createOgmaInstance({ application, stream: mockStream });
-      });
-      it('should add the context to the log', () => mockCallExpectation(ogma, expectation));
+}
+for (const correlationId of ['1598961763272766', '']) {
+  OgmaSuite(
+    `It should log with correlationId ${correlationId}`,
+    ({ ogmaFactory, writeSpy, getFirstCallString }) => {
+      const ogma = ogmaFactory();
+      ogma.log('Hello!', { correlationId });
+      match(getFirstCallString(writeSpy), correlationId);
     },
   );
-  describe.each`
-    logLevel
-    ${'OFF'}
-    ${'ALL'}
-    ${'SILLY'}
-    ${'VERBOSE'}
-    ${'FINE'}
-    ${'DEBUG'}
-    ${'INFO'}
-    ${'LOG'}
-    ${'WARN'}
-    ${'ERROR'}
-    ${'FATAL'}
-  `('logLevel: $logLevel', ({ logLevel }: { logLevel: keyof typeof LogLevel }) => {
-    beforeEach(() => {
-      ogma = createOgmaInstance({ logLevel, stream: mockStream });
-    });
-    it('should call according to log level', () => {
-      let ogmaCalls = 0;
-      for (const method of logLevels) {
-        ogma[method.toLowerCase()]('Hello');
-        if (LogLevel[method] >= LogLevel[logLevel]) {
-          ogmaCalls++;
-        }
+}
+for (const context of ['test context', '']) {
+  OgmaSuite(
+    `It should log with context ${context}`,
+    ({ ogmaFactory, writeSpy, getFirstCallString }) => {
+      const ogma = ogmaFactory({ context });
+      ogma.log('Hello!');
+      match(getFirstCallString(writeSpy), context ? style.cyan.apply(`[${context}]`) : '');
+    },
+  );
+}
+for (const application of ['test app', '']) {
+  OgmaSuite(
+    `It should log with application ${application}`,
+    ({ ogmaFactory, writeSpy, getFirstCallString }) => {
+      const ogma = ogmaFactory({ application });
+      ogma.log('Hello!');
+      match(
+        getFirstCallString(writeSpy),
+        application ? style.yellow.apply(`[${application}]`) : '',
+      );
+    },
+  );
+}
+for (const logLevel of [
+  'OFF',
+  'ALL',
+  'SILLY',
+  'VERBOSE',
+  'FINE',
+  'DEBUG',
+  'INFO',
+  'LOG',
+  'WARN',
+  'ERROR',
+  'FATAL',
+] as const) {
+  OgmaSuite(`Call each log method: Log level set to ${logLevel}`, ({ writeSpy, ogmaFactory }) => {
+    let numberOfCalls = 0;
+    const ogma = ogmaFactory({ logLevel });
+    for (const method of logLevels) {
+      ogma[method.toLowerCase()]('Hello!');
+      if (LogLevel[method] >= LogLevel[logLevel]) {
+        numberOfCalls++;
       }
-      expect(mockStream.write).toBeCalledTimes(ogmaCalls);
-    });
+    }
+    is(writeSpy.callCount, numberOfCalls);
   });
-  it('should manage circular, function, and symbols in objects', () => {
-    ogma = new Ogma({ stream: mockStream });
+}
+OgmaSuite(
+  'it should manage circular, function, and symbols in objects',
+  ({ ogmaFactory, writeSpy, getFirstCallString }) => {
+    const ogma = ogmaFactory();
     ogma.log(circularObject);
-    expect(mockStream.write).toBeCalledTimes(1);
-    const writeString = mockStream.write.mock.calls[0][0];
-    expect(writeString).toEqual(expect.stringContaining('[Circular]'));
-    expect(writeString).toEqual(expect.stringContaining('[Function:'));
-    expect(writeString).toEqual(expect.stringContaining('[Symbol(hello)]'));
-  });
-  it('should follow the context, application, and message of a json', () => {
-    ogma = new Ogma({
+    const loggedVal = getFirstCallString(writeSpy);
+    match(loggedVal, /\[Circular\]/);
+    match(loggedVal, /\[Function:/);
+    match(loggedVal, /\[Symbol\(hello\)\]/);
+  },
+);
+OgmaSuite(
+  'it should add the base context and application to a json message',
+  ({ ogmaFactory, writeSpy, getFirstCallString }) => {
+    const ogma = ogmaFactory({
       json: true,
       context: 'json context',
       application: 'json test',
-      stream: mockStream,
     });
-    ogma.log({ hello: 'world' });
-    expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining('json context'));
-    expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining('json test'));
-    expect(JSON.parse(mockStream.write.mock.calls[0][0] as string)).toEqual(
-      expect.objectContaining({ hello: 'world' }),
-    );
-  });
-  it('should log the error name and message on the same line', () => {
-    ogma = new Ogma({ stream: mockStream });
+    ogma.log({ hello: 'world!' });
+    const loggedVal = JSON.parse(getFirstCallString(writeSpy));
+    is(loggedVal.context, 'json context');
+    is(loggedVal.application, 'json test');
+    is(loggedVal.hello, 'world!');
+  },
+);
+OgmaSuite(
+  'it should log the error name and message on the same line',
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+    const ogma = ogmaFactory();
     const err = new Error('This is an error');
     ogma.log(err);
-    const mockCall: string = mockStream.write.mock.calls[0][0].toString();
-    expect(mockCall).toEqual(expect.stringContaining(`${err.name}: ${err.message}`));
-    expect(mockCall).not.toEqual(expect.stringContaining(err.stack));
-    const newLines = mockCall.split('\n;');
-    expect(newLines.length).toBe(1);
-  });
-});
-
-describe('small ogma tests', () => {
-  let ogma: Ogma;
-  let stdoutSpy: jest.SpyInstance;
-
-  beforeEach(() => {
-    stdoutSpy = jest.spyOn(process.stdout, 'write').mockImplementation((message) => {
-      dest.write(message);
-      return true;
+    const loggedVal = getFirstCallString(writeSpy);
+    match(loggedVal, new RegExp(`${err.name}: ${err.message}`));
+    is(
+      loggedVal.split('\n').length,
+      2,
+      'It should be two to take into account the built in newline character',
+    );
+  },
+);
+OgmaSuite(
+  'It should print two lines for an Error object',
+  ({ writeSpy, ogmaFactory, getFirstCallString, getSpyArg }) => {
+    const ogma = ogmaFactory();
+    ogma.printError(new Error('This is my error'));
+    is(writeSpy.callCount, 2);
+    const loggedVal = getFirstCallString(writeSpy);
+    match(loggedVal, /Error/);
+    match(getSpyArg(writeSpy, 'lastCall'), /This is my error\n$/);
+  },
+);
+OgmaSuite(
+  'It should replace an invalid log level',
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+    const ogma = ogmaFactory({
+      logLevel: 'This level does not exist' as any,
     });
-  });
-  afterEach(() => {
-    stdoutSpy.mockReset();
-  });
-  describe('printError', () => {
-    beforeEach(() => {
-      ogma = new Ogma();
+    is((ogma as any).options.logLevel, 'INFO', 'The log level should have been replaced');
+    is(writeSpy.callCount, 1);
+    match(
+      getFirstCallString(writeSpy),
+      /Ogma logLevel was set to THIS LEVEL DOES NOT EXIST which does not match a defined logLevel\. Falling back to default instead\.\n/,
+    );
+  },
+);
+OgmaSuite(
+  'Should check the log level if options are passed but does not include the log level',
+  ({ writeSpy, ogmaFactory }) => {
+    ogmaFactory({ color: false });
+    is(writeSpy.callCount, 0);
+  },
+);
+const levelMap = {
+  SILLY: 'NSILLY',
+  WARN: 'NWARN',
+  ERROR: 'NERROR',
+  FATAL: 'NFATAL',
+  DEBUG: 'NDEBUG',
+  FINE: 'NFINE',
+  INFO: 'NINFO',
+};
+OgmaSuite(
+  'It should log to json using a special level key',
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+    const ogma = ogmaFactory({
+      levelKey: 'severity',
+      levelMap,
+      json: true,
     });
-
-    it('should make three prints', () => {
-      ogma.printError(new Error('This is my error'));
-      expect(stdoutSpy).toBeCalledTimes(2);
-      expect(stdoutSpy.mock.calls[0][0].includes('Error')).toBeTruthy();
-      expect(stdoutSpy.mock.calls[1][0].includes('This is my error')).toBeTruthy();
+    ogma.info('Hello World!');
+    const loggedVal = JSON.parse(getFirstCallString(writeSpy));
+    is(loggedVal.severity, loggedVal.level);
+  },
+);
+OgmaSuite(
+  'It should log out the custom level from the level map',
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+    const ogma = ogmaFactory({
+      levelMap,
+      json: true,
     });
-  });
-
-  describe('Bad log level', () => {
-    it('should replace bad with "INFO"', () => {
-      ogma = new Ogma({ logLevel: 'bad' as any });
-      expect((ogma as any).options.logLevel).toBe('INFO');
-      expect(stdoutSpy).toBeCalledTimes(1);
+    ogma.info('Hello World!');
+    const loggedVal = JSON.parse(getFirstCallString(writeSpy));
+    is(loggedVal.level, 'NINFO');
+  },
+);
+OgmaSuite(
+  'It should use the level map with streams',
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+    const ogma = ogmaFactory({
+      levelMap,
     });
-
-    it('should run the if with options but no logLevel', () => {
-      ogma = new Ogma({ color: false });
-      expect(stdoutSpy).toBeCalledTimes(0);
-    });
-  });
-  describe('Custom Level Key', () => {
-    it('Should use the custom key with custom level map', () => {
-      const mockStream = {
-        write: jest.fn(),
-      };
-      const ogma = new Ogma({
-        levelKey: 'severity',
-        levelMap: {
-          SILLY: 'NSILLY',
-          WARN: 'NWARN',
-          ERROR: 'NERROR',
-          FATAL: 'NFATAL',
-          DEBUG: 'NDEBUG',
-          FINE: 'NFINE',
-          INFO: 'NINFO',
-        },
-        stream: mockStream,
-        json: true,
-      });
-      ogma.info('Hello World!');
-      const loggedValue = JSON.parse(mockStream.write.mock.calls[0][0]);
-      expect(loggedValue.severity).toBeDefined();
-      expect(loggedValue.severity).toEqual(loggedValue.level);
-    });
-  });
-  describe('Custom Log Level Map', () => {
-    it('Should use the map for JSON', () => {
-      const mockStream = {
-        write: jest.fn(),
-      };
-      const ogma = new Ogma({
-        levelMap: {
-          SILLY: 'NSILLY',
-          WARN: 'NWARN',
-          ERROR: 'NERROR',
-          FATAL: 'NFATAL',
-          DEBUG: 'NDEBUG',
-          FINE: 'NFINE',
-          INFO: 'NINFO',
-        },
-        stream: mockStream,
-        json: true,
-      });
-      ogma.info('Hello World!');
-      const loggedValue = JSON.parse(mockStream.write.mock.calls[0][0]);
-      expect(loggedValue.ool).toBe('INFO');
-      expect(loggedValue.level).toBe('NINFO');
-    });
-    it('Should use the map for stream', () => {
-      const mockStream = {
-        write: jest.fn(),
-      };
-      const ogma = new Ogma({
-        levelMap: {
-          SILLY: 'NSILLY',
-          WARN: 'NWARN',
-          ERROR: 'NERROR',
-          FATAL: 'NFATAL',
-          DEBUG: 'NDEBUG',
-          FINE: 'NFINE',
-          INFO: 'NINFO',
-        },
-        stream: mockStream,
-      });
-      ogma.info('Hello World!');
-      expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining('[NINFO]'));
-    });
-    it('Should use the default map if none given', () => {
-      const mockStream = {
-        write: jest.fn(),
-      };
-      const ogma = new Ogma({ stream: mockStream });
-      ogma.info('Hello World');
-      expect(mockStream.write.mock.calls[0][0]).toEqual(expect.stringContaining('[INFO]'));
-    });
-  });
-  describe('JSON with message prop', () => {
-    it('should still have the message property', () => {
-      ogma = new Ogma({ json: true });
-      ogma.log({ message: 'Hello World!' });
-      expect(JSON.parse(stdoutSpy.mock.calls[0][0])).toEqual(
-        expect.objectContaining({
-          time: expect.any(String),
-          level: 'INFO',
-          ool: 'INFO',
-          message: 'Hello World!',
-        }),
-      );
-    });
-  });
-  describe('Censor passed values', () => {
-    it.each`
-      json
-      ${false}
-      ${true}
-    `('should censor the "password" value (json: $json)', ({ json }: { json: boolean }) => {
-      ogma = new Ogma({ json, masks: ['password'] });
+    ogma.info('Hello World!');
+    match(getFirstCallString(writeSpy), /\[NINFO\]/);
+  },
+);
+OgmaSuite(
+  'It should use the default map if none given',
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+    const ogma = ogmaFactory();
+    ogma.info('Hello World');
+    match(getFirstCallString(writeSpy), /\[INFO\]/);
+  },
+);
+OgmaSuite(
+  'It should still have the "message" prop in JSON mode',
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+    const ogma = ogmaFactory({ json: true });
+    ogma.log({ message: 'Hello World!' });
+    const loggedVal = JSON.parse(getFirstCallString(writeSpy));
+    ok(Object.keys(loggedVal).includes('message'));
+    is(loggedVal.message, 'Hello World!');
+  },
+);
+for (const json of [true, false]) {
+  OgmaSuite(
+    `it should make the value for the password. JSON: ${json}`,
+    ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+      const ogma = ogmaFactory({ json, masks: ['password'] });
       ogma.log({ username: 'something', password: 'mask this' });
-      expect(stdoutSpy.mock.calls[0][0]).toEqual(
-        expect.stringMatching(/"username":\s?"something",/),
-      );
-      expect(stdoutSpy.mock.calls[0][0]).toEqual(expect.stringMatching(/"password":\s?"\*{9}"/));
-    });
-  });
-});
+      const loggedVal = getFirstCallString(writeSpy);
+      match(loggedVal, /"username":\s?"something",/);
+      match(loggedVal, /"password":\s?"\*{9}"/);
+    },
+  );
+}
+
+OgmaSuite.run();
