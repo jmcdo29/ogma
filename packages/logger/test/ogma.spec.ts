@@ -34,7 +34,7 @@ const OgmaSuite = suite<{
 OgmaSuite.before((context) => {
   context.tty = process.stdout.isTTY;
   process.stdout.isTTY = true;
-  context.colorDepth = process.stdout.getColorDepth();
+  context.colorDepth = (process.stdout.getColorDepth && process.stdout.getColorDepth()) ?? 1;
   process.stdout.getColorDepth = () => 4;
 });
 OgmaSuite.before.each((context) => {

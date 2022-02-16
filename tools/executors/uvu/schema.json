@@ -34,6 +34,11 @@
       "items": {
         "type": "string"
       }
+    },
+    "color": {
+      "type": "boolean",
+      "description": "If colors should be used with the test output",
+      "default": true
     }
   },
   "required": ["rootDir"]
