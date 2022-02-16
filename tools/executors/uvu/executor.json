@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "uvu": {
+      "implementation": "./impl",
+      "schema": "./schema.json",
+      "description": "Runs `uvu`"
+    }
+  }
+}

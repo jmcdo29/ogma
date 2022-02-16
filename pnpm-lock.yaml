@@ -32,6 +32,7 @@ importers:
       '@nestjs/testing': ^8.0.6
       '@nestjs/websockets': ^8.0.6
       '@nrwl/cli': 13.7.1
+      '@nrwl/devkit': ^13.8.1
       '@nrwl/eslint-plugin-nx': 13.7.1
       '@nrwl/jest': 13.7.1
       '@nrwl/linter': 13.7.1
@@ -90,6 +91,7 @@ importers:
       rxjs: ^7.3.0
       socket.io: 4.4.1
       socket.io-client: 4.4.1
+      tree-kill: ^1.2.2
       ts-jest: ^27.0.5
       ts-morph: 13.0.3
       ts-node: ^10.5.0
@@ -124,6 +126,7 @@ importers:
       '@nestjs/testing': 8.1.2_1e35032b61d47d10f6f59af9cb5bf3b9
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
       '@nrwl/cli': 13.7.1
+      '@nrwl/devkit': 13.8.1
       '@nrwl/eslint-plugin-nx': 13.7.1_b9807dbc84fd6d355cbf4b0fb2bd2c26
       '@nrwl/jest': 13.7.1_ts-node@10.5.0
       '@nrwl/linter': 13.7.1_08bb8553bac75e0581b8e3f7e81d68c3
@@ -182,6 +185,7 @@ importers:
       rxjs: 7.4.0
       socket.io: 4.4.1
       socket.io-client: 4.4.1
+      tree-kill: 1.2.2
       ts-jest: 27.0.7_a7396ac75a300332e3252b37cecc0d2d
       ts-morph: 13.0.3
       ts-node: 10.5.0_f935f7d98540e83caea8f97b7c89c008
@@ -3814,10 +3818,32 @@ packages:
       yargs-parser: 20.0.0
     dev: true
 
+  /@nrwl/cli/13.8.1:
+    resolution: {integrity: sha512-oQtu0rkpEm3QdzqB/BCDsOl0OJ5P2afSfzu3Lxcrz6fHjmUf9aby0sd1JCrRNRrZkxK8GAdxRKZdPHkdWvr23A==}
+    hasBin: true
+    dependencies:
+      '@nrwl/tao': 13.8.1
+      chalk: 4.1.0
+      enquirer: 2.3.6
+      v8-compile-cache: 2.3.0
+      yargs-parser: 20.0.0
+    dev: true
+
   /@nrwl/devkit/13.7.1:
     resolution: {integrity: sha512-AAwDbBddQEq90UG8trQg74eN6x60Pc7L8wCOLiRQ/shFCdD93boODlqEFy8Ae6bH1E4xb6hUldeqjcm/yFkOMg==}
     dependencies:
       '@nrwl/tao': 13.7.1
+      ejs: 3.1.6
+      ignore: 5.2.0
+      rxjs: 6.6.7
+      semver: 7.3.4
+      tslib: 2.3.1
+    dev: true
+
+  /@nrwl/devkit/13.8.1:
+    resolution: {integrity: sha512-zznDaYf6yTBbr8xOb8l4Dn7L0QhCS7BMUoCq/PMCBLwRnRBDpbd801tD06qIVvhh3XkwEJVS2v7EEF3TOypIyw==}
+    dependencies:
+      '@nrwl/tao': 13.8.1
       ejs: 3.1.6
       ignore: 5.2.0
       rxjs: 6.6.7
@@ -4041,6 +4067,25 @@ packages:
       ignore: 5.2.0
       jsonc-parser: 3.0.0
       nx: 13.7.1
+      rxjs: 6.6.7
+      rxjs-for-await: 0.0.2_rxjs@6.6.7
+      semver: 7.3.4
+      tmp: 0.2.1
+      tslib: 2.3.1
+      yargs-parser: 20.0.0
+    dev: true
+
+  /@nrwl/tao/13.8.1:
+    resolution: {integrity: sha512-eY05o0napek5b99DH+dir32q2pCemWmwF4ooimU4BnuY90lXC6FUXuB4+w8/tTGTI5TqjfXOnBokTqr3DPDRpQ==}
+    hasBin: true
+    dependencies:
+      chalk: 4.1.0
+      enquirer: 2.3.6
+      fast-glob: 3.2.7
+      fs-extra: 9.1.0
+      ignore: 5.2.0
+      jsonc-parser: 3.0.0
+      nx: 13.8.1
       rxjs: 6.6.7
       rxjs-for-await: 0.0.2_rxjs@6.6.7
       semver: 7.3.4
@@ -12863,6 +12908,13 @@ packages:
     hasBin: true
     dependencies:
       '@nrwl/cli': 13.7.1
+    dev: true
+
+  /nx/13.8.1:
+    resolution: {integrity: sha512-8oHkh/Hli/OGGkumH8C9NArFjvFoNEgSfVkzCB7zoGddnIJlGAx+sSpHp0zJbXJV55Lk7iXbpKyeOJNnQDsEyQ==}
+    hasBin: true
+    dependencies:
+      '@nrwl/cli': 13.8.1
     dev: true
 
   /nyc/15.1.0:
