@@ -56,10 +56,10 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "jestConfig": "packages/cli/jest.config.js",
-            "codeCoverage": true
+            "rootDir": "./packages/cli/test",
+            "coverage": true
           }
         }
       },
@@ -141,10 +141,10 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "jestConfig": "packages/logger/jest.config.js",
-            "codeCoverage": true
+            "rootDir": "./packages/logger/test",
+            "coverage": true
           }
         }
       },
