@@ -134,14 +134,13 @@ exports.__esModule = true;
 var devkit_1 = require('@nrwl/devkit');
 var child_process_1 = require('child_process');
 var util_1 = require('util');
-function uvuExecutor(options, context) {
+function uvuExecutor(options) {
   var _a;
   return __awaiter(this, void 0, void 0, function () {
-    var success, dashRArgs, command, args, _b, stderr, stdout;
+    var success, dashRArgs, command, args, _b, stderr, stdout, err_1;
     return __generator(this, function (_c) {
       switch (_c.label) {
         case 0:
-          console.log(context);
           success = true;
           dashRArgs = [];
           command = 'uvu';
@@ -161,6 +160,14 @@ function uvuExecutor(options, context) {
           args = dashRArgs.reduce(function (prev, curr) {
             return (prev += '-r ' + curr + ' ');
           }, '');
+          process.env.FORCE_COLOR = '1';
+          if (!options.color) {
+            process.env.FORCE_COLOR = '0';
+            args += '-c=false ';
+          }
+          _c.label = 1;
+        case 1:
+          _c.trys.push([1, 3, , 4]);
           return [
             4 /*yield*/,
             (0, util_1.promisify)(child_process_1.exec)(
@@ -175,7 +182,7 @@ function uvuExecutor(options, context) {
                 options.pattern,
             ),
           ];
-        case 1:
+        case 2:
           (_b = _c.sent()), (stderr = _b.stderr), (stdout = _b.stdout);
           if (stderr) {
             devkit_1.logger.error(stderr);
@@ -183,6 +190,12 @@ function uvuExecutor(options, context) {
           }
           devkit_1.logger.log(stdout);
           return [2 /*return*/, { success: success }];
+        case 3:
+          err_1 = _c.sent();
+          devkit_1.logger.log(err_1.stdout);
+          return [2 /*return*/, { success: false }];
+        case 4:
+          return [2 /*return*/];
       }
     });
   });

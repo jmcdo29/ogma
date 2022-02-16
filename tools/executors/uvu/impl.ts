@@ -9,6 +9,7 @@ interface UvuOptions {
   typescript: boolean;
   tsconfigPaths: boolean;
   runtimeArgs?: string[];
+  color: boolean;
 }
 
 export default async function uvuExecutor(options: UvuOptions) {
@@ -25,16 +26,26 @@ export default async function uvuExecutor(options: UvuOptions) {
     dashRArgs.push('tsconfig-paths/register');
   }
   dashRArgs.push(...(options.runtimeArgs ?? []));
-  const args = dashRArgs.reduce((prev, curr) => {
+  let args = dashRArgs.reduce((prev, curr) => {
     return (prev += `-r ${curr} `);
   }, '');
-  const { stderr, stdout } = await promisify(exec)(
-    `${getPackageManagerCommand().exec} ${command} ${args} ${options.rootDir} ${options.pattern}`,
-  );
-  if (stderr) {
-    logger.error(stderr);
-    success = false;
+  process.env.FORCE_COLOR = '1';
+  if (!options.color) {
+    process.env.FORCE_COLOR = '0';
+    args += '-c=false ';
   }
-  logger.log(stdout);
-  return { success };
+  try {
+    const { stderr, stdout } = await promisify(exec)(
+      `${getPackageManagerCommand().exec} ${command} ${args} ${options.rootDir} ${options.pattern}`,
+    );
+    if (stderr) {
+      logger.error(stderr);
+      success = false;
+    }
+    logger.log(stdout);
+    return { success };
+  } catch (err) {
+    logger.log(err.stdout);
+    return { success: false };
+  }
 }
