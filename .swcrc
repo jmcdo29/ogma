@@ -8,14 +8,15 @@
       "legacyDecorator": true,
       "decoratorMetadata": true
     },
+    "target": "es2017",
+    "keepClassNames": true,
     "baseUrl": ".",
     "paths": {
-      "@ogma/*": [
-        "packages/*/src/"
-      ]
+      "@ogma/*": ["packages/*/src/"]
     }
   },
   "module": {
-    "type": "commonjs"
+    "type": "commonjs",
+    "strictMode": true
   }
 }
