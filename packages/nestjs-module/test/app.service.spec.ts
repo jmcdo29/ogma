@@ -1,36 +1,40 @@
 import { AppService } from './app.service';
 import { Test } from '@nestjs/testing';
+import { spy, Stub } from 'hanbi';
+import { suite } from 'uvu';
+import { equal, ok } from 'uvu/assert';
 
-describe('AppService', () => {
-  let service: AppService;
-  let logger: { log: jest.Mock };
-
-  beforeEach(async () => {
+const AppServiceSuite = suite<{ service: AppService; logSpy: Stub<(message: string) => void> }>(
+  'AppService',
+  {
+    service: undefined,
+    logSpy: spy(),
+  },
+);
+AppServiceSuite.before(async (context) => {
+  try {
     const modRef = await Test.createTestingModule({
       providers: [
         AppService,
         {
           provide: 'OGMA_SERVICE:AppService',
           useValue: {
-            log: jest.fn(),
+            log: context.logSpy.handler,
           },
         },
       ],
     }).compile();
-    service = modRef.get(AppService);
-    logger = modRef.get<{ log: jest.Mock }>('OGMA_SERVICE:AppService');
-  });
-
-  it('should be truthy', () => {
-    expect(service).toBeTruthy();
-  });
-
-  it('should return { hello: world }', () => {
-    expect(service.getHello()).toEqual({ hello: 'world' });
-    expect(logger.log).toHaveBeenCalledWith('Say Hello');
-  });
+    context.service = modRef.get(AppService);
+  } catch (err) {
+    console.error(err);
+  }
+});
+AppServiceSuite('it should create the service', ({ service }) => {
+  ok(service);
+});
+AppServiceSuite('It should return { hello: world } and log "Say Hello"', ({ service, logSpy }) => {
+  equal(service.getHello(), { hello: 'world' });
+  ok(logSpy.calledWith('Say Hello'));
 });
 
-process.on('unhandledRejection', (err) => {
-  throw new Error(err as any);
-});
+AppServiceSuite.run();
