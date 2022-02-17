@@ -167,10 +167,9 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "jestConfig": "packages/nestjs-module/jest.config.js",
-            "codeCoverage": true
+            "rootDor": "./packages/nestjs-module/test"
           }
         }
       },
