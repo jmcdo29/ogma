@@ -59,7 +59,8 @@
           "executor": "./tools/executors/uvu:uvu",
           "options": {
             "rootDir": "./packages/cli/test",
-            "coverage": true
+            "coverage": true,
+            "useSwc": true
           }
         }
       },
@@ -144,7 +145,8 @@
           "executor": "./tools/executors/uvu:uvu",
           "options": {
             "rootDir": "./packages/logger/test",
-            "coverage": true
+            "coverage": true,
+            "useSwc": true
           }
         }
       },
