@@ -1,7 +1,9 @@
-import { createMock } from '@golevelup/ts-jest';
 import { ExecutionContext, HttpException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { style } from '@ogma/styler';
+import { spy } from 'hanbi';
+import { suite } from 'uvu';
+import { equal, is } from 'uvu/assert';
 import { AbstractInterceptorService } from '../src/interceptor/providers/abstract-interceptor.service';
 
 class TestParser extends AbstractInterceptorService {
@@ -38,51 +40,54 @@ class TestParser extends AbstractInterceptorService {
 const colorStatus = (colorString: string, status: number) =>
   `should return ${colorString} for status ${status}`;
 
-describe('AbstractInterceptorService', () => {
-  let service: TestParser;
+const AbstractInterceptorServiceSuite = suite<{ service: TestParser }>(
+  'Abstract Interceptor Service Tests',
+  {
+    service: undefined,
+  },
+);
+AbstractInterceptorServiceSuite.before(async (context) => {
+  const mod = await Test.createTestingModule({
+    providers: [TestParser],
+  }).compile();
+  context.service = mod.get(TestParser);
+  process.stdout.getColorDepth = () => 8;
+});
+for (const { color, status } of [
+  { color: 'green', status: 200 },
+  { color: 'cyan', status: 300 },
+  { color: 'yellow', status: 400 },
+  { color: 'red', status: 500 },
+  { color: 'white', status: 600 },
+]) {
+  AbstractInterceptorServiceSuite(colorStatus(color, status), ({ service }) => {
+    is(service.getColoredStatus(status), style[color].apply(status));
+  });
+}
 
-  beforeEach(async () => {
-    const mod = await Test.createTestingModule({
-      providers: [TestParser],
-    }).compile();
-    service = mod.get(TestParser);
-    process.stdout.getColorDepth = () => 8;
-  });
-  describe('get colored status', () => {
-    it(colorStatus('green', 200), () => {
-      expect(service.getColoredStatus(200)).toBe(style.green.apply(200));
-    });
-    it(colorStatus('cyan', 300), () => {
-      expect(service.getColoredStatus(300)).toBe(style.cyan.apply(300));
-    });
-    it(colorStatus('yellow', 400), () => {
-      expect(service.getColoredStatus(400)).toBe(style.yellow.apply(400));
-    });
-    it(colorStatus('red', 500), () => {
-      expect(service.getColoredStatus(500)).toBe(style.red.apply(500));
-    });
-    it(colorStatus('white', 600), () => {
-      expect(service.getColoredStatus(600)).toBe(style.white.apply(600));
-    });
-  });
-  describe('getErrorContext', () => {
-    it('should get an error context object', () => {
-      Date.now = () => 1;
-      const ctxMock = createMock<ExecutionContext>();
-      expect(
-        service.getErrorContext(new Error(), ctxMock, 0, {
-          json: false,
-          color: false,
-        }),
-      ).toEqual({
-        callerAddress: 'ip',
-        callPoint: 'point',
-        status: '500',
-        contentLength: 2,
-        responseTime: 1,
-        protocol: 'protocol',
-        method: 'method',
-      });
-    });
+AbstractInterceptorServiceSuite('It should get an error context object', ({ service }) => {
+  Date.now = () => 1;
+
+  const ctxMock: ExecutionContext = {
+    getClass: spy().handler,
+    getHandler: spy().handler,
+    getArgByIndex: spy().handler,
+    getArgs: spy().handler,
+    getType: spy().handler,
+    switchToHttp: spy().handler,
+    switchToRpc: spy().handler,
+    switchToWs: spy().handler,
+  };
+  equal(service.getErrorContext(new Error(), ctxMock, 0, { json: false, color: false }), {
+    callerAddress: 'ip',
+    callPoint: 'point',
+    status: '500',
+    contentLength: 2,
+    responseTime: 1,
+    protocol: 'protocol',
+    method: 'method',
+    meta: undefined,
   });
 });
+
+AbstractInterceptorServiceSuite.run();
