@@ -10,6 +10,7 @@ interface UvuOptions {
   tsconfigPaths: boolean;
   runtimeArgs?: string[];
   color: boolean;
+  useSwc: boolean;
 }
 
 export default async function uvuExecutor(options: UvuOptions) {
@@ -20,10 +21,14 @@ export default async function uvuExecutor(options: UvuOptions) {
     command = 'c8 ' + command;
   }
   if (options.typescript) {
-    dashRArgs.push('ts-node/register');
-  }
-  if (options.tsconfigPaths) {
-    dashRArgs.push('tsconfig-paths/register');
+    if (options.useSwc) {
+      dashRArgs.push('@swc/register');
+    } else {
+      dashRArgs.push('ts-node/register');
+      if (options.tsconfigPaths) {
+        dashRArgs.push('tsconfig-paths/register');
+      }
+    }
   }
   dashRArgs.push(...(options.runtimeArgs ?? []));
   let args = dashRArgs.reduce((prev, curr) => {

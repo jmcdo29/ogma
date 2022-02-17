@@ -1,0 +1,21 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "decorators": true
+    },
+    "transform": {
+      "legacyDecorator": true,
+      "decoratorMetadata": true
+    },
+    "baseUrl": ".",
+    "paths": {
+      "@ogma/*": [
+        "packages/*/src/"
+      ]
+    }
+  },
+  "module": {
+    "type": "commonjs"
+  }
+}
