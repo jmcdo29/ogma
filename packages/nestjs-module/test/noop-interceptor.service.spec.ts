@@ -1,33 +1,31 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { suite } from 'uvu';
+import { equal } from 'uvu/assert';
 import { NoopInterceptorService } from '../src/interceptor/providers/noop-interceptor.service';
 
-describe('NoopInterceptorService', () => {
-  let service: NoopInterceptorService;
+const NoopInterceptorServiceSuite = suite<{ service: NoopInterceptorService }>(
+  'NoopInterceptorService',
+  { service: undefined },
+);
+NoopInterceptorServiceSuite.before(async (context) => {
+  const module: TestingModule = await Test.createTestingModule({
+    providers: [NoopInterceptorService],
+  }).compile();
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [NoopInterceptorService],
-    }).compile();
-
-    service = module.get<NoopInterceptorService>(NoopInterceptorService);
-  });
-
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
-
-  describe('success context', () => {
-    it('should return a success log object', () => {
-      Date.now = () => 133;
-      expect(service.getSuccessContext(151, {} as any, 50, {} as any)).toEqual({
-        callerAddress: 'caller ip',
-        method: 'method',
-        callPoint: 'call point',
-        responseTime: 83,
-        contentLength: 151,
-        protocol: 'protocol',
-        status: 'status',
-      });
-    });
+  context.service = module.get<NoopInterceptorService>(NoopInterceptorService);
+});
+NoopInterceptorServiceSuite('It should return a success log object', ({ service }) => {
+  Date.now = () => 133;
+  equal(service.getSuccessContext(151, {} as any, 50, {} as any), {
+    callerAddress: 'caller ip',
+    method: 'method',
+    callPoint: 'call point',
+    responseTime: 83,
+    contentLength: 151,
+    protocol: 'protocol',
+    status: 'status',
+    meta: undefined,
   });
 });
+
+NoopInterceptorServiceSuite.run();
