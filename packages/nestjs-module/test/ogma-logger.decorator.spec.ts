@@ -1,14 +1,14 @@
+import { suite } from 'uvu';
+import { instance } from 'uvu/assert';
 import { OgmaLogger } from '../src';
-
-const func = expect.any(Function);
 
 class TestClass {}
 
-describe('OgmaLogger', () => {
-  it('should work with a string', () => {
-    expect(OgmaLogger('TestContext')).toEqual(func);
-  });
-  it('should work with a class', () => {
-    expect(OgmaLogger(TestClass)).toEqual(func);
-  });
+const OgmaLoggerDecoratorSuite = suite('Ogma Logger Decorators');
+OgmaLoggerDecoratorSuite('Should work with a string', () => {
+  instance(OgmaLogger('TestContext'), Function);
 });
+OgmaLoggerDecoratorSuite('Should work with a class', () => {
+  instance(OgmaLogger(TestClass), Function);
+});
+OgmaLoggerDecoratorSuite.run();
