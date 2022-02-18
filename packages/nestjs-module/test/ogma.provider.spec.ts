@@ -1,6 +1,8 @@
-import { FactoryProvider, Provider, Scope } from '@nestjs/common/interfaces';
+import { Scope } from '@nestjs/common/interfaces';
 import { REQUEST as CONTEXT, Reflector } from '@nestjs/core';
 import { Ogma } from '@ogma/logger';
+import { suite } from 'uvu';
+import { equal, instance, is, not } from 'uvu/assert';
 import { OgmaService } from '../src';
 import { NoopInterceptorService } from '../src/interceptor/providers';
 import {
@@ -20,189 +22,107 @@ import {
 const noOptions = 'use noop service as back up';
 const withOptions = 'use passed option for interceptor service';
 
-describe('createOgmaProvider', () => {
-  it('should create the Ogma class without options', () => {
-    const ogma = createOgmaProvider();
-    expect(ogma instanceof Ogma).toBeTruthy();
-  });
-  it('should create the Ogma class with the application option', () => {
-    const ogma = createOgmaProvider({ application: 'Test' });
-    expect(ogma instanceof Ogma).toBeTruthy();
-    expect((ogma as any).options.application).toBe('Test');
+const CreateOgmaProviderSuite = suite('Create Ogma Provider');
+CreateOgmaProviderSuite('it should create the instance without options', () => {
+  instance(createOgmaProvider(), Ogma);
+});
+CreateOgmaProviderSuite('it should create the instance when options are passed', () => {
+  const ogma = createOgmaProvider({ application: 'Test' });
+  instance(ogma, Ogma);
+  is((ogma as any).options.application, 'Test');
+});
+CreateOgmaProviderSuite.run();
+
+const CreateOgmaInterceptorOptionsFactorySuite = suite('Create Ogma Interceptor Options Factory');
+CreateOgmaInterceptorOptionsFactorySuite('it should return false', () => {
+  not.ok(createOgmaInterceptorOptionsFactory({ interceptor: false }));
+});
+CreateOgmaInterceptorOptionsFactorySuite('should return the merged options', () => {
+  equal(createOgmaInterceptorOptionsFactory({ interceptor: { http: NoopInterceptorService } }), {
+    http: NoopInterceptorService,
+    gql: false,
+    ws: false,
+    rpc: false,
   });
 });
-describe('createOgmaInterceptorOptionsFactory', () => {
-  it('should return false', () => {
-    expect(createOgmaInterceptorOptionsFactory({ interceptor: false })).toBeFalsy();
-  });
-  it('should return the merged options', () => {
-    expect(
-      createOgmaInterceptorOptionsFactory({
-        interceptor: {
-          http: NoopInterceptorService,
-        },
-      }),
-    ).toEqual({
-      http: NoopInterceptorService,
-      ws: false,
-      gql: false,
-      rpc: false,
-    });
-  });
-  it('should throw an error for no good options', () => {
-    expect(() =>
-      createOgmaInterceptorOptionsFactory({
-        interceptor: {},
-      }),
-    ).not.toThrowError();
-  });
+CreateOgmaInterceptorOptionsFactorySuite('should not throw even with invalid options', () => {
+  not.throws(() => createOgmaInterceptorOptionsFactory({ interceptor: {} }));
 });
-describe('createOgmaServiceOptions', () => {
-  it('should return the service options', () => {
-    expect(createOgmaServiceOptions({ interceptor: {} })).toEqual(undefined);
-  });
-  it('should return actual options and not just undefined', () => {
-    expect(
-      createOgmaServiceOptions({
-        interceptor: {},
-        service: {
-          json: false,
-          color: true,
-          application: 'something',
-        },
-      }),
-    ).toEqual({
+CreateOgmaInterceptorOptionsFactorySuite.run();
+
+const CreateOgmaServiceOptionsSuite = suite('Create Ogma Service Options');
+CreateOgmaServiceOptionsSuite('Should return the service options', () => {
+  is(createOgmaServiceOptions({ interceptor: {} }), undefined);
+});
+CreateOgmaServiceOptionsSuite('Should return actual options and not undefined', () => {
+  equal(
+    createOgmaServiceOptions({
+      interceptor: {},
+      service: {
+        json: false,
+        color: true,
+        application: 'something',
+      },
+    }),
+    {
       color: true,
       json: false,
       application: 'something',
-    });
-  });
+    },
+  );
 });
-describe('createLoggerProviders', () => {
-  it('should create a provider with a function for token', () => {
-    const factory = expect.any(Function);
-    expect(createLoggerProviders(OgmaService)).toMatchObject([
-      {
-        inject: [OGMA_INSTANCE],
-        provide: OGMA_SERVICE_TOKEN + ':OgmaService',
-        useFactory: factory,
-      },
-    ]);
-  });
-  it('should create a provider with a string for token', () => {
-    const factory = expect.any(Function);
-    const providers: Provider<FactoryProvider<OgmaService>>[] =
-      createLoggerProviders('TestService');
-    expect(providers).toMatchObject([
-      {
-        inject: [OGMA_INSTANCE],
-        provide: OGMA_SERVICE_TOKEN + ':TestService',
-        useFactory: factory,
-      },
-    ]);
-    const prov = providers[0];
-    expect((prov as any).useFactory(new Ogma()) instanceof OgmaService).toBe(true);
-  });
+CreateOgmaServiceOptionsSuite.run();
+
+const CreateLoggerProvidersSuite = suite('Create Logger Providers');
+CreateLoggerProvidersSuite('should create a provider with a function for the token', () => {
+  const provider = createLoggerProviders(OgmaService)[0];
+  instance(provider.useFactory, Function);
+  equal(provider.inject, [OGMA_INSTANCE]);
+  is(provider.provide, `${OGMA_SERVICE_TOKEN}:OgmaService`);
 });
-describe('createRequestScopedLoggerProviders', () => {
-  it('should create a provider with a function for token', () => {
-    const factory = expect.any(Function);
-    expect(createRequestScopedLoggerProviders(OgmaService)).toMatchObject([
-      {
-        inject: [OGMA_INSTANCE, CONTEXT],
-        provide: OGMA_REQUEST_SCOPED_SERVICE_TOKEN + ':OgmaService',
-        scope: Scope.REQUEST,
-        useFactory: factory,
-      },
-    ]);
-  });
-  it('should create a provider with a string for token', () => {
-    const factory = expect.any(Function);
-    const providers: Provider<FactoryProvider<OgmaService>>[] =
-      createRequestScopedLoggerProviders('TestService');
-    expect(providers).toMatchObject([
-      {
-        inject: [OGMA_INSTANCE, CONTEXT],
-        provide: OGMA_REQUEST_SCOPED_SERVICE_TOKEN + ':TestService',
-        scope: Scope.REQUEST,
-        useFactory: factory,
-      },
-    ]);
-    const prov = providers[0];
-    expect((prov as any).useFactory(new Ogma()) instanceof OgmaService).toBe(true);
-  });
+CreateLoggerProvidersSuite('should create a provider with a string  for the token', () => {
+  const provider = createLoggerProviders('TestService')[0];
+  instance(provider.useFactory, Function);
+  equal(provider.inject, [OGMA_INSTANCE]);
+  is(provider.provide, `${OGMA_SERVICE_TOKEN}:TestService`);
 });
-describe('interceptorProviderFactory', () => {
-  describe('http option', () => {
-    it(noOptions, () => {
-      expect(
-        interceptorProviderFactory('http', NoopInterceptorService)(
-          { http: false },
+CreateLoggerProvidersSuite.run();
+
+const CreateRequestScopedLoggerProvidersSuite = suite('Create Request Scoped Logger Providers');
+CreateRequestScopedLoggerProvidersSuite(
+  'should create a provider with a function for the token',
+  () => {
+    const provider = createRequestScopedLoggerProviders(OgmaService)[0];
+    instance(provider.useFactory, Function);
+    equal(provider.inject, [OGMA_INSTANCE, CONTEXT]);
+    is(provider.provide, `${OGMA_REQUEST_SCOPED_SERVICE_TOKEN}:OgmaService`);
+    is(provider.scope, Scope.REQUEST);
+  },
+);
+CreateRequestScopedLoggerProvidersSuite(
+  'should create a provider with a string for the token',
+  () => {
+    const provider = createRequestScopedLoggerProviders('TestService')[0];
+    instance(provider.useFactory, Function);
+    equal(provider.inject, [OGMA_INSTANCE, CONTEXT]);
+    is(provider.provide, `${OGMA_REQUEST_SCOPED_SERVICE_TOKEN}:TestService`);
+    is(provider.scope, Scope.REQUEST);
+  },
+);
+CreateRequestScopedLoggerProvidersSuite.run();
+
+const InterceptorProviderFactorySuite = suite('Interceptor Provider Factory');
+for (const type of ['http', 'ws', 'gql', 'rpc'] as const) {
+  for (const use of [true, false]) {
+    InterceptorProviderFactorySuite(`${type}: ${use ? withOptions : noOptions}`, () => {
+      instance(
+        interceptorProviderFactory(type, NoopInterceptorService)(
+          { [type]: use ? NoopInterceptorService : false },
           new Reflector(),
-        ) instanceof NoopInterceptorService,
-      ).toBe(true);
+        ),
+        NoopInterceptorService,
+      );
     });
-    it(withOptions, () => {
-      expect(
-        interceptorProviderFactory('http', NoopInterceptorService)(
-          { http: NoopInterceptorService },
-          new Reflector(),
-        ) instanceof NoopInterceptorService,
-      ).toBe(true);
-    });
-  });
-  describe('ws option', () => {
-    it(noOptions, () => {
-      expect(
-        interceptorProviderFactory('ws', NoopInterceptorService)(
-          { ws: false },
-          new Reflector(),
-        ) instanceof NoopInterceptorService,
-      ).toBe(true);
-    });
-    it(withOptions, () => {
-      expect(
-        interceptorProviderFactory('ws', NoopInterceptorService)(
-          { ws: NoopInterceptorService },
-          new Reflector(),
-        ) instanceof NoopInterceptorService,
-      ).toBe(true);
-    });
-  });
-  describe('gql option', () => {
-    it(noOptions, () => {
-      expect(
-        interceptorProviderFactory('gql', NoopInterceptorService)(
-          { gql: false },
-          new Reflector(),
-        ) instanceof NoopInterceptorService,
-      ).toBe(true);
-    });
-    it(withOptions, () => {
-      expect(
-        interceptorProviderFactory('gql', NoopInterceptorService)(
-          { gql: NoopInterceptorService },
-          new Reflector(),
-        ) instanceof NoopInterceptorService,
-      ).toBe(true);
-    });
-  });
-  describe('rpc option', () => {
-    it(noOptions, () => {
-      expect(
-        interceptorProviderFactory('rpc', NoopInterceptorService)(
-          { rpc: false },
-          new Reflector(),
-        ) instanceof NoopInterceptorService,
-      ).toBe(true);
-    });
-    it(withOptions, () => {
-      expect(
-        interceptorProviderFactory('rpc', NoopInterceptorService)(
-          { rpc: NoopInterceptorService },
-          new Reflector(),
-        ) instanceof NoopInterceptorService,
-      ).toBe(true);
-    });
-  });
-});
+  }
+}
+InterceptorProviderFactorySuite.run();

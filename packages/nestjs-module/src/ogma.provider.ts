@@ -1,4 +1,4 @@
-import { Provider, Scope } from '@nestjs/common';
+import { FactoryProvider, Scope } from '@nestjs/common';
 import { REQUEST as CONTEXT, Reflector } from '@nestjs/core';
 import { Ogma, OgmaOptions } from '@ogma/logger';
 import {
@@ -51,7 +51,7 @@ export function createRequestScopedProviderToken(topic: string): string {
   return OGMA_REQUEST_SCOPED_SERVICE_TOKEN + ':' + topic;
 }
 
-export function createLoggerProviders(topic: string | (() => any) | Type<any>): Provider[] {
+export function createLoggerProviders(topic: string | (() => any) | Type<any>): FactoryProvider[] {
   topic = typeof topic === 'function' ? topic.name : topic;
   const token = createProviderToken(topic);
   return [
@@ -67,7 +67,7 @@ export function createLoggerProviders(topic: string | (() => any) | Type<any>): 
 
 export function createRequestScopedLoggerProviders(
   topic: string | (() => any) | Type<any>,
-): Provider[] {
+): FactoryProvider[] {
   topic = typeof topic === 'function' ? topic.name : topic;
   const token = createRequestScopedProviderToken(topic);
   return [
