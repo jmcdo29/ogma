@@ -1,21 +1,16 @@
+import { suite } from 'uvu';
+import { instance } from 'uvu/assert';
 import { InjectOgma, InjectOgmaContext, InjectOgmaInterceptorOptions } from '../src';
 
-const func = expect.any(Function);
-
-describe('InjectOgma', () => {
-  it('should return Inject(OGMA_INSTANCE)', () => {
-    expect(InjectOgma()).toEqual(func);
-  });
+const OgmaDecoratorsSuite = suite('Ogma Decorators');
+OgmaDecoratorsSuite('should return Inject(Ogma_Instance)', () => {
+  instance(InjectOgma(), Function);
+});
+OgmaDecoratorsSuite('Should return Inject(OGMA_CONTEXT)', () => {
+  instance(InjectOgmaContext(), Function);
+});
+OgmaDecoratorsSuite('Should return Inject(OGMA_INTERCEPTOR_OPTIONS)', () => {
+  instance(InjectOgmaInterceptorOptions(), Function);
 });
 
-describe('InjectOgmaContext', () => {
-  it('should return Inject(OGMA_CONTEXT)', () => {
-    expect(InjectOgmaContext()).toEqual(func);
-  });
-});
-
-describe('InjectOgmaInterceptorOptions', () => {
-  it('should return Inject(OGMA_INTERCEPTOR_OPTIONS', () => {
-    expect(InjectOgmaInterceptorOptions()).toEqual(func);
-  });
-});
+OgmaDecoratorsSuite.run();
