@@ -1,4 +1,6 @@
 import { Test } from '@nestjs/testing';
+import { suite } from 'uvu';
+import { ok } from 'uvu/assert';
 import { HttpInterceptorService, OgmaModule, OgmaModuleOptions } from '../src';
 
 class NoopInterceptorService extends HttpInterceptorService {
@@ -34,20 +36,13 @@ const allOptions: OgmaModuleOptions = {
     rpc: NoopInterceptorService,
   },
 };
-
-describe('OgmaModule', () => {
-  describe('should create a module with', () => {
-    it.each`
-      options
-      ${interceptorOptions}
-      ${noIntOptions}
-      ${undefined}
-      ${allOptions}
-    `('%options', async ({ options }: { options: OgmaModuleOptions }) => {
-      const mod = await Test.createTestingModule({
-        imports: [OgmaModule.forRoot(options)],
-      }).compile();
-      expect(mod).toBeTruthy();
-    });
+const OgmaModuleSuite = suite('Ogma Module');
+for (const options of [interceptorOptions, noIntOptions, undefined, allOptions]) {
+  OgmaModuleSuite(`It should make the module for ${options}`, async () => {
+    const mod = await Test.createTestingModule({
+      imports: [OgmaModule.forRoot(options)],
+    }).compile();
+    ok(mod);
   });
-});
+}
+OgmaModuleSuite.run();
