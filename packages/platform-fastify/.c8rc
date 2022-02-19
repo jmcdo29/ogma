@@ -1,0 +1,6 @@
+{
+  "src": "./packages/platform-fastify/src",
+  "include": [
+    "packages/platform-fastify/src/**/*.ts"
+  ]
+}
