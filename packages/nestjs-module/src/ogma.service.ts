@@ -71,7 +71,7 @@ export class OgmaService implements LoggerService {
     }
     if (context && typeof context === 'string') {
       meta.context = context;
-    } else if (context && typeof context === 'object') {
+    } else if (context && typeof context === 'object' && Object.keys(context).length) {
       meta = context;
     }
     this.printMessage(message, 'error', meta);
