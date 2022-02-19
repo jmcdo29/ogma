@@ -171,7 +171,7 @@
         "test": {
           "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "rootDor": "./packages/nestjs-module/test"
+            "rootDir": "./packages/nestjs-module/test"
           }
         }
       },
