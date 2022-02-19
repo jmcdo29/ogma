@@ -60,6 +60,7 @@
           "options": {
             "rootDir": "./packages/cli/test",
             "coverage": true,
+            "coverageConfig": "./packages/cli/.c8rc",
             "useSwc": true
           }
         }
@@ -146,6 +147,7 @@
           "options": {
             "rootDir": "./packages/logger/test",
             "coverage": true,
+            "coverageConfig": "./packages/logger/.c8rc",
             "useSwc": true
           }
         }
@@ -171,7 +173,10 @@
         "test": {
           "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "rootDir": "./packages/nestjs-module/test"
+            "rootDir": "./packages/nestjs-module/test",
+            "coverage": true,
+            "coverageConfig": "./packages/nestjs-module/.c8rc",
+            "useSwc": true
           }
         }
       },

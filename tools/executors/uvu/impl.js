@@ -137,7 +137,7 @@ var util_1 = require('util');
 function uvuExecutor(options) {
   var _a;
   return __awaiter(this, void 0, void 0, function () {
-    var success, dashRArgs, command, args, _b, stderr, stdout, err_1;
+    var success, dashRArgs, command, c8Command, args, fullCommand, _b, stderr, stdout, err_1;
     return __generator(this, function (_c) {
       switch (_c.label) {
         case 0:
@@ -145,7 +145,11 @@ function uvuExecutor(options) {
           dashRArgs = [];
           command = 'uvu';
           if (options.coverage) {
-            command = 'c8 ' + command;
+            c8Command = 'c8 ';
+            if (options.coverageConfig) {
+              c8Command += '-c ' + options.coverageConfig + ' ';
+            }
+            command = c8Command + command;
           }
           if (options.typescript) {
             if (options.useSwc) {
@@ -172,20 +176,18 @@ function uvuExecutor(options) {
           _c.label = 1;
         case 1:
           _c.trys.push([1, 3, , 4]);
-          return [
-            4 /*yield*/,
-            (0, util_1.promisify)(child_process_1.exec)(
-              (0, devkit_1.getPackageManagerCommand)().exec +
-                ' ' +
-                command +
-                ' ' +
-                args +
-                ' ' +
-                options.rootDir +
-                ' ' +
-                options.pattern,
-            ),
-          ];
+          fullCommand =
+            (0, devkit_1.getPackageManagerCommand)().exec +
+            ' ' +
+            command +
+            ' ' +
+            args +
+            ' ' +
+            options.rootDir +
+            ' ' +
+            options.pattern;
+          devkit_1.logger.debug("Running command '" + fullCommand + "'");
+          return [4 /*yield*/, (0, util_1.promisify)(child_process_1.exec)(fullCommand)];
         case 2:
           (_b = _c.sent()), (stderr = _b.stderr), (stdout = _b.stdout);
           if (stderr) {
@@ -197,6 +199,7 @@ function uvuExecutor(options) {
         case 3:
           err_1 = _c.sent();
           devkit_1.logger.log(err_1.stdout);
+          devkit_1.logger.error(err_1.stderr);
           return [2 /*return*/, { success: false }];
         case 4:
           return [2 /*return*/];

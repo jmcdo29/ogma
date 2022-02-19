@@ -17,6 +17,10 @@
       "description": "Whether or not c8 should be used to collect coverage",
       "default": false
     },
+    "coverageConfig": {
+      "type": "string",
+      "description": "The path to the c8 config file"
+    },
     "typescript": {
       "type": "boolean",
       "description": "If you are testing typescript files. This will register ts-node unless useSwc is set to true",

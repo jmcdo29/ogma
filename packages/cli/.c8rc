@@ -1,0 +1,6 @@
+{
+  "src": "./packages/cli/src",
+  "include": [
+    "packages/cli/src/**/*.ts"
+  ]
+}

@@ -6,6 +6,7 @@ interface UvuOptions {
   rootDir: string;
   pattern: string;
   coverage: string;
+  coverageConfig?: string;
   typescript: boolean;
   tsconfigPaths: boolean;
   runtimeArgs?: string[];
@@ -18,7 +19,11 @@ export default async function uvuExecutor(options: UvuOptions) {
   const dashRArgs: string[] = [];
   let command = 'uvu';
   if (options.coverage) {
-    command = 'c8 ' + command;
+    let c8Command = 'c8 ';
+    if (options.coverageConfig) {
+      c8Command += `-c ${options.coverageConfig} `;
+    }
+    command = c8Command + command;
   }
   if (options.typescript) {
     if (options.useSwc) {
@@ -40,9 +45,11 @@ export default async function uvuExecutor(options: UvuOptions) {
     args += '-c=false ';
   }
   try {
-    const { stderr, stdout } = await promisify(exec)(
-      `${getPackageManagerCommand().exec} ${command} ${args} ${options.rootDir} ${options.pattern}`,
-    );
+    const fullCommand = `${getPackageManagerCommand().exec} ${command} ${args} ${options.rootDir} ${
+      options.pattern
+    }`;
+    logger.debug(`Running command '${fullCommand}'`);
+    const { stderr, stdout } = await promisify(exec)(fullCommand);
     if (stderr) {
       logger.error(stderr);
       success = false;
@@ -51,6 +58,7 @@ export default async function uvuExecutor(options: UvuOptions) {
     return { success };
   } catch (err) {
     logger.log(err.stdout);
+    logger.error(err.stderr);
     return { success: false };
   }
 }
