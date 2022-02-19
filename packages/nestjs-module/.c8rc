@@ -1,0 +1,6 @@
+{
+  "src": "./packages/nestjs-module/src",
+  "include": [
+    "packages/nestjs-module/src/**/*.ts"
+  ]
+}
