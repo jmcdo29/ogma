@@ -1,0 +1,6 @@
+{
+  "src": "./packages/platform-graphql-fastify/src",
+  "include": [
+    "packages/platform-graphql-fastify/src/**/*.ts"
+  ]
+}
