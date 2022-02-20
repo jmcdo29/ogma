@@ -255,10 +255,12 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "jestConfig": "packages/platform-graphql/jest.config.js",
-            "codeCoverage": true
+            "rootDir": "./packages/platform-graphql/test",
+            "coverage": true,
+            "coverageConfig": "./packages/platform-graphql/.c8rc",
+            "useSwc": true
           }
         }
       },

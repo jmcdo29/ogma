@@ -1,0 +1,6 @@
+{
+  "src": "./packages/platform-graphql/src",
+  "include": [
+    "packages/platform-graphql/src/**/*.ts"
+  ]
+}
