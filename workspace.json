@@ -453,9 +453,9 @@
         "test": {
           "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "rootDir": "./packages/platform-rabbitmq/test",
+            "rootDir": "./packages/platform-redis/test",
             "coverage": true,
-            "coverageConfig": "./packages/platform-rabbitmq/.c8rc",
+            "coverageConfig": "./packages/platform-redis/.c8rc",
             "useSwc": true
           }
         }
@@ -509,9 +509,9 @@
         "test": {
           "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "rootDir": "./packages/platform-rabbitmq/test",
+            "rootDir": "./packages/platform-tcp/test",
             "coverage": true,
-            "coverageConfig": "./packages/platform-rabbitmq/.c8rc",
+            "coverageConfig": "./packages/platform-tcp/.c8rc",
             "useSwc": true
           }
         }
