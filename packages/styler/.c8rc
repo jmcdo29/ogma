@@ -1,0 +1,6 @@
+{
+  "src": "./packages/styler/src",
+  "include": [
+    "packages/styler/src/**/*.ts"
+  ]
+}
