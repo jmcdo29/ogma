@@ -1,0 +1,6 @@
+{
+  "src": "./packages/platform-rabbitmq/src",
+  "include": [
+    "packages/platform-rabbitmq/src/**/*.ts"
+  ]
+}
