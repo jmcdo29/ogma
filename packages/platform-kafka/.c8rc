@@ -1,0 +1,6 @@
+{
+  "src": "./packages/platform-express/src",
+  "include": [
+    "packages/platform-express/src/**/*.ts"
+  ]
+}
