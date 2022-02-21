@@ -395,10 +395,12 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "jestConfig": "packages/platform-nats/jest.config.js",
-            "codeCoverage": true
+            "rootDir": "./packages/platform-nats/test",
+            "coverage": true,
+            "coverageConfig": "./packages/platform-nats/.c8rc",
+            "useSwc": true
           }
         }
       },
