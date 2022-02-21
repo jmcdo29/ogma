@@ -1,0 +1,6 @@
+{
+  "src": "./packages/platform-grpc/src",
+  "include": [
+    "packages/platform-grpc/src/**/*.ts"
+  ]
+}
