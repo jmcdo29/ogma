@@ -563,10 +563,12 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "jestConfig": "packages/styler/jest.config.js",
-            "codeCoverage": true
+            "rootDir": "./packages/styler/test",
+            "coverage": true,
+            "coverageConfig": "./packages/styler/.c8rc",
+            "useSwc": true
           }
         }
       },

@@ -152,6 +152,7 @@ export class Styler {
     if (stream.getColorDepth) {
       this.colorDepth = stream.getColorDepth();
     }
+
     if (process.env.FORCE_COLOR) {
       this.colorDepth = [1, 4, 8, 24][Number.parseInt(process.env.FORCE_COLOR)] ?? this.colorDepth;
     }
