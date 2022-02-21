@@ -1,0 +1,6 @@
+{
+  "src": "./packages/platform-ws/src",
+  "include": [
+    "packages/platform-ws/src/**/*.ts"
+  ]
+}
