@@ -1,0 +1,6 @@
+{
+  "src": "./packages/platform-redis/src",
+  "include": [
+    "packages/platform-redis/src/**/*.ts"
+  ]
+}
