@@ -66,8 +66,8 @@ TcpParserSuite('It should get the ip from the data', ({ parser }) => {
   });
   is(parser.getCallerIp(ctxMock), '127.0.0.1:3333');
 });
-TcpParserSuite('It should return "REDIS"', ({ parser }) => {
-  is(parser.getMethod(), 'REDIS');
+TcpParserSuite('It should return "TCP"', ({ parser }) => {
+  is(parser.getMethod(), 'TCP');
 });
 TcpParserSuite('It should return a 200', ({ parser }) => {
   is(parser.getStatus(createCtxMock(), false), '200');

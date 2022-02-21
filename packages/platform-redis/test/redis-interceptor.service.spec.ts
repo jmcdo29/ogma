@@ -53,16 +53,16 @@ RedisParserSuite(
     equal(reflectorGetSpy.firstCall.args, [PATTERN_METADATA, funcMock]);
   },
 );
-RedisParserSuite('It should get the ip from the data', ({ parser }) => {
+RedisParserSuite('It should return an empty string', ({ parser }) => {
   const ctxMock = createCtxMock({
     switchToRpc: () =>
       ({
         getData: () => ({}),
       } as any),
   });
-  is(parser.getCallerIp(ctxMock), '127.0.0.1');
+  is(parser.getCallerIp(ctxMock), '');
 });
-RedisParserSuite('It should return an empty string', ({ parser }) => {
+RedisParserSuite('It should get the ip from the data', ({ parser }) => {
   const ctxMock = createCtxMock({
     switchToRpc: () =>
       ({
@@ -71,7 +71,7 @@ RedisParserSuite('It should return an empty string', ({ parser }) => {
         }),
       } as any),
   });
-  is(parser.getCallerIp(ctxMock), '');
+  is(parser.getCallerIp(ctxMock), '127.0.0.1');
 });
 RedisParserSuite('It should return "REDIS"', ({ parser }) => {
   is(parser.getMethod(), 'REDIS');
