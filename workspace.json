@@ -451,10 +451,12 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "jestConfig": "packages/platform-redis/jest.config.js",
-            "codeCoverage": true
+            "rootDir": "./packages/platform-rabbitmq/test",
+            "coverage": true,
+            "coverageConfig": "./packages/platform-rabbitmq/.c8rc",
+            "useSwc": true
           }
         }
       },
