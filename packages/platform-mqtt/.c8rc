@@ -1,0 +1,6 @@
+{
+  "src": "./packages/platform-mqtt/src",
+  "include": [
+    "packages/platform-mqtt/src/**/*.ts"
+  ]
+}
