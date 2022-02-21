@@ -479,10 +479,12 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "jestConfig": "packages/platform-socket.io/jest.config.js",
-            "codeCoverage": true
+            "rootDir": "./packages/platform-socket.io/test",
+            "coverage": true,
+            "coverageConfig": "./packages/platform-socket.io/.c8rc",
+            "useSwc": true
           }
         }
       },
