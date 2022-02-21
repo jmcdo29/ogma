@@ -341,9 +341,9 @@
         "test": {
           "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "rootDir": "./packages/platform-grpc/test",
+            "rootDir": "./packages/platform-kafka/test",
             "coverage": true,
-            "coverageConfig": "./packages/platform-grpc/.c8rc",
+            "coverageConfig": "./packages/platform-kafka/.c8rc",
             "useSwc": true
           }
         }
@@ -367,10 +367,12 @@
           }
         },
         "test": {
-          "executor": "@nrwl/jest:jest",
+          "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "jestConfig": "packages/platform-mqtt/jest.config.js",
-            "codeCoverage": true
+            "rootDir": "./packages/platform-mqtt/test",
+            "coverage": true,
+            "coverageConfig": "./packages/platform-mqtt/.c8rc",
+            "useSwc": true
           }
         }
       },

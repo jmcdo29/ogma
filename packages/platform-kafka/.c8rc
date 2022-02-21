@@ -1,6 +1,6 @@
 {
-  "src": "./packages/platform-express/src",
+  "src": "./packages/platform-kafka/src",
   "include": [
-    "packages/platform-express/src/**/*.ts"
+    "packages/platform-kafka/src/**/*.ts"
   ]
 }

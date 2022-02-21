@@ -53,7 +53,9 @@ KafkaParserSuite('It should get the ip from the data', ({ parser }) => {
     switchToRpc: () => ({
       getData: () =>
         ({
-          ip: '127.0.0.1',
+          value: {
+            ip: '127.0.0.1',
+          },
         } as any),
       getContext: spy().handler,
     }),
