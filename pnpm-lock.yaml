@@ -36,7 +36,7 @@ importers:
       '@nrwl/linter': 13.7.1
       '@nrwl/nest': 13.7.1
       '@nrwl/node': 13.7.1
-      '@nrwl/nx-cloud': 13.1.2
+      '@nrwl/nx-cloud': 13.1.5
       '@nrwl/tao': 13.7.1
       '@nrwl/workspace': 13.7.1
       '@nx-plus/docusaurus': ^12.1.0
@@ -130,7 +130,7 @@ importers:
       '@nrwl/linter': 13.7.1_08bb8553bac75e0581b8e3f7e81d68c3
       '@nrwl/nest': 13.7.1_e3b5e0a6e7a1e4f34f3e513d9b35daa4
       '@nrwl/node': 13.7.1_5a099f5b55b8fb5f89da20ab0ad14e2e
-      '@nrwl/nx-cloud': 13.1.2
+      '@nrwl/nx-cloud': 13.1.5
       '@nrwl/tao': 13.7.1
       '@nrwl/workspace': 13.7.1_22de59bea1bba5ef5d5f549479041afa
       '@nx-plus/docusaurus': 12.2.0_@nrwl+workspace@13.7.1
@@ -3986,8 +3986,8 @@ packages:
       - webpack-cli
     dev: true
 
-  /@nrwl/nx-cloud/13.1.2:
-    resolution: {integrity: sha512-0MzPYtnt63ZoiWCN6B4zpDprkM+/+/opGV1g8evXb5GbMpLQIeAkyABt49RlNuBPhhmUUYvte4WwyzEmyWZSRQ==}
+  /@nrwl/nx-cloud/13.1.5:
+    resolution: {integrity: sha512-busITSwldU7K78/ncr4fjZxc+TeuDnbXREM/cbyVM0Gob5Q36T3nLpCxPkV7iCdJZACSKe7UbKm/IEYLPnrXmA==}
     hasBin: true
     dependencies:
       axios: 0.24.0
@@ -9131,18 +9131,6 @@ packages:
       debug:
         optional: true
 
-  /follow-redirects/1.14.5_debug@4.3.3:
-    resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.3_supports-color@6.1.0
-    dev: true
-
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -10073,7 +10061,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.5_debug@4.3.3
+      follow-redirects: 1.14.5
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
