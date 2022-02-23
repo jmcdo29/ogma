@@ -82,7 +82,7 @@ importers:
       nest-commander-testing: ^2.0.0
       nx-uvu: ^1.0.0
       pactum: ^3.1.4
-      pino: 7.6.5
+      pino: 7.8.0
       prettier: ^2.3.2
       react: 17.0.2
       react-dom: 17.0.2
@@ -176,7 +176,7 @@ importers:
       nest-commander-testing: 2.0.1_d8f603c457f92bb11ab4464ad6503084
       nx-uvu: 1.0.0
       pactum: 3.1.4
-      pino: 7.6.5
+      pino: 7.8.0
       prettier: 2.4.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -9181,6 +9181,18 @@ packages:
       debug:
         optional: true
 
+  /follow-redirects/1.14.5_debug@4.3.3:
+    resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.3_supports-color@6.1.0
+    dev: true
+
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -10116,7 +10128,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.5
+      follow-redirects: 1.14.5_debug@4.3.3
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -13382,8 +13394,8 @@ packages:
       sonic-boom: 1.4.1
     dev: true
 
-  /pino/7.6.5:
-    resolution: {integrity: sha512-38tAwlJ7HevMENHD5FZE+yxSlAH5Wg3FoOjbB3MX2j3/kgpOEkmDHhTVKkecR57qxD5doHo2yi9nac94gqqbiQ==}
+  /pino/7.8.0:
+    resolution: {integrity: sha512-Ynw2HRVapiyj+ZGfUcpms+SRgDKFIy0ztaFUf3X6IHh+vsysMvn+tpV/Ej3gyutPp4n9tgH6ZkkCAelSvP5zmQ==}
     hasBin: true
     dependencies:
       fast-redact: 3.0.2
