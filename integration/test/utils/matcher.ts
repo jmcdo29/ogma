@@ -1,7 +1,6 @@
-/* eslint-disable no-redeclare */
-
 import { style } from '@ogma/styler';
 import { isIP } from 'net';
+import { ok } from 'uvu/assert';
 
 interface LogObject {
   /**
@@ -61,25 +60,8 @@ interface LogObject {
 const timeRegex = /\d+ms/;
 const sizeRegex = /\d+/;
 
-/* eslint-disable @typescript-eslint/no-namespace */
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-declare global {
-  namespace jest {
-    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    interface Matchers<R> {
-      toBeALogObject(method: string, endpoint: string, protocol: string, status: string): R;
-    }
-  }
-}
-
 const expectMessage = (field: string, expected: string, actual: string) =>
   `Expected ${field} to be ${style.green.apply(expected)} but got ${style.red.apply(actual)}.\n`;
-
-const returnMessage = (pass: boolean, message: string) => ({
-  pass,
-  message: () =>
-    pass ? 'This matcher is not made to work with negation. Please do not use it' : message,
-});
 
 const doTest = (
   recIp: string,
@@ -93,7 +75,7 @@ const doTest = (
   recStatus: string,
   recTime: string,
   recSize: string,
-): { pass: boolean; message: () => string } => {
+): { pass: boolean; message: string } => {
   let pass = true;
   let message = '';
   if (!isIP(recIp) && !isIP(recIp.split(':')[0])) {
@@ -124,54 +106,54 @@ const doTest = (
     pass = false;
     message += expectMessage('size', 'a content-size in bytes', recSize);
   }
-  return returnMessage(pass, message);
+  return { pass, message };
 };
-
-expect.extend({
-  toBeALogObject(
-    received: string | LogObject,
-    method: string,
-    endpoint: string,
-    protocol: string,
-    status: string,
-  ) {
-    let recIp: string,
-      recMethod: string,
-      recEndpoint: string,
-      recProto: string,
-      recStatus: string,
-      recTime: string,
-      recSize: string;
-    if (typeof received === 'string') {
-      [recIp, , recMethod, recEndpoint, recProto, recStatus, recTime, , recSize] =
-        received.split(' ');
-    } else {
-      ({
-        callerAddress: recIp as any,
-        protocol: recProto,
-        callPoint: recEndpoint,
-        responseTime: recTime as any,
-        status: recStatus,
-        method: recMethod,
-        contentLength: recSize as any,
-      } = received);
-      recTime = `${recTime.toString()}ms`;
-      recSize = recSize.toString();
-    }
-    return doTest(
-      recIp,
-      method,
-      recMethod,
-      endpoint,
-      recEndpoint,
-      protocol,
-      recProto,
-      status,
-      recStatus,
-      recTime,
-      recSize,
-    );
-  },
-});
-
-export {};
+export const toBeALogObject = (
+  received: string | LogObject,
+  method: string,
+  endpoint: string,
+  protocol: string,
+  status: string,
+) => {
+  let recIp: string,
+    recMethod: string,
+    recEndpoint: string,
+    recProto: string,
+    recStatus: string,
+    recTime: string,
+    recSize: string;
+  if (typeof received === 'string') {
+    [recIp, , recMethod, recEndpoint, recProto, recStatus, recTime, , recSize] =
+      received.split(' ');
+  } else {
+    let callerAddress: string | string[], responseTime: number, contentLength: number;
+    ({
+      callerAddress,
+      protocol: recProto,
+      callPoint: recEndpoint,
+      responseTime,
+      status: recStatus,
+      method: recMethod,
+      contentLength,
+    } = received);
+    recIp = Array.isArray(callerAddress) ? callerAddress.join(' ') : callerAddress;
+    recTime = responseTime.toString();
+    recSize = contentLength.toString();
+    recTime = `${recTime.toString()}ms`;
+    recSize = recSize.toString();
+  }
+  const result = doTest(
+    recIp,
+    method,
+    recMethod,
+    endpoint,
+    recEndpoint,
+    protocol,
+    recProto,
+    status,
+    recStatus,
+    recTime,
+    recSize,
+  );
+  ok(result.pass, result.message);
+};

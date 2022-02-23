@@ -1,47 +1,31 @@
-import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { createProviderToken, OgmaService } from '@ogma/nestjs-module';
+import { createProviderToken } from '@ogma/nestjs-module';
+import { stubMethod } from 'hanbi';
+import { spec } from 'pactum';
+import { test } from 'uvu';
+import { equal, is } from 'uvu/assert';
 import { AppController } from '../src/for-feats/app.controller';
 import { ForFeatsModule } from '../src/for-feats/app.module';
 import { AppService } from '../src/for-feats/app.service';
-import { httpPromise } from './utils';
 
-describe('OgmaModule.forFeatures()', () => {
-  let ogmaAppService: OgmaService;
-  let ogmaAppController: OgmaService;
-  let app: INestApplication;
+test('OgmaMOdule.forFeature should log with two loggers', async () => {
+  const modRef = await Test.createTestingModule({
+    imports: [ForFeatsModule],
+  }).compile();
+  const ogmaAppService = modRef.get(createProviderToken(AppService.name));
+  const ogmaAppController = modRef.get(createProviderToken(AppController.name));
+  const app = modRef.createNestApplication();
+  await app.listen(0);
+  const controllerLogSpy = stubMethod(ogmaAppController, 'log');
+  const serviceLogSpy = stubMethod(ogmaAppService, 'log');
+  is(controllerLogSpy.callCount, 0);
+  is(serviceLogSpy.callCount, 0);
+  await spec().get((await app.getUrl()).replace('[::1]', 'localhost'));
 
-  beforeAll(async () => {
-    const modRef = await Test.createTestingModule({
-      imports: [ForFeatsModule],
-    }).compile();
-    ogmaAppService = modRef.get(createProviderToken(AppService.name));
-    ogmaAppController = modRef.get(createProviderToken(AppController.name));
-    app = modRef.createNestApplication();
-    await app.listen(0);
-  });
-
-  afterAll(async () => {
-    await app.close();
-  });
-
-  describe('call endpoint', () => {
-    let appUrl: string;
-
-    beforeAll(async () => {
-      appUrl = await app.getUrl();
-    });
-
-    it('should log with different loggers for service and controller', async () => {
-      const controllerSpy = jest.spyOn(ogmaAppController, 'log');
-      const serviceSpy = jest.spyOn(ogmaAppService, 'log');
-      expect(controllerSpy).toHaveBeenCalledTimes(0);
-      expect(serviceSpy).toHaveBeenCalledTimes(0);
-      await httpPromise(appUrl + '/', { method: 'GET' });
-      expect(controllerSpy).toHaveBeenCalledTimes(1);
-      expect(controllerSpy).toHaveBeenCalledWith('Hello');
-      expect(serviceSpy).toHaveBeenCalledTimes(1);
-      expect(serviceSpy).toHaveBeenCalledWith('Hello');
-    });
-  });
+  is(controllerLogSpy.callCount, 1);
+  equal(controllerLogSpy.firstCall.args[0], 'Hello');
+  is(serviceLogSpy.callCount, 1);
+  equal(serviceLogSpy.firstCall.args[0], 'Hello');
+  await app.close();
 });
+test.run();

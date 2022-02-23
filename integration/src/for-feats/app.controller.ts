@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(
     private readonly service: AppService,
-    @OgmaLogger(AppController) private readonly logger: OgmaService,
+    @OgmaLogger('AppController') private readonly logger: OgmaService,
   ) {}
 
   @Get()
