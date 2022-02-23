@@ -2,5 +2,7 @@
   "src": "./packages/platform-socket.io/src",
   "include": [
     "packages/platform-socket.io/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-socket.io/coverage"
 }

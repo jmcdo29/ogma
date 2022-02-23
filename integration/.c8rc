@@ -1,3 +1,10 @@
 {
- "exclude": ["integration"] 
+  "exclude": [
+    "integration"
+  ],
+  "reporter": [
+    "text",
+    "json"
+  ],
+  "reportDir": "integration/coverage"
 }

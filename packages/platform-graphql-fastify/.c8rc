@@ -2,5 +2,7 @@
   "src": "./packages/platform-graphql-fastify/src",
   "include": [
     "packages/platform-graphql-fastify/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-graphql-fastify/coverage"
 }

@@ -2,5 +2,7 @@
   "src": "./packages/logger/src",
   "include": [
     "packages/logger/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/logger/coverage"
 }

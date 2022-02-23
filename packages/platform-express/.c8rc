@@ -2,5 +2,7 @@
   "src": "./packages/platform-express/src",
   "include": [
     "packages/platform-express/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-express/coverage"
 }

@@ -2,5 +2,7 @@
   "src": "./packages/platform-rabbitmq/src",
   "include": [
     "packages/platform-rabbitmq/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-rabbitmq/coverage"
 }

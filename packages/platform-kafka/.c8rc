@@ -2,5 +2,7 @@
   "src": "./packages/platform-kafka/src",
   "include": [
     "packages/platform-kafka/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-kafka/coverage"
 }
