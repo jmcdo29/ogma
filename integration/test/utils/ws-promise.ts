@@ -1,63 +1,55 @@
 import { Socket } from 'socket.io-client';
 import WebSocket from 'ws';
 
-export const createConnection = (
+export const makeWs = (
   client: (url: string) => Socket | WebSocket,
   url: string,
-): Promise<Socket | WebSocket> =>
-  new Promise((resolve, reject) => {
-    const socket = client(url);
-    if (Object.getOwnPropertyDescriptor(socket, 'io')) {
-      resolve(socket);
-    }
-    socket.on('open', () => {
-      resolve(socket);
-    });
-    socket.on('error', (err) => {
-      reject(err);
-    });
-  });
-
-export const wsPromise = (
-  ws: WebSocket | Socket,
-  message: string,
   sendMethod: 'send' | 'emit',
-): Promise<any> =>
-  new Promise((resolve, reject) => {
-    ws[sendMethod](message, {}, (data: any) => {
-      if (data) {
-        resolve(data);
-      }
-    });
-    ws.on('message', (data) => {
-      resolve(data.toString());
-      return false;
-    });
-    ws.on('error', (err) => {
-      console.error(err);
-      reject(err);
-    });
-    ws.on('exception' as any, (...args) => {
-      resolve(args);
-    });
-    ws.on('unexpected-response', () => {
-      reject('Unexpected-response');
-    });
-  });
-export const wsClose = (ws: WebSocket | Socket): Promise<void> =>
-  new Promise<void>((resolve, reject) => {
-    if (wsIsWebsocket(ws)) {
-      ws.onclose = () => {
-        return resolve();
+) => {
+  return new Promise<{ send: (message: string) => Promise<string>; close: () => Promise<void> }>(
+    (resolve, reject) => {
+      const socket = client(url);
+      const send = (message: string) => {
+        return new Promise<string>((resolve, reject) => {
+          socket[sendMethod](message, {}, (data) => {
+            if (data) {
+              resolve(data);
+            }
+          });
+          socket.on('data', (data) => {
+            resolve(data);
+          });
+          socket.on('message', (data) => {
+            resolve(data);
+          });
+          socket.on('exception', resolve);
+          socket.on('error', reject);
+        });
       };
-    } else {
-      ws.on('disconnect', () => {
-        resolve();
+      const close = () => {
+        return new Promise<void>((resolve) => {
+          if (wsIsWebsocket(socket)) {
+            socket.terminate();
+            socket.onclose = () => resolve();
+          } else {
+            socket.on('disconnect', () => resolve());
+            socket.disconnect();
+          }
+        });
+      };
+      socket.on('connect', () => {
+        resolve({ send, close });
       });
-    }
-    ws.on('error', (err) => reject(err));
-    ws.close();
-  });
+      socket.on('open', () => {
+        resolve({ send, close });
+      });
+      socket.on('error', (err) => {
+        console.error(err);
+        reject(err);
+      });
+    },
+  );
+};
 
 const wsIsWebsocket = (ws: unknown): ws is WebSocket => {
   return ws instanceof WebSocket;

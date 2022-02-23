@@ -1,14 +1,24 @@
-import './matcher';
-import { createWriteStream } from 'fs';
-import { OgmaServiceOptions } from '@ogma/nestjs-module';
+import { OgmaInterceptor, OgmaService, OgmaServiceOptions } from '@ogma/nestjs-module';
 
-const stream = process.env.CI ? createWriteStream('/dev/null') : process.stdout;
+const stream = process.stdout;
 process.stdout.getColorDepth = () => 8;
 export * from './createModule';
-export * from './gql-promise';
-export * from './http-promise';
 export * from './ws-promise';
-export const hello = JSON.stringify({ hello: 'world' });
+export * from './matcher';
+export const hello = { hello: 'world' };
 export const serviceOptionsFactory = (app: string, json = false): OgmaServiceOptions => {
   return { application: app, stream, json };
+};
+
+export const reportValues = (ogma: OgmaService, logs: Parameters<OgmaInterceptor['log']>[]) => {
+  if (process.env.CI) {
+    return;
+  }
+  console.log('\n');
+  for (const log of logs) {
+    ogma.info(log[0], {
+      context: `${log[1].getClass().name}#${log[1].getHandler().name}`,
+      correlationId: log[2] ?? '',
+    });
+  }
 };

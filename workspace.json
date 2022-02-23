@@ -118,9 +118,12 @@
       "sourceRoot": "integration/src",
       "targets": {
         "e2e": {
-          "executor": "@nrwl/jest:jest",
+          "executor": "./tools/executors/uvu:uvu",
           "options": {
-            "jestConfig": "integration/jest.config.js"
+            "rootDir": "./integration/test",
+            "coverage": true,
+            "coverageConfig": "./integration/.c8rc",
+            "useSwc": true
           }
         }
       },

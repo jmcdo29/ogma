@@ -11,8 +11,8 @@ export class WsGateway {
   constructor(private readonly appService: AppService) {}
 
   @SubscribeMessage('message')
-  getMessage(): SimpleObject {
-    return this.appService.getHello();
+  getMessage(): { event: string; data: SimpleObject } {
+    return { event: 'message', data: this.appService.getHello() };
   }
 
   @SubscribeMessage('throw')
@@ -23,7 +23,7 @@ export class WsGateway {
 
   @SubscribeMessage('skip')
   @OgmaSkip()
-  getSkip(): SimpleObject {
-    return this.appService.getHello();
+  getSkip(): { event: string; data: SimpleObject } {
+    return { event: 'message', data: this.appService.getHello() };
   }
 }
