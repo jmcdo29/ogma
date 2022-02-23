@@ -56,7 +56,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/cli/test",
             "coverage": true,
@@ -118,7 +118,7 @@
       "sourceRoot": "integration/src",
       "targets": {
         "e2e": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./integration/test",
             "coverage": true,
@@ -146,7 +146,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/logger/test",
             "coverage": true,
@@ -174,7 +174,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/nestjs-module/test",
             "coverage": true,
@@ -202,7 +202,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-express/test",
             "coverage": true,
@@ -230,7 +230,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-fastify/test",
             "coverage": true,
@@ -258,7 +258,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-graphql/test",
             "coverage": true,
@@ -286,7 +286,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-graphql-fastify/test",
             "coverage": true,
@@ -314,7 +314,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-grpc/test",
             "coverage": true,
@@ -342,7 +342,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-kafka/test",
             "coverage": true,
@@ -370,7 +370,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-mqtt/test",
             "coverage": true,
@@ -398,7 +398,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-nats/test",
             "coverage": true,
@@ -426,7 +426,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-rabbitmq/test",
             "coverage": true,
@@ -454,7 +454,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-redis/test",
             "coverage": true,
@@ -482,7 +482,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-socket.io/test",
             "coverage": true,
@@ -510,7 +510,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-tcp/test",
             "coverage": true,
@@ -538,7 +538,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/platform-ws/test",
             "coverage": true,
@@ -566,7 +566,7 @@
           }
         },
         "test": {
-          "executor": "./tools/executors/uvu:uvu",
+          "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./packages/styler/test",
             "coverage": true,
