@@ -1,7 +1,7 @@
-import { OgmaModule, OgmaModuleOptions } from '@ogma/nestjs-module';
 import { Type } from '@nestjs/common';
-import { Test, TestingModule } from '@nestjs/testing';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { Test, TestingModule } from '@nestjs/testing';
+import { OgmaModule, OgmaModuleOptions } from '@ogma/nestjs-module';
 import { OgmaInterceptor } from '@ogma/nestjs-module';
 
 export async function createTestModule(

@@ -1,15 +1,16 @@
 import { FactoryProvider, Scope } from '@nestjs/common';
-import { REQUEST as CONTEXT, Reflector } from '@nestjs/core';
+import { Reflector, REQUEST as CONTEXT } from '@nestjs/core';
 import { Ogma, OgmaOptions } from '@ogma/logger';
+
+import { AbstractInterceptorService } from './interceptor/providers';
+import { OgmaInterceptorOptions, OgmaModuleOptions, OgmaServiceOptions, Type } from './interfaces';
+import { RequestContext } from './interfaces/request-context.interface';
 import {
   OGMA_INSTANCE,
   OGMA_REQUEST_SCOPED_SERVICE_TOKEN,
   OGMA_SERVICE_TOKEN,
 } from './ogma.constants';
 import { OgmaService } from './ogma.service';
-import { AbstractInterceptorService } from './interceptor/providers';
-import { OgmaInterceptorOptions, OgmaModuleOptions, OgmaServiceOptions, Type } from './interfaces';
-import { RequestContext } from './interfaces/request-context.interface';
 
 /**
  * @internal

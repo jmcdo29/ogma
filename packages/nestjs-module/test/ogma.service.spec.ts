@@ -3,6 +3,7 @@ import { Ogma } from '@ogma/logger';
 import { spy, Stub, stubMethod } from 'hanbi';
 import { suite } from 'uvu';
 import { equal, instance, is, ok } from 'uvu/assert';
+
 import { OgmaService } from '../src';
 import { OGMA_CONTEXT, OGMA_INSTANCE } from '../src/ogma.constants';
 

@@ -1,5 +1,6 @@
 import { createConfigurableDynamicRootModule } from '@golevelup/nestjs-modules';
 import { Global, Module } from '@nestjs/common';
+
 import {
   DelegatorService,
   GqlInterceptorService,

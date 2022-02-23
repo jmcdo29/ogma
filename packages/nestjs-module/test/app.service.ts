@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 import { OgmaLogger, OgmaService } from '../src';
 
 @Injectable()

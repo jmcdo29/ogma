@@ -69,6 +69,7 @@ importers:
       eslint: 8.8.0
       eslint-config-prettier: ^8.3.0
       eslint-plugin-prettier: ^4.0.0
+      eslint-plugin-simple-import-sort: ^7.0.0
       express: ^4.17.1
       fastify: ^3.20.2
       graphql: ^15.5.2
@@ -167,6 +168,7 @@ importers:
       eslint: 8.8.0
       eslint-config-prettier: 8.3.0_eslint@8.8.0
       eslint-plugin-prettier: 4.0.0_4a0e5de4f03066b3e41f4686fcb460f0
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@8.8.0
       express: 4.17.1
       fastify: 3.22.1
       graphql: 15.7.2
@@ -8503,6 +8505,14 @@ packages:
       eslint-config-prettier: 8.3.0_eslint@8.8.0
       prettier: 2.4.1
       prettier-linter-helpers: 1.0.0
+    dev: true
+
+  /eslint-plugin-simple-import-sort/7.0.0_eslint@8.8.0:
+    resolution: {integrity: sha512-U3vEDB5zhYPNfxT5TYR7u01dboFZp+HNpnGhkDB2g/2E4wZ/g1Q9Ton8UwCLfRV9yAKyYqDh62oHOamvkFxsvw==}
+    peerDependencies:
+      eslint: '>=5.0.0'
+    dependencies:
+      eslint: 8.8.0
     dev: true
 
   /eslint-scope/5.1.1:

@@ -3,6 +3,7 @@ import { style } from '@ogma/styler';
 import { match } from 'assert';
 import { suite } from 'uvu';
 import { is } from 'uvu/assert';
+
 import { colorize } from '../src/utils/colorize';
 
 const ESC = '\x1B';

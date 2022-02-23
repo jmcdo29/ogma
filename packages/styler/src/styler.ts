@@ -1,4 +1,5 @@
 import { OgmaStream } from '@ogma/common';
+
 import { Style } from './style.enum';
 
 export class Styler {

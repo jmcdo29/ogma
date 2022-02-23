@@ -1,8 +1,9 @@
-import { AppService } from './app.service';
 import { Test } from '@nestjs/testing';
 import { spy, Stub } from 'hanbi';
 import { suite } from 'uvu';
 import { equal, ok } from 'uvu/assert';
+
+import { AppService } from './app.service';
 
 const AppServiceSuite = suite<{ service: AppService; logSpy: Stub<(message: string) => void> }>(
   'AppService',

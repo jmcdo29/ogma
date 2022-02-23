@@ -1,6 +1,7 @@
 import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { style } from '@ogma/styler';
+
 import { OgmaInterceptorServiceOptions } from '../../interfaces/ogma-options.interface';
 import { InterceptorService } from '../interfaces/interceptor-service.interface';
 import { MetaLogObject } from '../interfaces/log.interface';

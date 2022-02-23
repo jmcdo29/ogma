@@ -3,6 +3,7 @@ import { Test } from '@nestjs/testing';
 import { spy, stubMethod } from 'hanbi';
 import { suite } from 'uvu';
 import { equal, ok } from 'uvu/assert';
+
 import { LogObject } from '../src/interceptor/interfaces/log.interface';
 import {
   AbstractInterceptorService,

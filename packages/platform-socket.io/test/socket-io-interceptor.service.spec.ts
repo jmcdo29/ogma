@@ -6,6 +6,7 @@ import { style } from '@ogma/styler';
 import { spy, Stub } from 'hanbi';
 import { suite } from 'uvu';
 import { equal, is } from 'uvu/assert';
+
 import { SocketIOParser } from '../src';
 
 const createCtxMock = (partial: Partial<ExecutionContext> = {}): ExecutionContext => ({

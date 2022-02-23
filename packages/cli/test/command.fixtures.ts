@@ -1,6 +1,6 @@
-import { hostname } from 'os';
 import { OgmaLog, OgmaWritableLevel } from '@ogma/common';
 import { style } from '@ogma/styler';
+import { hostname } from 'os';
 
 export interface OgmaLogSet {
   silly: OgmaLog;

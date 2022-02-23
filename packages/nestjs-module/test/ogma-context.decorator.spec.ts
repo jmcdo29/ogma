@@ -1,5 +1,6 @@
 import { suite } from 'uvu';
 import { instance } from 'uvu/assert';
+
 import { InjectOgma, InjectOgmaContext, InjectOgmaInterceptorOptions } from '../src';
 
 const OgmaDecoratorsSuite = suite('Ogma Decorators');

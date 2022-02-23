@@ -1,8 +1,9 @@
 import { Scope } from '@nestjs/common/interfaces';
-import { REQUEST as CONTEXT, Reflector } from '@nestjs/core';
+import { Reflector, REQUEST as CONTEXT } from '@nestjs/core';
 import { Ogma } from '@ogma/logger';
 import { suite } from 'uvu';
 import { equal, instance, is, not } from 'uvu/assert';
+
 import { OgmaService } from '../src';
 import { NoopInterceptorService } from '../src/interceptor/providers';
 import {

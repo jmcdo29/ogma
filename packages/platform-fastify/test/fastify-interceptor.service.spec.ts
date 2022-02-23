@@ -6,6 +6,7 @@ import { style } from '@ogma/styler';
 import { spy, stubMethod } from 'hanbi';
 import { suite } from 'uvu';
 import { equal, is, ok } from 'uvu/assert';
+
 import { FastifyParser } from '../src';
 
 const resMock = (status: number) => ({

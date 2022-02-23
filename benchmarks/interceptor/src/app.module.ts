@@ -1,7 +1,8 @@
 import { DynamicModule, Module } from '@nestjs/common';
+import { OgmaModule, OgmaModuleOptions } from '@ogma/nestjs-module';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { OgmaModule, OgmaModuleOptions } from '@ogma/nestjs-module';
 
 @Module({
   controllers: [AppController],

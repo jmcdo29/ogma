@@ -9,6 +9,7 @@ import { Stub, stubMethod } from 'hanbi';
 import { request, spec } from 'pactum';
 import { suite } from 'uvu';
 import { is } from 'uvu/assert';
+
 import { HttpServerModule } from '../src/http/http-server.module';
 import {
   createTestModule,

@@ -3,6 +3,7 @@ import { Test } from '@nestjs/testing';
 import { spy } from 'hanbi';
 import { suite } from 'uvu';
 import { equal, is } from 'uvu/assert';
+
 import { GraphQLParser } from '../src';
 
 const gqlMockFactory = (

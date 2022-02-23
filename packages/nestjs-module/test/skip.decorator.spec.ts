@@ -1,5 +1,6 @@
 import { suite } from 'uvu';
 import { not, ok } from 'uvu/assert';
+
 import { OgmaSkip } from '../src';
 import { OGMA_INTERCEPTOR_SKIP } from '../src/ogma.constants';
 

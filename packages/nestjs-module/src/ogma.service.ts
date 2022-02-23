@@ -1,5 +1,6 @@
 import { Injectable, LoggerService, Optional } from '@nestjs/common';
 import { Ogma } from '@ogma/logger';
+
 import { InjectOgma, InjectOgmaContext } from './decorators';
 import { OgmaServiceMeta } from './interfaces';
 import { RequestContext } from './interfaces/request-context.interface';

@@ -1,7 +1,8 @@
-import { style } from '../src';
-import { suite } from 'uvu';
 import { ok } from 'assert';
+import { suite } from 'uvu';
 import { is } from 'uvu/assert';
+
+import { style } from '../src';
 
 const hello = 'Hello World!';
 

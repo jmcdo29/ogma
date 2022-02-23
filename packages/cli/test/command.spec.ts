@@ -4,9 +4,10 @@ import { CommandTestFactory } from 'nest-commander-testing';
 import { Socket } from 'net';
 import { suite } from 'uvu';
 import { equal, is, ok } from 'uvu/assert';
-import { jsonLogs, logKeys, stringLogs } from './command.fixtures';
+
 import { AppModule } from '../src/app.module';
 import { OgmaCommand } from '../src/ogma.command';
+import { jsonLogs, logKeys, stringLogs } from './command.fixtures';
 
 const someFile = 'someFile';
 
