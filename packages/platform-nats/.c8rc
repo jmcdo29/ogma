@@ -2,5 +2,7 @@
   "src": "./packages/platform-nats/src",
   "include": [
     "packages/platform-nats/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-nats/coverage"
 }

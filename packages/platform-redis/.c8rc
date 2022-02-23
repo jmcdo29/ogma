@@ -2,5 +2,7 @@
   "src": "./packages/platform-redis/src",
   "include": [
     "packages/platform-redis/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-redis/coverage"
 }

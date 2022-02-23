@@ -2,5 +2,7 @@
   "src": "./packages/nestjs-module/src",
   "include": [
     "packages/nestjs-module/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/nestjs-module/coverage"
 }

@@ -2,5 +2,7 @@
   "src": "./packages/styler/src",
   "include": [
     "packages/styler/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-styler/coverage"
 }

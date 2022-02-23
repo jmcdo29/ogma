@@ -2,5 +2,7 @@
   "src": "./packages/platform-ws/src",
   "include": [
     "packages/platform-ws/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-ws/coverage"
 }

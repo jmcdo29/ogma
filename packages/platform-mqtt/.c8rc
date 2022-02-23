@@ -2,5 +2,7 @@
   "src": "./packages/platform-mqtt/src",
   "include": [
     "packages/platform-mqtt/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-mqtt/coverage"
 }

@@ -592,22 +592,9 @@
         "collect": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": [
-              "node ./tools/coverage-merge",
-              "./node_modules/.bin/nyc merge coverage-tmp coverage/coverage-final.json && ./node_modules/.bin/nyc report -t coverage --report-dir coverage --reporter=lcov"
-            ],
+            "commands": ["pnpm exec c8 uvu -r @swc/register ./ \"(spec\\.ts)\""],
             "parallel": false
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "self"
-            },
-            {
-              "target": "test",
-              "projects": "dependencies"
-            }
-          ]
+          }
         },
         "setup": {
           "executor": "@nrwl/workspace:run-commands",

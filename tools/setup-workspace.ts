@@ -16,10 +16,12 @@ const workspaceFile = join(process.cwd(), 'workspace.json');
 
 const generateTest = (projectName: string) => {
   return {
-    executor: '@nrwl/jest:jest',
+    executor: './tools/executors/uvu:uvu',
     options: {
-      jestConfig: `packages/${projectName}/jest.config.js`,
-      codeCoverage: true,
+      rootDir: `packages/${projectName}/test`,
+      coverage: true,
+      coverageConfig: `packages/${projectName}/.c8rc`,
+      useSwc: true,
     },
   };
 };

@@ -2,5 +2,7 @@
   "src": "./packages/platform-tcp/src",
   "include": [
     "packages/platform-tcp/src/**/*.ts"
-  ]
+  ],
+  "reporter": ["text", "json"],
+  "reportDir": "./packages/platform-tcp/coverage"
 }
