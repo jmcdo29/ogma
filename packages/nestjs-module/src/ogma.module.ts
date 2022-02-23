@@ -1,9 +1,10 @@
 import { AsyncModuleConfig } from '@golevelup/nestjs-modules';
 import { DynamicModule, Module, Provider } from '@nestjs/common';
+
 import { OgmaModuleOptions, Type } from './interfaces';
+import { OgmaProviderOptions } from './interfaces/ogma-provider-options.interface';
 import { createLoggerProviders, createRequestScopedLoggerProviders } from './ogma.provider';
 import { OgmaCoreModule } from './ogma-core.module';
-import { OgmaProviderOptions } from './interfaces/ogma-provider-options.interface';
 
 /**
  * The NestJS module for the Ogma Logger. Not much to say here

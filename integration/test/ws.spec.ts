@@ -2,15 +2,16 @@ import { INestApplication } from '@nestjs/common';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { WsAdapter } from '@nestjs/platform-ws';
 import { Test } from '@nestjs/testing';
-import { style } from '@ogma/styler';
 import { OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 import { SocketIOParser } from '@ogma/platform-socket.io';
 import { WsParser } from '@ogma/platform-ws';
+import { style } from '@ogma/styler';
 import { Stub, stubMethod } from 'hanbi';
 import Io from 'socket.io-client';
 import { suite } from 'uvu';
 import { is } from 'uvu/assert';
 import WebSocket from 'ws';
+
 import { WsModule } from '../src/ws/ws.module';
 import { makeWs, reportValues, serviceOptionsFactory, toBeALogObject } from './utils';
 

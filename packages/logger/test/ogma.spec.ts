@@ -4,6 +4,7 @@ import { spy, Stub } from 'hanbi';
 import { Socket } from 'net';
 import { suite } from 'uvu';
 import { is, match, not, ok } from 'uvu/assert';
+
 import { Ogma, OgmaOptions } from '../src';
 
 const circularObject: any = {};

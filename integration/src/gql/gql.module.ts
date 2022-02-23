@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+
 // import { PubSub } from 'graphql-subscriptions';
 import { AppService } from '../app.service';
 import { GqlResolver } from './gql.resolver';

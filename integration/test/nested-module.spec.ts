@@ -4,6 +4,7 @@ import { stubMethod } from 'hanbi';
 import { spec } from 'pactum';
 import { test } from 'uvu';
 import { equal, is } from 'uvu/assert';
+
 import { NestedModule } from '../src/nested-module/app.module';
 import { AppService } from '../src/nested-module/app.service';
 

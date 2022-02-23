@@ -1,5 +1,6 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { ClientOptions, ClientsModule } from '@nestjs/microservices';
+
 import { RpcClientController } from './rpc-client.controller';
 
 @Module({})

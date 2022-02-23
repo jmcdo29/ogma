@@ -1,6 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { suite } from 'uvu';
 import { ok } from 'uvu/assert';
+
 import { HttpInterceptorService, OgmaModule, OgmaModuleOptions } from '../src';
 
 class NoopInterceptorService extends HttpInterceptorService {

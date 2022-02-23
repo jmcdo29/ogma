@@ -3,8 +3,8 @@ import { OgmaInterceptor, OgmaService, OgmaServiceOptions } from '@ogma/nestjs-m
 const stream = process.stdout;
 process.stdout.getColorDepth = () => 8;
 export * from './createModule';
-export * from './ws-promise';
 export * from './matcher';
+export * from './ws-promise';
 export const hello = { hello: 'world' };
 export const serviceOptionsFactory = (app: string, json = false): OgmaServiceOptions => {
   return { application: app, stream, json };

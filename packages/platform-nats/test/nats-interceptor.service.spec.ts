@@ -5,6 +5,7 @@ import { style } from '@ogma/styler';
 import { spy } from 'hanbi';
 import { suite } from 'uvu';
 import { is } from 'uvu/assert';
+
 import { NatsParser } from '../src';
 
 const createCtxMock = (partial: Partial<ExecutionContext> = {}): ExecutionContext => ({

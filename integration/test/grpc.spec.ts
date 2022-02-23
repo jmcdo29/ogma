@@ -1,16 +1,17 @@
 import { INestApplication, INestMicroservice } from '@nestjs/common';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
-import { style } from '@ogma/styler';
-import { GrpcParser } from '@ogma/platform-grpc';
 import { OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
+import { GrpcParser } from '@ogma/platform-grpc';
+import { style } from '@ogma/styler';
 import { Stub, stubMethod } from 'hanbi';
 import { request, spec } from 'pactum';
+import { join } from 'path';
 import { suite } from 'uvu';
 import { is } from 'uvu/assert';
-import { join } from 'path';
-import { GrpcServerModule } from '../src/grpc/server/grpc-server.module';
+
 import { GrpcClientModule } from '../src/grpc/client/grpc-client.module';
+import { GrpcServerModule } from '../src/grpc/server/grpc-server.module';
 import {
   createTestModule,
   hello,

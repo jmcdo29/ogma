@@ -1,6 +1,7 @@
 import { Color, LogLevel, OgmaLog, OgmaStream, OgmaWritableLevel } from '@ogma/common';
 import { style, Styler } from '@ogma/styler';
 import { hostname } from 'os';
+
 import { OgmaDefaults, OgmaOptions, PrintMessageOptions } from '../interfaces';
 import { OgmaPrintOptions } from '../interfaces/ogma-print-options';
 import { colorize, isNil } from '../utils';

@@ -1,4 +1,5 @@
 import { OgmaOptions } from '@ogma/logger';
+
 import { AbstractInterceptorService } from '../interceptor/providers/abstract-interceptor.service';
 
 export interface OgmaModuleOptions {

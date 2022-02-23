@@ -1,10 +1,11 @@
 import { ContextType, ExecutionContext, Injectable } from '@nestjs/common';
+
 import { OgmaInterceptorServiceOptions } from '../../interfaces';
 import { DelegatorContextReturn, LogObject, MetaLogObject } from '../interfaces/log.interface';
-import { HttpInterceptorService } from './http-interceptor.service';
 import { GqlInterceptorService } from './gql-interceptor.service';
-import { WebsocketInterceptorService } from './websocket-interceptor.service';
+import { HttpInterceptorService } from './http-interceptor.service';
 import { RpcInterceptorService } from './rpc-interceptor.service';
+import { WebsocketInterceptorService } from './websocket-interceptor.service';
 
 type Parser = 'httpParser' | 'gqlParser' | 'wsParser' | 'rpcParser';
 

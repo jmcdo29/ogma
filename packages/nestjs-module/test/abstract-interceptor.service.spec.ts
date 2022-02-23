@@ -4,6 +4,7 @@ import { style } from '@ogma/styler';
 import { spy } from 'hanbi';
 import { suite } from 'uvu';
 import { equal, is } from 'uvu/assert';
+
 import { AbstractInterceptorService } from '../src/interceptor/providers/abstract-interceptor.service';
 
 class TestParser extends AbstractInterceptorService {

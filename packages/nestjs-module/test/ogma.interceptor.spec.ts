@@ -5,6 +5,7 @@ import { spy, Stub, stubMethod } from 'hanbi';
 import { of, throwError } from 'rxjs';
 import { suite } from 'uvu';
 import { equal, is, ok } from 'uvu/assert';
+
 import { OgmaInterceptor, OgmaService, OgmaSkip } from '../src';
 import { DelegatorService } from '../src/interceptor/providers';
 import { OGMA_INTERCEPTOR_OPTIONS } from '../src/ogma.constants';

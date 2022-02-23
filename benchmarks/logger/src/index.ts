@@ -2,6 +2,7 @@ import { Ogma } from '@ogma/logger';
 import { randomBytes } from 'crypto';
 import { createWriteStream } from 'fs';
 import { performance, PerformanceObserver } from 'perf_hooks';
+
 import { writeBenchmarks } from './benchmark-writer';
 import { createBunyanLogger } from './bunyan.logger';
 import { createOgmaLogger } from './ogma.logger';

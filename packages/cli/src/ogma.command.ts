@@ -1,7 +1,8 @@
-import { Command, CommandRunner, Option } from 'nest-commander';
 import { Color, OgmaLog } from '@ogma/common';
+import { Command, CommandRunner, Option } from 'nest-commander';
 import { from, iif, Observable, of, OperatorFunction, pipe } from 'rxjs';
 import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
+
 import { FileService } from './file.service';
 import { badFormat } from './messages';
 import { OgmaGetterService } from './ogma-getters.service';

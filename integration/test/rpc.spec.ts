@@ -9,16 +9,18 @@ import {
   Transport,
 } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
-import { style } from '@ogma/styler';
 import { OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 import { MqttParser } from '@ogma/platform-mqtt';
 import { NatsParser } from '@ogma/platform-nats';
 import { RabbitMqParser } from '@ogma/platform-rabbitmq';
 import { RedisParser } from '@ogma/platform-redis';
 import { TcpParser } from '@ogma/platform-tcp';
+import { style } from '@ogma/styler';
 import { Stub, stubMethod } from 'hanbi';
 import { request, spec } from 'pactum';
 import { suite } from 'uvu';
+import { is } from 'uvu/assert';
+
 import { RpcClientModule } from '../src/rpc/client/rpc-client.module';
 import { RpcServerModule } from '../src/rpc/server/rpc-server.module';
 import {
@@ -28,7 +30,6 @@ import {
   serviceOptionsFactory,
   toBeALogObject,
 } from './utils';
-import { is } from 'uvu/assert';
 
 const tcpOptions: TcpOptions['options'] = {};
 const mqttOptions: MqttOptions['options'] = { url: 'mqtt://localhost:1883' };

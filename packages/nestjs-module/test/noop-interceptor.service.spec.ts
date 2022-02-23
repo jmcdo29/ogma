@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { suite } from 'uvu';
 import { equal } from 'uvu/assert';
+
 import { NoopInterceptorService } from '../src/interceptor/providers/noop-interceptor.service';
 
 const NoopInterceptorServiceSuite = suite<{ service: NoopInterceptorService }>(
