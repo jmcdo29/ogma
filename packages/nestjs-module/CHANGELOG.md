@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- d97af0e: Add @Log() and @LogAll() decorators to allow for automatic method timing
+
+  [Check the new docs for more information](https://ogma.jaymcdoniel.dev/docs/nestjs/service#log-and-logall-decorators)
+
 ## 3.1.1
 
 ### Patch Changes
