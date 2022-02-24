@@ -5,7 +5,7 @@ import { suite } from 'uvu';
 import { equal, instance, is, ok } from 'uvu/assert';
 
 import { OgmaService } from '../src';
-import { OGMA_CONTEXT, OGMA_INSTANCE } from '../src/ogma.constants';
+import { OGMA_CONTEXT, OGMA_INSTANCE, OGMA_TRACE_METHOD_OPTION } from '../src/ogma.constants';
 
 for (const context of ['Test_context', '', null]) {
   for (const option of [{ logLevel: 'ALL' as const, color: true }]) {
@@ -45,6 +45,10 @@ for (const context of ['Test_context', '', null]) {
                 {
                   provide: OGMA_CONTEXT,
                   useValue: context,
+                },
+                {
+                  provide: OGMA_TRACE_METHOD_OPTION,
+                  useValue: 'fine',
                 },
               ],
             }).compile();
@@ -88,4 +92,22 @@ for (const inst of [new Ogma(), undefined]) {
     },
   );
 }
+
 OgmaServiceSuite.run();
+
+const OgmaServiceTraceSuite = suite('Ogma Service Tracer method');
+OgmaServiceTraceSuite('it should call "fine" by default', () => {
+  const ogmaInstance = new Ogma({ stream: { write: spy().handler }, logLevel: 'ALL' });
+  const verboseSpy = stubMethod(ogmaInstance, 'fine');
+  const service = new OgmaService(ogmaInstance);
+  service.trace(`Start method`, { context: 'TestClass#TestMethod' });
+  is(verboseSpy.callCount, 1);
+});
+OgmaServiceTraceSuite('it should call "verbose" by default', () => {
+  const ogmaInstance = new Ogma({ stream: { write: spy().handler }, logLevel: 'ALL' });
+  const debugSpy = stubMethod(ogmaInstance, 'debug');
+  const service = new OgmaService(ogmaInstance, undefined, undefined, 'debug');
+  service.trace(`Start method`, { context: 'TestClass#TestMethod' });
+  is(debugSpy.callCount, 1);
+});
+OgmaServiceTraceSuite.run();

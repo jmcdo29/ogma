@@ -3,6 +3,7 @@ import { isObservable, tap } from 'rxjs';
 
 import { Type } from '../interfaces';
 import { createProviderToken, createRequestScopedProviderToken } from '../ogma.provider';
+import { OgmaService } from '../ogma.service';
 
 export const OgmaLogger = (topic: string | (() => any) | Type<any>) =>
   Inject(createProviderToken(typeof topic === 'function' ? topic.name : topic));
@@ -10,18 +11,9 @@ export const OgmaLogger = (topic: string | (() => any) | Type<any>) =>
 export const OgmaLoggerRequestScoped = (topic: string | (() => any) | Type<any>) =>
   Inject(createRequestScopedProviderToken(typeof topic === 'function' ? topic.name : topic));
 
-const logStart = (context: string, logger: { log: (...args: unknown[]) => void }) => {
-  const start = Date.now();
-  logger.log(`Start ${context}`);
-  return start;
-};
-const logEnd = (
-  context: string,
-  logger: { log: (...args: unknown[]) => void },
-  startTime: number,
-) => {
+const logEnd = (context: string, method: string, logger: OgmaService, startTime: number) => {
   const timing = Date.now() - startTime;
-  logger.log(`End ${context} - ${timing}ms`);
+  logger.trace(`End ${method} - ${timing}ms`, { context });
 };
 
 export const Log =
@@ -29,20 +21,46 @@ export const Log =
   (target, propertyKey, descriptor) => {
     const impl = descriptor.value;
     descriptor.value = function (...args: unknown[]) {
-      const logger = this[loggerProperty];
-      const context = `${target.constructor.name}#${propertyKey.toString()}`;
-      const start = logStart(context, logger);
-      const result = (impl as any).apply(this, ...args);
+      const start = Date.now();
+      const method = propertyKey.toString();
+      const logger: OgmaService = this[loggerProperty];
+      const context = `${target.constructor.name}#${method}`;
+      logger.trace(`Start ${method}`, { context });
+      let result = (impl as any).apply(target, ...args);
       if (result.then) {
         result.finally(() => {
-          logEnd(context, logger, start);
+          logEnd(context, method, logger, start);
         });
       } else if (isObservable(result)) {
-        result.pipe(tap(() => logEnd(context, logger, start)));
+        /**
+         * By using `result.pipe` here we are changing the reference to `result` and as such
+         * we need to re-assign the `result` back to itself so that the new pipe will be ran
+         * with the original observable
+         */
+        result = result.pipe(tap({ complete: () => logEnd(context, method, logger, start) }));
       } else {
-        logEnd(context, logger, start);
+        logEnd(context, method, logger, start);
       }
       return result;
     } as any;
     return descriptor;
+  };
+
+export const LogAll =
+  (loggerProperty = 'logger'): ClassDecorator =>
+  (target) => {
+    const keys = Reflect.ownKeys(target.prototype);
+    for (const key of keys) {
+      if (key !== 'constructor') {
+        const logRet = Log(loggerProperty)(
+          target.prototype,
+          key,
+          Reflect.getOwnPropertyDescriptor(target.prototype, key),
+        );
+        if (logRet) {
+          target.prototype[key] = logRet.value;
+        }
+      }
+    }
+    return target;
   };

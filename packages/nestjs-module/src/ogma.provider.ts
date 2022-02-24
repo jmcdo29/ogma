@@ -1,5 +1,6 @@
 import { FactoryProvider, Scope } from '@nestjs/common';
 import { Reflector, REQUEST as CONTEXT } from '@nestjs/core';
+import { OgmaWritableLevel } from '@ogma/common';
 import { Ogma, OgmaOptions } from '@ogma/logger';
 
 import { AbstractInterceptorService } from './interceptor/providers';
@@ -42,6 +43,10 @@ export function createOgmaInterceptorOptionsFactory(
 
 export function createOgmaServiceOptions(options: OgmaModuleOptions): OgmaServiceOptions {
   return options.service;
+}
+
+export function createOgmaTraceOptions(options: OgmaServiceOptions): Lowercase<OgmaWritableLevel> {
+  return options.traceMethod ?? 'fine';
 }
 
 export function createProviderToken(topic: string): string {
