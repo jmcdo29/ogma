@@ -16,11 +16,13 @@ import {
   OGMA_INTERCEPTOR_PROVIDERS,
   OGMA_OPTIONS,
   OGMA_SERVICE_OPTIONS,
+  OGMA_TRACE_METHOD_OPTION,
 } from './ogma.constants';
 import {
   createOgmaInterceptorOptionsFactory,
   createOgmaProvider,
   createOgmaServiceOptions,
+  createOgmaTraceOptions,
   interceptorProviderFactory,
 } from './ogma.provider';
 import { OgmaService } from './ogma.service';
@@ -41,6 +43,11 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
       provide: OGMA_SERVICE_OPTIONS,
       useFactory: createOgmaServiceOptions,
       inject: [OGMA_OPTIONS],
+    },
+    {
+      provide: OGMA_TRACE_METHOD_OPTION,
+      useFactory: createOgmaTraceOptions,
+      inject: [OGMA_SERVICE_OPTIONS],
     },
     {
       provide: OGMA_INSTANCE,

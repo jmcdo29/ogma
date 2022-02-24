@@ -1,7 +1,8 @@
 import { Injectable, LoggerService, Optional } from '@nestjs/common';
+import { OgmaWritableLevel } from '@ogma/common';
 import { Ogma } from '@ogma/logger';
 
-import { InjectOgma, InjectOgmaContext } from './decorators';
+import { InjectOgma, InjectOgmaContext, InjectTraceMethod } from './decorators';
 import { OgmaServiceMeta } from './interfaces';
 import { RequestContext } from './interfaces/request-context.interface';
 
@@ -28,6 +29,7 @@ export class OgmaService implements LoggerService {
     @InjectOgma() ogma?: Ogma,
     @Optional() @InjectOgmaContext() context?: string,
     @Optional() private readonly requestContext?: RequestContext,
+    @InjectTraceMethod() private readonly traceMethod: Lowercase<OgmaWritableLevel> = 'fine',
   ) {
     this.context = context || '';
     this.ogma = ogma ?? new Ogma();
@@ -144,6 +146,17 @@ export class OgmaService implements LoggerService {
       meta = { context: meta };
     }
     this.printMessage(message, 'verbose', meta);
+  }
+
+  /**
+   * A configurable method that will print at a different level depending on the configuration
+   * Normally this method will only be called via the `@Log()` decorator, but there's nothing
+   * stopping anyone else from using it too
+   * @param message the message to print
+   * @param meta extra metadata for the logs
+   */
+  public trace(message: any, meta?: OgmaServiceMeta): void {
+    this.printMessage(message, this.traceMethod, meta);
   }
 
   /**

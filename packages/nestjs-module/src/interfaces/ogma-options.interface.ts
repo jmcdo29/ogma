@@ -1,3 +1,4 @@
+import { OgmaWritableLevel } from '@ogma/common';
 import { OgmaOptions } from '@ogma/logger';
 
 import { AbstractInterceptorService } from '../interceptor/providers/abstract-interceptor.service';
@@ -13,7 +14,9 @@ export interface OgmaModuleOptions {
    */
   interceptor?: OgmaInterceptorOptions | false;
 }
-export type OgmaServiceOptions = Partial<OgmaOptions>;
+export type OgmaServiceOptions = Partial<OgmaOptions> & {
+  traceMethod?: Lowercase<OgmaWritableLevel>;
+};
 
 export type Type<T> = new (...args: any[]) => T;
 export interface OgmaInterceptorOptions {
