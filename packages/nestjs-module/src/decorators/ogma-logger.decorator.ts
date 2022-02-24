@@ -11,7 +11,11 @@ export const OgmaLogger = (topic: string | (() => any) | Type<any>) =>
 export const OgmaLoggerRequestScoped = (topic: string | (() => any) | Type<any>) =>
   Inject(createRequestScopedProviderToken(typeof topic === 'function' ? topic.name : topic));
 
-const logEnd = (context: string, method: string, logger: OgmaService, startTime: number) => {
+const logEnd = (
+  { context, method }: { context: string; method: string },
+  logger: OgmaService,
+  startTime: number,
+) => {
   const timing = Date.now() - startTime;
   logger.trace(`End ${method} - ${timing}ms`, { context });
 };
@@ -29,7 +33,7 @@ export const Log =
       let result = (impl as any).apply(target, ...args);
       if (result.then) {
         result.finally(() => {
-          logEnd(context, method, logger, start);
+          logEnd({ context, method }, logger, start);
         });
       } else if (isObservable(result)) {
         /**
@@ -37,9 +41,9 @@ export const Log =
          * we need to re-assign the `result` back to itself so that the new pipe will be ran
          * with the original observable
          */
-        result = result.pipe(tap({ complete: () => logEnd(context, method, logger, start) }));
+        result = result.pipe(tap({ complete: () => logEnd({ context, method }, logger, start) }));
       } else {
-        logEnd(context, method, logger, start);
+        logEnd({ context, method }, logger, start);
       }
       return result;
     } as any;
@@ -49,17 +53,16 @@ export const Log =
 export const LogAll =
   (loggerProperty = 'logger'): ClassDecorator =>
   (target) => {
-    const keys = Reflect.ownKeys(target.prototype);
+    const allKeys = Reflect.ownKeys(target.prototype);
+    const keys = allKeys.filter((key) => key !== 'constructor');
     for (const key of keys) {
-      if (key !== 'constructor') {
-        const logRet = Log(loggerProperty)(
-          target.prototype,
-          key,
-          Reflect.getOwnPropertyDescriptor(target.prototype, key),
-        );
-        if (logRet) {
-          target.prototype[key] = logRet.value;
-        }
+      const logRet = Log(loggerProperty)(
+        target.prototype,
+        key,
+        Reflect.getOwnPropertyDescriptor(target.prototype, key),
+      );
+      if (logRet) {
+        target.prototype[key] = logRet.value;
       }
     }
     return target;
