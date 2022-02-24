@@ -46,7 +46,7 @@ export function createOgmaServiceOptions(options: OgmaModuleOptions): OgmaServic
 }
 
 export function createOgmaTraceOptions(options: OgmaServiceOptions): Lowercase<OgmaWritableLevel> {
-  return options.traceMethod ?? 'fine';
+  return options?.traceMethod ?? 'fine';
 }
 
 export function createProviderToken(topic: string): string {
