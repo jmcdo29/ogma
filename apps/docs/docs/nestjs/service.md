@@ -87,3 +87,13 @@ const bootstrap = async () => {
 `{ bufferLogs: true }` was added in Nest v8. For before v8, you can either pass `{logger: false}` or no options object
 
 :::
+
+## Log and LogAll Decorators
+
+As of 3.2.0, `@ogma/nestjs-module` has two new decorators on the scene: `@Log()` and `@LogAll()`. This decorator will automatically add a method start and method end log to your class methods and add how long the method took to the end message. There is one limitation that should bne kept in mind: these decorators **do not** work on controller methods, because of how Nest creates the route handlers via a proxy. This should not be too big of a deal however, because the interceptor essentially acts to add the same data, just without the "start" log.
+
+By default, the added code will assume you have a `logger` property as a part of the class, however, if you'd like to use a different property you can pass it to the `@Log()` decorator.
+
+As it can get tedious to add the decorator to every method, there's also the `@LogAll()` decorator which will find your class's methods and apply the `@Log()` decorator for you. You can customize the logger property the same way with this decorator too.
+
+Lastly, the added code by default will log at the `fine` level as this will end up adding a lot of data to your logs and can be considered noisy, but is also useful for tracing down time sinks. If you want to log at a higher level, you can pass a different level to the `traceMethod` option in your `OgmaModule.forRoot()` configuration.
