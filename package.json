@@ -83,7 +83,7 @@
     "@types/express-serve-static-core": "^4.17.24",
     "@types/morgan": "^1.9.3",
     "@types/node": "16.11.26",
-    "@types/ws": "8.2.2",
+    "@types/ws": "8.5.1",
     "@typescript-eslint/eslint-plugin": "5.10.1",
     "@typescript-eslint/parser": "5.10.1",
     "amqp-connection-manager": "4.1.1",
@@ -134,7 +134,7 @@
     "url-loader": "^4.1.1",
     "uvu": "^0.5.3",
     "winston": "^3.3.3",
-    "ws": "8.4.2"
+    "ws": "8.5.0"
   },
   "engines": {
     "node": ">=10"
