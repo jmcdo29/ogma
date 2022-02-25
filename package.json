@@ -85,7 +85,7 @@
     "@types/node": "16.11.26",
     "@types/ws": "8.5.1",
     "@typescript-eslint/eslint-plugin": "5.10.1",
-    "@typescript-eslint/parser": "5.10.1",
+    "@typescript-eslint/parser": "5.10.2",
     "amqp-connection-manager": "4.1.1",
     "amqplib": "^0.8.0",
     "apollo-server-express": "3.6.1",
