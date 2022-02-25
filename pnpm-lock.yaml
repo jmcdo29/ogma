@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 overrides:
   apollo-cache-control: 0.14.0
-  axios: ~0.24.0
+  axios: ~0.26.0
 
 importers:
 
@@ -3332,7 +3332,7 @@ packages:
       class-validator:
         optional: true
     dependencies:
-      axios: 0.24.0
+      axios: 0.26.0
       class-transformer: 0.5.1
       class-validator: 0.13.1
       iterare: 1.2.1
@@ -3360,7 +3360,7 @@ packages:
       class-validator:
         optional: true
     dependencies:
-      axios: 0.24.0
+      axios: 0.26.0
       class-transformer: 0.5.1
       class-validator: 0.13.1
       iterare: 1.2.1
@@ -3424,7 +3424,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 8.3.1_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/microservices': 8.1.2_e37df507bfd0227f8a7bf62adb8f89ed
+      '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
       '@nuxtjs/opencollective': 0.3.2
@@ -3988,7 +3988,7 @@ packages:
     resolution: {integrity: sha512-busITSwldU7K78/ncr4fjZxc+TeuDnbXREM/cbyVM0Gob5Q36T3nLpCxPkV7iCdJZACSKe7UbKm/IEYLPnrXmA==}
     hasBin: true
     dependencies:
-      axios: 0.24.0
+      axios: 0.26.0
       chalk: 4.1.0
       node-machine-id: 1.1.12
       rxjs: 6.5.5
@@ -5851,10 +5851,10 @@ packages:
       - supports-color
     dev: true
 
-  /axios/0.24.0:
-    resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
+  /axios/0.26.0:
+    resolution: {integrity: sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==}
     dependencies:
-      follow-redirects: 1.14.5
+      follow-redirects: 1.14.9
     transitivePeerDependencies:
       - debug
 
@@ -9055,15 +9055,6 @@ packages:
     resolution: {integrity: sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==}
     dev: true
 
-  /follow-redirects/1.14.5:
-    resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-
   /follow-redirects/1.14.5_debug@4.3.3:
     resolution: {integrity: sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==}
     engines: {node: '>=4.0'}
@@ -9075,6 +9066,15 @@ packages:
     dependencies:
       debug: 4.3.3_supports-color@6.1.0
     dev: true
+
+  /follow-redirects/1.14.9:
+    resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
 
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
@@ -16772,7 +16772,7 @@ packages:
     engines: {node: '>=10.0.0'}
     hasBin: true
     dependencies:
-      axios: 0.24.0
+      axios: 0.26.0
       joi: 17.4.2
       lodash: 4.17.21
       minimist: 1.2.5
