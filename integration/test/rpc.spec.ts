@@ -77,7 +77,7 @@ for (const { server, transport, options, protocol, parser } of [
   {
     server: 'REDIS',
     transport: Transport.REDIS,
-    optins: redisOptions,
+    options: redisOptions,
     protocol: 'redis',
     parser: RedisParser,
   },

@@ -80,13 +80,13 @@ importers:
       nats: ^2.2.0
       nest-commander: ^2.0.0
       nest-commander-testing: ^2.0.0
-      nx-uvu: ^1.0.0
+      nx-uvu: ^1.1.1
       pactum: ^3.1.4
       pino: 7.8.0
       prettier: ^2.3.2
       react: 17.0.2
       react-dom: 17.0.2
-      redis: 4.0.4
+      redis: ^3
       reflect-metadata: ^0.1.13
       rimraf: ^3.0.2
       rxjs: ^7.3.0
@@ -117,7 +117,7 @@ importers:
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
       '@nestjs/graphql': 9.1.1_763015d83edf71da48e326ec1d451edf
-      '@nestjs/microservices': 8.1.2_e37df507bfd0227f8a7bf62adb8f89ed
+      '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/platform-fastify': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/platform-socket.io': 8.1.2_e78e598718264c136039edb9506b897e
@@ -174,13 +174,13 @@ importers:
       nats: 2.2.0
       nest-commander: 2.3.3_bbf59b1cbf49bba2b2f47e404ee3cb27
       nest-commander-testing: 2.0.1_d8f603c457f92bb11ab4464ad6503084
-      nx-uvu: 1.0.0
+      nx-uvu: 1.1.1
       pactum: 3.1.4
       pino: 7.8.0
       prettier: 2.4.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      redis: 4.0.4
+      redis: 3.1.2
       reflect-metadata: 0.1.13
       rimraf: 3.0.2
       rxjs: 7.4.0
@@ -3393,7 +3393,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/microservices': 8.1.2_e37df507bfd0227f8a7bf62adb8f89ed
+      '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
       '@nuxtjs/opencollective': 0.3.2
@@ -3513,7 +3513,7 @@ packages:
       reflect-metadata: 0.1.13
     dev: true
 
-  /@nestjs/microservices/8.1.2_e37df507bfd0227f8a7bf62adb8f89ed:
+  /@nestjs/microservices/8.1.2_bbf8a1655b72c461d25a4618d2dfa885:
     resolution: {integrity: sha512-7BnKIa3+w6a/1vJO5euE+RTP6ejwlpGRdoAQ64BTpReHxboFzX7C4Zb6cnM84x1AIl/xe8x+fDoUztxJn4LSiA==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -3560,7 +3560,7 @@ packages:
       kafkajs: 1.15.0
       mqtt: 4.2.8
       nats: 2.2.0
-      redis: 4.0.4
+      redis: 3.1.2
       reflect-metadata: 0.1.13
       rxjs: 7.4.0
       tslib: 2.3.1
@@ -3666,7 +3666,7 @@ packages:
       optional: 0.1.4
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
-      '@nestjs/microservices': 8.1.2_e37df507bfd0227f8a7bf62adb8f89ed
+      '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       tslib: 2.3.1
     dev: true
@@ -3691,56 +3691,6 @@ packages:
       reflect-metadata: 0.1.13
       rxjs: 7.4.0
       tslib: 2.3.1
-    dev: true
-
-  /@node-redis/bloom/1.0.1_@node-redis+client@1.0.4:
-    resolution: {integrity: sha512-mXEBvEIgF4tUzdIN89LiYsbi6//EdpFA7L8M+DHCvePXg+bfHWi+ct5VI6nHUFQE5+ohm/9wmgihCH3HSkeKsw==}
-    peerDependencies:
-      '@node-redis/client': ^1.0.0
-    dependencies:
-      '@node-redis/client': 1.0.4
-    dev: true
-
-  /@node-redis/client/1.0.4:
-    resolution: {integrity: sha512-IM/NRAqg7MvNC3bIRQipXGrEarunrdgvrbAzsd3ty93LSHi/M+ybQulOERQi8a3M+P5BL8HenwXjiIoKm6ml2g==}
-    engines: {node: '>=12'}
-    dependencies:
-      cluster-key-slot: 1.1.0
-      generic-pool: 3.8.2
-      redis-parser: 3.0.0
-      yallist: 4.0.0
-    dev: true
-
-  /@node-redis/graph/1.0.0_@node-redis+client@1.0.4:
-    resolution: {integrity: sha512-mRSo8jEGC0cf+Rm7q8mWMKKKqkn6EAnA9IA2S3JvUv/gaWW/73vil7GLNwion2ihTptAm05I9LkepzfIXUKX5g==}
-    peerDependencies:
-      '@node-redis/client': ^1.0.0
-    dependencies:
-      '@node-redis/client': 1.0.4
-    dev: true
-
-  /@node-redis/json/1.0.2_@node-redis+client@1.0.4:
-    resolution: {integrity: sha512-qVRgn8WfG46QQ08CghSbY4VhHFgaTY71WjpwRBGEuqGPfWwfRcIf3OqSpR7Q/45X+v3xd8mvYjywqh0wqJ8T+g==}
-    peerDependencies:
-      '@node-redis/client': ^1.0.0
-    dependencies:
-      '@node-redis/client': 1.0.4
-    dev: true
-
-  /@node-redis/search/1.0.3_@node-redis+client@1.0.4:
-    resolution: {integrity: sha512-rsrzkGWI84di/uYtEctS/4qLusWt0DESx/psjfB0TFpORDhe7JfC0h8ary+eHulTksumor244bXLRSqQXbFJmw==}
-    peerDependencies:
-      '@node-redis/client': ^1.0.0
-    dependencies:
-      '@node-redis/client': 1.0.4
-    dev: true
-
-  /@node-redis/time-series/1.0.2_@node-redis+client@1.0.4:
-    resolution: {integrity: sha512-HGQ8YooJ8Mx7l28tD7XjtB3ImLEjlUxG1wC1PAjxu6hPJqjPshUZxAICzDqDjtIbhDTf48WXXUcx8TQJB1XTKA==}
-    peerDependencies:
-      '@node-redis/client': ^1.0.0
-    dependencies:
-      '@node-redis/client': 1.0.4
     dev: true
 
   /@nodelib/fs.scandir/2.1.5:
@@ -4217,6 +4167,16 @@ packages:
       '@nrwl/workspace': 13.7.1_22de59bea1bba5ef5d5f549479041afa
       rxjs: 6.5.5
       typescript: 4.3.5
+    dev: true
+
+  /@ogma/common/1.0.0:
+    resolution: {integrity: sha512-IXvSnXbXccpxJR+UbN2fxp30R/44VFpx/T0ungb1PMwLa9BLmtbeQIXqc9TR11gRaDNY0e78tqVckau8oyXK0A==}
+    dev: true
+
+  /@ogma/styler/1.0.0:
+    resolution: {integrity: sha512-Twtijg2eUS4HEPyic0FEpkdJgRtLSvVow/3gmLsMkyU+GhSm80PnRlc6q1N1rmf1EQhuwGZLKhS30sYIuFV38A==}
+    dependencies:
+      '@ogma/common': 1.0.0
     dev: true
 
   /@opentelemetry/api/1.0.3:
@@ -6782,11 +6742,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /cluster-key-slot/1.1.0:
-    resolution: {integrity: sha512-2Nii8p3RwAPiFwsnZvukotvow2rIHM+yQ6ZcBXGHdniadkYGZYiGmkHJIbZPIV9nfv7m/U1IPMVVcAhoWFeklw==}
-    engines: {node: '>=0.10.0'}
-    dev: true
-
   /co/4.6.0:
     resolution: {integrity: sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=}
     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
@@ -7925,6 +7880,11 @@ packages:
   /delayed-stream/1.0.0:
     resolution: {integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=}
     engines: {node: '>=0.4.0'}
+    dev: true
+
+  /denque/1.5.1:
+    resolution: {integrity: sha512-XwE+iZ4D6ZUB7mfYRMb5wByE8L74HCn30FBN7sWnXksWc1LO1bPDl67pBR9o/kC4z/xSNAwkMYcGgqDV3BE3Hw==}
+    engines: {node: '>=0.10'}
     dev: true
 
   /depd/1.1.2:
@@ -9371,11 +9331,6 @@ packages:
 
   /functional-red-black-tree/1.0.1:
     resolution: {integrity: sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=}
-    dev: true
-
-  /generic-pool/3.8.2:
-    resolution: {integrity: sha512-nGToKy6p3PAbYQ7p1UlWl6vSPwfwU6TMSWK7TTu+WUY4ZjyZQGniGGt2oNVvyNSpyZYSB43zMXVLcBm08MTMkg==}
-    engines: {node: '>= 4'}
     dev: true
 
   /gensync/1.0.0-beta.2:
@@ -12786,10 +12741,11 @@ packages:
     resolution: {integrity: sha512-h2AatdwYH+JHiZpv7pt/gSX1XoRGb7L/qSIeuqA6GwYoF9w1vP1cw42TO0aI2pNyshRK5893hNSl+1//vHK7hQ==}
     dev: true
 
-  /nx-uvu/1.0.0:
-    resolution: {integrity: sha512-83eN20uPp5tqnbddq494LKH2Q3Pg1c4i/lpxKYQmpV9NeYBbcXD7eiMGigRcGMDwzteNwl7KvWuU0TRbBzXpZA==}
+  /nx-uvu/1.1.1:
+    resolution: {integrity: sha512-y9PTPYzNkUIZ0faU4njFQtUt8qvY6yrMlkvxmux/AastZqjwjYNMhlYd5okrJWerCXCO1O4Pe5x1Vu8GUPulmA==}
     dependencies:
       '@nrwl/devkit': 13.8.3
+      '@ogma/styler': 1.0.0
     dev: true
 
   /nx/13.7.1:
@@ -14479,6 +14435,10 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
+  /redis-commands/1.7.0:
+    resolution: {integrity: sha512-nJWqw3bTFy21hX/CPKHth6sfhZbdiHP6bTawSgQBlKOVRG7EZkfHbbHwQJnrE4vsQf0CMNE+3gJ4Fmm16vdVlQ==}
+    dev: true
+
   /redis-errors/1.2.0:
     resolution: {integrity: sha1-62LSrbFeTq9GEMBK/hUpOEJQq60=}
     engines: {node: '>=4'}
@@ -14491,15 +14451,14 @@ packages:
       redis-errors: 1.2.0
     dev: true
 
-  /redis/4.0.4:
-    resolution: {integrity: sha512-KaM1OAj/nGrSeybmmOWSMY0LXTGT6FVWgUZZrd2MYzXKJ+VGtqVaciGQeNMfZiQX+kDM8Ke4uttb54m2rm6V0A==}
+  /redis/3.1.2:
+    resolution: {integrity: sha512-grn5KoZLr/qrRQVwoSkmzdbw6pwF+/rwODtrOr6vuBRiR/f3rjSTGupbF90Zpqm2oenix8Do6RV7pYEkGwlKkw==}
+    engines: {node: '>=10'}
     dependencies:
-      '@node-redis/bloom': 1.0.1_@node-redis+client@1.0.4
-      '@node-redis/client': 1.0.4
-      '@node-redis/graph': 1.0.0_@node-redis+client@1.0.4
-      '@node-redis/json': 1.0.2_@node-redis+client@1.0.4
-      '@node-redis/search': 1.0.3_@node-redis+client@1.0.4
-      '@node-redis/time-series': 1.0.2_@node-redis+client@1.0.4
+      denque: 1.5.1
+      redis-commands: 1.7.0
+      redis-errors: 1.2.0
+      redis-parser: 3.0.0
     dev: true
 
   /reflect-metadata/0.1.13:
