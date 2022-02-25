@@ -102,17 +102,6 @@ jobs:
           name: coverage
           path: coverage/
 
-      - name: Use Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14.x
-
-      - name: Install pnpm
-        run: npm i -g pnpm
-
-      - name: Install deps
-        run: pnpm i --frozen-lockfile=false
-
       - name: Send Coverage
         run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info
         shell: bash
