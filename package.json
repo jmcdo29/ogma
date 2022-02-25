@@ -95,7 +95,6 @@
     "class-transformer": "0.5.1",
     "class-validator": "^0.13.0",
     "clsx": "^1.1.1",
-    "codeclimate-test-reporter": "^0.5.1",
     "conventional-changelog-cli": "^2.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "8.8.0",
