@@ -27,8 +27,8 @@
     "url": "https://github.com/jmcdo29/ogma/issues"
   },
   "dependencies": {
-    "@nestjs/common": "8.3.1",
-    "@nestjs/core": "8.3.1",
+    "@nestjs/common": "8.4.0",
+    "@nestjs/core": "8.4.0",
     "nest-commander": "^2.0.0",
     "reflect-metadata": "0.1.13"
   },
