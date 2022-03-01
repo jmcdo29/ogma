@@ -202,14 +202,14 @@ importers:
 
   packages/cli:
     specifiers:
-      '@nestjs/common': 8.3.1
-      '@nestjs/core': 8.3.1
+      '@nestjs/common': 8.4.0
+      '@nestjs/core': 8.4.0
       nest-commander: ^2.0.0
       reflect-metadata: 0.1.13
     dependencies:
-      '@nestjs/common': 8.3.1_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/core': 8.3.1_38c40b6765414ff201894c0c9863d2c9
-      nest-commander: 2.3.3_dc024985ab89eb73339eca509fad8031
+      '@nestjs/common': 8.4.0_f8b67fbbfa59b70aa4035a6089ad771a
+      '@nestjs/core': 8.4.0_d6de85ad2a7d803db49cdcaa50d9eceb
+      nest-commander: 2.3.3_31e7036b193d6d3c9cadab18cbb4af84
       reflect-metadata: 0.1.13
 
   packages/common:
@@ -3343,8 +3343,8 @@ packages:
       - debug
     dev: true
 
-  /@nestjs/common/8.3.1_f8b67fbbfa59b70aa4035a6089ad771a:
-    resolution: {integrity: sha512-3kKeaRXn1c2jf0ihVu6bvQ9Ok+7CkqkU0Ggi5NjWXA2oVRs3vPzr2d5DEvqUqY9JZpT5qGvzRDyKzaPlekxD2A==}
+  /@nestjs/common/8.4.0_f8b67fbbfa59b70aa4035a6089ad771a:
+    resolution: {integrity: sha512-uvm1Ccw0qRka/Gd5Mo5A2MQo9ItwewPes1fE2SBboennPojoiJ4A3iKirtlPuxsL+HQ4oD5eO02OsDyLYL2z6w==}
     peerDependencies:
       cache-manager: '*'
       class-transformer: '*'
@@ -3404,8 +3404,8 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@nestjs/core/8.3.1_38c40b6765414ff201894c0c9863d2c9:
-    resolution: {integrity: sha512-tdZkhqopd5xSVjogezpP4tPZWntyUNzwOGrVJCQ3RMVH12oxyDMpaMtDnCNvV7cSyoSyHzepMh5nCgLsZ/c88w==}
+  /@nestjs/core/8.4.0_d6de85ad2a7d803db49cdcaa50d9eceb:
+    resolution: {integrity: sha512-aur62kcyQz81D0GvM038t2JFelxPm9ABt11o5qO5ovTJ5mismZheckwyPA3WHg9wec6skr9v8kBVdZUbjFQJQQ==}
     requiresBuild: true
     peerDependencies:
       '@nestjs/common': ^8.0.0
@@ -3422,14 +3422,14 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': 8.3.1_f8b67fbbfa59b70aa4035a6089ad771a
+      '@nestjs/common': 8.4.0_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
       iterare: 1.2.1
-      object-hash: 2.2.0
+      object-hash: 3.0.0
       path-to-regexp: 3.2.0
       reflect-metadata: 0.1.13
       rxjs: 7.4.0
@@ -12476,6 +12476,19 @@ packages:
       nest-commander: 2.3.3_bbf59b1cbf49bba2b2f47e404ee3cb27
     dev: true
 
+  /nest-commander/2.3.3_31e7036b193d6d3c9cadab18cbb4af84:
+    resolution: {integrity: sha512-VzYVgJhGff+Td/FjaENwud3lhm3MHfRy8I3/OpDGmqwOfmMWHSkVd1aPVi3CqIUozGbH4KNrh9uw7TCQHld9uw==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0
+      '@nestjs/core': ^8.0.0
+    dependencies:
+      '@golevelup/nestjs-discovery': 2.3.1
+      '@nestjs/common': 8.4.0_f8b67fbbfa59b70aa4035a6089ad771a
+      '@nestjs/core': 8.4.0_d6de85ad2a7d803db49cdcaa50d9eceb
+      commander: 8.2.0
+      inquirer: 8.2.0
+    dev: false
+
   /nest-commander/2.3.3_bbf59b1cbf49bba2b2f47e404ee3cb27:
     resolution: {integrity: sha512-VzYVgJhGff+Td/FjaENwud3lhm3MHfRy8I3/OpDGmqwOfmMWHSkVd1aPVi3CqIUozGbH4KNrh9uw7TCQHld9uw==}
     peerDependencies:
@@ -12488,19 +12501,6 @@ packages:
       commander: 8.2.0
       inquirer: 8.2.0
     dev: true
-
-  /nest-commander/2.3.3_dc024985ab89eb73339eca509fad8031:
-    resolution: {integrity: sha512-VzYVgJhGff+Td/FjaENwud3lhm3MHfRy8I3/OpDGmqwOfmMWHSkVd1aPVi3CqIUozGbH4KNrh9uw7TCQHld9uw==}
-    peerDependencies:
-      '@nestjs/common': ^8.0.0
-      '@nestjs/core': ^8.0.0
-    dependencies:
-      '@golevelup/nestjs-discovery': 2.3.1
-      '@nestjs/common': 8.3.1_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/core': 8.3.1_38c40b6765414ff201894c0c9863d2c9
-      commander: 8.2.0
-      inquirer: 8.2.0
-    dev: false
 
   /nice-try/1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
@@ -12693,6 +12693,12 @@ packages:
   /object-hash/2.2.0:
     resolution: {integrity: sha512-gScRMn0bS5fH+IuwyIFgnh9zBdo4DV+6GhygmWM9HyNJSgS0hScp1f5vjtm7oIIOiT9trXrShAkLFSc2IqKNgw==}
     engines: {node: '>= 6'}
+    dev: true
+
+  /object-hash/3.0.0:
+    resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
+    engines: {node: '>= 6'}
+    dev: false
 
   /object-inspect/1.12.0:
     resolution: {integrity: sha512-Ho2z80bVIvJloH+YzRmpZVQe87+qASmBUKZDWgx9cu+KDrX2ZDH/3tMy+gXbZETVGs2M8YdxObOh7XAtim9Y0g==}
