@@ -83,7 +83,7 @@
     "@types/express-serve-static-core": "^4.17.24",
     "@types/morgan": "^1.9.3",
     "@types/node": "16.11.26",
-    "@types/ws": "8.5.1",
+    "@types/ws": "8.5.2",
     "@typescript-eslint/eslint-plugin": "5.13.0",
     "@typescript-eslint/parser": "5.13.0",
     "amqp-connection-manager": "4.1.1",
