@@ -1,5 +1,11 @@
 # @ogma/cli
 
+## 2.1.6
+
+### Patch Changes
+
+- 89504a0: Change @ogma/cli shebang to be more portable across different OS and environment.
+
 ## 2.1.5
 
 ### Patch Changes
