@@ -48,7 +48,7 @@ importers:
       '@types/express-serve-static-core': ^4.17.24
       '@types/morgan': ^1.9.3
       '@types/node': 16.11.26
-      '@types/ws': 8.5.2
+      '@types/ws': 8.5.3
       '@typescript-eslint/eslint-plugin': 5.14.0
       '@typescript-eslint/parser': 5.14.0
       amqp-connection-manager: 4.1.1
@@ -141,7 +141,7 @@ importers:
       '@types/express-serve-static-core': 4.17.24
       '@types/morgan': 1.9.3
       '@types/node': 16.11.26
-      '@types/ws': 8.5.2
+      '@types/ws': 8.5.3
       '@typescript-eslint/eslint-plugin': 5.14.0_d598428c1adfe8e99d00569004d6e8cc
       '@typescript-eslint/parser': 5.14.0_eslint@8.10.0+typescript@4.4.4
       amqp-connection-manager: 4.1.1_amqplib@0.8.0
@@ -4918,8 +4918,8 @@ packages:
     resolution: {integrity: sha512-+qogUELb4gMhrMjSh/seKmGVvN+uQLfyqJAqYRWqVHsvBsUO2xDBCL8CJ/ZSukbd8vXaoYbpIssAmfLEzzBHEw==}
     dev: true
 
-  /@types/ws/8.5.2:
-    resolution: {integrity: sha512-VXI82ykONr5tacHEojnErTQk+KQSoYbW1NB6iz6wUwrNd+BqfkfggQNoNdCqhJSzbNumShPERbM+Pc5zpfhlbw==}
+  /@types/ws/8.5.3:
+    resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
     dependencies:
       '@types/node': 16.11.26
     dev: true
