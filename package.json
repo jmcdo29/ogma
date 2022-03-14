@@ -57,7 +57,7 @@
     "@mdx-js/react": "^1.6.21",
     "@nestjs/common": "^8.0.6",
     "@nestjs/core": "^8.0.6",
-    "@nestjs/graphql": "^9.0.4",
+    "@nestjs/graphql": "^10.0.7",
     "@nestjs/microservices": "^8.0.6",
     "@nestjs/platform-express": "^8.0.6",
     "@nestjs/platform-fastify": "^8.0.6",
