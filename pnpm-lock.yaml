@@ -10,7 +10,7 @@ importers:
     specifiers:
       '@apollo/gateway': 0.45.1
       '@changesets/cli': ^2.17.0
-      '@commitlint/cli': 16.2.1
+      '@commitlint/cli': 16.2.3
       '@commitlint/config-conventional': 16.2.1
       '@docusaurus/core': ^2.0.0-alpha.70
       '@docusaurus/preset-classic': ^2.0.0-alpha.70
@@ -103,7 +103,7 @@ importers:
     devDependencies:
       '@apollo/gateway': 0.45.1_graphql@15.7.2
       '@changesets/cli': 2.17.0
-      '@commitlint/cli': 16.2.1_@swc+core@1.2.141
+      '@commitlint/cli': 16.2.3_@swc+core@1.2.141
       '@commitlint/config-conventional': 16.2.1
       '@docusaurus/core': 2.0.0-beta.8_5b35621755f15664a850410b01e95c92
       '@docusaurus/preset-classic': 2.0.0-beta.8_5b35621755f15664a850410b01e95c92
@@ -2072,14 +2072,14 @@ packages:
       prettier: 1.19.1
     dev: true
 
-  /@commitlint/cli/16.2.1_@swc+core@1.2.141:
-    resolution: {integrity: sha512-zfKf+B9osuiDbxGMJ7bWFv7XFCW8wlQYPtCffNp7Ukdb7mdrep5R9e03vPUZysnwp8NX6hg05kPEvnD/wRIGWw==}
+  /@commitlint/cli/16.2.3_@swc+core@1.2.141:
+    resolution: {integrity: sha512-VsJBQLvhhlOgEfxs/Z5liYuK0dXqLE5hz1VJzLBxiOxG31kL/X5Q4OvK292BmO7IGZcm1yJE3XQPWSiFaEHbWA==}
     engines: {node: '>=v12'}
     hasBin: true
     dependencies:
       '@commitlint/format': 16.2.1
       '@commitlint/lint': 16.2.1
-      '@commitlint/load': 16.2.1_@swc+core@1.2.141
+      '@commitlint/load': 16.2.3_@swc+core@1.2.141
       '@commitlint/read': 16.2.1
       '@commitlint/types': 16.2.1
       lodash: 4.17.21
@@ -2145,8 +2145,8 @@ packages:
       '@commitlint/types': 16.2.1
     dev: true
 
-  /@commitlint/load/16.2.1_@swc+core@1.2.141:
-    resolution: {integrity: sha512-oSpz0jTyVI/A1AIImxJINTLDOMB8YF7lWGm+Jg5wVWM0r7ucpuhyViVvpSRTgvL0z09oIxlctyFGWUQQpI42uw==}
+  /@commitlint/load/16.2.3_@swc+core@1.2.141:
+    resolution: {integrity: sha512-Hb4OUlMnBUK6UxJEZ/VJ5k0LocIS7PtEMbRXEAA7eSpOgORIFexC4K/RaRpVd5UTtu3M0ST3ddPPijF9rdW6nw==}
     engines: {node: '>=v12'}
     dependencies:
       '@commitlint/config-validator': 16.2.1
@@ -7611,7 +7611,7 @@ packages:
       longest: 2.0.1
       word-wrap: 1.2.3
     optionalDependencies:
-      '@commitlint/load': 16.2.1_@swc+core@1.2.141
+      '@commitlint/load': 16.2.3_@swc+core@1.2.141
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
@@ -7628,7 +7628,7 @@ packages:
       longest: 2.0.1
       word-wrap: 1.2.3
     optionalDependencies:
-      '@commitlint/load': 16.2.1_@swc+core@1.2.141
+      '@commitlint/load': 16.2.3_@swc+core@1.2.141
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
