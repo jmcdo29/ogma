@@ -45,7 +45,7 @@
   "devDependencies": {
     "@apollo/gateway": "0.45.1",
     "@changesets/cli": "^2.17.0",
-    "@commitlint/cli": "16.2.1",
+    "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
     "@docusaurus/core": "^2.0.0-alpha.70",
     "@docusaurus/preset-classic": "^2.0.0-alpha.70",
@@ -73,7 +73,7 @@
     "@nrwl/node": "13.7.1",
     "@nrwl/nx-cloud": "13.1.6",
     "@nrwl/tao": "13.7.1",
-    "@nrwl/workspace": "13.7.1",
+    "@nrwl/workspace": "13.9.0",
     "@nx-plus/docusaurus": "^12.1.0",
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.141",
