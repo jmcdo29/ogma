@@ -107,7 +107,7 @@
     "hanbi": "^1.0.1",
     "husky": "^7.0.2",
     "kafkajs": "^1.15.0",
-    "lint-staged": "12.3.6",
+    "lint-staged": "12.3.7",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "mqtt": "^4.2.8",
