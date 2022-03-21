@@ -202,14 +202,14 @@ importers:
 
   packages/cli:
     specifiers:
-      '@nestjs/common': 8.4.1
-      '@nestjs/core': 8.4.1
+      '@nestjs/common': 8.4.2
+      '@nestjs/core': 8.4.2
       nest-commander: ^2.0.0
       reflect-metadata: 0.1.13
     dependencies:
-      '@nestjs/common': 8.4.1_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/core': 8.4.1_fc7c094806fb71585045136080866127
-      nest-commander: 2.3.3_214a294e539403889bf33d78c1f08a26
+      '@nestjs/common': 8.4.2_f8b67fbbfa59b70aa4035a6089ad771a
+      '@nestjs/core': 8.4.2_7a59487e4bb5e18a20e4c5ebe241576f
+      nest-commander: 2.3.3_44cf05fcc0e49f3653826a45aec0eb54
       reflect-metadata: 0.1.13
 
   packages/common:
@@ -3343,8 +3343,8 @@ packages:
       - debug
     dev: true
 
-  /@nestjs/common/8.4.1_f8b67fbbfa59b70aa4035a6089ad771a:
-    resolution: {integrity: sha512-g6beLHvJ2cCIdlW8Uui8rQh3+oxLOBLzDIk3yWH4ocp2HEgOJwF0iUv/pk33tFuwbXESIGMK8K165cpZUjNoxA==}
+  /@nestjs/common/8.4.2_f8b67fbbfa59b70aa4035a6089ad771a:
+    resolution: {integrity: sha512-l5CTBvW7PaqZPHRwtLU7G0NK2XBLQZL8jnvH0ArGGduljb5MpgsXwgDt8OYlc5m50IGBL/2j70Cad3CEpKcLUA==}
     peerDependencies:
       cache-manager: '*'
       class-transformer: '*'
@@ -3404,8 +3404,8 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@nestjs/core/8.4.1_fc7c094806fb71585045136080866127:
-    resolution: {integrity: sha512-JUV2cy/5z8MS2SRwszLmyOCclMMlyumxIbC1YFFlnSInhu7ODhrHLIMztyGmyAIuaehbOnyXPtHkjl01rHxc5w==}
+  /@nestjs/core/8.4.2_7a59487e4bb5e18a20e4c5ebe241576f:
+    resolution: {integrity: sha512-TfDl9InVsMS1COT9839t2kvBGTIaD5X+SHrdH0PzcNqsnbXnk4oL06Mz+3Jl7PQwKG76zl98iiKcMNFg6ojnOw==}
     requiresBuild: true
     peerDependencies:
       '@nestjs/common': ^8.0.0
@@ -3422,7 +3422,7 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': 8.4.1_f8b67fbbfa59b70aa4035a6089ad771a
+      '@nestjs/common': 8.4.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
@@ -12496,15 +12496,15 @@ packages:
       nest-commander: 2.3.3_bbf59b1cbf49bba2b2f47e404ee3cb27
     dev: true
 
-  /nest-commander/2.3.3_214a294e539403889bf33d78c1f08a26:
+  /nest-commander/2.3.3_44cf05fcc0e49f3653826a45aec0eb54:
     resolution: {integrity: sha512-VzYVgJhGff+Td/FjaENwud3lhm3MHfRy8I3/OpDGmqwOfmMWHSkVd1aPVi3CqIUozGbH4KNrh9uw7TCQHld9uw==}
     peerDependencies:
       '@nestjs/common': ^8.0.0
       '@nestjs/core': ^8.0.0
     dependencies:
       '@golevelup/nestjs-discovery': 2.3.1
-      '@nestjs/common': 8.4.1_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/core': 8.4.1_fc7c094806fb71585045136080866127
+      '@nestjs/common': 8.4.2_f8b67fbbfa59b70aa4035a6089ad771a
+      '@nestjs/core': 8.4.2_7a59487e4bb5e18a20e4c5ebe241576f
       commander: 8.2.0
       inquirer: 8.2.0
     dev: false
