@@ -81,7 +81,7 @@ importers:
       nest-commander-testing: ^2.0.0
       nx-uvu: ^1.1.1
       pactum: ^3.1.4
-      pino: 7.9.1
+      pino: 7.9.2
       prettier: ^2.3.2
       react: 17.0.2
       react-dom: 17.0.2
@@ -174,7 +174,7 @@ importers:
       nest-commander-testing: 2.0.1_d8f603c457f92bb11ab4464ad6503084
       nx-uvu: 1.1.1
       pactum: 3.1.4
-      pino: 7.9.1
+      pino: 7.9.2
       prettier: 2.4.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -13281,8 +13281,8 @@ packages:
       sonic-boom: 1.4.1
     dev: true
 
-  /pino/7.9.1:
-    resolution: {integrity: sha512-28+D7c5orCoScdcWtiPXrCA9tdVosBWrYQgVtPdYTyiuTt6u/+rbEtpJR+dtVG8k1flhv0H2f0XSkgGm+TdjqQ==}
+  /pino/7.9.2:
+    resolution: {integrity: sha512-c8wmB2PuhdJurYPRl/eo3+PosHe7Ep6GZvBJFIrp9oV1YRZQ3qm3MujaEolaKUfwX8cDL96WKCWWMedB2drXqw==}
     hasBin: true
     dependencies:
       fast-redact: 3.0.2
@@ -13294,7 +13294,7 @@ packages:
       real-require: 0.1.0
       safe-stable-stringify: 2.2.0
       sonic-boom: 2.3.1
-      thread-stream: 0.13.0
+      thread-stream: 0.15.1
     dev: true
 
   /pirates/4.0.5:
@@ -15987,8 +15987,8 @@ packages:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
 
-  /thread-stream/0.13.0:
-    resolution: {integrity: sha512-kTMZeX4Dzlb1zZ00/01aerGaTw2i8NE4sWF0TvF1uXewRhCiUjCvatQkvxIvFqauWG2ADFS2Wpd3qBeYL9i3dg==}
+  /thread-stream/0.15.1:
+    resolution: {integrity: sha512-SCnuIT27gc2h/F/RY2peuC7brgLy+1oXU+7yOIAITz1z5stDpXCF5rAoFcykjuK6ifbTlKAHL7Ccq8oc5Btv1w==}
     dependencies:
       real-require: 0.1.0
     dev: true
