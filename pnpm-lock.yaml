@@ -53,8 +53,8 @@ importers:
       '@typescript-eslint/parser': 5.17.0
       amqp-connection-manager: 4.1.1
       amqplib: ^0.8.0
-      apollo-server-express: 3.6.6
-      apollo-server-fastify: 3.6.6
+      apollo-server-express: 3.6.7
+      apollo-server-fastify: 3.6.7
       bunyan: ^1.8.15
       c8: ^7.11.0
       class-transformer: 0.5.1
@@ -115,7 +115,7 @@ importers:
       '@mdx-js/react': 1.6.22_react@17.0.2
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
-      '@nestjs/graphql': 9.1.1_a1e1079750d1e4b541238570581e3902
+      '@nestjs/graphql': 9.1.1_8c30280d342a8d718cf956b1716c5441
       '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/platform-fastify': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
@@ -146,8 +146,8 @@ importers:
       '@typescript-eslint/parser': 5.17.0_eslint@8.12.0+typescript@4.4.4
       amqp-connection-manager: 4.1.1_amqplib@0.8.0
       amqplib: 0.8.0
-      apollo-server-express: 3.6.6_express@4.17.1+graphql@15.7.2
-      apollo-server-fastify: 3.6.6_fastify@3.22.1+graphql@15.7.2
+      apollo-server-express: 3.6.7_express@4.17.1+graphql@15.7.2
+      apollo-server-fastify: 3.6.7_fastify@3.22.1+graphql@15.7.2
       bunyan: 1.8.15
       c8: 7.11.0
       class-transformer: 0.5.1
@@ -502,9 +502,13 @@ packages:
       graphql: 15.7.2
     dev: true
 
-  /@apollographql/apollo-tools/0.5.2:
-    resolution: {integrity: sha512-KxZiw0Us3k1d0YkJDhOpVH5rJ+mBfjXcgoRoCcslbgirjgLotKMzOcx4PZ7YTEvvEROmvG7X3Aon41GvMmyGsw==}
+  /@apollographql/apollo-tools/0.5.3_graphql@15.7.2:
+    resolution: {integrity: sha512-VcsXHfTFoCodDAgJZxN04GdFK1kqOhZQnQY/9Fa147P+I8xfvOSz5d+lKAPB+hwSgBNyd7ncAKGIs4+utbL+yA==}
     engines: {node: '>=8', npm: '>=6'}
+    peerDependencies:
+      graphql: ^14.2.1 || ^15.0.0 || ^16.0.0
+    dependencies:
+      graphql: 15.7.2
     dev: true
 
   /@apollographql/graphql-playground-html/1.6.29:
@@ -3411,7 +3415,7 @@ packages:
       uuid: 8.3.2
     dev: false
 
-  /@nestjs/graphql/9.1.1_a1e1079750d1e4b541238570581e3902:
+  /@nestjs/graphql/9.1.1_8c30280d342a8d718cf956b1716c5441:
     resolution: {integrity: sha512-NHMR+VRHFeHBa8/ACy9RnyMVv/581VvXDWenpPFW5RFnZiy4aNeUDCv6sdCh/EydE4CpWzmdliuUei+NrlLWEQ==}
     peerDependencies:
       '@apollo/federation': ^0.26.0 || ^0.27.0 || ^0.29.0 || ^0.33.0
@@ -3448,8 +3452,8 @@ packages:
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
       '@nestjs/mapped-types': 1.0.0_b1a9b2fa8484015fa05c131bb31edf31
-      apollo-server-express: 3.6.6_express@4.17.1+graphql@15.7.2
-      apollo-server-fastify: 3.6.6_fastify@3.22.1+graphql@15.7.2
+      apollo-server-express: 3.6.7_express@4.17.1+graphql@15.7.2
+      apollo-server-fastify: 3.6.7_fastify@3.22.1+graphql@15.7.2
       chokidar: 3.5.2
       fast-glob: 3.2.7
       graphql: 15.7.2
@@ -5755,7 +5759,38 @@ packages:
     peerDependencies:
       graphql: ^15.3.0 || ^16.0.0
     dependencies:
-      '@apollographql/apollo-tools': 0.5.2
+      '@apollographql/apollo-tools': 0.5.3_graphql@15.7.2
+      '@apollographql/graphql-playground-html': 1.6.29
+      '@graphql-tools/mock': 8.4.2_graphql@15.7.2
+      '@graphql-tools/schema': 8.3.1_graphql@15.7.2
+      '@josephg/resolvable': 1.0.1
+      apollo-datasource: 3.3.1
+      apollo-reporting-protobuf: 3.3.1
+      apollo-server-caching: 3.3.0
+      apollo-server-env: 4.2.1
+      apollo-server-errors: 3.3.1_graphql@15.7.2
+      apollo-server-plugin-base: 3.5.2_graphql@15.7.2
+      apollo-server-types: 3.5.2_graphql@15.7.2
+      async-retry: 1.3.3
+      fast-json-stable-stringify: 2.1.0
+      graphql: 15.7.2
+      graphql-tag: 2.12.5_graphql@15.7.2
+      lodash.sortby: 4.7.0
+      loglevel: 1.7.1
+      lru-cache: 6.0.0
+      sha.js: 2.4.11
+      uuid: 8.3.2
+    transitivePeerDependencies:
+      - encoding
+    dev: true
+
+  /apollo-server-core/3.6.7_graphql@15.7.2:
+    resolution: {integrity: sha512-OnZ9vu7LrYy2rvEu+nbgqucw6VyTSIPAEjK87c4rkzlVOxpwtGUaQ4FMWD9zBIj7yLq9q22b638E8LdYoaTAjQ==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      graphql: ^15.3.0 || ^16.0.0
+    dependencies:
+      '@apollographql/apollo-tools': 0.5.3_graphql@15.7.2
       '@apollographql/graphql-playground-html': 1.6.29
       '@graphql-tools/mock': 8.4.2_graphql@15.7.2
       '@graphql-tools/schema': 8.3.1_graphql@15.7.2
@@ -5784,7 +5819,9 @@ packages:
     resolution: {integrity: sha512-4xJ+PCoWsFLj4rU6iXrIhqD7nI42goi4Iqrhsof9680ljSzkzd+PCwZsja3mHOFXKUQQUvJ7StVSgwaiRu45+A==}
     engines: {node: '>=12.0'}
     dependencies:
-      node-fetch: 2.6.6
+      node-fetch: 2.6.7
+    transitivePeerDependencies:
+      - encoding
     dev: true
 
   /apollo-server-env/4.2.1:
@@ -5814,8 +5851,8 @@ packages:
       graphql: 15.7.2
     dev: true
 
-  /apollo-server-express/3.6.6_express@4.17.1+graphql@15.7.2:
-    resolution: {integrity: sha512-27D+rRd/yfIFx333yYc6WgAhI6hCPbM3r53Ha0SFCGZ7BGvccVvKlhlbLYdkLEO0DQEdVKI7YuZq4yoM0qdZ/g==}
+  /apollo-server-express/3.6.7_express@4.17.1+graphql@15.7.2:
+    resolution: {integrity: sha512-B4gH5j8t3XxTCIa9bl7Iq/F3YFzMxX/LV4Sc+L/3xkHm648u576G5Lkskl8HsoTGSzzyeVcVsPDoYHiBjCAN0Q==}
     engines: {node: '>=12.0'}
     peerDependencies:
       express: ^4.17.1
@@ -5827,7 +5864,7 @@ packages:
       '@types/express': 4.17.13
       '@types/express-serve-static-core': 4.17.28
       accepts: 1.3.7
-      apollo-server-core: 3.6.6_graphql@15.7.2
+      apollo-server-core: 3.6.7_graphql@15.7.2
       apollo-server-types: 3.5.2_graphql@15.7.2
       body-parser: 1.19.0
       cors: 2.8.5
@@ -5838,14 +5875,14 @@ packages:
       - encoding
     dev: true
 
-  /apollo-server-fastify/3.6.6_fastify@3.22.1+graphql@15.7.2:
-    resolution: {integrity: sha512-gLTUlpKq8InjSkqGDtMxvbD0E4uRT7GCgwy7I9SDOJ3mnPtO/X/m/DCj+PgtjWSsyxsJuE4GD61edHQE0u2d7Q==}
+  /apollo-server-fastify/3.6.7_fastify@3.22.1+graphql@15.7.2:
+    resolution: {integrity: sha512-2SYy5FChtNS1CrHGkOlTqOos0AtXGYKRUn43DGoXSPN6fqYGyRALx9g1xkwpRgpJTW4O/c4+/LWhTHVhotLr6w==}
     engines: {node: '>=12.0'}
     peerDependencies:
       fastify: ^3.17.0
       graphql: ^15.3.0 || ^16.0.0
     dependencies:
-      apollo-server-core: 3.6.6_graphql@15.7.2
+      apollo-server-core: 3.6.7_graphql@15.7.2
       apollo-server-types: 3.5.2_graphql@15.7.2
       fastify: 3.22.1
       fastify-accepts: 2.1.0
