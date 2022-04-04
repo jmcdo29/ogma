@@ -125,9 +125,19 @@ export class Ogma {
     };
     delete meta.formattedLevel;
     const mappedLevel = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
-    json.application = application || this.options.application || undefined;
-    json.pid = this.pid;
-    json.hostname = this.hostname;
+
+    if (this.options.logHostname) {
+      json.hostname = this.hostname;
+    }
+
+    if (this.options.logApplication) {
+      json.application = application || this.options.application || undefined;
+    }
+
+    if (this.options.logPid) {
+      json.pid = this.pid;
+    }
+
     json.correlationId = correlationId;
     json.context = context || this.options.context || undefined;
     json.level = mappedLevel;
@@ -154,15 +164,29 @@ export class Ogma {
     if (typeof message === 'object' && !(message instanceof Error)) {
       message = '\n' + JSON.stringify(message, this.circularReplacer(), 2);
     }
-    application = this.toStreamColor(application || this.options.application, Color.YELLOW);
     context = this.toStreamColor(context || this.options.context, Color.CYAN);
     correlationId &&= this.wrapInBrackets(correlationId);
 
-    const hostname = this.toStreamColor(this.hostname, Color.MAGENTA);
     const timestamp = this.wrapInBrackets(this.getTimestamp());
-    return `${timestamp} ${formattedLevel} ${hostname} ${application} ${this.wrapInBrackets(
-      this.pid.toString(),
-    )} ${correlationId} ${context} ${message}`;
+
+    let outputTuple = [timestamp, formattedLevel];
+
+    if (this.options.logHostname) {
+      outputTuple.push(this.toStreamColor(this.hostname, Color.MAGENTA));
+    }
+
+    if (this.options.logApplication) {
+      outputTuple.push(this.toStreamColor(application || this.options.application, Color.YELLOW));
+    }
+
+    if (this.options.logPid) {
+      outputTuple.push(this.wrapInBrackets(this.pid.toString()));
+    }
+
+    outputTuple = outputTuple.concat([correlationId, context, message]);
+
+    // [timestamp, formattedLevel, hostname?, application?, pid?, correlationId, context, message]
+    return outputTuple.join(' ');
   }
 
   private toStreamColor(value: string, color: Color): string {

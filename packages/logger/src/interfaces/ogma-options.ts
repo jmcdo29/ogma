@@ -40,6 +40,18 @@ export interface OgmaOptions {
    */
   application: string;
   /**
+   * A value to say if you want to log pid or not
+   */
+  logPid?: boolean;
+  /**
+   * A value to say if you want to log application name or not
+   */
+  logApplication?: boolean;
+  /**
+   * A value to say if you want to log hostname or not
+   */
+  logHostname?: boolean;
+  /**
    * A value to say if you want to log the extra meta values in string mode or not.
    * @default false
    * @link https://github.com/jmcdo29/ogma/issues/297
@@ -111,4 +123,7 @@ export const OgmaDefaults: OgmaOptions = {
     FINE: 'FINE',
   },
   masks: [],
+  logPid: true,
+  logApplication: true,
+  logHostname: true,
 };
