@@ -73,7 +73,7 @@
     "@nrwl/node": "13.7.1",
     "@nrwl/nx-cloud": "13.2.2",
     "@nrwl/tao": "13.7.1",
-    "@nrwl/workspace": "13.7.1",
+    "@nrwl/workspace": "13.9.7",
     "@nx-plus/docusaurus": "13.0.0",
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.141",
