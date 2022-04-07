@@ -202,14 +202,14 @@ importers:
 
   packages/cli:
     specifiers:
-      '@nestjs/common': 8.4.2
-      '@nestjs/core': 8.4.2
+      '@nestjs/common': 8.4.4
+      '@nestjs/core': 8.4.4
       nest-commander: ^2.0.0
       reflect-metadata: 0.1.13
     dependencies:
-      '@nestjs/common': 8.4.2_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/core': 8.4.2_7a59487e4bb5e18a20e4c5ebe241576f
-      nest-commander: 2.3.3_44cf05fcc0e49f3653826a45aec0eb54
+      '@nestjs/common': 8.4.4_f8b67fbbfa59b70aa4035a6089ad771a
+      '@nestjs/core': 8.4.4_6f6c5d7cd7be5817ddfab77a4a28de3b
+      nest-commander: 2.3.3_a78378ec5f3cecc3c353ed91b578f3e6
       reflect-metadata: 0.1.13
 
   packages/common:
@@ -3321,8 +3321,8 @@ packages:
       - debug
     dev: true
 
-  /@nestjs/common/8.4.2_f8b67fbbfa59b70aa4035a6089ad771a:
-    resolution: {integrity: sha512-l5CTBvW7PaqZPHRwtLU7G0NK2XBLQZL8jnvH0ArGGduljb5MpgsXwgDt8OYlc5m50IGBL/2j70Cad3CEpKcLUA==}
+  /@nestjs/common/8.4.4_f8b67fbbfa59b70aa4035a6089ad771a:
+    resolution: {integrity: sha512-QHi7QcgH/5Jinz+SCfIZJkFHc6Cch1YsAEGFEhi6wSp6MILb0sJMQ1CX06e9tCOAjSlBwaJj4PH0eFCVau5v9Q==}
     peerDependencies:
       cache-manager: '*'
       class-transformer: '*'
@@ -3380,10 +3380,12 @@ packages:
       rxjs: 7.4.0
       tslib: 2.3.1
       uuid: 8.3.2
+    transitivePeerDependencies:
+      - encoding
     dev: true
 
-  /@nestjs/core/8.4.2_7a59487e4bb5e18a20e4c5ebe241576f:
-    resolution: {integrity: sha512-TfDl9InVsMS1COT9839t2kvBGTIaD5X+SHrdH0PzcNqsnbXnk4oL06Mz+3Jl7PQwKG76zl98iiKcMNFg6ojnOw==}
+  /@nestjs/core/8.4.4_6f6c5d7cd7be5817ddfab77a4a28de3b:
+    resolution: {integrity: sha512-Ef3yJPuzAttpNfehnGqIV5kHIL9SHptB5F4ERxoU7pT61H3xiYpZw6hSjx68cJO7cc6rm7/N+b4zeuJvFHtvBg==}
     requiresBuild: true
     peerDependencies:
       '@nestjs/common': ^8.0.0
@@ -3400,7 +3402,7 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': 8.4.2_f8b67fbbfa59b70aa4035a6089ad771a
+      '@nestjs/common': 8.4.4_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
@@ -3413,6 +3415,8 @@ packages:
       rxjs: 7.4.0
       tslib: 2.3.1
       uuid: 8.3.2
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /@nestjs/graphql/9.1.1_8c30280d342a8d718cf956b1716c5441:
@@ -4158,7 +4162,9 @@ packages:
     dependencies:
       chalk: 4.1.2
       consola: 2.15.3
-      node-fetch: 2.6.6
+      node-fetch: 2.6.7
+    transitivePeerDependencies:
+      - encoding
 
   /@nx-plus/docusaurus/13.0.0_@nrwl+workspace@13.7.1:
     resolution: {integrity: sha512-MA5HPl8wDUdYaweHKSGDc2mzlGrYPz7L7718wzBpRyxjuFwilMVbwHzXlQvlkrAe2zA1eV9+JNEFXfYEWPY4wg==}
@@ -12687,15 +12693,15 @@ packages:
       nest-commander: 2.3.3_bbf59b1cbf49bba2b2f47e404ee3cb27
     dev: true
 
-  /nest-commander/2.3.3_44cf05fcc0e49f3653826a45aec0eb54:
+  /nest-commander/2.3.3_a78378ec5f3cecc3c353ed91b578f3e6:
     resolution: {integrity: sha512-VzYVgJhGff+Td/FjaENwud3lhm3MHfRy8I3/OpDGmqwOfmMWHSkVd1aPVi3CqIUozGbH4KNrh9uw7TCQHld9uw==}
     peerDependencies:
       '@nestjs/common': ^8.0.0
       '@nestjs/core': ^8.0.0
     dependencies:
       '@golevelup/nestjs-discovery': 2.3.1
-      '@nestjs/common': 8.4.2_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/core': 8.4.2_7a59487e4bb5e18a20e4c5ebe241576f
+      '@nestjs/common': 8.4.4_f8b67fbbfa59b70aa4035a6089ad771a
+      '@nestjs/core': 8.4.4_6f6c5d7cd7be5817ddfab77a4a28de3b
       commander: 8.2.0
       inquirer: 8.2.0
     dev: false
@@ -12747,12 +12753,6 @@ packages:
     engines: {node: 4.x || >=6.0.0}
     dev: true
 
-  /node-fetch/2.6.6:
-    resolution: {integrity: sha512-Z8/6vRlTUChSdIgMa51jxQ4lrw/Jy5SOW10ObaA47/RElsAN2c5Pn8bTgFGWn/ibwzXTE8qwr1Yzx28vsecXEA==}
-    engines: {node: 4.x || >=6.0.0}
-    dependencies:
-      whatwg-url: 5.0.0
-
   /node-fetch/2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
     engines: {node: 4.x || >=6.0.0}
@@ -12763,7 +12763,6 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
-    dev: true
 
   /node-forge/0.10.0:
     resolution: {integrity: sha512-PPmu8eEeG9saEUvI97fm4OYxXVB6bFvyNTyiUOBichBpFG8A1Ljw3bY62+5oOjDEMHRnd0Y7HQ+x7uzxOzC6JA==}
