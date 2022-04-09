@@ -81,7 +81,7 @@ importers:
       nest-commander-testing: ^2.0.0
       nx-uvu: ^1.1.1
       pactum: ^3.1.4
-      pino: 7.9.2
+      pino: 7.10.0
       prettier: ^2.3.2
       react: 17.0.2
       react-dom: 17.0.2
@@ -174,7 +174,7 @@ importers:
       nest-commander-testing: 2.0.1_d8f603c457f92bb11ab4464ad6503084
       nx-uvu: 1.1.1
       pactum: 3.1.4
-      pino: 7.9.2
+      pino: 7.10.0
       prettier: 2.4.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -13509,10 +13509,11 @@ packages:
       sonic-boom: 1.4.1
     dev: true
 
-  /pino/7.9.2:
-    resolution: {integrity: sha512-c8wmB2PuhdJurYPRl/eo3+PosHe7Ep6GZvBJFIrp9oV1YRZQ3qm3MujaEolaKUfwX8cDL96WKCWWMedB2drXqw==}
+  /pino/7.10.0:
+    resolution: {integrity: sha512-T6R92jy/APDElEuOk0gqa4nds3ZgqFbHde2X0g8XorlyPlVGlr9T5KQphtp72a3ByKOdZMg/gM/0IprpGQfTWg==}
     hasBin: true
     dependencies:
+      atomic-sleep: 1.0.0
       fast-redact: 3.0.2
       on-exit-leak-free: 0.2.0
       pino-abstract-transport: 0.5.0
