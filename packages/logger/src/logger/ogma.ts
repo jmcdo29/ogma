@@ -164,29 +164,21 @@ export class Ogma {
     if (typeof message === 'object' && !(message instanceof Error)) {
       message = '\n' + JSON.stringify(message, this.circularReplacer(), 2);
     }
+    const { logHostname, logApplication, logPid } = this.options;
+
     context = this.toStreamColor(context || this.options.context, Color.CYAN);
     correlationId &&= this.wrapInBrackets(correlationId);
 
     const timestamp = this.wrapInBrackets(this.getTimestamp());
+    const hostname = logHostname ? this.toStreamColor(this.hostname, Color.MAGENTA) + ' ' : '';
 
-    let outputTuple = [timestamp, formattedLevel];
+    const applicationName = logApplication
+      ? this.toStreamColor(application || this.options.application, Color.YELLOW) + ' '
+      : '';
 
-    if (this.options.logHostname) {
-      outputTuple.push(this.toStreamColor(this.hostname, Color.MAGENTA));
-    }
+    const pid = logPid ? this.wrapInBrackets(this.pid.toString()) + ' ' : '';
 
-    if (this.options.logApplication) {
-      outputTuple.push(this.toStreamColor(application || this.options.application, Color.YELLOW));
-    }
-
-    if (this.options.logPid) {
-      outputTuple.push(this.wrapInBrackets(this.pid.toString()));
-    }
-
-    outputTuple = outputTuple.concat([correlationId, context, message]);
-
-    // [timestamp, formattedLevel, hostname?, application?, pid?, correlationId, context, message]
-    return outputTuple.join(' ');
+    return `${timestamp} ${formattedLevel} ${hostname}${applicationName}${pid}${correlationId} ${context} ${message}`;
   }
 
   private toStreamColor(value: string, color: Color): string {
