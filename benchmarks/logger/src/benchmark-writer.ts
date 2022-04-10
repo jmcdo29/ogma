@@ -15,7 +15,7 @@ function makeRow(name: string, rowResult: { [index in LogType]: number }): strin
 
 function makeTable(results: LogResult) {
   let table = `| Logger | Simple | Long | JSON | Deep |
-| - | - | - | - | - |\n`;
+| --- | --- | --- | --- | --- |\n`;
   Object.keys(results).forEach((resultName) => {
     table += makeRow(resultName, results[resultName]);
   });

@@ -31,7 +31,7 @@
             "cwd": "benchmarks/logger",
             "commands": [
               "../../node_modules/.bin/tsc -p tsconfig.json",
-              "node dist/benchmarks/logger/src/index"
+              "node -r module-alias/register dist/benchmarks/logger/src/index"
             ],
             "parallel": false
           }
