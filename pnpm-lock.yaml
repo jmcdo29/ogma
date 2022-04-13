@@ -51,7 +51,7 @@ importers:
       '@types/ws': 8.5.3
       '@typescript-eslint/eslint-plugin': 5.19.0
       '@typescript-eslint/parser': 5.19.0
-      amqp-connection-manager: 4.1.1
+      amqp-connection-manager: 4.1.2
       amqplib: ^0.8.0
       apollo-server-express: 3.6.7
       apollo-server-fastify: 3.6.7
@@ -116,7 +116,7 @@ importers:
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
       '@nestjs/graphql': 9.1.1_8c30280d342a8d718cf956b1716c5441
-      '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
+      '@nestjs/microservices': 8.1.2_61a5fc6ceca1dc42f2177d1b93ae4a4a
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/platform-fastify': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/platform-socket.io': 8.1.2_e78e598718264c136039edb9506b897e
@@ -144,7 +144,7 @@ importers:
       '@types/ws': 8.5.3
       '@typescript-eslint/eslint-plugin': 5.19.0_94e7a5c83f5f76301044953420038733
       '@typescript-eslint/parser': 5.19.0_eslint@8.13.0+typescript@4.4.4
-      amqp-connection-manager: 4.1.1_amqplib@0.8.0
+      amqp-connection-manager: 4.1.2_amqplib@0.8.0
       amqplib: 0.8.0
       apollo-server-express: 3.6.7_express@4.17.1+graphql@15.7.2
       apollo-server-fastify: 3.6.7_fastify@3.22.1+graphql@15.7.2
@@ -3368,7 +3368,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
+      '@nestjs/microservices': 8.1.2_61a5fc6ceca1dc42f2177d1b93ae4a4a
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
       '@nuxtjs/opencollective': 0.3.2
@@ -3403,7 +3403,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 8.4.4_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
+      '@nestjs/microservices': 8.1.2_61a5fc6ceca1dc42f2177d1b93ae4a4a
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
       '@nuxtjs/opencollective': 0.3.2
@@ -3492,7 +3492,7 @@ packages:
       reflect-metadata: 0.1.13
     dev: true
 
-  /@nestjs/microservices/8.1.2_bbf8a1655b72c461d25a4618d2dfa885:
+  /@nestjs/microservices/8.1.2_61a5fc6ceca1dc42f2177d1b93ae4a4a:
     resolution: {integrity: sha512-7BnKIa3+w6a/1vJO5euE+RTP6ejwlpGRdoAQ64BTpReHxboFzX7C4Zb6cnM84x1AIl/xe8x+fDoUztxJn4LSiA==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -3532,7 +3532,7 @@ packages:
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
       '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
-      amqp-connection-manager: 4.1.1_amqplib@0.8.0
+      amqp-connection-manager: 4.1.2_amqplib@0.8.0
       amqplib: 0.8.0
       iterare: 1.2.1
       json-socket: 0.3.0
@@ -3645,7 +3645,7 @@ packages:
       optional: 0.1.4
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
-      '@nestjs/microservices': 8.1.2_bbf8a1655b72c461d25a4618d2dfa885
+      '@nestjs/microservices': 8.1.2_61a5fc6ceca1dc42f2177d1b93ae4a4a
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       tslib: 2.3.1
     dev: true
@@ -5604,8 +5604,8 @@ packages:
     resolution: {integrity: sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=}
     dev: true
 
-  /amqp-connection-manager/4.1.1_amqplib@0.8.0:
-    resolution: {integrity: sha512-vkEwurqrVu4O44+lmGZHJs2pPWHU746lc81UCrp+IYusBt+F09rVMjgBPnTv28NzkC+9HhQUIEz80xwTpz0bYA==}
+  /amqp-connection-manager/4.1.2_amqplib@0.8.0:
+    resolution: {integrity: sha512-1Qq6+uf4/3YS/KTRwu6pdkSvNklWpYmyYJzl5q00p5sUBUwpCxMgaW/RMqWDbh94Kmj1aiKdXD1PLlrPVRBqpA==}
     engines: {node: '>=10.0.0', npm: '>5.0.0'}
     peerDependencies:
       amqplib: '*'
