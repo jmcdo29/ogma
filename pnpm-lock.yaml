@@ -36,7 +36,7 @@ importers:
       '@nrwl/linter': 13.7.1
       '@nrwl/nest': 13.7.1
       '@nrwl/node': 13.7.1
-      '@nrwl/nx-cloud': 13.2.2
+      '@nrwl/nx-cloud': 13.3.1
       '@nrwl/tao': 13.7.1
       '@nrwl/workspace': 13.7.1
       '@nx-plus/docusaurus': 13.0.0
@@ -129,7 +129,7 @@ importers:
       '@nrwl/linter': 13.7.1_4f54e8ad0dc898f114c6b7a0ea0d3aea
       '@nrwl/nest': 13.7.1_c7c0c8c3df08ad6e32e5e4e399492a25
       '@nrwl/node': 13.7.1_7ef49150a440fbadb127af649a8b1420
-      '@nrwl/nx-cloud': 13.2.2
+      '@nrwl/nx-cloud': 13.3.1
       '@nrwl/tao': 13.7.1
       '@nrwl/workspace': 13.7.1_a0f31b22c328b1faffc3464c1f63f8b5
       '@nx-plus/docusaurus': 13.0.0_@nrwl+workspace@13.7.1
@@ -3712,6 +3712,14 @@ packages:
       rimraf: 3.0.2
     dev: true
 
+  /@nrwl/cli/13.10.2:
+    resolution: {integrity: sha512-e9TK7CBaOb2jvnnuypPTox+l3vr1Lubjrq7rvyVrUDfSFsRe33Em1FTEdT7RCwjzF1ypvGkF0Fm2Cxi9/ljxVg==}
+    dependencies:
+      nx: 13.10.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@nrwl/cli/13.7.1:
     resolution: {integrity: sha512-UfupcHb0P2/yvNs/TjPM6uQyH9nZYNySPqTL1tV9ItO8vPm4YnO3jd+NrO3WWzrBCZVfwX8LHZ2PTtBGkCA01w==}
     hasBin: true
@@ -3749,6 +3757,19 @@ packages:
     resolution: {integrity: sha512-WO2tcRTnYcz/LMJO9RVDoQtpwREjanosUJhymFD6ozrdZBhDuxKQ2S681mjnCXWlWEhYvccGfLhechluiEdCLA==}
     dependencies:
       nx: 13.9.5
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@nrwl/devkit/13.10.2:
+    resolution: {integrity: sha512-7jM86MAHc/vvQ4jJt8QjMncC0lFfhkxZ/d5Nt5b+s3AUQgFPkwg1TXt/uj+qo0goS/Mbv5UNVIdMGlEchnbvVQ==}
+    dependencies:
+      ejs: 3.1.6
+      ignore: 5.2.0
+      nx: 13.10.2
+      rxjs: 6.6.7
+      semver: 7.3.4
+      tslib: 2.3.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3990,10 +4011,11 @@ packages:
       - webpack-cli
     dev: true
 
-  /@nrwl/nx-cloud/13.2.2:
-    resolution: {integrity: sha512-ryGE3JBkSGie0Oy+hFHfiYVNt1BQlNGa3Q7RjeZjILFyNFXkSFzufWYCt1gIRiGlQ7+Q48t1m6gLi2afElNGmg==}
+  /@nrwl/nx-cloud/13.3.1:
+    resolution: {integrity: sha512-txVZuDQE7KkpTLNVh4Rr7zWeCudqFt/nJEahaRIudm8uc6HoM41O63976zKG1xEtBbblBQpUBIdmOwSsSRBVbg==}
     hasBin: true
     dependencies:
+      '@nrwl/devkit': 13.10.2
       axios: 0.26.0
       chalk: 4.1.0
       node-machine-id: 1.1.12
@@ -4001,6 +4023,16 @@ packages:
       tar: 6.1.11
     transitivePeerDependencies:
       - debug
+      - supports-color
+    dev: true
+
+  /@nrwl/tao/13.10.2:
+    resolution: {integrity: sha512-Eq/u4tRRRtrMYBormdeTrRFj/rpcP5fsa3QrwcHjUSNnQDM/FZ9kt7fRgbnh+2QzdTJnU4QmaX6t4Kt+qYtsTQ==}
+    hasBin: true
+    dependencies:
+      nx: 13.10.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@nrwl/tao/13.7.1:
@@ -9364,6 +9396,10 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
+  /fs-constants/1.0.0:
+    resolution: {integrity: sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==}
+    dev: true
+
   /fs-extra/10.0.0:
     resolution: {integrity: sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==}
     engines: {node: '>=12'}
@@ -12808,6 +12844,46 @@ packages:
       '@ogma/styler': 1.0.0
     dev: true
 
+  /nx/13.10.2:
+    resolution: {integrity: sha512-6ac/7DO66asndgsMVC+YR5oa0jfEmmXjmE19gvIuAJtii00dSKd6o+n1G8lbl8RPZcz43wVY0zwV/eMpCSNFXw==}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@nrwl/cli': 13.10.2
+      '@nrwl/tao': 13.10.2
+      '@parcel/watcher': 2.0.4
+      '@swc-node/register': 1.4.2
+      '@swc/core': 1.2.160
+      chalk: 4.1.0
+      chokidar: 3.5.2
+      cli-cursor: 3.1.0
+      cli-spinners: 2.6.1
+      dotenv: 10.0.0
+      enquirer: 2.3.6
+      fast-glob: 3.2.7
+      figures: 3.2.0
+      flat: 5.0.2
+      fs-extra: 9.1.0
+      glob: 7.1.4
+      ignore: 5.2.0
+      jsonc-parser: 3.0.0
+      minimatch: 3.0.4
+      npm-run-path: 4.0.1
+      open: 8.4.0
+      rxjs: 6.6.7
+      rxjs-for-await: 0.0.2_rxjs@6.6.7
+      semver: 7.3.4
+      tar-stream: 2.2.0
+      tmp: 0.2.1
+      tsconfig-paths: 3.12.0
+      tslib: 2.3.1
+      v8-compile-cache: 2.3.0
+      yargs: 17.4.1
+      yargs-parser: 21.0.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /nx/13.7.1:
     resolution: {integrity: sha512-/jKcS8t88ESwP6gRZ8Mg3sy86D/9YquLEoAcBVxR/bkoAZLQLXcdrJRQbx+yT5Wo8iJXzCC+wEyrDueJLJLaAQ==}
     hasBin: true
@@ -16011,6 +16087,17 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /tar-stream/2.2.0:
+    resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
+    engines: {node: '>=6'}
+    dependencies:
+      bl: 4.1.0
+      end-of-stream: 1.4.4
+      fs-constants: 1.0.0
+      inherits: 2.0.4
+      readable-stream: 3.6.0
+    dev: true
+
   /tar/6.1.11:
     resolution: {integrity: sha512-an/KZQzQUkZCkuoAA64hM92X0Urb6VpRhAFllDzz44U2mcD5scmT3zBc4VgVpkugF580+DQn8eAFSyoQt0tznA==}
     engines: {node: '>= 10'}
@@ -17551,6 +17638,11 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /yargs-parser/21.0.1:
+    resolution: {integrity: sha512-9BK1jFpLzJROCI5TzwZL/TU4gqjK5xiHV/RfWLOahrjAko/e4DJkRDZQXfvqAsiZzzYhgAzbgz6lg48jcm4GLg==}
+    engines: {node: '>=12'}
+    dev: true
+
   /yargs/13.3.2:
     resolution: {integrity: sha512-AX3Zw5iPruN5ie6xGRIDgqkT+ZhnRlZMLMHAs8tg7nRruy2Nb+i5o9bwghAogtM08q1dpr2LVoS8KSTMYpWXUw==}
     dependencies:
@@ -17607,6 +17699,19 @@ packages:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 20.2.9
+    dev: true
+
+  /yargs/17.4.1:
+    resolution: {integrity: sha512-WSZD9jgobAg3ZKuCQZSa3g9QOJeCCqLoLAykiWgmXnDo9EPnn4RPf5qVTtzgOx66o6/oqhcA5tHtJXpG8pMt3g==}
+    engines: {node: '>=12'}
+    dependencies:
+      cliui: 7.0.4
+      escalade: 3.1.1
+      get-caller-file: 2.0.5
+      require-directory: 2.1.1
+      string-width: 4.2.3
+      y18n: 5.0.8
+      yargs-parser: 21.0.1
     dev: true
 
   /yeast/0.1.2:
