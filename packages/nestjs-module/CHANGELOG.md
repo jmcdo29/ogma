@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- 43e2854: Updated the doc string for the `OgmaService` log methods
+
 ## 3.2.0
 
 ### Minor Changes
