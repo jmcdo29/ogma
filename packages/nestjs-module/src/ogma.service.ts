@@ -45,8 +45,7 @@ export class OgmaService implements LoggerService {
   /**
    * use Ogma to log at the INFO level
    * @param message What to print to the Ogma instance
-   * @param context Optional context if you want to change what the original context was
-   * @param requestId Optional id of an request
+   * @param meta extra metadata for the log
    */
 
   public info(message: any, meta?: OgmaServiceMeta | string): void {
@@ -86,8 +85,7 @@ export class OgmaService implements LoggerService {
   /**
    * use Ogma to log at the WARN level
    * @param message What to print to the Ogma instance
-   * @param context Optional context if you want to change what the original context was
-   * @param requestId Optional id of an request
+   * @param meta extra metadata for the log
    */
   public warn(message: any, meta?: OgmaServiceMeta | string): void {
     if (typeof meta === 'string') {
@@ -99,8 +97,7 @@ export class OgmaService implements LoggerService {
   /**
    * use Ogma to log at the DBEUG level
    * @param message What to print to the Ogma instance
-   * @param context Optional context if you want to change what the original context was
-   * @param requestId Optional id of an request
+   * @param meta extra metadata for the log
    */
   public debug(message: any, meta?: OgmaServiceMeta | string): void {
     if (typeof meta === 'string') {
@@ -112,8 +109,7 @@ export class OgmaService implements LoggerService {
   /**
    * use Ogma to log at the FATAL level
    * @param message What to print to the Ogma instance
-   * @param context Optional context if you want to change what the original context was
-   * @param requestId Optional id of an request
+   * @param meta extra metadata for the log
    */
   public fatal(message: any, meta?: OgmaServiceMeta | string): void {
     if (typeof meta === 'string') {
@@ -125,8 +121,7 @@ export class OgmaService implements LoggerService {
   /**
    * use Ogma to log at the SILLY level
    * @param message What to print to the Ogma instance
-   * @param context Optional context if you want to change what the original context was
-   * @param requestId Optional id of an request
+   * @param meta extra metadata for the log
    */
   public silly(message: any, meta?: OgmaServiceMeta | string): void {
     if (typeof meta === 'string') {
@@ -138,8 +133,7 @@ export class OgmaService implements LoggerService {
   /**
    * use Ogma to log at the VERBOSE level
    * @param message What to print to the Ogma instance
-   * @param context Optional context if you want to change what the original context was
-   * @param requestId Optional id of an request
+   * @param meta extra metadata for the log
    */
   public verbose(message: any, meta?: OgmaServiceMeta | string): void {
     if (typeof meta === 'string') {
@@ -162,8 +156,7 @@ export class OgmaService implements LoggerService {
   /**
    * A predefined method for printing errors to the Ogma instance
    * @param error The error to print. Should be an Error or Exception object
-   * @param context Optional context if you want to change what the original context was
-   * @param requestId Optional id of an request
+   * @param meta extra metadata for the log
    */
   public printError(error: Error, meta: OgmaServiceMeta = {}): void {
     if (!meta.correlationId && this.requestContext && this.context) {
