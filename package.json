@@ -67,7 +67,7 @@
     "@nestjs/websockets": "^8.0.6",
     "@nrwl/cli": "13.7.1",
     "@nrwl/devkit": "^13.8.1",
-    "@nrwl/eslint-plugin-nx": "13.7.1",
+    "@nrwl/eslint-plugin-nx": "14.0.1",
     "@nrwl/linter": "13.7.1",
     "@nrwl/nest": "13.7.1",
     "@nrwl/node": "13.7.1",
