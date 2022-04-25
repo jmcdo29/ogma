@@ -8,7 +8,7 @@ importers:
 
   .:
     specifiers:
-      '@apollo/gateway': 0.50.1
+      '@apollo/gateway': 0.50.2
       '@changesets/cli': ^2.17.0
       '@commitlint/cli': 16.2.3
       '@commitlint/config-conventional': 16.2.1
@@ -101,7 +101,7 @@ importers:
       winston: ^3.3.3
       ws: 8.5.0
     devDependencies:
-      '@apollo/gateway': 0.50.1_graphql@15.7.2
+      '@apollo/gateway': 0.50.2_graphql@15.7.2
       '@changesets/cli': 2.17.0
       '@commitlint/cli': 16.2.3_@swc+core@1.2.141
       '@commitlint/config-conventional': 16.2.1
@@ -115,7 +115,7 @@ importers:
       '@mdx-js/react': 1.6.22_react@17.0.2
       '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
       '@nestjs/core': 8.1.2_d49392ba68c35cbc938c20f1c4d91e9b
-      '@nestjs/graphql': 9.1.1_1f3ef9ac91f60a6f88a304f0b112f2af
+      '@nestjs/graphql': 9.1.1_80bd23d19cac162dc38c80e6fc6779d8
       '@nestjs/microservices': 8.1.2_61a5fc6ceca1dc42f2177d1b93ae4a4a
       '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
       '@nestjs/platform-fastify': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
@@ -417,13 +417,13 @@ packages:
       graphql: 15.7.2
     dev: true
 
-  /@apollo/federation/0.36.1_graphql@15.7.2:
-    resolution: {integrity: sha512-SAvW7ZRUEtmAdK+UWRXZxo/wRNVbDDyYbeYJooKAtvc8B4Mly+2PusqBQ+4RuHhg5dSqrv5d6RXJeY9MBiraVA==}
+  /@apollo/federation/0.36.2_graphql@15.7.2:
+    resolution: {integrity: sha512-2yqHevdz41wR/fZI+OEk7ibDlEWWhHxXg7ABT8KqHHS5VtKGIwbcekf3kxJXQWIHSXNuHu8r2BcEGJO7JqY8ww==}
     engines: {node: '>=12.13.0 <18.0'}
     peerDependencies:
       graphql: ^15.8.0 || ^16.0.0
     dependencies:
-      '@apollo/subgraph': 0.4.1_graphql@15.7.2
+      '@apollo/subgraph': 0.4.2_graphql@15.7.2
       apollo-server-types: 3.5.2_graphql@15.7.2
       graphql: 15.7.2
       lodash.xorby: 4.7.0
@@ -431,15 +431,16 @@ packages:
       - encoding
     dev: true
 
-  /@apollo/gateway/0.50.1_graphql@15.7.2:
-    resolution: {integrity: sha512-mU33K/ZQm3zpQt18pN48gt3scIHgmKp5ejDKCHxzXxrTzft3r+UpvKD1oTEsRHTfvy1tjQxz7zZ+UMjWOlLfEA==}
+  /@apollo/gateway/0.50.2_graphql@15.7.2:
+    resolution: {integrity: sha512-2aCFkWGF/G7fJ3dMntteWyqrHe/N2FC17uI0NjX4PioUidNEd/PkzSjgzRe5C60Gy9rZJHztYeZBk4tSO+SZmg==}
     engines: {node: '>=12.13.0 <18.0'}
     peerDependencies:
       graphql: ^15.8.0 || ^16.0.0
     dependencies:
       '@apollo/core-schema': 0.2.0_graphql@15.7.2
-      '@apollo/federation': 0.36.1_graphql@15.7.2
-      '@apollo/query-planner': 0.10.1_graphql@15.7.2
+      '@apollo/federation': 0.36.2_graphql@15.7.2
+      '@apollo/query-planner': 0.10.2_graphql@15.7.2
+      '@apollo/utils.createhash': 1.0.0
       '@apollo/utils.logger': 1.0.0
       '@josephg/resolvable': 1.0.1
       '@opentelemetry/api': 1.0.3
@@ -455,7 +456,6 @@ packages:
       loglevel: 1.7.1
       make-fetch-happen: 8.0.14
       pretty-format: 27.5.1
-      sha.js: 2.4.11
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -481,8 +481,8 @@ packages:
       long: 4.0.0
     dev: true
 
-  /@apollo/query-planner/0.10.1_graphql@15.7.2:
-    resolution: {integrity: sha512-RES2EF7J7Q8DwhQXSGtY0oDC6UVwn5W6fxTELjjKCwVABCh8vw1GqtQfPD6xtUOzFWWFwnE0UejYaF/w2iuDaw==}
+  /@apollo/query-planner/0.10.2_graphql@15.7.2:
+    resolution: {integrity: sha512-A9pqfaoDrfWwewkBcRmXsTxTctRtkiPi+uQ86CJTfxz8ZfNw/KEgr0CdFCzHLcToo4SQDBFLOsb4kDdo2jjxRg==}
     engines: {node: '>=12.13.0 <18.0'}
     peerDependencies:
       graphql: ^15.8.0 || ^16.0.0
@@ -493,13 +493,26 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@apollo/subgraph/0.4.1_graphql@15.7.2:
-    resolution: {integrity: sha512-4tm9sY/aYGwB20xccVRJiLupEpEhXBbhbJNlpqigtXnE6A5uQvvKn7qgDdZn5fZr6rw4kX5N9lLSliU03QwTfA==}
+  /@apollo/subgraph/0.4.2_graphql@15.7.2:
+    resolution: {integrity: sha512-sIGzqfUryW6tS5RPWp1awtO+5CehjPV6xbDrWS4I2Hsj8rug8Y9oiMpcnNk8GaQ1TF3UEf99ZL16mNa4J++IIQ==}
     engines: {node: '>=12.13.0 <18.0'}
     peerDependencies:
       graphql: ^15.8.0 || ^16.0.0
     dependencies:
       graphql: 15.7.2
+    dev: true
+
+  /@apollo/utils.createhash/1.0.0:
+    resolution: {integrity: sha512-FsijruGzaD+mNdelqXKgO+PCvdxD16rbN275oHGcVbhQixvdXfUSgqwfjUJSPFJAQoW/QvyoNaVf7M51gJNiTw==}
+    engines: {node: '>=12.13.0 <18.0'}
+    dependencies:
+      '@apollo/utils.isnodelike': 1.0.0
+      sha.js: 2.4.11
+    dev: true
+
+  /@apollo/utils.isnodelike/1.0.0:
+    resolution: {integrity: sha512-uS0TNODZXYDiKp5r+OXUtqLcjgcJ7s0GyY8m+TGnYOLu6CpqL4BiJSR54o4gXK+oxFGWy7Fs2NjVJtjFVt8ifg==}
+    engines: {node: '>=12.13.0 <18.0'}
     dev: true
 
   /@apollo/utils.logger/1.0.0:
@@ -3423,7 +3436,7 @@ packages:
       - encoding
     dev: false
 
-  /@nestjs/graphql/9.1.1_1f3ef9ac91f60a6f88a304f0b112f2af:
+  /@nestjs/graphql/9.1.1_80bd23d19cac162dc38c80e6fc6779d8:
     resolution: {integrity: sha512-NHMR+VRHFeHBa8/ACy9RnyMVv/581VvXDWenpPFW5RFnZiy4aNeUDCv6sdCh/EydE4CpWzmdliuUei+NrlLWEQ==}
     peerDependencies:
       '@apollo/federation': ^0.26.0 || ^0.27.0 || ^0.29.0 || ^0.33.0
@@ -3453,7 +3466,7 @@ packages:
       ts-morph:
         optional: true
     dependencies:
-      '@apollo/gateway': 0.50.1_graphql@15.7.2
+      '@apollo/gateway': 0.50.2_graphql@15.7.2
       '@graphql-tools/merge': 6.2.5_graphql@15.7.2
       '@graphql-tools/schema': 7.1.5_graphql@15.7.2
       '@graphql-tools/utils': 7.10.0_graphql@15.7.2
@@ -9291,18 +9304,6 @@ packages:
       debug:
         optional: true
 
-  /follow-redirects/1.14.9_debug@4.3.3:
-    resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dependencies:
-      debug: 4.3.3_supports-color@6.1.0
-    dev: true
-
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -10204,7 +10205,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.9_debug@4.3.3
+      follow-redirects: 1.14.9
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
