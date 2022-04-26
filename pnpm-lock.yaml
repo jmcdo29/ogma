@@ -72,7 +72,7 @@ importers:
       hanbi: ^1.0.1
       husky: ^7.0.2
       kafkajs: ^1.15.0
-      lint-staged: 12.4.0
+      lint-staged: 12.4.1
       module-alias: ^2.2.2
       morgan: ^1.10.0
       mqtt: ^4.2.8
@@ -165,7 +165,7 @@ importers:
       hanbi: 1.0.1
       husky: 7.0.4
       kafkajs: 1.15.0
-      lint-staged: 12.4.0
+      lint-staged: 12.4.1
       module-alias: 2.2.2
       morgan: 1.10.0
       mqtt: 4.2.8
@@ -11736,8 +11736,8 @@ packages:
     resolution: {integrity: sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=}
     dev: true
 
-  /lint-staged/12.4.0:
-    resolution: {integrity: sha512-3X7MR0h9b7qf4iXf/1n7RlVAx+EzpAZXoCEMhVSpaBlgKDfH2ewf+QUm7BddFyq29v4dgPP+8+uYpWuSWx035A==}
+  /lint-staged/12.4.1:
+    resolution: {integrity: sha512-PTXgzpflrQ+pODQTG116QNB+Q6uUTDg5B5HqGvNhoQSGt8Qy+MA/6zSnR8n38+sxP5TapzeQGTvoKni0KRS8Vg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
