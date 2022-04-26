@@ -57,7 +57,7 @@ const modRef = await Test.createTestingModule({
   providers: [
     FooService,
     {
-      provide: createProviderToken(FooService),
+      provide: createProviderToken(FooService.name),
       useValue: {
         log: jest.fn()
         // other logger methods that are used
