@@ -66,6 +66,9 @@ Examples can be seen below. The JSON structure follows the same form with log le
 | application | string optional | an application name for Ogma to print |
 | levelMap | an object with the above levels as the keys and strings as the vales | a way to provide custom log levels in the event that there are mappings the developer wants to support |
 | masks | string[] | An array of words that should be replaced while logging. useful for sensitive information like passwords. |
+| logPid | boolean | An optional property you can set if you don't want to log the PID. |
+| logApplication | boolean | An optional property you can set if you don't want to the the applicaiton name. |
+| logHostnam | boolean | An optional property you can set if you don't want to log the hostname ofthe machine you're on. |
 
 :::note
 

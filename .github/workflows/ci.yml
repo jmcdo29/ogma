@@ -13,9 +13,9 @@ on:
 env:
   NX_BRANCH: ${{ github.event.pull_request.head.ref }}
   NX_RUN_GROUP: ${{ github.run_id }}
-  NX_CLOUD_DISTRIBUTED_EXECUTION: ${{ !contains(github.event.pull_request.user.login, 'dependabot') }}
   NX_VERBOSE_LOGGING: true
-  NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_TOKEN }}
+  NX_CLOUD_DISTRIBUTED_EXECUTION: ${{ !contains(github.event.pull_request.user.login, 'dependabot') && !contains(github.event.pull_request.user.login, 'renovate') }}
+  NX_CLOUD_AUTH_TOKEN: ${{ startsWith(github.repository, 'jmcdo29') && secrets.NX_CLOUD_TOKEN || 'ODFlNDgyYzItZTgwYy00OTQyLTkxNTgtOWQ4ZTVlNDU3OTU2fHJlYWQ=' }}
 
 jobs:
   main:
