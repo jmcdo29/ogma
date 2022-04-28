@@ -45,7 +45,7 @@
       "sourceRoot": "packages/cli/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/cli",
             "main": "packages/cli/src/main.ts",
@@ -73,7 +73,7 @@
       "sourceRoot": "packages/common/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/common",
             "main": "packages/common/src/index.ts",
@@ -135,7 +135,7 @@
       "sourceRoot": "packages/logger/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/logger",
             "main": "packages/logger/src/index.ts",
@@ -163,7 +163,7 @@
       "sourceRoot": "packages/nestjs-module/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/nestjs-module",
             "main": "packages/nestjs-module/src/index.ts",
@@ -191,7 +191,7 @@
       "sourceRoot": "packages/platform-express/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-express",
             "main": "packages/platform-express/src/index.ts",
@@ -219,7 +219,7 @@
       "sourceRoot": "packages/platform-fastify/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-fastify",
             "main": "packages/platform-fastify/src/index.ts",
@@ -247,7 +247,7 @@
       "sourceRoot": "packages/platform-graphql/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-graphql",
             "main": "packages/platform-graphql/src/index.ts",
@@ -275,7 +275,7 @@
       "sourceRoot": "packages/platform-graphql-fastify/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-graphql-fastify",
             "main": "packages/platform-graphql-fastify/src/index.ts",
@@ -303,7 +303,7 @@
       "sourceRoot": "packages/platform-grpc/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-grpc",
             "main": "packages/platform-grpc/src/index.ts",
@@ -331,7 +331,7 @@
       "sourceRoot": "packages/platform-kafka/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-kafka",
             "main": "packages/platform-kafka/src/index.ts",
@@ -359,7 +359,7 @@
       "sourceRoot": "packages/platform-mqtt/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-mqtt",
             "main": "packages/platform-mqtt/src/index.ts",
@@ -387,7 +387,7 @@
       "sourceRoot": "packages/platform-nats/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-nats",
             "main": "packages/platform-nats/src/index.ts",
@@ -415,7 +415,7 @@
       "sourceRoot": "packages/platform-rabbitmq/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-rabbitmq",
             "main": "packages/platform-rabbitmq/src/index.ts",
@@ -443,7 +443,7 @@
       "sourceRoot": "packages/platform-redis/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-redis",
             "main": "packages/platform-redis/src/index.ts",
@@ -471,7 +471,7 @@
       "sourceRoot": "packages/platform-socket.io/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-socket.io",
             "main": "packages/platform-socket.io/src/index.ts",
@@ -499,7 +499,7 @@
       "sourceRoot": "packages/platform-tcp/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-tcp",
             "main": "packages/platform-tcp/src/index.ts",
@@ -527,7 +527,7 @@
       "sourceRoot": "packages/platform-ws/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/platform-ws",
             "main": "packages/platform-ws/src/index.ts",
@@ -555,7 +555,7 @@
       "sourceRoot": "packages/styler/src",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/styler",
             "main": "packages/styler/src/index.ts",
