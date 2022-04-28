@@ -39,7 +39,7 @@ importers:
       '@nrwl/nx-cloud': 14.0.0
       '@nrwl/tao': 13.7.1
       '@nrwl/workspace': 13.7.1
-      '@nx-plus/docusaurus': 13.0.0
+      '@nx-plus/docusaurus': 13.0.1
       '@swc/cli': ^0.1.55
       '@swc/core': ^1.2.141
       '@swc/register': ^0.1.10
@@ -132,7 +132,7 @@ importers:
       '@nrwl/nx-cloud': 14.0.0
       '@nrwl/tao': 13.7.1
       '@nrwl/workspace': 13.7.1_115a877cd50a19edf6b06ad58f06e886
-      '@nx-plus/docusaurus': 13.0.0_@nrwl+workspace@13.7.1
+      '@nx-plus/docusaurus': 13.0.1_@nrwl+workspace@13.7.1
       '@swc/cli': 0.1.55_@swc+core@1.2.141
       '@swc/core': 1.2.141
       '@swc/register': 0.1.10_@swc+core@1.2.141
@@ -4183,8 +4183,8 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nx-plus/docusaurus/13.0.0_@nrwl+workspace@13.7.1:
-    resolution: {integrity: sha512-MA5HPl8wDUdYaweHKSGDc2mzlGrYPz7L7718wzBpRyxjuFwilMVbwHzXlQvlkrAe2zA1eV9+JNEFXfYEWPY4wg==}
+  /@nx-plus/docusaurus/13.0.1_@nrwl+workspace@13.7.1:
+    resolution: {integrity: sha512-0POfCY2zR0sU1HQ7VxKHLUIvdk9WQcveaDsT5Zh0Q+E1hHx6l8r5UKzDb3xBU6sPDUdw+Z2BVYsI1/155cjBdg==}
     peerDependencies:
       '@nrwl/workspace': ^13.0.0
     dependencies:
@@ -9272,6 +9272,18 @@ packages:
       debug:
         optional: true
 
+  /follow-redirects/1.14.9_debug@4.3.3:
+    resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.3_supports-color@6.1.0
+    dev: true
+
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -10169,7 +10181,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.9
+      follow-redirects: 1.14.9_debug@4.3.3
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
