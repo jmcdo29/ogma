@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- d2cbc49: added ability to modify logger message (remove pid, application, hostname)
+
 ## 2.2.0
 
 ### Minor Changes

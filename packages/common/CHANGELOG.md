@@ -1,5 +1,11 @@
 # @ogma/common
 
+## 1.1.0
+
+### Minor Changes
+
+- d2cbc49: added ability to modify logger message (remove pid, application, hostname)
+
 ## 1.0.0
 
 ### Major Changes
