@@ -3,6 +3,6 @@
   "include": [
     "packages/platform-kafka/src/**/*.ts"
   ],
-  "reporter": ["text", "json"],
+  "reporter": ["text", "lcov"],
   "reportDir": "./packages/platform-kafka/coverage"
 }

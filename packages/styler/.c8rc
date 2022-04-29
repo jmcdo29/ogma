@@ -3,6 +3,6 @@
   "include": [
     "packages/styler/src/**/*.ts"
   ],
-  "reporter": ["text", "json"],
-  "reportDir": "./packages/platform-styler/coverage"
+  "reporter": ["text", "lcov"],
+  "reportDir": "./packages/styler/coverage"
 }

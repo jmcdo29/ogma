@@ -7,7 +7,7 @@ import { join } from 'path';
 const packageDir = 'packages';
 const integrationDir = 'integration';
 const coverageTempDir = 'coverage-tmp';
-const coverageFinal = 'coverage-final.json';
+const coverageFinal = 'lcov.info';
 const coverageDir = 'coverage';
 
 async function readPackagesDirectory(): Promise<string[]> {
@@ -37,7 +37,7 @@ async function mapCoverages(directories: string[]): Promise<Record<string, Buffe
 async function writeCoveragesToSingleDir(coverages: Record<string, Buffer>): Promise<void> {
   for (const key of Object.keys(coverages)) {
     await promises.writeFile(
-      join(process.cwd(), coverageTempDir, key + '-coverage.json'),
+      join(process.cwd(), coverageTempDir, key + '-lcov.info'),
       coverages[key],
     );
   }

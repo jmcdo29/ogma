@@ -3,6 +3,6 @@
   "include": [
     "packages/logger/src/**/*.ts"
   ],
-  "reporter": ["text", "json"],
+  "reporter": ["text", "lcov"],
   "reportDir": "./packages/logger/coverage"
 }

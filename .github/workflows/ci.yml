@@ -11,47 +11,43 @@ on:
     - cron: '0 0 * * *'
 
 env:
-  NX_BRANCH: ${{ github.event.pull_request.head.ref }}
-  NX_RUN_GROUP: ${{ github.run_id }}
-  NX_VERBOSE_LOGGING: true
-  NX_CLOUD_DISTRIBUTED_EXECUTION: ${{ !contains(github.event.pull_request.user.login, 'dependabot') && !contains(github.event.pull_request.user.login, 'renovate') }}
-  NX_CLOUD_AUTH_TOKEN: ${{ startsWith(github.repository, 'jmcdo29') && secrets.NX_CLOUD_TOKEN || 'ODFlNDgyYzItZTgwYy00OTQyLTkxNTgtOWQ4ZTVlNDU3OTU2fHJlYWQ=' }}
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_TOKEN }}
 
 jobs:
   main:
+    name: Nx Cloud - Main Job
+    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.2
+    with:
+      parallel-commands: |
+        pnpm exec nx-cloud record -- pnpm exec nx workspace-lint
+        pnpm exec nx-cloud record -- pnpm exec nx format:check
+      parallel-commands-on-agents: |
+        pnpm exec nx affected --target=lint --parallel=3
+        pnpm exec nx affected --target=test --parallel=3 --ci --code-coverage
+        pnpm exec nx affected --target=build --parallel=3
+        pnpm exec nx affected --target=e2e
+
+  report-coverage:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' }}
     steps:
-      - uses: actions/checkout@v3
-        name: Checkout [main]
-        with:
-          fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-      - name: Use Node.js 14
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
-      - name: Run Build and Tests
-        uses: ./.github/actions/run-tests
-  
-  pr:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{github.event.pull_request.head.repo.full_name}}
-          fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-      - name: Use Node.js 14
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14.x
-      - name: Run Build and Tests
-        uses: ./.github/actions/run-tests
+          node-version: 16.x
+      - name: Install pnpm
+        run: npm i -g pnpm
+      - name: Install deps
+        run: pnpm i
+      - name: Collect Test Coverage
+        run: NX_CLOUD_DISTRIBUTED_EXECUTION=false pnpm nx run tools:collect
+      - name: Send Test Coverage:with
+        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info
+        shell: bash
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
   analyze:
     name: Analyze
@@ -63,66 +59,33 @@ jobs:
         language: ['javascript']
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 2
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
-      with:
-        languages: ${{ matrix.language }}
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
 
   auto-merge:
-    needs: pr
-    if: contains(github.event.pull_request.user.login, 'dependabot') || contains(github.event.pull_request.user.login, 'renovate')
+    needs: main
+    if: contains(github.event.pull_request.user.login, 'dependabot') || contains(github.event.pull_request.user.login, 'renovate') && ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
-    - name: automerge
-      uses: pascalgn/automerge-action@v0.15.2
-      env:
-        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        MERGE_LABELS: ""
-        MERGE_METHOD: rebase
-
-  send-coverage:
-    runs-on: ubuntu-latest
-    needs: [pr, main]
-    if: always()
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: Download Coverage
-        uses: actions/download-artifact@v3
-        with:
-          name: coverage
-          path: coverage/
-
-      - name: Send Coverage
-        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info
-        shell: bash
+      - name: automerge
+        uses: pascalgn/automerge-action@v0.15.2
         env:
-          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          MERGE_LABELS: ''
+          MERGE_METHOD: rebase
 
   agents:
-    runs-on: ubuntu-latest
-    name: Agent 1
-    timeout-minutes: 60
-    strategy:
-      matrix:
-        agent: [ 1, 2, 3 ]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14.x
-      - name: Install pnpm
-        run: npm i -g pnpm
-      - name: Install deps
-        run: pnpm i --frozen-lockfile=false
-      - name: Start Nx Agent ${{ matrix.agent }}
-        run: pnpm nx-cloud start-agent
+    name: Nx Cloud - Agents
+    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.2
+    with:
+      number-of-agents: 3

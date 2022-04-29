@@ -3,6 +3,6 @@
   "include": [
     "packages/platform-ws/src/**/*.ts"
   ],
-  "reporter": ["text", "json"],
+  "reporter": ["text", "lcov"],
   "reportDir": "./packages/platform-ws/coverage"
 }
