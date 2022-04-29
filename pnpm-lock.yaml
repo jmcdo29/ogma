@@ -36,7 +36,7 @@ importers:
       '@nrwl/linter': 14.0.5
       '@nrwl/nest': 14.0.5
       '@nrwl/node': 14.0.5
-      '@nrwl/nx-cloud': 14.0.2
+      '@nrwl/nx-cloud': 14.0.3
       '@nrwl/workspace': 14.0.5
       '@nx-plus/docusaurus': 13.0.1
       '@swc/cli': ^0.1.55
@@ -129,7 +129,7 @@ importers:
       '@nrwl/linter': 14.0.5_6d03efaa1976a7040e8a7b6ec9ec2a31
       '@nrwl/nest': 14.0.5_047d700ab9cb80cb7e4693b9cc82c0b3
       '@nrwl/node': 14.0.5_0651a44d88f6512cac463d2310f7ef04
-      '@nrwl/nx-cloud': 14.0.2
+      '@nrwl/nx-cloud': 14.0.3
       '@nrwl/workspace': 14.0.5_9634fcb8300d3d9ef495d36abfec8eb5
       '@nx-plus/docusaurus': 13.0.1_@nrwl+workspace@14.0.5
       '@swc/cli': 0.1.55_@swc+core@1.2.141
@@ -4014,8 +4014,8 @@ packages:
       - webpack-cli
     dev: true
 
-  /@nrwl/nx-cloud/14.0.2:
-    resolution: {integrity: sha512-S4gtC+cIt8NbFxq5jiDktji56oXwx2zSLDWmlGkbBNN/tyJu7gkeogAAnz+h6nqMaTapN3WvRLZoIUL6uYEzYg==}
+  /@nrwl/nx-cloud/14.0.3:
+    resolution: {integrity: sha512-08t9vnRzA5SAkG6gp+NrAGauraepHH0v4IByO4NQ+7JJ7JMWw0nt6fp/70wofRmem7MGQ+Y/AIgIc5T0m89k+w==}
     hasBin: true
     dependencies:
       axios: 0.27.0
