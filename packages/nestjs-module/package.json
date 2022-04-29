@@ -25,8 +25,26 @@
   "peerDependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
+    "@ogma/logger": "^2.0.0",
     "reflect-metadata": "^0.1.0",
     "rxjs": "^7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@nestjs/commom": {
+      "required": true
+    },
+    "@nestjs/core": {
+      "required": true
+    },
+    "@ogma/logger": {
+      "required": true
+    },
+    "relfect-metadata": {
+      "required": true
+    },
+    "rxjs": {
+      "required": true
+    }
   },
   "publishConfig": {
     "access": "public"
