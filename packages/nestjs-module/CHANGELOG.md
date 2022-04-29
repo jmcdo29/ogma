@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.2
+
+### Patch Changes
+
+- 50f7664: Add peer dependencie on `@ogma/logger` for `@ogma/nestjs-module` and set up peerDependenciesMeta for better package manager integration
+
 ## 3.2.1
 
 ### Patch Changes
