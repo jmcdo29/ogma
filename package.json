@@ -120,7 +120,7 @@
     "prettier": "^2.3.2",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "redis": "^3",
+    "redis": "^4",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.3.0",
