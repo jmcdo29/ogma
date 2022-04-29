@@ -3,6 +3,6 @@
   "include": [
     "packages/nestjs-module/src/**/*.ts"
   ],
-  "reporter": ["text", "json"],
+  "reporter": ["text", "lcov"],
   "reportDir": "./packages/nestjs-module/coverage"
 }

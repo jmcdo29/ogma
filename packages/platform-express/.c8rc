@@ -3,6 +3,6 @@
   "include": [
     "packages/platform-express/src/**/*.ts"
   ],
-  "reporter": ["text", "json"],
+  "reporter": ["text", "lcov"],
   "reportDir": "./packages/platform-express/coverage"
 }

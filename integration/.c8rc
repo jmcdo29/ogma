@@ -4,7 +4,7 @@
   ],
   "reporter": [
     "text",
-    "json"
+    "lcov"
   ],
   "reportDir": "integration/coverage"
 }

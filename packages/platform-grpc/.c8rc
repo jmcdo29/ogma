@@ -3,6 +3,6 @@
   "include": [
     "packages/platform-grpc/src/**/*.ts"
   ],
-  "reporter": ["text", "json"],
+  "reporter": ["text", "lcov"],
   "reportDir": "./packages/platform-grpc/coverage"
 }

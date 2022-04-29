@@ -3,6 +3,6 @@
   "include": [
     "packages/platform-rabbitmq/src/**/*.ts"
   ],
-  "reporter": ["text", "json"],
+  "reporter": ["text", "lcov"],
   "reportDir": "./packages/platform-rabbitmq/coverage"
 }

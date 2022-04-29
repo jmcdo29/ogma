@@ -20,11 +20,21 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "test", "lint", "package", "prepare"],
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "package",
+          "prepare",
+          "e2e",
+          "e2e-run",
+          "docker-up",
+          "docker-ready"
+        ],
         "strictlyOrderedTargets": ["build", "package", "prepare"],
         "canTrackAnalytics": false,
         "showUsageWarnings": true,
-        "parallel": 1
+        "accessToken": "ODFlNDgyYzItZTgwYy00OTQyLTkxNTgtOWQ4ZTVlNDU3OTU2fHJlYWQ="
       }
     }
   },

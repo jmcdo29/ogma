@@ -118,12 +118,54 @@
       "sourceRoot": "integration/src",
       "targets": {
         "e2e": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["docker compose down"]
+          },
+          "dependsOn": [
+            {
+              "target": "e2e-run",
+              "projects": "self"
+            }
+          ]
+        },
+        "e2e-run": {
           "executor": "nx-uvu:uvu",
           "options": {
             "rootDir": "./integration/test",
             "coverage": true,
             "coverageConfig": "./integration/.c8rc",
             "useSwc": true
+          },
+          "dependsOn": [
+            {
+              "target": "docker-ready",
+              "projects": "self"
+            }
+          ]
+        },
+        "docker-ready": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "while ! nc -q0 localhost 1883 < /dev/null > /dev/null 2>&1; do sleep 10; done",
+              "while ! nc -q0 localhost 4222 < /dev/null > /dev/null 2>&1; do sleep 10; done",
+              "while ! nc -q0 localhost 5672 < /dev/null > /dev/null 2>&1; do sleep 10; done",
+              "while ! nc -q0 localhost 6379 < /dev/null > /dev/null 2>&1; do sleep 10; done"
+            ],
+            "parallel": true
+          },
+          "dependsOn": [
+            {
+              "target": "docker-up",
+              "projects": "self"
+            }
+          ]
+        },
+        "docker-up": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["docker compose up -d"]
           }
         }
       },
@@ -582,7 +624,7 @@
       "type": "library",
       "sourceRoot": "tools",
       "targets": {
-        "build": {
+        "compile": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
             "cwd": "./tools/",
@@ -592,9 +634,29 @@
         "collect": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["pnpm exec c8 uvu -r @swc/register ./ \"(spec\\.ts)\""],
+            "commands": [
+              "echo 'Collection Coverages to single location' && node tools/coverage-merge.js",
+              "echo 'Making coverage directory' && mkdir coverage",
+              "echo 'Making initial lcov file' && touch coverage/lcov.info",
+              "echo 'Merging coverages with lcov-result-merger' && pnpm lcov-result-merger 'coverage-tmp/*' 'coverage/lcov.info'",
+              "echo 'done'"
+            ],
             "parallel": false
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "compile",
+              "projects": "self"
+            },
+            {
+              "target": "e2e",
+              "projects": "dependencies"
+            },
+            {
+              "target": "test",
+              "projects": "dependencies"
+            }
+          ]
         },
         "setup": {
           "executor": "@nrwl/workspace:run-commands",
@@ -603,13 +665,32 @@
           },
           "dependsOn": [
             {
-              "target": "build",
+              "target": "compile",
               "projects": "self"
             }
           ]
         }
       },
-      "implicitDependencies": []
+      "implicitDependencies": [
+        "integration",
+        "cli",
+        "logger",
+        "nestjs-module",
+        "platform-express",
+        "platform-fastify",
+        "platform-graphql",
+        "platform-graphql-fastify",
+        "platform-mqtt",
+        "platform-grpc",
+        "platform-kafka",
+        "platform-nats",
+        "platform-redis",
+        "platform-rabbitmq",
+        "platform-socket.io",
+        "platform-tcp",
+        "platform-ws",
+        "styler"
+      ]
     }
   }
 }

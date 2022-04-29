@@ -3,6 +3,6 @@
   "include": [
     "packages/cli/src/**/*.ts"
   ],
-  "reporter": ["text", "json"],
+  "reporter": ["text", "lcov"],
   "reportDir": "./packages/cli/coverage"
 }

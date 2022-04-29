@@ -3,6 +3,6 @@
   "include": [
     "packages/platform-socket.io/src/**/*.ts"
   ],
-  "reporter": ["text", "json"],
+  "reporter": ["text", "lcov"],
   "reportDir": "./packages/platform-socket.io/coverage"
 }
