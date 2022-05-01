@@ -31,7 +31,7 @@ jobs:
           node-version: 14.x
 
       - name: Install pnpm
-        run: npm i -g pnpm
+        run: npm i -g pnpm@^6
 
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile=false
@@ -53,6 +53,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Stop Nx Cloud Agents
+        if: ${{ always() }}
         run: pnpx -y nx-cloud stop-all-agents
 
   agents:
