@@ -8,7 +8,7 @@ on:
 env:
   NX_BRANCH: ${{ github.event.pull_request.head.ref }}
   NX_RUN_GROUP: ${{ github.run_id }}
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  NX_CLOUD_DISTRIBUTED_EXECUTION: false
   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_TOKEN }}
 
 jobs:
@@ -25,10 +25,10 @@ jobs:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
 
-      - name: Setup Node.js 14.x
+      - name: Setup Node.js 16.x
         uses: actions/setup-node@master
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Install pnpm
         run: npm i -g pnpm@^6
@@ -51,13 +51,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Stop Nx Cloud Agents
-        if: ${{ always() }}
-        run: pnpx -y nx-cloud stop-all-agents
-
-  agents:
-    name: Nx Cloud - Agents
-    uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.3
-    with:
-      number-of-agents: 1
