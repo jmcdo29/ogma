@@ -4,25 +4,7 @@ A [NestJS module](https://docs.nestjs.com) for the [Ogma](https://github.com/jmc
 
 ## Installation
 
-import \* as request from 'supertest'; import { Test } from '@nestjs/testing'; import { INestApplication } from '@nestjs/common'; import ProductsModule from '../src/product/products.module'; import MicroServiceClient from '../src/micro-service/microService.client';
-
-describe('ProductsController (e2e)', () => { let app: INestApplication;
-
-beforeAll(async () => { const moduleFixture = await Test.createTestingModule({ imports: [ProductsModule], }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
-
-});
-
-it('should mock returned value of msServiceClient.msPost', async () => { jest .spyOn(MicroServiceClient.prototype, 'msPost') .mockResolvedValue({ mockedaValue: 'mocked return' });
-
-    return request(app.getHttpServer())
-      .get('/products')
-      .expect(200)
-      .expect({ mockedaValue: 'mocked return' });
-
-}); }); Installation is pretty simple, just `npm i @ogma/nestjs-module` or `yarn add @ogma/nestjs-module`
+Installation is pretty simple, just `npm i @ogma/nestjs-module` or `yarn add @ogma/nestjs-module`
 
 ## Usage
 
@@ -221,8 +203,7 @@ import { FastifyParser } from '@ogma/platform-fastify';
 
 @Injectable()
 export class OgmaModuleConfig
-  implements ModuleConfigFactory<OgmaModuleOptions>
-{
+  implements ModuleConfigFactory<OgmaModuleOptions> {
   constructor(private readonly configService: ConfigService) {}
 
   createModuleConfig(): OgmaModuleOptions {
