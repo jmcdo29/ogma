@@ -17,7 +17,7 @@ export abstract class HttpInterceptorService extends AbstractInterceptorService 
     return inColor ? this.wrapInColor(status) : status.toString();
   }
 
-  private determineStatusCodeFromError(error: HttpException | Error): number {
+  protected determineStatusCodeFromError(error: HttpException | Error): number {
     let status: number;
     try {
       status = (error as HttpException).getStatus();
