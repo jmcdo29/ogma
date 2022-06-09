@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- 828ad94: made determineStatusCodeFromError protected (instead of private) to be able to override it in child classes
+
 ## 3.2.2
 
 ### Patch Changes
