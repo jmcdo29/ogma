@@ -24,7 +24,7 @@
     "url": "https://github.com/jmcdo29/ogma/issues"
   },
   "peerDependencies": {
-    "@nestjs/graphql": "^8.0.0 || ^9.0.0",
+    "@nestjs/graphql": "^8.0.0 || ^9.0.0 || ^10.0.0",
     "@ogma/nestjs-module": "^3.0.0",
     "@ogma/platform-fastify": "^3.0.0"
   },
