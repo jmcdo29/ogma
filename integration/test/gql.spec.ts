@@ -1,5 +1,5 @@
 import { ApolloDriver } from '@nestjs/apollo';
-import { INestApplication, Logger } from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
 import { MercuriusDriver } from '@nestjs/mercurius';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
