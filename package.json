@@ -118,7 +118,7 @@
     "nest-commander": "^2.0.0",
     "nest-commander-testing": "^2.0.0",
     "nx": "14.0.5",
-    "nx-uvu": "^1.1.1",
+    "nx-uvu": "^1.2.0",
     "pactum": "^3.1.4",
     "pino": "7.11.0",
     "prettier": "^2.3.2",
