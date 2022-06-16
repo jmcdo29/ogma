@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- 247b552: @nestjs/graphql@^10 is now supported with backwards compatibility for @nestjs/grpahql@^9
+
 ## 3.0.1
 
 ### Patch Changes
