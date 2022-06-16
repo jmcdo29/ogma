@@ -1,4 +1,6 @@
-import { INestApplication } from '@nestjs/common';
+import { ApolloDriver } from '@nestjs/apollo';
+import { INestApplication, Logger } from '@nestjs/common';
+import { MercuriusDriver } from '@nestjs/mercurius';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
@@ -13,16 +15,24 @@ import { is } from 'uvu/assert';
 import { GqlModule } from '../src/gql/gql.module';
 import { createTestModule, reportValues, serviceOptionsFactory, toBeALogObject } from './utils';
 
-for (const { adapter, server, parser } of [
+for (const { adapter, server, parser, driver } of [
   {
     adapter: new ExpressAdapter(),
     server: 'Express',
     parser: GraphQLParser,
+    driver: ApolloDriver,
   },
   {
     adapter: new FastifyAdapter(),
     server: 'Fastify',
     parser: GraphQLFastifyParser,
+    driver: ApolloDriver,
+  },
+  {
+    adapter: new FastifyAdapter(),
+    server: 'Fastify Mercurius',
+    parser: GraphQLFastifyParser,
+    driver: MercuriusDriver,
   },
 ]) {
   const GqlParserSuite = suite<{
@@ -35,7 +45,7 @@ for (const { adapter, server, parser } of [
     logs: [],
   });
   GqlParserSuite.before(async (context) => {
-    const modRef = await createTestModule(GqlModule, {
+    const modRef = await createTestModule(GqlModule.forFeature(driver), {
       service: serviceOptionsFactory(`GraphQL ${server}`),
       interceptor: {
         gql: parser,
@@ -75,7 +85,7 @@ for (const { adapter, server, parser } of [
     },
   ]) {
     GqlParserSuite(`${type} ${name} call`, async ({ logSpy }) => {
-      await spec().post('/graphql').withGraphQLQuery(`${type} ${name}{ ${name}{ hello }}`);
+      await spec().post('/graphql').withGraphQLQuery(`${type} ${name}{ ${name}{ hello }}`).toss();
       toBeALogObject(logSpy.firstCall.args[0], type, '/graphql', 'HTTP/1.1', status);
       const reqId = logSpy.firstCall.args[2];
       is(typeof reqId, 'string');
@@ -83,7 +93,7 @@ for (const { adapter, server, parser } of [
     });
   }
   GqlParserSuite('should skip the log but make the call', async ({ logSpy }) => {
-    await spec().post('/graphql').withGraphQLQuery('query getSkip{ getSkip{ hello }}');
+    await spec().post('/graphql').withGraphQLQuery('query getSkip{ getSkip{ hello }}').toss();
     is(logSpy.callCount, 0);
   });
   GqlParserSuite.run();

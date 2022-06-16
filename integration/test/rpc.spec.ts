@@ -105,7 +105,7 @@ for (const { server, transport, options, protocol, parser } of [
       options,
     } as any);
     const interceptor = rpcServer.get(OgmaInterceptor);
-    await rpcServer.listen();
+    await rpcServer.listen().catch(console.error);
     const clientRef = await Test.createTestingModule({
       imports: [
         RpcClientModule.register({
