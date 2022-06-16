@@ -117,7 +117,7 @@
     "nats": "^2.7.1",
     "nest-commander": "^2.0.0",
     "nest-commander-testing": "^2.0.0",
-    "nx": "14.0.5",
+    "nx": "14.3.6",
     "nx-uvu": "^1.2.0",
     "pactum": "^3.1.4",
     "pino": "7.11.0",
