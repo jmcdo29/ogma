@@ -26,7 +26,7 @@ jobs:
         pnpm exec nx affected --target=lint --parallel=3
         pnpm exec nx affected --target=test --parallel=3 --ci --code-coverage
         pnpm exec nx affected --target=build --parallel=3
-        pnpm exec nx affected --target=e2e
+        NODE_NO_WARNINGS=1 pnpm exec nx affected --target=e2e
 
   report-coverage:
     runs-on: ubuntu-latest
