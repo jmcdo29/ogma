@@ -35,7 +35,7 @@
     "format": "prettier --write \"{packages,integration,benchmarks,tools}/**/*.ts\"",
     "lint": "eslint --ext .ts .",
     "test": "nx affected:test",
-    "test:int": "nx e2e integration",
+    "test:int": "NODE_NO_WARNINGS=1 nx e2e integration",
     "sendCoverage": "codeclimate-test-reporter < coverage/lcov.info",
     "prepare": "husky install",
     "release": "pnpm changeset publish",
