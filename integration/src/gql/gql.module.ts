@@ -25,7 +25,7 @@ export class GqlModule {
            */
           context: async (context: any, mercReply: any) => {
             return {
-              req: context.req,
+              req: context.raw ?? context.req,
               res: context.res,
               request: context.request ?? context,
               reply: context.reply ?? mercReply,
