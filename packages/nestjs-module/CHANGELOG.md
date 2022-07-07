@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.1
+
+### Patch Changes
+
+- a674a96: fix defect in @Log decorator that produces an error when the original function was called
+
 ## 3.3.0
 
 ### Minor Changes
