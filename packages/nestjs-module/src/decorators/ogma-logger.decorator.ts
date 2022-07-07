@@ -30,7 +30,7 @@ export const Log =
       const logger: OgmaService = this[loggerProperty];
       const context = `${target.constructor.name}#${method}`;
       logger.trace(`Start ${method}`, { context });
-      let result = (impl as any).apply(target, ...args);
+      let result = (impl as any).apply(this, args);
       if (result.then) {
         result.finally(() => {
           logEnd({ context, method }, logger, start);
