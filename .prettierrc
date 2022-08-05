@@ -12,6 +12,12 @@
         "trailingComma": "none",
         "proseWrap": "never"
       }
+    },
+    {
+      "files": ".*rc",
+      "options": {
+        "parser": "json"
+      }
     }
   ]
 }
