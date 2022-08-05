@@ -2,14 +2,14 @@ version: '3.3'
 services:
   mqtt:
     image: eclipse-mosquitto
-    container_name: mqtt
+    container_name: ogma_mqtt
     ports:
       - '1883:1883'
     volumes:
       - ./mosquitto:/mosquitto/
   rabbitmq:
     image: rabbitmq
-    container_name: rabbit
+    container_name: ogma_rabbit
     ports:
       - '5672:5672'
   # zookeeper:
@@ -39,11 +39,11 @@ services:
   #     KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
   nats:
     image: nats
-    container_name: nats
+    container_name: ogma_nats
     ports:
       - '4222:4222'
   redis:
     image: redis
-    container_name: redis
+    container_name: ogma_redis
     ports:
       - '6379:6379'

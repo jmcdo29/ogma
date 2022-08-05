@@ -24,9 +24,9 @@
     "url": "https://github.com/jmcdo29/ogma/issues"
   },
   "peerDependencies": {
-    "@nestjs/platform-fastify": "^8.0.0",
-    "@ogma/nestjs-module": "^3.0.0",
-    "fastify": ">=2.13.0"
+    "@nestjs/platform-fastify": "^9.0.0",
+    "@ogma/nestjs-module": "^4.0.0",
+    "fastify": ">=4.0.0"
   },
   "peerDependenciesMeta": {
     "@nestjs/platform-fastify": {
