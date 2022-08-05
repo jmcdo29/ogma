@@ -44,13 +44,13 @@ const rabbitOptions: RmqOptions['options'] = {
     durable: true,
   },
 };
-const redisOptions: RedisOptions['options'] = { url: 'redis://localhost:6379' };
+const redisOptions: RedisOptions['options'] = { host: 'localhost', port: 6379 };
 for (const { server, transport, options, protocol, parser } of [
   {
     server: 'TCP',
     transport: Transport.TCP,
     options: tcpOptions,
-    protocol: 'IPv4',
+    protocol: 'IPv6',
     parser: TcpParser,
   },
   {
