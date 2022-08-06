@@ -28,11 +28,7 @@ import {
 import { OgmaService } from './ogma.service';
 
 @Global()
-@Module({})
-export class OgmaCoreModule extends createConfigurableDynamicRootModule<
-  OgmaCoreModule,
-  OgmaModuleOptions
->(OGMA_OPTIONS, {
+@Module({
   providers: [
     {
       provide: OGMA_INTERCEPTOR_OPTIONS,
@@ -87,4 +83,8 @@ export class OgmaCoreModule extends createConfigurableDynamicRootModule<
     RpcInterceptorService,
     WebsocketInterceptorService,
   ],
-}) {}
+})
+export class OgmaCoreModule extends createConfigurableDynamicRootModule<
+  OgmaCoreModule,
+  OgmaModuleOptions
+>(OGMA_OPTIONS, {}) {}
