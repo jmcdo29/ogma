@@ -1,8 +1,10 @@
 import { Reflector } from '@nestjs/core';
 
+import { MODULE_OPTIONS_TOKEN } from './ogma-core.module-definition';
+
 export const OGMA_INSTANCE = 'OGMA_INSTANCE';
 export const OGMA_CONTEXT = 'OGMA_CONTEXT';
-export const OGMA_OPTIONS = 'OGMA_OPTIONS';
+export const OGMA_OPTIONS = MODULE_OPTIONS_TOKEN;
 export const MESSAGE_METADATA = 'message';
 export const MICROSERVICE_METADATA = 'microservices:pattern';
 export const OGMA_INTERCEPTOR_OPTIONS = 'OGMA_INTERCEPTOR_OPTIONS';

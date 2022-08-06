@@ -1,4 +1,3 @@
-import { createConfigurableDynamicRootModule } from '@golevelup/nestjs-modules';
 import { Global, Module } from '@nestjs/common';
 
 import {
@@ -9,7 +8,6 @@ import {
   RpcInterceptorService,
   WebsocketInterceptorService,
 } from './interceptor/providers';
-import { OgmaModuleOptions } from './interfaces';
 import {
   OGMA_INSTANCE,
   OGMA_INTERCEPTOR_OPTIONS,
@@ -26,6 +24,7 @@ import {
   interceptorProviderFactory,
 } from './ogma.provider';
 import { OgmaService } from './ogma.service';
+import { ConfigurableModuleClass } from './ogma-core.module-definition';
 
 @Global()
 @Module({
@@ -84,7 +83,4 @@ import { OgmaService } from './ogma.service';
     WebsocketInterceptorService,
   ],
 })
-export class OgmaCoreModule extends createConfigurableDynamicRootModule<
-  OgmaCoreModule,
-  OgmaModuleOptions
->(OGMA_OPTIONS, {}) {}
+export class OgmaCoreModule extends ConfigurableModuleClass {}
