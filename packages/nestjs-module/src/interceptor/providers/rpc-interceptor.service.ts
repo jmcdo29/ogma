@@ -5,7 +5,7 @@ import { AbstractInterceptorService } from './abstract-interceptor.service';
 @Injectable()
 export abstract class RpcInterceptorService extends AbstractInterceptorService {
   getCallPoint(context: ExecutionContext): any {
-    return this.reflector.get('microservices:pattern', context.getHandler());
+    return this.reflector.get('microservices:pattern', context.getHandler())[0];
   }
 
   /**
@@ -13,7 +13,7 @@ export abstract class RpcInterceptorService extends AbstractInterceptorService {
    * @param context execution context from Nest
    * @returns The data object for the RPC adapter
    */
-  getData(context: ExecutionContext): any {
+  getData<T>(context: ExecutionContext): T {
     return context.switchToRpc().getData();
   }
 
@@ -22,7 +22,7 @@ export abstract class RpcInterceptorService extends AbstractInterceptorService {
    * @param context execution context from Nest
    * @returns The client object for the RPC adapter
    */
-  getClient(context: ExecutionContext) {
+  getClient<T = unknown>(context: ExecutionContext): T {
     return context.switchToRpc().getContext();
   }
 }

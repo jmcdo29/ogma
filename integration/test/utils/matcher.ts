@@ -78,7 +78,7 @@ const doTest = (
 ): { pass: boolean; message: string } => {
   let pass = true;
   let message = '';
-  if (!isIP(recIp) && !isIP(recIp.split(':')[0])) {
+  if (!isIP(recIp) && !isIP(recIp.split(/:\d{2,}/)[0])) {
     pass = false;
     message += expectMessage('Caller Ip', 'an IPv4 or IPv6', recIp);
   }

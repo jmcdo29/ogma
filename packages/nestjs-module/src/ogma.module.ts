@@ -45,7 +45,6 @@ export class OgmaModule {
   ): DynamicModule {
     const providers: Provider[] = this.createProviders(context, options);
     return {
-      imports: [OgmaCoreModule],
       module: OgmaModule,
       providers,
       exports: providers,
@@ -75,7 +74,6 @@ export class OgmaModule {
     });
     return {
       module: OgmaModule,
-      imports: [OgmaCoreModule],
       providers,
       exports: providers,
     };

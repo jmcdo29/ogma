@@ -145,14 +145,14 @@ for (const { server, transport, options, protocol, parser } of [
     },
   ]) {
     RpcSuite(`${url} call`, async ({ logSpy }) => {
-      await spec().get(url);
+      await spec().get(url).toss();
       is(logSpy.callCount, 1);
       toBeALogObject(logSpy.firstCall.args[0], server, JSON.stringify(endpoint), protocol, status);
       is(logSpy.firstCall.args[2].length, 16);
     });
   }
   RpcSuite('skip log but make the call', async ({ logSpy }) => {
-    await spec().get('/skip').expectBody(hello);
+    await spec().get('/skip').expectBody(hello).toss();
     is(logSpy.callCount, 0);
   });
   RpcSuite.run();
