@@ -1,10 +1,10 @@
-import { AsyncModuleConfig } from '@golevelup/nestjs-modules';
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 
 import { OgmaModuleOptions, Type } from './interfaces';
 import { OgmaProviderOptions } from './interfaces/ogma-provider-options.interface';
 import { createLoggerProviders, createRequestScopedLoggerProviders } from './ogma.provider';
 import { OgmaCoreModule } from './ogma-core.module';
+import { ASYNC_OPTIONS_TYPE } from './ogma-core.module-definition';
 
 /**
  * The NestJS module for the Ogma Logger. Not much to say here
@@ -18,7 +18,7 @@ export class OgmaModule {
    * @returns a configured dynamic module for Nest to worry about later
    */
   static forRoot(options?: OgmaModuleOptions): DynamicModule {
-    return OgmaCoreModule.forRoot(OgmaCoreModule, options || {});
+    return OgmaCoreModule.forRoot(options || {});
   }
 
   /**
@@ -27,8 +27,8 @@ export class OgmaModule {
    * @returns a configured dynamic module for Nest to worry about later
    * @see https://dev.to/nestjs/advanced-nestjs-how-to-build-completely-dynamic-nestjs-modules-1370
    */
-  static forRootAsync(options: AsyncModuleConfig<OgmaModuleOptions>): DynamicModule {
-    return OgmaCoreModule.forRootAsync(OgmaCoreModule, options);
+  static forRootAsync(options: typeof ASYNC_OPTIONS_TYPE): DynamicModule {
+    return OgmaCoreModule.forRootAsync(options);
   }
 
   /**
