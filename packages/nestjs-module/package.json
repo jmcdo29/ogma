@@ -19,9 +19,7 @@
   "directories": {
     "lib": "lib"
   },
-  "dependencies": {
-    "@golevelup/nestjs-modules": "0.5.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
