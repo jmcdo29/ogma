@@ -7,6 +7,7 @@ Okay, so now we're ready to add the `OgmaModule` to our Application. Let's assum
 
 ```ts
 import { FastifyParser } from '@ogma/platform-fastify';
+import { OgmaModuleOptions } from '@ogma/nestjs-module';
 
 @Injectable()
 export class OgmaModuleConfig
@@ -14,7 +15,7 @@ export class OgmaModuleConfig
 {
   constructor(private readonly configService: ConfigService) {}
 
-  createModuleConfig(): OgmaModuleOptions {
+  createModuleConfig(): typeof OgmaModuleOptions {
     return {
       service: {
         // returns one of Ogma's log levels, or 'ALL'.
@@ -30,14 +31,6 @@ export class OgmaModuleConfig
   }
 }
 ```
-
-The `ModuleConfigFactory` is an interface pulled from the [@golevelup/nestjs-modules](https://github.com/golevelup/nestjs/tree/master/packages/modules) library, which was used for creating the dynamic module.
-
-:::note
-
-As the `ModuleConfigFactory` is just an interface, the dependency on the `@golevelup/nestjs-module` package should just be a dev dependency to ensure the typings are correct. Of course, you can also just use a factory instead if you prefer.
-
-:::
 
 Next, in our `AppModule` we can import the `OgmaModule` like so
 

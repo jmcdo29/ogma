@@ -14,7 +14,6 @@ importers:
       '@commitlint/config-conventional': 16.2.4
       '@docusaurus/core': ^2.0.0-alpha.70
       '@docusaurus/preset-classic': ^2.0.0-alpha.70
-      '@golevelup/nestjs-modules': 0.5.0
       '@graphql-tools/schema': ^8.2.0
       '@graphql-tools/utils': ^8.2.2
       '@grpc/grpc-js': ^1.3.7
@@ -112,7 +111,6 @@ importers:
       '@commitlint/config-conventional': 16.2.4
       '@docusaurus/core': 2.0.0-beta.8_ad3g63csgnmbfohhnzzzl23f2e
       '@docusaurus/preset-classic': 2.0.0-beta.8_ad3g63csgnmbfohhnzzzl23f2e
-      '@golevelup/nestjs-modules': 0.5.0_jgiozbrb4gxp6nvmqtfvx6cgvy
       '@graphql-tools/schema': 8.3.1_graphql@16.5.0
       '@graphql-tools/utils': 8.5.1_graphql@16.5.0
       '@grpc/grpc-js': 1.4.2
@@ -3286,17 +3284,6 @@ packages:
       lodash: 4.17.21
       rxjs: 7.4.0
     dev: false
-
-  /@golevelup/nestjs-modules/0.5.0_jgiozbrb4gxp6nvmqtfvx6cgvy:
-    resolution: {integrity: sha512-6ZGjPtm0KwJ7Txa3Z14IzILi7pfvGrLZHv/q9/4tt7T5ngcCe71wJp32TG0/b3UkJX3/LEm4AtYjcfwiIrfSlg==}
-    peerDependencies:
-      '@nestjs/common': ^8.x
-      rxjs: ^7.x
-    dependencies:
-      '@nestjs/common': 9.0.8_7c3h7o72lg3qvjadljqitllxdi
-      lodash: 4.17.21
-      rxjs: 7.4.0
-    dev: true
 
   /@graphql-tools/merge/8.2.1_graphql@16.5.0:
     resolution: {integrity: sha512-Q240kcUszhXiAYudjuJgNuLgy9CryDP3wp83NOZQezfA6h3ByYKU7xI6DiKrdjyVaGpYN3ppUmdj0uf5GaXzMA==}
