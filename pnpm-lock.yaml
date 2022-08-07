@@ -215,9 +215,9 @@ importers:
       nest-commander: ^2.0.0
       reflect-metadata: 0.1.13
     dependencies:
-      '@nestjs/common': 8.4.4_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/core': 8.4.4_6f6c5d7cd7be5817ddfab77a4a28de3b
-      nest-commander: 2.3.3_a78378ec5f3cecc3c353ed91b578f3e6
+      '@nestjs/common': 8.4.4_reflect-metadata@0.1.13
+      '@nestjs/core': 8.4.4_q7zqblbumkdytftubivmiqkfgi
+      nest-commander: 2.3.3_u6bxr3c7htwmhq2t5wi3k6ht4y
       reflect-metadata: 0.1.13
 
   packages/common:
@@ -227,10 +227,7 @@ importers:
     specifiers: {}
 
   packages/nestjs-module:
-    specifiers:
-      '@golevelup/nestjs-modules': 0.5.0
-    dependencies:
-      '@golevelup/nestjs-modules': 0.5.0_@nestjs+common@8.1.2+rxjs@7.4.0
+    specifiers: {}
 
   packages/platform-express:
     specifiers: {}
@@ -3274,17 +3271,6 @@ packages:
     dependencies:
       lodash: 4.17.21
 
-  /@golevelup/nestjs-modules/0.5.0_@nestjs+common@8.1.2+rxjs@7.4.0:
-    resolution: {integrity: sha512-6ZGjPtm0KwJ7Txa3Z14IzILi7pfvGrLZHv/q9/4tt7T5ngcCe71wJp32TG0/b3UkJX3/LEm4AtYjcfwiIrfSlg==}
-    peerDependencies:
-      '@nestjs/common': ^8.x
-      rxjs: ^7.x
-    dependencies:
-      '@nestjs/common': 8.1.2_f8b67fbbfa59b70aa4035a6089ad771a
-      lodash: 4.17.21
-      rxjs: 7.4.0
-    dev: false
-
   /@graphql-tools/merge/8.2.1_graphql@16.5.0:
     resolution: {integrity: sha512-Q240kcUszhXiAYudjuJgNuLgy9CryDP3wp83NOZQezfA6h3ByYKU7xI6DiKrdjyVaGpYN3ppUmdj0uf5GaXzMA==}
     peerDependencies:
@@ -3775,7 +3761,7 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /@nestjs/common/8.4.4_f8b67fbbfa59b70aa4035a6089ad771a:
+  /@nestjs/common/8.4.4_reflect-metadata@0.1.13:
     resolution: {integrity: sha512-QHi7QcgH/5Jinz+SCfIZJkFHc6Cch1YsAEGFEhi6wSp6MILb0sJMQ1CX06e9tCOAjSlBwaJj4PH0eFCVau5v9Q==}
     peerDependencies:
       cache-manager: '*'
@@ -3792,11 +3778,8 @@ packages:
         optional: true
     dependencies:
       axios: 0.27.0
-      class-transformer: 0.5.1
-      class-validator: 0.13.1
       iterare: 1.2.1
       reflect-metadata: 0.1.13
-      rxjs: 7.4.0
       tslib: 2.3.1
       uuid: 8.3.2
     transitivePeerDependencies:
@@ -3828,7 +3811,7 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@nestjs/core/8.4.4_6f6c5d7cd7be5817ddfab77a4a28de3b:
+  /@nestjs/core/8.4.4_q7zqblbumkdytftubivmiqkfgi:
     resolution: {integrity: sha512-Ef3yJPuzAttpNfehnGqIV5kHIL9SHptB5F4ERxoU7pT61H3xiYpZw6hSjx68cJO7cc6rm7/N+b4zeuJvFHtvBg==}
     requiresBuild: true
     peerDependencies:
@@ -3846,17 +3829,13 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': 8.4.4_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/microservices': 8.1.2_61a5fc6ceca1dc42f2177d1b93ae4a4a
-      '@nestjs/platform-express': 8.1.2_bbf59b1cbf49bba2b2f47e404ee3cb27
-      '@nestjs/websockets': 8.1.2_93417e3d602c0d1c8b5419e9ce6936ff
+      '@nestjs/common': 8.4.4_reflect-metadata@0.1.13
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
       iterare: 1.2.1
       object-hash: 3.0.0
       path-to-regexp: 3.2.0
       reflect-metadata: 0.1.13
-      rxjs: 7.4.0
       tslib: 2.3.1
       uuid: 8.3.2
     transitivePeerDependencies:
@@ -5412,6 +5391,7 @@ packages:
 
   /@types/validator/13.6.6:
     resolution: {integrity: sha512-+qogUELb4gMhrMjSh/seKmGVvN+uQLfyqJAqYRWqVHsvBsUO2xDBCL8CJ/ZSukbd8vXaoYbpIssAmfLEzzBHEw==}
+    dev: true
 
   /@types/ws/8.5.3:
     resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
@@ -6436,7 +6416,7 @@ packages:
     resolution: {integrity: sha512-XV/WrPxXfzgZ8j4lcB5i6LyaXmi90yetmV/Fem0kmglGx+mpY06CiweL3YxU6wOTNLmqLUePW4G8h45nGZ/+pA==}
     deprecated: Formdata complete broken, incorrect build size
     dependencies:
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@4.3.4
       form-data: 4.0.0
     transitivePeerDependencies:
       - debug
@@ -7262,6 +7242,7 @@ packages:
 
   /class-transformer/0.5.1:
     resolution: {integrity: sha512-SQa1Ws6hUbfC98vKGxZH3KFY0Y1lm5Zm0SY8XX9zbK7FJCyVEac3ATW0RIpwzW+oOfmHE5PMPufDG9hCfoEOMw==}
+    dev: true
 
   /class-utils/0.3.6:
     resolution: {integrity: sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==}
@@ -7279,6 +7260,7 @@ packages:
       '@types/validator': 13.6.6
       libphonenumber-js: 1.9.39
       validator: 13.6.0
+    dev: true
 
   /clean-css/5.2.2:
     resolution: {integrity: sha512-/eR8ru5zyxKzpBLv9YZvMXgTSSQn7AdkMItMYynsFgGwTveCRVam9IUPFloE85B4vAIj05IuKmmEoV7/AQjT0w==}
@@ -8438,7 +8420,6 @@ packages:
     dependencies:
       ms: 2.1.2
       supports-color: 6.1.0
-    dev: true
 
   /decamelize-keys/1.1.0:
     resolution: {integrity: sha1-0XGoeTMlKAfrPLYdwcFEXQeN8tk=}
@@ -10065,6 +10046,7 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dev: true
 
   /follow-redirects/1.15.1_debug@4.3.4:
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
@@ -10076,7 +10058,6 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.4_supports-color@6.1.0
-    dev: true
 
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
@@ -10753,7 +10734,6 @@ packages:
   /has-flag/3.0.0:
     resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==}
     engines: {node: '>=4'}
-    dev: true
 
   /has-flag/4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
@@ -12644,6 +12624,7 @@ packages:
 
   /libphonenumber-js/1.9.39:
     resolution: {integrity: sha512-TxYz/Ii7mjkocKGKmFHhsTAvvcxr4AY3yUlZzZ2z7HC4DPRrNlzJ9n32/SMogqsyFOXLMXQPCkCInNRbiVaEPA==}
+    dev: true
 
   /license-webpack-plugin/4.0.2_webpack@5.73.0:
     resolution: {integrity: sha512-771TFWFD70G1wLTC4oU2Cw4qvtmNrIw+wRvBtn+okgHl7slJVi7zfNcdmqDL72BojM30VNJ2UHylr1o77U37Jw==}
@@ -13601,7 +13582,6 @@ packages:
 
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
-    dev: true
 
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
@@ -13754,19 +13734,6 @@ packages:
       nest-commander: 2.3.3_cw6o3dkuyuli4a5gq7b223evly
     dev: true
 
-  /nest-commander/2.3.3_a78378ec5f3cecc3c353ed91b578f3e6:
-    resolution: {integrity: sha512-VzYVgJhGff+Td/FjaENwud3lhm3MHfRy8I3/OpDGmqwOfmMWHSkVd1aPVi3CqIUozGbH4KNrh9uw7TCQHld9uw==}
-    peerDependencies:
-      '@nestjs/common': ^8.0.0
-      '@nestjs/core': ^8.0.0
-    dependencies:
-      '@golevelup/nestjs-discovery': 2.3.1
-      '@nestjs/common': 8.4.4_f8b67fbbfa59b70aa4035a6089ad771a
-      '@nestjs/core': 8.4.4_6f6c5d7cd7be5817ddfab77a4a28de3b
-      commander: 8.2.0
-      inquirer: 8.2.0
-    dev: false
-
   /nest-commander/2.3.3_cw6o3dkuyuli4a5gq7b223evly:
     resolution: {integrity: sha512-VzYVgJhGff+Td/FjaENwud3lhm3MHfRy8I3/OpDGmqwOfmMWHSkVd1aPVi3CqIUozGbH4KNrh9uw7TCQHld9uw==}
     peerDependencies:
@@ -13779,6 +13746,18 @@ packages:
       commander: 8.2.0
       inquirer: 8.2.0
     dev: true
+
+  /nest-commander/2.3.3_u6bxr3c7htwmhq2t5wi3k6ht4y:
+    resolution: {integrity: sha512-VzYVgJhGff+Td/FjaENwud3lhm3MHfRy8I3/OpDGmqwOfmMWHSkVd1aPVi3CqIUozGbH4KNrh9uw7TCQHld9uw==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0
+      '@nestjs/core': ^8.0.0
+    dependencies:
+      '@golevelup/nestjs-discovery': 2.3.1
+      '@nestjs/common': 8.4.4_reflect-metadata@0.1.13
+      '@nestjs/core': 8.4.4_q7zqblbumkdytftubivmiqkfgi
+      commander: 8.2.0
+      inquirer: 8.2.0
 
   /nice-try/1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
@@ -16205,6 +16184,7 @@ packages:
     resolution: {integrity: sha512-7SQDi7xeTMCJpqViXh8gL/lebcwlp3d831F05+9B44A4B0WfsEwUQHR64gsH1kvJ+Ep/J9K2+n1hVl1CsGN23w==}
     dependencies:
       tslib: 2.1.0
+    dev: true
 
   /rxjs/7.5.5:
     resolution: {integrity: sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw==}
@@ -17359,7 +17339,6 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       has-flag: 3.0.0
-    dev: true
 
   /supports-color/7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
@@ -17983,6 +17962,7 @@ packages:
 
   /tslib/2.1.0:
     resolution: {integrity: sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==}
+    dev: true
 
   /tslib/2.3.1:
     resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}
@@ -18539,6 +18519,7 @@ packages:
   /validator/13.6.0:
     resolution: {integrity: sha512-gVgKbdbHgtxpRyR8K0O6oFZPhhB5tT1jeEHZR0Znr9Svg03U0+r9DXWMrnRAB+HtCStDQKlaIZm42tVsVjqtjg==}
     engines: {node: '>= 0.10'}
+    dev: true
 
   /value-equal/1.0.1:
     resolution: {integrity: sha512-NOJ6JZCAWr0zlxZt+xqCHNTEKOsrks2HQd4MqhP1qy4z1SkbEP467eNx6TgDKXMvUOb+OENfJCZwM+16n7fRfw==}
