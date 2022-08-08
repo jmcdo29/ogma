@@ -21,8 +21,8 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@nestjs/common": "^9.0.0",
-    "@nestjs/core": "^9.0.0",
+    "@nestjs/common": "^8.0.0 || ^9.0.0",
+    "@nestjs/core": "^8.0.0 || ^9.0.0",
     "@ogma/logger": "^2.0.0",
     "reflect-metadata": "^0.1.0",
     "rxjs": "^7.0.0"
