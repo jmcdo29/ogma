@@ -11,15 +11,11 @@ import { ClientProxy } from '@nestjs/microservices';
 import { ExceptionFilter } from './../../shared/exception.filter';
 
 @Controller()
-export class RpcClientController implements OnApplicationBootstrap, OnApplicationShutdown {
+export class RpcClientController implements OnApplicationBootstrap /*, OnApplicationShutdown */ {
   constructor(@Inject('RPC-SERVICE') private readonly micro: ClientProxy) {}
 
   async onApplicationBootstrap() {
     await this.micro.connect();
-  }
-
-  async onApplicationShutdown() {
-    await this.micro.close();
   }
 
   @Get()
