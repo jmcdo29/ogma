@@ -5,11 +5,11 @@ import { RpcInterceptorService } from '@ogma/nestjs-module';
 @Injectable()
 export class KafkaParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext) {
-    return this.getClient(context).getTopic();
+    return this.getClient<KafkaContext>(context).getTopic();
   }
 
   getCallerIp(context: ExecutionContext) {
-    const data = this.getData(context);
+    const data = this.getData<{ value?: { ip?: string } }>(context);
     return data?.value?.ip || '';
   }
 
@@ -22,11 +22,7 @@ export class KafkaParser extends RpcInterceptorService {
   }
 
   setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient(context) as any;
+    const client = this.getClient<{ requestId: string }>(context);
     client.requestId = requestId;
-  }
-
-  getClient(context: ExecutionContext): KafkaContext {
-    return super.getClient(context);
   }
 }
