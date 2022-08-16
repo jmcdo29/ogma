@@ -16,7 +16,7 @@ import { WsModule } from '../src/ws/ws.module';
 import { makeWs, reportValues, serviceOptionsFactory, toBeALogObject } from './utils';
 
 for (const { adapter, server, parser, client, protocol, sendMethod, serializer } of [
-  /* {
+  {
     adapter: IoAdapter,
     server: 'Socket.io',
     parser: SocketIOParser,
@@ -24,7 +24,7 @@ for (const { adapter, server, parser, client, protocol, sendMethod, serializer }
     protocol: 'http',
     sendMethod: 'emit',
     serializer: (message: string) => message,
-  }, */
+  },
   {
     adapter: WsAdapter,
     server: 'Websocket',
