@@ -1,5 +1,5 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { NatsContext, NatsRecord } from '@nestjs/microservices';
+import { NatsContext } from '@nestjs/microservices';
 import { RpcInterceptorService } from '@ogma/nestjs-module';
 
 @Injectable()

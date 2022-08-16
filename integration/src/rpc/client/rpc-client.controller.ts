@@ -1,17 +1,10 @@
-import {
-  Controller,
-  Get,
-  Inject,
-  OnApplicationBootstrap,
-  OnApplicationShutdown,
-  UseFilters,
-} from '@nestjs/common';
+import { Controller, Get, Inject, OnApplicationBootstrap, UseFilters } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 
 import { ExceptionFilter } from './../../shared/exception.filter';
 
 @Controller()
-export class RpcClientController implements OnApplicationBootstrap /*, OnApplicationShutdown */ {
+export class RpcClientController implements OnApplicationBootstrap {
   constructor(@Inject('RPC-SERVICE') private readonly micro: ClientProxy) {}
 
   async onApplicationBootstrap() {
