@@ -50,7 +50,7 @@ GrpcParserSuite('it should return the reflected metadata pattern', ({ parser, re
   const ctxMock = createCtxMock({
     getHandler: () => funcMock,
   });
-  reflectGetStub.returns({ rpc: 'SayHello' });
+  reflectGetStub.returns([{ rpc: 'SayHello' }]);
   is(parser.getCallPoint(ctxMock), 'SayHello');
   is(reflectGetStub.callCount, 1);
   equal(reflectGetStub.firstCall.args, [PATTERN_METADATA, funcMock]);

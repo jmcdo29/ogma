@@ -42,14 +42,17 @@ TcpParserSuite.before(async (context) => {
   }).compile();
   context.parser = modRef.get(TcpParser);
 });
-TcpParserSuite('it should return the reflected metadata pattern', ({ parser, reflectorGetSpy }) => {
-  const funcMock = () => 'string';
-  reflectorGetSpy.returns('message');
+TcpParserSuite('it should return the reflected metadata pattern', ({ parser }) => {
   const ctxMock = createCtxMock({
-    getHandler: () => funcMock,
+    switchToRpc: () => ({
+      getData: () => ({} as any),
+      getContext: () =>
+        ({
+          getPattern: () => 'message',
+        } as any),
+    }),
   });
-  is(parser.getCallPoint(ctxMock), JSON.stringify('message'));
-  equal(reflectorGetSpy.firstCall.args, [PATTERN_METADATA, funcMock]);
+  is(parser.getCallPoint(ctxMock), 'message');
 });
 TcpParserSuite('It should get the ip from the data', ({ parser }) => {
   const ctxMock = createCtxMock({

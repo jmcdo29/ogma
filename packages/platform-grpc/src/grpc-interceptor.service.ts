@@ -8,7 +8,7 @@ export class GrpcParser extends RpcInterceptorService {
   }
 
   getCallerIp(context: ExecutionContext) {
-    const data = this.getData(context);
+    const data = this.getData<{ ip?: string }>(context);
     return data?.ip || '';
   }
 
@@ -20,8 +20,8 @@ export class GrpcParser extends RpcInterceptorService {
     return 'gRPC';
   }
 
-  setRequestId(context: ExecutionContext, requestId): void {
-    const grpcContext = this.getClient(context);
+  setRequestId(context: ExecutionContext, requestId: string): void {
+    const grpcContext = this.getClient<{ requestId: string }>(context);
     grpcContext.requestId = requestId;
   }
 }
