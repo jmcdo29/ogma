@@ -22,12 +22,13 @@ for (const { adapter, server, parser, driver } of [
     parser: GraphQLParser,
     driver: ApolloDriver,
   },
-  {
+  // fastify v4 is incompatible with apollo-server at this time
+  /* {
     adapter: new FastifyAdapter(),
     server: 'Fastify',
     parser: GraphQLFastifyParser,
     driver: ApolloDriver,
-  },
+  }, */
   {
     adapter: new FastifyAdapter(),
     server: 'Fastify Mercurius',
