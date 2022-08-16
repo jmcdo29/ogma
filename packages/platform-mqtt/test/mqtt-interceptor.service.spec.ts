@@ -42,18 +42,18 @@ MqttParserSuite.before(async (context) => {
   }).compile();
   context.parser = modRef.get(MqttParser);
 });
-MqttParserSuite(
-  'it should return the reflected metadata pattern',
-  ({ parser, reflectorGetSpy }) => {
-    const funcMock = () => 'string';
-    reflectorGetSpy.returns('message');
-    const ctxMock = createCtxMock({
-      getHandler: () => funcMock,
-    });
-    is(parser.getCallPoint(ctxMock), JSON.stringify('message'));
-    equal(reflectorGetSpy.firstCall.args, [PATTERN_METADATA, funcMock]);
-  },
-);
+MqttParserSuite('it should return the reflected metadata pattern', ({ parser }) => {
+  const ctxMock = createCtxMock({
+    switchToRpc: () => ({
+      getContext: () =>
+        ({
+          getTopic: () => 'message',
+        } as any),
+      getData: () => ({} as any),
+    }),
+  });
+  is(parser.getCallPoint(ctxMock), 'message');
+});
 MqttParserSuite('It should get the ip from the data', ({ parser }) => {
   const ctxMock = createCtxMock({
     switchToRpc: () =>
