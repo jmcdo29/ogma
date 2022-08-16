@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- e82c80b: NestJS v9 Support
+
+  ## Features
+
+  - Use the new `ConfigurableModuleBuilder` from `@nestjs/common@9`
+  - Support Fastify v4
+    - As a side effect, `@ogma/platform-graphql-fastify` can **only** be used with `@nestjs/mercurius` until `apollo-server-fastify` supports v4
+
+  ## How to Upgrade
+
+  Run your preferred pacakge manager's method of ugrading. There's no code chagnes necessary to the ogma imports, but implications of underlying packages that should be taken into consideration
+
 ## 3.3.1
 
 ### Patch Changes
