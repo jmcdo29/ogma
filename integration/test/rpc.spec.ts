@@ -50,7 +50,7 @@ for (const { server, transport, options, protocol, parser } of [
     server: 'TCP',
     transport: Transport.TCP,
     options: tcpOptions,
-    protocol: 'IPv6',
+    protocol: 'IPv[4,6]',
     parser: TcpParser,
   },
   {

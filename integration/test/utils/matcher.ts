@@ -90,7 +90,7 @@ const doTest = (
     pass = false;
     message += expectMessage('endpoint', endpoint, recEndpoint);
   }
-  if (recProto !== protocol) {
+  if (!recProto.match(protocol)) {
     pass = false;
     message += expectMessage('protocol', protocol, recProto);
   }
