@@ -20,6 +20,7 @@ This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaMo
   OgmaModule.forRoot({
     interceptor: {
       rpc: GrpcParser
+    }
   })
 )
 export class AppModule {}
