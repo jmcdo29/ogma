@@ -16,6 +16,9 @@
       }
     ]
   },
+  "workspaceLayout": {
+    "libsDir": "packages"
+  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
