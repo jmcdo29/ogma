@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- 6f7b8cb: fix: add `application` property in `OgmaServiceMeta`
+
 ## 4.0.0
 
 ### Major Changes
