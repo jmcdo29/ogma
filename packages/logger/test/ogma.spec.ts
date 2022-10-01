@@ -282,5 +282,21 @@ for (const json of [true, false]) {
     },
   );
 }
+OgmaSuite(
+  'it should print each array value if the option "each" is true',
+  ({ writeSpy, ogmaFactory }) => {
+    const ogma = ogmaFactory();
+    const messages = ['hello', 42, { key: 'value' }, true];
+    ogma.log(messages, { each: true });
+    is(writeSpy.calls.size, 4, 'Expected there to be four calls to the write stream');
+    messages.forEach((message, index) => {
+      const loggedVal = writeSpy.getCall(index)[0];
+      if (typeof message === 'object') {
+        message = JSON.stringify(message, null, 2);
+      }
+      match(loggedVal, message.toString());
+    });
+  },
+);
 
 OgmaSuite.run();
