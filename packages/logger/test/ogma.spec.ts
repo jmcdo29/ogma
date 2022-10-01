@@ -298,5 +298,14 @@ OgmaSuite(
     });
   },
 );
+OgmaSuite('It should not explosively print array values', ({ writeSpy, ogmaFactory }) => {
+  const ogma = ogmaFactory();
+  const messages = [
+    ['Hello', 'World!'],
+    ['How', 'are', 'you?'],
+  ];
+  ogma.log(messages, { each: true });
+  is(writeSpy.calls.size, 2, 'There should only be two calls');
+});
 
 OgmaSuite.run();
