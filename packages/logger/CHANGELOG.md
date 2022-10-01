@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.4.0
+
+### Minor Changes
+
+- 2f5ccce: Allow for printing of each array value
+
 ## 2.3.0
 
 ### Minor Changes
