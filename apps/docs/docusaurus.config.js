@@ -6,8 +6,8 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'jmcdo29', // Usually your GitHub org/user name.
-  projectName: 'ogma', // Usually your repo name.
+  organizationName: 'jmcdo29',
+  projectName: 'ogma',
   themeConfig: {
     colorMode: {
       defaultMode: 'dark',
