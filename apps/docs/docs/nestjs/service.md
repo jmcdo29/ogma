@@ -44,6 +44,16 @@ For the most part, all of the methods for the `OgmaService` are the same as usin
 
 The `meta` parameter for all of the logging methods (`info`, `verbose`, `debug`, `warn`, `fatal`, `silly`, and `error`) is an optional parameter where you can pass either a string for a separate context in the log, or an object with additional data defined in any way you would please. This is great for use with log aggregators like [DataDog](https://www.datadoghq.com/) or [LogDNA](https://www.logdna.com/).
 
+### Printing Multiple Values
+
+To get `ogma` to automatically print multiple values for you, rather than having to call `ogma.log` on each value, you can pass an array of value and the `{ each: true }` option to `ogma`. This will cause `ogma` to print each value of the array as if you had called `ogma.log` on each one.
+
+::: info
+
+Ogma ill **not** recursively print arrays of arrays. `[ ['Hello', 'World'], ['Foo', 'Bar', 'Baz']` will print two arrays across two lines, not five strings across five lines.
+
+:::
+
 ### error
 
 You'll also notice that `error` has a slightly different signature than the other logging methods. This is due to keeping in line with Nest's `LoggerService` interface. You can decide to pass a `trace` as a second parameter and a `meta` object as the third, or just pass the `meta` object as the second parameter and Ogma will pass the information on as necessary to the appropriate methods.
