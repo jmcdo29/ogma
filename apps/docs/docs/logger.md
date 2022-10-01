@@ -64,6 +64,12 @@ Ogma ill **not** recursively print arrays of arrays. `[ ['Hello', 'World'], ['Fo
 
 :::
 
+::: info
+
+This option is available in `@ogma/logger@^2.4.0`
+
+:::
+
 ## Ogma Options
 
 | name | type | use |

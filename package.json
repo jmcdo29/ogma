@@ -40,7 +40,7 @@
     "prepare": "husky install",
     "release": "pnpm changeset publish",
     "nx": "nx",
-    "deploy": "nx deploy docs"
+    "deploy:docs": "nx deploy docs"
   },
   "devDependencies": {
     "@apollo/gateway": "0.50.2",

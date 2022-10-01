@@ -54,6 +54,12 @@ Ogma ill **not** recursively print arrays of arrays. `[ ['Hello', 'World'], ['Fo
 
 :::
 
+::: info
+
+This option is available in `@ogma/nestjs-module@^4.1.0`
+
+:::
+
 ### error
 
 You'll also notice that `error` has a slightly different signature than the other logging methods. This is due to keeping in line with Nest's `LoggerService` interface. You can decide to pass a `trace` as a second parameter and a `meta` object as the third, or just pass the `meta` object as the second parameter and Ogma will pass the information on as necessary to the appropriate methods.
