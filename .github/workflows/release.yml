@@ -25,10 +25,10 @@ jobs:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
 
-      - name: Setup Node.js 16.x
+      - name: Setup Node.js 18.x
         uses: actions/setup-node@master
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Install pnpm
         run: npm i -g pnpm@^6
