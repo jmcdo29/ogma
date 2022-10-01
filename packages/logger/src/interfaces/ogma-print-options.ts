@@ -14,5 +14,11 @@ export interface OgmaPrintOptions {
    * @default ''
    */
   correlationId?: string;
+  /**
+   * set this option to `true` to enable ogma to log multiple items each on a new line, just like
+   * `console.log('Hello', 'how', 'are', 'you?')`. This will only effect the logs if the first parameter
+   * is an array
+   */
+  each?: boolean;
   [key: string]: unknown;
 }
