@@ -2,7 +2,7 @@ import { Test } from '@nestjs/testing';
 import { Ogma } from '@ogma/logger';
 import { spy, Stub, stubMethod } from 'hanbi';
 import { suite } from 'uvu';
-import { equal, instance, is, ok } from 'uvu/assert';
+import { equal, instance, is, match, ok } from 'uvu/assert';
 
 import { OgmaService } from '../src';
 import { OGMA_CONTEXT, OGMA_INSTANCE, OGMA_TRACE_METHOD_OPTION } from '../src/ogma.constants';
@@ -92,6 +92,21 @@ for (const inst of [new Ogma(), undefined]) {
     },
   );
 }
+OgmaServiceSuite('it should print multiple statements', () => {
+  const streamSpy = spy();
+  const ogma = new Ogma({ stream: { write: streamSpy.handler } });
+  const service = new OgmaService(ogma);
+  const messages = ['Hello', '42', { hello: 'world' }, true];
+  service.log(messages, { each: true });
+  is(streamSpy.calls.size, 4, 'Expected four logs');
+  messages.forEach((message, index) => {
+    const loggedVal = streamSpy.getCall(index).args[0];
+    if (typeof message === 'object') {
+      message = JSON.stringify(message, null, 2);
+    }
+    match(loggedVal, message.toString());
+  });
+});
 
 OgmaServiceSuite.run();
 

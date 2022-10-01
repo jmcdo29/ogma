@@ -62,6 +62,11 @@ export class Ogma {
   }
 
   private printMessage(message: any, options: PrintMessageOptions): void {
+    if (Array.isArray(message) && options.each) {
+      const { each: _, ...newOpts } = options;
+      message.forEach((m) => this.printMessage(m, newOpts));
+      return;
+    }
     if (options.level < LogLevel[this.options.logLevel]) {
       return;
     }

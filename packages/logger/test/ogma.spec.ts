@@ -290,7 +290,7 @@ OgmaSuite(
     ogma.log(messages, { each: true });
     is(writeSpy.calls.size, 4, 'Expected there to be four calls to the write stream');
     messages.forEach((message, index) => {
-      const loggedVal = writeSpy.getCall(index)[0];
+      const loggedVal = writeSpy.getCall(index).args[0].toString();
       if (typeof message === 'object') {
         message = JSON.stringify(message, null, 2);
       }
