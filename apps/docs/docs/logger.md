@@ -54,6 +54,16 @@ When application and context are both present, Ogma will print your logs in a fo
 
 Examples can be seen below. The JSON structure follows the same form with log level and message being the last two properties.
 
+## Printing Multiple Values
+
+To get `ogma` to automatically print multiple values for you, rather than having to call `ogma.log` on each value, you can pass an array of value and the `{ each: true }` option to `ogma`. This will cause `ogma` to print each value of the array as if you had called `ogma.log` on each one.
+
+::: info
+
+Ogma ill **not** recursively print arrays of arrays. `[ ['Hello', 'World'], ['Foo', 'Bar', 'Baz']` will print two arrays across two lines, not five strings across five lines.
+
+:::
+
 ## Ogma Options
 
 | name | type | use |
