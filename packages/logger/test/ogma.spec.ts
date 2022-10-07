@@ -284,20 +284,144 @@ for (const json of [true, false]) {
 }
 OgmaSuite(
   'it should print each array value if the option "each" is true',
-  ({ writeSpy, ogmaFactory }) => {
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
     const ogma = ogmaFactory();
     const messages = ['hello', 42, { key: 'value' }, true];
     ogma.log(messages, { each: true });
-    is(writeSpy.calls.size, 4, 'Expected there to be four calls to the write stream');
-    messages.forEach((message, index) => {
-      const loggedVal = writeSpy.getCall(index).args[0].toString();
-      if (typeof message === 'object') {
-        message = JSON.stringify(message, null, 2);
-      }
-      match(loggedVal, message.toString());
-    });
+    is(writeSpy.calls.size, 1, 'Expected there to be one calls to the write stream');
+    const expected = `hello 42 {
+  "key": "value"
+} true`;
+    match(getFirstCallString(writeSpy), expected);
   },
 );
+OgmaSuite(
+  'it should respect array values that have newline characters',
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+    const ogma = ogmaFactory();
+    const messages = [{ hello: 'world' }, { key: 'value' }, 'some string\n', 'goodbye\n world'];
+    ogma.log(messages, { each: true });
+    const expected = `{
+  "hello": "world"
+} {
+  "key": "value"
+} some string
+goodbye
+ world`;
+    match(getFirstCallString(writeSpy), expected);
+  },
+);
+OgmaSuite(
+  'A tab character \\t should not be replaced',
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+    const ogma = ogmaFactory();
+    const messages = ['asdf\n\tasdf'];
+    ogma.log(messages, { each: true });
+    const expected = 'asdf\n\tasdf';
+    match(getFirstCallString(writeSpy), expected);
+  },
+);
+// https://github.com/jmcdo29/ogma/discussions/1381#discussioncomment-3820617
+for (const { message, expected } of [
+  {
+    message: ['asdf\n', 'sdfg', 'werr'],
+    expected: `asdf
+sdfg werr`,
+  },
+  {
+    message: ['some string:\n', { a: 1, b: 2 }],
+    expected: `some string:
+{
+  "a": 1,
+  "b": 2
+}`,
+  },
+  {
+    message: ['some string:', { a: 1, b: 2 }],
+    expected: `some string: {
+  "a": 1,
+  "b": 2
+}`,
+  },
+  {
+    message: [1, 2, 3],
+    expected: `1 2 3`,
+  },
+  {
+    message: ['hello', 42, { key: 'value' }, true],
+    expected: `hello 42 {
+  "key": "value"
+} true`,
+  },
+  {
+    message: [
+      'Hello',
+      'world',
+      {
+        deep: { nest: { key: 'value' }, nest2: { key: 'value' } },
+        deep2: { nest: { value: 'key' }, nest2: { key: 'value' } },
+      },
+      true,
+      42,
+    ],
+    expected: `Hello world {
+  "deep": {
+    "nest": {
+      "key": "value"
+    },
+    "nest2": {
+      "key": "value"
+    }
+  },
+  "deep2": {
+    "nest": {
+      "value": "key"
+    },
+    "nest2": {
+      "key": "value"
+    }
+  }
+} true 42`,
+  },
+  {
+    message: [
+      'Hello',
+      'world',
+      { deep: { nest: { key: 'value' } }, deep2: { nest: { value: 'key' } } },
+      true,
+      42,
+    ],
+    expected: `Hello world {
+  "deep": {
+    "nest": {
+      "key": "value"
+    }
+  },
+  "deep2": {
+    "nest": {
+      "value": "key"
+    }
+  }
+} true 42`,
+  },
+  {
+    message: ['asdf\n\tasdf', 'asdf\n{\n a: 1\n}'],
+    expected: `asdf
+\tasdf asdf
+{
+ a: 1
+}`,
+  },
+]) {
+  OgmaSuite(
+    `message: ${message.toString().replace(/\n/g, '\\n').replace(/\t/g, '\t')}`,
+    ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+      const ogma = ogmaFactory();
+      ogma.log(message, { each: true });
+      match(getFirstCallString(writeSpy), expected);
+    },
+  );
+}
 OgmaSuite('It should not explosively print array values', ({ writeSpy, ogmaFactory }) => {
   const ogma = ogmaFactory();
   const messages = [
@@ -305,7 +429,7 @@ OgmaSuite('It should not explosively print array values', ({ writeSpy, ogmaFacto
     ['How', 'are', 'you?'],
   ];
   ogma.log(messages, { each: true });
-  is(writeSpy.calls.size, 2, 'There should only be two calls');
+  is(writeSpy.calls.size, 1, 'There should only be one calls');
 });
 
 OgmaSuite.run();
