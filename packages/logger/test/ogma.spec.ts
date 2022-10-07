@@ -414,7 +414,7 @@ sdfg werr`,
   },
 ]) {
   OgmaSuite(
-    `message: ${message.toString().replace(/\n/g, '\\n').replace(/\t/g, '\t')}`,
+    `message: ${message.toString().replace(/\n/g, '\\n').replace(/\t/g, '\\t')}`,
     ({ writeSpy, ogmaFactory, getFirstCallString }) => {
       const ogma = ogmaFactory();
       ogma.log(message, { each: true });
