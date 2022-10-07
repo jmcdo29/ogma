@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.1.1
+
+### Patch Changes
+
+- 2e65080: Update {each: true } to separate via space, not newline
+
+  [Read up on the discussion here](https://github.com/jmcdo29/ogma/discussions/1381)
+
 ## 4.1.0
 
 ### Minor Changes
