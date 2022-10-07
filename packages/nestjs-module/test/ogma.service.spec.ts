@@ -98,9 +98,9 @@ OgmaServiceSuite('it should print multiple statements', () => {
   const service = new OgmaService(ogma);
   const messages = ['Hello', '42', { hello: 'world' }, true];
   service.log(messages, { each: true });
-  is(streamSpy.calls.size, 4, 'Expected four logs');
+  is(streamSpy.calls.size, 1, 'Expected one logs');
   messages.forEach((message, index) => {
-    const loggedVal = streamSpy.getCall(index).args[0];
+    const loggedVal = streamSpy.getCall(0).args[0];
     if (typeof message === 'object') {
       message = JSON.stringify(message, null, 2);
     }

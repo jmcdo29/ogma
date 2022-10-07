@@ -62,11 +62,6 @@ export class Ogma {
   }
 
   private printMessage(message: any, options: PrintMessageOptions): void {
-    if (Array.isArray(message) && options.each) {
-      const { each: _, ...newOpts } = options;
-      message.forEach((m) => this.printMessage(m, newOpts));
-      return;
-    }
     if (options.level < LogLevel[this.options.logLevel]) {
       return;
     }
@@ -162,12 +157,34 @@ export class Ogma {
     return JSON.stringify(json, this.circularReplacer());
   }
 
+  private stringifyObject(message: any, prependNewline = true, addSpace = false): any {
+    if (typeof message === 'object' && !(message instanceof Error)) {
+      message = `${prependNewline ? '\n' : ''}${JSON.stringify(
+        message,
+        this.circularReplacer(),
+        2,
+      )}`;
+    }
+    return `${message}${/[^\n]$/.test(message) && addSpace ? ' ' : ''}`;
+  }
+
   private formatStream(
     message: any,
-    { application = '', correlationId = '', formattedLevel, context = '' }: PrintMessageOptions,
+    {
+      application = '',
+      correlationId = '',
+      formattedLevel,
+      context = '',
+      each = false,
+    }: PrintMessageOptions,
   ): string {
-    if (typeof message === 'object' && !(message instanceof Error)) {
-      message = '\n' + JSON.stringify(message, this.circularReplacer(), 2);
+    if (Array.isArray(message) && each) {
+      for (let i = 0; i < message.length; i++) {
+        message[i] = this.stringifyObject(message[i], i === 0, i + 1 < message.length);
+      }
+      message = message.join('');
+    } else {
+      message = this.stringifyObject(message);
     }
     const { logHostname, logApplication, logPid } = this.options;
 
