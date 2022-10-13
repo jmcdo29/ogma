@@ -17,7 +17,7 @@ NoopInterceptorServiceSuite.before(async (context) => {
 });
 NoopInterceptorServiceSuite('It should return a success log object', ({ service }) => {
   Date.now = () => 133;
-  equal(service.getSuccessContext(151, {} as any, 50, {} as any), {
+  equal(service.getSuccessContext(Array(149).fill('o').join(''), {} as any, 50, {} as any), {
     callerAddress: 'caller ip',
     method: 'method',
     callPoint: 'call point',
