@@ -13,18 +13,20 @@ export abstract class AbstractInterceptorService implements InterceptorService {
   /**
    * A method to transform the incoming execution context into metadata that the OgmaInterceptor will then log.
    * This method handles the success cases
-   * @param dataLength the buffer length of the data
+   * @param data the response body that will be returned
    * @param context the execution context from Nest
    * @param startTime when the request started
    * @param options the options passed to the interceptor
    * @returns an object that represents what should be logged
    */
   getSuccessContext(
-    dataLength: number,
+    data: unknown,
     context: ExecutionContext,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
   ): MetaLogObject {
+    const stringifiedData = data ? JSON.stringify(data) : '';
+    const dataLength = Buffer.from(stringifiedData).byteLength;
     return {
       callerAddress: this.getCallerIp(context),
       method: this.getMethod(context),
@@ -33,7 +35,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
       contentLength: dataLength,
       protocol: this.getProtocol(context),
       status: this.getStatus(context, options.color && !options.json),
-      meta: this.getMeta(context),
+      meta: this.getMeta(context, data),
     };
   }
 
@@ -60,7 +62,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
       responseTime: this.getResponseTime(startTime),
       contentLength: Buffer.from(JSON.stringify(error.message)).byteLength,
       protocol: this.getProtocol(context),
-      meta: this.getMeta(context),
+      meta: this.getMeta(context, error),
     };
   }
 
@@ -79,9 +81,10 @@ export abstract class AbstractInterceptorService implements InterceptorService {
   /**
    * A helper method to allow devs the ability to pass in extra metadata when it comes to the interceptor
    * @param context The ExecutionContext
+   * @param data the response body or the error being returned
    * @returns whatever metadata you want to add in on a second log line. This can be a string, an object, anything
    */
-  getMeta(_context: ExecutionContext): unknown {
+  getMeta(_context: ExecutionContext, _data: unknown): unknown {
     return;
   }
 
