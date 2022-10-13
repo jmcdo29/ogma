@@ -29,8 +29,6 @@ export class DelegatorService {
     startTime: number,
     options: OgmaInterceptorServiceOptions,
   ): DelegatorContextReturn {
-    data = data ? JSON.stringify(data) : '';
-    data = Buffer.from(data).byteLength;
     const parser: Parser = this.getParser(context.getType());
     const { meta, ...logObject } = this.getContextString({
       method: 'getSuccessContext',
