@@ -202,6 +202,25 @@ This is only available in `@ogma/nestjs-module@3.1.0` and higher
 
 :::
 
+An example could look something like this:
+
+```typescript
+@Injectable()
+export class ExpressWithBodyParser extend ExpressParser {
+  getMeta(context: ExecutionContext, data: unknown) {
+    const key = data instanceof Error ? 'error' : 'res';
+    if (key === 'res') {
+      data ??= '';
+    }
+    const { body } = context.switchToHttp().getRequest();
+    return {
+      req: body,
+      [key]: data
+    }
+  }
+}
+```
+
 ## Other Abstract Classes
 
 There are also abstract classes already created for each transport type, `HTTP`, `GQL`, `WS`, and `RPC`. Each of which can be used instead of extending from the base `AbstractInterceptorService` class if you so choose. This helps with needing to implement the minimum amount of logic for the parser.
