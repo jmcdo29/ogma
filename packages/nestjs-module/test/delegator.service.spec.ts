@@ -128,16 +128,7 @@ for (const method of ['getSuccessContext', 'getErrorContext'] as const) {
       const methodName =
         method === 'getSuccessContext' ? 'getContextSuccessString' : 'getContextErrorString';
       equal(delegate[methodName](data, fullContextMock, startTime, options), parsedString);
-      ok(
-        parserSpy.calledWith(
-          method === 'getSuccessContext'
-            ? Buffer.from(JSON.stringify(data)).byteLength
-            : (data as any),
-          fullContextMock,
-          startTime,
-          options,
-        ),
-      );
+      ok(parserSpy.calledWith(data, fullContextMock, startTime, options));
     });
   }
 }
@@ -159,7 +150,7 @@ DelegatorServiceSuite('It should use JSON format instead of string', ({ delegate
     log: parserReturn,
     meta: undefined,
   });
-  ok(parseSpy.calledWith(Buffer.from(JSON.stringify('data')).byteLength, fullCtxMock, 0, options));
+  ok(parseSpy.calledWith('data', fullCtxMock, 0, options));
 });
 DelegatorServiceSuite('It should replace no data with an empty string', ({ delegate, parsers }) => {
   const fullCtxMock = executionMockFactory({ getType: () => 'http' });
@@ -170,7 +161,7 @@ DelegatorServiceSuite('It should replace no data with an empty string', ({ deleg
     log: '127.0.0.1 - GET / HTTP/1.1 200 2ms - 0',
     meta: undefined,
   });
-  ok(parseSpy.calledWith(0, fullCtxMock, 0, options));
+  ok(parseSpy.calledWith(null, fullCtxMock, 0, options));
 });
 
 DelegatorServiceSuite.run();
