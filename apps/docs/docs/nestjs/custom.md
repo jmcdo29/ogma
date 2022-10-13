@@ -206,7 +206,7 @@ An example could look something like this:
 
 ```typescript
 @Injectable()
-export class ExpressWithBodyParser extend ExpressParser {
+export class ExpressWithBodyParser extends ExpressParser {
   getMeta(context: ExecutionContext, data: unknown) {
     const key = data instanceof Error ? 'error' : 'res';
     if (key === 'res') {
@@ -216,7 +216,7 @@ export class ExpressWithBodyParser extend ExpressParser {
     return {
       req: body,
       [key]: data
-    }
+    };
   }
 }
 ```
