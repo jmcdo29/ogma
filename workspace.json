@@ -7,7 +7,7 @@
       "sourceRoot": "benchmarks/interceptor/src",
       "targets": {
         "bench": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "nx:run-commands",
           "options": {
             "cwd": "benchmarks/interceptor",
             "commands": [
@@ -26,7 +26,7 @@
       "type": "library",
       "targets": {
         "bench": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "nx:run-commands",
           "options": {
             "cwd": "benchmarks/logger",
             "commands": [
@@ -104,7 +104,7 @@
           }
         },
         "deploy": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "nx:run-commands",
           "options": {
             "command": "pnpm docusaurus deploy --out-dir dist/apps/docs --config apps/docs/docusaurus.config.js --skip-build"
           }
@@ -118,7 +118,7 @@
       "sourceRoot": "integration/src",
       "targets": {
         "e2e": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "nx:run-commands",
           "options": {
             "commands": ["docker compose down"]
           },
@@ -145,7 +145,7 @@
           ]
         },
         "docker-ready": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "nx:run-commands",
           "options": {
             "commands": [
               "while ! nc -q0 localhost 1883 < /dev/null > /dev/null 2>&1; do sleep 10; done",
@@ -163,7 +163,7 @@
           ]
         },
         "docker-up": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "nx:run-commands",
           "options": {
             "commands": ["docker compose up -d"]
           }
@@ -625,14 +625,14 @@
       "sourceRoot": "tools",
       "targets": {
         "compile": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "nx:run-commands",
           "options": {
             "cwd": "./tools/",
             "command": "../node_modules/.bin/tsc"
           }
         },
         "collect": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "nx:run-commands",
           "options": {
             "commands": [
               "echo 'Collection Coverages to single location' && node tools/coverage-merge.js",
@@ -659,7 +659,7 @@
           ]
         },
         "setup": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "nx:run-commands",
           "options": {
             "command": "node .//tools/setup-workspace"
           },
