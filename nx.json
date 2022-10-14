@@ -1,13 +1,5 @@
 {
   "npmScope": "ogma",
-  "implicitDependencies": {
-    "workspace.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    "nx.json": "*"
-  },
   "targetDependencies": {
     "build": [
       {
@@ -43,5 +35,15 @@
   },
   "affected": {
     "defaultBase": "main"
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": ["{workspaceRoot}/workspace.json", "{workspaceRoot}/nx.json"],
+    "production": ["default", "!{projectRoot}/.eslintrc.js"]
+  },
+  "targetDefaults": {
+    "build": {
+      "inputs": ["production", "^production"]
+    }
   }
 }
