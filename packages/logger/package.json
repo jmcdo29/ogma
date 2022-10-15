@@ -28,5 +28,9 @@
   },
   "bugs": {
     "url": "https://github.com/jmcdo29/ogma/issues"
+  },
+  "dependencies": {
+    "@ogma/common": "^1.0.0",
+    "@ogma/styler": "^1.0.0"
   }
 }

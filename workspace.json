@@ -52,7 +52,8 @@
             "tsConfig": "packages/cli/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/cli/package.json",
-            "assets": ["packages/cli/*.md"]
+            "assets": ["packages/cli/*.md"],
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           }
         },
         "test": {
