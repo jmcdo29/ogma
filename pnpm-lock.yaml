@@ -103,7 +103,7 @@ importers:
       url-loader: ^4.1.1
       uvu: ^0.5.3
       winston: ^3.3.3
-      ws: 8.5.0
+      ws: 8.10.0
     devDependencies:
       '@apollo/gateway': 0.50.2_graphql@16.5.0
       '@changesets/cli': 2.17.0
@@ -200,7 +200,7 @@ importers:
       url-loader: 4.1.1
       uvu: 0.5.3
       winston: 3.3.3
-      ws: 8.5.0
+      ws: 8.10.0
 
   benchmarks/interceptor:
     specifiers: {}
@@ -4080,7 +4080,7 @@ packages:
     resolution: {integrity: sha512-ngZo5rchmhRZaML4MkAY/ClGs8Iyp0+rL97EIP0QsU2N4ICqBKEBG/wGL21ImAhha1RFixEzz8+CB/Ad/W50yw==}
     dependencies:
       fastify-plugin: 3.0.1
-      ws: 8.8.1
+      ws: 8.10.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -11147,6 +11147,18 @@ packages:
       debug:
         optional: true
 
+  /follow-redirects/1.15.1_debug@4.3.4:
+    resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.4_supports-color@6.1.0
+    dev: true
+
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -12211,7 +12223,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@4.3.4
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -14308,7 +14320,7 @@ packages:
       single-user-cache: 0.6.0
       tiny-lru: 8.0.2
       undici: 5.4.0
-      ws: 8.5.0
+      ws: 8.10.0
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -14697,7 +14709,7 @@ packages:
       readable-stream: 3.6.0
       reinterval: 1.1.0
       split2: 3.2.2
-      ws: 7.5.5
+      ws: 7.5.9
       xtend: 4.0.2
     transitivePeerDependencies:
       - bufferutil
@@ -20445,7 +20457,7 @@ packages:
       spdy: 4.0.2
       webpack: 5.73.0_@swc+core@1.2.141
       webpack-dev-middleware: 5.3.3_webpack@5.73.0
-      ws: 8.8.1
+      ws: 8.10.0
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -20794,19 +20806,6 @@ packages:
       async-limiter: 1.0.1
     dev: true
 
-  /ws/7.5.5:
-    resolution: {integrity: sha512-BAkMFcAzl8as1G/hArkxOxq3G7pjUqQ3gzYbLL0/5zNkph70e+lCoxBGnm6AW1+/aiNeV4fnKqZ8m4GZewmH2w==}
-    engines: {node: '>=8.3.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: ^5.0.2
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-    dev: true
-
   /ws/7.5.9:
     resolution: {integrity: sha512-F+P9Jil7UiSKSkppIiD94dN07AwvFixvLIj1Og1Rl9GGMuNipJnV9JzjD6XuqmAeiswGvUmNLjr5cFuXwNS77Q==}
     engines: {node: '>=8.3.0'}
@@ -20820,8 +20819,8 @@ packages:
         optional: true
     dev: true
 
-  /ws/8.2.3:
-    resolution: {integrity: sha512-wBuoj1BDpC6ZQ1B7DWQBYVLphPWkm8i9Y0/3YdHjHKHiohOJ1ws+3OccDWtH+PoC9DZD5WOTrJvNbWvjS6JWaA==}
+  /ws/8.10.0:
+    resolution: {integrity: sha512-+s49uSmZpvtAsd2h37vIPy1RBusaLawVe8of+GyEPsaJTCMpj/2v8NpeK1SHXjBlQ95lQTmQofOJnFiLoaN3yw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -20833,8 +20832,8 @@ packages:
         optional: true
     dev: true
 
-  /ws/8.5.0:
-    resolution: {integrity: sha512-BWX0SWVgLPzYwF8lTzEy1egjhS4S4OEAHfsO8o65WOVsrnSRGaSiUaa9e0ggGlkMTtBlmOpEXiie9RUcBO86qg==}
+  /ws/8.2.3:
+    resolution: {integrity: sha512-wBuoj1BDpC6ZQ1B7DWQBYVLphPWkm8i9Y0/3YdHjHKHiohOJ1ws+3OccDWtH+PoC9DZD5WOTrJvNbWvjS6JWaA==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
