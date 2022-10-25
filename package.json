@@ -72,7 +72,7 @@
     "@nrwl/linter": "15.0.2",
     "@nrwl/nest": "15.0.2",
     "@nrwl/node": "15.0.2",
-    "@nrwl/nx-cloud": "14.7.0",
+    "@nrwl/nx-cloud": "15.0.0",
     "@nrwl/workspace": "15.0.2",
     "@nx-plus/docusaurus": "13.0.1",
     "@swc/cli": "^0.1.55",
