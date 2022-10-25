@@ -39,7 +39,7 @@ importers:
       '@nrwl/node': 15.0.2
       '@nrwl/nx-cloud': 14.7.0
       '@nrwl/workspace': 15.0.2
-      '@nx-plus/docusaurus': 13.0.1
+      '@nx-plus/docusaurus': 13.0.2
       '@swc/cli': ^0.1.55
       '@swc/core': ^1.2.141
       '@swc/register': ^0.1.10
@@ -136,7 +136,7 @@ importers:
       '@nrwl/node': 15.0.2_3pmnd3xoq33tmacgqwscfri3qm
       '@nrwl/nx-cloud': 14.7.0
       '@nrwl/workspace': 15.0.2_p66morib4oytcqwnwkrsl3inzu
-      '@nx-plus/docusaurus': 13.0.1_d257gteh2zjq5x36zk6t3vy3l4
+      '@nx-plus/docusaurus': 13.0.2_d257gteh2zjq5x36zk6t3vy3l4
       '@swc/cli': 0.1.55_@swc+core@1.2.141
       '@swc/core': 1.2.141
       '@swc/register': 0.1.10_@swc+core@1.2.141
@@ -5679,8 +5679,8 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nx-plus/docusaurus/13.0.1_d257gteh2zjq5x36zk6t3vy3l4:
-    resolution: {integrity: sha512-0POfCY2zR0sU1HQ7VxKHLUIvdk9WQcveaDsT5Zh0Q+E1hHx6l8r5UKzDb3xBU6sPDUdw+Z2BVYsI1/155cjBdg==}
+  /@nx-plus/docusaurus/13.0.2_d257gteh2zjq5x36zk6t3vy3l4:
+    resolution: {integrity: sha512-ltkB0bEa7ZCfU2xYOT7el41jHJKXlsmL9ZtUNCJmeIomV7hPTLa0HR2amYa7MiajH8vfxT8SB9S8OJjfW82+RA==}
     peerDependencies:
       '@nrwl/workspace': ^13.0.0
     dependencies:
