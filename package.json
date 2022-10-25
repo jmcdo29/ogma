@@ -145,6 +145,6 @@
   },
   "resolutions": {
     "apollo-cache-control": "0.14.0",
-    "axios": "~0.27.0"
+    "axios": "~1.1.0"
   }
 }
