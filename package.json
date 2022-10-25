@@ -87,7 +87,7 @@
     "@typescript-eslint/eslint-plugin": "5.41.0",
     "@typescript-eslint/parser": "5.41.0",
     "amqp-connection-manager": "4.1.9",
-    "amqplib": "^0.8.0",
+    "amqplib": "0.10.3",
     "apollo-server-express": "3.10.3",
     "apollo-server-fastify": "3.10.3",
     "bunyan": "^1.8.15",
