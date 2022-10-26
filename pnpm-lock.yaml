@@ -98,7 +98,7 @@ importers:
       tree-kill: ^1.2.2
       ts-morph: 14.0.0
       ts-node: ^10.5.0
-      tsconfig-paths: ^3.12.0
+      tsconfig-paths: ^4.0.0
       typescript: 4.8.4
       url-loader: ^4.1.1
       uvu: ^0.5.3
@@ -195,7 +195,7 @@ importers:
       tree-kill: 1.2.2
       ts-morph: 14.0.0
       ts-node: 10.5.0_ynvgkzicre4selgtatpcgd5msq
-      tsconfig-paths: 3.12.0
+      tsconfig-paths: 4.1.0
       typescript: 4.8.4
       url-loader: 4.1.1
       uvu: 0.5.3
@@ -19611,20 +19611,20 @@ packages:
       tsconfig-paths: 3.14.1
     dev: true
 
-  /tsconfig-paths/3.12.0:
-    resolution: {integrity: sha512-e5adrnOYT6zqVnWqZu7i/BQ3BnhzvGbjEjejFXO20lKIKpwTaupkCPgEfv4GZK1IBciJUEhYs3J3p75FdaTFVg==}
-    dependencies:
-      '@types/json5': 0.0.29
-      json5: 1.0.1
-      minimist: 1.2.5
-      strip-bom: 3.0.0
-    dev: true
-
   /tsconfig-paths/3.14.1:
     resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==}
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.1
+      minimist: 1.2.6
+      strip-bom: 3.0.0
+    dev: true
+
+  /tsconfig-paths/4.1.0:
+    resolution: {integrity: sha512-AHx4Euop/dXFC+Vx589alFba8QItjF+8hf8LtmuiCwHyI4rHXQtOOENaM8kvYf5fR0dRChy3wzWIZ9WbB7FWow==}
+    engines: {node: '>=6'}
+    dependencies:
+      json5: 2.2.1
       minimist: 1.2.6
       strip-bom: 3.0.0
     dev: true
