@@ -81,7 +81,7 @@ importers:
       mqtt: ^4.2.8
       nats: ^2.7.1
       nest-commander: ^2.0.0
-      nest-commander-testing: ^2.0.0
+      nest-commander-testing: 3.0.1
       nx: 15.0.3
       nx-uvu: ^1.2.0
       pactum: ^3.1.4
@@ -178,7 +178,7 @@ importers:
       mqtt: 4.2.8
       nats: 2.7.1
       nest-commander: 2.3.3_6whalgrsvisgjemghedgkfq7dm
-      nest-commander-testing: 2.0.1_vzplicpo4mrtrthdacwdahuwom
+      nest-commander-testing: 3.0.1_vzplicpo4mrtrthdacwdahuwom
       nx: 15.0.3_@swc+core@1.2.141
       nx-uvu: 1.2.0_nx@15.0.3
       pactum: 3.1.4
@@ -14958,13 +14958,13 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /nest-commander-testing/2.0.1_vzplicpo4mrtrthdacwdahuwom:
-    resolution: {integrity: sha512-2cLMowyMy8uCnRFkT8iyVJNHpvFSlXgIR5vkDegK3nkxlTQxOSuvl52e6DBdz5y/sCwqOgS+lzxZNgZmJFo5WQ==}
+  /nest-commander-testing/3.0.1_vzplicpo4mrtrthdacwdahuwom:
+    resolution: {integrity: sha512-GQgD1mlelJDbknl/WMeSU8Orexq/RCyB2j30QSWPEzhhFolz6YknPJK4fPg7oLdehSqNVrsv/cCHPR1neUSnlw==}
     peerDependencies:
-      '@nestjs/common': ^8.0.0
-      '@nestjs/core': ^8.0.0
-      '@nestjs/testing': ^8.0.0
-      nest-commander: ^2.0.0
+      '@nestjs/common': ^8.0.0 || ^9.0.0
+      '@nestjs/core': ^8.0.0 || ^9.0.0
+      '@nestjs/testing': ^8.0.0 || ^9.0.0
+      nest-commander: ^2.5.0 || ^3.0.0
     dependencies:
       '@nestjs/common': 9.1.6_7c3h7o72lg3qvjadljqitllxdi
       '@nestjs/core': 9.1.6_wz2sy3usfa24dcdyyblaivojxq
