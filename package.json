@@ -105,7 +105,7 @@
     "fastify": "4.9.2",
     "graphql": "^16",
     "hanbi": "^1.0.1",
-    "husky": "^7.0.2",
+    "husky": "^8.0.0",
     "ioredis": "^5.2.2",
     "kafkajs": "2.2.2",
     "lcov-result-merger": "^3.1.0",
