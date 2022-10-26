@@ -96,7 +96,7 @@ importers:
       socket.io: 4.5.0
       socket.io-client: 4.5.0
       tree-kill: ^1.2.2
-      ts-morph: 14.0.0
+      ts-morph: 16.0.0
       ts-node: ^10.5.0
       tsconfig-paths: ^3.12.0
       typescript: 4.8.4
@@ -119,7 +119,7 @@ importers:
       '@nestjs/apollo': 10.0.19_3qugbqb4hgocwzpmmiwprz6hte
       '@nestjs/common': 9.1.6_7c3h7o72lg3qvjadljqitllxdi
       '@nestjs/core': 9.1.6_wz2sy3usfa24dcdyyblaivojxq
-      '@nestjs/graphql': 10.0.21_6jtgvvf2f56lrd4mzmtbynuzqi
+      '@nestjs/graphql': 10.0.21_axcafz226rg4senyfdb7w6jzcm
       '@nestjs/mercurius': 10.0.21_6kujzqhnueurq3mr3yxci4zkcm
       '@nestjs/microservices': 9.0.11_nkqdtoeftgk2ci6qmggjrjavgi
       '@nestjs/platform-express': 9.1.6_6whalgrsvisgjemghedgkfq7dm
@@ -193,7 +193,7 @@ importers:
       socket.io: 4.5.0
       socket.io-client: 4.5.0
       tree-kill: 1.2.2
-      ts-morph: 14.0.0
+      ts-morph: 16.0.0
       ts-node: 10.5.0_ynvgkzicre4selgtatpcgd5msq
       tsconfig-paths: 3.12.0
       typescript: 4.8.4
@@ -4730,7 +4730,7 @@ packages:
       '@apollo/gateway': 2.1.4_graphql@16.5.0
       '@nestjs/common': 9.1.6_7c3h7o72lg3qvjadljqitllxdi
       '@nestjs/core': 9.1.6_wz2sy3usfa24dcdyyblaivojxq
-      '@nestjs/graphql': 10.0.21_6jtgvvf2f56lrd4mzmtbynuzqi
+      '@nestjs/graphql': 10.0.21_axcafz226rg4senyfdb7w6jzcm
       apollo-server-express: 3.10.3_t56sx7qlv54ciwvteojlbfotva
       apollo-server-fastify: 3.10.3_tq4t32utkmjijskvrfxg6po3f4
       graphql: 16.5.0
@@ -4855,7 +4855,7 @@ packages:
       - encoding
     dev: true
 
-  /@nestjs/graphql/10.0.21_6jtgvvf2f56lrd4mzmtbynuzqi:
+  /@nestjs/graphql/10.0.21_axcafz226rg4senyfdb7w6jzcm:
     resolution: {integrity: sha512-wrc3KFT5Tj+HieAR8IOgvtaQRMHpjInuBaykq76Drn4do6qoGZ509DDw7LQ8U3E2VWXe8F4ItnyxskBphoqEgA==}
     peerDependencies:
       '@apollo/subgraph': ^0.1.5 || ^0.3.0 || ^0.4.0 || ^2.0.0
@@ -4885,7 +4885,7 @@ packages:
       normalize-path: 3.0.0
       reflect-metadata: 0.1.13
       subscriptions-transport-ws: 0.11.0_graphql@16.5.0
-      ts-morph: 14.0.0
+      ts-morph: 16.0.0
       tslib: 2.4.0
       uuid: 8.3.2
       ws: 8.8.1
@@ -4925,7 +4925,7 @@ packages:
       mercurius: ^8.12.0 || ^9.0.0 || ^10.0.0
     dependencies:
       '@nestjs/common': 9.1.6_7c3h7o72lg3qvjadljqitllxdi
-      '@nestjs/graphql': 10.0.21_6jtgvvf2f56lrd4mzmtbynuzqi
+      '@nestjs/graphql': 10.0.21_axcafz226rg4senyfdb7w6jzcm
       fastify: 4.9.2
       graphql: 16.5.0
       mercurius: 11.2.0_graphql@16.5.0
@@ -6107,8 +6107,8 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: true
 
-  /@ts-morph/common/0.13.0:
-    resolution: {integrity: sha512-fEJ6j7Cu8yiWjA4UmybOBH9Efgb/64ZTWuvCF4KysGu4xz8ettfyaqFt8WZ1btCxXsGZJjZ2/3svOF6rL+UFdQ==}
+  /@ts-morph/common/0.17.0:
+    resolution: {integrity: sha512-RMSSvSfs9kb0VzkvQ2NWobwnj7TxCA9vI/IjR9bDHqgAyVbu2T0DN4wiKVqomyDWqO7dPr/tErSfq7urQ1Q37g==}
     dependencies:
       fast-glob: 3.2.11
       minimatch: 5.1.0
@@ -8505,10 +8505,8 @@ packages:
       q: 1.5.1
     dev: true
 
-  /code-block-writer/11.0.0:
-    resolution: {integrity: sha512-GEqWvEWWsOvER+g9keO4ohFoD3ymwyCnqY3hoTr7GZipYFwEhMHJw+TtV0rfgRhNImM6QWZGO2XYjlJVyYT62w==}
-    dependencies:
-      tslib: 2.3.1
+  /code-block-writer/11.0.3:
+    resolution: {integrity: sha512-NiujjUFB4SwScJq2bwbYUtXbZhBSlY6vYzm++3Q6oC+U+injTqfPYFK8wS9COOmb2lueqp0ZRB4nK1VYeHgNyw==}
     dev: true
 
   /collapse-white-space/1.0.6:
@@ -19500,11 +19498,11 @@ packages:
       webpack: 5.73.0_@swc+core@1.2.141
     dev: true
 
-  /ts-morph/14.0.0:
-    resolution: {integrity: sha512-tO8YQ1dP41fw8GVmeQAdNsD8roZi1JMqB7YwZrqU856DvmG5/710e41q2XauzTYrygH9XmMryaFeLo+kdCziyA==}
+  /ts-morph/16.0.0:
+    resolution: {integrity: sha512-jGNF0GVpFj0orFw55LTsQxVYEUOCWBAbR5Ls7fTYE5pQsbW18ssTb/6UXx/GYAEjS+DQTp8VoTw0vqYMiaaQuw==}
     dependencies:
-      '@ts-morph/common': 0.13.0
-      code-block-writer: 11.0.0
+      '@ts-morph/common': 0.17.0
+      code-block-writer: 11.0.3
     dev: true
 
   /ts-node/10.5.0_ynvgkzicre4selgtatpcgd5msq:
