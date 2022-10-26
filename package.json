@@ -102,7 +102,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "8.0.0",
     "express": "^4.17.1",
-    "fastify": "^3",
+    "fastify": "4.9.2",
     "graphql": "^16",
     "hanbi": "^1.0.1",
     "husky": "^7.0.2",
