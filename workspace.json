@@ -213,7 +213,8 @@
             "tsConfig": "packages/nestjs-module/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/nestjs-module/package.json",
-            "assets": ["packages/nestjs-module/*.md"]
+            "assets": ["packages/nestjs-module/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -241,7 +242,8 @@
             "tsConfig": "packages/platform-express/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-express/package.json",
-            "assets": ["packages/platform-express/*.md"]
+            "assets": ["packages/platform-express/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -269,7 +271,8 @@
             "tsConfig": "packages/platform-fastify/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-fastify/package.json",
-            "assets": ["packages/platform-fastify/*.md"]
+            "assets": ["packages/platform-fastify/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -297,7 +300,8 @@
             "tsConfig": "packages/platform-graphql/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-graphql/package.json",
-            "assets": ["packages/platform-graphql/*.md"]
+            "assets": ["packages/platform-graphql/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -325,7 +329,8 @@
             "tsConfig": "packages/platform-graphql-fastify/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-graphql-fastify/package.json",
-            "assets": ["packages/platform-graphql-fastify/*.md"]
+            "assets": ["packages/platform-graphql-fastify/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -353,7 +358,8 @@
             "tsConfig": "packages/platform-grpc/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-grpc/package.json",
-            "assets": ["packages/platform-grpc/*.md"]
+            "assets": ["packages/platform-grpc/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -381,7 +387,8 @@
             "tsConfig": "packages/platform-kafka/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-kafka/package.json",
-            "assets": ["packages/platform-kafka/*.md"]
+            "assets": ["packages/platform-kafka/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -409,7 +416,8 @@
             "tsConfig": "packages/platform-mqtt/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-mqtt/package.json",
-            "assets": ["packages/platform-mqtt/*.md"]
+            "assets": ["packages/platform-mqtt/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -437,7 +445,8 @@
             "tsConfig": "packages/platform-nats/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-nats/package.json",
-            "assets": ["packages/platform-nats/*.md"]
+            "assets": ["packages/platform-nats/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -465,7 +474,8 @@
             "tsConfig": "packages/platform-rabbitmq/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-rabbitmq/package.json",
-            "assets": ["packages/platform-rabbitmq/*.md"]
+            "assets": ["packages/platform-rabbitmq/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -493,7 +503,8 @@
             "tsConfig": "packages/platform-redis/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-redis/package.json",
-            "assets": ["packages/platform-redis/*.md"]
+            "assets": ["packages/platform-redis/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -521,7 +532,8 @@
             "tsConfig": "packages/platform-socket.io/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-socket.io/package.json",
-            "assets": ["packages/platform-socket.io/*.md"]
+            "assets": ["packages/platform-socket.io/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -549,7 +561,8 @@
             "tsConfig": "packages/platform-tcp/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-tcp/package.json",
-            "assets": ["packages/platform-tcp/*.md"]
+            "assets": ["packages/platform-tcp/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -577,7 +590,8 @@
             "tsConfig": "packages/platform-ws/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/platform-ws/package.json",
-            "assets": ["packages/platform-ws/*.md"]
+            "assets": ["packages/platform-ws/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
@@ -605,7 +619,8 @@
             "tsConfig": "packages/styler/tsconfig.build.json",
             "deleteOutputPath": true,
             "packageJson": "packages/styler/package.json",
-            "assets": ["packages/styler/*.md"]
+            "assets": ["packages/styler/*.md"],
+            "updateBuildableProjectDepsInPackageJson": false
           }
         },
         "test": {
