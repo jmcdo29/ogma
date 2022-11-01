@@ -15,7 +15,7 @@ importers:
       '@docusaurus/core': ^2.0.0-alpha.70
       '@docusaurus/preset-classic': ^2.0.0-alpha.70
       '@graphql-tools/schema': 9.0.5
-      '@graphql-tools/utils': ^8.2.2
+      '@graphql-tools/utils': ^9.0.0
       '@grpc/grpc-js': ^1.3.7
       '@grpc/proto-loader': 0.7.3
       '@mdx-js/react': 2.1.5
@@ -112,7 +112,7 @@ importers:
       '@docusaurus/core': 2.0.0-beta.8_6l3ot7yb7rku5f6zpj5dsctpny
       '@docusaurus/preset-classic': 2.0.0-beta.8_6l3ot7yb7rku5f6zpj5dsctpny
       '@graphql-tools/schema': 9.0.5_graphql@16.5.0
-      '@graphql-tools/utils': 8.5.1_graphql@16.5.0
+      '@graphql-tools/utils': 9.0.0_graphql@16.5.0
       '@grpc/grpc-js': 1.4.2
       '@grpc/proto-loader': 0.7.3
       '@mdx-js/react': 2.1.5_react@18.2.0
@@ -4260,15 +4260,6 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /@graphql-tools/utils/8.5.1_graphql@16.5.0:
-    resolution: {integrity: sha512-V/OQVpj+Z05qW9ZdlJWSKzREYlgGEq+juV+pUy3JO9jI+sZo/W3oncuW9+1awwp/RkL0aZ9RgjL+XYOgCsmOLw==}
-    peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-    dependencies:
-      graphql: 16.5.0
-      tslib: 2.3.1
-    dev: true
-
   /@graphql-tools/utils/8.8.0_graphql@16.5.0:
     resolution: {integrity: sha512-KJrtx05uSM/cPYFdTnGAS1doL5bftJLAiFCDMZ8Vkifztz3BFn3gpFiy/o4wDtM8s39G46mxmt2Km/RmeltfGw==}
     peerDependencies:
@@ -4280,6 +4271,15 @@ packages:
 
   /@graphql-tools/utils/8.9.0_graphql@16.5.0:
     resolution: {integrity: sha512-pjJIWH0XOVnYGXCqej8g/u/tsfV4LvLlj0eATKQu5zwnxd/TiTHq7Cg313qUPTFFHZ3PP5wJ15chYVtLDwaymg==}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+    dependencies:
+      graphql: 16.5.0
+      tslib: 2.4.0
+    dev: true
+
+  /@graphql-tools/utils/9.0.0_graphql@16.5.0:
+    resolution: {integrity: sha512-kaCwyWnURxMsYbxzkfylLqFFelu83jKk3BJOOy0GIuxEtgXVS9v7Y/tojljo69Q+jaZ2YxAi3+d8IpM+hx768A==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
