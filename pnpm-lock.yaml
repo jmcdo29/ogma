@@ -31,14 +31,14 @@ importers:
       '@nestjs/platform-ws': ^9.0.11
       '@nestjs/testing': 9.1.6
       '@nestjs/websockets': ^9.0.11
-      '@nrwl/devkit': 15.0.4
-      '@nrwl/eslint-plugin-nx': 15.0.4
-      '@nrwl/js': 15.0.4
-      '@nrwl/linter': 15.0.4
-      '@nrwl/nest': 15.0.4
-      '@nrwl/node': 15.0.4
+      '@nrwl/devkit': 15.0.6
+      '@nrwl/eslint-plugin-nx': 15.0.6
+      '@nrwl/js': 15.0.6
+      '@nrwl/linter': 15.0.6
+      '@nrwl/nest': 15.0.6
+      '@nrwl/node': 15.0.6
       '@nrwl/nx-cloud': 15.0.0
-      '@nrwl/workspace': 15.0.4
+      '@nrwl/workspace': 15.0.6
       '@nx-plus/docusaurus': 14.1.0
       '@swc/cli': ^0.1.55
       '@swc/core': ^1.2.141
@@ -82,7 +82,7 @@ importers:
       nats: ^2.7.1
       nest-commander: ^2.0.0
       nest-commander-testing: 3.0.1
-      nx: 15.0.4
+      nx: 15.0.6
       nx-uvu: ^1.2.0
       pactum: ^3.1.4
       pino: 8.7.0
@@ -128,15 +128,15 @@ importers:
       '@nestjs/platform-ws': 9.0.11_lluhfsadxsclpcakxkmcnqqoom
       '@nestjs/testing': 9.1.6_cwj4wgudowgnjlmiei7dwr6qfi
       '@nestjs/websockets': 9.0.11_2su77ddjx5pbuj76b4xrpge7iy
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/eslint-plugin-nx': 15.0.4_p6ylyodnn2e6vw7ghc4tz7dtfq
-      '@nrwl/js': 15.0.4_xzvr7mcprufqo72zia2l7odtya
-      '@nrwl/linter': 15.0.4_qqzg3pal2fvla4fuhxpvex2jjm
-      '@nrwl/nest': 15.0.4_xzvr7mcprufqo72zia2l7odtya
-      '@nrwl/node': 15.0.4_xzvr7mcprufqo72zia2l7odtya
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/eslint-plugin-nx': 15.0.6_e2lbpv6tj4aws3nfxte2pt5zuy
+      '@nrwl/js': 15.0.6_p4cdarbds2cfaawvxyfjrehvay
+      '@nrwl/linter': 15.0.6_qqzg3pal2fvla4fuhxpvex2jjm
+      '@nrwl/nest': 15.0.6_p4cdarbds2cfaawvxyfjrehvay
+      '@nrwl/node': 15.0.6_p4cdarbds2cfaawvxyfjrehvay
       '@nrwl/nx-cloud': 15.0.0
-      '@nrwl/workspace': 15.0.4_oruvvf6easkjlfadcdve2vuvwa
-      '@nx-plus/docusaurus': 14.1.0_3eaom7zqaimoi6brnw6n6p75f4
+      '@nrwl/workspace': 15.0.6_oruvvf6easkjlfadcdve2vuvwa
+      '@nx-plus/docusaurus': 14.1.0_n5uj3ag6zky4l4rhbgikhnub3m
       '@swc/cli': 0.1.55_@swc+core@1.2.141
       '@swc/core': 1.2.141
       '@swc/register': 0.1.10_@swc+core@1.2.141
@@ -179,8 +179,8 @@ importers:
       nats: 2.7.1
       nest-commander: 2.3.3_6whalgrsvisgjemghedgkfq7dm
       nest-commander-testing: 3.0.1_vzplicpo4mrtrthdacwdahuwom
-      nx: 15.0.4_@swc+core@1.2.141
-      nx-uvu: 1.2.0_nx@15.0.4
+      nx: 15.0.6_@swc+core@1.2.141
+      nx-uvu: 1.2.0_nx@15.0.6
       pactum: 3.1.4
       pino: 8.7.0
       prettier: 2.4.1
@@ -5143,46 +5143,46 @@ packages:
       rimraf: 3.0.2
     dev: true
 
-  /@nrwl/cli/15.0.4_@swc+core@1.2.141:
-    resolution: {integrity: sha512-H3lni8iXUOzWTg1nH4YqOYxpyDz8Bq1Y30bb26r5yRlhdwsNtDBCZCaJQim8yCqYXYJVbxQnU4Ree2WR8xSg/g==}
+  /@nrwl/cli/15.0.6_@swc+core@1.2.141:
+    resolution: {integrity: sha512-ckNPeEseK7rdYKYPiVMp368G5lLKp8dYrAg6dcKNqi7+UCPDAfdk5BW9VCVDV5bQw1D5UVQbUaq6AWJFkqC+vQ==}
     dependencies:
-      nx: 15.0.4_@swc+core@1.2.141
+      nx: 15.0.6_@swc+core@1.2.141
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
       - debug
     dev: true
 
-  /@nrwl/devkit/14.3.6_nx@15.0.4:
+  /@nrwl/devkit/14.3.6_nx@15.0.6:
     resolution: {integrity: sha512-yGAZ5emBSb13smdkVagJRD/IC+ZkGLuRUc9A4Oqp/hDtOoUx6Jxot6vKwniTfbYZlk1Dkeq77d3atsEwz0dD1A==}
     peerDependencies:
       nx: '>= 13.10 <= 15'
     dependencies:
       ejs: 3.1.8
       ignore: 5.2.0
-      nx: 15.0.4_@swc+core@1.2.141
+      nx: 15.0.6_@swc+core@1.2.141
       rxjs: 6.6.7
       semver: 7.3.4
       tslib: 2.4.0
     dev: true
 
-  /@nrwl/devkit/15.0.4_nx@15.0.4+typescript@4.8.4:
-    resolution: {integrity: sha512-m32ust10hw2zZyWuspJNHeRGFzfvpgz8TI6OXsOt39TEk8aZiPm3CjxyKW0ntkwS6/VoYqVL7Xz+Q49R0UlItA==}
+  /@nrwl/devkit/15.0.6_nx@15.0.6+typescript@4.8.4:
+    resolution: {integrity: sha512-8hxmxIvD53J9dxEQ3iYZv8sd1ii78btXUBVCTfKtzaymysmmoFajpznJ0S+YQB8rCx7A5CKY7jMJ0Q4jFBr5ew==}
     peerDependencies:
       nx: '>= 14 <= 16'
     dependencies:
       '@phenomnomnominal/tsquery': 4.1.1_typescript@4.8.4
       ejs: 3.1.8
       ignore: 5.2.0
-      nx: 15.0.4_@swc+core@1.2.141
+      nx: 15.0.6_@swc+core@1.2.141
       semver: 7.3.4
       tslib: 2.4.0
     transitivePeerDependencies:
       - typescript
     dev: true
 
-  /@nrwl/eslint-plugin-nx/15.0.4_p6ylyodnn2e6vw7ghc4tz7dtfq:
-    resolution: {integrity: sha512-BnrL+RrSmZg09OCcS1c5S8A8Wrn+3yvoBpFZMBATSWgI5ZmHX5C/h8zzgRTkFWh3djO1ZRO+KOn7qjx3vX+hug==}
+  /@nrwl/eslint-plugin-nx/15.0.6_e2lbpv6tj4aws3nfxte2pt5zuy:
+    resolution: {integrity: sha512-XEK7+Pn+dwpFbKX94O+KtL7V+mob3mlUeU+uuwzyHHJ1oHYZdn19TgmRIe0p6pyBEbfgSJqfOLXlTrc/tBktqQ==}
     peerDependencies:
       '@typescript-eslint/parser': ^5.29.0
       eslint-config-prettier: ^8.1.0
@@ -5190,10 +5190,10 @@ packages:
       eslint-config-prettier:
         optional: true
     dependencies:
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/workspace': 15.0.4_oruvvf6easkjlfadcdve2vuvwa
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/workspace': 15.0.6_oruvvf6easkjlfadcdve2vuvwa
       '@typescript-eslint/parser': 5.42.0_wyqvi574yv7oiwfeinomdzmc3m
-      '@typescript-eslint/utils': 5.41.0_wyqvi574yv7oiwfeinomdzmc3m
+      '@typescript-eslint/utils': 5.42.0_wyqvi574yv7oiwfeinomdzmc3m
       chalk: 4.1.0
       confusing-browser-globals: 1.0.11
       eslint-config-prettier: 8.3.0_eslint@8.26.0
@@ -5212,12 +5212,12 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/jest/15.0.4_d3e7sac6mglanbsfyfdivnlpwm:
-    resolution: {integrity: sha512-hf0LaVe5D0rohGTTXoClya+CqBN3MBj7XS5F5CJUKg4UPvB17Tcqsct7n4QuzQ+2mO32Mmzvqjb8dcpUk8Qqxw==}
+  /@nrwl/jest/15.0.6_ler3dmkqqmq37ll3bv4qj35gly:
+    resolution: {integrity: sha512-6OnBQGqwbLrolG/CyAv5tM6gZLCKQaASRSrTQYWDCtNI+vOhriRYI/b6XC7QhiK/atOiv1n1JpCti1YzyTwszA==}
     dependencies:
       '@jest/reporters': 28.1.1
       '@jest/test-result': 28.1.1
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
       '@phenomnomnominal/tsquery': 4.1.1_typescript@4.8.4
       chalk: 4.1.0
       dotenv: 10.0.0
@@ -5236,12 +5236,12 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/jest/15.0.4_ndvinbaei2kbkxikqsq4bvcnr4:
-    resolution: {integrity: sha512-hf0LaVe5D0rohGTTXoClya+CqBN3MBj7XS5F5CJUKg4UPvB17Tcqsct7n4QuzQ+2mO32Mmzvqjb8dcpUk8Qqxw==}
+  /@nrwl/jest/15.0.6_tnpvbyanui2vk3ewfyhv5ty7gu:
+    resolution: {integrity: sha512-6OnBQGqwbLrolG/CyAv5tM6gZLCKQaASRSrTQYWDCtNI+vOhriRYI/b6XC7QhiK/atOiv1n1JpCti1YzyTwszA==}
     dependencies:
       '@jest/reporters': 28.1.1
       '@jest/test-result': 28.1.1
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
       '@phenomnomnominal/tsquery': 4.1.1_typescript@4.8.4
       chalk: 4.1.0
       dotenv: 10.0.0
@@ -5260,13 +5260,13 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/js/15.0.4_xcft6qm3hxwkpnsd7yafbowfkq:
-    resolution: {integrity: sha512-MgNV25hdvj6mL15YuR2Ovck3g1fx4kYVH3lzXnBgBZjc6kiw1buzB9xg7VquXyVxoqyRa85rPFG8AZqkVmTjSg==}
+  /@nrwl/js/15.0.6_p4cdarbds2cfaawvxyfjrehvay:
+    resolution: {integrity: sha512-1lYHNhY0ynprX0YZ7HvIJ4QK07Y8uDPcvfmmIG8AykgFSM9Q6BUAhuf3BqrqkCCIAtwhdx/+QO05bcgSAjObhA==}
     dependencies:
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/jest': 15.0.4_ndvinbaei2kbkxikqsq4bvcnr4
-      '@nrwl/linter': 15.0.4_4annnrookkds4dlgjuml7iqc5a
-      '@nrwl/workspace': 15.0.4_xmbfpkehl74w42gmzp4vhudycu
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/jest': 15.0.6_ler3dmkqqmq37ll3bv4qj35gly
+      '@nrwl/linter': 15.0.6_qqzg3pal2fvla4fuhxpvex2jjm
+      '@nrwl/workspace': 15.0.6_oruvvf6easkjlfadcdve2vuvwa
       '@parcel/watcher': 2.0.4
       chalk: 4.1.0
       fast-glob: 3.2.7
@@ -5290,13 +5290,13 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/js/15.0.4_xzvr7mcprufqo72zia2l7odtya:
-    resolution: {integrity: sha512-MgNV25hdvj6mL15YuR2Ovck3g1fx4kYVH3lzXnBgBZjc6kiw1buzB9xg7VquXyVxoqyRa85rPFG8AZqkVmTjSg==}
+  /@nrwl/js/15.0.6_qn2nu5idk4cuqqzwzkjvacej7e:
+    resolution: {integrity: sha512-1lYHNhY0ynprX0YZ7HvIJ4QK07Y8uDPcvfmmIG8AykgFSM9Q6BUAhuf3BqrqkCCIAtwhdx/+QO05bcgSAjObhA==}
     dependencies:
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/jest': 15.0.4_d3e7sac6mglanbsfyfdivnlpwm
-      '@nrwl/linter': 15.0.4_qqzg3pal2fvla4fuhxpvex2jjm
-      '@nrwl/workspace': 15.0.4_oruvvf6easkjlfadcdve2vuvwa
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/jest': 15.0.6_tnpvbyanui2vk3ewfyhv5ty7gu
+      '@nrwl/linter': 15.0.6_4annnrookkds4dlgjuml7iqc5a
+      '@nrwl/workspace': 15.0.6_xmbfpkehl74w42gmzp4vhudycu
       '@parcel/watcher': 2.0.4
       chalk: 4.1.0
       fast-glob: 3.2.7
@@ -5320,19 +5320,19 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/linter/15.0.4_4annnrookkds4dlgjuml7iqc5a:
-    resolution: {integrity: sha512-j2y2swjYBgGFX+xsp5McqJjORTgtRFcT8Z3bTuKmSlf3C+RiJvnQbpONNGSr37hw4Pg8YsSdeUNGGcHWmg9SqA==}
+  /@nrwl/linter/15.0.6_4annnrookkds4dlgjuml7iqc5a:
+    resolution: {integrity: sha512-MjdxmacQpfeAIYKC7UoVEGGJA8EfsInpLGq3LsjO1UEiyTroqICLnldngfX/uCsF4DMfqqqPtuHbCpWLpbq+uw==}
     peerDependencies:
       eslint: ^8.0.0
     peerDependenciesMeta:
       eslint:
         optional: true
     dependencies:
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/jest': 15.0.4_ndvinbaei2kbkxikqsq4bvcnr4
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/jest': 15.0.6_tnpvbyanui2vk3ewfyhv5ty7gu
       '@phenomnomnominal/tsquery': 4.1.1_typescript@4.8.4
       eslint: 8.26.0
-      nx: 15.0.4_@swc+core@1.2.141
+      nx: 15.0.6_@swc+core@1.2.141
       tmp: 0.2.1
       tslib: 2.4.0
     transitivePeerDependencies:
@@ -5346,19 +5346,19 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/linter/15.0.4_qqzg3pal2fvla4fuhxpvex2jjm:
-    resolution: {integrity: sha512-j2y2swjYBgGFX+xsp5McqJjORTgtRFcT8Z3bTuKmSlf3C+RiJvnQbpONNGSr37hw4Pg8YsSdeUNGGcHWmg9SqA==}
+  /@nrwl/linter/15.0.6_qqzg3pal2fvla4fuhxpvex2jjm:
+    resolution: {integrity: sha512-MjdxmacQpfeAIYKC7UoVEGGJA8EfsInpLGq3LsjO1UEiyTroqICLnldngfX/uCsF4DMfqqqPtuHbCpWLpbq+uw==}
     peerDependencies:
       eslint: ^8.0.0
     peerDependenciesMeta:
       eslint:
         optional: true
     dependencies:
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/jest': 15.0.4_d3e7sac6mglanbsfyfdivnlpwm
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/jest': 15.0.6_ler3dmkqqmq37ll3bv4qj35gly
       '@phenomnomnominal/tsquery': 4.1.1_typescript@4.8.4
       eslint: 8.26.0
-      nx: 15.0.4_@swc+core@1.2.141
+      nx: 15.0.6_@swc+core@1.2.141
       tmp: 0.2.1
       tslib: 2.4.0
     transitivePeerDependencies:
@@ -5372,14 +5372,14 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/nest/15.0.4_xzvr7mcprufqo72zia2l7odtya:
-    resolution: {integrity: sha512-ugxtmMoiA9ipux+ZEnEfjnKMHd9snhl92deCIVEImajpZxbOr8+Dz1b06uGByUZLEBDg8rzpuGpXb/VnCpZpEg==}
+  /@nrwl/nest/15.0.6_p4cdarbds2cfaawvxyfjrehvay:
+    resolution: {integrity: sha512-dRdxcx6VhiFnRmBkx/ak+u7AB7903st19fKP9KPZyce7zcWOploXjiEJM16ctxf7tGrzyBUi3EQ4tVIRWjORZw==}
     dependencies:
       '@nestjs/schematics': 9.0.3_typescript@4.8.4
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/js': 15.0.4_xzvr7mcprufqo72zia2l7odtya
-      '@nrwl/linter': 15.0.4_qqzg3pal2fvla4fuhxpvex2jjm
-      '@nrwl/node': 15.0.4_xzvr7mcprufqo72zia2l7odtya
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/js': 15.0.6_p4cdarbds2cfaawvxyfjrehvay
+      '@nrwl/linter': 15.0.6_qqzg3pal2fvla4fuhxpvex2jjm
+      '@nrwl/node': 15.0.6_p4cdarbds2cfaawvxyfjrehvay
       enquirer: 2.3.6
     transitivePeerDependencies:
       - '@babel/core'
@@ -5411,15 +5411,15 @@ packages:
       - webpack-cli
     dev: true
 
-  /@nrwl/node/15.0.4_xzvr7mcprufqo72zia2l7odtya:
-    resolution: {integrity: sha512-czDle78dDXvM6JGt0up87Q9Hdk/WfoESwSVgAcV55kH9IPF5H/QmOajz6Aiu/78Xjjh9yvhC5ZkGA/Q3vJ2NfA==}
+  /@nrwl/node/15.0.6_p4cdarbds2cfaawvxyfjrehvay:
+    resolution: {integrity: sha512-5HWmj0Q1Sr35hICfoW18/IDmX0S2H+DdTw2zfGDBh6gL//66kbhBzMT06OC2Tn3XC6nu86R2FQGiJX+xo0bUNg==}
     dependencies:
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/jest': 15.0.4_d3e7sac6mglanbsfyfdivnlpwm
-      '@nrwl/js': 15.0.4_xzvr7mcprufqo72zia2l7odtya
-      '@nrwl/linter': 15.0.4_qqzg3pal2fvla4fuhxpvex2jjm
-      '@nrwl/webpack': 15.0.4_wefv7t5gzhk4gjeqfq6k2vzypq
-      '@nrwl/workspace': 15.0.4_oruvvf6easkjlfadcdve2vuvwa
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/jest': 15.0.6_ler3dmkqqmq37ll3bv4qj35gly
+      '@nrwl/js': 15.0.6_p4cdarbds2cfaawvxyfjrehvay
+      '@nrwl/linter': 15.0.6_qqzg3pal2fvla4fuhxpvex2jjm
+      '@nrwl/webpack': 15.0.6_ar3dxmzgyrjkj7fygncgd4ttkm
+      '@nrwl/workspace': 15.0.6_oruvvf6easkjlfadcdve2vuvwa
       chalk: 4.1.0
       tslib: 2.4.0
     transitivePeerDependencies:
@@ -5467,23 +5467,23 @@ packages:
       - debug
     dev: true
 
-  /@nrwl/tao/15.0.4_@swc+core@1.2.141:
-    resolution: {integrity: sha512-hBmHI6Zlq/bAyeF+SPa9EJdWEFGAAUB+puz2jQfPWcyvTBTYDwqimLNJCaj8uy+aXBmrRCjmfNSBvgNxRiA0Sg==}
+  /@nrwl/tao/15.0.6_@swc+core@1.2.141:
+    resolution: {integrity: sha512-O6Fv1Uq+ul/egO8pGU8R1ei+oemugGfqR3/uGR6lwdyslEo1+CrirjhoHmbmFY7Kc+hZ7wjK8fAfV51tQY8QyQ==}
     hasBin: true
     dependencies:
-      nx: 15.0.4_@swc+core@1.2.141
+      nx: 15.0.6_@swc+core@1.2.141
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
       - debug
     dev: true
 
-  /@nrwl/webpack/15.0.4_wefv7t5gzhk4gjeqfq6k2vzypq:
-    resolution: {integrity: sha512-8ys/mKeeaqaU1UOuaJKvQDmQ+TpQORWnVwUOi9k4ukPbHNvKwXXgwcVp+SwOtUHS7aYjnkCI+Jc8jSzRCnMSdg==}
+  /@nrwl/webpack/15.0.6_ar3dxmzgyrjkj7fygncgd4ttkm:
+    resolution: {integrity: sha512-QxcG2PVULwT9vejw3I58OdL7sCb5iGRPAlNXB9uadrhbBm6FvBXj5lb75BC8DNcSv9Iw7Uv3AbMb1Cvx1bUguQ==}
     dependencies:
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/js': 15.0.4_xcft6qm3hxwkpnsd7yafbowfkq
-      '@nrwl/workspace': 15.0.4_xmbfpkehl74w42gmzp4vhudycu
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/js': 15.0.6_qn2nu5idk4cuqqzwzkjvacej7e
+      '@nrwl/workspace': 15.0.6_xmbfpkehl74w42gmzp4vhudycu
       autoprefixer: 10.4.12_postcss@8.4.18
       babel-loader: 8.2.3_webpack@5.73.0
       browserslist: 4.21.4
@@ -5491,6 +5491,7 @@ packages:
       chalk: 4.1.0
       chokidar: 3.5.3
       copy-webpack-plugin: 10.2.4_webpack@5.73.0
+      css-loader: 6.7.1_webpack@5.73.0
       css-minimizer-webpack-plugin: 3.4.1_webpack@5.73.0
       dotenv: 10.0.0
       file-loader: 6.2.0_webpack@5.73.0
@@ -5555,17 +5556,17 @@ packages:
       - webpack-cli
     dev: true
 
-  /@nrwl/workspace/15.0.4_oruvvf6easkjlfadcdve2vuvwa:
-    resolution: {integrity: sha512-0xbMQ39frPSZmFFB3/K72w6n8zqXZCO5gE1JGbEXQ1LHlJV/P1qZEnefU+x2X+XadUGyQ36Mb5wmg4Lp6X/SUw==}
+  /@nrwl/workspace/15.0.6_oruvvf6easkjlfadcdve2vuvwa:
+    resolution: {integrity: sha512-/AMTIPF8518DkCbRL97Tcg9/nds4BqvipZa7so0LM/Hz/XdFMkaeJ7dnrvLVluEhePim4JuVs14+n0QER1Zr0A==}
     peerDependencies:
       prettier: ^2.6.2
     peerDependenciesMeta:
       prettier:
         optional: true
     dependencies:
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/jest': 15.0.4_d3e7sac6mglanbsfyfdivnlpwm
-      '@nrwl/linter': 15.0.4_qqzg3pal2fvla4fuhxpvex2jjm
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/jest': 15.0.6_ler3dmkqqmq37ll3bv4qj35gly
+      '@nrwl/linter': 15.0.6_qqzg3pal2fvla4fuhxpvex2jjm
       '@parcel/watcher': 2.0.4
       chalk: 4.1.0
       chokidar: 3.5.3
@@ -5580,7 +5581,7 @@ packages:
       ignore: 5.2.0
       minimatch: 3.0.5
       npm-run-path: 4.0.1
-      nx: 15.0.4_@swc+core@1.2.141
+      nx: 15.0.6_@swc+core@1.2.141
       open: 8.4.0
       prettier: 2.4.1
       rxjs: 6.6.7
@@ -5601,17 +5602,17 @@ packages:
       - typescript
     dev: true
 
-  /@nrwl/workspace/15.0.4_xmbfpkehl74w42gmzp4vhudycu:
-    resolution: {integrity: sha512-0xbMQ39frPSZmFFB3/K72w6n8zqXZCO5gE1JGbEXQ1LHlJV/P1qZEnefU+x2X+XadUGyQ36Mb5wmg4Lp6X/SUw==}
+  /@nrwl/workspace/15.0.6_xmbfpkehl74w42gmzp4vhudycu:
+    resolution: {integrity: sha512-/AMTIPF8518DkCbRL97Tcg9/nds4BqvipZa7so0LM/Hz/XdFMkaeJ7dnrvLVluEhePim4JuVs14+n0QER1Zr0A==}
     peerDependencies:
       prettier: ^2.6.2
     peerDependenciesMeta:
       prettier:
         optional: true
     dependencies:
-      '@nrwl/devkit': 15.0.4_nx@15.0.4+typescript@4.8.4
-      '@nrwl/jest': 15.0.4_ndvinbaei2kbkxikqsq4bvcnr4
-      '@nrwl/linter': 15.0.4_4annnrookkds4dlgjuml7iqc5a
+      '@nrwl/devkit': 15.0.6_nx@15.0.6+typescript@4.8.4
+      '@nrwl/jest': 15.0.6_tnpvbyanui2vk3ewfyhv5ty7gu
+      '@nrwl/linter': 15.0.6_4annnrookkds4dlgjuml7iqc5a
       '@parcel/watcher': 2.0.4
       chalk: 4.1.0
       chokidar: 3.5.3
@@ -5626,7 +5627,7 @@ packages:
       ignore: 5.2.0
       minimatch: 3.0.5
       npm-run-path: 4.0.1
-      nx: 15.0.4_@swc+core@1.2.141
+      nx: 15.0.6_@swc+core@1.2.141
       open: 8.4.0
       prettier: 2.4.1
       rxjs: 6.6.7
@@ -5658,13 +5659,13 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nx-plus/docusaurus/14.1.0_3eaom7zqaimoi6brnw6n6p75f4:
+  /@nx-plus/docusaurus/14.1.0_n5uj3ag6zky4l4rhbgikhnub3m:
     resolution: {integrity: sha512-EjzaOm8GCpyADKn4G19AgZk/l8F5eyNCVN1oFki7KUPaig9N9IjRCEmUQtHuomGbCQRqHtpovEPJldCLRz4glw==}
     peerDependencies:
       '@nrwl/workspace': ^14.3.6
     dependencies:
-      '@nrwl/devkit': 14.3.6_nx@15.0.4
-      '@nrwl/workspace': 15.0.4_oruvvf6easkjlfadcdve2vuvwa
+      '@nrwl/devkit': 14.3.6_nx@15.0.6
+      '@nrwl/workspace': 15.0.6_oruvvf6easkjlfadcdve2vuvwa
     transitivePeerDependencies:
       - nx
     dev: true
@@ -6544,14 +6545,6 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/scope-manager/5.41.0:
-    resolution: {integrity: sha512-xOxPJCnuktUkY2xoEZBKXO5DBCugFzjrVndKdUnyQr3+9aDWZReKq9MhaoVnbL+maVwWJu/N0SEtrtEUNb62QQ==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      '@typescript-eslint/types': 5.41.0
-      '@typescript-eslint/visitor-keys': 5.41.0
-    dev: true
-
   /@typescript-eslint/scope-manager/5.42.0:
     resolution: {integrity: sha512-l5/3IBHLH0Bv04y+H+zlcLiEMEMjWGaCX6WyHE5Uk2YkSGAMlgdUPsT/ywTSKgu9D1dmmKMYgYZijObfA39Wow==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -6580,35 +6573,9 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/types/5.41.0:
-    resolution: {integrity: sha512-5BejraMXMC+2UjefDvrH0Fo/eLwZRV6859SXRg+FgbhA0R0l6lDqDGAQYhKbXhPN2ofk2kY5sgGyLNL907UXpA==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dev: true
-
   /@typescript-eslint/types/5.42.0:
     resolution: {integrity: sha512-t4lzO9ZOAUcHY6bXQYRuu+3SSYdD9TS8ooApZft4WARt4/f2Cj/YpvbTe8A4GuhT4bNW72goDMOy7SW71mZwGw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dev: true
-
-  /@typescript-eslint/typescript-estree/5.41.0_typescript@4.8.4:
-    resolution: {integrity: sha512-SlzFYRwFSvswzDSQ/zPkIWcHv8O5y42YUskko9c4ki+fV6HATsTODUPbRbcGDFYP86gaJL5xohUEytvyNNcXWg==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/types': 5.41.0
-      '@typescript-eslint/visitor-keys': 5.41.0
-      debug: 4.3.4
-      globby: 11.1.0
-      is-glob: 4.0.3
-      semver: 7.3.7
-      tsutils: 3.21.0_typescript@4.8.4
-      typescript: 4.8.4
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@typescript-eslint/typescript-estree/5.42.0_typescript@4.8.4:
@@ -6632,26 +6599,6 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/utils/5.41.0_wyqvi574yv7oiwfeinomdzmc3m:
-    resolution: {integrity: sha512-QlvfwaN9jaMga9EBazQ+5DDx/4sAdqDkcs05AsQHMaopluVCUyu1bTRUVKzXbgjDlrRAQrYVoi/sXJ9fmG+KLQ==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      '@types/json-schema': 7.0.11
-      '@types/semver': 7.3.12
-      '@typescript-eslint/scope-manager': 5.41.0
-      '@typescript-eslint/types': 5.41.0
-      '@typescript-eslint/typescript-estree': 5.41.0_typescript@4.8.4
-      eslint: 8.26.0
-      eslint-scope: 5.1.1
-      eslint-utils: 3.0.0_eslint@8.26.0
-      semver: 7.3.7
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-    dev: true
-
   /@typescript-eslint/utils/5.42.0_wyqvi574yv7oiwfeinomdzmc3m:
     resolution: {integrity: sha512-JZ++3+h1vbeG1NUECXQZE3hg0kias9kOtcQr3+JVQ3whnjvKuMyktJAAIj6743OeNPnGBmjj7KEmiDL7qsdnCQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -6670,14 +6617,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
-    dev: true
-
-  /@typescript-eslint/visitor-keys/5.41.0:
-    resolution: {integrity: sha512-vilqeHj267v8uzzakbm13HkPMl7cbYpKVjgFWZPIOHIJHZtinvypUhJ5xBXfWYg4eFKqztbMMpOgFpT9Gfx4fw==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      '@typescript-eslint/types': 5.41.0
-      eslint-visitor-keys: 3.3.0
     dev: true
 
   /@typescript-eslint/visitor-keys/5.42.0:
@@ -9164,6 +9103,23 @@ packages:
       schema-utils: 3.1.1
       semver: 7.3.7
       webpack: 5.61.0_@swc+core@1.2.141
+    dev: true
+
+  /css-loader/6.7.1_webpack@5.73.0:
+    resolution: {integrity: sha512-yB5CNFa14MbPJcomwNh3wLThtkZgcNyI2bNMRt8iE5Z8Vwl7f8vQXFAzn2HDOJvtDq2NTZBUGMSUNNyrv3/+cw==}
+    engines: {node: '>= 12.13.0'}
+    peerDependencies:
+      webpack: ^5.0.0
+    dependencies:
+      icss-utils: 5.1.0_postcss@8.4.18
+      postcss: 8.4.18
+      postcss-modules-extract-imports: 3.0.0_postcss@8.4.18
+      postcss-modules-local-by-default: 4.0.0_postcss@8.4.18
+      postcss-modules-scope: 3.0.0_postcss@8.4.18
+      postcss-modules-values: 4.0.0_postcss@8.4.18
+      postcss-value-parser: 4.2.0
+      semver: 7.3.7
+      webpack: 5.73.0_@swc+core@1.2.141
     dev: true
 
   /css-minimizer-webpack-plugin/3.1.1_aag5tovu4nr2hb3kove4nwhx3e:
@@ -15104,17 +15060,17 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /nx-uvu/1.2.0_nx@15.0.4:
+  /nx-uvu/1.2.0_nx@15.0.6:
     resolution: {integrity: sha512-UZZInb9Ds5Erc+8qi755xPvKFvQRQUDmlh8n+kEYRDQwq2nS80D/eevZZmvx1CBC76ca3pQEAh6exGUaun728g==}
     dependencies:
-      '@nrwl/devkit': 14.3.6_nx@15.0.4
+      '@nrwl/devkit': 14.3.6_nx@15.0.6
       '@ogma/styler': 1.0.0
     transitivePeerDependencies:
       - nx
     dev: true
 
-  /nx/15.0.4_@swc+core@1.2.141:
-    resolution: {integrity: sha512-tCCiVJgCiX/R2zlL73dQsY49AxR/cA0dHX764KvLWIvB0mO8Zb7UWAwb8sdIbop3DqtGCopRTsAdOBcZXbe/9A==}
+  /nx/15.0.6_@swc+core@1.2.141:
+    resolution: {integrity: sha512-SIHydl0LMM0JvGPp2aPuGGPqx+78lc5AMkZc5mHJdsxRp8+L+YlTNqEI4EuevcdzGQTQrHoW+oksqAZPdyy/tA==}
     hasBin: true
     requiresBuild: true
     peerDependencies:
@@ -15126,8 +15082,8 @@ packages:
       '@swc/core':
         optional: true
     dependencies:
-      '@nrwl/cli': 15.0.4_@swc+core@1.2.141
-      '@nrwl/tao': 15.0.4_@swc+core@1.2.141
+      '@nrwl/cli': 15.0.6_@swc+core@1.2.141
+      '@nrwl/tao': 15.0.6_@swc+core@1.2.141
       '@parcel/watcher': 2.0.4
       '@swc/core': 1.2.141
       '@yarnpkg/lockfile': 1.1.0
