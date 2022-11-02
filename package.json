@@ -110,7 +110,7 @@
     "kafkajs": "2.2.2",
     "lcov-result-merger": "^3.1.0",
     "lint-staged": "13.0.3",
-    "mercurius": "11.2.0",
+    "mercurius": "11.3.0",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "mqtt": "^4.2.8",
