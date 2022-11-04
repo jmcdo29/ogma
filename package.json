@@ -49,7 +49,7 @@
     "@commitlint/config-conventional": "17.2.0",
     "@docusaurus/core": "^2.2.0",
     "@docusaurus/preset-classic": "^2.2.0",
-    "@graphql-tools/schema": "9.0.6",
+    "@graphql-tools/schema": "9.0.8",
     "@graphql-tools/utils": "^9.0.0",
     "@grpc/grpc-js": "^1.7.3",
     "@grpc/proto-loader": "0.7.3",
