@@ -32,7 +32,7 @@ import {
 } from './utils';
 
 const tcpOptions: TcpOptions['options'] = {};
-const mqttOptions: MqttOptions['options'] = { url: 'mqtt://localhost:1883' };
+const mqttOptions: MqttOptions['options'] = { url: 'mqtt://localhost:1883', reconnectPeriod: 0 };
 const natsOptions: NatsOptions['options'] = { url: 'nats://localhost:4222' };
 const rabbitOptions: RmqOptions['options'] = {
   urls: ['amqp://localhost:5672'],
