@@ -50,7 +50,7 @@
             "outputPath": "dist/cli",
             "main": "packages/cli/src/main.ts",
             "tsConfig": "packages/cli/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/cli/package.json",
             "assets": ["packages/cli/*.md"],
             "buildableProjectDepsInPackageJsonType": "dependencies"
@@ -79,7 +79,7 @@
             "outputPath": "dist/common",
             "main": "packages/common/src/index.ts",
             "tsConfig": "packages/common/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/common/package.json",
             "assets": ["packages/common/*.md"]
           }
@@ -183,7 +183,7 @@
             "outputPath": "dist/logger",
             "main": "packages/logger/src/index.ts",
             "tsConfig": "packages/logger/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/logger/package.json",
             "assets": ["packages/logger/*.md"]
           }
@@ -211,7 +211,7 @@
             "outputPath": "dist/nestjs-module",
             "main": "packages/nestjs-module/src/index.ts",
             "tsConfig": "packages/nestjs-module/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/nestjs-module/package.json",
             "assets": ["packages/nestjs-module/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -240,7 +240,7 @@
             "outputPath": "dist/platform-express",
             "main": "packages/platform-express/src/index.ts",
             "tsConfig": "packages/platform-express/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-express/package.json",
             "assets": ["packages/platform-express/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -269,7 +269,7 @@
             "outputPath": "dist/platform-fastify",
             "main": "packages/platform-fastify/src/index.ts",
             "tsConfig": "packages/platform-fastify/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-fastify/package.json",
             "assets": ["packages/platform-fastify/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -298,7 +298,7 @@
             "outputPath": "dist/platform-graphql",
             "main": "packages/platform-graphql/src/index.ts",
             "tsConfig": "packages/platform-graphql/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-graphql/package.json",
             "assets": ["packages/platform-graphql/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -327,7 +327,7 @@
             "outputPath": "dist/platform-graphql-fastify",
             "main": "packages/platform-graphql-fastify/src/index.ts",
             "tsConfig": "packages/platform-graphql-fastify/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-graphql-fastify/package.json",
             "assets": ["packages/platform-graphql-fastify/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -356,7 +356,7 @@
             "outputPath": "dist/platform-grpc",
             "main": "packages/platform-grpc/src/index.ts",
             "tsConfig": "packages/platform-grpc/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-grpc/package.json",
             "assets": ["packages/platform-grpc/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -385,7 +385,7 @@
             "outputPath": "dist/platform-kafka",
             "main": "packages/platform-kafka/src/index.ts",
             "tsConfig": "packages/platform-kafka/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-kafka/package.json",
             "assets": ["packages/platform-kafka/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -414,7 +414,7 @@
             "outputPath": "dist/platform-mqtt",
             "main": "packages/platform-mqtt/src/index.ts",
             "tsConfig": "packages/platform-mqtt/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-mqtt/package.json",
             "assets": ["packages/platform-mqtt/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -443,7 +443,7 @@
             "outputPath": "dist/platform-nats",
             "main": "packages/platform-nats/src/index.ts",
             "tsConfig": "packages/platform-nats/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-nats/package.json",
             "assets": ["packages/platform-nats/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -472,7 +472,7 @@
             "outputPath": "dist/platform-rabbitmq",
             "main": "packages/platform-rabbitmq/src/index.ts",
             "tsConfig": "packages/platform-rabbitmq/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-rabbitmq/package.json",
             "assets": ["packages/platform-rabbitmq/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -501,7 +501,7 @@
             "outputPath": "dist/platform-redis",
             "main": "packages/platform-redis/src/index.ts",
             "tsConfig": "packages/platform-redis/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-redis/package.json",
             "assets": ["packages/platform-redis/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -530,7 +530,7 @@
             "outputPath": "dist/platform-socket.io",
             "main": "packages/platform-socket.io/src/index.ts",
             "tsConfig": "packages/platform-socket.io/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-socket.io/package.json",
             "assets": ["packages/platform-socket.io/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -559,7 +559,7 @@
             "outputPath": "dist/platform-tcp",
             "main": "packages/platform-tcp/src/index.ts",
             "tsConfig": "packages/platform-tcp/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-tcp/package.json",
             "assets": ["packages/platform-tcp/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -588,7 +588,7 @@
             "outputPath": "dist/platform-ws",
             "main": "packages/platform-ws/src/index.ts",
             "tsConfig": "packages/platform-ws/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/platform-ws/package.json",
             "assets": ["packages/platform-ws/*.md"],
             "updateBuildableProjectDepsInPackageJson": false
@@ -617,10 +617,9 @@
             "outputPath": "dist/styler",
             "main": "packages/styler/src/index.ts",
             "tsConfig": "packages/styler/tsconfig.build.json",
-            "deleteOutputPath": true,
+            "clean": true,
             "packageJson": "packages/styler/package.json",
-            "assets": ["packages/styler/*.md"],
-            "updateBuildableProjectDepsInPackageJson": false
+            "assets": ["packages/styler/*.md"]
           }
         },
         "test": {
