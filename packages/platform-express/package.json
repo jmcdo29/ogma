@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-express",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A plugin for the OgmaInterceptor to properly handle HTTP requests from Express",
   "keywords": [
     "express",
