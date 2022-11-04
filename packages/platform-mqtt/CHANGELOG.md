@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- a4a01af: Fixed the published peer dependencies of each package
+
 ## 4.0.0
 
 ### Major Changes

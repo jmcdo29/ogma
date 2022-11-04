@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-mqtt",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A plugin for the OgmaInterceptor to properly handle microservice requests from mqtt protocols",
   "keywords": [
     "mqtt",
