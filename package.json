@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "preversion": "pnpm format && pnpm lint && pnpm build",
-    "build": "nx affected:build",
+    "build": "nx affected:build --exclude=docs",
     "benchmark": "nx affected:bench",
     "commit": "git-cz",
     "coverage": "nx run tools:collect",
