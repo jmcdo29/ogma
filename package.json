@@ -4,7 +4,11 @@
   "private": true,
   "description": "The @ogma workspace containing the base logging package, the NestJS module, and all the fun parsers to add in.",
   "author": "Jay McDoniel <me@jaymcdoniel.dev>",
-  "contributors": ["Minsung Kim", "John Biundo", "Ruslan Gonzalez"],
+  "contributors": [
+    "Minsung Kim",
+    "John Biundo",
+    "Ruslan Gonzalez"
+  ],
   "keywords": [
     "nestjs",
     "nest",
@@ -46,7 +50,7 @@
     "@docusaurus/core": "^2.2.0",
     "@docusaurus/preset-classic": "^2.2.0",
     "@graphql-tools/schema": "9.0.6",
-    "@graphql-tools/utils": "^8.13.1",
+    "@graphql-tools/utils": "^9.0.0",
     "@grpc/grpc-js": "^1.7.3",
     "@grpc/proto-loader": "0.7.3",
     "@mdx-js/react": "1.6.22",
@@ -60,7 +64,8 @@
     "@nestjs/platform-fastify": "^9.1.6",
     "@nestjs/platform-socket.io": "^9.1.6",
     "@nestjs/platform-ws": "^9.1.6",
-    "@nestjs/testing": "9.1.6",
+    "@nestjs/testing": "^9.1.6",
+    "@nestjs/websockets": "^9.1.6",
     "@nrwl/devkit": "15.0.9",
     "@nrwl/eslint-plugin-nx": "15.0.9",
     "@nrwl/js": "15.0.9",
