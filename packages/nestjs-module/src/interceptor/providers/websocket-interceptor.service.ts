@@ -1,4 +1,4 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ArgumentsHost, ExecutionContext, Injectable } from '@nestjs/common';
 
 import { AbstractInterceptorService } from './abstract-interceptor.service';
 
@@ -13,7 +13,16 @@ export abstract class WebsocketInterceptorService extends AbstractInterceptorSer
    * @param context execution context from Nest
    * @returns the client object for the websocket adapter
    */
-  getClient(context: ExecutionContext) {
+  getClient(context: ArgumentsHost) {
     return context.switchToWs().getClient();
+  }
+
+  setRequestId(context: ArgumentsHost, requestId: any) {
+    const client = this.getClient(context);
+    client.requestId = requestId;
+  }
+
+  getRequestId(context: ArgumentsHost): any {
+    return this.getClient(context).requestId;
   }
 }

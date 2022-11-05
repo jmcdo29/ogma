@@ -20,9 +20,4 @@ export class RabbitMqParser extends RpcInterceptorService {
   getProtocol() {
     return 'amqp';
   }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient<RmqContext & { requestId: string }>(context);
-    client.requestId = requestId;
-  }
 }

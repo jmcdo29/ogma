@@ -1,4 +1,4 @@
-import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
+import { ArgumentsHost, ExecutionContext, HttpException, Injectable } from '@nestjs/common';
 import { HTTP_CODE_METADATA } from '@nestjs/common/constants';
 
 import { AbstractInterceptorService } from './abstract-interceptor.service';
@@ -9,9 +9,10 @@ export abstract class HttpInterceptorService extends AbstractInterceptorService 
     let status: number;
     const res = this.getResponse(context);
     status = res.statusCode;
-    const reflectStatus = this.reflector.get<number>(HTTP_CODE_METADATA, context.getHandler());
-    status = reflectStatus || status;
-    if (error) {
+    if (!error) {
+      const reflectStatus = this.reflector.get<number>(HTTP_CODE_METADATA, context.getHandler());
+      status = reflectStatus || status;
+    } else {
       status = this.determineStatusCodeFromError(error);
     }
     return inColor ? this.wrapInColor(status) : status.toString();
@@ -32,7 +33,7 @@ export abstract class HttpInterceptorService extends AbstractInterceptorService 
    * @param context execution context from Nest
    * @returns the adapter's response object
    */
-  getResponse(context: ExecutionContext) {
+  getResponse(context: ArgumentsHost) {
     return context.switchToHttp().getResponse();
   }
 
@@ -41,7 +42,16 @@ export abstract class HttpInterceptorService extends AbstractInterceptorService 
    * @param context execution context from Nest
    * @returns the adapter's request object
    */
-  getRequest(context: ExecutionContext) {
+  getRequest(context: ArgumentsHost) {
     return context.switchToHttp().getRequest();
+  }
+
+  setRequestId(context: ArgumentsHost, requestId: string): void {
+    const req = this.getRequest(context) as any;
+    req.requestId = requestId;
+  }
+
+  getRequestId(context: ArgumentsHost) {
+    return this.getRequest(context).requestId;
   }
 }

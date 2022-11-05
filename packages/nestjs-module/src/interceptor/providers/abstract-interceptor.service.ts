@@ -1,4 +1,4 @@
-import { ExecutionContext, HttpException, Injectable } from '@nestjs/common';
+import { ArgumentsHost, HttpException, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { style } from '@ogma/styler';
 
@@ -21,7 +21,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    */
   getSuccessContext(
     data: unknown,
-    context: ExecutionContext,
+    context: ArgumentsHost,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
   ): MetaLogObject {
@@ -50,7 +50,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    */
   getErrorContext(
     error: Error | HttpException,
-    context: ExecutionContext,
+    context: ArgumentsHost,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
   ): MetaLogObject {
@@ -68,23 +68,23 @@ export abstract class AbstractInterceptorService implements InterceptorService {
 
   /**
    * A helper method to get the status based on if the request was an error or success
-   * @param context the execution context
+   * @param _context the execution context
    * @param inColor if the status should be in color
    * @param error if it was an error
    * @returns a string representing the status
    */
-  getStatus(_context: ExecutionContext, inColor: boolean, error?: HttpException | Error): string {
+  getStatus(_context: ArgumentsHost, inColor: boolean, error?: HttpException | Error): string {
     const status = error ? 500 : 200;
     return inColor ? this.wrapInColor(status) : status.toString();
   }
 
   /**
    * A helper method to allow devs the ability to pass in extra metadata when it comes to the interceptor
-   * @param context The ExecutionContext
-   * @param data the response body or the error being returned
+   * @param _context The ArgumentsHost
+   * @param _data the response body or the error being returned
    * @returns whatever metadata you want to add in on a second log line. This can be a string, an object, anything
    */
-  getMeta(_context: ExecutionContext, _data: unknown): unknown {
+  getMeta(_context: ArgumentsHost, _data: unknown): unknown {
     return;
   }
 
@@ -92,7 +92,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    * A helper method to get the Ip of the calling client
    * @param context the execution context
    */
-  abstract getCallerIp(context: ExecutionContext): string[] | string;
+  abstract getCallerIp(context: ArgumentsHost): string[] | string;
 
   /**
    * A helper method to get the method type of the request
@@ -107,7 +107,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    *
    * @param context the execution context
    */
-  abstract getMethod(context: ExecutionContext): string;
+  abstract getMethod(context: ArgumentsHost): string;
 
   private getResponseTime(startTime: number): number {
     return Date.now() - startTime;
@@ -117,7 +117,7 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    * A helper method to get the protocol of the request
    * @param context execution context from Nest
    */
-  abstract getProtocol(context: ExecutionContext): string;
+  abstract getProtocol(context: ArgumentsHost): string;
 
   /**
    * A helper method to get what was called
@@ -131,14 +131,14 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    * WebSockets: Subscription Event name
    * @param context execution context from Nest
    */
-  abstract getCallPoint(context: ExecutionContext): string;
+  abstract getCallPoint(context: ArgumentsHost): string;
 
   /**
    * A helper method for setting the correlationId to later be retrieved when logging
    * @param context the execution context
    * @param requestId the correlationId to set
    */
-  abstract setRequestId(context: ExecutionContext, requestId: string): void;
+  abstract setRequestId(context: ArgumentsHost, requestId: string): void;
 
   protected wrapInColor(status: number): string {
     let statusString: string;
@@ -158,5 +158,9 @@ export abstract class AbstractInterceptorService implements InterceptorService {
 
   protected isBetween(comparator: number, bottom: number, top: number): boolean {
     return comparator >= bottom && comparator < top;
+  }
+
+  getStartTime(_host: ArgumentsHost): number {
+    return Date.now();
   }
 }

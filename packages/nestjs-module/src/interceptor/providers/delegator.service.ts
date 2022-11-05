@@ -1,4 +1,4 @@
-import { ContextType, ExecutionContext, Injectable } from '@nestjs/common';
+import { ArgumentsHost, ContextType, Injectable } from '@nestjs/common';
 
 import { OgmaInterceptorServiceOptions } from '../../interfaces';
 import { DelegatorContextReturn, LogObject, MetaLogObject } from '../interfaces/log.interface';
@@ -18,14 +18,19 @@ export class DelegatorService {
     private readonly gqlParser: GqlInterceptorService,
   ) {}
 
-  setRequestId(context: ExecutionContext, requestId: string): void {
+  setRequestId(context: ArgumentsHost, requestId: string): void {
     const parser: Parser = this.getParser(context.getType());
     this[parser].setRequestId(context, requestId);
   }
 
+  getRequestId(context: ArgumentsHost): any {
+    const parser = this.getParser(context.getType());
+    return this[parser].getRequestId(context);
+  }
+
   getContextSuccessString(
     data: any,
-    context: ExecutionContext,
+    context: ArgumentsHost,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
   ): DelegatorContextReturn {
@@ -62,7 +67,7 @@ export class DelegatorService {
 
   getContextErrorString(
     error: any,
-    context: ExecutionContext,
+    context: ArgumentsHost,
     startTime: number,
     options: OgmaInterceptorServiceOptions,
   ): DelegatorContextReturn {
@@ -88,7 +93,7 @@ export class DelegatorService {
   }: {
     method: 'getErrorContext' | 'getSuccessContext';
     data: any;
-    context: ExecutionContext;
+    context: ArgumentsHost;
     startTime: number;
     options: OgmaInterceptorServiceOptions;
     parser: Parser;
@@ -100,5 +105,10 @@ export class DelegatorService {
     return options.json
       ? data
       : `${data.callerAddress} - ${data.method} ${data.callPoint} ${data.protocol} ${data.status} ${data.responseTime}ms - ${data.contentLength}`;
+  }
+
+  getStartTime(host: ArgumentsHost): number {
+    const parser = this.getParser(host.getType());
+    return this[parser].getStartTime(host);
   }
 }

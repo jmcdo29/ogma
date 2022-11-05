@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import { MercuriusDriver } from '@nestjs/mercurius';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
-import { OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
+import { OgmaFilterLogger, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 import { GraphQLParser } from '@ogma/platform-graphql';
 import { GraphQLFastifyParser } from '@ogma/platform-graphql-fastify';
 import { style } from '@ogma/styler';
@@ -39,11 +39,13 @@ for (const { adapter, server, parser, driver } of [
   const GqlParserSuite = suite<{
     app: INestApplication;
     logSpy: Stub<OgmaInterceptor['log']>;
-    logs: Parameters<OgmaInterceptor['log']>[];
+    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterLogger['doLog']>[];
+    filterSpy: Stub<OgmaFilterLogger['doLog']>;
   }>(`${server} GraphQL server`, {
     app: undefined,
     logSpy: undefined,
     logs: [],
+    filterSpy: undefined,
   });
   GqlParserSuite.before(async (context) => {
     const modRef = await createTestModule(GqlModule.forFeature(driver), {
@@ -54,14 +56,18 @@ for (const { adapter, server, parser, driver } of [
     });
     context.app = modRef.createNestApplication(adapter);
     const interceptor = context.app.get(OgmaInterceptor);
+    const filterService = context.app.get(OgmaFilterLogger);
     await context.app.listen(0);
     const baseUrl = await context.app.getUrl();
     request.setBaseUrl(baseUrl.replace('[::1]', 'localhost'));
     context.logSpy = stubMethod(interceptor, 'log');
+    context.filterSpy = stubMethod(filterService as any, 'doLog');
   });
-  GqlParserSuite.after.each(({ logSpy, logs }) => {
+  GqlParserSuite.after.each(({ logSpy, logs, filterSpy }) => {
     logSpy.firstCall && logs.push(logSpy.firstCall.args);
     logSpy.reset();
+    filterSpy.firstCall && logs.push(filterSpy.firstCall.args);
+    filterSpy.reset();
   });
   GqlParserSuite.after(async ({ app, logs }) => {
     const ogma = app.get(OgmaService);
@@ -96,6 +102,16 @@ for (const { adapter, server, parser, driver } of [
   GqlParserSuite('should skip the log but make the call', async ({ logSpy }) => {
     await spec().post('/graphql').withGraphQLQuery('query getSkip{ getSkip{ hello }}').toss();
     is(logSpy.callCount, 0);
+  });
+  GqlParserSuite('it should error at the guard and still log a line', async ({ filterSpy }) => {
+    await spec().post('/graphql').withGraphQLQuery('query failGuard { failGuard { hello }}').toss();
+    toBeALogObject(
+      filterSpy.firstCall.args[0],
+      'query',
+      '/graphql',
+      'HTTP/1.1',
+      style.yellow.apply(403),
+    );
   });
   GqlParserSuite.run();
 }

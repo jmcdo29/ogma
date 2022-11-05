@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
-import { OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
+import { OgmaFilterLogger, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 import { ExpressParser } from '@ogma/platform-express';
 import { FastifyParser } from '@ogma/platform-fastify';
 import { style } from '@ogma/styler';
@@ -19,13 +19,13 @@ import {
   toBeALogObject,
 } from './utils';
 
-const expectRequestId = (spy: Stub<OgmaInterceptor['log']>) => {
+const expectRequestId = (spy: Stub<OgmaInterceptor['log']> | Stub<OgmaFilterLogger['doLog']>) => {
   is(typeof spy.firstCall.args[2], 'string');
   is(spy.firstCall.args[2].length, 16);
 };
 
 const expectLogObject = (
-  spy: Stub<OgmaInterceptor['log']>,
+  spy: Stub<OgmaInterceptor['log']> | Stub<OgmaFilterLogger['doLog']>,
   method: string,
   endpoint: string,
   status: string,
@@ -49,11 +49,13 @@ for (const { adapter, server, parser } of [
   const HttpSuite = suite<{
     app: INestApplication;
     logSpy: Stub<OgmaInterceptor['log']>;
-    logs: Parameters<OgmaInterceptor['log']>[];
+    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterLogger['doLog']>[];
+    filterSpy: Stub<OgmaFilterLogger['doLog']>;
   }>(`${server} HTTP Log Suite`, {
     app: undefined,
     logSpy: undefined,
     logs: [],
+    filterSpy: undefined,
   });
   HttpSuite.before(async (context) => {
     const modRef = await createTestModule(HttpServerModule, {
@@ -62,18 +64,22 @@ for (const { adapter, server, parser } of [
     });
     context.app = modRef.createNestApplication(adapter);
     const interceptor = context.app.get(OgmaInterceptor);
+    const filterService = context.app.get(OgmaFilterLogger);
     await context.app.listen(0);
     request.setBaseUrl((await context.app.getUrl()).replace('[::1]', 'localhost'));
     context.logSpy = stubMethod(interceptor, 'log');
+    context.filterSpy = stubMethod(filterService as any, 'doLog');
   });
   HttpSuite.after(async ({ app, logs }) => {
     const ogma = app.get(OgmaService);
     await app.close();
     reportValues(ogma, logs);
   });
-  HttpSuite.after.each(({ logSpy, logs }) => {
+  HttpSuite.after.each(({ logSpy, logs, filterSpy }) => {
     logSpy.firstCall && logs.push(logSpy.firstCall.args);
     logSpy.reset();
+    filterSpy.firstCall && logs.push(filterSpy.firstCall.args);
+    filterSpy.reset();
   });
   for (const { method, status } of [
     {
@@ -107,6 +113,10 @@ for (const { adapter, server, parser } of [
   HttpSuite('It should skip the log but return data', async ({ logSpy }) => {
     await spec().get('/skip').expectBody(hello).expectStatus(200);
     is(logSpy.callCount, 0);
+  });
+  HttpSuite('It should get caught by a guard but still be able to log', async ({ filterSpy }) => {
+    await spec().get('/fail-guard').expectStatus(403);
+    expectLogObject(filterSpy, 'GET', '/fail-guard', style.yellow.apply(403));
   });
   HttpSuite.run();
 }

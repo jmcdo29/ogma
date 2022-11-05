@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { WsAdapter } from '@nestjs/platform-ws';
 import { Test } from '@nestjs/testing';
-import { OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
+import { OgmaFilterLogger, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 import { SocketIOParser } from '@ogma/platform-socket.io';
 import { WsParser } from '@ogma/platform-ws';
 import { style } from '@ogma/styler';
@@ -37,16 +37,18 @@ for (const { adapter, server, parser, client, protocol, sendMethod, serializer }
 ] as const) {
   const WsSuite = suite<{
     logSpy: Stub<OgmaInterceptor['log']>;
-    logs: Parameters<OgmaInterceptor['log']>[];
+    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterLogger['doLog']>[];
     app: INestApplication;
     baseUrl: string;
     wsClient: { send: (message: string) => Promise<string>; close: () => Promise<void> };
+    filterSpy: Stub<OgmaFilterLogger['doLog']>;
   }>(`${server} interceptor suite`, {
     logs: [],
     logSpy: undefined,
     app: undefined,
     baseUrl: undefined,
     wsClient: undefined,
+    filterSpy: undefined,
   });
   WsSuite.before(async (context) => {
     const modRef = await Test.createTestingModule({
@@ -62,7 +64,10 @@ for (const { adapter, server, parser, client, protocol, sendMethod, serializer }
     context.app = modRef.createNestApplication();
     context.app.useWebSocketAdapter(new adapter(context.app));
     const interceptor = context.app.get(OgmaInterceptor);
+    const filterService = context.app.get(OgmaFilterLogger);
     context.logSpy = stubMethod(interceptor, 'log');
+    context.filterSpy = stubMethod(filterService as any, 'doLog');
+    context.filterSpy.passThrough();
     await context.app.listen(0);
     const baseUrl = await context.app.getUrl();
     context.wsClient = await makeWs(client, baseUrl.replace('http', protocol), sendMethod);
@@ -99,5 +104,18 @@ for (const { adapter, server, parser, client, protocol, sendMethod, serializer }
     await wsClient.send(serializer('skip'));
     is(logSpy.callCount, 0);
   });
+  WsSuite.skip(
+    'it should go to the guard and still log the request',
+    async ({ wsClient, filterSpy }) => {
+      await wsClient.send(serializer('fail-guard'));
+      toBeALogObject(
+        filterSpy.firstCall.args[0],
+        server.toLowerCase(),
+        'fail-guard',
+        'WS',
+        style.red.apply(500),
+      );
+    },
+  );
   WsSuite.run();
 }

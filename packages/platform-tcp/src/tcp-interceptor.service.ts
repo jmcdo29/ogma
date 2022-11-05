@@ -23,11 +23,6 @@ export class TcpParser extends RpcInterceptorService {
     return client.getSocketRef().socket.remoteFamily;
   }
 
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient<TcpContext & { requestId: string }>(context);
-    client.requestId = requestId;
-  }
-
   getClient<T = TcpContext>(context: ExecutionContext): T {
     return super.getClient(context);
   }

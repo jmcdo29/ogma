@@ -1,4 +1,4 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ArgumentsHost, ExecutionContext, Injectable } from '@nestjs/common';
 
 import { AbstractInterceptorService } from './abstract-interceptor.service';
 
@@ -13,7 +13,7 @@ export abstract class RpcInterceptorService extends AbstractInterceptorService {
    * @param context execution context from Nest
    * @returns The data object for the RPC adapter
    */
-  getData<T>(context: ExecutionContext): T {
+  getData<T>(context: ArgumentsHost): T {
     return context.switchToRpc().getData();
   }
 
@@ -22,7 +22,16 @@ export abstract class RpcInterceptorService extends AbstractInterceptorService {
    * @param context execution context from Nest
    * @returns The client object for the RPC adapter
    */
-  getClient<T = unknown>(context: ExecutionContext): T {
+  getClient<T = unknown>(context: ArgumentsHost): T {
     return context.switchToRpc().getContext();
+  }
+
+  setRequestId(context: ArgumentsHost, requestId: any): void {
+    const client = this.getClient<{ requestId: any }>(context);
+    client.requestId = requestId;
+  }
+
+  getRequestId(context: ArgumentsHost): any {
+    return this.getClient<{ requestId: any }>(context).requestId;
   }
 }

@@ -9,7 +9,7 @@ import {
   Transport,
 } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
-import { OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
+import { OgmaFilterLogger, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 import { MqttParser } from '@ogma/platform-mqtt';
 import { NatsParser } from '@ogma/platform-nats';
 import { RabbitMqParser } from '@ogma/platform-rabbitmq';
@@ -84,14 +84,16 @@ for (const { server, transport, options, protocol, parser } of [
 ] as const) {
   const RpcSuite = suite<{
     logSpy: Stub<OgmaInterceptor['log']>;
-    logs: Parameters<OgmaInterceptor['log']>[];
+    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterLogger['doLog']>[];
     rpcServer: INestMicroservice;
     rpcClient: INestApplication;
+    filterSpy: Stub<OgmaFilterLogger['doLog']>;
   }>(`${server} interceptor suite`, {
     logs: [],
     logSpy: undefined,
     rpcClient: undefined,
     rpcServer: undefined,
+    filterSpy: undefined,
   });
   RpcSuite.before(async (context) => {
     const modRef = await createTestModule(RpcServerModule, {
@@ -105,6 +107,7 @@ for (const { server, transport, options, protocol, parser } of [
       options,
     } as any);
     const interceptor = rpcServer.get(OgmaInterceptor);
+    const filterService = rpcServer.get(OgmaFilterLogger);
     await rpcServer.listen().catch(console.error);
     const clientRef = await Test.createTestingModule({
       imports: [
@@ -119,12 +122,15 @@ for (const { server, transport, options, protocol, parser } of [
     context.logSpy = stubMethod(interceptor, 'log');
     context.rpcClient = rpcClient;
     context.rpcServer = rpcServer;
+    context.filterSpy = stubMethod(filterService as any, 'doLog');
     const baseUrl = await rpcClient.getUrl();
     request.setBaseUrl(baseUrl.replace('[::1]', 'localhost'));
   });
-  RpcSuite.after.each(({ logSpy, logs }) => {
+  RpcSuite.after.each(({ logSpy, logs, filterSpy }) => {
     logSpy.firstCall && logs.push(logSpy.firstCall.args);
     logSpy.reset();
+    filterSpy.firstCall && logs.push(filterSpy.firstCall.args);
+    filterSpy.reset();
   });
   RpcSuite.after(async ({ logs, rpcClient, rpcServer }) => {
     const ogma = rpcServer.get(OgmaService);
@@ -155,5 +161,18 @@ for (const { server, transport, options, protocol, parser } of [
     await spec().get('/skip').expectBody(hello).toss();
     is(logSpy.callCount, 0);
   });
+  RpcSuite(
+    'it should be caught by a guard in the rpc server and still log',
+    async ({ filterSpy }) => {
+      await spec().get('/fail-guard').toss();
+      toBeALogObject(
+        filterSpy.firstCall.args[0],
+        server,
+        JSON.stringify({ cmd: 'fail-guard' }),
+        protocol,
+        style.red.apply(500),
+      );
+    },
+  );
   RpcSuite.run();
 }

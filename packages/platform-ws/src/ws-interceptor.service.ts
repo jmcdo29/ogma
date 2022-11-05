@@ -14,9 +14,4 @@ export class WsParser extends WebsocketInterceptorService {
   getMethod(): string {
     return 'websocket';
   }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient(context) as any;
-    client.requestId = requestId;
-  }
 }
