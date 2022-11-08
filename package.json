@@ -4,7 +4,11 @@
   "private": true,
   "description": "The @ogma workspace containing the base logging package, the NestJS module, and all the fun parsers to add in.",
   "author": "Jay McDoniel <me@jaymcdoniel.dev>",
-  "contributors": ["Minsung Kim", "John Biundo", "Ruslan Gonzalez"],
+  "contributors": [
+    "Minsung Kim",
+    "John Biundo",
+    "Ruslan Gonzalez"
+  ],
   "keywords": [
     "nestjs",
     "nest",

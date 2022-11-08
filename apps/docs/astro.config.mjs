@@ -89,7 +89,7 @@ function calloutsPlugin() {
 
 // https://astro.build/config
 export default defineConfig({
-  outDir: './dist/apps/docs',
+  outDir: '../../dist/apps/docs',
   site: 'https://ogma.jaymcdoniel.dev',
   integrations: [
     // Enable Preact to support Preact JSX components.

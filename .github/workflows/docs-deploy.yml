@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - 'main'
+  workflow-dispatch:
+
+# Allow this job to clone the repo and create a page deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   docs-changed:
@@ -16,15 +23,13 @@ jobs:
         uses: jitterbit/get-changed-files@v1
       - name: Echo contains
         run: echo ${{ contains(steps.files.outputs.added_modified, 'apps/docs/')  }}
-  docs-deploy:
+
+  build-docs:
     runs-on: ubuntu-latest
     needs:
       - docs-changed
     if: ${{ needs.docs-changed.outputs.files == 'true' }}
     steps:
-      - name: Get All Changed Files
-        id: files
-        uses: jitterbit/get-changed-files@v1
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -32,17 +37,27 @@ jobs:
       - name: Install pnpm
         run: npm i -g pnpm
       - name: Dependencies Install
-        run: pnpm i --frozen-lockfile=false
+        run: pnpm i
       - name: Build Docs
         run: pnpm nx build docs
-      - uses: webfactory/ssh-agent@v0.7.0
+      - name: Upload build
+        uses: actions/upload-artifact@v3
         with:
-          ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }}
-      - name: Release to GH Pages
-        env:
-          USE_SSH: true
-          GIT_USER: git
-        run: |
-          git config --global user.email "jmcdo29@gmal.com"
-          git config --global user.name "Jay McDoniel"
-          pnpm deploy:docs
+          name: github-pages
+          path: dist/apps/docs/
+          if-no-files-found: error
+
+  docs-deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - build-docs
+    permissoins:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: GitHub Pages Deploy Step
+        uses: actions/deploy-pages@v1
+        id: deployment
