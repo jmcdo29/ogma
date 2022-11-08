@@ -93,15 +93,15 @@
       "sourceRoot": "apps/docs/src",
       "targets": {
         "build": {
-          "executor": "@nx-plus/docusaurus:browser",
+          "executor": "nx:run-commands",
           "options": {
-            "outputPath": "dist/apps/docs"
+            "command": "pnpm astro build --root apps/docs"
           }
         },
         "serve": {
-          "executor": "@nx-plus/docusaurus:dev-server",
+          "executor": "nx:run-commands",
           "options": {
-            "port": 3000
+            "command": "pnpm astro dev --port 3333 --root apps/docs"
           }
         },
         "deploy": {
