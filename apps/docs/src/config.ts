@@ -146,6 +146,10 @@ export const SIDEBAR: Sidebar = {
         text: 'WS',
         link: 'en/nestjs/ws/ws',
       },
+      {
+        text: 'Custom',
+        link: 'en/nestjs/custom',
+      },
     ],
     '@ogma/styler': [
       {

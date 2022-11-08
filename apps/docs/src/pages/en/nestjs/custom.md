@@ -1,6 +1,7 @@
 ---
 id: custom
 title: Custom Parsers
+layout: ../../../layouts/MainLayout.astro
 ---
 
 To create a custom parser, you can either `extend` an existing parser and override any of the methods, such as the `getCallerIp()` if you need to get a value other than `req.ip` in the [`@ogma/platform-express`](./http/platform-express) parser, or you can create your own class that `extends AbstractInterceptorService` or `implements InterceptorService`. All of the methods of these classes and interfaces have appropriate typings and doc strings to help with creating your own parser if you want to work with a system that is not directly yet supported.

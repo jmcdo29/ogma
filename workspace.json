@@ -101,13 +101,7 @@
         "serve": {
           "executor": "nx:run-commands",
           "options": {
-            "command": "pnpm astro dev --port 3333 --root apps/docs"
-          }
-        },
-        "deploy": {
-          "executor": "nx:run-commands",
-          "options": {
-            "command": "pnpm docusaurus deploy --out-dir dist/apps/docs --config apps/docs/docusaurus.config.js --skip-build"
+            "command": "pnpm astro dev --port 3333 --root apps/docs --verbose"
           }
         }
       },
