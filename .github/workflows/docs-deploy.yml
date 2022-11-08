@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - 'main'
-  workflow-dispatch:
+  workflow_dispatch:
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
