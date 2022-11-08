@@ -20,8 +20,10 @@ jobs:
     steps:
       - name: Get All Added and Modified Field
         id: files
+        if: ${{ github.event_name != 'workflow_dispatch' }}
         uses: jitterbit/get-changed-files@v1
       - name: Echo contains
+        if: ${{ github.event_name != 'workflow_dispatch' }}
         run: echo ${{ contains(steps.files.outputs.added_modified, 'apps/docs/')  }}
 
   build-docs:
