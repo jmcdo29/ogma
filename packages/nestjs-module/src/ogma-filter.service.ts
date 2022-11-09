@@ -1,14 +1,14 @@
 import { ArgumentsHost, Injectable } from '@nestjs/common';
 import { OgmaOptions } from '@ogma/logger';
 
-import { InjectOgmaInterceptorOptions } from '../decorators';
-import { LogObject } from '../interceptor/interfaces/log.interface';
-import { DelegatorService } from '../interceptor/providers';
-import { OgmaInterceptorOptions } from '../interfaces';
-import { OgmaService } from '../ogma.service';
+import { InjectOgmaInterceptorOptions } from './decorators';
+import { LogObject } from './interceptor/interfaces/log.interface';
+import { DelegatorService } from './interceptor/providers';
+import { OgmaInterceptorOptions } from './interfaces';
+import { OgmaService } from './ogma.service';
 
 @Injectable()
-export class OgmaFilterLogger {
+export class OgmaFilterService {
   private json: boolean;
   private color: boolean;
 

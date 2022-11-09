@@ -1,6 +1,5 @@
 import { Global, Module } from '@nestjs/common';
 
-import { OgmaFilterLogger } from './filter/ogma-filter.logger';
 import {
   DelegatorService,
   GqlInterceptorService,
@@ -26,6 +25,7 @@ import {
 } from './ogma.provider';
 import { OgmaService } from './ogma.service';
 import { ConfigurableModuleClass } from './ogma-core.module-definition';
+import { OgmaFilterService } from './ogma-filter.service';
 
 @Global()
 @Module({
@@ -72,7 +72,7 @@ import { ConfigurableModuleClass } from './ogma-core.module-definition';
     },
     OgmaService,
     DelegatorService,
-    OgmaFilterLogger,
+    OgmaFilterService,
   ],
   exports: [
     OGMA_INSTANCE,
@@ -83,7 +83,7 @@ import { ConfigurableModuleClass } from './ogma-core.module-definition';
     GqlInterceptorService,
     RpcInterceptorService,
     WebsocketInterceptorService,
-    OgmaFilterLogger,
+    OgmaFilterService,
   ],
 })
 export class OgmaCoreModule extends ConfigurableModuleClass {}

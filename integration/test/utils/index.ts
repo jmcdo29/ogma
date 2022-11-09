@@ -1,5 +1,5 @@
 import {
-  OgmaFilterLogger,
+  OgmaFilterService,
   OgmaInterceptor,
   OgmaService,
   OgmaServiceOptions,
@@ -17,7 +17,7 @@ export const serviceOptionsFactory = (app: string, json = false): OgmaServiceOpt
 
 export const reportValues = (
   ogma: OgmaService,
-  logs: Parameters<OgmaInterceptor['log'] | OgmaFilterLogger['doLog']>[],
+  logs: Parameters<OgmaInterceptor['log'] | OgmaFilterService['doLog']>[],
 ) => {
   if (process.env.CI) {
     return;

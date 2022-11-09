@@ -1,10 +1,10 @@
 import { ArgumentsHost, Catch } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
-import { OgmaFilterLogger } from '@ogma/nestjs-module';
+import { OgmaFilterService } from '@ogma/nestjs-module';
 
 @Catch()
 export class ErrorLoggingFilter extends BaseExceptionFilter {
-  constructor(private readonly logger: OgmaFilterLogger) {
+  constructor(private readonly logger: OgmaFilterService) {
     super();
   }
 

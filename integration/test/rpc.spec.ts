@@ -9,7 +9,7 @@ import {
   Transport,
 } from '@nestjs/microservices';
 import { Test } from '@nestjs/testing';
-import { OgmaFilterLogger, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
+import { OgmaFilterService, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 import { MqttParser } from '@ogma/platform-mqtt';
 import { NatsParser } from '@ogma/platform-nats';
 import { RabbitMqParser } from '@ogma/platform-rabbitmq';
@@ -84,10 +84,10 @@ for (const { server, transport, options, protocol, parser } of [
 ] as const) {
   const RpcSuite = suite<{
     logSpy: Stub<OgmaInterceptor['log']>;
-    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterLogger['doLog']>[];
+    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterService['doLog']>[];
     rpcServer: INestMicroservice;
     rpcClient: INestApplication;
-    filterSpy: Stub<OgmaFilterLogger['doLog']>;
+    filterSpy: Stub<OgmaFilterService['doLog']>;
   }>(`${server} interceptor suite`, {
     logs: [],
     logSpy: undefined,
@@ -107,7 +107,7 @@ for (const { server, transport, options, protocol, parser } of [
       options,
     } as any);
     const interceptor = rpcServer.get(OgmaInterceptor);
-    const filterService = rpcServer.get(OgmaFilterLogger);
+    const filterService = rpcServer.get(OgmaFilterService);
     await rpcServer.listen().catch(console.error);
     const clientRef = await Test.createTestingModule({
       imports: [

@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
-import { OgmaFilterLogger, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
+import { OgmaFilterService, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 import { ExpressParser } from '@ogma/platform-express';
 import { FastifyParser } from '@ogma/platform-fastify';
 import { style } from '@ogma/styler';
@@ -19,13 +19,13 @@ import {
   toBeALogObject,
 } from './utils';
 
-const expectRequestId = (spy: Stub<OgmaInterceptor['log']> | Stub<OgmaFilterLogger['doLog']>) => {
+const expectRequestId = (spy: Stub<OgmaInterceptor['log']> | Stub<OgmaFilterService['doLog']>) => {
   is(typeof spy.firstCall.args[2], 'string');
   is(spy.firstCall.args[2].length, 16);
 };
 
 const expectLogObject = (
-  spy: Stub<OgmaInterceptor['log']> | Stub<OgmaFilterLogger['doLog']>,
+  spy: Stub<OgmaInterceptor['log']> | Stub<OgmaFilterService['doLog']>,
   method: string,
   endpoint: string,
   status: string,
@@ -49,8 +49,8 @@ for (const { adapter, server, parser } of [
   const HttpSuite = suite<{
     app: INestApplication;
     logSpy: Stub<OgmaInterceptor['log']>;
-    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterLogger['doLog']>[];
-    filterSpy: Stub<OgmaFilterLogger['doLog']>;
+    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterService['doLog']>[];
+    filterSpy: Stub<OgmaFilterService['doLog']>;
   }>(`${server} HTTP Log Suite`, {
     app: undefined,
     logSpy: undefined,
@@ -64,7 +64,7 @@ for (const { adapter, server, parser } of [
     });
     context.app = modRef.createNestApplication(adapter);
     const interceptor = context.app.get(OgmaInterceptor);
-    const filterService = context.app.get(OgmaFilterLogger);
+    const filterService = context.app.get(OgmaFilterService);
     await context.app.listen(0);
     request.setBaseUrl((await context.app.getUrl()).replace('[::1]', 'localhost'));
     context.logSpy = stubMethod(interceptor, 'log');

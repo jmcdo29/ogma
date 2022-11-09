@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import { MercuriusDriver } from '@nestjs/mercurius';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
-import { OgmaFilterLogger, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
+import { OgmaFilterService, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 import { GraphQLParser } from '@ogma/platform-graphql';
 import { GraphQLFastifyParser } from '@ogma/platform-graphql-fastify';
 import { style } from '@ogma/styler';
@@ -39,8 +39,8 @@ for (const { adapter, server, parser, driver } of [
   const GqlParserSuite = suite<{
     app: INestApplication;
     logSpy: Stub<OgmaInterceptor['log']>;
-    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterLogger['doLog']>[];
-    filterSpy: Stub<OgmaFilterLogger['doLog']>;
+    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterService['doLog']>[];
+    filterSpy: Stub<OgmaFilterService['doLog']>;
   }>(`${server} GraphQL server`, {
     app: undefined,
     logSpy: undefined,
@@ -56,7 +56,7 @@ for (const { adapter, server, parser, driver } of [
     });
     context.app = modRef.createNestApplication(adapter);
     const interceptor = context.app.get(OgmaInterceptor);
-    const filterService = context.app.get(OgmaFilterLogger);
+    const filterService = context.app.get(OgmaFilterService);
     await context.app.listen(0);
     const baseUrl = await context.app.getUrl();
     request.setBaseUrl(baseUrl.replace('[::1]', 'localhost'));

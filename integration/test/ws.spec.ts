@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { WsAdapter } from '@nestjs/platform-ws';
 import { Test } from '@nestjs/testing';
-import { OgmaFilterLogger, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
+import { OgmaFilterService, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 import { SocketIOParser } from '@ogma/platform-socket.io';
 import { WsParser } from '@ogma/platform-ws';
 import { style } from '@ogma/styler';
@@ -37,11 +37,11 @@ for (const { adapter, server, parser, client, protocol, sendMethod, serializer }
 ] as const) {
   const WsSuite = suite<{
     logSpy: Stub<OgmaInterceptor['log']>;
-    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterLogger['doLog']>[];
+    logs: Parameters<OgmaInterceptor['log'] | OgmaFilterService['doLog']>[];
     app: INestApplication;
     baseUrl: string;
     wsClient: { send: (message: string) => Promise<string>; close: () => Promise<void> };
-    filterSpy: Stub<OgmaFilterLogger['doLog']>;
+    filterSpy: Stub<OgmaFilterService['doLog']>;
   }>(`${server} interceptor suite`, {
     logs: [],
     logSpy: undefined,
@@ -64,7 +64,7 @@ for (const { adapter, server, parser, client, protocol, sendMethod, serializer }
     context.app = modRef.createNestApplication();
     context.app.useWebSocketAdapter(new adapter(context.app));
     const interceptor = context.app.get(OgmaInterceptor);
-    const filterService = context.app.get(OgmaFilterLogger);
+    const filterService = context.app.get(OgmaFilterService);
     context.logSpy = stubMethod(interceptor, 'log');
     context.filterSpy = stubMethod(filterService as any, 'doLog');
     context.filterSpy.passThrough();
