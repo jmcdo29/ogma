@@ -1,7 +1,7 @@
 ---
 id: filter
 title: Filter Logging Service
-layout: ../../../layouts/MainLayout.asrto
+layout: ../../../layouts/MainLayout.astro
 ---
 
 There may be times where you need to log an exception that happened outside of the interceptor's control, say like in a guard or a middleware. For this purpose, ogma also comes with an `OgmaFilterService` that takes in the exception and the `ArgumentsHost`, and prints out a line just like the interceptor would. The service is also smart, ensuring not to print out another line to the logs if the exception has already been logged by the interceptor.
