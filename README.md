@@ -3,7 +3,7 @@
 ![CI](https://github.com/jmcdo29/ogma/workflows/CI/badge.svg) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![Coffee](https://badgen.net/badge/Buy%20Me/A%20Coffee/purple?icon=kofi)](https://www.buymeacoffee.com/jmcdo29) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f03955cfcc16468d9d05ec8f5fc4924e)](https://www.codacy.com/gh/jmcdo29/ogma/dashboard?utm_source=github.com&utm_medium=referral&utm_content=jmcdo29/ogma&utm_campaign=Badge_Grade) [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/f03955cfcc16468d9d05ec8f5fc4924e)](https://www.codacy.com/gh/jmcdo29/ogma/dashboard?utm_source=github.com&utm_medium=referral&utm_content=jmcdo29/ogma&utm_campaign=Badge_Coverage)
 
   <p align="center">
-    <a href="https://jmcdo29.github.io/ogma" target="blank"><img src="apps/docs/static/img/logo.svg" width="120" alt="Ogma Logo" /></a>
+    <a href="https://jmcdo29.github.io/ogma" target="blank"><img src="https://ogma.jaymcdoniel.dev/logo.svg" width="220" alt="Ogma Logo" /></a>
   </p>
 
 </div>
