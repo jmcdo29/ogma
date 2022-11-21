@@ -79,7 +79,7 @@ importers:
       hastscript: ^7.1.0
       husky: ^8.0.1
       ioredis: ^5.2.4
-      kafkajs: 2.2.2
+      kafkajs: 2.2.3
       lcov-result-merger: ^3.3.0
       lint-staged: 13.0.3
       mercurius: 11.3.0
@@ -134,7 +134,7 @@ importers:
       '@nestjs/core': 9.2.0_s4wxukmku6m4qfmfikov25d2uy
       '@nestjs/graphql': 10.1.5_j2x7tzld3gt4qwtswamhkejgwe
       '@nestjs/mercurius': 10.1.4_66o6f3zuvwe7dczxjkpysymajy
-      '@nestjs/microservices': 9.1.6_44rsugv6blcffktvouqvx4urve
+      '@nestjs/microservices': 9.1.6_depstqa2wdli543aamm3ab4uve
       '@nestjs/platform-express': 9.2.0_pf2fb646rsvo5szivgkaevcpvi
       '@nestjs/platform-fastify': 9.1.6_pf2fb646rsvo5szivgkaevcpvi
       '@nestjs/platform-socket.io': 9.1.6_5rnirh5axijpasc4rm3d2fk6nu
@@ -186,7 +186,7 @@ importers:
       hastscript: 7.1.0
       husky: 8.0.1
       ioredis: 5.2.4
-      kafkajs: 2.2.2
+      kafkajs: 2.2.3
       lcov-result-merger: 3.3.0
       lint-staged: 13.0.3
       mercurius: 11.3.0_graphql@16.6.0
@@ -2360,7 +2360,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 9.2.0_x6yqyveuahcdef4z4mxykmuv6a
-      '@nestjs/microservices': 9.1.6_44rsugv6blcffktvouqvx4urve
+      '@nestjs/microservices': 9.1.6_depstqa2wdli543aamm3ab4uve
       '@nestjs/platform-express': 9.2.0_pf2fb646rsvo5szivgkaevcpvi
       '@nestjs/websockets': 9.1.6_ghknfh3tpakylcdsjnddcg6giu
       '@nuxtjs/opencollective': 0.3.2
@@ -2452,7 +2452,7 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /@nestjs/microservices/9.1.6_44rsugv6blcffktvouqvx4urve:
+  /@nestjs/microservices/9.1.6_depstqa2wdli543aamm3ab4uve:
     resolution: {integrity: sha512-ppcA+ihIEJRvjpGc/ognlWwpp3Kra6wyH66BvqWJiNQa8T44V4Jrgn4mhQkd91TuVlGVS2vhG2KGeColLb70Sw==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -2496,7 +2496,7 @@ packages:
       amqplib: 0.10.3
       ioredis: 5.2.4
       iterare: 1.2.1
-      kafkajs: 2.2.2
+      kafkajs: 2.2.3
       mqtt: 4.3.7
       nats: 2.8.0
       reflect-metadata: 0.1.13
@@ -2609,7 +2609,7 @@ packages:
     dependencies:
       '@nestjs/common': 9.2.0_x6yqyveuahcdef4z4mxykmuv6a
       '@nestjs/core': 9.2.0_s4wxukmku6m4qfmfikov25d2uy
-      '@nestjs/microservices': 9.1.6_44rsugv6blcffktvouqvx4urve
+      '@nestjs/microservices': 9.1.6_depstqa2wdli543aamm3ab4uve
       '@nestjs/platform-express': 9.2.0_pf2fb646rsvo5szivgkaevcpvi
       tslib: 2.4.0
     dev: true
@@ -9461,8 +9461,8 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
-  /kafkajs/2.2.2:
-    resolution: {integrity: sha512-9wpGLAwRVbVtSew3xwi2f2BMuYLXWhYcoYB/O7gd1JYOYuYTAEC60CeFgRQugI016MxqvOKnOOA+l1jx+4b84g==}
+  /kafkajs/2.2.3:
+    resolution: {integrity: sha512-JmzIiLHE/TdQ7b4I2B/DNMtfhTh66fmEaEg7gGkyQXBC6f1A7I2jSjeUsVIJfC8d9YcEIURyBjtOEKBO5OHVhg==}
     engines: {node: '>=14.0.0'}
 
   /kind-of/6.0.3:
