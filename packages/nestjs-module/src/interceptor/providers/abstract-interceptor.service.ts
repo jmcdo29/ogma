@@ -140,6 +140,8 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    */
   abstract setRequestId(context: ArgumentsHost, requestId: string): void;
 
+  abstract getRequestId(context: ArgumentsHost): string;
+
   protected wrapInColor(status: number): string {
     let statusString: string;
     if (this.isBetween(status, 100, 300)) {

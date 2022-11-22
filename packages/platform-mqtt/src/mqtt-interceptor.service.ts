@@ -1,8 +1,8 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ExecutionContext } from '@nestjs/common';
 import { MqttContext } from '@nestjs/microservices';
-import { RpcInterceptorService } from '@ogma/nestjs-module';
+import { Parser, RpcInterceptorService } from '@ogma/nestjs-module';
 
-@Injectable()
+@Parser('rpc')
 export class MqttParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext): string {
     return this.getClient<MqttContext>(context).getTopic();

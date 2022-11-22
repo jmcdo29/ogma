@@ -52,14 +52,8 @@ for (const { adapter, server, parser, client, protocol, sendMethod, serializer }
   });
   WsSuite.before(async (context) => {
     const modRef = await Test.createTestingModule({
-      imports: [
-        WsModule.register({
-          service: serviceOptionsFactory(server),
-          interceptor: {
-            ws: parser,
-          },
-        }),
-      ],
+      imports: [WsModule.register(serviceOptionsFactory(server))],
+      providers: [parser],
     }).compile();
     context.app = modRef.createNestApplication();
     context.app.useWebSocketAdapter(new adapter(context.app));

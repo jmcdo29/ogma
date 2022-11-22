@@ -1,7 +1,9 @@
-import { Inject } from '@nestjs/common';
+import { ContextType, Inject } from '@nestjs/common';
 import { isObservable, tap } from 'rxjs';
 
+import { AbstractInterceptorService } from '../interceptor/providers';
 import { Type } from '../interfaces';
+import { OGMA_CONTEXT_PARSER } from '../ogma.constants';
 import { createProviderToken, createRequestScopedProviderToken } from '../ogma.provider';
 import { OgmaService } from '../ogma.service';
 
@@ -65,5 +67,16 @@ export const LogAll =
         target.prototype[key] = logRet.value;
       }
     }
+    return target;
+  };
+
+type ParserDecorator = <TFunction extends Type<AbstractInterceptorService>>(
+  target: TFunction,
+) => void | TFunction;
+
+export const Parser =
+  (type: ContextType | 'graphql' | string): ParserDecorator =>
+  (target) => {
+    Reflect.defineMetadata(OGMA_CONTEXT_PARSER, type, target);
     return target;
   };

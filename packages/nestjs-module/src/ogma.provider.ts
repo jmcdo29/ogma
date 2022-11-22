@@ -1,10 +1,9 @@
 import { FactoryProvider, Scope } from '@nestjs/common';
-import { Reflector, REQUEST as CONTEXT } from '@nestjs/core';
+import { REQUEST as CONTEXT } from '@nestjs/core';
 import { OgmaWritableLevel } from '@ogma/common';
 import { Ogma, OgmaOptions } from '@ogma/logger';
 
-import { AbstractInterceptorService } from './interceptor/providers';
-import { OgmaInterceptorOptions, OgmaModuleOptions, OgmaServiceOptions, Type } from './interfaces';
+import { OgmaModuleOptions, Type } from './interfaces';
 import { RequestContext } from './interfaces/request-context.interface';
 import {
   OGMA_INSTANCE,
@@ -23,29 +22,11 @@ export function createOgmaProvider(options?: Partial<OgmaOptions>): Ogma {
   });
 }
 
-function mergeInterceptorDefaults(options: OgmaInterceptorOptions): OgmaInterceptorOptions {
-  const mergedOptions: OgmaInterceptorOptions = {
-    ...{ http: false, ws: false, rpc: false, gql: false },
-    ...options,
-  };
-  return mergedOptions;
-}
-
-export function createOgmaInterceptorOptionsFactory(
-  options: OgmaModuleOptions,
-): OgmaInterceptorOptions | false {
-  const intOpts = options?.interceptor;
-  if (intOpts === false) {
-    return intOpts;
-  }
-  return mergeInterceptorDefaults(intOpts);
-}
-
-export function createOgmaServiceOptions(options: OgmaModuleOptions): OgmaServiceOptions {
+export function createOgmaServiceOptions(options: OgmaModuleOptions): OgmaModuleOptions {
   return options.service;
 }
 
-export function createOgmaTraceOptions(options: OgmaServiceOptions): Lowercase<OgmaWritableLevel> {
+export function createOgmaTraceOptions(options: OgmaModuleOptions): Lowercase<OgmaWritableLevel> {
   return options?.traceMethod ?? 'fine';
 }
 
@@ -87,13 +68,3 @@ export function createRequestScopedLoggerProviders(
     },
   ];
 }
-
-export const interceptorProviderFactory =
-  (
-    type: 'http' | 'gql' | 'ws' | 'rpc',
-    backupClass: Type<AbstractInterceptorService>,
-  ): ((opt: OgmaInterceptorOptions, reflector: Reflector) => Type<AbstractInterceptorService>) =>
-  (intOpts: OgmaInterceptorOptions, reflector: Reflector): Type<AbstractInterceptorService> =>
-    intOpts[type]
-      ? new (intOpts as Type<AbstractInterceptorService>)[type](reflector)
-      : new backupClass(reflector);
