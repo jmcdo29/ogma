@@ -20,7 +20,7 @@
     "lib": "lib"
   },
   "dependencies": {
-    "@ogma/logger": "^2.4.2"
+    "@ogma/logger": "^2.4.1"
   },
   "peerDependencies": {
     "@nestjs/common": "^9.0.0",

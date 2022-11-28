@@ -255,7 +255,7 @@ importers:
 
   packages/nestjs-module:
     specifiers:
-      '@ogma/logger': ^2.0.0
+      '@ogma/logger': ^2.4.1
     dependencies:
       '@ogma/logger': link:../logger
 
