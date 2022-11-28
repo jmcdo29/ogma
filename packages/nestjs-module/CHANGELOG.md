@@ -1,5 +1,22 @@
 # Change Log
 
+## 4.2.2
+
+### Patch Changes
+
+- 33c279b: Fix dependencies for better install experience
+
+  ## `@ogma/logger`
+
+  `@ogma/common` and `@ogma/styler` were set as peerDependencies instead of dependencies meaning package managers wouldn't install them by default. They are now properly set as dependencies
+
+  ## `@ogma/nestjs-module`
+
+  `@ogma/logger` was set as a peerDependency instead of a dependency. Now has been set to a dependency.
+
+- Updated dependencies [33c279b]
+  - @ogma/logger@2.4.2
+
 ## 4.2.1
 
 ### Patch Changes
