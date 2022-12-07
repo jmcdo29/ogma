@@ -38,9 +38,9 @@ export const GITHUB_DISCUSSIONS_URL = `https://github.com/jmcdo29/ogma/discussio
 
 // See "Algolia" section of the README for more information.
 export const ALGOLIA = {
-  indexName: 'XXXXXXXXXX',
-  appId: 'XXXXXXXXXX',
-  apiKey: 'XXXXXXXXXX',
+  indexName: 'ogma',
+  appId: 'U5N45YQUS6',
+  apiKey: 'dad79a1521426f184d0fac2ce3575149',
 };
 
 type Transport = 'http' | 'graphql' | 'ws' | 'rpc';
