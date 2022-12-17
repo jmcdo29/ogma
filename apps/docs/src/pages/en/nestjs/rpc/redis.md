@@ -4,7 +4,7 @@ title: Platform Redis
 layout: ../../../../layouts/MainLayout.astro
 ---
 
-The `RedisParser` parser for the `OgmaInterceptor`. This plugin class parses Redis request and response object to be able to successfully log the data about the request. For more information, check out the [@ogma/nestjs-module](../module) documentation.
+The `RedisParser` parser for the `OgmaInterceptor`. This plugin class parses Redis request and response object to be able to successfully log the data about the request. For more information, check out the [@ogma/nestjs-module](/en/nestjs/module) documentation.
 
 ## Installation
 

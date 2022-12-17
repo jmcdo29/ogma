@@ -119,7 +119,7 @@ If the `json` option is passed as `true` then regardless of `color` Ogma will pr
 
 ### Applying color to Text
 
-As of version 2, it is suggested to use the separate [`@ogma/styler`](./styler) package. This package is what Ogma uses under the hood to do the basic coloring, and will provide a cleaner and more verbose API.
+As of version 2, it is suggested to use the separate [`@ogma/styler`](/en/styler) package. This package is what Ogma uses under the hood to do the basic coloring, and will provide a cleaner and more verbose API.
 
 Using the non-JSON mode, color is attempted to be applied by default. This is determined by checking the current environment (if there is a global `process` variable) and if there is, what `stdout.getColorDepth()` returns. If a custom stream is passed instead, a `getColorDepth` method can be added to the stream object which should return a 1, 4, 8, or 24. If no `getColorDepth()` is present, but the `color` option is true, Ogma will set the method to return `4` for you. If you want to disable colors completely, you can either set `color` to be `false` or you can set the `NO_COLOR` environment variable.
 

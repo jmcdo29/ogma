@@ -4,7 +4,7 @@ title: Platform Kafka
 layout: ../../../../layouts/MainLayout.astro
 ---
 
-The `KafkaParser` parser for the `OgmaInterceptor`. This plugin class parses Kafka request and response object to be able to successfully log the data about the request. For more information, check out the [@ogma/nestjs-module](../module) documentation.
+The `KafkaParser` parser for the `OgmaInterceptor`. This plugin class parses Kafka request and response object to be able to successfully log the data about the request. For more information, check out the [@ogma/nestjs-module](/en/nestjs/module) documentation.
 
 ## Installation
 
