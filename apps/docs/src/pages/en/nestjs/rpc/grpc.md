@@ -4,7 +4,7 @@ title: Platform gRPC
 layout: ../../../../layouts/MainLayout.astro
 ---
 
-The `GrpcParser` parser for the `OgmaInterceptor`. This plugin class parses gRPC request and response object to be able to successfully log the data about the request. For more information, check out the [@ogma/nestjs-module](../module) documentation.
+The `GrpcParser` parser for the `OgmaInterceptor`. This plugin class parses gRPC request and response object to be able to successfully log the data about the request. For more information, check out the [@ogma/nestjs-module](/en/nestjs/module) documentation.
 
 ## Installation
 

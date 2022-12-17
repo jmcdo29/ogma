@@ -58,15 +58,15 @@ The options that are required for the above methods can be found in the tables b
 
 #### OgmaServiceOptions
 
-This is a simple partial of the options available for the [Ogma instance](../logger#ogma-options). For more details, please consult the `@ogma/logger` docs.
+This is a simple partial of the options available for the [Ogma instance](/en/logger#ogma-options). For more details, please consult the `@ogma/logger` docs.
 
 #### OgmaInterceptorOptions
 
-There are four optional properties to the `OgmaInterceptorOptions` ,`http`, `gql`, `ws`, and `rpc`, **but** one of the four must be provided if the `interceptor` option is not `false`. All of these options are of the same type, a default `false` value, or a reference to a class that extends `AbstractInterceptorService`. The `OgmaModule` will take care of instantiating this class for you, so you just need to provide a reference. Please view the [`@ogma/platform-express`](http/platform-express) docs for a brief example.
+There are four optional properties to the `OgmaInterceptorOptions` ,`http`, `gql`, `ws`, and `rpc`, **but** one of the four must be provided if the `interceptor` option is not `false`. All of these options are of the same type, a default `false` value, or a reference to a class that extends `AbstractInterceptorService`. The `OgmaModule` will take care of instantiating this class for you, so you just need to provide a reference. Please view the [`@ogma/platform-express`](/en/nestjs/http/platform-express) docs for a brief example.
 
 ## Feature Configuration
 
-Along with root level configuration, the `OgmaModule` also allows for feature level configuration for setting up [`OgmaServices`](./service) with specified contexts. These contexts will be added to the logs automatically.
+Along with root level configuration, the `OgmaModule` also allows for feature level configuration for setting up [`OgmaServices`](/en/nestjs/service) with specified contexts. These contexts will be added to the logs automatically.
 
 ```ts
 OgmaModule.forFeature(FooService);

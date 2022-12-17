@@ -4,7 +4,7 @@ title: Platform Nats
 layout: ../../../../layouts/MainLayout.astro
 ---
 
-The `NatsParser` parser for the `OgmaInterceptor`. This plugin class parses NATS request and response object to be able to successfully log the data about the request. For more information, check out the [@ogma/nestjs-module](../module) documentation.
+The `NatsParser` parser for the `OgmaInterceptor`. This plugin class parses NATS request and response object to be able to successfully log the data about the request. For more information, check out the [@ogma/nestjs-module](/en/nestjs/module) documentation.
 
 ## Installation
 

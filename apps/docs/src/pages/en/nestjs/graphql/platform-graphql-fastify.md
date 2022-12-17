@@ -10,7 +10,7 @@ If you are using `@nestjs/apollo` make sure you are using fastify v3 and `@nestj
 
 :::
 
-The `GraphQLFastifyParser` parser for the `OgmaInterceptor`. This plugin class parses GraphQL request and response object to be able to successfully log the data about the request. For more information, check out the [@ogma/nestjs-module](../module) documentation.
+The `GraphQLFastifyParser` parser for the `OgmaInterceptor`. This plugin class parses GraphQL request and response object to be able to successfully log the data about the request. For more information, check out the [@ogma/nestjs-module](/en/nestjs/module) documentation.
 
 ## Installation
 
