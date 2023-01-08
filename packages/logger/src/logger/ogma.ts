@@ -6,12 +6,14 @@ import { OgmaDefaults, OgmaOptions, PrintMessageOptions } from '../interfaces';
 import { OgmaPrintOptions } from '../interfaces/ogma-print-options';
 import { colorize, isNil } from '../utils';
 
+const checkIfHasSpaceRegex = /[^\n]$/;
+
 /**
  * The main logger instance
  */
 export class Ogma {
   private options: OgmaOptions;
-  private pid: number;
+  private pid: string;
   private hostname: string;
   private styler: Styler;
 
@@ -33,7 +35,7 @@ export class Ogma {
         .filter((key) => isNil(options[key]))
         .forEach((key) => delete options[key]);
     this.options = { ...OgmaDefaults, ...(options as OgmaOptions) };
-    this.pid = process.pid;
+    this.pid = process.pid.toString();
     this.hostname = hostname();
     if (options?.logLevel && LogLevel[options.logLevel] === undefined) {
       this.options.logLevel = OgmaDefaults.logLevel;
@@ -135,7 +137,7 @@ export class Ogma {
     }
 
     if (this.options.logPid) {
-      json.pid = this.pid;
+      json.pid = Number(this.pid);
     }
 
     json.correlationId = correlationId;
@@ -165,7 +167,7 @@ export class Ogma {
         2,
       )}`;
     }
-    return `${message}${/[^\n]$/.test(message) && addSpace ? ' ' : ''}`;
+    return `${message}${checkIfHasSpaceRegex.test(message) && addSpace ? ' ' : ''}`;
   }
 
   private formatStream(
@@ -198,7 +200,7 @@ export class Ogma {
       ? this.toStreamColor(application || this.options.application, Color.YELLOW) + ' '
       : '';
 
-    const pid = logPid ? this.wrapInBrackets(this.pid.toString()) + ' ' : '';
+    const pid = logPid ? this.wrapInBrackets(this.pid) + ' ' : '';
 
     return `${timestamp} ${formattedLevel} ${hostname}${applicationName}${pid}${correlationId} ${context} ${message}`;
   }
