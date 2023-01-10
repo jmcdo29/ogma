@@ -31,6 +31,8 @@
   },
   "dependencies": {
     "@ogma/common": "^1.0.0",
-    "@ogma/styler": "^1.0.0"
+    "@ogma/styler": "^1.0.0",
+    "on-exit-leak-free": "^2.1.0",
+    "sonic-boom": "^3.2.1"
   }
 }

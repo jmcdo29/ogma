@@ -32,8 +32,9 @@ const ctxMockFactory = (partial: Partial<ExecutionContext>): ExecutionContext =>
   ...partial,
 });
 
-const FastifyParserSuite =
-  suite<{ parser: FastifyParser; reflector: Reflector }>('Fastify Parser Suite');
+const FastifyParserSuite = suite<{ parser: FastifyParser; reflector: Reflector }>(
+  'Fastify Parser Suite',
+);
 FastifyParserSuite.before(async (context) => {
   const mod = await Test.createTestingModule({
     providers: [
