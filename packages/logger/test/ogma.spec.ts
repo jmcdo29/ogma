@@ -54,7 +54,7 @@ for (const color of [true, false]) {
       const ogma = ogmaFactory({ color });
       ogma.log('Hello');
       const matcher = color ? match : not.match;
-      matcher(getFirstCallString(writeSpy), style.cyan.apply('[INFO] '));
+      matcher(getFirstCallString(writeSpy), style.cyan().apply('[INFO] '));
     },
   );
 }
@@ -93,7 +93,7 @@ for (const context of ['test context', '']) {
     ({ ogmaFactory, writeSpy, getFirstCallString }) => {
       const ogma = ogmaFactory({ context });
       ogma.log('Hello!');
-      match(getFirstCallString(writeSpy), context ? style.cyan.apply(`[${context}]`) : '');
+      match(getFirstCallString(writeSpy), context ? style.cyan().apply(`[${context}]`) : '');
     },
   );
 }
@@ -105,7 +105,7 @@ for (const application of ['test app', '']) {
       ogma.log('Hello!');
       match(
         getFirstCallString(writeSpy),
-        application ? style.yellow.apply(`[${application}]`) : '',
+        application ? style.yellow().apply(`[${application}]`) : '',
       );
     },
   );

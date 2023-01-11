@@ -62,7 +62,7 @@ for (const { color, status } of [
   { color: 'white', status: 600 },
 ]) {
   AbstractInterceptorServiceSuite(colorStatus(color, status), ({ service }) => {
-    is(service.getColoredStatus(status), style[color].apply(status));
+    is(service.getColoredStatus(status), style[color]().apply(status));
   });
 }
 

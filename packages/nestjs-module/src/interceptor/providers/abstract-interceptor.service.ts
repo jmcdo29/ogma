@@ -143,15 +143,15 @@ export abstract class AbstractInterceptorService implements InterceptorService {
   protected wrapInColor(status: number): string {
     let statusString: string;
     if (this.isBetween(status, 100, 300)) {
-      statusString = style.green.apply(status);
+      statusString = style.green().apply(status);
     } else if (this.isBetween(status, 300, 400)) {
-      statusString = style.cyan.apply(status);
+      statusString = style.cyan().apply(status);
     } else if (this.isBetween(status, 400, 500)) {
-      statusString = style.yellow.apply(status);
+      statusString = style.yellow().apply(status);
     } else if (this.isBetween(status, 500, 600)) {
-      statusString = style.red.apply(status);
+      statusString = style.red().apply(status);
     } else {
-      statusString = style.white.apply(status);
+      statusString = style.white().apply(status);
     }
     return statusString;
   }
