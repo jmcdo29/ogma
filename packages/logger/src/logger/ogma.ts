@@ -173,32 +173,22 @@ export class Ogma {
     level: LogLevel,
     { application = '', correlationId = '', context = '', ...meta }: OgmaPrintOptions,
   ): string {
+    const mappedLevel = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
     let json: Partial<OgmaLog> = {
-      time: '',
-      hostname: undefined,
+      time: undefined,
+      hostname: this.hostname,
       application: undefined,
-      pid: 0,
-      correlationId: undefined,
+      pid: this.jsonPid,
+      correlationId: correlationId,
       context: undefined,
-      ool: 'INFO',
-      level: undefined,
+      ool: LogLevel[level] as OgmaWritableLevel,
+      level: mappedLevel,
       message: undefined,
-      meta: undefined,
+      meta: {},
     };
     json.time = Date.now();
-
-    const mappedLevel = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
-
-    json.hostname = this.hostname;
-
-    json.application = application || this.application;
-
-    json.pid = this.jsonPid;
-
-    json.correlationId = correlationId;
+    json.appliation = application || this.application;
     json.context = context || this.options.context || undefined;
-    json.level = mappedLevel;
-    json.ool = LogLevel[level] as OgmaWritableLevel;
     if (this.options.levelKey) {
       json[this.options.levelKey] = mappedLevel;
     }
@@ -207,9 +197,6 @@ export class Ogma {
       // delete json.message;
     } else {
       json.message = message;
-    }
-    if (meta && Object.keys(meta).length) {
-      json.meta = meta;
     }
     return JSON.stringify(json, this.circularReplacer());
   }
