@@ -6,12 +6,12 @@ Benchmarks were made by testing the logging capabilities of several loggers agai
 
 | Logger    | Simple  | Long     | JSON    | Deep     |
 | --------- | ------- | -------- | ------- | -------- |
-| Bunyan    | 179.3ms | 2549.0ms | 192.3ms | 1026.2ms |
-| Ogma      | 153.4ms | 1153.0ms | 221.4ms | 317.9ms  |
-| OgmaMasks | 138.5ms | 1102.3ms | 223.5ms | 574.2ms  |
-| Pino      | 61.9ms  | 2426.7ms | 74.3ms  | 681.1ms  |
-| Winston   | 176.2ms | 3767.3ms | 381.2ms | 261.0ms  |
+| Bunyan    | 377.3ms | 4520.2ms | 407.0ms | 2200.3ms |
+| Ogma      | 152.7ms | 1637.7ms | 267.8ms | 436.9ms  |
+| OgmaMasks | 144.4ms | 1724.1ms | 281.8ms | 878.9ms  |
+| Pino      | 112.3ms | 3957.8ms | 225.9ms | 1542.8ms |
+| Winston   | 293.0ms | 6680.3ms | 268.4ms | 397.3ms  |
 
 ## Information
 
-Benchmarks generated on Darwin/darwin arm64 21.4.0 ~Apple M1 Pro (cores/threads): 10
+Benchmarks generated on Linux/linux x64 5.15.86 ~Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz (cores/threads): 12
