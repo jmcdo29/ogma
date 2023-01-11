@@ -72,12 +72,12 @@ GrpcParserSuite.after(async ({ rpcServer, rpcClient, logs }) => {
 for (const { url, status, endpoint } of [
   {
     url: '/',
-    status: style.green.apply(200),
+    status: style.green().apply(200),
     endpoint: 'SayHello',
   },
   {
     url: '/error',
-    status: style.red.apply(500),
+    status: style.red().apply(500),
     endpoint: 'SayError',
   },
 ]) {

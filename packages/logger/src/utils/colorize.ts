@@ -19,7 +19,7 @@ export function colorize(
   useColor = true,
 ): string {
   if (useColor) {
-    return style[colorizeMap[color]].apply(value);
+    return style[colorizeMap[color]]().apply(value);
   }
 
   return value.toString();

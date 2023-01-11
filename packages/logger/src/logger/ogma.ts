@@ -314,9 +314,11 @@ export class Ogma {
   public fatal(message: any, meta?: OgmaPrintOptions): void {
     this.printMessage(message, {
       level: LogLevel.FATAL,
-      formattedLevel: this.styler.redBg.white.underline.apply(
-        this.wrapInBrackets(LogLevel[LogLevel.FATAL]),
-      ),
+      formattedLevel: this.styler
+        .redBg()
+        .white()
+        .underline()
+        .apply(this.wrapInBrackets(LogLevel[LogLevel.FATAL])),
       ...meta,
     });
   }
