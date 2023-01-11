@@ -6,11 +6,12 @@ Benchmarks were made by testing the logging capabilities of several loggers agai
 
 | Logger    | Simple  | Long     | JSON    | Deep     |
 | --------- | ------- | -------- | ------- | -------- |
-| Bunyan    | 377.3ms | 4520.2ms | 407.0ms | 2200.3ms |
-| Ogma      | 152.7ms | 1637.7ms | 267.8ms | 436.9ms  |
-| OgmaMasks | 144.4ms | 1724.1ms | 281.8ms | 878.9ms  |
-| Pino      | 112.3ms | 3957.8ms | 225.9ms | 1542.8ms |
-| Winston   | 293.0ms | 6680.3ms | 268.4ms | 397.3ms  |
+| Bunyan    | 356.4ms | 4508.5ms | 388.1ms | 2245.3ms |
+| Ogma      | 150.2ms | 1610.1ms | 249.9ms | 423.2ms  |
+| OgmaMasks | 134.0ms | 1755.2ms | 258.9ms | 631.1ms  |
+| OgmaJSON  | 360.1ms | 4512.1ms | 565.4ms | 754.4ms  |
+| Pino      | 104.1ms | 3929.2ms | 109.9ms | 1773.0ms |
+| Winston   | 316.9ms | 6494.4ms | 278.8ms | 519.1ms  |
 
 ## Information
 

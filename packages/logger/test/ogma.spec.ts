@@ -67,7 +67,7 @@ for (const json of [true, false]) {
       const loggedVal = getFirstCallString(writeSpy);
       if (json) {
         const loggedJSON = JSON.parse(loggedVal);
-        match(loggedJSON.time, /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1,3}Z/);
+        match(loggedJSON.time, /\d{10}/);
         match(loggedJSON.pid, /\d{1,5}/);
         is(loggedJSON.level, 'INFO');
         is(loggedJSON.message, 'Hello');
