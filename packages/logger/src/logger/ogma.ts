@@ -171,24 +171,21 @@ export class Ogma {
   private formatJSON(
     message: any,
     level: LogLevel,
-    { application = '', correlationId = '', context = '', ...meta }: OgmaPrintOptions,
+    { application, correlationId, context }: OgmaPrintOptions,
   ): string {
     const mappedLevel = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
     let json: Partial<OgmaLog> = {
-      time: undefined,
+      time: Date.now(),
       hostname: this.hostname,
-      application: undefined,
+      application: application ?? this.application,
       pid: this.jsonPid,
       correlationId: correlationId,
-      context: undefined,
+      context: context ?? this.options.context,
       ool: LogLevel[level] as OgmaWritableLevel,
       level: mappedLevel,
       message: undefined,
       meta: {},
     };
-    json.time = Date.now();
-    json.appliation = application || this.application;
-    json.context = context || this.options.context || undefined;
     if (this.options.levelKey) {
       json[this.options.levelKey] = mappedLevel;
     }

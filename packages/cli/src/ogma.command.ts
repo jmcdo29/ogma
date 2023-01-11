@@ -99,7 +99,7 @@ export class OgmaCommand extends CommandRunner {
 
   private writeLog(log: OgmaLog, color: boolean): void {
     const { time, hostname, application, context, pid, ool, level: _level, ...rest } = log;
-    let logMessage = this.ogmaGetter.wrapInParens(time) + ' ';
+    let logMessage = this.ogmaGetter.wrapInParens(time.toString()) + ' ';
     logMessage += this.ogmaGetter.getLevel(ool, color) + ' ';
     logMessage += this.ogmaGetter.getVal(hostname, color, Color.MAGENTA) + ' ';
     if (application) {
