@@ -31,6 +31,12 @@ As this prints out to `process.stdout` it is possible to pipe this output to ano
 ogma production.log > production.hydrated.log
 ```
 
+You can also read from a stream. For example, you can redirect the output of `tail` to read incoming lines:
+
+```sh
+tail -F production.log | ogma hydrate
+```
+
 ## Demo
 
 <div align="center">
