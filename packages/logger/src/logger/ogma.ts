@@ -225,10 +225,10 @@ export class Ogma {
     { application = '', correlationId = '', context = '', each = this.each }: OgmaPrintOptions,
   ): string {
     if (Array.isArray(message) && each) {
-      for (let i = 0; i < message.length; i++) {
-        message[i] = this.stringifyObject(message[i], i === 0, i + 1 < message.length);
+      const messages = message;
+      for (let i = 0; i < messages.length; i++) {
+        message += this.stringifyObject(messages[i], i === 0, i + 1 < messages.length);
       }
-      message = message.join('');
     } else {
       message = this.stringifyObject(message, true, false, true);
     }
