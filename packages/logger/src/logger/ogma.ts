@@ -1,4 +1,4 @@
-import { Color, LogLevel, OgmaLog, OgmaStream, OgmaWritableLevel } from '@ogma/common';
+import { Color, LogLevel, OgmaStream } from '@ogma/common';
 import { style, Styler } from '@ogma/styler';
 import stringify from 'fast-safe-stringify';
 import { hostname } from 'os';
@@ -30,6 +30,14 @@ export class Ogma {
   private errorFormattedLevel: string;
   private fatalFormattedLevel: string;
   private hostnameFormatted: string;
+
+  private cachedMasks?: Map<string, boolean>;
+  private skipableTypeofValues = new Map<string, boolean>([
+    ['number', true],
+    ['string', true],
+    ['boolean', true],
+    ['undefined', true],
+  ]);
 
   private wrappedValues: Record<string, string> = {};
 
@@ -74,6 +82,9 @@ export class Ogma {
       this.pid = '';
       this.jsonPid = undefined;
     }
+    this.cachedMasks = this.options?.masks
+      ? new Map(this.options.masks.map((mask) => [mask, true]))
+      : undefined;
     this.styler = style.child(this.options.stream as Pick<OgmaStream, 'getColorDepth'>);
     this.each = this.options.each;
     this.sillyFormattedLevel = this.toColor(LogLevel.SILLY, Color.MAGENTA);
@@ -143,21 +154,35 @@ export class Ogma {
   private circularReplacer(): (key: string, value: any) => string | number | boolean {
     const seen = new WeakSet();
     return (key: string, value: any): string | number | boolean => {
-      if (typeof value === 'symbol') {
-        return this.wrapInBrackets(value.toString());
+      if (this.cachedMasks?.has(key)) {
+        return '*'.repeat(value.toString().length);
       }
-      if (typeof value === 'function') {
+
+      if (value === null) return value;
+
+      const typeofValue = typeof value;
+
+      if (this.skipableTypeofValues.has(typeofValue)) return value;
+
+      if (typeofValue === 'bigint') {
+        return this.wrapInBrackets(`BigInt: ${value.toString()}`);
+      }
+
+      if (typeofValue === 'symbol') {
+        return this.wrapInBrackets(`Symbol: ${value.toString()}`);
+      }
+
+      if (typeofValue === 'function') {
         return this.wrapInBrackets(`Function: ${value.name || '(anonymous)'}`);
       }
-      if (typeof value === 'object' && value !== null) {
+
+      if (typeofValue === 'object') {
         if (seen.has(value)) {
           return this.wrapInBrackets('Circular');
         }
         seen.add(value);
       }
-      if (this.options.masks.includes(key)) {
-        return '*'.repeat(value.toString().length);
-      }
+
       return value;
     };
   }
@@ -184,37 +209,68 @@ export class Ogma {
       application = this.application,
       correlationId,
       context = this.options.context,
+      ...meta
     }: OgmaPrintOptions,
   ): string {
-    const mappedLevel = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
-    let json: Partial<OgmaLog> = {
-      time: 0,
-      hostname: this.hostname,
-      application: undefined,
-      pid: this.jsonPid,
-      correlationId: undefined,
-      context: undefined,
-      ool: undefined,
-      level: undefined,
-      message: undefined,
-      meta: {},
-    };
-    json.time = Date.now();
-    json.application = application;
-    json.correlationId = correlationId;
-    json.context = context;
-    json.ool = LogLevel[level] as OgmaWritableLevel;
-    json.level = mappedLevel;
-    if (this.options.levelKey) {
-      json[this.options.levelKey] = mappedLevel;
+    const mappedLevel = this.asString(
+      this.options.levelMap[LogLevel[level] as keyof typeof LogLevel],
+    );
+
+    let fastJson = `{"time":${Date.now()},`;
+
+    fastJson += `"hostname":${this.asString(this.hostname)},`;
+    fastJson += `"pid":${this.jsonPid},`;
+    fastJson += `"ool":${this.asString(LogLevel[level])},`;
+    fastJson += `"level":${mappedLevel},`;
+
+    if (application) fastJson += `"application":${this.asString(application)},`;
+
+    if (correlationId) fastJson += `"correlationId":${this.asString(correlationId)},`;
+
+    if (context) fastJson += `"context":${this.asString(context)},`;
+
+    if (meta && Object.keys(meta).length > 0) fastJson += `"meta":${stringify(meta)},`;
+
+    if (this.options.levelKey) fastJson += `"${this.options.levelKey}":${mappedLevel},`;
+
+    if (typeof message === 'object')
+      fastJson += `"message":${stringify(message, this.circularReplacer())}`;
+    else fastJson += `"message":${this.asString(message.toString())}`;
+
+    fastJson += '}';
+
+    return fastJson;
+  }
+
+  // thanks pinojs, ref: https://github.com/pinojs/pino/blob/master/lib/tools.js#L67
+  // magically escape strings for json
+  // relying on their charCodeAt
+  // everything below 32 needs JSON.stringify()
+  // 34 and 92 happens all the time, so we
+  // have a fast case for them
+  private asString(str: string): string {
+    let result = '';
+    let last = 0;
+    let found = false;
+    let point = 255;
+    const l = str.length;
+    if (l > 100) {
+      return JSON.stringify(str);
     }
-    if (typeof message === 'object') {
-      json = { ...json, ...message };
-      // delete json.message;
+    for (let i = 0; i < l && point >= 32; i++) {
+      point = str.charCodeAt(i);
+      if (point === 34 || point === 92) {
+        result += str.slice(last, i) + '\\';
+        last = i;
+        found = true;
+      }
+    }
+    if (!found) {
+      result = str;
     } else {
-      json.message = message;
+      result += str.slice(last);
     }
-    return stringify(json, this.circularReplacer());
+    return point < 32 ? JSON.stringify(str) : '"' + result + '"';
   }
 
   private stringifyObject(
