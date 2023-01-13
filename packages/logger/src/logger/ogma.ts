@@ -143,9 +143,6 @@ export class Ogma {
   private circularReplacer(): (key: string, value: any) => string | number | boolean {
     const seen = new WeakSet();
     return (key: string, value: any): string | number | boolean => {
-      if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-        return value;
-      }
       if (typeof value === 'symbol') {
         return this.wrapInBrackets(value.toString());
       }
