@@ -66,6 +66,7 @@ for (const json of [true, false]) {
       ogma.log('Hello');
       const loggedVal = getFirstCallString(writeSpy);
       if (json) {
+        console.log(loggedVal);
         const loggedJSON = JSON.parse(loggedVal);
         match(loggedJSON.time, /\d{10}/);
         match(loggedJSON.pid, /\d{1,5}/);
