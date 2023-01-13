@@ -143,7 +143,7 @@ OgmaSuite(
     const loggedVal = getFirstCallString(writeSpy);
     match(loggedVal, /\[Circular\]/);
     match(loggedVal, /\[Function:/);
-    match(loggedVal, /\[Symbol\(hello\)\]/);
+    match(loggedVal, 'hello');
   },
 );
 OgmaSuite(
@@ -158,7 +158,7 @@ OgmaSuite(
     const loggedVal = JSON.parse(getFirstCallString(writeSpy));
     is(loggedVal.context, 'json context');
     is(loggedVal.application, 'json test');
-    is(loggedVal.hello, 'world!');
+    is(loggedVal.message.hello, 'world!');
   },
 );
 OgmaSuite(
@@ -267,7 +267,7 @@ OgmaSuite(
     ogma.log({ message: 'Hello World!' });
     const loggedVal = JSON.parse(getFirstCallString(writeSpy));
     ok(Object.keys(loggedVal).includes('message'));
-    is(loggedVal.message, 'Hello World!');
+    is(loggedVal.message.message, 'Hello World!');
   },
 );
 for (const json of [true, false]) {
