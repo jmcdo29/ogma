@@ -144,7 +144,7 @@ OgmaSuite(
     const loggedVal = getFirstCallString(writeSpy);
     match(loggedVal, /\[Circular\]/);
     match(loggedVal, /\[Function:/);
-    match(loggedVal, 'hello');
+    match(loggedVal, /\[Symbol: hello\]/);
   },
 );
 OgmaSuite(

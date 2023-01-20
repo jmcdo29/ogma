@@ -169,7 +169,7 @@ export class Ogma {
       }
 
       if (typeofValue === 'symbol') {
-        return this.wrapInBrackets(`Symbol: ${value.toString()}`);
+        return this.wrapInBrackets(`Symbol: ${value.description}`);
       }
 
       if (typeofValue === 'function') {
