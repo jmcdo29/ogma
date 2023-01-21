@@ -50,9 +50,9 @@ suite
     results.push(String(event.target));
   })
   .on('complete', function () {
-    results.forEach((result) => fs.appendFileSync(file, result + '\n'));
+    results.forEach((result) => fs.appendFileSync(file, result + '<br>\n'));
 
-    fs.appendFileSync(file, 'Fastest is ' + this.filter('fastest').map('name'));
+    fs.appendFileSync(file, '<br>Fastest is ' + this.filter('fastest').map('name'));
   })
   .run({
     async: true,
