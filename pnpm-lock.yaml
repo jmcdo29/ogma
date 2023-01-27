@@ -20,7 +20,7 @@ importers:
       '@graphql-tools/schema': 9.0.9
       '@graphql-tools/utils': ^9.0.0
       '@grpc/grpc-js': ^1.7.3
-      '@grpc/proto-loader': 0.7.3
+      '@grpc/proto-loader': 0.7.4
       '@mdx-js/react': 1.6.22
       '@nestjs/apollo': ^10.1.4
       '@nestjs/common': 9.2.1
@@ -127,7 +127,7 @@ importers:
       '@graphql-tools/schema': 9.0.9_graphql@16.6.0
       '@graphql-tools/utils': 9.0.1_graphql@16.6.0
       '@grpc/grpc-js': 1.7.3
-      '@grpc/proto-loader': 0.7.3
+      '@grpc/proto-loader': 0.7.4
       '@mdx-js/react': 1.6.22_react@17.0.2
       '@nestjs/apollo': 10.1.4_4agdhsev35rqea7w5tm5xj3ieq
       '@nestjs/common': 9.2.1_weizl6uyifxeltqqggsn4erezy
@@ -2900,12 +2900,12 @@ packages:
     resolution: {integrity: sha512-H9l79u4kJ2PVSxUNA08HMYAnUBLj9v6KjYQ7SQ71hOZcEXhShE/y5iQCesP8+6/Ik/7i2O0a10bPquIcYfufog==}
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
-      '@grpc/proto-loader': 0.7.3
+      '@grpc/proto-loader': 0.7.4
       '@types/node': 18.11.18
     dev: true
 
-  /@grpc/proto-loader/0.7.3:
-    resolution: {integrity: sha512-5dAvoZwna2Py3Ef96Ux9jIkp3iZ62TUsV00p3wVBPNX5K178UbNi8Q7gQVqwXT1Yq9RejIGG9G2IPEo93T6RcA==}
+  /@grpc/proto-loader/0.7.4:
+    resolution: {integrity: sha512-MnWjkGwqQ3W8fx94/c1CwqLsNmHHv2t0CFn+9++6+cDphC1lolpg9M2OU0iebIjK//pBNX9e94ho+gjx6vz39w==}
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
