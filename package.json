@@ -115,7 +115,7 @@
     "husky": "^8.0.1",
     "ioredis": "^5.2.4",
     "kafkajs": "2.2.3",
-    "lcov-result-merger": "^3.3.0",
+    "lcov-result-merger": "^4.0.0",
     "lint-staged": "13.1.0",
     "mercurius": "11.3.0",
     "module-alias": "^2.2.2",
