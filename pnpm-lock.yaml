@@ -82,7 +82,7 @@ importers:
       kafkajs: 2.2.3
       lcov-result-merger: ^4.0.0
       lint-staged: 13.1.0
-      mercurius: 11.3.0
+      mercurius: 11.5.0
       module-alias: ^2.2.2
       morgan: ^1.10.0
       mqtt: ^4.3.7
@@ -133,7 +133,7 @@ importers:
       '@nestjs/common': 9.2.1_weizl6uyifxeltqqggsn4erezy
       '@nestjs/core': 9.2.1_2v2whakxl5xfmzbweipwfdsbju
       '@nestjs/graphql': 10.1.5_7siqud6on5r3ueif6ibqa3c3tq
-      '@nestjs/mercurius': 10.1.4_4imxc5t2nhgve7q2lqekiij5pu
+      '@nestjs/mercurius': 10.1.4_rv7dreup3wpo6myf3wvq2xfuda
       '@nestjs/microservices': 9.1.6_yskex4es4f2xfawsrkxcijvi7q
       '@nestjs/platform-express': 9.2.1_hjcqpoaebdr7gdo5hgc22hthbe
       '@nestjs/platform-fastify': 9.1.6_hjcqpoaebdr7gdo5hgc22hthbe
@@ -189,7 +189,7 @@ importers:
       kafkajs: 2.2.3
       lcov-result-merger: 4.0.0
       lint-staged: 13.1.0
-      mercurius: 11.3.0_graphql@16.6.0
+      mercurius: 11.5.0_graphql@16.6.0
       module-alias: 2.2.2
       morgan: 1.10.0
       mqtt: 4.3.7
@@ -3247,6 +3247,21 @@ packages:
       react: 17.0.2
     dev: true
 
+  /@mercuriusjs/subscription-client/0.1.0_graphql@16.6.0:
+    resolution: {integrity: sha512-ivqMmSQ4kwroK/uUZVwOnd5QEAsjrEy/EqSsEqhtEObA/Zqkc44Fgi543Mml3XjoGopY1y1rJYQSl/gzfyfgrw==}
+    engines: {node: '>=14.19.3'}
+    peerDependencies:
+      graphql: ^16.0.0
+    dependencies:
+      '@fastify/error': 3.0.0
+      graphql: 16.6.0
+      secure-json-parse: 2.5.0
+      ws: 8.11.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: true
+
   /@nestjs/apollo/10.1.4_wawwowh6qo5kctkut5jm3nlyim:
     resolution: {integrity: sha512-zHaSxYRvDDZktdP3ydtBQEZPt7VFEYawNIb88FADcTf8UMOLFarEle9tfU3xg7jJUX2gXVwwHLftHfJ8YAbq1w==}
     peerDependencies:
@@ -3451,7 +3466,7 @@ packages:
       reflect-metadata: 0.1.13
     dev: true
 
-  /@nestjs/mercurius/10.1.4_4imxc5t2nhgve7q2lqekiij5pu:
+  /@nestjs/mercurius/10.1.4_rv7dreup3wpo6myf3wvq2xfuda:
     resolution: {integrity: sha512-l3AkG/flHTZqSPFaU9zydYFqoLrI8lBksT80KMTB7o8x+85AaaxzA0x0kxg7F+7DY1hLYTP10ksYEET7gmEEUw==}
     peerDependencies:
       '@nestjs/common': ^8.2.3 || ^9.0.0
@@ -3464,7 +3479,7 @@ packages:
       '@nestjs/graphql': 10.1.5_7siqud6on5r3ueif6ibqa3c3tq
       fastify: 4.10.2
       graphql: 16.6.0
-      mercurius: 11.3.0_graphql@16.6.0
+      mercurius: 11.5.0_graphql@16.6.0
       tslib: 2.4.0
     dev: true
 
@@ -8243,10 +8258,6 @@ packages:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
     dev: true
 
-  /events.on/1.0.1:
-    resolution: {integrity: sha512-yT4htzImIQAf7mFV3heqTRNVwysZIgQjrribiCYQk152gcG6shz/WU/6xVGr0oDzkzcDPhMcCYy4lEKBiadSRA==}
-    dev: true
-
   /events/3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
@@ -11306,8 +11317,8 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
-  /mercurius/11.3.0_graphql@16.6.0:
-    resolution: {integrity: sha512-W/Yi4fEP9Mma9lWTm9ijZPmQNm4vij+TplnJ2w1/bjjH7unP9LkU5M1SSiDJSUNPhVmjneZRBqA2f5N0tUsfwg==}
+  /mercurius/11.5.0_graphql@16.6.0:
+    resolution: {integrity: sha512-e2ZGC9OyX8eY7Dt/gUrTvzjVDojXECgv4dkjOz7Mux80V0D8ZC7im2cuywsInIQw6pEK1/p8WeVzuIADdWAJag==}
     engines: {node: '>=14.19.3'}
     peerDependencies:
       graphql: ^16.0.0
@@ -11315,7 +11326,7 @@ packages:
       '@fastify/error': 3.0.0
       '@fastify/static': 6.5.0
       '@fastify/websocket': 7.1.0
-      events.on: 1.0.1
+      '@mercuriusjs/subscription-client': 0.1.0_graphql@16.6.0
       fastify-plugin: 4.3.0
       graphql: 16.6.0
       graphql-jit: 0.7.4_graphql@16.6.0
