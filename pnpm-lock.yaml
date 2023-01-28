@@ -11,7 +11,7 @@ importers:
       '@algolia/client-search': ^4.14.2
       '@apollo/gateway': 2.3.0
       '@astrojs/preact': ^2.0.0
-      '@astrojs/react': ^1.2.2
+      '@astrojs/react': ^2.0.0
       '@changesets/cli': ^2.25.2
       '@commitlint/cli': 17.4.2
       '@commitlint/config-conventional': 17.4.2
@@ -118,7 +118,7 @@ importers:
       '@algolia/client-search': 4.14.2
       '@apollo/gateway': 2.3.0_graphql@16.6.0
       '@astrojs/preact': 2.0.0_preact@10.11.2
-      '@astrojs/react': 1.2.2_2ggtohxunsvabuh64zju2k25lu
+      '@astrojs/react': 2.0.1_2ggtohxunsvabuh64zju2k25lu
       '@changesets/cli': 2.25.2
       '@commitlint/cli': 17.4.2_@swc+core@1.3.14
       '@commitlint/config-conventional': 17.4.2
@@ -788,9 +788,9 @@ packages:
       prismjs: 1.29.0
     dev: true
 
-  /@astrojs/react/1.2.2_2ggtohxunsvabuh64zju2k25lu:
-    resolution: {integrity: sha512-ab9fYvzkC74J7N+M3DWQuZgwu7sYjW0aLO3sEAdCX/jZZz+0BhrqS8m9QjtGJyQK/niF4tgJjpPfadopxKc56g==}
-    engines: {node: ^14.18.0 || >=16.12.0}
+  /@astrojs/react/2.0.1_2ggtohxunsvabuh64zju2k25lu:
+    resolution: {integrity: sha512-EhpYg6afa3ks0ofc1mBcdbQvcQMt3mn5/O2K98lvg9LbTaYRfSvwnzfgVlc0boSaQYFrzssoeOtCUhNVUb1krg==}
+    engines: {node: '>=16.12.0'}
     peerDependencies:
       '@types/react': ^17.0.50 || ^18.0.21
       '@types/react-dom': ^17.0.17 || ^18.0.6
@@ -10761,7 +10761,7 @@ packages:
     dependencies:
       big.js: 5.2.2
       emojis-list: 3.0.0
-      json5: 2.2.1
+      json5: 2.2.3
     dev: true
 
   /loader-utils/2.0.3:
