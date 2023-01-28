@@ -123,7 +123,7 @@
     "mqtt": "^4.3.7",
     "nats": "^2.8.0",
     "nest-commander": "^2.0.0",
-    "nest-commander-testing": "3.0.1",
+    "nest-commander-testing": "3.1.0",
     "nx": "15.6.3",
     "nx-uvu": "^1.2.0",
     "pactum": "^3.2.3",
