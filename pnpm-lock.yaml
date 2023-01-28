@@ -100,7 +100,7 @@ importers:
       redis: ^3
       reflect-metadata: ^0.1.13
       remark-directive: ^2.0.1
-      rimraf: ^3.0.2
+      rimraf: ^4.0.0
       rxjs: ^7.5.7
       socket.io: 4.5.4
       socket.io-client: 4.5.4
@@ -207,7 +207,7 @@ importers:
       redis: 3.1.2
       reflect-metadata: 0.1.13
       remark-directive: 2.0.1
-      rimraf: 3.0.2
+      rimraf: 4.1.2
       rxjs: 7.5.7
       socket.io: 4.5.4
       socket.io-client: 4.5.4
@@ -13322,6 +13322,12 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.0
+    dev: true
+
+  /rimraf/4.1.2:
+    resolution: {integrity: sha512-BlIbgFryTbw3Dz6hyoWFhKk+unCcHMSkZGrTFVAx2WmttdBSonsdtRlwiuTbDqTKr+UlXIUqJVS4QT5tUzGENQ==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /rollup/3.12.0:
