@@ -94,7 +94,7 @@
     "amqplib": "0.10.3",
     "apollo-server-express": "3.11.1",
     "apollo-server-fastify": "3.11.1",
-    "astro": "^1.6.4",
+    "astro": "^2.0.0",
     "axios": "~1.2.0",
     "bunyan": "^1.8.15",
     "c8": "^7.12.0",
