@@ -82,7 +82,7 @@ importers:
       kafkajs: 2.2.3
       lcov-result-merger: ^4.0.0
       lint-staged: 13.1.0
-      mercurius: 11.5.0
+      mercurius: 12.0.0
       module-alias: ^2.2.2
       morgan: ^1.10.0
       mqtt: ^4.3.7
@@ -133,7 +133,7 @@ importers:
       '@nestjs/common': 9.2.1_weizl6uyifxeltqqggsn4erezy
       '@nestjs/core': 9.2.1_2v2whakxl5xfmzbweipwfdsbju
       '@nestjs/graphql': 10.1.5_7siqud6on5r3ueif6ibqa3c3tq
-      '@nestjs/mercurius': 10.1.4_5d7xg2ez24now34sxvfamvyktm
+      '@nestjs/mercurius': 10.1.4_lhs7n2knotpnftcrzw6iiyj5eq
       '@nestjs/microservices': 9.1.6_yskex4es4f2xfawsrkxcijvi7q
       '@nestjs/platform-express': 9.2.1_hjcqpoaebdr7gdo5hgc22hthbe
       '@nestjs/platform-fastify': 9.1.6_hjcqpoaebdr7gdo5hgc22hthbe
@@ -189,7 +189,7 @@ importers:
       kafkajs: 2.2.3
       lcov-result-merger: 4.0.0
       lint-staged: 13.1.0
-      mercurius: 11.5.0_graphql@16.6.0
+      mercurius: 12.0.0_graphql@16.6.0
       module-alias: 2.2.2
       morgan: 1.10.0
       mqtt: 4.3.7
@@ -3301,21 +3301,6 @@ packages:
       react: 17.0.2
     dev: true
 
-  /@mercuriusjs/subscription-client/0.1.0_graphql@16.6.0:
-    resolution: {integrity: sha512-ivqMmSQ4kwroK/uUZVwOnd5QEAsjrEy/EqSsEqhtEObA/Zqkc44Fgi543Mml3XjoGopY1y1rJYQSl/gzfyfgrw==}
-    engines: {node: '>=14.19.3'}
-    peerDependencies:
-      graphql: ^16.0.0
-    dependencies:
-      '@fastify/error': 3.0.0
-      graphql: 16.6.0
-      secure-json-parse: 2.5.0
-      ws: 8.12.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-    dev: true
-
   /@nestjs/apollo/10.1.4_wawwowh6qo5kctkut5jm3nlyim:
     resolution: {integrity: sha512-zHaSxYRvDDZktdP3ydtBQEZPt7VFEYawNIb88FADcTf8UMOLFarEle9tfU3xg7jJUX2gXVwwHLftHfJ8YAbq1w==}
     peerDependencies:
@@ -3520,7 +3505,7 @@ packages:
       reflect-metadata: 0.1.13
     dev: true
 
-  /@nestjs/mercurius/10.1.4_5d7xg2ez24now34sxvfamvyktm:
+  /@nestjs/mercurius/10.1.4_lhs7n2knotpnftcrzw6iiyj5eq:
     resolution: {integrity: sha512-l3AkG/flHTZqSPFaU9zydYFqoLrI8lBksT80KMTB7o8x+85AaaxzA0x0kxg7F+7DY1hLYTP10ksYEET7gmEEUw==}
     peerDependencies:
       '@nestjs/common': ^8.2.3 || ^9.0.0
@@ -3533,7 +3518,7 @@ packages:
       '@nestjs/graphql': 10.1.5_7siqud6on5r3ueif6ibqa3c3tq
       fastify: 4.12.0
       graphql: 16.6.0
-      mercurius: 11.5.0_graphql@16.6.0
+      mercurius: 12.0.0_graphql@16.6.0
       tslib: 2.4.0
     dev: true
 
@@ -10836,8 +10821,8 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
-  /mercurius/11.5.0_graphql@16.6.0:
-    resolution: {integrity: sha512-e2ZGC9OyX8eY7Dt/gUrTvzjVDojXECgv4dkjOz7Mux80V0D8ZC7im2cuywsInIQw6pEK1/p8WeVzuIADdWAJag==}
+  /mercurius/12.0.0_graphql@16.6.0:
+    resolution: {integrity: sha512-ORe/0eFuUq5lFMF1c8hdEQz44MdK4A8gMbJr8US3BakHBeYbbFDWGskhHkYmaZkx2ka0NJh+iMasWiL07kAoHg==}
     engines: {node: '>=14.19.3'}
     peerDependencies:
       graphql: ^16.0.0
@@ -10845,7 +10830,6 @@ packages:
       '@fastify/error': 3.0.0
       '@fastify/static': 6.5.0
       '@fastify/websocket': 7.1.0
-      '@mercuriusjs/subscription-client': 0.1.0_graphql@16.6.0
       fastify-plugin: 4.3.0
       graphql: 16.6.0
       graphql-jit: 0.7.4_graphql@16.6.0
@@ -10853,10 +10837,10 @@ packages:
       p-map: 4.0.0
       readable-stream: 4.2.0
       safe-stable-stringify: 2.4.1
-      secure-json-parse: 2.5.0
+      secure-json-parse: 2.7.0
       single-user-cache: 0.6.0
-      tiny-lru: 8.0.2
-      undici: 5.4.0
+      tiny-lru: 10.0.1
+      undici: 5.16.0
       ws: 8.12.0
     transitivePeerDependencies:
       - bufferutil
@@ -13484,6 +13468,10 @@ packages:
     resolution: {integrity: sha512-ZQruFgZnIWH+WyO9t5rWt4ZEGqCKPwhiw+YbzTwpmT9elgLrLcfuyUiSnwwjUiVy9r4VM3urtbNF1xmEh9IL2w==}
     dev: true
 
+  /secure-json-parse/2.7.0:
+    resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
+    dev: true
+
   /select-hose/2.0.0:
     resolution: {integrity: sha512-mEugaLK+YfkijB4fx0e6kImuJdCIt2LxCRcbEYPqRGCs4F2ogyfZU5IAZRdjCP8JPq2AtdNoC/Dux63d9Kiryg==}
     dev: true
@@ -14475,11 +14463,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /tiny-lru/8.0.2:
-    resolution: {integrity: sha512-ApGvZ6vVvTNdsmt676grvCkUCGwzG9IqXma5Z07xJgiC5L7akUMof5U8G2JTI9Rz/ovtVhJBlY6mNhEvtjzOIg==}
-    engines: {node: '>=6'}
-    dev: true
-
   /tiny-lru/9.0.3:
     resolution: {integrity: sha512-/i9GruRjXsnDgehxvy6iZ4AFNVxngEFbwzirhdulomMNPGPVV3ECMZOWSw0w4sRMZ9Al9m4jy08GPvRxRUGYlw==}
     engines: {node: '>=6'}
@@ -14780,11 +14763,6 @@ packages:
     engines: {node: '>=12.18'}
     dependencies:
       busboy: 1.6.0
-    dev: true
-
-  /undici/5.4.0:
-    resolution: {integrity: sha512-A1SRXysDg7J+mVP46jF+9cKANw0kptqSFZ8tGyL+HBiv0K1spjxPX8Z4EGu+Eu6pjClJUBdnUPlxrOafR668/g==}
-    engines: {node: '>=12.18'}
     dev: true
 
   /unherit/3.0.0:
