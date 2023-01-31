@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   apollo-cache-control: 0.15.0
-  axios: ~1.2.0
+  axios: ~1.3.0
 
 importers:
 
@@ -60,7 +60,7 @@ importers:
       apollo-server-express: 3.11.1
       apollo-server-fastify: 3.11.1
       astro: ^2.0.0
-      axios: ~1.2.0
+      axios: ~1.3.0
       bunyan: ^1.8.15
       c8: ^7.12.0
       class-transformer: 0.5.1
@@ -167,7 +167,7 @@ importers:
       apollo-server-express: 3.11.1_5ha345eiak62qiwwva5z4dp6gu
       apollo-server-fastify: 3.11.1_rtjxb64zgsxryybaixqsrpexz4
       astro: 2.0.2_@types+node@18.11.18
-      axios: 1.2.0
+      axios: 1.3.0
       bunyan: 1.8.15
       c8: 7.12.0
       class-transformer: 0.5.1
@@ -3959,7 +3959,7 @@ packages:
     resolution: {integrity: sha512-KvwM8/IbCOlbWIzi+Tm14tJkEdQK3ruN6TPUmeKnkeFZsJyoFw4GCyKJMOLs8y4MQokHgskg3nbF822JLR9xJg==}
     hasBin: true
     dependencies:
-      axios: 1.2.0
+      axios: 1.3.0
       chalk: 4.1.0
       dotenv: 10.0.0
       fs-extra: 10.1.0
@@ -5658,8 +5658,8 @@ packages:
       - supports-color
     dev: true
 
-  /axios/1.2.0:
-    resolution: {integrity: sha512-zT7wZyNYu3N5Bu0wuZ6QccIf93Qk1eV8LOewxgjOZFd2DenOs98cJ7+Y6703d0wkaXGY6/nZd4EweJaHz9uzQw==}
+  /axios/1.3.0:
+    resolution: {integrity: sha512-oCye5nHhTypzkdLIvF9SaHfr8UAquqCn1KY3j8vsrjeol8yohAdGxIpRPbF1bOLsx33HOAatdfMX1yzsj2cHwg==}
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0
@@ -11686,7 +11686,7 @@ packages:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.27
       '@zkochan/js-yaml': 0.0.6
-      axios: 1.2.0
+      axios: 1.3.0
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
