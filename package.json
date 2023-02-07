@@ -138,7 +138,7 @@
     "rimraf": "^4.0.0",
     "rxjs": "^7.5.7",
     "socket.io": "4.5.4",
-    "socket.io-client": "4.5.4",
+    "socket.io-client": "4.6.0",
     "tree-kill": "^1.2.2",
     "ts-morph": "17.0.1",
     "ts-node": "^10.9.1",
