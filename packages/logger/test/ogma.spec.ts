@@ -296,6 +296,19 @@ OgmaSuite(
   },
 );
 OgmaSuite(
+  'it should print each array value if the global option "each" is true',
+  ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+    const ogma = ogmaFactory({ each: true });
+    const messages = ['hello', 42, { key: 'value' }, true];
+    ogma.log(messages);
+    is(writeSpy.calls.size, 1, 'Expected there to be one calls to the write stream');
+    const expected = `hello 42 {
+  "key": "value"
+} true`;
+    match(getFirstCallString(writeSpy), expected);
+  },
+);
+OgmaSuite(
   'it should respect array values that have newline characters',
   ({ writeSpy, ogmaFactory, getFirstCallString }) => {
     const ogma = ogmaFactory();
