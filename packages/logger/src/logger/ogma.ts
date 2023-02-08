@@ -16,6 +16,7 @@ export class Ogma {
   private pid: string;
   private hostname: string;
   private styler: Styler;
+  private each: boolean;
 
   /**
    * An alias for `ogma.verbose`. `FINE` is what is printed as the log level
@@ -47,6 +48,7 @@ export class Ogma {
       this.setStreamColorDepth();
     }
     this.styler = style.child(this.options.stream as Pick<OgmaStream, 'getColorDepth'>);
+    this.each = this.options.each;
   }
 
   private setStreamColorDepth(): void {
@@ -177,7 +179,7 @@ export class Ogma {
       correlationId = '',
       formattedLevel,
       context = '',
-      each = false,
+      each = this.each,
     }: PrintMessageOptions,
   ): string {
     if (Array.isArray(message) && each) {

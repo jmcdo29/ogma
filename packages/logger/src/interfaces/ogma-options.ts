@@ -102,6 +102,11 @@ export interface OgmaOptions {
    * Use with caution as determining if properties should be restricted may take away from _some_ performance
    */
   masks?: string[];
+  /**
+   * Log each member of an array out on a new line. This is a global option tthat can be overridden per call as
+   * desired.
+   */
+  each: boolean;
   [index: string]: any;
 }
 
@@ -126,4 +131,5 @@ export const OgmaDefaults: OgmaOptions = {
   logPid: true,
   logApplication: true,
   logHostname: true,
+  each: false,
 };
