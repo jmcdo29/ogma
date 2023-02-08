@@ -69,6 +69,14 @@ This option is available in `@ogma/logger@^2.4.0`
 
 :::
 
+This option is also available globally, so you can set it on the instantiation of your ogma instance and no worry about it on each call.
+
+::: info
+
+This option is available in `@ogma/logger@^2.5.0`
+
+:::
+
 ## Ogma Options
 
 | name | type | use |
@@ -84,6 +92,7 @@ This option is available in `@ogma/logger@^2.4.0`
 | logPid | boolean | An optional property you can set if you don't want to log the PID. |
 | logApplication | boolean | An optional property you can set if you don't want to the the applicaiton name. |
 | logHostnam | boolean | An optional property you can set if you don't want to log the hostname ofthe machine you're on. |
+| each | boolean | An optional property that determines if array values should be printed on separate lines by default or not |
 
 :::note
 
