@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.0
+
+### Minor Changes
+
+- 8370e11: Allow for `each` to be set at a global level when initializing an Ogma instance
+
 ## 2.4.2
 
 ### Patch Changes
