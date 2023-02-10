@@ -73,7 +73,7 @@ importers:
       eslint-plugin-prettier: ^4.2.1
       eslint-plugin-simple-import-sort: 10.0.0
       express: ^4.18.2
-      fastify: 4.12.0
+      fastify: 4.13.0
       graphql: ^16.6.0
       hanbi: ^1.0.1
       hastscript: ^7.1.0
@@ -133,7 +133,7 @@ importers:
       '@nestjs/common': 9.2.1_weizl6uyifxeltqqggsn4erezy
       '@nestjs/core': 9.2.1_2v2whakxl5xfmzbweipwfdsbju
       '@nestjs/graphql': 10.1.5_7siqud6on5r3ueif6ibqa3c3tq
-      '@nestjs/mercurius': 10.1.4_lhs7n2knotpnftcrzw6iiyj5eq
+      '@nestjs/mercurius': 10.1.4_ovxulpcmmbmwbpfu6d7dzmcqvm
       '@nestjs/microservices': 9.1.6_yskex4es4f2xfawsrkxcijvi7q
       '@nestjs/platform-express': 9.2.1_hjcqpoaebdr7gdo5hgc22hthbe
       '@nestjs/platform-fastify': 9.1.6_hjcqpoaebdr7gdo5hgc22hthbe
@@ -165,7 +165,7 @@ importers:
       amqp-connection-manager: 4.1.10_amqplib@0.10.3
       amqplib: 0.10.3
       apollo-server-express: 3.11.1_5ha345eiak62qiwwva5z4dp6gu
-      apollo-server-fastify: 3.11.1_rtjxb64zgsxryybaixqsrpexz4
+      apollo-server-fastify: 3.11.1_bl2ne5e5srdoex3vttsc27752a
       astro: 2.0.2_@types+node@18.13.0
       axios: 1.3.0
       bunyan: 1.8.15
@@ -180,7 +180,7 @@ importers:
       eslint-plugin-prettier: 4.2.1_m6kcozpsubn4d64ygd2pazirdm
       eslint-plugin-simple-import-sort: 10.0.0_eslint@8.33.0
       express: 4.18.2
-      fastify: 4.12.0
+      fastify: 4.13.0
       graphql: 16.6.0
       hanbi: 1.0.1
       hastscript: 7.1.0
@@ -3345,7 +3345,7 @@ packages:
       '@nestjs/core': 9.2.1_2v2whakxl5xfmzbweipwfdsbju
       '@nestjs/graphql': 10.1.5_7siqud6on5r3ueif6ibqa3c3tq
       apollo-server-express: 3.11.1_5ha345eiak62qiwwva5z4dp6gu
-      apollo-server-fastify: 3.11.1_rtjxb64zgsxryybaixqsrpexz4
+      apollo-server-fastify: 3.11.1_bl2ne5e5srdoex3vttsc27752a
       graphql: 16.6.0
       iterall: 1.3.0
       lodash.omit: 4.5.0
@@ -3523,7 +3523,7 @@ packages:
       reflect-metadata: 0.1.13
     dev: true
 
-  /@nestjs/mercurius/10.1.4_lhs7n2knotpnftcrzw6iiyj5eq:
+  /@nestjs/mercurius/10.1.4_ovxulpcmmbmwbpfu6d7dzmcqvm:
     resolution: {integrity: sha512-l3AkG/flHTZqSPFaU9zydYFqoLrI8lBksT80KMTB7o8x+85AaaxzA0x0kxg7F+7DY1hLYTP10ksYEET7gmEEUw==}
     peerDependencies:
       '@nestjs/common': ^8.2.3 || ^9.0.0
@@ -3534,7 +3534,7 @@ packages:
     dependencies:
       '@nestjs/common': 9.2.1_weizl6uyifxeltqqggsn4erezy
       '@nestjs/graphql': 10.1.5_7siqud6on5r3ueif6ibqa3c3tq
-      fastify: 4.12.0
+      fastify: 4.13.0
       graphql: 16.6.0
       mercurius: 12.0.0_graphql@16.6.0
       tslib: 2.4.0
@@ -5441,7 +5441,7 @@ packages:
       - supports-color
     dev: true
 
-  /apollo-server-fastify/3.11.1_rtjxb64zgsxryybaixqsrpexz4:
+  /apollo-server-fastify/3.11.1_bl2ne5e5srdoex3vttsc27752a:
     resolution: {integrity: sha512-yJBn2Ef2LFip8K2spD2db2MaN4Q/XoFDcOdU/G4hAL6gqw1UX3lSVbbzEbq4ToYmkODzXnCHRW/4Ch4K8FmNxw==}
     engines: {node: '>=12.0'}
     peerDependencies:
@@ -5452,7 +5452,7 @@ packages:
       '@fastify/cors': 7.0.0
       apollo-server-core: 3.11.1_graphql@16.6.0
       apollo-server-types: 3.7.1_graphql@16.6.0
-      fastify: 4.12.0
+      fastify: 4.13.0
       graphql: 16.6.0
     transitivePeerDependencies:
       - encoding
@@ -8059,8 +8059,8 @@ packages:
     resolution: {integrity: sha512-M3+i368lV0OYTJ5TfClIoPKEKSOF7112iiPdwgfSR0gN98BjA1Nk+c6oBHtfcVt9KiMxl+EQKHC1QNWo3ZOpYQ==}
     dev: true
 
-  /fastify/4.12.0:
-    resolution: {integrity: sha512-Hh2GCsOCqnOuewWSvqXlpq5V/9VA+/JkVoooQWUhrU6gryO9+/UGOoF/dprGcKSDxkM/9TkMXSffYp8eA/YhYQ==}
+  /fastify/4.13.0:
+    resolution: {integrity: sha512-p9ibdFWH3pZ7KPgmfHPKGUy2W4EWU2TEpwlcu58w4CwGyU3ARFfh2kwq6zpZ5W2ZGVbufi4tZbqHIHAlX/9Z/A==}
     dependencies:
       '@fastify/ajv-compiler': 3.3.1
       '@fastify/error': 3.0.0
@@ -8074,7 +8074,7 @@ packages:
       process-warning: 2.0.0
       proxy-addr: 2.0.7
       rfdc: 1.3.0
-      secure-json-parse: 2.5.0
+      secure-json-parse: 2.7.0
       semver: 7.3.8
       tiny-lru: 10.0.1
     transitivePeerDependencies:
