@@ -122,7 +122,7 @@
     "morgan": "^1.10.0",
     "mqtt": "^4.3.7",
     "nats": "^2.8.0",
-    "nest-commander": "^2.0.0",
+    "nest-commander": "^3.0.0",
     "nest-commander-testing": "3.1.0",
     "nx": "15.7.0",
     "nx-uvu": "^1.2.0",

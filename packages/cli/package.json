@@ -30,7 +30,7 @@
     "@nestjs/common": "9.3.8",
     "@nestjs/core": "9.3.8",
     "@ogma/common": "^1.0.0",
-    "nest-commander": "^2.0.0",
+    "nest-commander": "^3.0.0",
     "reflect-metadata": "0.1.13"
   },
   "bin": {
