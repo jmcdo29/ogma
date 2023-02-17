@@ -82,7 +82,7 @@ importers:
       kafkajs: 2.2.3
       lcov-result-merger: ^4.0.0
       lint-staged: 13.1.2
-      mercurius: 12.0.1
+      mercurius: 12.1.0
       module-alias: ^2.2.2
       morgan: ^1.10.0
       mqtt: ^4.3.7
@@ -133,7 +133,7 @@ importers:
       '@nestjs/common': 9.3.9_weizl6uyifxeltqqggsn4erezy
       '@nestjs/core': 9.3.9_chrotvchm4b5tqsexcctde5j7m
       '@nestjs/graphql': 10.1.5_neqsyrtn5qk37n4fdpym5gzwom
-      '@nestjs/mercurius': 10.1.4_6g5mfwsnfdyxe44zzd6uzjoqba
+      '@nestjs/mercurius': 10.1.4_2z5oxqnrsx4bza7aafvtbecf7e
       '@nestjs/microservices': 9.1.6_o6dtwedxzlfatlekbfistwlfiy
       '@nestjs/platform-express': 9.3.9_77foi4w27ghy47yutmnzv7krjy
       '@nestjs/platform-fastify': 9.1.6_77foi4w27ghy47yutmnzv7krjy
@@ -189,7 +189,7 @@ importers:
       kafkajs: 2.2.3
       lcov-result-merger: 4.0.0
       lint-staged: 13.1.2
-      mercurius: 12.0.1_graphql@16.6.0
+      mercurius: 12.1.0_graphql@16.6.0
       module-alias: 2.2.2
       morgan: 1.10.0
       mqtt: 4.3.7
@@ -3524,7 +3524,7 @@ packages:
       reflect-metadata: 0.1.13
     dev: true
 
-  /@nestjs/mercurius/10.1.4_6g5mfwsnfdyxe44zzd6uzjoqba:
+  /@nestjs/mercurius/10.1.4_2z5oxqnrsx4bza7aafvtbecf7e:
     resolution: {integrity: sha512-l3AkG/flHTZqSPFaU9zydYFqoLrI8lBksT80KMTB7o8x+85AaaxzA0x0kxg7F+7DY1hLYTP10ksYEET7gmEEUw==}
     peerDependencies:
       '@nestjs/common': ^8.2.3 || ^9.0.0
@@ -3537,7 +3537,7 @@ packages:
       '@nestjs/graphql': 10.1.5_neqsyrtn5qk37n4fdpym5gzwom
       fastify: 4.13.0
       graphql: 16.6.0
-      mercurius: 12.0.1_graphql@16.6.0
+      mercurius: 12.1.0_graphql@16.6.0
       tslib: 2.4.0
     dev: true
 
@@ -8104,7 +8104,7 @@ packages:
       process-warning: 2.0.0
       proxy-addr: 2.0.7
       rfdc: 1.3.0
-      secure-json-parse: 2.5.0
+      secure-json-parse: 2.7.0
       semver: 7.3.8
       tiny-lru: 9.0.3
     transitivePeerDependencies:
@@ -10843,8 +10843,8 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
-  /mercurius/12.0.1_graphql@16.6.0:
-    resolution: {integrity: sha512-Yt7+Sy50Av9W0nopp3bXBK+gSmpbWaPQFuxGWixRRhgBBn7SF1AUJ3iC8v7/qsiffzNo8l0TF2tQwlUCRhTNWg==}
+  /mercurius/12.1.0_graphql@16.6.0:
+    resolution: {integrity: sha512-HA04WMw/HVF2cYiIYK63uD2L6kkByuMPTy+rltyiYIzqmedIL0poS/kemhsJSodK0QL7NOKAcxisFRE481vRhA==}
     engines: {node: '>=14.19.3'}
     peerDependencies:
       graphql: ^16.0.0
@@ -13494,10 +13494,6 @@ packages:
     dependencies:
       extend-shallow: 2.0.1
       kind-of: 6.0.3
-    dev: true
-
-  /secure-json-parse/2.5.0:
-    resolution: {integrity: sha512-ZQruFgZnIWH+WyO9t5rWt4ZEGqCKPwhiw+YbzTwpmT9elgLrLcfuyUiSnwwjUiVy9r4VM3urtbNF1xmEh9IL2w==}
     dev: true
 
   /secure-json-parse/2.7.0:
