@@ -60,7 +60,7 @@
     "@nestjs/apollo": "^11.0.0",
     "@nestjs/common": "9.3.9",
     "@nestjs/core": "9.3.9",
-    "@nestjs/graphql": "^10.1.5",
+    "@nestjs/graphql": "^11.0.0",
     "@nestjs/mercurius": "^10.1.4",
     "@nestjs/microservices": "^9.1.6",
     "@nestjs/platform-express": "9.3.9",
