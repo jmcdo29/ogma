@@ -61,7 +61,7 @@
     "@nestjs/common": "9.3.10",
     "@nestjs/core": "9.3.10",
     "@nestjs/graphql": "^11.0.0",
-    "@nestjs/mercurius": "^10.1.4",
+    "@nestjs/mercurius": "^11.0.0",
     "@nestjs/microservices": "^9.1.6",
     "@nestjs/platform-express": "9.3.10",
     "@nestjs/platform-fastify": "^9.1.6",

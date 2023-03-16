@@ -27,7 +27,7 @@ importers:
       '@nestjs/common': 9.3.10
       '@nestjs/core': 9.3.10
       '@nestjs/graphql': ^11.0.0
-      '@nestjs/mercurius': ^10.1.4
+      '@nestjs/mercurius': ^11.0.0
       '@nestjs/microservices': ^9.1.6
       '@nestjs/platform-express': 9.3.10
       '@nestjs/platform-fastify': ^9.1.6
@@ -134,7 +134,7 @@ importers:
       '@nestjs/common': 9.3.10_weizl6uyifxeltqqggsn4erezy
       '@nestjs/core': 9.3.10_ggusqitxoa7z56whrvvxdymjna
       '@nestjs/graphql': 11.0.0_azsngvf6ccej7e22aooxt2opk4
-      '@nestjs/mercurius': 10.1.4_v4gee44uafqslvekmfsirceqja
+      '@nestjs/mercurius': 11.0.3_v4gee44uafqslvekmfsirceqja
       '@nestjs/microservices': 9.1.6_5smbqnwpjv6aeeooze6ock4rym
       '@nestjs/platform-express': 9.3.10_7ftkheainf6elxr73aabueoaxm
       '@nestjs/platform-fastify': 9.1.6_7ftkheainf6elxr73aabueoaxm
@@ -3587,21 +3587,31 @@ packages:
       reflect-metadata: 0.1.13
     dev: true
 
-  /@nestjs/mercurius/10.1.4_v4gee44uafqslvekmfsirceqja:
-    resolution: {integrity: sha512-l3AkG/flHTZqSPFaU9zydYFqoLrI8lBksT80KMTB7o8x+85AaaxzA0x0kxg7F+7DY1hLYTP10ksYEET7gmEEUw==}
+  /@nestjs/mercurius/11.0.3_v4gee44uafqslvekmfsirceqja:
+    resolution: {integrity: sha512-VuVcs2oFefvGsEi5lQBxT/vNbTPv0v6NZaVnvFaxP9IQFg07lNSONWWfTBI5ptvphftIqjAgPrMm2yYai/Af6g==}
     peerDependencies:
-      '@nestjs/common': ^8.2.3 || ^9.0.0
-      '@nestjs/graphql': ^10.0.0
-      fastify: ^3.25.0 || ^4.0.0
-      graphql: ^15.8.0 || ^16.0.0
-      mercurius: ^8.12.0 || ^9.0.0 || ^10.0.0
+      '@apollo/subgraph': ^2.0.0
+      '@mercuriusjs/federation': ^1.0.0
+      '@mercuriusjs/gateway': ^1.0.0
+      '@nestjs/common': ^9.3.8
+      '@nestjs/graphql': ^11.0.0
+      fastify: ^4.12.0
+      graphql: ^16.0.0
+      mercurius: ^12.0.0
+    peerDependenciesMeta:
+      '@apollo/subgraph':
+        optional: true
+      '@mercuriusjs/federation':
+        optional: true
+      '@mercuriusjs/gateway':
+        optional: true
     dependencies:
       '@nestjs/common': 9.3.10_weizl6uyifxeltqqggsn4erezy
       '@nestjs/graphql': 11.0.0_azsngvf6ccej7e22aooxt2opk4
       fastify: 4.14.1
       graphql: 16.6.0
       mercurius: 12.2.0_graphql@16.6.0
-      tslib: 2.4.0
+      tslib: 2.5.0
     dev: true
 
   /@nestjs/microservices/9.1.6_5smbqnwpjv6aeeooze6ock4rym:
