@@ -92,7 +92,7 @@
     "@typescript-eslint/parser": "5.55.0",
     "amqp-connection-manager": "4.1.11",
     "amqplib": "0.10.3",
-    "@apollo/server": "4.0.0",
+    "@apollo/server": "4.1.0",
     "apollo-server-fastify": "3.12.0",
     "astro": "^2.0.0",
     "axios": "~1.3.0",
