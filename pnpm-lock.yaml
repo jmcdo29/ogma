@@ -73,7 +73,7 @@ importers:
       eslint-plugin-prettier: ^4.2.1
       eslint-plugin-simple-import-sort: 10.0.0
       express: ^4.18.2
-      fastify: 4.14.1
+      fastify: 4.15.0
       graphql: ^16.6.0
       hanbi: ^1.0.1
       hastscript: ^7.1.0
@@ -134,7 +134,7 @@ importers:
       '@nestjs/common': 9.3.10_weizl6uyifxeltqqggsn4erezy
       '@nestjs/core': 9.3.10_ggusqitxoa7z56whrvvxdymjna
       '@nestjs/graphql': 11.0.0_azsngvf6ccej7e22aooxt2opk4
-      '@nestjs/mercurius': 11.0.3_v4gee44uafqslvekmfsirceqja
+      '@nestjs/mercurius': 11.0.3_udhcdwmwdk36krxjmgjhb4gjpq
       '@nestjs/microservices': 9.1.6_5smbqnwpjv6aeeooze6ock4rym
       '@nestjs/platform-express': 9.3.10_7ftkheainf6elxr73aabueoaxm
       '@nestjs/platform-fastify': 9.1.6_7ftkheainf6elxr73aabueoaxm
@@ -165,7 +165,7 @@ importers:
       '@typescript-eslint/parser': 5.55.0_j4766f7ecgqbon3u7zlxn5zszu
       amqp-connection-manager: 4.1.11_amqplib@0.10.3
       amqplib: 0.10.3
-      apollo-server-fastify: 3.12.0_d6kpsx6jriwzthlcygk7kwbpli
+      apollo-server-fastify: 3.12.0_f3accpsdycgo55jz7iqj2alf2e
       astro: 2.0.2_@types+node@18.15.3
       axios: 1.3.0
       bunyan: 1.8.15
@@ -180,7 +180,7 @@ importers:
       eslint-plugin-prettier: 4.2.1_e36spvmi6ukdcmpxntnu6amr5y
       eslint-plugin-simple-import-sort: 10.0.0_eslint@8.36.0
       express: 4.18.2
-      fastify: 4.14.1
+      fastify: 4.15.0
       graphql: 16.6.0
       hanbi: 1.0.1
       hastscript: 7.1.0
@@ -2929,8 +2929,8 @@ packages:
     resolution: {integrity: sha512-dPRyT40GiHRzSCll3/Jn2nPe25+E1VXc9tDwRAIKwFCxd5Np5wzgz1tmooWG3sV0qKgrBibihVoCna2ru4SEFg==}
     dev: true
 
-  /@fastify/fast-json-stringify-compiler/4.1.0:
-    resolution: {integrity: sha512-cTKBV2J9+u6VaKDhX7HepSfPSzw+F+TSd+k0wzifj4rG+4E5PjSFJCk19P8R6tr/72cuzgGd+mbB3jFT6lvAgw==}
+  /@fastify/fast-json-stringify-compiler/4.2.0:
+    resolution: {integrity: sha512-ypZynRvXA3dibfPykQN3RB5wBdEUgSGgny8Qc6k163wYPLD4mEGEDkACp+00YmqkGvIm8D/xYoHajwyEdWD/eg==}
     dependencies:
       fast-json-stringify: 5.1.0
     dev: true
@@ -3657,7 +3657,7 @@ packages:
       reflect-metadata: 0.1.13
     dev: true
 
-  /@nestjs/mercurius/11.0.3_v4gee44uafqslvekmfsirceqja:
+  /@nestjs/mercurius/11.0.3_udhcdwmwdk36krxjmgjhb4gjpq:
     resolution: {integrity: sha512-VuVcs2oFefvGsEi5lQBxT/vNbTPv0v6NZaVnvFaxP9IQFg07lNSONWWfTBI5ptvphftIqjAgPrMm2yYai/Af6g==}
     peerDependencies:
       '@apollo/subgraph': ^2.0.0
@@ -3678,7 +3678,7 @@ packages:
     dependencies:
       '@nestjs/common': 9.3.10_weizl6uyifxeltqqggsn4erezy
       '@nestjs/graphql': 11.0.0_azsngvf6ccej7e22aooxt2opk4
-      fastify: 4.14.1
+      fastify: 4.15.0
       graphql: 16.6.0
       mercurius: 12.2.0_graphql@16.6.0
       tslib: 2.5.0
@@ -5692,7 +5692,7 @@ packages:
       graphql: 16.6.0
     dev: true
 
-  /apollo-server-fastify/3.12.0_d6kpsx6jriwzthlcygk7kwbpli:
+  /apollo-server-fastify/3.12.0_f3accpsdycgo55jz7iqj2alf2e:
     resolution: {integrity: sha512-+T/8V7ZaQ5Ej/wTlPj85/LrJ1jivnCKmHZgFrJnt1NYiR+wV/8JfT3s3Uzg22ppZKWWdeS1BQLZainEGLu3X0A==}
     engines: {node: '>=12.0'}
     peerDependencies:
@@ -5703,7 +5703,7 @@ packages:
       '@fastify/cors': 7.0.0
       apollo-server-core: 3.12.0_graphql@16.6.0
       apollo-server-types: 3.8.0_graphql@16.6.0
-      fastify: 4.14.1
+      fastify: 4.15.0
       graphql: 16.6.0
     transitivePeerDependencies:
       - encoding
@@ -8348,16 +8348,16 @@ packages:
     resolution: {integrity: sha512-M3+i368lV0OYTJ5TfClIoPKEKSOF7112iiPdwgfSR0gN98BjA1Nk+c6oBHtfcVt9KiMxl+EQKHC1QNWo3ZOpYQ==}
     dev: true
 
-  /fastify/4.14.1:
-    resolution: {integrity: sha512-yjrDeXe77j9gRlSV2UJry8mcFWbD0NQ5JYjnPi4tkFjHZVaG3/BD5wxOmRzGnHPC0YvaBJ0XWrIfFPl2IHRa1w==}
+  /fastify/4.15.0:
+    resolution: {integrity: sha512-m/CaRN8nf5uyYdrDe2qqq+0z3oGyE+A++qlKQoLJTI4WI0nWK9D6R3FxXQ3MVwt/md977GMR4F43pE9oqrS2zw==}
     dependencies:
       '@fastify/ajv-compiler': 3.5.0
       '@fastify/error': 3.0.0
-      '@fastify/fast-json-stringify-compiler': 4.1.0
+      '@fastify/fast-json-stringify-compiler': 4.2.0
       abstract-logging: 2.0.1
       avvio: 8.2.0
       fast-content-type-parse: 1.0.0
-      find-my-way: 7.3.1
+      find-my-way: 7.6.0
       light-my-request: 5.6.1
       pino: 8.11.0
       process-warning: 2.0.0
@@ -8375,10 +8375,10 @@ packages:
     dependencies:
       '@fastify/ajv-compiler': 3.5.0
       '@fastify/error': 3.0.0
-      '@fastify/fast-json-stringify-compiler': 4.1.0
+      '@fastify/fast-json-stringify-compiler': 4.2.0
       abstract-logging: 2.0.1
       avvio: 8.2.0
-      find-my-way: 7.3.1
+      find-my-way: 7.6.0
       light-my-request: 5.6.1
       pino: 8.11.0
       process-warning: 2.0.0
@@ -8497,8 +8497,8 @@ packages:
       pkg-dir: 4.2.0
     dev: true
 
-  /find-my-way/7.3.1:
-    resolution: {integrity: sha512-kGvM08SOkqvheLcuQ8GW9t/H901Qb9rZEbcNWbXopzy4jDRoaJpJoObPSKf4MnQLZ20ZTp7rL5MpF6rf+pqmyg==}
+  /find-my-way/7.6.0:
+    resolution: {integrity: sha512-H7berWdHJ+5CNVr4ilLWPai4ml7Y2qAsxjw3pfeBxPigZmaDTzF0wjJLj90xRCmGcWYcyt050yN+34OZDJm1eQ==}
     engines: {node: '>=14'}
     dependencies:
       fast-deep-equal: 3.1.3
