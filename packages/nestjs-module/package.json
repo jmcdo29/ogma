@@ -29,7 +29,7 @@
     "rxjs": "^7.0.0"
   },
   "peerDependenciesMeta": {
-    "@nestjs/commom": {
+    "@nestjs/common": {
       "required": true
     },
     "@nestjs/core": {
