@@ -1,0 +1,20 @@
+{
+  "name": "benchmark-interceptor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "benchmarks/interceptor/src",
+  "targets": {
+    "bench": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "benchmarks/interceptor",
+        "commands": [
+          "../../node_modules/.bin/tsc -p tsconfig.build.json",
+          "node -r module-alias/register dist/benchmarks/interceptor/src/main"
+        ],
+        "parallel": false
+      }
+    }
+  },
+  "implicitDependencies": []
+}

@@ -1,0 +1,30 @@
+{
+  "name": "platform-socket.io",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-socket.io/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-socket.io",
+        "main": "packages/platform-socket.io/src/index.ts",
+        "tsConfig": "packages/platform-socket.io/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-socket.io/package.json",
+        "assets": ["packages/platform-socket.io/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-socket.io/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-socket.io/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

@@ -1,0 +1,29 @@
+{
+  "name": "styler",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/styler/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/styler",
+        "main": "packages/styler/src/index.ts",
+        "tsConfig": "packages/styler/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/styler/package.json",
+        "assets": ["packages/styler/*.md"]
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/styler/test",
+        "coverage": true,
+        "coverageConfig": "./packages/styler/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

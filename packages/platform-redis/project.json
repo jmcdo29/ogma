@@ -1,0 +1,30 @@
+{
+  "name": "platform-redis",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-redis/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-redis",
+        "main": "packages/platform-redis/src/index.ts",
+        "tsConfig": "packages/platform-redis/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-redis/package.json",
+        "assets": ["packages/platform-redis/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-redis/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-redis/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

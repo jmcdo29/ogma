@@ -1,0 +1,30 @@
+{
+  "name": "cli",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/cli/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/cli",
+        "main": "packages/cli/src/main.ts",
+        "tsConfig": "packages/cli/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/cli/package.json",
+        "assets": ["packages/cli/*.md"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/cli/test",
+        "coverage": true,
+        "coverageConfig": "./packages/cli/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

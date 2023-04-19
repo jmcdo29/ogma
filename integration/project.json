@@ -1,0 +1,60 @@
+{
+  "name": "integration",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "integration/src",
+  "targets": {
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["docker compose down"]
+      },
+      "dependsOn": [
+        {
+          "target": "e2e-run",
+          "projects": "self"
+        }
+      ]
+    },
+    "e2e-run": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./integration/test",
+        "coverage": true,
+        "coverageConfig": "./integration/.c8rc",
+        "useSwc": true
+      },
+      "dependsOn": [
+        {
+          "target": "docker-ready",
+          "projects": "self"
+        }
+      ]
+    },
+    "docker-ready": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "while ! nc -q0 localhost 1883 < /dev/null > /dev/null 2>&1; do sleep 10; done",
+          "while ! nc -q0 localhost 4222 < /dev/null > /dev/null 2>&1; do sleep 10; done",
+          "while ! nc -q0 localhost 5672 < /dev/null > /dev/null 2>&1; do sleep 10; done",
+          "while ! nc -q0 localhost 6379 < /dev/null > /dev/null 2>&1; do sleep 10; done"
+        ],
+        "parallel": true
+      },
+      "dependsOn": [
+        {
+          "target": "docker-up",
+          "projects": "self"
+        }
+      ]
+    },
+    "docker-up": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["docker compose up -d"]
+      }
+    }
+  },
+  "implicitDependencies": []
+}

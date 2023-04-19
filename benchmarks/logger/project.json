@@ -1,0 +1,20 @@
+{
+  "name": "benchmark-logger",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "benchmarks/logger/src",
+  "type": "library",
+  "targets": {
+    "bench": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "benchmarks/logger",
+        "commands": [
+          "../../node_modules/.bin/tsc -p tsconfig.json",
+          "node -r module-alias/register dist/benchmarks/logger/src/index"
+        ],
+        "parallel": false
+      }
+    }
+  },
+  "implicitDependencies": []
+}

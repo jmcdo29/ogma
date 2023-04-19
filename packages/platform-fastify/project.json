@@ -1,0 +1,30 @@
+{
+  "name": "platform-fastify",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-fastify/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-fastify",
+        "main": "packages/platform-fastify/src/index.ts",
+        "tsConfig": "packages/platform-fastify/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-fastify/package.json",
+        "assets": ["packages/platform-fastify/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-fastify/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-fastify/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

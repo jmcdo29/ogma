@@ -1,0 +1,30 @@
+{
+  "name": "platform-rabbitmq",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-rabbitmq/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-rabbitmq",
+        "main": "packages/platform-rabbitmq/src/index.ts",
+        "tsConfig": "packages/platform-rabbitmq/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-rabbitmq/package.json",
+        "assets": ["packages/platform-rabbitmq/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-rabbitmq/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-rabbitmq/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

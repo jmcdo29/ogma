@@ -1,0 +1,30 @@
+{
+  "name": "platform-ws",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-ws/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-ws",
+        "main": "packages/platform-ws/src/index.ts",
+        "tsConfig": "packages/platform-ws/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-ws/package.json",
+        "assets": ["packages/platform-ws/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-ws/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-ws/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

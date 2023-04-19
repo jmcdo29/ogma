@@ -1,0 +1,74 @@
+{
+  "name": "tools",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "tools",
+  "targets": {
+    "compile": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "./tools/",
+        "command": "../node_modules/.bin/tsc"
+      }
+    },
+    "collect": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "echo 'Collection Coverages to single location' && node tools/coverage-merge.js",
+          "echo 'Making coverage directory' && mkdir coverage",
+          "echo 'Making initial lcov file' && touch coverage/lcov.info",
+          "echo 'Merging coverages with lcov-result-merger' && pnpm lcov-result-merger 'coverage-tmp/*' 'coverage/lcov.info'",
+          "echo 'done'"
+        ],
+        "parallel": false
+      },
+      "dependsOn": [
+        {
+          "target": "compile",
+          "projects": "self"
+        },
+        {
+          "target": "e2e",
+          "projects": "dependencies"
+        },
+        {
+          "target": "test",
+          "projects": "dependencies"
+        }
+      ]
+    },
+    "setup": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node .//tools/setup-workspace"
+      },
+      "dependsOn": [
+        {
+          "target": "compile",
+          "projects": "self"
+        }
+      ]
+    }
+  },
+  "implicitDependencies": [
+    "integration",
+    "cli",
+    "logger",
+    "nestjs-module",
+    "platform-express",
+    "platform-fastify",
+    "platform-graphql",
+    "platform-graphql-fastify",
+    "platform-mqtt",
+    "platform-grpc",
+    "platform-kafka",
+    "platform-nats",
+    "platform-redis",
+    "platform-rabbitmq",
+    "platform-socket.io",
+    "platform-tcp",
+    "platform-ws",
+    "styler"
+  ]
+}
