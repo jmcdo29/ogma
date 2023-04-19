@@ -324,8 +324,8 @@ importers:
         specifier: ^3.8.2
         version: 3.8.2
       ws:
-        specifier: 8.12.0
-        version: 8.12.0
+        specifier: 8.13.0
+        version: 8.13.0
 
   benchmarks/interceptor: {}
 
@@ -3220,7 +3220,7 @@ packages:
     resolution: {integrity: sha512-aEHlymGnMOCY5pTSI6gOlLBX/5pIhQ485zyEx/m2+kITSa9vWtL08jbtAzbsaQBcqOz+bbVvxzerbHZdqQp2qQ==}
     dependencies:
       fastify-plugin: 4.3.0
-      ws: 8.12.0
+      ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -11258,7 +11258,7 @@ packages:
       single-user-cache: 0.6.0
       tiny-lru: 10.0.1
       undici: 5.16.0
-      ws: 8.12.0
+      ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -15567,7 +15567,7 @@ packages:
       spdy: 4.0.2
       webpack: 5.75.0(@swc/core@1.3.14)
       webpack-dev-middleware: 5.3.3(webpack@5.75.0)
-      ws: 8.12.0
+      ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -15841,6 +15841,7 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+    dev: false
 
   /ws@8.12.1:
     resolution: {integrity: sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==}
@@ -15853,6 +15854,19 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+
+  /ws@8.13.0:
+    resolution: {integrity: sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: true
 
   /ws@8.2.3:
     resolution: {integrity: sha512-wBuoj1BDpC6ZQ1B7DWQBYVLphPWkm8i9Y0/3YdHjHKHiohOJ1ws+3OccDWtH+PoC9DZD5WOTrJvNbWvjS6JWaA==}
