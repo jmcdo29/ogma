@@ -343,7 +343,7 @@ importers:
         specifier: 9.4.0
         version: 9.4.0(@nestjs/common@9.4.0)(@nestjs/microservices@9.4.0)(@nestjs/platform-express@9.4.0)(@nestjs/websockets@9.4.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
       '@ogma/common':
-        specifier: ^1.0.0
+        specifier: ^1.1.1
         version: link:../common
       nest-commander:
         specifier: 3.6.2
@@ -357,10 +357,10 @@ importers:
   packages/logger:
     dependencies:
       '@ogma/common':
-        specifier: ^1.0.0
+        specifier: ^1.1.1
         version: link:../common
       '@ogma/styler':
-        specifier: ^1.0.0
+        specifier: ^1.0.1
         version: link:../styler
 
   packages/nestjs-module:
@@ -372,7 +372,7 @@ importers:
         specifier: ^9.0.0
         version: 9.4.0(@nestjs/common@9.4.0)(@nestjs/microservices@9.4.0)(@nestjs/platform-express@9.4.0)(@nestjs/websockets@9.4.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
       '@ogma/logger':
-        specifier: ^2.4.2
+        specifier: ^2.5.1
         version: link:../logger
       reflect-metadata:
         specifier: ^0.1.0
@@ -543,7 +543,7 @@ importers:
   packages/styler:
     dependencies:
       '@ogma/common':
-        specifier: ^1.0.0
+        specifier: ^1.1.1
         version: link:../common
 
 packages:
