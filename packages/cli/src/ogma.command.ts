@@ -17,12 +17,14 @@ import { StreamService } from './stream.service';
   },
   options: { isDefault: true },
 })
-export class OgmaCommand implements CommandRunner {
+export class OgmaCommand extends CommandRunner {
   constructor(
     private readonly fileService: FileService,
     private readonly streamService: StreamService,
     private readonly ogmaGetter: OgmaGetterService,
-  ) {}
+  ) {
+    super();
+  }
   private ogmaKeys = ['time', 'pid', 'level'];
 
   async run(params: string[], options: { color: boolean }): Promise<void> {
