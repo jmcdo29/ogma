@@ -1,0 +1,30 @@
+{
+  "name": "platform-mqtt",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-mqtt/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-mqtt",
+        "main": "packages/platform-mqtt/src/index.ts",
+        "tsConfig": "packages/platform-mqtt/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-mqtt/package.json",
+        "assets": ["packages/platform-mqtt/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-mqtt/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-mqtt/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

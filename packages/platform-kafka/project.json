@@ -1,0 +1,30 @@
+{
+  "name": "platform-kafka",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-kafka/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-kafka",
+        "main": "packages/platform-kafka/src/index.ts",
+        "tsConfig": "packages/platform-kafka/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-kafka/package.json",
+        "assets": ["packages/platform-kafka/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-kafka/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-kafka/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

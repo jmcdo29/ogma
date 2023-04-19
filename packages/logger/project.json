@@ -1,0 +1,29 @@
+{
+  "name": "logger",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/logger/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/logger",
+        "main": "packages/logger/src/index.ts",
+        "tsConfig": "packages/logger/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/logger/package.json",
+        "assets": ["packages/logger/*.md"]
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/logger/test",
+        "coverage": true,
+        "coverageConfig": "./packages/logger/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

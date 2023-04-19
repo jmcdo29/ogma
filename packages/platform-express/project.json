@@ -1,0 +1,30 @@
+{
+  "name": "platform-express",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-express/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-express",
+        "main": "packages/platform-express/src/index.ts",
+        "tsConfig": "packages/platform-express/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-express/package.json",
+        "assets": ["packages/platform-express/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-express/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-express/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

@@ -1,0 +1,30 @@
+{
+  "name": "platform-graphql-fastify",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-graphql-fastify/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-graphql-fastify",
+        "main": "packages/platform-graphql-fastify/src/index.ts",
+        "tsConfig": "packages/platform-graphql-fastify/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-graphql-fastify/package.json",
+        "assets": ["packages/platform-graphql-fastify/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-graphql-fastify/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-graphql-fastify/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

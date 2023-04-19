@@ -1,0 +1,30 @@
+{
+  "name": "platform-tcp",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-tcp/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-tcp",
+        "main": "packages/platform-tcp/src/index.ts",
+        "tsConfig": "packages/platform-tcp/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-tcp/package.json",
+        "assets": ["packages/platform-tcp/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-tcp/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-tcp/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

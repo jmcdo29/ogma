@@ -1,0 +1,30 @@
+{
+  "name": "platform-graphql",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-graphql/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-graphql",
+        "main": "packages/platform-graphql/src/index.ts",
+        "tsConfig": "packages/platform-graphql/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-graphql/package.json",
+        "assets": ["packages/platform-graphql/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-graphql/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-graphql/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

@@ -1,0 +1,30 @@
+{
+  "name": "platform-grpc",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/platform-grpc/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/platform-grpc",
+        "main": "packages/platform-grpc/src/index.ts",
+        "tsConfig": "packages/platform-grpc/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/platform-grpc/package.json",
+        "assets": ["packages/platform-grpc/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/platform-grpc/test",
+        "coverage": true,
+        "coverageConfig": "./packages/platform-grpc/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}

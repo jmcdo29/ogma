@@ -1,0 +1,30 @@
+{
+  "name": "nestjs-module",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/nestjs-module/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/nestjs-module",
+        "main": "packages/nestjs-module/src/index.ts",
+        "tsConfig": "packages/nestjs-module/tsconfig.build.json",
+        "clean": true,
+        "packageJson": "packages/nestjs-module/package.json",
+        "assets": ["packages/nestjs-module/*.md"],
+        "updateBuildableProjectDepsInPackageJson": false
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/nestjs-module/test",
+        "coverage": true,
+        "coverageConfig": "./packages/nestjs-module/.c8rc",
+        "useSwc": true
+      }
+    }
+  },
+  "implicitDependencies": []
+}
