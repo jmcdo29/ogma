@@ -39,8 +39,8 @@ importers:
         specifier: ^3.3.0
         version: 3.3.0(@algolia/client-search@4.14.2)(@types/react@18.0.25)(react-dom@17.0.2)(react@17.0.2)
       '@graphql-tools/schema':
-        specifier: 9.0.17
-        version: 9.0.17(graphql@16.6.0)
+        specifier: 9.0.18
+        version: 9.0.18(graphql@16.6.0)
       '@graphql-tools/utils':
         specifier: ^9.0.0
         version: 9.0.1(graphql@16.6.0)
@@ -879,7 +879,7 @@ packages:
       '@apollo/utils.logger': 2.0.0
       '@apollo/utils.usagereporting': 2.0.0(graphql@16.6.0)
       '@apollo/utils.withrequired': 2.0.0
-      '@graphql-tools/schema': 9.0.17(graphql@16.6.0)
+      '@graphql-tools/schema': 9.0.18(graphql@16.6.0)
       '@josephg/resolvable': 1.0.1
       '@types/express': 4.17.14
       '@types/express-serve-static-core': 4.17.31
@@ -3260,6 +3260,16 @@ packages:
       graphql: 16.6.0
       tslib: 2.5.0
 
+  /@graphql-tools/merge@8.4.1(graphql@16.6.0):
+    resolution: {integrity: sha512-hssnPpZ818mxgl5+GfyOOSnnflAxiaTn1A1AojZcIbh4J52sS1Q0gSuBR5VrnUDjuxiqoCotpXdAQl+K+U6KLQ==}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+    dependencies:
+      '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
+      graphql: 16.6.0
+      tslib: 2.5.0
+    dev: true
+
   /@graphql-tools/mock@8.7.8(graphql@16.6.0):
     resolution: {integrity: sha512-lbn/+8yHd4ej+feheCDPCOhyAuYEp6KnbpTiSUA3xnzux0X93g3QSJuuN6dzxPgu0sGw6lP6xoZeTaByeVBCqg==}
     peerDependencies:
@@ -3294,6 +3304,18 @@ packages:
       graphql: 16.6.0
       tslib: 2.5.0
       value-or-promise: 1.0.12
+
+  /@graphql-tools/schema@9.0.18(graphql@16.6.0):
+    resolution: {integrity: sha512-Kckb+qoo36o5RSIVfBNU5XR5fOg4adNa1xuhhUgbQejDaI684tIJbTWwYbrDPVEGL/dqJJX3rrsq7RLufjNFoQ==}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+    dependencies:
+      '@graphql-tools/merge': 8.4.1(graphql@16.6.0)
+      '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
+      graphql: 16.6.0
+      tslib: 2.5.0
+      value-or-promise: 1.0.12
+    dev: true
 
   /@graphql-tools/schema@9.0.6(graphql@16.6.0):
     resolution: {integrity: sha512-/aznltpnVrurfWqXB4chWtaNmBFSk9v/KEJSpvas2fnlwwS9QnzWh6Sm/hsybWesirn5J2w60LLjMrrcCd58UA==}
