@@ -53,6 +53,9 @@ importers:
       '@mdx-js/react':
         specifier: 1.6.22
         version: 1.6.22(react@17.0.2)
+      '@mercuriusjs/gateway':
+        specifier: ^1.2.0
+        version: 1.2.0
       '@nestjs/apollo':
         specifier: ^11.0.5
         version: 11.0.5(@apollo/gateway@2.3.5)(@apollo/server@4.5.0)(@apollo/subgraph@2.4.1)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(@nestjs/graphql@11.0.5)(graphql@16.6.0)
@@ -67,7 +70,7 @@ importers:
         version: 11.0.5(@apollo/subgraph@2.4.1)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.6.0)(reflect-metadata@0.1.13)(ts-morph@18.0.0)
       '@nestjs/mercurius':
         specifier: ^11.0.5
-        version: 11.0.5(@apollo/subgraph@2.4.1)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.15.0)(graphql@16.6.0)(mercurius@12.2.0)
+        version: 11.0.5(@apollo/subgraph@2.4.1)(@mercuriusjs/gateway@1.2.0)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.15.0)(graphql@16.6.0)(mercurius@12.2.0)
       '@nestjs/microservices':
         specifier: ^9.4.0
         version: 9.4.0(@grpc/grpc-js@1.7.3)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(@nestjs/websockets@9.4.0)(amqp-connection-manager@4.1.12)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
@@ -3750,6 +3753,51 @@ packages:
       react: 17.0.2
     dev: true
 
+  /@mercuriusjs/federation@1.0.1:
+    resolution: {integrity: sha512-aski6H8SRfjK73Bruzh5kQ20OS0s0pkbFvcOex46Qm17bYWoJ3daMrbTw4caOSkru7R8pIA/bvAjSq97xkDJkQ==}
+    dependencies:
+      '@fastify/error': 3.2.0
+      graphql: 16.6.0
+      mercurius: 12.2.0(graphql@16.6.0)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: true
+
+  /@mercuriusjs/gateway@1.2.0:
+    resolution: {integrity: sha512-kwSTeY53NpO2VUaDKKl3PBUwcqQBLHzHAq2FDxCr4N2u2ELu9/yJVAcv7okkmwg7ImjsTOdgbvU2+VrG2foLHQ==}
+    dependencies:
+      '@mercuriusjs/federation': 1.0.1
+      '@mercuriusjs/subscription-client': 1.0.0(graphql@16.6.0)
+      fastify-plugin: 4.5.0
+      graphql: 16.6.0
+      graphql-ws: 5.12.1(graphql@16.6.0)
+      mercurius: 12.2.0(graphql@16.6.0)
+      p-map: 4.0.0
+      single-user-cache: 0.6.0
+      tiny-lru: 10.4.1
+      use-strict: 1.0.1
+      ws: 8.13.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: true
+
+  /@mercuriusjs/subscription-client@1.0.0(graphql@16.6.0):
+    resolution: {integrity: sha512-hIGqNp6FBdcy7ZkrWNk4mHl/Qodtwvbu9/iRl3zQdNRl4UtlVI7xW/FPU+2AJy0qTB567yrpvtQPwtmQLuYHYg==}
+    engines: {node: '>=14.19.3'}
+    peerDependencies:
+      graphql: ^16.0.0
+    dependencies:
+      '@fastify/error': 3.2.0
+      graphql: 16.6.0
+      secure-json-parse: 2.7.0
+      ws: 8.13.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: true
+
   /@mole-inc/bin-wrapper@8.0.1:
     resolution: {integrity: sha512-sTGoeZnjI8N4KS+sW2AN95gDBErhAguvkw/tWdCjeM8bvxpz5lqrnd0vOJABA1A+Ic3zED7PYoLP/RANLgVotA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -3916,7 +3964,7 @@ packages:
       class-validator: 0.14.0
       reflect-metadata: 0.1.13
 
-  /@nestjs/mercurius@11.0.5(@apollo/subgraph@2.4.1)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.15.0)(graphql@16.6.0)(mercurius@12.2.0):
+  /@nestjs/mercurius@11.0.5(@apollo/subgraph@2.4.1)(@mercuriusjs/gateway@1.2.0)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.15.0)(graphql@16.6.0)(mercurius@12.2.0):
     resolution: {integrity: sha512-50U3MolmjN6CH7Z7jQDgP5NXtyNtpmYKLeUeqmRmON2Kf7NxcpO5RaEhums6E+X7i4q6QdNdSptbuiIsAENz6Q==}
     peerDependencies:
       '@apollo/subgraph': ^2.0.0
@@ -3936,6 +3984,7 @@ packages:
         optional: true
     dependencies:
       '@apollo/subgraph': 2.4.1(graphql@16.6.0)
+      '@mercuriusjs/gateway': 1.2.0
       '@nestjs/common': 9.4.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
       '@nestjs/graphql': 11.0.5(@apollo/subgraph@2.4.1)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.6.0)(reflect-metadata@0.1.13)(ts-morph@18.0.0)
       fastify: 4.15.0
@@ -15503,6 +15552,10 @@ packages:
     dependencies:
       querystringify: 2.2.0
       requires-port: 1.0.0
+
+  /use-strict@1.0.1:
+    resolution: {integrity: sha512-IeiWvvEXfW5ltKVMkxq6FvNf2LojMKvB2OCeja6+ct24S1XOmQw2dGr2JyndwACWAGJva9B7yPHwAmeA9QCqAQ==}
+    dev: true
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}

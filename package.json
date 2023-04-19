@@ -58,6 +58,7 @@
     "@grpc/grpc-js": "^1.7.3",
     "@grpc/proto-loader": "0.7.6",
     "@mdx-js/react": "1.6.22",
+    "@mercuriusjs/gateway": "^1.2.0",
     "@nestjs/apollo": "^11.0.5",
     "@nestjs/common": "9.4.0",
     "@nestjs/core": "9.4.0",
