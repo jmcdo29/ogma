@@ -35,12 +35,13 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "while ! nc -q0 localhost 1883 < /dev/null > /dev/null 2>&1; do sleep 10; done",
-          "while ! nc -q0 localhost 4222 < /dev/null > /dev/null 2>&1; do sleep 10; done",
-          "while ! nc -q0 localhost 5672 < /dev/null > /dev/null 2>&1; do sleep 10; done",
-          "while ! nc -q0 localhost 6379 < /dev/null > /dev/null 2>&1; do sleep 10; done"
+          "while ! nc -q0 localhost 1883 < /dev/null > /dev/null 2>&1; do echo 'No connection., Trying again'; sleep 10; done",
+          "while ! nc -q0 localhost 4222 < /dev/null > /dev/null 2>&1; do echo 'No connection., Trying again'; sleep 10; done",
+          "while ! nc -q0 localhost 5672 < /dev/null > /dev/null 2>&1; do echo 'No connection., Trying again'; sleep 10; done",
+          "while ! nc -q0 localhost 6379 < /dev/null > /dev/null 2>&1; do echo 'No connection., Trying again'; sleep 10; done",
+          "sleep 2"
         ],
-        "parallel": true
+        "parallel": false
       },
       "dependsOn": [
         {
