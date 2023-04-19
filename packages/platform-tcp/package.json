@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-tcp",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "A plugin for the OgmaInterceptor to properly handle microservice requests from tcp protocols",
   "keywords": [
     "tcp",

@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.2.3
+
+### Patch Changes
+
+- 7ce391c: chore(deps): fix peer dependency typo in nestjs-module
+- dd5215e: Security updates of dependencies. Should be nothing major here.
+- Updated dependencies [dd5215e]
+  - @ogma/logger@2.5.1
+
 ## 4.2.2
 
 ### Patch Changes

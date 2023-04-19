@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-ws",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "A plugin for the OgmaInterceptor to properly handle websocket requests from ws",
   "keywords": [
     "ws",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.2
+
+### Patch Changes
+
+- dd5215e: Security updates of dependencies. Should be nothing major here.
+
 ## 4.0.1
 
 ### Patch Changes

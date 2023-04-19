@@ -1,5 +1,11 @@
 # @ogma/common
 
+## 1.1.1
+
+### Patch Changes
+
+- dd5215e: Security updates of dependencies. Should be nothing major here.
+
 ## 1.1.0
 
 ### Minor Changes
