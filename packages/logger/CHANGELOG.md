@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.5.1
+
+### Patch Changes
+
+- dd5215e: Security updates of dependencies. Should be nothing major here.
+- Updated dependencies [dd5215e]
+  - @ogma/common@1.1.1
+  - @ogma/styler@1.0.1
+
 ## 2.5.0
 
 ### Minor Changes

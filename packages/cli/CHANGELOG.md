@@ -1,5 +1,13 @@
 # @ogma/cli
 
+## 2.1.7
+
+### Patch Changes
+
+- dd5215e: Security updates of dependencies. Should be nothing major here.
+- Updated dependencies [dd5215e]
+  - @ogma/common@1.1.1
+
 ## 2.1.6
 
 ### Patch Changes

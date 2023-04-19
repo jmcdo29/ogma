@@ -1,11 +1,11 @@
 {
   "name": "@ogma/styler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A package for the @ogma packages to deal with adding color and string styling to terminal logs",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@ogma/common": "^1.0.0"
+    "@ogma/common": "^1.1.1"
   }
 }

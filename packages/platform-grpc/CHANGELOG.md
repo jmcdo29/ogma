@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- 5c48a77: chore(deps): replace grpc with @grpc/grpc-js
+
+### Patch Changes
+
+- dd5215e: Security updates of dependencies. Should be nothing major here.
+
 ## 4.0.1
 
 ### Patch Changes

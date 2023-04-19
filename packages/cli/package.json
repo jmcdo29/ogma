@@ -1,6 +1,6 @@
 {
   "name": "@ogma/cli",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "A CLI to re-hydrate JSON logs back to a dev readable format, colors included.",
   "keywords": [
     "cli",
@@ -29,7 +29,7 @@
   "dependencies": {
     "@nestjs/common": "9.4.0",
     "@nestjs/core": "9.4.0",
-    "@ogma/common": "^1.0.0",
+    "@ogma/common": "^1.1.1",
     "nest-commander": "3.6.2",
     "reflect-metadata": "0.1.13"
   },
