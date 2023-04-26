@@ -73,7 +73,7 @@ importers:
         version: 11.0.5(@apollo/subgraph@2.4.1)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.6.0)(reflect-metadata@0.1.13)(ts-morph@18.0.0)
       '@nestjs/mercurius':
         specifier: ^11.0.5
-        version: 11.0.5(@apollo/subgraph@2.4.1)(@mercuriusjs/gateway@1.2.0)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.15.0)(graphql@16.6.0)(mercurius@12.2.0)
+        version: 11.0.5(@apollo/subgraph@2.4.1)(@mercuriusjs/gateway@1.2.0)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.16.3)(graphql@16.6.0)(mercurius@12.2.0)
       '@nestjs/microservices':
         specifier: ^9.4.0
         version: 9.4.0(@grpc/grpc-js@1.7.3)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(@nestjs/websockets@9.4.0)(amqp-connection-manager@4.1.12)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
@@ -166,7 +166,7 @@ importers:
         version: 0.10.3
       apollo-server-fastify:
         specifier: 3.12.0
-        version: 3.12.0(fastify@4.15.0)(graphql@16.6.0)
+        version: 3.12.0(fastify@4.16.3)(graphql@16.6.0)
       astro:
         specifier: ^2.0.0
         version: 2.0.0(@types/node@18.16.0)(less@4.1.3)(stylus@0.55.0)
@@ -210,8 +210,8 @@ importers:
         specifier: ^4.18.2
         version: 4.18.2
       fastify:
-        specifier: 4.15.0
-        version: 4.15.0
+        specifier: 4.16.3
+        version: 4.16.3
       graphql:
         specifier: ^16.6.0
         version: 16.6.0
@@ -234,8 +234,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       lint-staged:
-        specifier: 13.2.1
-        version: 13.2.1
+        specifier: 13.2.2
+        version: 13.2.2
       mercurius:
         specifier: 12.2.0
         version: 12.2.0(graphql@16.6.0)
@@ -3254,6 +3254,12 @@ packages:
     dependencies:
       fast-json-stringify: 5.7.0
 
+  /@fastify/fast-json-stringify-compiler@4.3.0:
+    resolution: {integrity: sha512-aZAXGYo6m22Fk1zZzEUKBvut/CIIQe/BapEORnxiD5Qr0kPHqqI69NtEMCme74h+at72sPhbkb4ZrLd1W3KRLA==}
+    dependencies:
+      fast-json-stringify: 5.7.0
+    dev: true
+
   /@fastify/formbody@7.4.0:
     resolution: {integrity: sha512-H3C6h1GN56/SMrZS8N2vCT2cZr7mIHzBHzOBa5OPpjfB/D6FzP9mMpE02ZzrFX0ANeh0BAJdoXKOF2e7IbV+Og==}
     dependencies:
@@ -3977,7 +3983,7 @@ packages:
       class-validator: 0.14.0
       reflect-metadata: 0.1.13
 
-  /@nestjs/mercurius@11.0.5(@apollo/subgraph@2.4.1)(@mercuriusjs/gateway@1.2.0)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.15.0)(graphql@16.6.0)(mercurius@12.2.0):
+  /@nestjs/mercurius@11.0.5(@apollo/subgraph@2.4.1)(@mercuriusjs/gateway@1.2.0)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.16.3)(graphql@16.6.0)(mercurius@12.2.0):
     resolution: {integrity: sha512-50U3MolmjN6CH7Z7jQDgP5NXtyNtpmYKLeUeqmRmON2Kf7NxcpO5RaEhums6E+X7i4q6QdNdSptbuiIsAENz6Q==}
     peerDependencies:
       '@apollo/subgraph': ^2.0.0
@@ -4000,7 +4006,7 @@ packages:
       '@mercuriusjs/gateway': 1.2.0
       '@nestjs/common': 9.4.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
       '@nestjs/graphql': 11.0.5(@apollo/subgraph@2.4.1)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.6.0)(reflect-metadata@0.1.13)(ts-morph@18.0.0)
-      fastify: 4.15.0
+      fastify: 4.16.3
       graphql: 16.6.0
       mercurius: 12.2.0(graphql@16.6.0)
       tslib: 2.5.0
@@ -6051,7 +6057,7 @@ packages:
       graphql: 16.6.0
     dev: true
 
-  /apollo-server-fastify@3.12.0(fastify@4.15.0)(graphql@16.6.0):
+  /apollo-server-fastify@3.12.0(fastify@4.16.3)(graphql@16.6.0):
     resolution: {integrity: sha512-+T/8V7ZaQ5Ej/wTlPj85/LrJ1jivnCKmHZgFrJnt1NYiR+wV/8JfT3s3Uzg22ppZKWWdeS1BQLZainEGLu3X0A==}
     engines: {node: '>=12.0'}
     deprecated: The `apollo-server-fastify` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
@@ -6063,7 +6069,7 @@ packages:
       '@fastify/cors': 7.0.0
       apollo-server-core: 3.12.0(graphql@16.6.0)
       apollo-server-types: 3.8.0(graphql@16.6.0)
-      fastify: 4.15.0
+      fastify: 4.16.3
       graphql: 16.6.0
     transitivePeerDependencies:
       - encoding
@@ -8737,6 +8743,29 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /fastify@4.16.3:
+    resolution: {integrity: sha512-W45bWZdjAcVxFUBubzkmiMp3VrIRpsqUP6D0NS2Qb1BjTSNNT1NxAubzM8tdMyC5mIBymtvPE3B+DYmItc1rlQ==}
+    dependencies:
+      '@fastify/ajv-compiler': 3.5.0
+      '@fastify/error': 3.2.0
+      '@fastify/fast-json-stringify-compiler': 4.3.0
+      abstract-logging: 2.0.1
+      avvio: 8.2.1
+      fast-content-type-parse: 1.0.0
+      fast-json-stringify: 5.7.0
+      find-my-way: 7.6.0
+      light-my-request: 5.9.1
+      pino: 8.11.0
+      process-warning: 2.2.0
+      proxy-addr: 2.0.7
+      rfdc: 1.3.0
+      secure-json-parse: 2.7.0
+      semver: 7.5.0
+      tiny-lru: 11.0.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /fastparallel@2.4.1:
     resolution: {integrity: sha512-qUmhxPgNHmvRjZKBFUNI0oZuuH9OlSIOXmJ98lhKPxMZZ7zS/Fi0wRHOihDSz0R1YiIOjxzOY4bq65YTcdBi2Q==}
     dependencies:
@@ -10994,8 +11023,8 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: true
 
-  /lint-staged@13.2.1:
-    resolution: {integrity: sha512-8gfzinVXoPfga5Dz/ZOn8I2GOhf81Wvs+KwbEXQn/oWZAvCVS2PivrXfVbFJc93zD16uC0neS47RXHIjXKYZQw==}
+  /lint-staged@13.2.2:
+    resolution: {integrity: sha512-71gSwXKy649VrSU09s10uAT0rWCcY3aewhMaHyl2N84oBk4Xs9HgxvUp3AYu+bNsK4NrOYYxvSgg7FyGJ+jGcA==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -11011,7 +11040,7 @@ packages:
       object-inspect: 1.12.3
       pidtree: 0.6.0
       string-argv: 0.3.1
-      yaml: 2.2.1
+      yaml: 2.2.2
     transitivePeerDependencies:
       - enquirer
       - supports-color
@@ -15225,6 +15254,11 @@ packages:
     resolution: {integrity: sha512-buLIzw7ppqymuO3pt10jHk/6QMeZLbidihMQU+N6sogF6EnBzG0qtDWIHuhw1x3dyNgVL/KTGIZsTK81+yCzLg==}
     engines: {node: '>=12'}
 
+  /tiny-lru@11.0.1:
+    resolution: {integrity: sha512-iNgFugVuQgBKrqeO/mpiTTgmBsTP0WL6yeuLfLs/Ctf0pI/ixGqIRm8sDCwMcXGe9WWvt2sGXI5mNqZbValmJg==}
+    engines: {node: '>=12'}
+    dev: true
+
   /tmp@0.0.33:
     resolution: {integrity: sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==}
     engines: {node: '>=0.6.0'}
@@ -16331,8 +16365,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /yaml@2.2.1:
-    resolution: {integrity: sha512-e0WHiYql7+9wr4cWMx3TVQrNwejKaEe7/rHNmQmqRjazfOP5W8PB6Jpebb5o6fIapbz9o9+2ipcaTM2ZwDI6lw==}
+  /yaml@2.2.2:
+    resolution: {integrity: sha512-CBKFWExMn46Foo4cldiChEzn7S7SRV+wqiluAb6xmueD/fGyRHIhX8m14vVGgeFWjN540nKCNVj6P21eQjgTuA==}
     engines: {node: '>= 14'}
     dev: true
 
