@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.2
+
+### Patch Changes
+
+- 1c2854e: Fixed issues 1634 - Verbose logging bad printing
+
 ## 2.5.1
 
 ### Patch Changes
