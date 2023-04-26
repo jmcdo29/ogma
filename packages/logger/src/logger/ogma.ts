@@ -85,7 +85,9 @@ export class Ogma {
         formattedLevel: _formattedLevel,
         ...meta
       } = options;
-      this.options.stream.write(this.formatStream(meta, options));
+      const verboseLogString = this.formatStream(meta, options);
+
+      this.options.stream.write(`${verboseLogString}\n`);
     }
   }
 
