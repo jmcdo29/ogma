@@ -118,7 +118,7 @@
     "ioredis": "^5.2.4",
     "kafkajs": "2.2.4",
     "lcov-result-merger": "^4.0.0",
-    "lint-staged": "13.2.1",
+    "lint-staged": "13.2.2",
     "mercurius": "12.2.0",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
