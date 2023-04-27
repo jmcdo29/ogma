@@ -73,7 +73,7 @@ importers:
         version: 11.0.5(@apollo/subgraph@2.4.1)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.6.0)(reflect-metadata@0.1.13)(ts-morph@18.0.0)
       '@nestjs/mercurius':
         specifier: ^11.0.5
-        version: 11.0.5(@apollo/subgraph@2.4.1)(@mercuriusjs/gateway@1.2.0)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.16.3)(graphql@16.6.0)(mercurius@12.2.0)
+        version: 11.0.5(@apollo/subgraph@2.4.1)(@mercuriusjs/gateway@1.2.0)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.17.0)(graphql@16.6.0)(mercurius@12.2.0)
       '@nestjs/microservices':
         specifier: ^9.4.0
         version: 9.4.0(@grpc/grpc-js@1.7.3)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(@nestjs/websockets@9.4.0)(amqp-connection-manager@4.1.12)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
@@ -166,7 +166,7 @@ importers:
         version: 0.10.3
       apollo-server-fastify:
         specifier: 3.12.0
-        version: 3.12.0(fastify@4.16.3)(graphql@16.6.0)
+        version: 3.12.0(fastify@4.17.0)(graphql@16.6.0)
       astro:
         specifier: ^2.0.0
         version: 2.0.0(@types/node@18.16.0)(less@4.1.3)(stylus@0.55.0)
@@ -210,8 +210,8 @@ importers:
         specifier: ^4.18.2
         version: 4.18.2
       fastify:
-        specifier: 4.16.3
-        version: 4.16.3
+        specifier: 4.17.0
+        version: 4.17.0
       graphql:
         specifier: ^16.6.0
         version: 16.6.0
@@ -3983,7 +3983,7 @@ packages:
       class-validator: 0.14.0
       reflect-metadata: 0.1.13
 
-  /@nestjs/mercurius@11.0.5(@apollo/subgraph@2.4.1)(@mercuriusjs/gateway@1.2.0)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.16.3)(graphql@16.6.0)(mercurius@12.2.0):
+  /@nestjs/mercurius@11.0.5(@apollo/subgraph@2.4.1)(@mercuriusjs/gateway@1.2.0)(@nestjs/common@9.4.0)(@nestjs/graphql@11.0.5)(fastify@4.17.0)(graphql@16.6.0)(mercurius@12.2.0):
     resolution: {integrity: sha512-50U3MolmjN6CH7Z7jQDgP5NXtyNtpmYKLeUeqmRmON2Kf7NxcpO5RaEhums6E+X7i4q6QdNdSptbuiIsAENz6Q==}
     peerDependencies:
       '@apollo/subgraph': ^2.0.0
@@ -4006,7 +4006,7 @@ packages:
       '@mercuriusjs/gateway': 1.2.0
       '@nestjs/common': 9.4.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
       '@nestjs/graphql': 11.0.5(@apollo/subgraph@2.4.1)(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.6.0)(reflect-metadata@0.1.13)(ts-morph@18.0.0)
-      fastify: 4.16.3
+      fastify: 4.17.0
       graphql: 16.6.0
       mercurius: 12.2.0(graphql@16.6.0)
       tslib: 2.5.0
@@ -6057,7 +6057,7 @@ packages:
       graphql: 16.6.0
     dev: true
 
-  /apollo-server-fastify@3.12.0(fastify@4.16.3)(graphql@16.6.0):
+  /apollo-server-fastify@3.12.0(fastify@4.17.0)(graphql@16.6.0):
     resolution: {integrity: sha512-+T/8V7ZaQ5Ej/wTlPj85/LrJ1jivnCKmHZgFrJnt1NYiR+wV/8JfT3s3Uzg22ppZKWWdeS1BQLZainEGLu3X0A==}
     engines: {node: '>=12.0'}
     deprecated: The `apollo-server-fastify` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
@@ -6069,7 +6069,7 @@ packages:
       '@fastify/cors': 7.0.0
       apollo-server-core: 3.12.0(graphql@16.6.0)
       apollo-server-types: 3.8.0(graphql@16.6.0)
-      fastify: 4.16.3
+      fastify: 4.17.0
       graphql: 16.6.0
     transitivePeerDependencies:
       - encoding
@@ -8743,8 +8743,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /fastify@4.16.3:
-    resolution: {integrity: sha512-W45bWZdjAcVxFUBubzkmiMp3VrIRpsqUP6D0NS2Qb1BjTSNNT1NxAubzM8tdMyC5mIBymtvPE3B+DYmItc1rlQ==}
+  /fastify@4.17.0:
+    resolution: {integrity: sha512-tzuY1tgWJo2Y6qEKwmLhFvACUmr68Io2pqP/sDKU71KRM6A6R3DrCDqLGqANbeLZcKUfdfY58ut35CGqemcTgg==}
     dependencies:
       '@fastify/ajv-compiler': 3.5.0
       '@fastify/error': 3.2.0
