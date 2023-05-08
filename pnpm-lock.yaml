@@ -267,8 +267,8 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3
       pino:
-        specifier: 8.12.0
-        version: 8.12.0
+        specifier: 8.14.1
+        version: 8.14.1
       preact:
         specifier: ^10.11.2
         version: 10.11.2
@@ -8260,7 +8260,7 @@ packages:
       fast-json-stringify: 5.7.0
       find-my-way: 7.6.0
       light-my-request: 5.9.1
-      pino: 8.12.0
+      pino: 8.14.1
       process-warning: 2.2.0
       proxy-addr: 2.0.7
       rfdc: 1.3.0
@@ -12166,8 +12166,8 @@ packages:
       sonic-boom: 3.3.0
       thread-stream: 2.3.0
 
-  /pino@8.12.0:
-    resolution: {integrity: sha512-qHiXP7x9hFnJb0EnrLzD4onHj82Vh91lEtx6UiPT2eNoHD7lwi50CUIz+s0Z7YXgtMc7IIjss4yIIxZu6T1Tdg==}
+  /pino@8.14.1:
+    resolution: {integrity: sha512-8LYNv7BKWXSfS+k6oEc6occy5La+q2sPwU3q2ljTX5AZk7v+5kND2o5W794FyRaqha6DJajmkNRsWtPpFyMUdw==}
     hasBin: true
     dependencies:
       atomic-sleep: 1.0.0
