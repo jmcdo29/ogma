@@ -106,7 +106,7 @@ export class Ogma {
         }
         seen.add(value);
       }
-      if (this.options.masks.includes(key)) {
+      if (this.options.masks.includes(key) && value) {
         return '*'.repeat(value.toString().length);
       }
       return value;
