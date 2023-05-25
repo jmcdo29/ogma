@@ -127,6 +127,7 @@
     "nest-commander": "^3.6.2",
     "nest-commander-testing": "3.1.0",
     "nx": "16.2.1",
+    "nx-cloud": "^16.0.5",
     "nx-uvu": "^1.2.0",
     "pactum": "^3.2.3",
     "pino": "8.14.1",
