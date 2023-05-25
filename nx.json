@@ -13,7 +13,7 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx-cloud",
       "options": {
         "cacheableOperations": [
           "build",
@@ -29,7 +29,7 @@
         "strictlyOrderedTargets": ["build", "package", "prepare"],
         "canTrackAnalytics": false,
         "showUsageWarnings": true,
-        "accessToken": "ODFlNDgyYzItZTgwYy00OTQyLTkxNTgtOWQ4ZTVlNDU3OTU2fHJlYWQ="
+        "accessToken": "OTZlM2FmYjYtMGQ2NS00OWMzLWJkOTQtYTBmYzE0N2Y0OTIyfHJlYWQtd3JpdGU="
       }
     }
   },
