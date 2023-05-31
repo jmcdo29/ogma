@@ -1,13 +1,5 @@
 {
   "npmScope": "ogma",
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
-  },
   "workspaceLayout": {
     "libsDir": "packages"
   },
@@ -43,7 +35,8 @@
   },
   "targetDefaults": {
     "build": {
-      "inputs": ["production", "^production"]
+      "inputs": ["production", "^production"],
+      "dependsOn": ["^build"]
     }
   }
 }
