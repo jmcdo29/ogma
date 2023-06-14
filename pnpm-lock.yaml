@@ -154,8 +154,8 @@ importers:
         specifier: ^18.0.8
         version: 18.0.8
       '@types/ws':
-        specifier: 8.5.4
-        version: 8.5.4
+        specifier: 8.5.5
+        version: 8.5.5
       '@typescript-eslint/eslint-plugin':
         specifier: 5.59.11
         version: 5.59.11(@typescript-eslint/parser@5.59.11)(eslint@8.41.0)(typescript@5.0.4)
@@ -5387,8 +5387,8 @@ packages:
   /@types/validator@13.7.15:
     resolution: {integrity: sha512-yeinDVQunb03AEP8luErFcyf/7Lf7AzKCD0NXfgVoGCCQDNpZET8Jgq74oBgqKld3hafLbfzt/3inUdQvaFeXQ==}
 
-  /@types/ws@8.5.4:
-    resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
+  /@types/ws@8.5.5:
+    resolution: {integrity: sha512-lwhs8hktwxSjf9UaZ9tG5M03PGogvFaH8gUgLNbN9HKIg0dvv6q+gkSuJ8HN4/VbyxkuLzCjlN7GquQ0gUJfIg==}
     dependencies:
       '@types/node': 18.16.18
     dev: true
