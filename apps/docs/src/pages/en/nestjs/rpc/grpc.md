@@ -15,12 +15,9 @@ Nothing special, standard `npm i @ogma/platform-grpc` or `yarn add @ogma/platfor
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      rpc: GrpcParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [GrpcParser]
+})
 export class AppModule {}
 ```

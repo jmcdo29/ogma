@@ -15,13 +15,10 @@ Nothing special, standard `npm i @ogma/platform-socket.io` or `yarn add @ogma/pl
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      ws: SocketIOParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [SocketIOParser]
+})
 export class AppModule {}
 ```
 

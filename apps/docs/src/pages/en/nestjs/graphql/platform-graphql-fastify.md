@@ -21,13 +21,10 @@ Nothing special, standard `npm i @ogma/platform-graphql-fastify` or `yarn add @o
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      gql: GraphQLFastifyParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [GraphQLFastifyParser]
+})
 export class AppModule {}
 ```
 

@@ -15,12 +15,9 @@ Nothing special, standard `npm i @ogma/platform-express` or `yarn add @ogma/plat
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      http: ExpressParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [ExpressParser]
+})
 export class AppModule {}
 ```

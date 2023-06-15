@@ -15,13 +15,10 @@ Nothing special, standard `npm i @ogma/platform-ws` or `yarn add @ogma/platform-
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      ws: WsParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [WsParser]
+})
 export class AppModule {}
 ```
 
