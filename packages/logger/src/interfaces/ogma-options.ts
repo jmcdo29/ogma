@@ -1,5 +1,7 @@
 import { LogLevel, OgmaStream, OgmaWritableLevel } from '@ogma/common';
 
+import { initializeStreamOnNodeJs } from '../utils/sonic-boom';
+
 export interface OgmaOptions {
   /**
    * The maximum level you want your logs to be printed at.
@@ -110,10 +112,14 @@ export interface OgmaOptions {
   [index: string]: any;
 }
 
+const stream = process
+  ? initializeStreamOnNodeJs()
+  : { getColorDepth: () => 1, write: console.log };
+
 export const OgmaDefaults: OgmaOptions = {
   logLevel: 'INFO',
   color: true,
-  stream: process ? process.stdout : { getColorDepth: () => 1, write: console.log },
+  stream: stream,
   json: false,
   context: '',
   application: '',
