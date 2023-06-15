@@ -22,4 +22,4 @@ export class AppModule {}
 
 ## Important Notes
 
-Because of how gRP requests are sent and the data available in them, to get the IP address in the request log, an IP property must be sent in the payload. This is the only way to get the IP address. If an IP property is not sent, the interceptor will use an empty string. [You can find more information here](https://stackoverflow.com/questions/45235080/how-to-know-the-ip-address-of-mqtt-client-in-node-js).
+Because of how gRPC requests are sent and the data available in them, to get the IP address in the request log, an IP property must be sent in the payload. This is the only way to get the IP address. If an IP property is not sent, the interceptor will use an empty string. [You can find more information here](https://stackoverflow.com/questions/45235080/how-to-know-the-ip-address-of-mqtt-client-in-node-js).
