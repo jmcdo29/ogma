@@ -15,13 +15,10 @@ Nothing special, standard `npm i @ogma/platform-graphql` or `yarn add @ogma/plat
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      gql: GraphQLParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [GraphQLParser]
+})
 export class AppModule {}
 ```
 

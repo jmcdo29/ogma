@@ -10,8 +10,6 @@ import { OgmaOptions } from '@ogma/logger';
 import { MonoTypeOperatorFunction, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { InjectOgmaInterceptorOptions } from '../decorators';
-import { OgmaInterceptorOptions } from '../interfaces';
 import { OGMA_INTERCEPTOR_SKIP } from '../ogma.constants';
 import { OgmaService } from '../ogma.service';
 import { InterceptorMeta } from './interfaces/interceptor-service.interface';
@@ -27,8 +25,6 @@ export class OgmaInterceptor implements NestInterceptor {
   private color: boolean;
 
   constructor(
-    @InjectOgmaInterceptorOptions()
-    private readonly options: OgmaInterceptorOptions,
     private readonly service: OgmaService,
     private readonly delegate: DelegatorService,
     private readonly reflector: Reflector,
@@ -40,7 +36,7 @@ export class OgmaInterceptor implements NestInterceptor {
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const startTime = Date.now();
-    const options = { ...this.options, json: this.json, color: this.color };
+    const options = { json: this.json, color: this.color };
     const correlationId = this.generateRequestId(context);
     this.delegate.setRequestId(context, correlationId);
     return next.handle().pipe(this.rxJsLogTap({ context, startTime, options, correlationId }));
@@ -88,17 +84,8 @@ export class OgmaInterceptor implements NestInterceptor {
     if (decoratorSkip) {
       return true;
     }
-    switch (context.getType<ContextType | 'graphql'>()) {
-      case 'http':
-        return !this.options.http;
-      case 'graphql':
-        return (
-          !this.options.gql || context.getArgByIndex(3)?.operation?.operation === 'subscription'
-        );
-      case 'ws':
-        return !this.options.ws;
-      case 'rpc':
-        return !this.options.rpc;
+    if (context.getType<ContextType | 'graphql'>() === 'graphql') {
+      return context.getArgByIndex(3)?.operation?.operation === 'subscription';
     }
   }
 

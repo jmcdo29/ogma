@@ -1,7 +1,7 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
-import { RpcInterceptorService } from '@ogma/nestjs-module';
+import { ExecutionContext } from '@nestjs/common';
+import { Parser, RpcInterceptorService } from '@ogma/nestjs-module';
 
-@Injectable()
+@Parser('rpc')
 export class GrpcParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext) {
     return super.getCallPoint(context).rpc;

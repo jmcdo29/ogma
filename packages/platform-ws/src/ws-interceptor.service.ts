@@ -1,7 +1,7 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
-import { WebsocketInterceptorService } from '@ogma/nestjs-module';
+import { ExecutionContext } from '@nestjs/common';
+import { Parser, WebsocketInterceptorService } from '@ogma/nestjs-module';
 
-@Injectable()
+@Parser('ws')
 export class WsParser extends WebsocketInterceptorService {
   getCallerIp(context: ExecutionContext): string {
     return (this.getClient(context) as any)._socket.remoteAddress;

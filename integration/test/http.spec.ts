@@ -58,10 +58,9 @@ for (const { adapter, server, parser } of [
     filterSpy: undefined,
   });
   HttpSuite.before(async (context) => {
-    const modRef = await createTestModule(HttpServerModule, {
-      service: serviceOptionsFactory(server),
-      interceptor: { http: parser },
-    });
+    const modRef = await createTestModule(HttpServerModule, serviceOptionsFactory(server), [
+      parser,
+    ]);
     context.app = modRef.createNestApplication(adapter);
     const interceptor = context.app.get(OgmaInterceptor);
     const filterService = context.app.get(OgmaFilterService);

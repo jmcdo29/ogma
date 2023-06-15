@@ -48,12 +48,11 @@ for (const { adapter, server, parser, driver } of [
     filterSpy: undefined,
   });
   GqlParserSuite.before(async (context) => {
-    const modRef = await createTestModule(GqlModule.forFeature(driver), {
-      service: serviceOptionsFactory(`GraphQL ${server}`),
-      interceptor: {
-        gql: parser,
-      },
-    });
+    const modRef = await createTestModule(
+      GqlModule.forFeature(driver),
+      serviceOptionsFactory(`GraphQL ${server}`),
+      [parser],
+    );
     context.app = modRef.createNestApplication(adapter);
     const interceptor = context.app.get(OgmaInterceptor);
     const filterService = context.app.get(OgmaFilterService);

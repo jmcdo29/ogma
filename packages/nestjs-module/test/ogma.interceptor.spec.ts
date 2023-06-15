@@ -8,11 +8,7 @@ import { equal, is, ok } from 'uvu/assert';
 
 import { OgmaInterceptor, OgmaService, OgmaSkip } from '../src';
 import { DelegatorService } from '../src/interceptor/providers';
-import { OGMA_INTERCEPTOR_OPTIONS } from '../src/ogma.constants';
 
-const nullifyOption = (type: 'http' | 'ws' | 'gql' | 'rpc', interceptor: OgmaInterceptor): void => {
-  (interceptor as any).options[type] = false;
-};
 const noop = () => {
   /* no-op */
 };
@@ -85,12 +81,6 @@ OgmaInterceptorSuite.before(async (context) => {
           },
         },
       },
-      {
-        provide: OGMA_INTERCEPTOR_OPTIONS,
-        useValue: {
-          http: true,
-        },
-      },
     ],
   }).compile();
   context.delegator = mod.get(DelegatorService);
@@ -126,7 +116,6 @@ OgmaInterceptorSuite(
             {
               color: false,
               json: false,
-              http: true,
             },
           ]);
           is(logMock.callCount, 1);
@@ -174,7 +163,6 @@ OgmaInterceptorSuite(
             {
               color: false,
               json: false,
-              http: true,
             },
           ]);
           is(logMock.callCount, 2);
@@ -203,7 +191,6 @@ OgmaInterceptorSuite('should log the error', async ({ interceptor, logMock, dele
           {
             json: false,
             color: false,
-            http: true,
           },
         ]);
         is(logMock.callCount, 1);
@@ -254,7 +241,6 @@ OgmaInterceptorSuite(
             {
               json: false,
               color: false,
-              http: true,
             },
           ]);
           is(logMock.callCount, 2);
@@ -287,17 +273,6 @@ OgmaInterceptorSuite('should skip for method decorator', ({ reflectorGetSpy, int
   });
   ok(interceptor.shouldSkip(ctxMock));
 });
-for (const type of ['http', 'gql', 'ws', 'rpc'] as const) {
-  OgmaInterceptorSuite(`Should skip for ${type}`, ({ interceptor }) => {
-    const interceptorOptions = (interceptor as any).options;
-    nullifyOption(type, interceptor);
-    const ctxMock = createCtxMock({
-      getType: () => (type === 'gql' ? 'graphql' : type) as any,
-    });
-    ok(interceptor.shouldSkip(ctxMock));
-    (interceptor as any).options = interceptorOptions;
-  });
-}
 OgmaInterceptorSuite('log should log a val', ({ logMock, interceptor }) => {
   const ctxMock = createCtxMock({
     getClass: () => ({ name: 'className' }),

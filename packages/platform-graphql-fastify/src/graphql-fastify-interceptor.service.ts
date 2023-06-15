@@ -1,9 +1,10 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ExecutionContext } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
+import { Parser } from '@ogma/nestjs-module';
 import { FastifyParser } from '@ogma/platform-fastify';
 import { FastifyReply, FastifyRequest } from 'fastify';
 
-@Injectable()
+@Parser('graphql')
 export class GraphQLFastifyParser extends FastifyParser {
   protected reqName = 'request';
   getMethod(context: ExecutionContext): string {

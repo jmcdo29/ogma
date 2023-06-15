@@ -1,8 +1,8 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
-import { HttpInterceptorService } from '@ogma/nestjs-module';
+import { ExecutionContext } from '@nestjs/common';
+import { HttpInterceptorService, Parser } from '@ogma/nestjs-module';
 import { FastifyRequest } from 'fastify';
 
-@Injectable()
+@Parser('http')
 export class FastifyParser extends HttpInterceptorService {
   getCallerIp(context: ExecutionContext): string[] | string {
     const req = this.getRequest(context);
