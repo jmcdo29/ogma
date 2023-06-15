@@ -25,6 +25,7 @@ import {
 } from './ogma.provider';
 import { OgmaService } from './ogma.service';
 import { ConfigurableModuleClass } from './ogma-core.module-definition';
+import { OgmaFilterService } from './ogma-filter.service';
 
 @Global()
 @Module({
@@ -71,6 +72,7 @@ import { ConfigurableModuleClass } from './ogma-core.module-definition';
     },
     OgmaService,
     DelegatorService,
+    OgmaFilterService,
   ],
   exports: [
     OGMA_INSTANCE,
@@ -81,6 +83,7 @@ import { ConfigurableModuleClass } from './ogma-core.module-definition';
     GqlInterceptorService,
     RpcInterceptorService,
     WebsocketInterceptorService,
+    OgmaFilterService,
   ],
 })
 export class OgmaCoreModule extends ConfigurableModuleClass {}

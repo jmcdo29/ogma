@@ -25,11 +25,6 @@ export class ExpressParser extends HttpInterceptorService {
     return `HTTP/${this.getHttpMajor(req)}.${this.getHttpMinor(req)}`;
   }
 
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const req = this.getRequest(context) as any;
-    req.requestId = requestId;
-  }
-
   private getHttpMajor(req: Request): number {
     return req.httpVersionMajor;
   }

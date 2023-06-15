@@ -20,9 +20,4 @@ export class SocketIOParser extends WebsocketInterceptorService {
   getMethod(): string {
     return 'socket.io';
   }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient(context) as any;
-    client.requestId = requestId;
-  }
 }

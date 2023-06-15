@@ -26,4 +26,10 @@ export class RpcClientController implements OnApplicationBootstrap {
   getSkip() {
     return this.micro.send({ cmd: 'skip' }, { ip: '127.0.0.1' });
   }
+
+  @Get('fail-guard')
+  @UseFilters(ExceptionFilter)
+  failGuard() {
+    return this.micro.send({ cmd: 'fail-guard' }, { ip: '127.0.0.1' });
+  }
 }

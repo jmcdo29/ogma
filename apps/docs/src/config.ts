@@ -73,6 +73,10 @@ export const SIDEBAR: Sidebar = {
         link: 'en/nestjs/interceptor',
       },
       {
+        text: 'Filter Logging',
+        link: 'en/nestjs/filter',
+      },
+      {
         text: 'Configured Example',
         link: 'en/nestjs/example',
       },

@@ -19,9 +19,4 @@ export class GrpcParser extends RpcInterceptorService {
   getMethod() {
     return 'gRPC';
   }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const grpcContext = this.getClient<{ requestId: string }>(context);
-    grpcContext.requestId = requestId;
-  }
 }

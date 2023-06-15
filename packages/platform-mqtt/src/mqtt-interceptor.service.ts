@@ -22,9 +22,4 @@ export class MqttParser extends RpcInterceptorService {
   getProtocol(): string {
     return 'mqtt';
   }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient(context) as any;
-    client.requestId = requestId;
-  }
 }

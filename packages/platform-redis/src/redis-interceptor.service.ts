@@ -20,9 +20,4 @@ export class RedisParser extends RpcInterceptorService {
   getMethod(): string {
     return 'REDIS';
   }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient<RedisContext & { requestId: string }>(context);
-    client.requestId = requestId;
-  }
 }

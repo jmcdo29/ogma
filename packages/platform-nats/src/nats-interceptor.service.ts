@@ -21,9 +21,4 @@ export class NatsParser extends RpcInterceptorService {
   getProtocol() {
     return 'nats';
   }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient<NatsContext & { requestId: string }>(context);
-    client.requestId = requestId;
-  }
 }

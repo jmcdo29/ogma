@@ -20,9 +20,4 @@ export class KafkaParser extends RpcInterceptorService {
   getProtocol() {
     return 'kafka';
   }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient<{ requestId: string }>(context);
-    client.requestId = requestId;
-  }
 }
