@@ -2,7 +2,7 @@ import { Color, LogLevel, OgmaLog, OgmaStream, OgmaWritableLevel } from '@ogma/c
 import { style, Styler } from '@ogma/styler';
 import { hostname } from 'os';
 
-import { OgmaDefaults, OgmaOptions, PrintMessageOptions } from '../interfaces';
+import { OgmaDefaults, OgmaOptions } from '../interfaces';
 import { OgmaPrintOptions } from '../interfaces/ogma-print-options';
 import { colorize, isNil } from '../utils';
 
@@ -17,6 +17,16 @@ export class Ogma {
   private hostname: string;
   private styler: Styler;
   private each: boolean;
+
+  private cachedContextFormatted: Map<string, Map<Color, string>> = new Map();
+  private sillyFormattedLevel: string;
+  private verboseFormattedLevel: string;
+  private debugFormattedLevel: string;
+  private infoFormattedLevel: string;
+  private warnFormattedLevel: string;
+  private errorFormattedLevel: string;
+  private fatalFormattedLevel: string;
+  private hostnameFormatted: string;
 
   /**
    * An alias for `ogma.verbose`. `FINE` is what is printed as the log level
@@ -49,6 +59,18 @@ export class Ogma {
     }
     this.styler = style.child(this.options.stream as Pick<OgmaStream, 'getColorDepth'>);
     this.each = this.options.each;
+    this.sillyFormattedLevel = this.toColor(LogLevel.SILLY, Color.MAGENTA);
+    this.verboseFormattedLevel = this.toColor(LogLevel.VERBOSE, Color.GREEN);
+    this.debugFormattedLevel = this.toColor(LogLevel.DEBUG, Color.BLUE);
+    this.infoFormattedLevel = this.toColor(LogLevel.INFO, Color.CYAN);
+    this.warnFormattedLevel = this.toColor(LogLevel.WARN, Color.YELLOW);
+    this.errorFormattedLevel = this.toColor(LogLevel.ERROR, Color.RED);
+    this.hostnameFormatted = this.toStreamColor(this.hostname, Color.MAGENTA) + ' ';
+    this.fatalFormattedLevel = this.styler
+      .redBg()
+      .white()
+      .underline()
+      .apply(this.wrapInBrackets(LogLevel[LogLevel.FATAL]));
   }
 
   private setStreamColorDepth(): void {
@@ -65,27 +87,35 @@ export class Ogma {
     this.options.stream.getColorDepth = () => colorDepthVal ?? 1;
   }
 
-  private printMessage(message: any, options: PrintMessageOptions): void {
-    if (options.level < LogLevel[this.options.logLevel]) {
+  private printMessage(
+    message: any,
+    logLevel: LogLevel,
+    formattedLevel: string,
+    options?: OgmaPrintOptions,
+  ): void {
+    const ogmaPrintOptions = options || {};
+
+    if (logLevel < LogLevel[this.options.logLevel]) {
       return;
     }
+
     let logString = '';
+
     if (this.options.json) {
-      logString = this.formatJSON(message, options);
+      logString = this.formatJSON(message, logLevel, ogmaPrintOptions);
     } else {
-      logString = this.formatStream(message, options);
+      logString = this.formatStream(message, formattedLevel, ogmaPrintOptions);
     }
+
     this.options.stream.write(`${logString}\n`);
     if (this.options.verbose && !this.options.json) {
       const {
         context: _context,
         application: _application,
         correlationId: _correlationId,
-        level: _level,
-        formattedLevel: _formattedLevel,
         ...meta
       } = options;
-      const verboseLogString = this.formatStream(meta, options);
+      const verboseLogString = this.formatStream(meta, formattedLevel, ogmaPrintOptions);
 
       this.options.stream.write(`${verboseLogString}\n`);
     }
@@ -124,12 +154,13 @@ export class Ogma {
 
   private formatJSON(
     message: any,
-    { application = '', correlationId = '', context = '', level, ...meta }: PrintMessageOptions,
+    level: LogLevel,
+    { application = '', correlationId = '', context = '', ...meta }: OgmaPrintOptions,
   ): string {
     let json: Partial<OgmaLog> = {
       time: this.getTimestamp(),
     };
-    delete meta.formattedLevel;
+
     const mappedLevel = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
 
     if (this.options.logHostname) {
@@ -163,26 +194,31 @@ export class Ogma {
     return JSON.stringify(json, this.circularReplacer());
   }
 
-  private stringifyObject(message: any, prependNewline = true, addSpace = false): any {
+  private stringifyObject(
+    message: any,
+    prependNewline = true,
+    addSpace = false,
+    skipRegex = false,
+  ): any {
+    let result: string = message;
+
     if (typeof message === 'object' && !(message instanceof Error)) {
-      message = `${prependNewline ? '\n' : ''}${JSON.stringify(
+      result = `${prependNewline ? '\n' : ''}${JSON.stringify(
         message,
         this.circularReplacer(),
         2,
       )}`;
     }
-    return `${message}${checkIfHasSpaceRegex.test(message) && addSpace ? ' ' : ''}`;
+
+    if (skipRegex) return `${result}`;
+
+    return `${result}${checkIfHasSpaceRegex.test(result) && addSpace ? ' ' : ''}`;
   }
 
   private formatStream(
     message: any,
-    {
-      application = '',
-      correlationId = '',
-      formattedLevel,
-      context = '',
-      each = this.each,
-    }: PrintMessageOptions,
+    formattedLevel: string,
+    { application = '', correlationId = '', context = '', each = this.each }: OgmaPrintOptions,
   ): string {
     if (Array.isArray(message) && each) {
       for (let i = 0; i < message.length; i++) {
@@ -190,15 +226,16 @@ export class Ogma {
       }
       message = message.join('');
     } else {
-      message = this.stringifyObject(message);
+      message = this.stringifyObject(message, true, false, true);
     }
+
     const { logHostname, logApplication, logPid } = this.options;
 
-    context = this.toStreamColor(context || this.options.context, Color.CYAN);
-    correlationId &&= this.wrapInBrackets(correlationId);
+    const logContext = this.toStreamColor(context || this.options.context, Color.CYAN);
+    const logCorrelationId = correlationId ? this.wrapInBrackets(correlationId) : '';
 
     const timestamp = this.wrapInBrackets(this.getTimestamp());
-    const hostname = logHostname ? this.toStreamColor(this.hostname, Color.MAGENTA) + ' ' : '';
+    const hostname = logHostname ? this.hostnameFormatted : '';
 
     const applicationName = logApplication
       ? this.toStreamColor(application || this.options.application, Color.YELLOW) + ' '
@@ -206,14 +243,29 @@ export class Ogma {
 
     const pid = logPid ? this.wrapInBrackets(this.pid) + ' ' : '';
 
-    return `${timestamp} ${formattedLevel} ${hostname}${applicationName}${pid}${correlationId} ${context} ${message}`;
+    return `${timestamp} ${formattedLevel} ${hostname}${applicationName}${pid}${logCorrelationId} ${logContext} ${message}`;
   }
 
   private toStreamColor(value: string, color: Color): string {
     if (!value) {
       return '';
     }
-    return colorize(this.wrapInBrackets(value), color, this.styler, this.options.color);
+
+    if (this.cachedContextFormatted.has(value) && this.cachedContextFormatted.get(value).has(color))
+      return this.cachedContextFormatted.get(value).get(color);
+
+    if (!this.cachedContextFormatted.has(value)) this.cachedContextFormatted.set(value, new Map());
+
+    const cachedValue = colorize(
+      this.wrapInBrackets(value),
+      color,
+      this.styler,
+      this.options.color,
+    );
+
+    this.cachedContextFormatted.get(value).set(color, cachedValue);
+
+    return cachedValue;
   }
 
   private getTimestamp(): string {
@@ -227,11 +279,7 @@ export class Ogma {
    * @param meta any additional information you want to add
    */
   public silly(message: any, meta?: OgmaPrintOptions): void {
-    this.printMessage(message, {
-      level: LogLevel.SILLY,
-      formattedLevel: this.toColor(LogLevel.SILLY, Color.MAGENTA),
-      ...meta,
-    });
+    this.printMessage(message, LogLevel.SILLY, this.sillyFormattedLevel, meta);
   }
 
   /**
@@ -241,11 +289,7 @@ export class Ogma {
    * @param meta any additional information you want to add
    */
   public verbose(message: any, meta?: OgmaPrintOptions): void {
-    this.printMessage(message, {
-      level: LogLevel.VERBOSE,
-      formattedLevel: this.toColor(LogLevel.VERBOSE, Color.GREEN),
-      ...meta,
-    });
+    this.printMessage(message, LogLevel.VERBOSE, this.verboseFormattedLevel, meta);
   }
 
   /**
@@ -255,11 +299,7 @@ export class Ogma {
    * @param meta any additional information you want to add
    */
   public debug(message: any, meta?: OgmaPrintOptions): void {
-    this.printMessage(message, {
-      level: LogLevel.DEBUG,
-      formattedLevel: this.toColor(LogLevel.DEBUG, Color.BLUE),
-      ...meta,
-    });
+    this.printMessage(message, LogLevel.DEBUG, this.debugFormattedLevel, meta);
   }
 
   /**
@@ -269,11 +309,7 @@ export class Ogma {
    * @param meta any additional information you want to add
    */
   public info(message: any, meta?: OgmaPrintOptions): void {
-    this.printMessage(message, {
-      level: LogLevel.INFO,
-      formattedLevel: this.toColor(LogLevel.INFO, Color.CYAN),
-      ...meta,
-    });
+    this.printMessage(message, LogLevel.INFO, this.infoFormattedLevel, meta);
   }
 
   /**
@@ -283,11 +319,7 @@ export class Ogma {
    * @param meta any additional information you want to add
    */
   public warn(message: any, meta?: OgmaPrintOptions): void {
-    this.printMessage(message, {
-      level: LogLevel.WARN,
-      formattedLevel: this.toColor(LogLevel.WARN, Color.YELLOW),
-      ...meta,
-    });
+    this.printMessage(message, LogLevel.WARN, this.warnFormattedLevel, meta);
   }
 
   /**
@@ -297,11 +329,7 @@ export class Ogma {
    * @param meta any additional information you want to add
    */
   public error(message: any, meta?: OgmaPrintOptions): void {
-    this.printMessage(message, {
-      level: LogLevel.ERROR,
-      formattedLevel: this.toColor(LogLevel.ERROR, Color.RED),
-      ...meta,
-    });
+    this.printMessage(message, LogLevel.ERROR, this.errorFormattedLevel, meta);
   }
 
   /**
@@ -312,15 +340,7 @@ export class Ogma {
    * @param meta any additional information you want to add
    */
   public fatal(message: any, meta?: OgmaPrintOptions): void {
-    this.printMessage(message, {
-      level: LogLevel.FATAL,
-      formattedLevel: this.styler
-        .redBg()
-        .white()
-        .underline()
-        .apply(this.wrapInBrackets(LogLevel[LogLevel.FATAL])),
-      ...meta,
-    });
+    this.printMessage(message, LogLevel.FATAL, this.fatalFormattedLevel, meta);
   }
 
   /**
