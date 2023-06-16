@@ -10,7 +10,7 @@ For all of the `@ogma/nestjs-module` parts, make sure that the `@ogma/nestjs-mod
 
 :::
 
-With that out of the way, the package comes with a [Dynamic Nest Module](https:/docs.nestjs.com/fundamentals/dynamic-modules) ready for use so you can just configure it and go.
+With that out of the way, the package comes with a [Dynamic Nest Module](https://docs.nestjs.com/fundamentals/dynamic-modules) ready for use so you can just configure it and go.
 
 ## Root Configuration
 
