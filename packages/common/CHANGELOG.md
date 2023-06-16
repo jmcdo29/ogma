@@ -1,5 +1,11 @@
 # @ogma/common
 
+## 1.2.0
+
+### Minor Changes
+
+- be1367c: time can now bea number as well as a string
+
 ## 1.1.1
 
 ### Patch Changes
