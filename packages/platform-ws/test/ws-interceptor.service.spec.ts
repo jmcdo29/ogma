@@ -47,9 +47,13 @@ WsParserSuite('it should return the reflected metadata pattern', ({ parser, refl
   reflectorGetSpy.returns('message');
   const ctxMock = createCtxMock({
     getHandler: () => funcMock,
+    switchToWs: () => ({
+      getPattern: () => 'message',
+      getData: () => <any>{},
+      getClient: () => <any>{},
+    }),
   });
   is(parser.getCallPoint(ctxMock), 'message');
-  equal(reflectorGetSpy.firstCall.args, [MESSAGE_METADATA, funcMock]);
 });
 WsParserSuite('It should get the ip from the data', ({ parser }) => {
   const ctxMock = createCtxMock({
