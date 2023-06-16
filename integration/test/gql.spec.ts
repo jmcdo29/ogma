@@ -114,9 +114,8 @@ for (const { adapter, server, parser, driver } of [
       'query',
       '/graphql',
       'HTTP/1.1',
-      style.yellow.apply(403),
+      style.yellow().apply(403),
     );
   });
-  console.log('Skipping GraphQL tests for strange injection dependency bug');
-  // GqlParserSuite.run();
+  GqlParserSuite.run();
 }

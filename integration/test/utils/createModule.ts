@@ -9,7 +9,7 @@ export async function createTestModule(
   options: OgmaModuleOptions,
   providers: Type<AbstractInterceptorService>[] = [],
 ): Promise<TestingModule> {
-  return Test.createTestingModule({
+  const module = Test.createTestingModule({
     imports: [AppModule, OgmaModule.forRoot(options)],
     providers: [
       OgmaInterceptor,
@@ -19,7 +19,9 @@ export async function createTestModule(
       },
       ...providers,
     ],
-  })
-    .setLogger(console)
-    .compile();
+  });
+  if (!process.env.CI) {
+    module.setLogger(console);
+  }
+  return module.compile();
 }
