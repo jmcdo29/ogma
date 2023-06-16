@@ -20,8 +20,8 @@
     "lib": "lib"
   },
   "dependencies": {
-    "@ogma/logger": "^3.0.0",
-    "@ogma/styler": "^2.0.0"
+    "@ogma/logger": "workspace:^",
+    "@ogma/styler": "workspace:^"
   },
   "peerDependencies": {
     "@nestjs/common": "^9.0.0 || ^10.0.0",

@@ -26,7 +26,7 @@
   },
   "peerDependencies": {
     "@nestjs/microservices": "^9.0.0 || ^10.0.0",
-    "@ogma/nestjs-module": "^4.0.0",
+    "@ogma/nestjs-module": "workspace:^",
     "kafkajs": "^1.12.0 || ^2.0.0"
   },
   "peerDependenciesMeta": {
