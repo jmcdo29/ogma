@@ -399,6 +399,7 @@ importers:
         version: 3.2.1
 
   packages/nestjs-module:
+<<<<<<< HEAD
     dependencies:
       '@nestjs/common':
         specifier: ^9.0.0
@@ -415,6 +416,14 @@ importers:
       rxjs:
         specifier: ^7.0.0
         version: 7.8.0
+=======
+    specifiers:
+      '@ogma/logger': ^2.4.2
+      '@ogma/styler': ^1.0.0
+    dependencies:
+      '@ogma/logger': link:../logger
+      '@ogma/styler': link:../styler
+>>>>>>> 766c572 (chore: update lockfile)
 
   packages/platform-express:
     dependencies:
