@@ -34,7 +34,7 @@ jobs:
         run: npm i -g pnpm@^6
 
       - name: Install Dependencies
-        run: pnpm i --frozen-lockfile=false --ignore-workspace
+        run: pnpm i --frozen-lockfile=false
 
       - name: Build Projects
         run: pnpm build

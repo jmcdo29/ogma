@@ -8,7 +8,7 @@ String formatting, made easy.
 
 ## Why Not [Chalk](https://github.com/chalk/chalk)?
 
-Mostly this package was created for academic purposes and better understanding terminal [SGRs](https://en.wikipedia.org/wiki/ANSI_escape_code#SGR), but I also like to know the code I'm using and how it works. Chalk is great, but the use of chaining _or_ using the property as a method is a bit strange to me. With `@ogma/styler` I was able to set up class methods with a fluent API for option chaining, a `const enum` for all the SGR values, and a single method for finalizing the application to the string that is being styled.
+Mostly this package was created for academic purposes and better understanding terminal [SGRs](https://en.wikipedia.org/wiki/ANSI_escape_code#SGR), but I also like to know the code I'm using and how it works. Chalk is great, but the use of chaining _or_ using the property as a method is a bit strange to me. With `@ogma/styler` I was able to use `getter`s for option chaining, a `const enum` for all the SGR values, and a single method for finalizing the application to the string that is being styled.
 
 With all that said, if you like Chalk, use Chalk. It's a great trusted package.
 
@@ -31,11 +31,11 @@ import { style } from '@ogma/styler';
 And now you can chain options for your string, just make sure to `apply` to the string (or primitive) you want to style.
 
 ```ts
-console.log(style.blue().yellowBg().underline.apply('Hello World!'));
+console.log(style.blue.yellowBg.underline.apply('Hello World!'));
 // prints \x1B[34m\x1B[43m\x1B[4mHello World!\x1B[0m
 ```
 
-<!-- ![blue-yellow-bg-underline](https://ogma-docs-images.s3-us-west-2.amazonaws.com/blue-yellowbg-underline.png) -->
+![blue-yellow-bg-underline](https://ogma-docs-images.s3-us-west-2.amazonaws.com/blue-yellowbg-underline.png)
 
 ## What styles are available?
 

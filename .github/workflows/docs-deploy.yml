@@ -39,7 +39,7 @@ jobs:
       - name: Install pnpm
         run: npm i -g pnpm
       - name: Dependencies Install
-        run: pnpm i --ignore-workspace
+        run: pnpm i
       - name: Build Docs
         run: pnpm nx build docs
       - name: Upload build
