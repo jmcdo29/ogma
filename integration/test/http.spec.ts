@@ -115,7 +115,7 @@ for (const { adapter, server, parser } of [
   });
   HttpSuite('It should get caught by a guard but still be able to log', async ({ filterSpy }) => {
     await spec().get('/fail-guard').expectStatus(403);
-    expectLogObject(filterSpy, 'GET', '/fail-guard', style.yellow.apply(403));
+    expectLogObject(filterSpy, 'GET', '/fail-guard', style.yellow().apply(403));
   });
   HttpSuite.run();
 }

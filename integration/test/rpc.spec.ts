@@ -174,7 +174,7 @@ for (const { server, transport, options, protocol, parser } of [
         server,
         JSON.stringify({ cmd: 'fail-guard' }),
         protocol,
-        style.red.apply(500),
+        style.red().apply(500),
       );
     },
   );

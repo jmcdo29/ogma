@@ -1,10 +1,8 @@
 import { ArgumentsHost, Injectable } from '@nestjs/common';
 import { OgmaOptions } from '@ogma/logger';
 
-import { InjectOgmaInterceptorOptions } from './decorators';
 import { LogObject } from './interceptor/interfaces/log.interface';
 import { DelegatorService } from './interceptor/providers';
-import { OgmaInterceptorOptions } from './interfaces';
 import { OgmaService } from './ogma.service';
 
 @Injectable()
@@ -12,11 +10,7 @@ export class OgmaFilterService {
   private json: boolean;
   private color: boolean;
 
-  constructor(
-    private readonly service: OgmaService,
-    private readonly delegator: DelegatorService,
-    @InjectOgmaInterceptorOptions() private readonly options: OgmaInterceptorOptions,
-  ) {
+  constructor(private readonly service: OgmaService, private readonly delegator: DelegatorService) {
     const ogmaOptions: OgmaOptions = (this.service as any).ogma.options;
     this.json = ogmaOptions.json;
     this.color = ogmaOptions.color;
@@ -31,7 +25,6 @@ export class OgmaFilterService {
       host,
       this.delegator.getStartTime(host),
       {
-        ...this.options,
         json: this.json,
         color: this.color,
       },

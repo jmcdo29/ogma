@@ -5,7 +5,7 @@ import { AbstractInterceptorService } from './abstract-interceptor.service';
 @Injectable()
 export abstract class WebsocketInterceptorService extends AbstractInterceptorService {
   getCallPoint(context: ArgumentsHost): string {
-    return this.getClient(context).getPattern();
+    return context.switchToWs().getPattern();
   }
 
   /**
