@@ -82,7 +82,7 @@ KafkaParserSuite('It should return a 500', ({ parser }) => {
   is(parser.getStatus(createCtxMock(), false, new Error()), '500');
 });
 KafkaParserSuite('It should return a 200 in color', ({ parser }) => {
-  is(parser.getStatus(createCtxMock(), true), style.green().apply('200'));
+  is(parser.getStatus(createCtxMock(), true), style.green.apply('200'));
 });
 KafkaParserSuite('It should return "kafka" for the protocol', ({ parser }) => {
   is(parser.getProtocol(), 'kafka');

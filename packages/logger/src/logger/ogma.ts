@@ -96,11 +96,9 @@ export class Ogma {
     this.hostnameFormatted = this.options.logHostname
       ? this.toStreamColor(this.hostname, Color.MAGENTA) + ' '
       : '';
-    this.fatalFormattedLevel = this.styler
-      .redBg()
-      .white()
-      .underline()
-      .apply(this.wrapInBrackets(LogLevel[LogLevel.FATAL]));
+    this.fatalFormattedLevel = this.styler.redBg.white.underline.apply(
+      this.wrapInBrackets(LogLevel[LogLevel.FATAL]),
+    );
   }
 
   private setStreamColorDepth(): void {

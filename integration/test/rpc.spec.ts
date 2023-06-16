@@ -145,12 +145,12 @@ for (const { server, transport, options, protocol, parser } of [
   for (const { url, status, endpoint } of [
     {
       url: '/',
-      status: style.green().apply(200),
+      status: style.green.apply(200),
       endpoint: { cmd: 'message' },
     },
     {
       url: '/error',
-      status: style.red().apply(500),
+      status: style.red.apply(500),
       endpoint: { cmd: 'error' },
     },
   ]) {
@@ -174,7 +174,7 @@ for (const { server, transport, options, protocol, parser } of [
         server,
         JSON.stringify({ cmd: 'fail-guard' }),
         protocol,
-        style.red().apply(500),
+        style.red.apply(500),
       );
     },
   );

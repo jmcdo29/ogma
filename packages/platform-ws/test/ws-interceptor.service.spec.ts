@@ -78,7 +78,7 @@ WsParserSuite('It should return a 500', ({ parser }) => {
   is(parser.getStatus(createCtxMock(), false, new Error()), '500');
 });
 WsParserSuite('It should return a 200 in color', ({ parser }) => {
-  is(parser.getStatus(createCtxMock(), true), style.green().apply('200'));
+  is(parser.getStatus(createCtxMock(), true), style.green.apply('200'));
 });
 WsParserSuite('It should return "WS" for the protocol', ({ parser }) => {
   is(parser.getProtocol(), 'WS');

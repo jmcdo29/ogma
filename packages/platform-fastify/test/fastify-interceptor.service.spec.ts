@@ -142,7 +142,7 @@ FastifyParserSuite('it should get the status in color', ({ parser }) => {
   const ctxMock = ctxMockFactory({
     switchToHttp: () => resMock(200) as any,
   });
-  is(parser.getStatus(ctxMock, true), style.green().apply(200));
+  is(parser.getStatus(ctxMock, true), style.green.apply(200));
 });
 FastifyParserSuite('Should get the status from req.method', ({ parser }) => {
   const ctxMock = ctxMockFactory({

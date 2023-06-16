@@ -82,7 +82,7 @@ RabbitMqParserSuite('It should return a 500', ({ parser }) => {
   is(parser.getStatus(createCtxMock(), false, new Error()), '500');
 });
 RabbitMqParserSuite('It should return a 200 in color', ({ parser }) => {
-  is(parser.getStatus(createCtxMock(), true), style.green().apply('200'));
+  is(parser.getStatus(createCtxMock(), true), style.green.apply('200'));
 });
 RabbitMqParserSuite('It should return "amqp" for the protocol', ({ parser }) => {
   is(parser.getProtocol(), 'amqp');

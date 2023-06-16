@@ -96,17 +96,17 @@ for (const { adapter, server, parser } of [
     HttpSuite(`should log ${status} from ${method} request`, async ({ logSpy }) => {
       await spec()[method.toLowerCase()]('/').expectStatus(status).expectBody(hello);
       is(logSpy.callCount, 1);
-      expectLogObject(logSpy, method, '/', style.green().apply(status));
+      expectLogObject(logSpy, method, '/', style.green.apply(status));
     });
   }
   HttpSuite('it should log a 202 instead of 200', async ({ logSpy }) => {
     await spec().get('/status').expectBody(hello).expectStatus(202);
-    expectLogObject(logSpy, 'GET', '/status', style.green().apply(202));
+    expectLogObject(logSpy, 'GET', '/status', style.green.apply(202));
     expectRequestId(logSpy);
   });
   HttpSuite('It should log a 400', async ({ logSpy }) => {
     await spec().get('/error').expectStatus(400);
-    expectLogObject(logSpy, 'GET', '/error', style.yellow().apply(400));
+    expectLogObject(logSpy, 'GET', '/error', style.yellow.apply(400));
     expectRequestId(logSpy);
   });
   HttpSuite('It should skip the log but return data', async ({ logSpy }) => {
@@ -115,7 +115,7 @@ for (const { adapter, server, parser } of [
   });
   HttpSuite('It should get caught by a guard but still be able to log', async ({ filterSpy }) => {
     await spec().get('/fail-guard').expectStatus(403);
-    expectLogObject(filterSpy, 'GET', '/fail-guard', style.yellow().apply(403));
+    expectLogObject(filterSpy, 'GET', '/fail-guard', style.yellow.apply(403));
   });
   HttpSuite.run();
 }

@@ -31,9 +31,7 @@ import { style } from '@ogma/styler';
 And now you can chain options for your string, just make sure to `apply` to the string (or primitive) you want to style.
 
 ```ts
-console.log(
-  style.blue().yellowBg().underline().apply('Hello World!')
-);
+console.log(style.blue().yellowBg().underline.apply('Hello World!'));
 // prints \x1B[34m\x1B[43m\x1B[4mHello World!\x1B[0m
 ```
 

@@ -15,10 +15,10 @@ const hasStyles = (received: string, ...styles: string[]) => {
 
 const StylerSuite = suite('Styler Suite');
 StylerSuite('underline should add \\x1B[4m', () => {
-  hasStyles(style.underline().apply(hello), '\x1B[4m');
+  hasStyles(style.underline.apply(hello), '\x1B[4m');
 });
 StylerSuite('blink should add \\x1B[5m', () => {
-  hasStyles(style.blink().apply(hello), '\x1B[5m');
+  hasStyles(style.blink.apply(hello), '\x1B[5m');
 });
 StylerSuite('bgColor should add a general background color', () => {
   hasStyles(style.bgColor(138).apply(hello), '\x1B[48;5;138m');
@@ -70,27 +70,27 @@ for (const { depth, prefixCreator, testMethod } of [
       const forceColor = process.env.FORCE_COLOR;
       process.env.FORCE_COLOR = undefined;
       const styler = style.child({ getColorDepth: () => depth });
-      testMethod(styler[color]().apply(hello), prefixCreator(code));
+      testMethod(styler[color].apply(hello), prefixCreator(code));
       process.env.FORCE_COLOR = forceColor;
     });
   }
 }
 StylerSuite('lots of mixed decorators', () => {
-  hasStyles(style.underline().blink().blue().apply(hello), '\x1B[4m', '\x1B[5m', '\x1B[34m');
+  hasStyles(style.underline.blink.blue.apply(hello), '\x1B[4m', '\x1B[5m', '\x1B[34m');
 });
 StylerSuite('it should log styles but not color', () => {
   const ogNO_COLOR = process.env.NO_COLOR;
   process.env.NO_COLOR = 'true';
   const ncStyle = style.child();
-  hasStyles(ncStyle.underline().apply(hello), '\x1B[4m');
-  is(ncStyle.blue().apply(hello), hello);
+  hasStyles(ncStyle.underline.apply(hello), '\x1B[4m');
+  is(ncStyle.blue.apply(hello), hello);
   process.env.NO_COLOR = ogNO_COLOR;
 });
 StylerSuite('it should apply absolutely no styles', () => {
   const ogNO_STYLE = process.env.NO_STYLE;
   process.env.NO_STYLE = 'true';
   const nsStyle = style.child();
-  is(nsStyle.blue().underline().blink().apply(hello), hello);
+  is(nsStyle.blue.underline.blink.apply(hello), hello);
   process.env.NO_STYLE = ogNO_STYLE;
 });
 StylerSuite.run();

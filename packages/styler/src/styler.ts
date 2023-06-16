@@ -66,145 +66,145 @@ export class Styler {
   private stylesToApply = '';
   private colorDepth = 16;
   private useStyle = true;
-  public black() {
+  public get black() {
     return this.sgr(colorMap[Style.BLACK]);
   }
-  public blackBg() {
+  public get blackBg() {
     return this.sgr(colorMap[Style.BLACKBG]);
   }
-  public bBlack() {
+  public get bBlack() {
     return this.sgr(colorMap[Style.BRIGHTBLACK]);
   }
-  public bBlackBg() {
+  public get bBlackBg() {
     return this.sgr(colorMap[Style.BRIGHTBLACKBG]);
   }
-  public red() {
+  public get red() {
     return this.sgr(colorMap[Style.RED]);
   }
-  public redBg() {
+  public get redBg() {
     return this.sgr(colorMap[Style.REDBG]);
   }
-  public bRed() {
+  public get bRed() {
     return this.sgr(colorMap[Style.BRIGHTRED]);
   }
-  public bRedBg() {
+  public get bRedBg() {
     return this.sgr(colorMap[Style.BRIGHTREDBG]);
   }
-  public green() {
+  public get green() {
     return this.sgr(colorMap[Style.GREEN]);
   }
-  public greenBg() {
+  public get greenBg() {
     return this.sgr(colorMap[Style.GREENBG]);
   }
-  public bGreen() {
+  public get bGreen() {
     return this.sgr(colorMap[Style.BRIGHTGREEN]);
   }
-  public bGreenBg() {
+  public get bGreenBg() {
     return this.sgr(colorMap[Style.BRIGHTGREENBG]);
   }
-  public yellow() {
+  public get yellow() {
     return this.sgr(colorMap[Style.YELLOW]);
   }
-  public yellowBg() {
+  public get yellowBg() {
     return this.sgr(colorMap[Style.YELLOWBG]);
   }
-  public bYellow() {
+  public get bYellow() {
     return this.sgr(colorMap[Style.BRIGHTYELLOW]);
   }
-  public bYellowBg() {
+  public get bYellowBg() {
     return this.sgr(colorMap[Style.BRIGHTYELLOWBG]);
   }
-  public blue() {
+  public get blue() {
     return this.sgr(colorMap[Style.BLUE]);
   }
-  public blueBg() {
+  public get blueBg() {
     return this.sgr(colorMap[Style.BLUEBG]);
   }
-  public bBlue() {
+  public get bBlue() {
     return this.sgr(colorMap[Style.BRIGHTBLUE]);
   }
-  public bBlueBg() {
+  public get bBlueBg() {
     return this.sgr(colorMap[Style.BRIGHTBLUEBG]);
   }
-  public magenta() {
+  public get magenta() {
     return this.sgr(colorMap[Style.MAGENTA]);
   }
-  public magentaBg() {
+  public get magentaBg() {
     return this.sgr(colorMap[Style.MAGENTABG]);
   }
-  public bMagenta() {
+  public get bMagenta() {
     return this.sgr(colorMap[Style.BRIGHTMAGENTA]);
   }
-  public bMagentaBg() {
+  public get bMagentaBg() {
     return this.sgr(colorMap[Style.BRIGHTMAGENTABG]);
   }
-  public cyan() {
+  public get cyan() {
     return this.sgr(colorMap[Style.CYAN]);
   }
-  public cyanBg() {
+  public get cyanBg() {
     return this.sgr(colorMap[Style.CYANBG]);
   }
-  public bCyan() {
+  public get bCyan() {
     return this.sgr(colorMap[Style.BRIGHTCYAN]);
   }
-  public bCyanBg() {
+  public get bCyanBg() {
     return this.sgr(colorMap[Style.BIRGHTCYANBG]);
   }
-  public white() {
+  public get white() {
     return this.sgr(colorMap[Style.WHITE]);
   }
-  public whiteBg() {
+  public get whiteBg() {
     return this.sgr(colorMap[Style.WHITEBG]);
   }
-  public bWhite() {
+  public get bWhite() {
     return this.sgr(colorMap[Style.BRIGHTWHIET]);
   }
-  public bWhiteBg() {
+  public get bWhiteBg() {
     return this.sgr(colorMap[Style.BRIGHTWHITEBG]);
   }
-  public bold() {
+  public get bold() {
     return this.sgr(colorMap[Style.BOLD]);
   }
-  public faint() {
+  public get faint() {
     return this.sgr(colorMap[Style.FAINT]);
   }
-  public italic() {
+  public get italic() {
     return this.sgr(colorMap[Style.ITALIC]);
   }
-  public underline() {
+  public get underline() {
     return this.sgr(colorMap[Style.UNDERLINE]);
   }
-  public blink() {
+  public get blink() {
     return this.sgr(colorMap[Style.BLINK]);
   }
-  public fastBlink() {
+  public get fastBlink() {
     return this.sgr(colorMap[Style.FASTBLINK]);
   }
-  public invert() {
+  public get invert() {
     return this.sgr(colorMap[Style.INVERT]);
   }
-  public strikeThrough() {
+  public get strikeThrough() {
     return this.sgr(colorMap[Style.STRIKE]);
   }
-  public doubleUnderline() {
+  public get doubleUnderline() {
     return this.sgr(colorMap[Style.DOUBLEUNDERLINE]);
   }
-  public reveal() {
+  public get reveal() {
     return this.sgr(colorMap[Style.REVEAL]);
   }
-  public framed() {
+  public get framed() {
     return this.sgr(colorMap[Style.FRAMED]);
   }
-  public encircled() {
+  public get encircled() {
     return this.sgr(colorMap[Style.ENCIRCLED]);
   }
-  public overlined() {
+  public get overlined() {
     return this.sgr(colorMap[Style.OVERLINED]);
   }
-  public superscript() {
+  public get superscript() {
     return this.sgr(colorMap[Style.SUPER]);
   }
-  public subscript() {
+  public get subscript() {
     return this.sgr(colorMap[Style.SUB]);
   }
 

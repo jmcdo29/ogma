@@ -82,17 +82,17 @@ for (const { adapter, server, parser, driver } of [
     {
       type: 'query',
       name: 'getQuery',
-      status: style.green().apply(200),
+      status: style.green.apply(200),
     },
     {
       type: 'query',
       name: 'getError',
-      status: style.yellow().apply(400),
+      status: style.yellow.apply(400),
     },
     {
       type: 'mutation',
       name: 'getMutation',
-      status: style.green().apply(200),
+      status: style.green.apply(200),
     },
   ]) {
     GqlParserSuite(`${type} ${name} call`, async ({ logSpy }) => {
@@ -114,7 +114,7 @@ for (const { adapter, server, parser, driver } of [
       'query',
       '/graphql',
       'HTTP/1.1',
-      style.yellow().apply(403),
+      style.yellow.apply(403),
     );
   });
   GqlParserSuite.run();

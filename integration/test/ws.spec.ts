@@ -79,11 +79,11 @@ for (const { adapter, server, parser, client, protocol, sendMethod, serializer }
   for (const { message, status } of [
     {
       message: 'message',
-      status: style.green().apply(200),
+      status: style.green.apply(200),
     },
     {
       message: 'throw',
-      status: style.red().apply(500),
+      status: style.red.apply(500),
     },
   ]) {
     WsSuite(`send ${message}`, async ({ wsClient, logSpy }) => {

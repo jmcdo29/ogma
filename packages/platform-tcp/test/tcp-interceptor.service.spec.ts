@@ -80,7 +80,7 @@ TcpParserSuite('It should return a 500', ({ parser }) => {
   is(parser.getStatus(createCtxMock(), false, new Error()), '500');
 });
 TcpParserSuite('It should return a 200 in color', ({ parser }) => {
-  is(parser.getStatus(createCtxMock(), true), style.green().apply('200'));
+  is(parser.getStatus(createCtxMock(), true), style.green.apply('200'));
 });
 TcpParserSuite('It should return "redis" for the protocol', ({ parser }) => {
   const ctxMock = createCtxMock({
