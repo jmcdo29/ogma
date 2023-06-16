@@ -1,5 +1,6 @@
 import { Color, LogLevel, OgmaLog, OgmaStream, OgmaWritableLevel } from '@ogma/common';
 import { style, Styler } from '@ogma/styler';
+import stringify from 'fast-safe-stringify';
 import { hostname } from 'os';
 
 import { OgmaDefaults, OgmaOptions } from '../interfaces';
@@ -29,6 +30,8 @@ export class Ogma {
   private errorFormattedLevel: string;
   private fatalFormattedLevel: string;
   private hostnameFormatted: string;
+
+  private wrappedValues: Record<string, string> = {};
 
   /**
    * An alias for `ogma.verbose`. `FINE` is what is printed as the log level
@@ -137,9 +140,12 @@ export class Ogma {
     }
   }
 
-  private circularReplacer(): (key: string, value: any) => string {
+  private circularReplacer(): (key: string, value: any) => string | number | boolean {
     const seen = new WeakSet();
-    return (key: string, value: any): string => {
+    return (key: string, value: any): string | number | boolean => {
+      if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+        return value;
+      }
       if (typeof value === 'symbol') {
         return this.wrapInBrackets(value.toString());
       }
@@ -164,28 +170,44 @@ export class Ogma {
     return colorize(levelString, color, this.styler, this.options.color);
   }
 
-  private wrapInBrackets(valueToBeWrapper: string): string {
-    return `[${valueToBeWrapper}]`;
+  private wrapInBrackets(valueToBeWrapped: string): string {
+    let retVal = this.wrappedValues[valueToBeWrapped];
+    if (retVal) {
+      return retVal;
+    }
+    retVal = `[${valueToBeWrapped}]`;
+    this.wrappedValues[valueToBeWrapped] = retVal;
+    return retVal;
   }
 
   private formatJSON(
     message: any,
     level: LogLevel,
-    { application, correlationId, context }: OgmaPrintOptions,
+    {
+      application = this.application,
+      correlationId,
+      context = this.options.context,
+    }: OgmaPrintOptions,
   ): string {
     const mappedLevel = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
     let json: Partial<OgmaLog> = {
-      time: Date.now(),
+      time: 0,
       hostname: this.hostname,
-      application: application ?? this.application,
+      application: undefined,
       pid: this.jsonPid,
-      correlationId: correlationId,
-      context: context ?? this.options.context,
-      ool: LogLevel[level] as OgmaWritableLevel,
-      level: mappedLevel,
+      correlationId: undefined,
+      context: undefined,
+      ool: undefined,
+      level: undefined,
       message: undefined,
       meta: {},
     };
+    json.time = Date.now();
+    json.application = application;
+    json.correlationId = correlationId;
+    json.context = context;
+    json.ool = LogLevel[level] as OgmaWritableLevel;
+    json.level = mappedLevel;
     if (this.options.levelKey) {
       json[this.options.levelKey] = mappedLevel;
     }
@@ -195,7 +217,7 @@ export class Ogma {
     } else {
       json.message = message;
     }
-    return JSON.stringify(json, this.circularReplacer());
+    return stringify(json, this.circularReplacer());
   }
 
   private stringifyObject(
@@ -207,11 +229,7 @@ export class Ogma {
     let result: string = message;
 
     if (typeof message === 'object' && !(message instanceof Error)) {
-      result = `${prependNewline ? '\n' : ''}${JSON.stringify(
-        message,
-        this.circularReplacer(),
-        2,
-      )}`;
+      result = `${prependNewline ? '\n' : ''}${stringify(message, this.circularReplacer(), 2)}`;
     }
 
     if (skipRegex) return `${result}`;
