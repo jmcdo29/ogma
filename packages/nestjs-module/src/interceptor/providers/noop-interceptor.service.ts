@@ -27,4 +27,8 @@ export class NoopInterceptorService extends AbstractInterceptorService {
   setRequestId(): void {
     return;
   }
+
+  getRequestId() {
+    return 'correlationId';
+  }
 }
