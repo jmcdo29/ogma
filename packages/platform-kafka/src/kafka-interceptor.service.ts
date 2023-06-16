@@ -1,8 +1,8 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ExecutionContext } from '@nestjs/common';
 import { KafkaContext } from '@nestjs/microservices';
-import { RpcInterceptorService } from '@ogma/nestjs-module';
+import { Parser, RpcInterceptorService } from '@ogma/nestjs-module';
 
-@Injectable()
+@Parser('rpc')
 export class KafkaParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext) {
     return this.getClient<KafkaContext>(context).getTopic();
@@ -19,10 +19,5 @@ export class KafkaParser extends RpcInterceptorService {
 
   getProtocol() {
     return 'kafka';
-  }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient<{ requestId: string }>(context);
-    client.requestId = requestId;
   }
 }

@@ -32,12 +32,9 @@ const GrpcParserSuite = suite<{
   rpcServer: undefined,
 });
 GrpcParserSuite.before(async (context) => {
-  const modRef = await createTestModule(GrpcServerModule, {
-    service: serviceOptionsFactory('gRPC Server'),
-    interceptor: {
-      rpc: GrpcParser,
-    },
-  });
+  const modRef = await createTestModule(GrpcServerModule, serviceOptionsFactory('gRPC Server'), [
+    GrpcParser,
+  ]);
   const rpcServer = modRef.createNestMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {

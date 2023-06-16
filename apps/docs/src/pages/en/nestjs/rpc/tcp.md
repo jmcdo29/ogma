@@ -15,12 +15,9 @@ Nothing special, standard `npm i @ogma/platform-tcp` or `yarn add @ogma/platform
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      rpc: TcpParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [TcpParser]
+})
 export class AppModule {}
 ```

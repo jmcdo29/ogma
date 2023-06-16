@@ -7,7 +7,6 @@ layout: ../../../layouts/MainLayout.astro
 Okay, so now we're ready to add the `OgmaModule` to our Application. Let's assume we have a `CatsService`, `CatsController` and `CatsModule` and a `ConfigService` and `ConfigModule` in our Application. Let's also assume we want to use a class to asynchronously configure out `OgmaModule`. For now, assume the methods exist on the `ConfigService`. Let's also assume we want to log things in color to our `process.stdout`.
 
 ```ts
-import { FastifyParser } from '@ogma/platform-fastify';
 import { OgmaModuleOptions } from '@ogma/nestjs-module';
 
 @Injectable()
@@ -18,16 +17,12 @@ export class OgmaModuleConfig
 
   createModuleConfig(): typeof OgmaModuleOptions {
     return {
-      service: {
-        // returns one of Ogma's log levels, or 'ALL'.
-        logLevel: this.configService.getLogLevel(),
-        color: true,
-        // could be something like 'MyAwesomeNestApp'
-        application: this.configService.getAppName()
+      // returns one of Ogma's log levels, or 'ALL'.
+      logLevel: this.configService.getLogLevel(),
+      color: true,
+      // could be something like 'MyAwesomeNestApp'
+      application: this.configService.getAppName()
       },
-      interceptor: {
-        http: FastifyParser
-      }
     };
   }
 }
@@ -45,7 +40,8 @@ Next, in our `AppModule` we can import the `OgmaModule` like so
       useClass: OgmaModuleConfig,
       imports: [ConfigModule]
     })
-  ]
+  ],
+  providers: [FastifyParser]
 })
 export class AppModule {}
 ```

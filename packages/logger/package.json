@@ -30,7 +30,10 @@
     "url": "https://github.com/jmcdo29/ogma/issues"
   },
   "dependencies": {
-    "@ogma/common": "^1.1.1",
-    "@ogma/styler": "^1.0.1"
+    "@ogma/common": "workspace:^",
+    "@ogma/styler": "workspace:^",
+    "fast-safe-stringify": "2.1.1",
+    "on-exit-leak-free": "^2.1.0",
+    "sonic-boom": "^3.2.1"
   }
 }

@@ -1,8 +1,8 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ExecutionContext } from '@nestjs/common';
 import { TcpContext } from '@nestjs/microservices';
-import { RpcInterceptorService } from '@ogma/nestjs-module';
+import { Parser, RpcInterceptorService } from '@ogma/nestjs-module';
 
-@Injectable()
+@Parser('rpc')
 export class TcpParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext): string {
     return this.getClient(context).getPattern();
@@ -21,11 +21,6 @@ export class TcpParser extends RpcInterceptorService {
   getProtocol(context: ExecutionContext): string {
     const client = this.getClient(context);
     return client.getSocketRef().socket.remoteFamily;
-  }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient<TcpContext & { requestId: string }>(context);
-    client.requestId = requestId;
   }
 
   getClient<T = TcpContext>(context: ExecutionContext): T {

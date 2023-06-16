@@ -9,7 +9,7 @@ import { AppController } from '../src/for-feats/app.controller';
 import { ForFeatsModule } from '../src/for-feats/app.module';
 import { AppService } from '../src/for-feats/app.service';
 
-test('OgmaMOdule.forFeature should log with two loggers', async () => {
+test('OgmaModule.forFeature should log with two loggers', async () => {
   const modRef = await Test.createTestingModule({
     imports: [ForFeatsModule],
   }).compile();

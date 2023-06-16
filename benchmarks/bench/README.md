@@ -1,0 +1,1 @@
+NestJS Logger x 7,799 ops/sec ±1.47% (85 runs sampled)<br> Ogma x 695,349 ops/sec ±4.70% (82 runs sampled)<br> OgmaJson x 277,887 ops/sec ±0.81% (96 runs sampled)<br> Pino x 779,229 ops/sec ±22.44% (68 runs sampled)<br> console.log x 147,514 ops/sec ±2.71% (85 runs sampled)<br> process.stdout x 413,788 ops/sec ±2.05% (79 runs sampled)<br> <br>Fastest is Ogma

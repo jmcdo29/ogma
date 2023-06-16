@@ -14,15 +14,12 @@ With that out of the way, the package comes with a [Dynamic Nest Module](https:/
 
 ## Root Configuration
 
-First, we have the root configuration for the package, which should be called once, usually in your `AppModule` or whatever else you end up calling the `RootModule`, which will be imported and used with `NestFactory.create`. Like most Nest packages nowadays, there's both synchronous and async configurations that can be made use of.x
+First, we have the root configuration for the package, which should be called once, usually in your `AppModule` or whatever else you end up calling the RootModule`, which will be imported and used with `NestFactory.create`. Like most Nest packages nowadays, there's both synchronous and async configurations that can be made use of.x
 
 ### Synchronous Configuration
 
 ```ts
-OgmaModule.forRoot({
-  service: {},
-  interceptor: {}
-});
+OgmaModule.forRoot(ogmaOptions);
 ```
 
 ### Asynchronous Configuration
@@ -38,10 +35,7 @@ or
 ```ts
 OgmaModule.forRootAsync({
   inject: [ConfigService],
-  useFactory: (config) => ({
-    service: {},
-    interceptor: {}
-  })
+  useFactory: (config) => ogmaOptionsFromConfig(config)
 });
 ```
 
@@ -51,18 +45,7 @@ The options that are required for the above methods can be found in the tables b
 
 #### OgmaModuleOptions
 
-| name | type | required | description |
-| --- | --- | --- | --- |
-| service | OgmaServiceOptions | false | The options that will be passed on to the Ogma instance |
-| interceptor | OgmaInterceptorOptions | false | The options that will be passed to the OgmaModule for the interceptor. This is what sets up the parsers so that the interceptor can do the proper parsing of requests |
-
-#### OgmaServiceOptions
-
-This is a simple partial of the options available for the [Ogma instance](/en/logger#ogma-options). For more details, please consult the `@ogma/logger` docs.
-
-#### OgmaInterceptorOptions
-
-There are four optional properties to the `OgmaInterceptorOptions` ,`http`, `gql`, `ws`, and `rpc`, **but** one of the four must be provided if the `interceptor` option is not `false`. All of these options are of the same type, a default `false` value, or a reference to a class that extends `AbstractInterceptorService`. The `OgmaModule` will take care of instantiating this class for you, so you just need to provide a reference. Please view the [`@ogma/platform-express`](/en/nestjs/http/platform-express) docs for a brief example.
+The options that this module takes are the same as those from the `@ogma/logger` package plus an optional `traceMethod` property that tells the `@Log()` decorator what level to log at.
 
 ## Feature Configuration
 

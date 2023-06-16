@@ -1,8 +1,8 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
-import { HttpInterceptorService } from '@ogma/nestjs-module';
+import { ExecutionContext } from '@nestjs/common';
+import { HttpInterceptorService, Parser } from '@ogma/nestjs-module';
 import { Request } from 'express';
 
-@Injectable()
+@Parser('http')
 export class ExpressParser extends HttpInterceptorService {
   getCallerIp(context: ExecutionContext): string[] | string {
     const req = this.getRequest(context);
@@ -23,11 +23,6 @@ export class ExpressParser extends HttpInterceptorService {
   getProtocol(context: ExecutionContext): string {
     const req = this.getRequest(context);
     return `HTTP/${this.getHttpMajor(req)}.${this.getHttpMinor(req)}`;
-  }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const req = this.getRequest(context) as any;
-    req.requestId = requestId;
   }
 
   private getHttpMajor(req: Request): number {

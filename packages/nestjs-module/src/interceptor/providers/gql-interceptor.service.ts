@@ -1,4 +1,4 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ArgumentsHost, Injectable } from '@nestjs/common';
 
 import { AbstractInterceptorService } from './abstract-interceptor.service';
 
@@ -13,20 +13,25 @@ export abstract class GqlInterceptorService extends AbstractInterceptorService {
    *
    * this method _should_ look something like this
    * ```ts
-   * getContext(context: ExecutionContext) {
-   *   const gql = GqlExecutionContext.create(context);
+   * getContext(context: ArgumentsHost) {
+   *   const gql = GqlArgumentsHost.create(context);
    *   return gql.getContext();
    * }
    * ```
    * @param context execution context from Nest
    */
-  protected abstract getContext(context: ExecutionContext): any;
-  setRequestId(context: ExecutionContext, requestId: string) {
+  protected abstract getContext(context: ArgumentsHost): any;
+  setRequestId(context: ArgumentsHost, requestId: string) {
     const ctx = this.getContext(context).context;
     if (ctx[this.reqName]) {
       ctx[this.reqName].requestId = requestId;
     } else {
       ctx.requestId = requestId;
     }
+  }
+
+  getRequestId(context: ArgumentsHost): any {
+    const ctx = this.getContext(context).context;
+    return ctx[this.reqName]?.requestId ?? ctx.requestId;
   }
 }

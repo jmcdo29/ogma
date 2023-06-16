@@ -1,8 +1,8 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ExecutionContext } from '@nestjs/common';
 import { RmqContext } from '@nestjs/microservices';
-import { RpcInterceptorService } from '@ogma/nestjs-module';
+import { Parser, RpcInterceptorService } from '@ogma/nestjs-module';
 
-@Injectable()
+@Parser('rpc')
 export class RabbitMqParser extends RpcInterceptorService {
   getCallPoint(context: ExecutionContext) {
     return this.getClient<RmqContext>(context).getPattern();
@@ -19,10 +19,5 @@ export class RabbitMqParser extends RpcInterceptorService {
 
   getProtocol() {
     return 'amqp';
-  }
-
-  setRequestId(context: ExecutionContext, requestId: string): void {
-    const client = this.getClient<RmqContext & { requestId: string }>(context);
-    client.requestId = requestId;
   }
 }

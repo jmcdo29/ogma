@@ -1,9 +1,10 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ExecutionContext } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
+import { Parser } from '@ogma/nestjs-module';
 import { ExpressParser } from '@ogma/platform-express';
 import { Request, Response } from 'express';
 
-@Injectable()
+@Parser('graphql')
 export class GraphQLParser extends ExpressParser {
   protected reqName = 'req';
   getMethod(context: ExecutionContext): string {

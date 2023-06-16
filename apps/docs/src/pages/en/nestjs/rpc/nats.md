@@ -15,12 +15,9 @@ Nothing special, standard `npm i @ogma/platform-nats` or `yarn add @ogma/platfor
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      rpc: NatsParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [NatsParser]
+})
 export class AppModule {}
 ```

@@ -15,12 +15,9 @@ Nothing special, standard `npm i @ogma/platform-redis` or `yarn add @ogma/platfo
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      rpc: RedisParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [RedisParser]
+})
 export class AppModule {}
 ```

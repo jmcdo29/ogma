@@ -20,7 +20,7 @@
   --color-base-white: 0, 0%;
   --color-base-black: 240, 100%;
   --color-base-gray: 215, 14%;
-  --color-base-blue: 212, 100%;
+  --color-base-blue: 206.2, 58.8%;
   --color-base-blue-dark: 212, 72%;
   --color-base-green: 158, 79%;
   --color-base-orange: 22, 100%;
@@ -74,7 +74,7 @@
   --theme-code-inline-text: var(--theme-text);
   --theme-code-bg: hsla(217, 19%, 27%, 1);
   --theme-code-text: hsla(var(--color-gray-95), 1);
-  --theme-navbar-bg: hsla(var(--color-base-white), 100%, 1);
+  --theme-navbar-bg: hsla(var(--color-blue), 0.5);
   --theme-navbar-height: 6rem;
   --theme-selection-color: hsla(var(--color-blue), 1);
   --theme-selection-bg: hsla(var(--color-blue), var(--theme-accent-opacity));
@@ -96,14 +96,14 @@ body {
 
   /* @@@: not used anywhere */
   --theme-text-lighter: hsla(var(--color-gray-40), 1);
-  --theme-bg: hsla(215, 28%, 17%, 1);
+  --theme-bg: hsla(240, 6.9%, 17%, 1);
   --theme-bg-hover: hsla(var(--color-gray-40), 1);
   --theme-bg-offset: hsla(var(--color-gray-5), 1);
   --theme-code-inline-bg: hsla(var(--color-gray-10), 1);
   --theme-code-inline-text: hsla(var(--color-base-white), 100%, 1);
   --theme-code-bg: hsla(var(--color-gray-5), 1);
   --theme-code-text: hsla(var(--color-base-white), 100%, 1);
-  --theme-navbar-bg: hsla(215, 28%, 17%, 1);
+  --theme-navbar-bg: hsla(var(--color-blue), 0.6);
   --theme-selection-color: hsla(var(--color-base-white), 100%, 1);
   --theme-selection-bg: hsla(var(--color-purple), var(--theme-accent-opacity));
 

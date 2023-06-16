@@ -7,13 +7,18 @@ import {
   Patch,
   Post,
   Put,
+  UseFilters,
+  UseGuards,
 } from '@nestjs/common';
 import { OgmaSkip } from '@ogma/nestjs-module';
 
 import { AppService } from '../app.service';
+import { FailGuard } from '../shared/fail.guard';
 import { SimpleObject } from '../simple-object.model';
+import { ErrorLoggingFilter } from './error-logging.filter';
 
 @Controller()
+@UseFilters(ErrorLoggingFilter)
 export class HttpController {
   constructor(private readonly appService: AppService) {}
 
@@ -37,6 +42,12 @@ export class HttpController {
   @OgmaSkip()
   getSkip(): SimpleObject {
     return this.appService.getHello();
+  }
+
+  @Get('fail-guard')
+  @UseGuards(FailGuard)
+  failGuard() {
+    /* no op */
   }
 
   @Post()

@@ -15,12 +15,9 @@ Nothing special, standard `npm i @ogma/platform-rabbitmq` or `yarn add @ogma/pla
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      rpc: RabbitMqParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [RabbitMqParser]
+})
 export class AppModule {}
 ```

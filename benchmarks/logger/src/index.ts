@@ -6,6 +6,7 @@ import { performance, PerformanceObserver } from 'perf_hooks';
 import { writeBenchmarks } from './benchmark-writer';
 import { createBunyanLogger } from './bunyan.logger';
 import { createOgmaLogger } from './ogma.logger';
+import { createOgmaJsonLogger } from './ogma-json.logger';
 import { createOgmaWithMasksLogger } from './omga-with-masks.logger';
 import { createPinoLogger } from './pino.logger';
 import { createWinstonLogger } from './winston.logger';
@@ -23,7 +24,7 @@ const deepJSON: Record<string, any> = {
 };
 deepJSON.f = deepJSON;
 
-type LoggerName = 'Ogma' | 'OgmaMasks' | 'Bunyan' | 'Winston' | 'Pino';
+type LoggerName = 'Ogma' | 'OgmaMasks' | 'OgmaJSON' | 'Bunyan' | 'Winston' | 'Pino';
 type LogType = 'simple' | 'json' | 'deep' | 'long';
 type LogResult = {
   [index in LoggerName]: {
@@ -40,6 +41,7 @@ const loggers: Array<{
   { name: 'Bunyan', logger: createBunyanLogger(stream) },
   { name: 'Ogma', logger: createOgmaLogger(stream) },
   { name: 'OgmaMasks', logger: createOgmaWithMasksLogger(stream) },
+  { name: 'OgmaJSON', logger: createOgmaJsonLogger(stream) },
   { name: 'Pino', logger: createPinoLogger(stream) },
   { name: 'Winston', logger: createWinstonLogger(stream) },
 ];
@@ -75,6 +77,7 @@ const obs = new PerformanceObserver((items) => {
     Bunyan: {},
     Ogma: {},
     OgmaMasks: {},
+    OgmaJSON: {},
     Pino: {},
     Winston: {},
   };

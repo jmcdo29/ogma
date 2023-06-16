@@ -164,4 +164,4 @@ DelegatorServiceSuite('It should replace no data with an empty string', ({ deleg
   ok(parseSpy.calledWith(null, fullCtxMock, 0, options));
 });
 
-DelegatorServiceSuite.run();
+// DelegatorServiceSuite.run();

@@ -1,11 +1,10 @@
 import { Scope } from '@nestjs/common/interfaces';
-import { Reflector, REQUEST as CONTEXT } from '@nestjs/core';
+import { REQUEST as CONTEXT } from '@nestjs/core';
 import { Ogma } from '@ogma/logger';
 import { suite } from 'uvu';
-import { equal, instance, is, not } from 'uvu/assert';
+import { equal, instance, is } from 'uvu/assert';
 
 import { OgmaService } from '../src';
-import { NoopInterceptorService } from '../src/interceptor/providers';
 import {
   OGMA_INSTANCE,
   OGMA_REQUEST_SCOPED_SERVICE_TOKEN,
@@ -13,15 +12,10 @@ import {
 } from '../src/ogma.constants';
 import {
   createLoggerProviders,
-  createOgmaInterceptorOptionsFactory,
   createOgmaProvider,
   createOgmaServiceOptions,
   createRequestScopedLoggerProviders,
-  interceptorProviderFactory,
 } from '../src/ogma.provider';
-
-const noOptions = 'use noop service as back up';
-const withOptions = 'use passed option for interceptor service';
 
 const CreateOgmaProviderSuite = suite('Create Ogma Provider');
 CreateOgmaProviderSuite('it should create the instance without options', () => {
@@ -35,20 +29,6 @@ CreateOgmaProviderSuite('it should create the instance when options are passed',
 CreateOgmaProviderSuite.run();
 
 const CreateOgmaInterceptorOptionsFactorySuite = suite('Create Ogma Interceptor Options Factory');
-CreateOgmaInterceptorOptionsFactorySuite('it should return false', () => {
-  not.ok(createOgmaInterceptorOptionsFactory({ interceptor: false }));
-});
-CreateOgmaInterceptorOptionsFactorySuite('should return the merged options', () => {
-  equal(createOgmaInterceptorOptionsFactory({ interceptor: { http: NoopInterceptorService } }), {
-    http: NoopInterceptorService,
-    gql: false,
-    ws: false,
-    rpc: false,
-  });
-});
-CreateOgmaInterceptorOptionsFactorySuite('should not throw even with invalid options', () => {
-  not.throws(() => createOgmaInterceptorOptionsFactory({ interceptor: {} }));
-});
 CreateOgmaInterceptorOptionsFactorySuite.run();
 
 const CreateOgmaServiceOptionsSuite = suite('Create Ogma Service Options');
@@ -111,19 +91,3 @@ CreateRequestScopedLoggerProvidersSuite(
   },
 );
 CreateRequestScopedLoggerProvidersSuite.run();
-
-const InterceptorProviderFactorySuite = suite('Interceptor Provider Factory');
-for (const type of ['http', 'ws', 'gql', 'rpc'] as const) {
-  for (const use of [true, false]) {
-    InterceptorProviderFactorySuite(`${type}: ${use ? withOptions : noOptions}`, () => {
-      instance(
-        interceptorProviderFactory(type, NoopInterceptorService)(
-          { [type]: use ? NoopInterceptorService : false },
-          new Reflector(),
-        ),
-        NoopInterceptorService,
-      );
-    });
-  }
-}
-InterceptorProviderFactorySuite.run();
