@@ -14,9 +14,11 @@ const checkIfHasSpaceRegex = /[^\n]$/;
 export class Ogma {
   private options: OgmaOptions;
   private pid: string;
+  private jsonPid: number | undefined;
   private hostname: string;
   private styler: Styler;
   private each: boolean;
+  private application: string;
 
   private cachedContextFormatted: Map<string, Map<Color, string>> = new Map();
   private sillyFormattedLevel: string;
@@ -46,7 +48,8 @@ export class Ogma {
         .filter((key) => isNil(options[key]))
         .forEach((key) => delete options[key]);
     this.options = { ...OgmaDefaults, ...(options as OgmaOptions) };
-    this.pid = process.pid.toString();
+    this.jsonPid = Number(process.pid);
+    this.pid = this.wrapInBrackets(this.jsonPid.toString()) + ' ';
     this.hostname = hostname();
     if (options?.logLevel && LogLevel[options.logLevel] === undefined) {
       this.options.logLevel = OgmaDefaults.logLevel;
@@ -57,6 +60,17 @@ export class Ogma {
     if (!this.options.stream.getColorDepth) {
       this.setStreamColorDepth();
     }
+    this.application = this.options.application;
+    if (!this.options.logApplication) {
+      this.application = undefined;
+    }
+    if (!this.options.logHostname) {
+      this.hostname = undefined;
+    }
+    if (!this.options.logPid) {
+      this.pid = '';
+      this.jsonPid = undefined;
+    }
     this.styler = style.child(this.options.stream as Pick<OgmaStream, 'getColorDepth'>);
     this.each = this.options.each;
     this.sillyFormattedLevel = this.toColor(LogLevel.SILLY, Color.MAGENTA);
@@ -65,7 +79,9 @@ export class Ogma {
     this.infoFormattedLevel = this.toColor(LogLevel.INFO, Color.CYAN);
     this.warnFormattedLevel = this.toColor(LogLevel.WARN, Color.YELLOW);
     this.errorFormattedLevel = this.toColor(LogLevel.ERROR, Color.RED);
-    this.hostnameFormatted = this.toStreamColor(this.hostname, Color.MAGENTA) + ' ';
+    this.hostnameFormatted = this.options.logHostname
+      ? this.toStreamColor(this.hostname, Color.MAGENTA) + ' '
+      : '';
     this.fatalFormattedLevel = this.styler
       .redBg()
       .white()
@@ -158,22 +174,26 @@ export class Ogma {
     { application = '', correlationId = '', context = '', ...meta }: OgmaPrintOptions,
   ): string {
     let json: Partial<OgmaLog> = {
-      time: this.getTimestamp(),
+      time: '',
+      hostname: undefined,
+      application: undefined,
+      pid: 0,
+      correlationId: undefined,
+      context: undefined,
+      ool: 'INFO',
+      level: undefined,
+      message: undefined,
+      meta: undefined,
     };
+    json.time = Date.now();
 
     const mappedLevel = this.options.levelMap[LogLevel[level] as keyof typeof LogLevel];
 
-    if (this.options.logHostname) {
-      json.hostname = this.hostname;
-    }
+    json.hostname = this.hostname;
 
-    if (this.options.logApplication) {
-      json.application = application || this.options.application || undefined;
-    }
+    json.application = application || this.application;
 
-    if (this.options.logPid) {
-      json.pid = Number(this.pid);
-    }
+    json.pid = this.jsonPid;
 
     json.correlationId = correlationId;
     json.context = context || this.options.context || undefined;
@@ -229,21 +249,15 @@ export class Ogma {
       message = this.stringifyObject(message, true, false, true);
     }
 
-    const { logHostname, logApplication, logPid } = this.options;
-
     const logContext = this.toStreamColor(context || this.options.context, Color.CYAN);
     const logCorrelationId = correlationId ? this.wrapInBrackets(correlationId) : '';
 
     const timestamp = this.wrapInBrackets(this.getTimestamp());
-    const hostname = logHostname ? this.hostnameFormatted : '';
 
-    const applicationName = logApplication
-      ? this.toStreamColor(application || this.options.application, Color.YELLOW) + ' '
+    const applicationName = this.application
+      ? this.toStreamColor(application || this.application, Color.YELLOW) + ' '
       : '';
-
-    const pid = logPid ? this.wrapInBrackets(this.pid) + ' ' : '';
-
-    return `${timestamp} ${formattedLevel} ${hostname}${applicationName}${pid}${logCorrelationId} ${logContext} ${message}`;
+    return `${timestamp} ${formattedLevel} ${this.hostnameFormatted}${applicationName}${this.pid}${logCorrelationId} ${logContext} ${message}`;
   }
 
   private toStreamColor(value: string, color: Color): string {

@@ -1,7 +1,7 @@
 import { OgmaWritableLevel } from './level.enum';
 
 export interface OgmaLog {
-  time: string;
+  time: string | number;
   hostname?: string;
   application?: string;
   context?: string;
