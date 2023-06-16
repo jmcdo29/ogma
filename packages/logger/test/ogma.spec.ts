@@ -54,7 +54,7 @@ for (const color of [true, false]) {
       const ogma = ogmaFactory({ color });
       ogma.log('Hello');
       const matcher = color ? match : not.match;
-      matcher(getFirstCallString(writeSpy), style.cyan.apply('[INFO] '));
+      matcher(getFirstCallString(writeSpy), style.cyan().apply('[INFO] '));
     },
   );
 }
@@ -67,7 +67,7 @@ for (const json of [true, false]) {
       const loggedVal = getFirstCallString(writeSpy);
       if (json) {
         const loggedJSON = JSON.parse(loggedVal);
-        match(loggedJSON.time, /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1,3}Z/);
+        match(loggedJSON.time, /\d{10}/);
         match(loggedJSON.pid, /\d{1,5}/);
         is(loggedJSON.level, 'INFO');
         is(loggedJSON.message, 'Hello');
@@ -93,7 +93,7 @@ for (const context of ['test context', '']) {
     ({ ogmaFactory, writeSpy, getFirstCallString }) => {
       const ogma = ogmaFactory({ context });
       ogma.log('Hello!');
-      match(getFirstCallString(writeSpy), context ? style.cyan.apply(`[${context}]`) : '');
+      match(getFirstCallString(writeSpy), context ? style.cyan().apply(`[${context}]`) : '');
     },
   );
 }
@@ -105,7 +105,7 @@ for (const application of ['test app', '']) {
       ogma.log('Hello!');
       match(
         getFirstCallString(writeSpy),
-        application ? style.yellow.apply(`[${application}]`) : '',
+        application ? style.yellow().apply(`[${application}]`) : '',
       );
     },
   );
@@ -143,7 +143,7 @@ OgmaSuite(
     const loggedVal = getFirstCallString(writeSpy);
     match(loggedVal, /\[Circular\]/);
     match(loggedVal, /\[Function:/);
-    match(loggedVal, /\[Symbol\(hello\)\]/);
+    match(loggedVal, /\[Symbol: hello\]/);
   },
 );
 OgmaSuite(
@@ -158,7 +158,7 @@ OgmaSuite(
     const loggedVal = JSON.parse(getFirstCallString(writeSpy));
     is(loggedVal.context, 'json context');
     is(loggedVal.application, 'json test');
-    is(loggedVal.hello, 'world!');
+    is(loggedVal.message.hello, 'world!');
   },
 );
 OgmaSuite(
@@ -267,7 +267,7 @@ OgmaSuite(
     ogma.log({ message: 'Hello World!' });
     const loggedVal = JSON.parse(getFirstCallString(writeSpy));
     ok(Object.keys(loggedVal).includes('message'));
-    is(loggedVal.message, 'Hello World!');
+    is(loggedVal.message.message, 'Hello World!');
   },
 );
 for (const json of [true, false]) {

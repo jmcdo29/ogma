@@ -32,8 +32,9 @@ const ctxMockFactory = (partial: Partial<ExecutionContext>): ExecutionContext =>
   ...partial,
 });
 
-const ExpressParserSuite =
-  suite<{ parser: ExpressParser; reflector: Reflector }>('Express Parser Suite');
+const ExpressParserSuite = suite<{ parser: ExpressParser; reflector: Reflector }>(
+  'Express Parser Suite',
+);
 ExpressParserSuite.before(async (context) => {
   const mod = await Test.createTestingModule({
     providers: [
@@ -139,7 +140,7 @@ ExpressParserSuite('it should get the status in color', ({ parser }) => {
   const ctxMock = ctxMockFactory({
     switchToHttp: () => resMock(200) as any,
   });
-  is(parser.getStatus(ctxMock, true), style.green.apply(200));
+  is(parser.getStatus(ctxMock, true), style.green().apply(200));
 });
 ExpressParserSuite('Should get the status from req.method', ({ parser }) => {
   const ctxMock = ctxMockFactory({
