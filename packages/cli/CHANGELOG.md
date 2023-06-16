@@ -1,5 +1,16 @@
 # @ogma/cli
 
+## 2.2.0
+
+### Minor Changes
+
+- 1008775: handle that time can be a number
+
+### Patch Changes
+
+- Updated dependencies [be1367c]
+  - @ogma/common@1.2.0
+
 ## 2.1.7
 
 ### Patch Changes

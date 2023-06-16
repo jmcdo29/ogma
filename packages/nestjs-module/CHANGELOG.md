@@ -1,5 +1,28 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- 36ff6d0: New parser format and module options
+
+  With the new version, there is no longer a need toseparate the service and interceptor options.As such, the options passed to the module are now the same as those passed to `Ogma` directly **plus** a `traceMethod` property for the `@Log()` decorator.
+
+  As for the parsers that _were_ originally passed to `interceptor.[type]`, they should now be registered directly as providers so that the discovery service can find them on application start.
+
+  ## **FOR ANY CUSTOM EXISTING PARSERS**
+
+  Add the `@Parser()` decorator to your parser and pass in the context in which it should be called. This should match what `context.getType()` or `host.getType()` returns
+
+### Minor Changes
+
+- 84c799f: Update `@ogma/styler` to 2.0.0
+
+### Patch Changes
+
+- Updated dependencies [fa89834]
+  - @ogma/logger@3.0.0
+
 ## 4.2.3
 
 ### Patch Changes
