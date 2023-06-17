@@ -16,8 +16,8 @@ importers:
         specifier: ^4.14.2
         version: 4.14.2
       '@apollo/gateway':
-        specifier: 2.4.7
-        version: 2.4.7(graphql@16.6.0)
+        specifier: 2.4.8
+        version: 2.4.8(graphql@16.6.0)
       '@apollo/server':
         specifier: 4.7.1
         version: 4.7.1(graphql@16.6.0)
@@ -65,7 +65,7 @@ importers:
         version: 1.2.0
       '@nestjs/apollo':
         specifier: ^12.0.1
-        version: 12.0.1(@apollo/gateway@2.4.7)(@apollo/server@4.7.1)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/graphql@12.0.1)(graphql@16.6.0)
+        version: 12.0.1(@apollo/gateway@2.4.8)(@apollo/server@4.7.1)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/graphql@12.0.1)(graphql@16.6.0)
       '@nestjs/common':
         specifier: 10.0.0
         version: 10.0.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
@@ -172,8 +172,8 @@ importers:
         specifier: 0.10.3
         version: 0.10.3
       apollo-server-express:
-        specifier: 3.11.1
-        version: 3.11.1(express@4.18.2)(graphql@16.6.0)
+        specifier: 3.12.0
+        version: 3.12.0(express@4.18.2)(graphql@16.6.0)
       apollo-server-fastify:
         specifier: 3.12.0
         version: 3.12.0(fastify@4.18.0)(graphql@16.6.0)
@@ -791,19 +791,19 @@ packages:
       graphql: 16.6.0
     dev: true
 
-  /@apollo/composition@2.4.7(graphql@16.6.0):
-    resolution: {integrity: sha512-eXRTG6J5ywwXsWgP0Wgic4zeBXO8jBBvI0FM4t/gay4DI+1zEL5qmoF2HN/jFik0dnd/ud5kh4djvFLmWEwbeA==}
+  /@apollo/composition@2.4.8(graphql@16.6.0):
+    resolution: {integrity: sha512-xcpYKjpAN/T68NqQBZhvvrIUyhyfvqDZBZ18/Uq9Uj+ciPnglHhb7UYiMmJMBP/KHhh3kZ/kgyu1V1u19aNf6Q==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: ^16.5.0
     dependencies:
-      '@apollo/federation-internals': 2.4.7(graphql@16.6.0)
-      '@apollo/query-graphs': 2.4.7(graphql@16.6.0)
+      '@apollo/federation-internals': 2.4.8(graphql@16.6.0)
+      '@apollo/query-graphs': 2.4.8(graphql@16.6.0)
       graphql: 16.6.0
     dev: true
 
-  /@apollo/federation-internals@2.4.7(graphql@16.6.0):
-    resolution: {integrity: sha512-a4iH+72yVd0zNGC5ZGEDfbqI81wktE7qAHjH4rQzJTqMQ74By3PoMD2DefOArcweonvd4b/h4oQJXGvLK2V4Ew==}
+  /@apollo/federation-internals@2.4.8(graphql@16.6.0):
+    resolution: {integrity: sha512-P+lmrP7WJTLMKvcPCBimc5ABgaCxMup5r6MXzZ59N32xsOjD+kvQHEhtiZb368/a833VhiDbIh8ytCMeyBvwFA==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: ^16.5.0
@@ -815,15 +815,15 @@ packages:
       uuid: 9.0.0
     dev: true
 
-  /@apollo/gateway@2.4.7(graphql@16.6.0):
-    resolution: {integrity: sha512-ZcqSJEUxVJqqPKJ97q72Hyp0YEQfHW+oCRP9osF6XKkrGX1C7nxLm6EzO261+m1bUwkdtjk5CLfXxa9yxIDRdA==}
+  /@apollo/gateway@2.4.8(graphql@16.6.0):
+    resolution: {integrity: sha512-FbUlN6Ec+5XK9H2hmpF9zCqUdDpc0us1qCOt/HNNvR1o/FBVQsZN0ZCGruukq0+QoPu0Vf6rQW3KA5ShMlJPQA==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: ^16.5.0
     dependencies:
-      '@apollo/composition': 2.4.7(graphql@16.6.0)
-      '@apollo/federation-internals': 2.4.7(graphql@16.6.0)
-      '@apollo/query-planner': 2.4.7(graphql@16.6.0)
+      '@apollo/composition': 2.4.8(graphql@16.6.0)
+      '@apollo/federation-internals': 2.4.8(graphql@16.6.0)
+      '@apollo/query-planner': 2.4.8(graphql@16.6.0)
       '@apollo/server-gateway-interface': 1.1.0(graphql@16.6.0)
       '@apollo/usage-reporting-protobuf': 4.1.0
       '@apollo/utils.createhash': 2.0.1
@@ -884,27 +884,27 @@ packages:
       long: 4.0.0
     dev: true
 
-  /@apollo/query-graphs@2.4.7(graphql@16.6.0):
-    resolution: {integrity: sha512-LLoY0GgP3mcF+8zp3cf701ixHrsFh1WH1R8HPtO0NOgArmVMTl0bvsEHzFqUNdMd/PcU2b9SMcCmPwN7dKRs+A==}
+  /@apollo/query-graphs@2.4.8(graphql@16.6.0):
+    resolution: {integrity: sha512-9Y3tbY6t/j86CkdjpFoDq5fiM17fAZ7+csHEMS6F6JpZw7QxFvLWSAFNBCEExI6TU2P2HahAen245aaw9tIvgg==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: ^16.5.0
     dependencies:
-      '@apollo/federation-internals': 2.4.7(graphql@16.6.0)
+      '@apollo/federation-internals': 2.4.8(graphql@16.6.0)
       deep-equal: 2.2.1
       graphql: 16.6.0
       ts-graphviz: 1.8.0
       uuid: 9.0.0
     dev: true
 
-  /@apollo/query-planner@2.4.7(graphql@16.6.0):
-    resolution: {integrity: sha512-0fTA1W5NKtfxLq5+GY9ORPSQB/MRH1xOt3SbSS8o9yhR9GKzzE3yYNc88HgYAe2lfdDOesCME2t1kKrE76uzdA==}
+  /@apollo/query-planner@2.4.8(graphql@16.6.0):
+    resolution: {integrity: sha512-fL869BNhjC4f9oap3JDmlMK4hJ0YCQDmVvheCHScXuJQHQz3rXkzU3DNsojf64p/tNtrVEOlLngXSheSvATqWw==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       graphql: ^16.5.0
     dependencies:
-      '@apollo/federation-internals': 2.4.7(graphql@16.6.0)
-      '@apollo/query-graphs': 2.4.7(graphql@16.6.0)
+      '@apollo/federation-internals': 2.4.8(graphql@16.6.0)
+      '@apollo/query-graphs': 2.4.8(graphql@16.6.0)
       '@apollo/utils.keyvaluecache': 2.1.1
       chalk: 4.1.2
       deep-equal: 2.2.1
@@ -3921,7 +3921,7 @@ packages:
       os-filter-obj: 2.0.0
     dev: true
 
-  /@nestjs/apollo@12.0.1(@apollo/gateway@2.4.7)(@apollo/server@4.7.1)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/graphql@12.0.1)(graphql@16.6.0):
+  /@nestjs/apollo@12.0.1(@apollo/gateway@2.4.8)(@apollo/server@4.7.1)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/graphql@12.0.1)(graphql@16.6.0):
     resolution: {integrity: sha512-qThl0gK3nFGohWh72FADM69JI6cW7tNDeox8zJpLtzxb8zCTncq5NOJpGjF8wlEyMgXnq7bdQw6aWmbWeSEgpw==}
     peerDependencies:
       '@apollo/gateway': ^2.0.0
@@ -3940,7 +3940,7 @@ packages:
       '@as-integrations/fastify':
         optional: true
     dependencies:
-      '@apollo/gateway': 2.4.7(graphql@16.6.0)
+      '@apollo/gateway': 2.4.8(graphql@16.6.0)
       '@apollo/server': 4.7.1(graphql@16.6.0)
       '@apollo/server-plugin-landing-page-graphql-playground': 4.0.0(@apollo/server@4.7.1)
       '@nestjs/common': 10.0.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
@@ -6160,8 +6160,8 @@ packages:
       graphql: 16.6.0
     dev: true
 
-  /apollo-server-express@3.11.1(express@4.18.2)(graphql@16.6.0):
-    resolution: {integrity: sha512-x9ngcpXbBlt4naCXTwNtBFb/mOd9OU0wtFXvJkObHF26NsRazu3DxDfEuekA6V1NFOocD+A9jmVMQeQWug5MgA==}
+  /apollo-server-express@3.12.0(express@4.18.2)(graphql@16.6.0):
+    resolution: {integrity: sha512-m8FaGPUfDOEGSm7QRWRmUUGjG/vqvpQoorkId9/FXkC57fz/A59kEdrzkMt9538Xgsa5AV+X4MEWLJhTvlW3LQ==}
     engines: {node: '>=12.0'}
     deprecated: The `apollo-server-express` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
     peerDependencies:
