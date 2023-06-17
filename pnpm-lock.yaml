@@ -55,8 +55,8 @@ importers:
         specifier: ^1.7.3
         version: 1.7.3
       '@grpc/proto-loader':
-        specifier: 0.7.6
-        version: 0.7.6
+        specifier: 0.7.7
+        version: 0.7.7
       '@mdx-js/react':
         specifier: 2.3.0
         version: 2.3.0(react@17.0.2)
@@ -3536,6 +3536,18 @@ packages:
       long: 4.0.0
       protobufjs: 7.2.3
       yargs: 16.2.0
+
+  /@grpc/proto-loader@0.7.7:
+    resolution: {integrity: sha512-1TIeXOi8TuSCQprPItwoMymZXxWT0CPxUhkrkeCUH+D8U7QDwQ6b7SUz2MaLuWM2llT+J/TVFLmQI5KtML3BhQ==}
+    engines: {node: '>=6'}
+    hasBin: true
+    dependencies:
+      '@types/long': 4.0.2
+      lodash.camelcase: 4.3.0
+      long: 4.0.0
+      protobufjs: 7.2.3
+      yargs: 17.7.2
+    dev: true
 
   /@humanwhocodes/config-array@0.11.10:
     resolution: {integrity: sha512-KVVjQmNUepDVGXNuoRRdmmEjruj0KfiGSbS8LVc12LMsWDQzRXJ0qdhN8L8uUigKpfEHRhlaQFY0ib1tnUbNeQ==}
