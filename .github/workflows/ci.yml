@@ -21,7 +21,6 @@ jobs:
     with:
       node-version: '18'
       parallel-commands: |
-        pnpm exec nx-cloud record -- pnpm exec nx workspace-lint
         pnpm exec nx-cloud record -- pnpm exec nx format:check
       parallel-commands-on-agents: |
         pnpm nx affected --target=lint --parallel=3
