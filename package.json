@@ -150,7 +150,7 @@
     "socket.io-client": "4.6.1",
     "sonic-boom": "^3.2.1",
     "tree-kill": "^1.2.2",
-    "ts-morph": "18.0.0",
+    "ts-morph": "19.0.0",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.0.0",
     "typescript": "5.1.3",
