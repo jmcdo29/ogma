@@ -46,11 +46,11 @@ importers:
         specifier: ^3.3.0
         version: 3.3.0(@algolia/client-search@4.14.2)(@types/react@18.0.25)(react-dom@17.0.2)(react@17.0.2)
       '@graphql-tools/schema':
-        specifier: 9.0.18
-        version: 9.0.18(graphql@16.6.0)
+        specifier: 10.0.0
+        version: 10.0.0(graphql@16.6.0)
       '@graphql-tools/utils':
-        specifier: ^9.0.0
-        version: 9.0.0(graphql@16.6.0)
+        specifier: ^10.0.0
+        version: 10.0.1(graphql@16.6.0)
       '@grpc/grpc-js':
         specifier: ^1.7.3
         version: 1.7.3
@@ -3486,15 +3486,6 @@ packages:
 
   /@graphql-tools/utils@8.9.0(graphql@16.6.0):
     resolution: {integrity: sha512-pjJIWH0XOVnYGXCqej8g/u/tsfV4LvLlj0eATKQu5zwnxd/TiTHq7Cg313qUPTFFHZ3PP5wJ15chYVtLDwaymg==}
-    peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-    dependencies:
-      graphql: 16.6.0
-      tslib: 2.5.3
-    dev: true
-
-  /@graphql-tools/utils@9.0.0(graphql@16.6.0):
-    resolution: {integrity: sha512-kaCwyWnURxMsYbxzkfylLqFFelu83jKk3BJOOy0GIuxEtgXVS9v7Y/tojljo69Q+jaZ2YxAi3+d8IpM+hx768A==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
