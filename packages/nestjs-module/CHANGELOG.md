@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1
+
+### Patch Changes
+
+- c970428: Warn if there are multiple parsers installed of the same type
+
 ## 5.0.0
 
 ### Major Changes

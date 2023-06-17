@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies [c970428]
+  - @ogma/nestjs-module@5.0.1
+  - @ogma/platform-express@5.0.1
+
 ## 5.0.0
 
 ### Major Changes
