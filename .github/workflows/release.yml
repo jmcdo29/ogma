@@ -25,13 +25,13 @@ jobs:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v3
 
-      - name: Setup Node.js 18.x
+      - name: Setup Node.js 20.x
         uses: actions/setup-node@master
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Install pnpm
-        run: npm i -g pnpm@^6
+        run: npm i -g pnpm@^8
 
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile=false
@@ -44,10 +44,10 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@master
+        uses: changesets/action@v1
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: pnpm release
+          publish: pnpm publish -r
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
