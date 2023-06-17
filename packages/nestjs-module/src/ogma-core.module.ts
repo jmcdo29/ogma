@@ -12,6 +12,7 @@ import {
   createOgmaProvider,
   createOgmaServiceOptions,
   createOgmaTraceOptions,
+  createProviderToken,
 } from './ogma.provider';
 import { OgmaService } from './ogma.service';
 import { ConfigurableModuleClass } from './ogma-core.module-definition';
@@ -34,6 +35,15 @@ import { OgmaFilterService } from './ogma-filter.service';
     {
       provide: OGMA_INSTANCE,
       useFactory: createOgmaProvider,
+      inject: [OGMA_SERVICE_OPTIONS],
+    },
+    {
+      provide: createProviderToken(DelegatorService.name),
+      useFactory: (options) =>
+        createOgmaProvider({
+          ...options,
+          context: DelegatorService.name,
+        }),
       inject: [OGMA_SERVICE_OPTIONS],
     },
     OgmaService,

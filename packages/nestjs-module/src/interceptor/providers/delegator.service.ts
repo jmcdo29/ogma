@@ -1,8 +1,10 @@
 import { ArgumentsHost, ContextType, Injectable } from '@nestjs/common';
 import { DiscoveryService, Reflector } from '@nestjs/core';
 
+import { OgmaLogger } from '../../decorators';
 import { OgmaInterceptorServiceOptions } from '../../interfaces';
 import { OGMA_CONTEXT_PARSER } from '../../ogma.constants';
+import { OgmaService } from '../../ogma.service';
 import { DelegatorContextReturn, LogObject, MetaLogObject } from '../interfaces/log.interface';
 import { AbstractInterceptorService } from './abstract-interceptor.service';
 
@@ -12,6 +14,7 @@ export class DelegatorService {
   constructor(
     private readonly discoveryService: DiscoveryService,
     private readonly reflector: Reflector,
+    @OgmaLogger(DelegatorService) private readonly logger: OgmaService,
   ) {}
 
   async onModuleInit() {
@@ -22,6 +25,12 @@ export class DelegatorService {
           !provider.isNotMetatype && this.reflector.get(OGMA_CONTEXT_PARSER, provider.metatype),
       )
       .forEach((foundProvider) => {
+        const contextType = this.reflector.get(OGMA_CONTEXT_PARSER, foundProvider.metatype);
+        if (this.parserMap.has(contextType)) {
+          this.logger.warn(
+            `Already registered a parser for ${contextType}. New parser: ${foundProvider.name}`,
+          );
+        }
         this.parserMap.set(
           this.reflector.get(OGMA_CONTEXT_PARSER, foundProvider.metatype),
           foundProvider.instance,
