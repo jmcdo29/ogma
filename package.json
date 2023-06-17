@@ -107,7 +107,7 @@
     "class-transformer": "0.5.1",
     "class-validator": "^0.14.0",
     "clsx": "^1.2.1",
-    "conventional-changelog-cli": "^2.2.2",
+    "conventional-changelog-cli": "^3.0.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "8.43.0",
     "eslint-config-prettier": "^8.5.0",
