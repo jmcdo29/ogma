@@ -1,6 +1,6 @@
 {
   "name": "@ogma/platform-graphql",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A plugin for the OgmaInterceptor to proplery handle GQL requests with an Express server",
   "keywords": [
     "GraphQL",
