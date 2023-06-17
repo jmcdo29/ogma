@@ -46,7 +46,7 @@
   "devDependencies": {
     "@algolia/client-search": "^4.14.2",
     "@apollo/gateway": "2.4.7",
-    "@apollo/server": "4.7.1",
+    "@apollo/server": "4.7.4",
     "@astrojs/preact": "^2.0.0",
     "@astrojs/react": "^2.0.0",
     "@astrojs/sitemap": "^1.2.2",
