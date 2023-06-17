@@ -26,7 +26,7 @@ importers:
         version: 2.0.0(preact@10.11.2)
       '@astrojs/react':
         specifier: ^2.0.0
-        version: 2.0.0(@types/react-dom@18.0.8)(@types/react@18.0.25)(react-dom@17.0.2)(react@17.0.2)
+        version: 2.0.0(@types/react-dom@18.0.8)(@types/react@18.0.25)(react-dom@18.0.0)(react@18.0.0)
       '@astrojs/sitemap':
         specifier: ^1.2.2
         version: 1.2.2
@@ -44,7 +44,7 @@ importers:
         version: 3.3.0
       '@docsearch/react':
         specifier: ^3.3.0
-        version: 3.3.0(@algolia/client-search@4.14.2)(@types/react@18.0.25)(react-dom@17.0.2)(react@17.0.2)
+        version: 3.3.0(@algolia/client-search@4.14.2)(@types/react@18.0.25)(react-dom@18.0.0)(react@18.0.0)
       '@graphql-tools/schema':
         specifier: 9.0.18
         version: 9.0.18(graphql@16.6.0)
@@ -59,7 +59,7 @@ importers:
         version: 0.7.6
       '@mdx-js/react':
         specifier: 2.3.0
-        version: 2.3.0(react@17.0.2)
+        version: 2.3.0(react@18.0.0)
       '@mercuriusjs/gateway':
         specifier: ^1.2.0
         version: 1.2.0
@@ -298,11 +298,11 @@ importers:
         specifier: ^2.7.1
         version: 2.7.1
       react:
-        specifier: ^17.0.2
-        version: 17.0.2
+        specifier: ^18.0.0
+        version: 18.0.0
       react-dom:
-        specifier: ^17.0.2
-        version: 17.0.2(react@17.0.2)
+        specifier: ^18.0.0
+        version: 18.0.0(react@18.0.0)
       redis:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1239,7 +1239,7 @@ packages:
       prismjs: 1.29.0
     dev: true
 
-  /@astrojs/react@2.0.0(@types/react-dom@18.0.8)(@types/react@18.0.25)(react-dom@17.0.2)(react@17.0.2):
+  /@astrojs/react@2.0.0(@types/react-dom@18.0.8)(@types/react@18.0.25)(react-dom@18.0.0)(react@18.0.0):
     resolution: {integrity: sha512-drHnCnYH6u6hKN4ObNepw4OQiCvMsRFLeKqRbbGmME5yJyxfdkFw2K4m/8zGah90LgW1xmr9hyPsSVU3PTmd9g==}
     engines: {node: '>=16.12.0'}
     peerDependencies:
@@ -1252,8 +1252,8 @@ packages:
       '@babel/plugin-transform-react-jsx': 7.22.5(@babel/core@7.22.5)
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.8
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.0.0
+      react-dom: 18.0.0(react@18.0.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3011,7 +3011,7 @@ packages:
     resolution: {integrity: sha512-rODCdDtGyudLj+Va8b6w6Y85KE85bXRsps/R4Yjwt5vueXKXZQKYw0aA9knxLBT6a/bI/GMrAcmCR75KYOM6hg==}
     dev: true
 
-  /@docsearch/react@3.3.0(@algolia/client-search@4.14.2)(@types/react@18.0.25)(react-dom@17.0.2)(react@17.0.2):
+  /@docsearch/react@3.3.0(@algolia/client-search@4.14.2)(@types/react@18.0.25)(react-dom@18.0.0)(react@18.0.0):
     resolution: {integrity: sha512-fhS5adZkae2SSdMYEMVg6pxI5a/cE+tW16ki1V0/ur4Fdok3hBRkmN/H8VvlXnxzggkQIIRIVvYPn00JPjen3A==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -3030,8 +3030,8 @@ packages:
       '@docsearch/css': 3.3.0
       '@types/react': 18.0.25
       algoliasearch: 4.17.2
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.0.0
+      react-dom: 18.0.0(react@18.0.0)
     transitivePeerDependencies:
       - '@algolia/client-search'
     dev: true
@@ -3854,14 +3854,14 @@ packages:
       read-yaml-file: 1.1.0
     dev: true
 
-  /@mdx-js/react@2.3.0(react@17.0.2):
+  /@mdx-js/react@2.3.0(react@18.0.0):
     resolution: {integrity: sha512-zQH//gdOmuu7nt2oJR29vFhDv88oGPmVw6BggmrHeMI+xgEkp1B2dX9/bMBSYtK0dyLX/aOmesKS09g222K1/g==}
     peerDependencies:
       react: '>=16'
     dependencies:
       '@types/mdx': 2.0.5
       '@types/react': 18.0.25
-      react: 17.0.2
+      react: 18.0.0
     dev: true
 
   /@mercuriusjs/federation@1.0.1:
@@ -12711,27 +12711,25 @@ packages:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
-  /react-dom@17.0.2(react@17.0.2):
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
+  /react-dom@18.0.0(react@18.0.0):
+    resolution: {integrity: sha512-XqX7uzmFo0pUceWFCt7Gff6IyIMzFUn7QMZrbrQfGxtaxXZIcGQzoNpRLE3fQLnS4XzLLPMZX2T9TRcSrasicw==}
     peerDependencies:
-      react: 17.0.2
+      react: ^18.0.0
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react: 17.0.2
-      scheduler: 0.20.2
+      react: 18.0.0
+      scheduler: 0.21.0
     dev: true
 
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react@17.0.2:
-    resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
+  /react@18.0.0:
+    resolution: {integrity: sha512-x+VL6wbT4JRVPm7EGxXhZ8w8LTROaxPXOqhlGyVSrv0sB1jkyFGgXxJ8LVoPRLvPR6/CIZGFmfzqUa2NYeMr2A==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
     dev: true
 
   /read-pkg-up@3.0.0:
@@ -13266,11 +13264,10 @@ packages:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
     dev: true
 
-  /scheduler@0.20.2:
-    resolution: {integrity: sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==}
+  /scheduler@0.21.0:
+    resolution: {integrity: sha512-1r87x5fz9MXqswA2ERLo0EbOAU74DpIUO090gIasYTqlVoJeMcl+Z1Rg7WHz+qtPujhS/hGIt9kxZOYBV3faRQ==}
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
     dev: true
 
   /schema-utils@3.3.0:
