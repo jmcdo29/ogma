@@ -1,5 +1,5 @@
 import { Injectable, LoggerService, Optional } from '@nestjs/common';
-import { OgmaWritableLevel } from '@ogma/common';
+import { LogLevel, OgmaWritableLevel } from '@ogma/common';
 import { Ogma } from '@ogma/logger';
 
 import { InjectOgma, InjectOgmaContext, InjectTraceMethod } from './decorators';
@@ -40,6 +40,14 @@ export class OgmaService implements LoggerService {
       return requestContext.getContext().requestId;
     }
     return requestContext.requestId;
+  }
+
+  /**
+   * Change the log level during runtime
+   * @param the new log level to use
+   */
+  public setLogLevel(level: keyof typeof LogLevel) {
+    return this.ogma.setLogLevel(level);
   }
 
   /**
