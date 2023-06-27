@@ -176,7 +176,7 @@ export class OgmaService implements LoggerService {
 
   private printMessage(
     message: any,
-    levelString: Exclude<keyof Ogma, 'printMessage' | 'printError'>,
+    levelString: Exclude<keyof Ogma, 'printMessage' | 'printError' | 'setLogLevel'>,
     meta: OgmaServiceMeta = {},
   ): void {
     meta.context = meta.context ?? this.context;
