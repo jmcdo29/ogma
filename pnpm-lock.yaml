@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -373,7 +373,7 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(@nestjs/common@10.0.0)(@nestjs/microservices@10.0.0)(@nestjs/platform-express@10.0.0)(@nestjs/websockets@10.0.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/common':
-        specifier: workspace:^
+        specifier: workspace:^1.0.0
         version: link:../common
       nest-commander:
         specifier: 3.9.0
@@ -387,10 +387,10 @@ importers:
   packages/logger:
     dependencies:
       '@ogma/common':
-        specifier: workspace:^
+        specifier: workspace:^1.0.0
         version: link:../common
       '@ogma/styler':
-        specifier: workspace:^
+        specifier: workspace:^1.0.0
         version: link:../styler
       fast-safe-stringify:
         specifier: 2.1.1
@@ -411,10 +411,10 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@nestjs/common@10.0.0)(@nestjs/microservices@10.0.0)(@nestjs/platform-express@10.0.0)(@nestjs/websockets@10.0.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
       '@ogma/logger':
-        specifier: workspace:^
+        specifier: workspace:^3.0.0
         version: link:../logger
       '@ogma/styler':
-        specifier: workspace:^
+        specifier: workspace:^1.0.0
         version: link:../styler
       reflect-metadata:
         specifier: ^0.1.0
@@ -429,7 +429,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
 
   packages/platform-fastify:
@@ -438,7 +438,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
       fastify:
         specifier: '>=4.0.0'
@@ -450,10 +450,10 @@ importers:
         specifier: ^10.0.0 || ^11.0.0 || ^12.0.0
         version: 12.0.1(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.6.0)(reflect-metadata@0.1.13)(ts-morph@18.0.0)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
       '@ogma/platform-express':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../platform-express
 
   packages/platform-graphql-fastify:
@@ -462,10 +462,10 @@ importers:
         specifier: ^10.0.0 || ^11.0.0 || ^12.0.0
         version: 12.0.1(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.6.0)(reflect-metadata@0.1.13)(ts-morph@18.0.0)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
       '@ogma/platform-fastify':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../platform-fastify
 
   packages/platform-grpc:
@@ -477,7 +477,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/websockets@10.0.0)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
 
   packages/platform-kafka:
@@ -486,7 +486,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/websockets@10.0.0)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
       kafkajs:
         specifier: ^1.12.0 || ^2.0.0
@@ -498,7 +498,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/websockets@10.0.0)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
       mqtt:
         specifier: ^4.0.0
@@ -510,7 +510,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/websockets@10.0.0)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
       nats:
         specifier: ^1.4.0 || ^2.0.0
@@ -522,7 +522,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/websockets@10.0.0)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
       amqp-connection-manager:
         specifier: ^3.2.0 || ^4.0.0
@@ -537,7 +537,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/websockets@10.0.0)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
       redis:
         specifier: ^3.0.0 || ^4.0.0
@@ -552,7 +552,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/platform-socket.io@10.0.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
       socket.io:
         specifier: ^4.0.0
@@ -564,7 +564,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/websockets@10.0.0)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
 
   packages/platform-ws:
@@ -576,7 +576,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.0(@nestjs/common@10.0.0)(@nestjs/core@10.0.0)(@nestjs/platform-socket.io@10.0.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
-        specifier: workspace:^
+        specifier: workspace:^5.0.0
         version: link:../nestjs-module
       ws:
         specifier: ^7.4.2 || ^8.0.0
