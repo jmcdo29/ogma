@@ -1,5 +1,16 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- 15b6f6f: Allow the log level to be changed during runtime
+
+### Patch Changes
+
+- Updated dependencies [15b6f6f]
+  - @ogma/logger@3.1.0
+
 ## 5.0.1
 
 ### Patch Changes
