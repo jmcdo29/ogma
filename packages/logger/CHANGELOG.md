@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- 15b6f6f: Allow the log level to be changed during runtime
+
 ## 3.0.0
 
 ### Major Changes
