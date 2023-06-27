@@ -340,6 +340,15 @@ export class Ogma {
   }
 
   /**
+   * Change the set log level for the Ogma logger
+   * @param the new log level
+   */
+  public setLogLevel(level: keyof typeof LogLevel) {
+    this.options.logLevel = level;
+    return this;
+  }
+
+  /**
    * Make a log at the least important level possible. Could be fun for Easter Eggs if you like adding those in.
    * Prints the level in a magenta color
    * @param message what to log

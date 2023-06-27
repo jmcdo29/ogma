@@ -18,7 +18,7 @@
   },
   "peerDependencies": {
     "@nestjs/microservices": "^9.0.0 || ^10.0.0",
-    "@ogma/nestjs-module": "workspace:^",
+    "@ogma/nestjs-module": "workspace:^5.0.0",
     "amqp-connection-manager": "^3.2.0 || ^4.0.0",
     "amqplib": "^0.5.0 || ^0.8.0 || ^0.10.0"
   },

@@ -1,5 +1,5 @@
 {
-  "name": "benchmark-logger",
+  "name": "benchmark-bench",
   "private": true,
   "_moduleAliases": {
     "@ogma/common": "dist/packages/common/src",
