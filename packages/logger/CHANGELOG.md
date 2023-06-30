@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- e67b383: Make sonic-boom work inside worker threads
+
 ## 3.1.0
 
 ### Minor Changes
