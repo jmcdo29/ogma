@@ -30,7 +30,7 @@ jobs:
 
   report-coverage:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' && github.repository == 'jmcdo29/ogma' }}
+    if: ${{ github.event_name == 'pull_request' && github.repository == 'jmcdo29/ogma' && github.actor == 'jmcdo29' }}
     continue-on-error: true
     steps:
       - name: Checkout
