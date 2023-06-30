@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -80,7 +80,7 @@ importers:
         version: 12.0.4(@mercuriusjs/gateway@1.2.0)(@nestjs/common@10.0.4)(@nestjs/graphql@12.0.7)(fastify@4.18.0)(graphql@16.6.0)(mercurius@13.0.0)
       '@nestjs/microservices':
         specifier: ^10.0.4
-        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.15.1)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/platform-express':
         specifier: 10.0.4
         version: 10.0.4(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)
@@ -265,8 +265,8 @@ importers:
         specifier: ^4.3.7
         version: 4.3.7
       nats:
-        specifier: ^2.8.0
-        version: 2.8.0
+        specifier: ^2.15.1
+        version: 2.15.1
       nest-commander:
         specifier: ^3.9.0
         version: 3.9.0(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@types/inquirer@8.2.6)
@@ -475,7 +475,7 @@ importers:
         version: 1.7.3
       '@nestjs/microservices':
         specifier: ^9.0.0 || ^10.0.0
-        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.15.1)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
         specifier: workspace:^5.0.0
         version: link:../nestjs-module
@@ -484,7 +484,7 @@ importers:
     dependencies:
       '@nestjs/microservices':
         specifier: ^9.0.0 || ^10.0.0
-        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.15.1)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
         specifier: workspace:^5.0.0
         version: link:../nestjs-module
@@ -496,7 +496,7 @@ importers:
     dependencies:
       '@nestjs/microservices':
         specifier: ^9.0.0 || ^10.0.0
-        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.15.1)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
         specifier: workspace:^5.0.0
         version: link:../nestjs-module
@@ -520,7 +520,7 @@ importers:
     dependencies:
       '@nestjs/microservices':
         specifier: ^9.0.0 || ^10.0.0
-        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.15.1)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
         specifier: workspace:^5.0.0
         version: link:../nestjs-module
@@ -535,7 +535,7 @@ importers:
     dependencies:
       '@nestjs/microservices':
         specifier: ^9.0.0 || ^10.0.0
-        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.15.1)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
         specifier: workspace:^5.0.0
         version: link:../nestjs-module
@@ -562,7 +562,7 @@ importers:
     dependencies:
       '@nestjs/microservices':
         specifier: ^9.0.0 || ^10.0.0
-        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+        version: 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.15.1)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/nestjs-module':
         specifier: workspace:^5.0.0
         version: link:../nestjs-module
@@ -3996,7 +3996,7 @@ packages:
         optional: true
     dependencies:
       '@nestjs/common': 10.0.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/microservices': 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/microservices': 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.15.1)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/platform-express': 10.0.4(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)
       '@nestjs/websockets': 10.0.4(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/platform-socket.io@10.0.4)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nuxtjs/opencollective': 0.3.2
@@ -4102,6 +4102,57 @@ packages:
       tslib: 2.6.0
     dev: true
 
+  /@nestjs/microservices@10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.15.1)(reflect-metadata@0.1.13)(rxjs@7.8.1):
+    resolution: {integrity: sha512-BmS6rZhD9Hk1q3ZnmSs6uHJ9vKXaPEesKPgm+iCyqw6UNU7NNP/EacT4lEJKa9znr8yMUq+0hLnZWDteVFJQFw==}
+    peerDependencies:
+      '@grpc/grpc-js': '*'
+      '@nestjs/common': ^10.0.0
+      '@nestjs/core': ^10.0.0
+      '@nestjs/websockets': ^10.0.0
+      amqp-connection-manager: '*'
+      amqplib: '*'
+      cache-manager: '*'
+      ioredis: '*'
+      kafkajs: '*'
+      mqtt: '*'
+      nats: '*'
+      reflect-metadata: ^0.1.12
+      rxjs: ^7.1.0
+    peerDependenciesMeta:
+      '@grpc/grpc-js':
+        optional: true
+      '@nestjs/websockets':
+        optional: true
+      amqp-connection-manager:
+        optional: true
+      amqplib:
+        optional: true
+      cache-manager:
+        optional: true
+      ioredis:
+        optional: true
+      kafkajs:
+        optional: true
+      mqtt:
+        optional: true
+      nats:
+        optional: true
+    dependencies:
+      '@grpc/grpc-js': 1.7.3
+      '@nestjs/common': 10.0.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/core': 10.0.4(@nestjs/common@10.0.4)(@nestjs/microservices@10.0.4)(@nestjs/platform-express@10.0.4)(@nestjs/websockets@10.0.4)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/websockets': 10.0.4(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/platform-socket.io@10.0.4)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      amqp-connection-manager: 4.1.13(amqplib@0.10.3)
+      amqplib: 0.10.3
+      ioredis: 5.2.4
+      iterare: 1.2.1
+      kafkajs: 2.2.4
+      mqtt: 4.3.7
+      nats: 2.15.1
+      reflect-metadata: 0.1.13
+      rxjs: 7.8.1
+      tslib: 2.6.0
+
   /@nestjs/microservices@10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1):
     resolution: {integrity: sha512-BmS6rZhD9Hk1q3ZnmSs6uHJ9vKXaPEesKPgm+iCyqw6UNU7NNP/EacT4lEJKa9znr8yMUq+0hLnZWDteVFJQFw==}
     peerDependencies:
@@ -4152,6 +4203,7 @@ packages:
       reflect-metadata: 0.1.13
       rxjs: 7.8.1
       tslib: 2.6.0
+    dev: false
 
   /@nestjs/platform-express@10.0.4(@nestjs/common@10.0.4)(@nestjs/core@10.0.4):
     resolution: {integrity: sha512-Gt1jMQr9rrAgnDNWGwZS6Me1JIp3j/NB82wTY6NGd/RZpe8cfz3JAPmjWK7ONnDuPZw9jyBw/+/C5+a1dJIylg==}
@@ -4256,7 +4308,7 @@ packages:
     dependencies:
       '@nestjs/common': 10.0.4(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/core': 10.0.4(@nestjs/common@10.0.4)(@nestjs/microservices@10.0.4)(@nestjs/platform-express@10.0.4)(@nestjs/websockets@10.0.4)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/microservices': 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.8.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/microservices': 10.0.4(@grpc/grpc-js@1.7.3)(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)(@nestjs/websockets@10.0.4)(amqp-connection-manager@4.1.13)(amqplib@0.10.3)(ioredis@5.2.4)(kafkajs@2.2.4)(mqtt@4.3.7)(nats@2.15.1)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@nestjs/platform-express': 10.0.4(@nestjs/common@10.0.4)(@nestjs/core@10.0.4)
       tslib: 2.6.0
     dev: true
@@ -11722,12 +11774,19 @@ packages:
     hasBin: true
     dev: true
 
+  /nats@2.15.1:
+    resolution: {integrity: sha512-MMCQXxOLv3dUwh0CRai0RGdMdAHjA3LNOYEAdNkLT8GX4CJFVKlYqkM3K9qVkYhvWwiCUVPHWFSktcrhexSzSw==}
+    engines: {node: '>= 14.0.0'}
+    dependencies:
+      nkeys.js: 1.0.5
+
   /nats@2.8.0:
     resolution: {integrity: sha512-FabrmbDYGH8x8iajdFqhr3RptxJ4qlK1uKuqaHf8EUNY3Zr8DtRw2naiJsIzex27GnSs0UqQG/upPU9Yh66zlA==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       nkeys.js: 1.0.3
       web-streams-polyfill: 3.2.1
+    dev: false
 
   /natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
@@ -11782,6 +11841,13 @@ packages:
 
   /nkeys.js@1.0.3:
     resolution: {integrity: sha512-p5Bpb/acPaQmCrbe4gNmMBY/naZJV8Q7m2B9UkXT8BQRC6wjX8zqD2ya8eZu9mpSXQffodV46HCP9OckmxcwYA==}
+    engines: {node: '>=10.0.0'}
+    dependencies:
+      tweetnacl: 1.0.3
+    dev: false
+
+  /nkeys.js@1.0.5:
+    resolution: {integrity: sha512-u25YnRPHiGVsNzwyHnn+PT90sgAhnS8jUJ1nxmkHMFYCJ6+Ic0lv291w7uhRBpJVJ3PH2GWbYqA151lGCRrB5g==}
     engines: {node: '>=10.0.0'}
     dependencies:
       tweetnacl: 1.0.3
@@ -14771,6 +14837,7 @@ packages:
   /web-streams-polyfill@3.2.1:
     resolution: {integrity: sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==}
     engines: {node: '>= 8'}
+    dev: false
 
   /webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
