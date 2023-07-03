@@ -47,7 +47,7 @@
     "@algolia/client-search": "^4.14.2",
     "@apollo/gateway": "2.4.7",
     "@apollo/server": "4.7.1",
-    "@astrojs/preact": "^2.0.0",
+    "@astrojs/preact": "^2.2.1",
     "@astrojs/react": "^2.0.0",
     "@astrojs/sitemap": "^1.2.2",
     "@changesets/cli": "^2.25.2",
