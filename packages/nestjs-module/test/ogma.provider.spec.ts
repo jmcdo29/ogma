@@ -33,17 +33,14 @@ CreateOgmaInterceptorOptionsFactorySuite.run();
 
 const CreateOgmaServiceOptionsSuite = suite('Create Ogma Service Options');
 CreateOgmaServiceOptionsSuite('Should return the service options', () => {
-  is(createOgmaServiceOptions({ interceptor: {} }), undefined);
+  equal(createOgmaServiceOptions({}), {});
 });
 CreateOgmaServiceOptionsSuite('Should return actual options and not undefined', () => {
   equal(
     createOgmaServiceOptions({
-      interceptor: {},
-      service: {
-        json: false,
-        color: true,
-        application: 'something',
-      },
+      json: false,
+      color: true,
+      application: 'something',
     }),
     {
       color: true,
