@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.2
+
+### Patch Changes
+
+- 743cf48: Removed the index type from the ogma options to allow for better intellisense
+
 ## 3.1.1
 
 ### Patch Changes
