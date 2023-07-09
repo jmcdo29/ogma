@@ -109,7 +109,6 @@ export interface OgmaOptions {
    * desired.
    */
   each: boolean;
-  [index: string]: any;
 }
 
 const stream = process
