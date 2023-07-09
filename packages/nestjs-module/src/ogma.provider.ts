@@ -23,7 +23,7 @@ export function createOgmaProvider(options?: Partial<OgmaOptions>): Ogma {
 }
 
 export function createOgmaServiceOptions(options: OgmaModuleOptions): OgmaModuleOptions {
-  return options.service;
+  return options;
 }
 
 export function createOgmaTraceOptions(options: OgmaModuleOptions): Lowercase<OgmaWritableLevel> {
