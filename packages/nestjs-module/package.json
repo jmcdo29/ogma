@@ -1,6 +1,6 @@
 {
   "name": "@ogma/nestjs-module",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "A NestJS module for the Ogma logger",
   "keywords": [
     "nestjs",
@@ -20,7 +20,7 @@
     "lib": "lib"
   },
   "dependencies": {
-    "@ogma/logger": "workspace:^3.1.0",
+    "@ogma/logger": "workspace:^3.1.2",
     "@ogma/styler": "workspace:^1.0.0"
   },
   "peerDependencies": {

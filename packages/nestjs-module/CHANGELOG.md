@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.1.1
+
+### Patch Changes
+
+- 18c0d5f: Update the service options provider to correctly pass on the options to the ogma creation process
+- Updated dependencies [743cf48]
+  - @ogma/logger@3.1.2
+
 ## 5.1.0
 
 ### Minor Changes
