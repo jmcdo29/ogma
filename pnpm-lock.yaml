@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -215,7 +215,7 @@ importers:
         version: 8.5.0(eslint@8.43.0)
       eslint-plugin-prettier:
         specifier: ^4.2.1
-        version: 4.2.1(eslint-config-prettier@8.5.0)(eslint@8.43.0)(prettier@2.7.1)
+        version: 4.2.1(eslint-config-prettier@8.5.0)(eslint@8.43.0)(prettier@3.0.0)
       eslint-plugin-simple-import-sort:
         specifier: 10.0.0
         version: 10.0.0(eslint@8.43.0)
@@ -295,8 +295,8 @@ importers:
         specifier: ^10.11.2
         version: 10.11.2
       prettier:
-        specifier: ^2.7.1
-        version: 2.7.1
+        specifier: ^3.0.0
+        version: 3.0.0
       react:
         specifier: ^17.0.2
         version: 17.0.2
@@ -411,7 +411,7 @@ importers:
         specifier: ^9.0.0 || ^10.0.0
         version: 10.0.4(@nestjs/common@10.0.4)(@nestjs/microservices@10.0.4)(@nestjs/platform-express@10.0.4)(@nestjs/websockets@10.0.4)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@ogma/logger':
-        specifier: workspace:^3.1.0
+        specifier: workspace:^3.1.2
         version: link:../logger
       '@ogma/styler':
         specifier: workspace:^1.0.0
@@ -3799,6 +3799,7 @@ packages:
 
   /@jridgewell/source-map@0.3.4:
     resolution: {integrity: sha512-KE/SxsDqNs3rrWwFHcRh15ZLVFrI0YoZtgAdIyIq9k5hUNmiWRXXThPomIxHuL20sLdgzbDFyvkUMna14bvtrw==}
+    deprecated: the version has a bug with typescript type resolution
     dev: true
 
   /@jridgewell/sourcemap-codec@1.4.14:
@@ -8113,7 +8114,7 @@ packages:
       eslint: 8.43.0
     dev: true
 
-  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.5.0)(eslint@8.43.0)(prettier@2.7.1):
+  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.5.0)(eslint@8.43.0)(prettier@3.0.0):
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -8126,7 +8127,7 @@ packages:
     dependencies:
       eslint: 8.43.0
       eslint-config-prettier: 8.5.0(eslint@8.43.0)
-      prettier: 2.7.1
+      prettier: 3.0.0
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -12530,6 +12531,12 @@ packages:
   /prettier@2.7.1:
     resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
     engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
+  /prettier@3.0.0:
+    resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
