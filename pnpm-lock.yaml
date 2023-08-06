@@ -419,6 +419,9 @@ importers:
       '@ogma/styler':
         specifier: workspace:^1.0.0
         version: link:../styler
+      decorate-all:
+        specifier: 1.2.1
+        version: 1.2.1(reflect-metadata@0.1.13)
       reflect-metadata:
         specifier: ^0.1.0
         version: 0.1.13
@@ -7619,7 +7622,6 @@ packages:
       reflect-metadata: ^0
     dependencies:
       reflect-metadata: 0.1.13
-    dev: true
 
   /dedent@0.7.0:
     resolution: {integrity: sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==}
