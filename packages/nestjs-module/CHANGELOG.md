@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2
+
+### Patch Changes
+
+- 1ec5683: Properly handle observable and promise errors for the @Log() decorator
+
 ## 5.1.1
 
 ### Patch Changes
