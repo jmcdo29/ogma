@@ -1,5 +1,6 @@
 import { ContextType, Inject } from '@nestjs/common';
-import { isObservable, tap } from 'rxjs';
+import { DecorateAll } from 'decorate-all';
+import { isObservable, Observable, tap } from 'rxjs';
 
 import { AbstractInterceptorService } from '../interceptor/providers';
 import { Type } from '../interfaces';
@@ -12,6 +13,10 @@ export const OgmaLogger = (topic: string | (() => any) | Type<any>) =>
 
 export const OgmaLoggerRequestScoped = (topic: string | (() => any) | Type<any>) =>
   Inject(createRequestScopedProviderToken(typeof topic === 'function' ? topic.name : topic));
+
+const isPromise = (obj: unknown): obj is Promise<any> => {
+  return typeof obj === 'object' && obj !== null && 'then' in obj && typeof obj.then === 'function';
+};
 
 const logEnd = (
   { context, method }: { context: string; method: string },
@@ -32,9 +37,16 @@ export const Log =
       const logger: OgmaService = this[loggerProperty];
       const context = `${target.constructor.name}#${method}`;
       logger.trace(`Start ${method}`, { context });
-      let result = (impl as any).apply(this, args);
-      if (result.then) {
-        result.finally(() => {
+      let result: Promise<unknown> | Observable<unknown> | unknown;
+      try {
+        result = (impl as any).apply(this, args);
+      } finally {
+        if (!(typeof result === 'object' || typeof result === 'function')) {
+          logEnd({ context, method }, logger, start);
+        }
+      }
+      if (isPromise(result)) {
+        return result.finally(() => {
           logEnd({ context, method }, logger, start);
         });
       } else if (isObservable(result)) {
@@ -43,32 +55,20 @@ export const Log =
          * we need to re-assign the `result` back to itself so that the new pipe will be ran
          * with the original observable
          */
-        result = result.pipe(tap({ complete: () => logEnd({ context, method }, logger, start) }));
-      } else {
-        logEnd({ context, method }, logger, start);
+        return result.pipe(
+          tap({
+            error: () => logEnd({ context, method }, logger, start),
+            complete: () => logEnd({ context, method }, logger, start),
+          }),
+        );
       }
       return result;
     } as any;
     return descriptor;
   };
 
-export const LogAll =
-  (loggerProperty = 'logger'): ClassDecorator =>
-  (target) => {
-    const allKeys = Reflect.ownKeys(target.prototype);
-    const keys = allKeys.filter((key) => key !== 'constructor');
-    for (const key of keys) {
-      const logRet = Log(loggerProperty)(
-        target.prototype,
-        key,
-        Reflect.getOwnPropertyDescriptor(target.prototype, key),
-      );
-      if (logRet) {
-        target.prototype[key] = logRet.value;
-      }
-    }
-    return target;
-  };
+export const LogAll = (loggerProperty = 'logger'): ClassDecorator =>
+  DecorateAll(Log(loggerProperty));
 
 type ParserDecorator = <TFunction extends Type<AbstractInterceptorService>>(
   target: TFunction,
