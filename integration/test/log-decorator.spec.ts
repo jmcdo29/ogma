@@ -9,7 +9,7 @@ import {
   OgmaService,
 } from '@ogma/nestjs-module';
 import { Stub, stubMethod } from 'hanbi';
-import { delay, of } from 'rxjs';
+import { delay, of, switchMap, take, throwError, timer } from 'rxjs';
 import { suite } from 'uvu';
 import { is, match } from 'uvu/assert';
 
@@ -30,6 +30,24 @@ class TestService {
   @Log()
   testMethodRxJs() {
     return of('hello').pipe(delay(200));
+  }
+
+  @Log()
+  testMethodError() {
+    throw new Error('Boom!');
+  }
+
+  @Log()
+  testAsyncMethodError() {
+    return new Promise((_resolve, reject) => setTimeout(() => reject(new Error('Boom!')), 300));
+  }
+
+  @Log()
+  testMethodErrorRxJs() {
+    return timer(200).pipe(
+      take(1),
+      switchMap(() => throwError(() => new Error('Boom!'))),
+    );
   }
 }
 
@@ -62,10 +80,8 @@ LogDecoratorSuite.before(async (context) => {
   const mod = await Test.createTestingModule({
     imports: [
       OgmaModule.forRoot({
-        service: {
-          application: 'LogDecorator',
-          logLevel: 'ALL',
-        },
+        application: 'LogDecorator',
+        logLevel: 'ALL',
       }),
       OgmaModule.forFeatures(['TestService', 'TestLogAllService']),
     ],
@@ -107,6 +123,47 @@ LogDecoratorSuite('rxjs log call', async ({ testServiceLogSpy, testService }) =>
         is(testServiceLogSpy.firstCall.args[0], 'Start testMethodRxJs');
         match(testServiceLogSpy.lastCall.args[0], /End testMethodRxJs - 2\d{2}ms/);
         resolve();
+      },
+    });
+  });
+});
+
+LogDecoratorSuite('sync error method log call', ({ testServiceLogSpy, testService }) => {
+  try {
+    testService.testMethodError();
+  } catch {
+    is(testServiceLogSpy.callCount, 2);
+    is(testServiceLogSpy.firstCall.args[0], 'Start testMethodError');
+    match(testServiceLogSpy.lastCall.args[0], /End testMethodError - \d+ms/);
+  }
+});
+
+LogDecoratorSuite('async error method log call', async ({ testServiceLogSpy, testService }) => {
+  await testService.testAsyncMethodError().catch(() => {
+    is(testServiceLogSpy.callCount, 2);
+    is(testServiceLogSpy.firstCall.args[0], 'Start testAsyncMethodError');
+    match(testServiceLogSpy.lastCall.args[0], /End testAsyncMethodError - \d+ms/);
+  });
+});
+
+LogDecoratorSuite('rxjs error log call', async ({ testServiceLogSpy, testService }) => {
+  let wasAsserted = false;
+  return new Promise((resolve, reject) => {
+    testService.testMethodErrorRxJs().subscribe({
+      error: () => {
+        is(testServiceLogSpy.callCount, 2);
+        is(testServiceLogSpy.firstCall.args[0], 'Start testMethodErrorRxJs');
+        match(testServiceLogSpy.lastCall.args[0], /End testMethodErrorRxJs - 2\d{2}ms/);
+        wasAsserted = true;
+        resolve();
+      },
+      complete: () => {
+        is(wasAsserted, true, 'The error hook should have ran for the observable');
+        if (wasAsserted) {
+          resolve();
+        } else {
+          reject();
+        }
       },
     });
   });
