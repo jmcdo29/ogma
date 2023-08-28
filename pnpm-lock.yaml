@@ -145,8 +145,8 @@ importers:
         specifier: ^4.17.31
         version: 4.17.31
       '@types/morgan':
-        specifier: ^1.9.3
-        version: 1.9.3
+        specifier: ^1.9.5
+        version: 1.9.5
       '@types/node':
         specifier: 18.16.18
         version: 18.16.18
@@ -5345,8 +5345,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/morgan@1.9.3:
-    resolution: {integrity: sha512-BiLcfVqGBZCyNCnCH3F4o2GmDLrpy0HeBVnNlyZG4fo88ZiE9SoiBe3C+2ezuwbjlEyT+PDZ17//TAlRxAn75Q==}
+  /@types/morgan@1.9.5:
+    resolution: {integrity: sha512-5TgfIWm0lcTGnbCZExwc19dCOMOMmAiiBZQj8Ko3NRxsVDgRxf+AEGRQTqNVA5Yh2xfdWp4clbAEMbYP+jkOqg==}
     dependencies:
       '@types/node': 18.16.18
     dev: true
