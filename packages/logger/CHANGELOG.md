@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.3
+
+### Patch Changes
+
+- 44e293a: Properly ignore the hostname, pid, and application in json logsm if the option is set to not usethem
+
 ## 3.1.2
 
 ### Patch Changes
