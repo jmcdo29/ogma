@@ -14,12 +14,11 @@ const checkIfHasSpaceRegex = /[^\n]$/;
  */
 export class Ogma {
   private options: OgmaOptions;
-  private pid: string;
-  private jsonPid: number | undefined;
-  private hostname: string;
+  private readonly pid: string;
+  private readonly hostname: string;
   private styler: Styler;
   private each: boolean;
-  private application: string;
+  private readonly application: string;
 
   private cachedContextFormatted: Map<string, Map<Color, string>> = new Map();
   private sillyFormattedLevel: string;
@@ -59,8 +58,7 @@ export class Ogma {
         .filter((key) => isNil(options[key]))
         .forEach((key) => delete options[key]);
     this.options = { ...OgmaDefaults, ...(options as OgmaOptions) };
-    this.jsonPid = Number(process.pid);
-    this.pid = this.wrapInBrackets(this.jsonPid.toString()) + ' ';
+    this.pid = this.wrapInBrackets(process.pid.toString()) + ' ';
     this.hostname = hostname();
     if (options?.logLevel && LogLevel[options.logLevel] === undefined) {
       this.options.logLevel = OgmaDefaults.logLevel;
@@ -80,7 +78,10 @@ export class Ogma {
     }
     if (!this.options.logPid) {
       this.pid = '';
-      this.jsonPid = undefined;
+    }
+    if (this.options.json) {
+      this.hostname &&= `"hostname":${this.asString(this.hostname)},`;
+      this.pid &&= `"pid":${process.pid},`;
     }
     this.cachedMasks = this.options?.masks
       ? new Map(this.options.masks.map((mask) => [mask, true]))
@@ -216,25 +217,31 @@ export class Ogma {
 
     let fastJson = `{"time":${Date.now()},`;
 
-    fastJson += `"hostname":${this.asString(this.hostname)},`;
-    fastJson += `"pid":${this.jsonPid},`;
+    fastJson += this.hostname ?? '';
+    fastJson += this.pid ?? '';
     fastJson += `"ool":${this.asString(LogLevel[level])},`;
     fastJson += `"level":${mappedLevel},`;
 
-    if (application) fastJson += `"application":${this.asString(application)},`;
-
-    if (correlationId) fastJson += `"correlationId":${this.asString(correlationId)},`;
-
-    if (context) fastJson += `"context":${this.asString(context)},`;
-
-    if (meta && Object.keys(meta).length > 0) fastJson += `"meta":${stringify(meta)},`;
-
-    if (this.options.levelKey) fastJson += `"${this.options.levelKey}":${mappedLevel},`;
-
+    if (application) {
+      fastJson += `"application":${this.asString(application)},`;
+    }
+    if (correlationId) {
+      fastJson += `"correlationId":${this.asString(correlationId)},`;
+    }
+    if (context) {
+      fastJson += `"context":${this.asString(context)},`;
+    }
+    if (meta && Object.keys(meta).length > 0) {
+      fastJson += `"meta":${stringify(meta)},`;
+    }
+    if (this.options.levelKey) {
+      fastJson += `"${this.options.levelKey}":${mappedLevel},`;
+    }
     if (typeof message === 'object')
       fastJson += `"message":${stringify(message, this.circularReplacer())}`;
-    else fastJson += `"message":${this.asString(message.toString())}`;
-
+    else if (message !== undefined) {
+      fastJson += `"message":${this.asString(message.toString())}`;
+    }
     fastJson += '}';
 
     return fastJson;
