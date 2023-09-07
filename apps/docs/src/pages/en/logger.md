@@ -57,13 +57,13 @@ Examples can be seen below. The JSON structure follows the same form with log le
 
 To get `ogma` to automatically print multiple values for you, rather than having to call `ogma.log` on each value, you can pass an array of value and the `{ each: true }` option to `ogma`. This will cause `ogma` to print each value of the array as if you had called `ogma.log` on each one.
 
-::: info
+:::info
 
 Ogma ill **not** recursively print arrays of arrays. `[ ['Hello', 'World'], ['Foo', 'Bar', 'Baz']` will print two arrays across two lines, not five strings across five lines.
 
 :::
 
-::: info
+:::info
 
 This option is available in `@ogma/logger@^2.4.0`
 
@@ -71,7 +71,7 @@ This option is available in `@ogma/logger@^2.4.0`
 
 This option is also available globally, so you can set it on the instantiation of your ogma instance and no worry about it on each call.
 
-::: info
+:::info
 
 This option is available in `@ogma/logger@^2.5.0`
 
@@ -90,8 +90,8 @@ This option is available in `@ogma/logger@^2.5.0`
 | levelMap | an object with the above levels as the keys and strings as the vales | a way to provide custom log levels in the event that there are mappings the developer wants to support |
 | masks | string[] | An array of words that should be replaced while logging. useful for sensitive information like passwords. |
 | logPid | boolean | An optional property you can set if you don't want to log the PID. |
-| logApplication | boolean | An optional property you can set if you don't want to the the applicaiton name. |
-| logHostnam | boolean | An optional property you can set if you don't want to log the hostname ofthe machine you're on. |
+| logApplication | boolean | An optional property you can set if you don't want to the the application name. |
+| logHostname | boolean | An optional property you can set if you don't want to log the hostname of the machine you're on. |
 | each | boolean | An optional property that determines if array values should be printed on separate lines by default or not |
 
 :::note
