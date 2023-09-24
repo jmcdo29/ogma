@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.1.4
+
+### Patch Changes
+
+- 5ee0fed: Make it so that the "each" option does not end up double printing the arrays of objects passed to the logger
+- 5ee0fed: Fix an issue with sonic-boom not printing all the logs in a worker thread
+
 ## 3.1.3
 
 ### Patch Changes
