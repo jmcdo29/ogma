@@ -302,6 +302,7 @@ export class Ogma {
   ): string {
     if (Array.isArray(message) && each) {
       const messages = message;
+      message = '';
       for (let i = 0; i < messages.length; i++) {
         message += this.stringifyObject(messages[i], i === 0, i + 1 < messages.length);
       }

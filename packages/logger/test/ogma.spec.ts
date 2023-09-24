@@ -289,10 +289,14 @@ OgmaSuite(
     const messages = ['hello', 42, { key: 'value' }, true];
     ogma.log(messages, { each: true });
     is(writeSpy.calls.size, 1, 'Expected there to be one calls to the write stream');
-    const expected = `hello 42 {
+    const expected = ` hello 42 {
   "key": "value"
 } true`;
-    match(getFirstCallString(writeSpy), expected);
+    match(
+      getFirstCallString(writeSpy),
+      expected,
+      `Expected "${getFirstCallString(writeSpy)}" to match the value "${expected}"`,
+    );
   },
 );
 OgmaSuite(
