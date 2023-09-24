@@ -62,7 +62,7 @@ function autoEnd(stream, eventName) {
 }
 
 export function initializeStreamOnNodeJs(): OgmaStream {
-  const sonicBoom = buildSafeSonicBoom({ fd: process.stdout.fd });
+  const sonicBoom = buildSafeSonicBoom({ fd: process.stdout.fd ?? 1 });
 
   return { write: sonicBoom.write.bind(sonicBoom) };
 }
