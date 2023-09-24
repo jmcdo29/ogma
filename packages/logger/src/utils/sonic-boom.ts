@@ -3,7 +3,7 @@ import * as onExit from 'on-exit-leak-free';
 import SonicBoom from 'sonic-boom';
 import { isMainThread } from 'worker_threads';
 
-const noop = (_args?: any) => true; // eslint-disable-line @typescript-eslint/no-empty-function
+const noop = (_args?: any) => true;
 
 /**
  * thanks pinojs
