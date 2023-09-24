@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.5
+
+### Patch Changes
+
+- 3044ab1: Set a default file descriptor for sonic-boom. This is helpful in environments like vitest
+
 ## 3.1.4
 
 ### Patch Changes
