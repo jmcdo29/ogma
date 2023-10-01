@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.1.3
+
+### Patch Changes
+
+- 99b3be9: OgmaService properly returns the OgmaService instance when changing the log level, insterad of the underkying Ogma class instance
+- Updated dependencies [6cd729d]
+  - @ogma/logger@3.1.6
+
 ## 5.1.2
 
 ### Patch Changes
