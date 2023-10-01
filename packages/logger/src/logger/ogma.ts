@@ -154,7 +154,7 @@ export class Ogma {
     const seen = new WeakSet();
     return (key: string, value: any): string | number | boolean => {
       if (this.cachedMasks?.has(key)) {
-        return '*'.repeat(value.toString().length);
+        return '*'.repeat(value?.toString().length ?? 9);
       }
 
       if (value === null) return value;
@@ -326,10 +326,16 @@ export class Ogma {
       return '';
     }
 
-    if (this.cachedContextFormatted.has(value) && this.cachedContextFormatted.get(value).has(color))
+    if (
+      this.cachedContextFormatted.has(value) &&
+      this.cachedContextFormatted.get(value).has(color)
+    ) {
       return this.cachedContextFormatted.get(value).get(color);
+    }
 
-    if (!this.cachedContextFormatted.has(value)) this.cachedContextFormatted.set(value, new Map());
+    if (!this.cachedContextFormatted.has(value)) {
+      this.cachedContextFormatted.set(value, new Map());
+    }
 
     const cachedValue = colorize(
       this.wrapInBrackets(value),
