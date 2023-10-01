@@ -272,10 +272,30 @@ OgmaSuite(
 );
 for (const json of [true, false]) {
   OgmaSuite(
-    `it should make the value for the password. JSON: ${json}`,
+    `it should mask the value for the password. JSON: ${json}`,
     ({ writeSpy, ogmaFactory, getFirstCallString }) => {
       const ogma = ogmaFactory({ json, masks: ['password'] });
       ogma.log({ username: 'something', password: 'mask this' });
+      const loggedVal = getFirstCallString(writeSpy);
+      match(loggedVal, /"username":\s?"something",/);
+      match(loggedVal, /"password":\s?"\*{9}"/);
+    },
+  );
+  OgmaSuite(
+    `it should allow for an undefined value for the masked field. JSON: ${json}`,
+    ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+      const ogma = ogmaFactory({ json, masks: ['password'] });
+      ogma.log({ username: 'something', password: undefined });
+      const loggedVal = getFirstCallString(writeSpy);
+      match(loggedVal, /"username":\s?"something",/);
+      match(loggedVal, /"password":\s?"\*{9}"/);
+    },
+  );
+  OgmaSuite(
+    `it should allow for an null value for the masked field. JSON: ${json}`,
+    ({ writeSpy, ogmaFactory, getFirstCallString }) => {
+      const ogma = ogmaFactory({ json, masks: ['password'] });
+      ogma.log({ username: 'something', password: null });
       const loggedVal = getFirstCallString(writeSpy);
       match(loggedVal, /"username":\s?"something",/);
       match(loggedVal, /"password":\s?"\*{9}"/);
