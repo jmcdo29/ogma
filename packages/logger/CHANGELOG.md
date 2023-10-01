@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.6
+
+### Patch Changes
+
+- 6cd729d: Allow for the value of a masked property to be null or undefined
+
 ## 3.1.5
 
 ### Patch Changes
