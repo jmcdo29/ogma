@@ -47,7 +47,8 @@ export class OgmaService implements LoggerService {
    * @param the new log level to use
    */
   public setLogLevel(level: keyof typeof LogLevel) {
-    return this.ogma.setLogLevel(level);
+    this.ogma.setLogLevel(level);
+    return this;
   }
 
   /**
@@ -67,7 +68,7 @@ export class OgmaService implements LoggerService {
    * use Ogma to log at the ERROR level. You can provide a stack trace as well.
    * @param message What to print to the Ogma instance
    * @param meta additional information you can print about the log OR the stack trace to print
-   * @param context a string for the context in which the error log was called. This can be provided as a part of the meta, or as a third paramter to stay in line with Nest's LoggerService
+   * @param context a string for the context in which the error log was called. This can be provided as a part of the meta, or as a third parameter to stay in line with Nest's LoggerService
    */
   public error(
     message: any,
@@ -103,7 +104,7 @@ export class OgmaService implements LoggerService {
   }
 
   /**
-   * use Ogma to log at the DBEUG level
+   * use Ogma to log at the DEBUG level
    * @param message What to print to the Ogma instance
    * @param meta extra metadata for the log
    */
