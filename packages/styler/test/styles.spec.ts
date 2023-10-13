@@ -92,5 +92,20 @@ StylerSuite('it should apply absolutely no styles', () => {
   const nsStyle = style.child();
   is(nsStyle.blue.underline.blink.apply(hello), hello);
   process.env.NO_STYLE = ogNO_STYLE;
+  if (process.env.NO_STYLE === 'undefined') {
+    process.env.NO_STYLE = '';
+  }
+});
+StylerSuite('Composition, usage inside a styler should still apply outer style', () => {
+  const output = style.blue.apply(`hello ${style.child().underline.apply('blue')} world`);
+  const expectedString = '\x1B[34mhello \x1B[4mblue\x1B[0m\x1B[34m world\x1B[0m';
+  is(
+    output,
+    expectedString,
+    `Expected ${expectedString.replaceAll(/\x1B/g, '\\x1B')}, but received ${output.replaceAll(
+      /\x1B/g,
+      '\\x1B',
+    )}`,
+  );
 });
 StylerSuite.run();

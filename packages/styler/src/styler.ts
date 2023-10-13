@@ -231,8 +231,12 @@ export class Styler {
    * @returns A string that has the proper SGR values
    */
   public apply(val: string | number | boolean) {
-    if (this.stylesToApply === '') return val.toString();
-
+    if (this.stylesToApply === '') {
+      return val.toString();
+    }
+    if (typeof val === 'string' && /\x1B\[0m/.test(val)) {
+      val = val.replace(/\x1B\[0m/g, `\x1B[0m${this.stylesToApply}`);
+    }
     const returnValue = `${this.stylesToApply}${val}\x1B[0m`;
 
     this.stylesToApply = '';
