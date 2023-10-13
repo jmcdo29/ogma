@@ -1,5 +1,11 @@
 # @ogma/styler
 
+## 1.1.0
+
+### Minor Changes
+
+- de1a56c: Allow for child stylers to compose styles on sub-strings
+
 ## 1.0.1
 
 ### Patch Changes
