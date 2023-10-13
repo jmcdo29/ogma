@@ -37,6 +37,19 @@ console.log(style.blue.yellowBg.underline.apply('Hello World!'));
 
 ![blue-yellow-bg-underline](https://ogma-docs-images.s3-us-west-2.amazonaws.com/blue-yellowbg-underline.png)
 
+## Composing Styles
+
+If you want to take advantage of applying style to a subset of the string you are currently styling, you can invoke a child styler and apply the sub-style to only a portion of the sub-string:
+
+```ts
+console.log(
+  `${style.blue.apply(
+    `Hello ${style.child().underline.apply('blue')} world`
+  )}`
+);
+// prints \x1B[34mHello \x1B[4mblue\x1B[0m\x1B[34m world\x1B[0m
+```
+
 ## What styles are available?
 
 Most of the [values on the SGR list](<https://en.wikipedia.org/wiki/ANSI_escape_code#SGR_(Select_Graphic_Rendition)_parameters>) are available to use. `underline`, `italic`, `bold,` `double-underline`, `blink`, and `color` to name a few.
