@@ -1,7 +1,7 @@
-import { defineConfig } from 'astro/config';
 import preact from '@astrojs/preact';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import { defineConfig } from 'astro/config';
 import { h } from 'hastscript';
 import directive from 'remark-directive';
 import { visit } from 'unist-util-visit';
