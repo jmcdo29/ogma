@@ -1,5 +1,6 @@
 import { LogLevel, OgmaStream, OgmaWritableLevel } from '@ogma/common';
 
+import type { Ogma } from '../logger/ogma';
 import { initializeStreamOnNodeJs } from '../utils/sonic-boom';
 
 export interface OgmaOptions {
@@ -105,10 +106,18 @@ export interface OgmaOptions {
    */
   masks?: string[];
   /**
-   * Log each member of an array out on a new line. This is a global option tthat can be overridden per call as
+   * Log each member of an array out on a new line. This is a global option that can be overridden per call as
    * desired.
    */
   each: boolean;
+  /**
+   * A utility method to add dynamic metadata to each log.
+   * This method will be called __per log__ and will change regular strings
+   * to JSON objects in the non-json mode. This method is mostly to be used
+   * to accommodate OpenTelemetry, but feel free to use it for other use cases
+   * and ask for enhancements as necessary.
+   */
+  mixin?: (logLevel: LogLevel, ogma: Ogma) => Record<string, unknown>;
 }
 
 const stream = process

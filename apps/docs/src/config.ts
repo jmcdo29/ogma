@@ -6,10 +6,8 @@ export const SITE = {
 
 export const OPEN_GRAPH = {
   image: {
-    src: 'https://github.com/withastro/astro/blob/main/assets/social/banner-minimal.png?raw=true',
-    alt:
-      'astro logo on a starry expanse of space,' +
-      ' with a purple saturn-like planet floating in the right foreground',
+    src: 'https://ogma.jaymcdoniel.dev/logo.svg',
+    alt: 'ogma logo, a blue book with a purple "O" on the cover',
   },
   twitter: 'jmcdo29',
 };
@@ -30,11 +28,13 @@ export const KNOWN_LANGUAGES = {
 } as const;
 export const KNOWN_LANGUAGE_CODES = Object.values(KNOWN_LANGUAGES);
 
-export const GITHUB_EDIT_URL = `https://github.com/jmcdo29/ogma/tree/main/apps/docs`;
+export const GITHUB_REPO_URL = 'https://github.com/jmcdo29/ogma';
+
+export const GITHUB_EDIT_URL = `${GITHUB_REPO_URL}/tree/main/apps/docs`;
 
 export const COMMUNITY_INVITE_URL = `https://discord.gg/7cJqcFncAX`;
 
-export const GITHUB_DISCUSSIONS_URL = `https://github.com/jmcdo29/ogma/discussions`;
+export const GITHUB_DISCUSSIONS_URL = `${GITHUB_REPO_URL}/discussions`;
 
 // See "Algolia" section of the README for more information.
 export const ALGOLIA = {

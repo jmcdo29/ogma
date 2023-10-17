@@ -93,6 +93,7 @@ This option is available in `@ogma/logger@^2.5.0`
 | logApplication | boolean | An optional property you can set if you don't want to the the application name. |
 | logHostname | boolean | An optional property you can set if you don't want to log the hostname of the machine you're on. |
 | each | boolean | An optional property that determines if array values should be printed on separate lines by default or not |
+| mixin | function | A utility to add dynamic data to each log. Takes in the log level and the ogma instance and returns an object |
 
 :::note
 
@@ -131,6 +132,10 @@ If the `json` option is passed as `true` then regardless of `color` Ogma will pr
 As of version 2, it is suggested to use the separate [`@ogma/styler`](/en/styler) package. This package is what Ogma uses under the hood to do the basic coloring, and will provide a cleaner and more verbose API.
 
 Using the non-JSON mode, color is attempted to be applied by default. This is determined by checking the current environment (if there is a global `process` variable) and if there is, what `stdout.getColorDepth()` returns. If a custom stream is passed instead, a `getColorDepth` method can be added to the stream object which should return a 1, 4, 8, or 24. If no `getColorDepth()` is present, but the `color` option is true, Ogma will set the method to return `4` for you. If you want to disable colors completely, you can either set `color` to be `false` or you can set the `NO_COLOR` environment variable.
+
+### Using a Mixin
+
+There may be times, like with [OpenTelemetry](https://opentelemetry.io) or with adding a correlation id, that you need to add dynamic values to each log. Rather than making a new wrapper around the Ogma instance, Ogma provides an optional `mixin` property that can be used to add extra data to each log without being in `verbose` mode. This property is a function, that takes in the current log level and the Ogma instance, and should return an object of any shape.
 
 ## Example of what the logs look like
 
