@@ -1,2 +1,2 @@
-export { OgmaOptions, OgmaPrintOptions } from './interfaces';
+export { OgmaDefaults, OgmaOptions, OgmaPrintOptions } from './interfaces';
 export * from './logger';

@@ -117,22 +117,33 @@ export class Ogma {
   }
 
   private printMessage(
-    message: any,
+    message: unknown,
     logLevel: LogLevel,
     formattedLevel: string,
     options?: OgmaPrintOptions,
   ): void {
-    const ogmaPrintOptions = options || {};
-
+    const ogmaPrintOptions = options ?? {};
+    let mixin: Record<string, unknown>;
     if (logLevel < LogLevel[this.options.logLevel]) {
       return;
+    }
+
+    if (this.options.mixin) {
+      mixin = this.options.mixin(logLevel, this);
     }
 
     let logString = '';
 
     if (this.options.json) {
-      logString = this.formatJSON(message, logLevel, ogmaPrintOptions);
+      logString = this.formatJSON(message, logLevel, { ...ogmaPrintOptions, ...(mixin ?? {}) });
     } else {
+      if (mixin) {
+        if (typeof message === 'object') {
+          message = { ...message, ...mixin };
+        } else {
+          message = { message, ...mixin };
+        }
+      }
       logString = this.formatStream(message, formattedLevel, ogmaPrintOptions);
     }
 
@@ -143,7 +154,7 @@ export class Ogma {
         application: _application,
         correlationId: _correlationId,
         ...meta
-      } = options;
+      } = ogmaPrintOptions;
       const verboseLogString = this.formatStream(meta, formattedLevel, ogmaPrintOptions);
 
       this.options.stream.write(`${verboseLogString}\n`);
@@ -202,7 +213,7 @@ export class Ogma {
   }
 
   private formatJSON(
-    message: any,
+    message: unknown,
     level: LogLevel,
     {
       application = this.application,
@@ -296,7 +307,7 @@ export class Ogma {
   }
 
   private formatStream(
-    message: any,
+    message: unknown,
     formattedLevel: string,
     { application = '', correlationId = '', context = '', each = this.each }: OgmaPrintOptions,
   ): string {

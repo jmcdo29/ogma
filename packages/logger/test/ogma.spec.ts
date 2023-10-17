@@ -468,5 +468,55 @@ OgmaSuite('It should not explosively print array values', ({ writeSpy, ogmaFacto
   ogma.log(messages, { each: true });
   is(writeSpy.calls.size, 1, 'There should only be one calls');
 });
+OgmaSuite(
+  'The mixin should be called if for every log if it exists',
+  ({ writeSpy, ogmaFactory }) => {
+    let val = 0;
+    const ogma = ogmaFactory({
+      mixin: () => ({ hello: `mixin ${++val}` }),
+      logLevel: 'DEBUG',
+    });
+    ogma.log('hello');
+    const expectCallToPass = (callNum: number): void => {
+      const expectedAddition = `"hello": "mixin ${callNum + 1}"`;
+      const callString = writeSpy.getCall(callNum).args[0].toString();
+      match(
+        callString,
+        expectedAddition,
+        `Expected "${callString}" to include string ${expectedAddition}`,
+      );
+    };
+    expectCallToPass(0);
+    ogma.debug({ with: 'an object' });
+    expectCallToPass(1);
+    ogma.warn({ message: 'using the message key' });
+    expectCallToPass(2);
+    writeSpy.calls.forEach((c) => console.log(c.args.join(' ')));
+  },
+);
+OgmaSuite('The mixin should be called if for every log JSON-mode', ({ writeSpy, ogmaFactory }) => {
+  let val = 0;
+  const ogma = ogmaFactory({
+    mixin: () => ({ hello: `mixin ${++val}` }),
+    logLevel: 'DEBUG',
+    json: true,
+  });
+  ogma.log('hello');
+  const expectCallToPass = (callNum: number): void => {
+    const expectedAddition = `"hello":"mixin ${callNum + 1}"`;
+    const callString = writeSpy.getCall(callNum).args[0].toString();
+    match(
+      callString,
+      expectedAddition,
+      `Expected "${callString}" to include string ${expectedAddition}`,
+    );
+  };
+  expectCallToPass(0);
+  ogma.debug({ with: 'an object' });
+  expectCallToPass(1);
+  ogma.warn({ message: 'using the message key' });
+  expectCallToPass(2);
+  writeSpy.calls.forEach((c) => console.log(c.args.join(' ')));
+});
 
 OgmaSuite.run();
