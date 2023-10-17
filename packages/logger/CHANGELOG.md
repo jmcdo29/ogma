@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- 5113fa3: Create a new `mixin` option for open telemetry and dynamic metadata support
+
 ## 3.1.6
 
 ### Patch Changes
