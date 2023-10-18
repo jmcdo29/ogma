@@ -12,7 +12,8 @@
         "tsConfig": "packages/common/tsconfig.build.json",
         "clean": true,
         "packageJson": "packages/common/package.json",
-        "assets": ["packages/common/*.md"]
+        "assets": ["packages/common/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     }
   },

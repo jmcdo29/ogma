@@ -13,7 +13,8 @@
         "clean": true,
         "packageJson": "packages/cli/package.json",
         "assets": ["packages/cli/*.md"],
-        "buildableProjectDepsInPackageJsonType": "dependencies"
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "test": {
