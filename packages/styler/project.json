@@ -12,7 +12,8 @@
         "tsConfig": "packages/styler/tsconfig.build.json",
         "clean": true,
         "packageJson": "packages/styler/package.json",
-        "assets": ["packages/styler/*.md"]
+        "assets": ["packages/styler/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "test": {

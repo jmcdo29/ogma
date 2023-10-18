@@ -12,7 +12,8 @@
         "tsConfig": "packages/logger/tsconfig.build.json",
         "clean": true,
         "packageJson": "packages/logger/package.json",
-        "assets": ["packages/logger/*.md"]
+        "assets": ["packages/logger/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "test": {
