@@ -128,7 +128,7 @@
     "mercurius": "13.1.0",
     "module-alias": "^2.2.3",
     "morgan": "^1.10.0",
-    "mqtt": "^4.3.7",
+    "mqtt": "^5.2.1",
     "nats": "^2.17.0",
     "nest-commander": "^3.12.0",
     "nest-commander-testing": "3.3.0",
