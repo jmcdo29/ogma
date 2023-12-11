@@ -74,7 +74,7 @@
     "@nestjs/testing": "^10.2.7",
     "@nestjs/websockets": "^10.2.7",
     "@nrwl/devkit": "16.10.0",
-    "@nrwl/eslint-plugin-nx": "16.10.0",
+    "@nrwl/eslint-plugin-nx": "17.2.0",
     "@nrwl/js": "16.10.0",
     "@nrwl/linter": "16.10.0",
     "@nrwl/nest": "16.10.0",
