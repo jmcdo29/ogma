@@ -77,7 +77,7 @@
     "@nrwl/eslint-plugin-nx": "16.10.0",
     "@nrwl/js": "16.10.0",
     "@nrwl/linter": "16.10.0",
-    "@nrwl/nest": "16.10.0",
+    "@nrwl/nest": "17.2.7",
     "@nrwl/node": "16.10.0",
     "@nrwl/nx-cloud": "16.5.2",
     "@nrwl/workspace": "16.10.0",
