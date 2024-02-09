@@ -1,5 +1,11 @@
 # @ogma/cli
 
+## 2.2.1
+
+### Patch Changes
+
+- 02cd763: Upgrade reflect-metadata to v0.2.1 and update peer dependency range
+
 ## 2.2.0
 
 ### Minor Changes

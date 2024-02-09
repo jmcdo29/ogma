@@ -1,6 +1,6 @@
 {
   "name": "@ogma/nestjs-module",
-  "version": "5.1.3",
+  "version": "5.1.4",
   "description": "A NestJS module for the Ogma logger",
   "keywords": [
     "nestjs",
