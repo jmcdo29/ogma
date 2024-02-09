@@ -27,7 +27,7 @@
   "peerDependencies": {
     "@nestjs/common": "^9.0.0 || ^10.0.0",
     "@nestjs/core": "^9.0.0 || ^10.0.0",
-    "reflect-metadata": "^0.1.0",
+    "reflect-metadata": "^0.1.0 || ^0.2.1",
     "rxjs": "^7.0.0"
   },
   "peerDependenciesMeta": {
@@ -37,7 +37,7 @@
     "@nestjs/core": {
       "required": true
     },
-    "relfect-metadata": {
+    "reflect-metadata": {
       "required": true
     },
     "rxjs": {
