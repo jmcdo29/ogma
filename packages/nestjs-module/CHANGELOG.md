@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.4
+
+### Patch Changes
+
+- 02cd763: Upgrade reflect-metadata to v0.2.1 and update peer dependency range
+
 ## 5.1.3
 
 ### Patch Changes
