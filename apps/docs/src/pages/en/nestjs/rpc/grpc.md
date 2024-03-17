@@ -8,7 +8,7 @@ The `GrpcParser` parser for the `OgmaInterceptor`. This plugin class parses gRPC
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-grpc` or `yarn add @ogma/platform-grpc`
+Nothing special, standard `npm i @ogma/platform-grpc` or `yarn add @ogma/platform-grpc` or `pnpm add @ogma/platform-grpc`
 
 ## Usage
 

@@ -8,7 +8,7 @@ The `WsParser` parser for the `OgmaInterceptor`. This plugin class parses TCP re
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-ws` or `yarn add @ogma/platform-ws`
+Nothing special, standard `npm i @ogma/platform-ws` or `yarn add @ogma/platform-ws` or `pnpm add @ogma/platform-ws`
 
 ## Usage
 

@@ -4,19 +4,17 @@ The `KafkaParser` parser for the `OgmaInterceptor`. This plugin class parses Kaf
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-kafka` or `yarn add @ogma/platform-kafka`
+Nothing special, standard `npm i @ogma/platform-kafka` or `yarn add @ogma/platform-kafka` or `pnpm add @ogma/platform-kafka`
 
 ## Usage
 
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      rpc: KafkaParser
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [KafkaParser]
+})
 export class AppModule {}
 ```
 

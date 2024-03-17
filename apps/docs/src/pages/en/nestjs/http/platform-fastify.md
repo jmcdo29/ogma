@@ -8,7 +8,7 @@ The `FastifyInterceptorParser` parser for the `OgmaInterceptor`. This plugin cla
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-fastify` or `yarn add @ogma/platform-fastify`
+Nothing special, standard `npm i @ogma/platform-fastify` or `yarn add @ogma/platform-fastify` or `pnpm add @ogma/platform-fastify`
 
 ## Usage
 

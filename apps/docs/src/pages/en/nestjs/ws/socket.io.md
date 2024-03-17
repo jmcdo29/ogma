@@ -8,7 +8,7 @@ The `SocketIOParser` parser for the `OgmaInterceptor`. This plugin class parses 
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-socket.io` or `yarn add @ogma/platform-socket.io`
+Nothing special, standard `npm i @ogma/platform-socket.io` or `yarn add @ogma/platform-socket.io` or `pnpm add @ogma/platform-socket.io`
 
 ## Usage
 

@@ -8,7 +8,7 @@ The `RedisParser` parser for the `OgmaInterceptor`. This plugin class parses Red
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-redis` or `yarn add @ogma/platform-redis`
+Nothing special, standard `npm i @ogma/platform-redis` or `yarn add @ogma/platform-redis` or `pnpm add @ogma/platform-redis`
 
 ## Usage
 

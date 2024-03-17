@@ -8,7 +8,7 @@ The `ExpressInterceptorParser` parser for the `OgmaInterceptor`. This plugin cla
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-express` or `yarn add @ogma/platform-express`
+Nothing special, standard `npm i @ogma/platform-express` or `yarn add @ogma/platform-express` or `pnpm add @ogma/platform-express`
 
 ## Usage
 

@@ -8,7 +8,7 @@ The `NatsParser` parser for the `OgmaInterceptor`. This plugin class parses NATS
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-nats` or `yarn add @ogma/platform-nats`
+Nothing special, standard `npm i @ogma/platform-nats` or `yarn add @ogma/platform-nats` or `pnpm add @ogma/platform-nats`
 
 ## Usage
 

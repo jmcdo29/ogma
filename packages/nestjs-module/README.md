@@ -4,7 +4,7 @@ A [NestJS module](https://docs.nestjs.com) for the [Ogma](https://github.com/jmc
 
 ## Installation
 
-Installation is pretty simple, just `npm i @ogma/nestjs-module` or `yarn add @ogma/nestjs-module`
+Installation is pretty simple, just `npm i @ogma/nestjs-module` or `yarn add @ogma/nestjs-module` or `pnpm add @ogma/nestjs-module`
 
 ## Usage
 
@@ -21,22 +21,13 @@ In your root module, import `OgmaModule.forRoot` or `OgmaModule.forRootAsync` to
 ```ts
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { OgmaInterceptor, OgmaModule } from '@ogma/nestjs-module';
-import { ExpressParser } from '@ogma/platform-express';
 
 @Module({
   imports: [
     OgmaModule.forRoot({
-      service: {
-        color: true,
-        json: false,
-        application: 'NestJS'
-      },
-      interceptor: {
-        http: ExpressParser,
-        ws: false,
-        gql: false,
-        rpc: false
-      }
+      color: true,
+      json: false,
+      application: 'NestJS'
     })
   ],
   providers: [
@@ -76,12 +67,6 @@ import { appendFile } from 'fs';
           },
           application: config.getAppName()
         },
-        interceptor: {
-          http: ExpressParser,
-          ws: false,
-          gql: false,
-          rpc: false
-        }
       }),
       inject: [ConfigService]
     })
@@ -199,7 +184,6 @@ As the pre-built parsers are built around Object Oriented Typescript, if you wan
 Okay, so now we're ready to add the `OgmaModule` to our Application. Let's assume we have a `CatsService`, `CatsController` and `CatsModule` and a `ConfigService` and `ConfigModule` in our Application. Let's also assume we want to use a class to asynchronously configure out `OgmaModule`. For now, assume the methods exist on the `ConfigService`. Let's also assume we want to log things in color to our `process.stdout`.
 
 ```ts
-import { FastifyParser } from '@ogma/platform-fastify';
 import { OgmaModuleOptions } from '@ogma/nestjs-module';
 
 @Injectable()
@@ -208,22 +192,18 @@ export class OgmaModuleConfig {
 
   createModuleConfig(): OgmaModuleOptions {
     return {
-      service: {
         // returns one of Ogma's log levels, or 'ALL'.
         logLevel: this.configService.getLogLevel(),
         color: true,
         // could be something like 'MyAwesomeNestApp'
         application: this.configService.getAppName()
-      },
-      interceptor: {
-        http: FastifyParser
       }
     };
   }
 }
 ```
 
-Next, in our `AppModule` we can import the `OgmaModule` like so
+Next, in our `AppModule` we can import the `OgmaModule` and `FastifyParser` like so
 
 ```ts
 @Module({
@@ -235,7 +215,8 @@ Next, in our `AppModule` we can import the `OgmaModule` like so
       useClass: OgmaModuleConfig,
       imports: [ConfigModule]
     })
-  ]
+  ],
+  providers: [FastifyParser]
 })
 export class AppModule {}
 ```

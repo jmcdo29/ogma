@@ -4,20 +4,17 @@ The `WsParser` parser for the `OgmaInterceptor`. This plugin class parses TCP re
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-ws` or `yarn add @ogma/platform-ws`
+Nothing special, standard `npm i @ogma/platform-ws` or `yarn add @ogma/platform-ws` or `pnpm add @ogma/platform-ws`
 
 ## Usage
 
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      ws: WsParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [WsParser]
+})
 export class AppModule {}
 ```
 

@@ -4,20 +4,17 @@ The `SocketIOParser` parser for the `OgmaInterceptor`. This plugin class parses 
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-socket.io` or `yarn add @ogma/platform-socket.io`
+Nothing special, standard `npm i @ogma/platform-socket.io` or `yarn add @ogma/platform-socket.io` or `pnpm add @ogma/platform-socket.io`
 
 ## Usage
 
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      ws: SocketIOParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [SocketIOParser]
+})
 export class AppModule {}
 ```
 

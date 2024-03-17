@@ -8,7 +8,7 @@ The `RabbitMqParser` parser for the `OgmaInterceptor`. This plugin class parses 
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-rabbitmq` or `yarn add @ogma/platform-rabbitmq`
+Nothing special, standard `npm i @ogma/platform-rabbitmq` or `yarn add @ogma/platform-rabbitmq` or `pnpm add @ogma/platform-rabbitmq`
 
 ## Usage
 

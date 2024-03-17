@@ -4,20 +4,17 @@ The `GraphQLParser` parser for the `OgmaInterceptor`. This plugin class parses G
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-graphql` or `yarn add @ogma/platform-graphql`
+Nothing special, standard `npm i @ogma/platform-graphql` or `yarn add @ogma/platform-graphql` or `pnpm add @ogma/platform-graphql`
 
 ## Usage
 
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      gql: GraphQLParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [GraphQLParser]
+})
 export class AppModule {}
 ```
 

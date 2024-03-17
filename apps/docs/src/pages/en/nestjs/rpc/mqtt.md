@@ -8,7 +8,7 @@ The `MqttParser` parser for the `OgmaInterceptor`. This plugin class parses MQTT
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-mqtt` or `yarn add @ogma/platform-mqtt`
+Nothing special, standard `npm i @ogma/platform-mqtt` or `yarn add @ogma/platform-mqtt` or `pnpm add @ogma/platform-mqtt`
 
 ## Usage
 
