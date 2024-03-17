@@ -8,7 +8,7 @@ The `TcpParser` parser for the `OgmaInterceptor`. This plugin class parses TCP r
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-tcp` or `yarn add @ogma/platform-tcp`
+Nothing special, standard `npm i @ogma/platform-tcp` or `yarn add @ogma/platform-tcp` or `pnpm add @ogma/platform-tcp`
 
 ## Usage
 
