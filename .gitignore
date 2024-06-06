@@ -43,3 +43,5 @@ tags
 # Generated Docusaurus files
 .docusaurus/
 .cache-loader/
+
+.nx/cache

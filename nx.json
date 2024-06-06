@@ -1,27 +1,13 @@
 {
-  "npmScope": "ogma",
   "workspaceLayout": {
     "libsDir": "packages"
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "test",
-          "lint",
-          "package",
-          "prepare",
-          "e2e",
-          "e2e-run",
-          "docker-up",
-          "docker-ready"
-        ],
         "strictlyOrderedTargets": ["build", "package", "prepare"],
         "canTrackAnalytics": false,
-        "showUsageWarnings": true,
-        "accessToken": "OTZlM2FmYjYtMGQ2NS00OWMzLWJkOTQtYTBmYzE0N2Y0OTIyfHJlYWQtd3JpdGU="
+        "showUsageWarnings": true
       }
     }
   },
@@ -36,7 +22,33 @@
   "targetDefaults": {
     "build": {
       "inputs": ["production", "^production"],
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "cache": true
+    },
+    "test": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    },
+    "package": {
+      "cache": true
+    },
+    "prepare": {
+      "cache": true
+    },
+    "e2e": {
+      "cache": true
+    },
+    "e2e-run": {
+      "cache": true
+    },
+    "docker-up": {
+      "cache": true
+    },
+    "docker-ready": {
+      "cache": true
     }
-  }
+  },
+  "nxCloudAccessToken": "OTZlM2FmYjYtMGQ2NS00OWMzLWJkOTQtYTBmYzE0N2Y0OTIyfHJlYWQtd3JpdGU="
 }
