@@ -74,7 +74,7 @@ importers:
         version: 10.3.2(@nestjs/common@10.3.2)(@nestjs/microservices@10.3.2)(@nestjs/platform-express@10.3.2)(@nestjs/websockets@10.3.2)(reflect-metadata@0.2.1)(rxjs@7.8.1)
       '@nestjs/graphql':
         specifier: ^12.1.0
-        version: 12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.2.1)(ts-morph@21.0.1)
+        version: 12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.2.1)(ts-morph@22.0.0)
       '@nestjs/mercurius':
         specifier: ^12.1.0
         version: 12.1.0(@mercuriusjs/gateway@2.0.0)(@nestjs/common@10.3.2)(@nestjs/graphql@12.1.0)(fastify@4.18.0)(graphql@16.8.1)(mercurius@13.1.0)
@@ -328,8 +328,8 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
       ts-morph:
-        specifier: 21.0.1
-        version: 21.0.1
+        specifier: 22.0.0
+        version: 22.0.0
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@swc/core@1.5.7)(@types/node@18.19.9)(typescript@5.4.5)
@@ -448,7 +448,7 @@ importers:
     dependencies:
       '@nestjs/graphql':
         specifier: ^10.0.0 || ^11.0.0 || ^12.0.0
-        version: 12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.1.13)(ts-morph@21.0.1)
+        version: 12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.1.13)(ts-morph@22.0.0)
       '@ogma/nestjs-module':
         specifier: workspace:^5.0.0
         version: link:../nestjs-module
@@ -460,7 +460,7 @@ importers:
     dependencies:
       '@nestjs/graphql':
         specifier: ^10.0.0 || ^11.0.0 || ^12.0.0
-        version: 12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.1.13)(ts-morph@21.0.1)
+        version: 12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.1.13)(ts-morph@22.0.0)
       '@ogma/nestjs-module':
         specifier: workspace:^5.0.0
         version: link:../nestjs-module
@@ -4067,7 +4067,7 @@ packages:
       '@apollo/server-plugin-landing-page-graphql-playground': 4.0.0(@apollo/server@4.9.4)
       '@nestjs/common': 10.3.2(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.2.1)(rxjs@7.8.1)
       '@nestjs/core': 10.3.2(@nestjs/common@10.3.2)(@nestjs/microservices@10.3.2)(@nestjs/platform-express@10.3.2)(@nestjs/websockets@10.3.2)(reflect-metadata@0.2.1)(rxjs@7.8.1)
-      '@nestjs/graphql': 12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.2.1)(ts-morph@21.0.1)
+      '@nestjs/graphql': 12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.2.1)(ts-morph@22.0.0)
       graphql: 16.8.1
       iterall: 1.3.0
       lodash.omit: 4.5.0
@@ -4184,7 +4184,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/graphql@12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.1.13)(ts-morph@21.0.1):
+  /@nestjs/graphql@12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.1.13)(ts-morph@22.0.0):
     resolution: {integrity: sha512-HM0z9n9uO2nOmNeBqQhR53dVv/uhdfjkDSjcb61FmQuXlTi2Nun42n5Ieee4wXFw60bznAdLs++dp7O+xxVTwQ==}
     peerDependencies:
       '@apollo/subgraph': ^2.0.0
@@ -4222,7 +4222,7 @@ packages:
       normalize-path: 3.0.0
       reflect-metadata: 0.1.13
       subscriptions-transport-ws: 0.11.0(graphql@16.8.1)
-      ts-morph: 21.0.1
+      ts-morph: 22.0.0
       tslib: 2.6.2
       uuid: 9.0.1
       ws: 8.16.0
@@ -4231,7 +4231,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@nestjs/graphql@12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.2.1)(ts-morph@21.0.1):
+  /@nestjs/graphql@12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.2.1)(ts-morph@22.0.0):
     resolution: {integrity: sha512-HM0z9n9uO2nOmNeBqQhR53dVv/uhdfjkDSjcb61FmQuXlTi2Nun42n5Ieee4wXFw60bznAdLs++dp7O+xxVTwQ==}
     peerDependencies:
       '@apollo/subgraph': ^2.0.0
@@ -4269,7 +4269,7 @@ packages:
       normalize-path: 3.0.0
       reflect-metadata: 0.2.1
       subscriptions-transport-ws: 0.11.0(graphql@16.8.1)
-      ts-morph: 21.0.1
+      ts-morph: 22.0.0
       tslib: 2.6.2
       uuid: 9.0.1
       ws: 8.16.0
@@ -4337,7 +4337,7 @@ packages:
     dependencies:
       '@mercuriusjs/gateway': 2.0.0
       '@nestjs/common': 10.3.2(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.2.1)(rxjs@7.8.1)
-      '@nestjs/graphql': 12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.2.1)(ts-morph@21.0.1)
+      '@nestjs/graphql': 12.1.0(@nestjs/common@10.3.2)(@nestjs/core@10.3.2)(class-transformer@0.5.1)(class-validator@0.14.0)(graphql@16.8.1)(reflect-metadata@0.2.1)(ts-morph@22.0.0)
       fastify: 4.18.0
       graphql: 16.8.1
       mercurius: 13.1.0(graphql@16.8.1)
@@ -5480,8 +5480,8 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
-  /@ts-morph/common@0.22.0:
-    resolution: {integrity: sha512-HqNBuV/oIlMKdkLshXd1zKBqNQCsuPEsgQOkfFQ/eUKjRlwndXW1AjN9LVkBEIukm00gGXSRmfkl0Wv5VXLnlw==}
+  /@ts-morph/common@0.23.0:
+    resolution: {integrity: sha512-m7Lllj9n/S6sOkCkRftpM7L24uvmfXQFedlW/4hENcuJH1HHm9u5EgxZb9uVjQSCGrbBWBkOGgcTxNg36r6ywA==}
     dependencies:
       fast-glob: 3.3.2
       minimatch: 9.0.4
@@ -7525,8 +7525,8 @@ packages:
     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
     dev: true
 
-  /code-block-writer@12.0.0:
-    resolution: {integrity: sha512-q4dMFMlXtKR3XNBHyMHt/3pwYNA69EDk00lloMOaaUMKPUXBw6lpXtbu3MMVG6/uOihGnRDOlkyqsONEUj60+w==}
+  /code-block-writer@13.0.1:
+    resolution: {integrity: sha512-c5or4P6erEA69TxaxTNcHUNcIn+oyxSRTOWV+pSYF+z4epXqNvwvJ70XPGjPNgue83oAFAPBRQYwpAJ/Hpe/Sg==}
 
   /collect-v8-coverage@1.0.2:
     resolution: {integrity: sha512-lHl4d5/ONEbLlJvaJNtsF/Lz+WvB07u2ycqTYbdrq7UypDXailES4valYb2eWiJFxZlVmpGekfqoxQhzyFdT4Q==}
@@ -15226,11 +15226,11 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
-  /ts-morph@21.0.1:
-    resolution: {integrity: sha512-dbDtVdEAncKctzrVZ+Nr7kHpHkv+0JDJb2MjjpBaj8bFeCkePU9rHfMklmhuLFnpeq/EJZk2IhStY6NzqgjOkg==}
+  /ts-morph@22.0.0:
+    resolution: {integrity: sha512-M9MqFGZREyeb5fTl6gNHKZLqBQA0TjA1lea+CR48R8EBTDuWrNqW6ccC5QvjNR4s6wDumD3LTCjOFSp9iwlzaw==}
     dependencies:
-      '@ts-morph/common': 0.22.0
-      code-block-writer: 12.0.0
+      '@ts-morph/common': 0.23.0
+      code-block-writer: 13.0.1
 
   /ts-node@10.9.1(@swc/core@1.5.7)(@types/node@18.19.9)(typescript@5.4.5):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
