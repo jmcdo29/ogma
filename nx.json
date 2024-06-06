@@ -11,9 +11,6 @@
       }
     }
   },
-  "affected": {
-    "defaultBase": "main"
-  },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": ["{workspaceRoot}/workspace.json", "{workspaceRoot}/nx.json"],
@@ -50,5 +47,7 @@
       "cache": true
     }
   },
-  "nxCloudAccessToken": "OTZlM2FmYjYtMGQ2NS00OWMzLWJkOTQtYTBmYzE0N2Y0OTIyfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "OTZlM2FmYjYtMGQ2NS00OWMzLWJkOTQtYTBmYzE0N2Y0OTIyfHJlYWQtd3JpdGU=",
+  "useInferencePlugins": false,
+  "defaultBase": "main"
 }
