@@ -45,3 +45,4 @@ tags
 .cache-loader/
 
 .nx/cache
+.nx/workspace-data
