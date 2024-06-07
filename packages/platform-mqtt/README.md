@@ -4,20 +4,17 @@ The `MqttParser` parser for the `OgmaInterceptor`. This plugin class parses MQTT
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-mqtt` or `yarn add @ogma/platform-mqtt`
+Nothing special, standard `npm i @ogma/platform-mqtt` or `yarn add @ogma/platform-mqtt` or `pnpm add @ogma/platform-mqtt`
 
 ## Usage
 
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      rpc: MqttParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [MqttParser]
+})
 export class AppModule {}
 ```
 
