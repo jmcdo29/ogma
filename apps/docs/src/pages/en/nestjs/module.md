@@ -14,7 +14,7 @@ With that out of the way, the package comes with a [Dynamic Nest Module](https:/
 
 ## Root Configuration
 
-First, we have the root configuration for the package, which should be called once, usually in your `AppModule` or whatever else you end up calling the RootModule`, which will be imported and used with `NestFactory.create`. Like most Nest packages nowadays, there's both synchronous and async configurations that can be made use of.x
+First, we have the root configuration for the package, which should be called once, usually in your `AppModule` or whatever else you end up calling the `RootModule`, which will be imported and used with `NestFactory.create`. Like most Nest packages nowadays, there's both synchronous and async configurations that can be made use of.
 
 ### Synchronous Configuration
 
