@@ -19,6 +19,7 @@
         "updateBuildableProjectDepsInPackageJson": true
       }
     },
+
     "test": {
       "executor": "nx-uvu:uvu",
       "options": {
