@@ -1,4 +1,8 @@
-# Ogma Instrumentation for OpenTelemetry
+---
+id: instrumentation
+title: Instrumentation
+layout: ../../layouts/MainLayout.astro
+---
 
 This module provides automatic instrumentation for injection of trace context for the [`ogma`](https://www.npmjs.com/package/@ogma/logger) module, which may be loaded using the [`@opentelemetry/sdk-trace-node`](https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-sdk-trace-node) package and is included in the [`@opentelemetry/auto-instrumentations-node`](https://www.npmjs.com/package/@opentelemetry/auto-instrumentations-node) bundle.
 

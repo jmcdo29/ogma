@@ -53,7 +53,7 @@ const nestRpc = (name: string): string => `en/nestjs/rpc/${name}`;
 const nestOverview = (type: Transport): string => `en/nestjs/${type}/overview`;
 
 export type Sidebar = Record<
-  typeof KNOWN_LANGUAGE_CODES[number],
+  (typeof KNOWN_LANGUAGE_CODES)[number],
   Record<string, { text: string; link: string }[]>
 >;
 export const SIDEBAR: Sidebar = {
@@ -165,6 +165,12 @@ export const SIDEBAR: Sidebar = {
       {
         text: 'Overview',
         link: 'en/cli',
+      },
+    ],
+    '@ogma/instrumentation': [
+      {
+        text: 'Overview',
+        link: 'en/instrumentation',
       },
     ],
   },
