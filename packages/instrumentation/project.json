@@ -1,0 +1,28 @@
+{
+  "name": "instrumentation",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/instrumentation/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/instrumentation",
+        "main": "packages/instrumentation/src/index.ts",
+        "tsConfig": "packages/instrumentation/tsconfig.build.json",
+        "assets": ["packages/instrumentation/*.md"]
+      }
+    },
+    "test": {
+      "executor": "nx-uvu:uvu",
+      "options": {
+        "rootDir": "./packages/instrumentation/test",
+        "coverage": true,
+        "coverageConfig": "./packages/instrumentation/.c8rc",
+        "useSwc": true
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "src": "./packages/instrumentation/src",
+  "include": ["packages/instrumentation/src/**/*.ts"],
+  "reporter": ["text", "lcov"],
+  "reportDir": "./packages/instrumentation/coverage"
+}

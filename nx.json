@@ -45,6 +45,11 @@
     },
     "docker-ready": {
       "cache": true
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "nxCloudAccessToken": "OTZlM2FmYjYtMGQ2NS00OWMzLWJkOTQtYTBmYzE0N2Y0OTIyfHJlYWQtd3JpdGU=",
