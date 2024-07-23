@@ -6,13 +6,16 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nrwl/js:tsc",
       "options": {
-        "outputPath": "dist/packages/instrumentation",
-        "main": "packages/instrumentation/src/index.ts",
+        "outputPath": "dist/instrumentation",
+        "main": "packages/instrumentation/src/main.ts",
         "tsConfig": "packages/instrumentation/tsconfig.build.json",
-        "assets": ["packages/instrumentation/*.md"]
+        "clean": true,
+        "packageJson": "packages/instrumentation/package.json",
+        "assets": ["packages/instrumentation/*.md"],
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "test": {
