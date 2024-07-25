@@ -1,23 +1,22 @@
 # `@ogma/platform-graphql-fastify`
 
+> Note: If you are using `@nestjs/apollo` make sure you are using fastify v3 and `@nestjs/common` version 8. If you are using`@nestjs/mercurius`you may use fastify v4 and`@nestjs/common` version 9.
+
 The `GraphQLFastifyParser` parser for the `OgmaInterceptor`. This plugin class parses GraphQL request and response object to be able to successfully log the data about the request. For more information, check out [the @ogma/nestjs-module](../nestjs-module/README.md) documentation.
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-graphql-fastify` or `yarn add @ogma/platform-graphql-fastify`
+Nothing special, standard `npm i @ogma/platform-graphql-fastify` or `yarn add @ogma/platform-graphql-fastify` or `pnpm add @ogma/platform-graphql-fastify`
 
 ## Usage
 
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      gql: GraphQLFastifyParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [GraphQLFastifyParser]
+})
 export class AppModule {}
 ```
 
