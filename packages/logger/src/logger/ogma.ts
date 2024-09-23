@@ -123,7 +123,6 @@ export class Ogma {
     if (!colorDepthVal && this.options.stream !== process.stdout && process.stdout.getColorDepth) {
       colorDepthVal = process.stdout.getColorDepth();
     }
-    console.log({ colorDepthVal, json: this.options.json });
     this.options.stream.getColorDepth = () => colorDepthVal ?? 1;
   }
 
