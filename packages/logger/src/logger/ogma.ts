@@ -49,6 +49,15 @@ export class Ogma {
    */
   public log = this.info;
 
+  /**
+   * The [`@ogma/styler`](https://ogma.jaymcdoniel.dev/en/styler)
+   * instance that the logger uses for custom coloring without needing
+   * to manage a new styler instance
+   */
+  public get style() {
+    return this.styler;
+  }
+
   constructor(options?: Partial<OgmaOptions>) {
     if (options?.logLevel) {
       options.logLevel = options.logLevel.toUpperCase() as keyof typeof LogLevel;
@@ -82,6 +91,7 @@ export class Ogma {
     if (this.options.json) {
       this.hostname &&= `"hostname":${this.asString(this.hostname)},`;
       this.pid &&= `"pid":${process.pid},`;
+      this.options.stream.getColorDepth = () => 1;
     }
     this.cachedMasks = this.options?.masks
       ? new Map(this.options.masks.map((mask) => [mask, true]))
@@ -107,12 +117,13 @@ export class Ogma {
     if (this.options.color) {
       colorDepthVal = 4;
     }
-    if (this.options.color === false) {
+    if (this.options.color === false || this.options.json) {
       colorDepthVal = 1;
     }
     if (!colorDepthVal && this.options.stream !== process.stdout && process.stdout.getColorDepth) {
       colorDepthVal = process.stdout.getColorDepth();
     }
+    console.log({ colorDepthVal, json: this.options.json });
     this.options.stream.getColorDepth = () => colorDepthVal ?? 1;
   }
 

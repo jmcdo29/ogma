@@ -43,6 +43,15 @@ export class OgmaService implements LoggerService {
   }
 
   /**
+   * The [`@ogma/styler`](https://ogma.jaymcdoniel.dev/en/styler)
+   * instance that the logger uses for custom coloring without needing
+   * to manage a new styler instance
+   */
+  public get style() {
+    return this.ogma.style;
+  }
+
+  /**
    * Change the log level during runtime
    * @param the new log level to use
    */
@@ -177,7 +186,7 @@ export class OgmaService implements LoggerService {
 
   private printMessage(
     message: any,
-    levelString: Exclude<keyof Ogma, 'printMessage' | 'printError' | 'setLogLevel'>,
+    levelString: Exclude<keyof Ogma, 'printMessage' | 'printError' | 'setLogLevel' | 'style'>,
     meta: OgmaServiceMeta = {},
   ): void {
     meta.context = meta.context ?? this.context;

@@ -3,7 +3,7 @@ import { style } from '@ogma/styler';
 import { spy, Stub } from 'hanbi';
 import { Socket } from 'net';
 import { suite } from 'uvu';
-import { is, match, not, ok } from 'uvu/assert';
+import { equal, is, match, not, ok } from 'uvu/assert';
 
 import { Ogma, OgmaOptions } from '../src';
 
@@ -517,6 +517,11 @@ OgmaSuite('The mixin should be called if for every log JSON-mode', ({ writeSpy, 
   ogma.warn({ message: 'using the message key' });
   expectCallToPass(2);
   writeSpy.calls.forEach((c) => console.log(c.args.join(' ')));
+});
+OgmaSuite.only('a .style with json mode should return a regular string', ({ ogmaFactory }) => {
+  process.env.FORCE_COLOR = '';
+  const ogma = ogmaFactory({ json: true });
+  equal(ogma.style.blue.apply('Hello World!'), 'Hello World!');
 });
 
 OgmaSuite.run();
