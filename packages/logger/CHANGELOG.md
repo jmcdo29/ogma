@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- e940f93: The `@ogma/styler` instance is now exposed at the `.style` property of ogma
+
 ## 3.2.0
 
 ### Minor Changes
