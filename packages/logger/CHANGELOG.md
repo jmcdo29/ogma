@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.3.1
+
+### Patch Changes
+
+- 166b58b: Remove an extraneous log statement
+
 ## 3.3.0
 
 ### Minor Changes
