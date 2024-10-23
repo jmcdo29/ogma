@@ -36,7 +36,7 @@ const EnabledInstrumentationSuite = suite<OgmaInstrumentationSuiteContext>(
   {
     testInjection: (logger: OgmaClass, writeSpy: hanbi.Stub<Writable['write']>, span: Span) => {
       logger.info(kMessage);
-      is(writeSpy.calls, 1);
+      is(writeSpy.calls.size, 1);
       const record = JSON.parse(writeSpy.firstCall.args[0].toString());
       const { traceId, spanId, traceFlags } = span.spanContext();
       equal(record.meta['trace_id'], traceId);
@@ -47,7 +47,7 @@ const EnabledInstrumentationSuite = suite<OgmaInstrumentationSuiteContext>(
     },
     testNoInjection: (logger: OgmaClass, writeSpy: hanbi.Stub<Writable['write']>) => {
       logger.info(kMessage);
-      is(writeSpy.calls, 1);
+      is(writeSpy.calls.size, 1);
       const record = JSON.parse(writeSpy.firstCall.args[0].toString());
       equal(record.meta?.['trace_id'], undefined);
       equal(record.meta?.['span_id'], undefined);
@@ -67,7 +67,8 @@ const EnabledInstrumentationSuite = suite<OgmaInstrumentationSuiteContext>(
 EnabledInstrumentationSuite.before((ctx) => {
   ctx.instrumentation = new OgmaInstrumentation();
   ctx.instrumentation.enable();
-  ctx.Ogma = require('@ogma/logger');
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  ctx.Ogma = require('@ogma/logger').Ogma;
 });
 EnabledInstrumentationSuite.before.each((ctx) => {
   ctx.stream = new Writable();
