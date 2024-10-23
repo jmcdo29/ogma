@@ -1,6 +1,7 @@
 import { Injectable, LoggerService, Optional } from '@nestjs/common';
 import { LogLevel, OgmaWritableLevel } from '@ogma/common';
 import { Ogma } from '@ogma/logger';
+import type { Styler } from '@ogma/styler';
 
 import { InjectOgma, InjectOgmaContext, InjectTraceMethod } from './decorators';
 import { OgmaServiceMeta } from './interfaces';
@@ -47,7 +48,7 @@ export class OgmaService implements LoggerService {
    * instance that the logger uses for custom coloring without needing
    * to manage a new styler instance
    */
-  public get style() {
+  public get style(): Styler {
     return this.ogma.style;
   }
 
