@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.1
+
+### Patch Changes
+
+- 48dbd4d: Explicitly set the styler type
+
 ## 5.2.0
 
 ### Minor Changes
