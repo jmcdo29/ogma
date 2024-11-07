@@ -375,6 +375,15 @@ export class Ogma {
   }
 
   /**
+   * Create a new instance of ogma using pre-existing options while being able to pass in new options to override specific values. Useful for when there's a default configuration you'd like to make use of with slightly different modifications elsewhere
+   * @param newOptions overriding options for the new logger instance
+   * @returns a new ogma instance using the original logger's options, merged with the new options passed
+   */
+  child(newOptions: Partial<OgmaOptions>): Ogma {
+    return new Ogma({ ...this.options, ...newOptions });
+  }
+
+  /**
    * Change the set log level for the Ogma logger
    * @param the new log level
    */
