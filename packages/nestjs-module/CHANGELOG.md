@@ -1,5 +1,16 @@
 # Change Log
 
+## 5.3.0
+
+### Minor Changes
+
+- 5bf006d: Create a child method to allow for creating new loggers with existing options
+
+### Patch Changes
+
+- Updated dependencies [5bf006d]
+  - @ogma/logger@3.4.0
+
 ## 5.2.1
 
 ### Patch Changes
