@@ -88,6 +88,7 @@ This option is available in `@ogma/logger@^2.5.0`
 | context | string optional | a context for the Ogma class to work with. |
 | application | string optional | an application name for Ogma to print |
 | levelMap | an object with the above levels as the keys and strings as the vales | a way to provide custom log levels in the event that there are mappings the developer wants to support |
+| levelKey | string optional | A specific key to print the level as when in JSON mode. Useful for things like GCP which use `severity` instead of `level` |
 | masks | string[] | An array of words that should be replaced while logging. useful for sensitive information like passwords. |
 | logPid | boolean | An optional property you can set if you don't want to log the PID. |
 | logApplication | boolean | An optional property you can set if you don't want to the the application name. |
@@ -136,6 +137,10 @@ Using the non-JSON mode, color is attempted to be applied by default. This is de
 ### Using a Mixin
 
 There may be times, like with [OpenTelemetry](https://opentelemetry.io) or with adding a correlation id, that you need to add dynamic values to each log. Rather than making a new wrapper around the Ogma instance, Ogma provides an optional `mixin` property that can be used to add extra data to each log without being in `verbose` mode. This property is a function, that takes in the current log level and the Ogma instance, and should return an object of any shape.
+
+### Child Loggers
+
+There may be times where you have a default logging configuration that you want to use across multiple a project without having to save the configuration to a variable. If that ever becomes the case, you can call `ogma.child()` and pass in a partial object of new options which will merge with the original options passed to the first `new Ogma()` call. This will return a new logger instance that will have the combined options, so you can change things like the log level or the context easily, without having to create new `levelMap` or `masks`.
 
 ## Example of what the logs look like
 
