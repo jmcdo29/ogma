@@ -4,19 +4,16 @@ The `FastifyInterceptorParser` parser for the `OgmaInterceptor`. This plugin cla
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-fastify` or `yarn add @ogma/platform-fastify`
+Nothing special, standard `npm i @ogma/platform-fastify` or `yarn add @ogma/platform-fastify` or `pnpm add @ogma/platform-fastify`
 
 ## Usage
 
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      http: FastifyParser
-    }
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [FastifyParser]
+})
 export class AppModule {}
 ```
