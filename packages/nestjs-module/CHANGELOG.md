@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.4.0
+
+### Minor Changes
+
+- 9d848fd: Allow for Nest v11 dependencies
+
 ## 5.3.0
 
 ### Minor Changes

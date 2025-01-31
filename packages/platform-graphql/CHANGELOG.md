@@ -1,5 +1,17 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- 9d848fd: Allow for Nest v11 dependencies
+
+### Patch Changes
+
+- Updated dependencies [9d848fd]
+  - @ogma/nestjs-module@5.4.0
+  - @ogma/platform-express@5.1.0
+
 ## 5.0.1
 
 ### Patch Changes
