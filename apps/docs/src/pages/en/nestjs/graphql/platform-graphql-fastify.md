@@ -14,7 +14,7 @@ The `GraphQLFastifyParser` parser for the `OgmaInterceptor`. This plugin class p
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-graphql-fastify` or `yarn add @ogma/platform-graphql-fastify`
+Nothing special, standard `npm i @ogma/platform-graphql-fastify` or `yarn add @ogma/platform-graphql-fastify` or `pnpm add @ogma/platform-graphql-fastify`
 
 ## Usage
 

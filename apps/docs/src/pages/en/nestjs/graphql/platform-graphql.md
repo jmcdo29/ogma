@@ -8,7 +8,7 @@ The `GraphQLParser` parser for the `OgmaInterceptor`. This plugin class parses G
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-graphql` or `yarn add @ogma/platform-graphql`
+Nothing special, standard `npm i @ogma/platform-graphql` or `yarn add @ogma/platform-graphql` or `pnpm add @ogma/platform-graphql`
 
 ## Usage
 
