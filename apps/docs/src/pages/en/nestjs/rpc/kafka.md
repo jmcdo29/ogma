@@ -8,7 +8,7 @@ The `KafkaParser` parser for the `OgmaInterceptor`. This plugin class parses Kaf
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-kafka` or `yarn add @ogma/platform-kafka`
+Nothing special, standard `npm i @ogma/platform-kafka` or `yarn add @ogma/platform-kafka` or `pnpm add @ogma/platform-kafka`
 
 ## Usage
 

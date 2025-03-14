@@ -4,19 +4,17 @@ The `GrpcParser` parser for the `OgmaInterceptor`. This plugin class parses Kafk
 
 ## Installation
 
-Nothing special, standard `npm i @ogma/platform-grpc` or `yarn add @ogma/platform-grpc`
+Nothing special, standard `npm i @ogma/platform-grpc` or `yarn add @ogma/platform-grpc` or `pnpm add @ogma/platform-grpc`
 
 ## Usage
 
 This plugin is to be used in the `OgmaInterceptorOptions` portion of the `OgmaModule` during `forRoot` or `forRootAsync` registration. It can be used like so:
 
 ```ts
-@Module(
-  OgmaModule.forRoot({
-    interceptor: {
-      rpc: GrpcParser
-  })
-)
+@Module({
+  imports: [OgmaModule.forRoot({})],
+  providers: [GrpcParser]
+})
 export class AppModule {}
 ```
 
