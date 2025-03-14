@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.5.0
+
+### Minor Changes
+
+- 62970a7: Interceptors can now inline meta from the `getMeta` method by having the `inlineMeta` option set at the time of module registration
+
 ## 5.4.0
 
 ### Minor Changes
