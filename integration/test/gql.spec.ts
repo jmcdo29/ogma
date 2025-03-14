@@ -13,7 +13,7 @@ import { suite } from 'uvu';
 import { is } from 'uvu/assert';
 
 import { GqlModule } from '../src/gql/gql.module';
-import { createTestModule, reportValues, serviceOptionsFactory, toBeALogObject } from './utils';
+import { createTestModule, reportValues, toBeALogObject } from './utils';
 
 for (const { adapter, server, parser, driver } of [
   {
@@ -51,7 +51,7 @@ for (const { adapter, server, parser, driver } of [
     try {
       const modRef = await createTestModule(
         GqlModule.forFeature(driver),
-        serviceOptionsFactory(`GraphQL ${server}`),
+        { application: `GraphQL ${server}` },
         [parser],
       );
       context.app = modRef.createNestApplication(adapter);

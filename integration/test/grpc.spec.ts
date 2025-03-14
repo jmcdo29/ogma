@@ -12,13 +12,7 @@ import { is } from 'uvu/assert';
 
 import { GrpcClientModule } from '../src/grpc/client/grpc-client.module';
 import { GrpcServerModule } from '../src/grpc/server/grpc-server.module';
-import {
-  createTestModule,
-  hello,
-  reportValues,
-  serviceOptionsFactory,
-  toBeALogObject,
-} from './utils';
+import { createTestModule, hello, reportValues, toBeALogObject } from './utils';
 
 const GrpcParserSuite = suite<{
   logs: Parameters<OgmaInterceptor['log']>[];
@@ -32,7 +26,7 @@ const GrpcParserSuite = suite<{
   rpcServer: undefined,
 });
 GrpcParserSuite.before(async (context) => {
-  const modRef = await createTestModule(GrpcServerModule, serviceOptionsFactory('gRPC Server'), [
+  const modRef = await createTestModule(GrpcServerModule, { application: 'gRPC Server' }, [
     GrpcParser,
   ]);
   const rpcServer = modRef.createNestMicroservice<MicroserviceOptions>({

@@ -23,13 +23,7 @@ import { is } from 'uvu/assert';
 
 import { RpcClientModule } from '../src/rpc/client/rpc-client.module';
 import { RpcServerModule } from '../src/rpc/server/rpc-server.module';
-import {
-  createTestModule,
-  hello,
-  reportValues,
-  serviceOptionsFactory,
-  toBeALogObject,
-} from './utils';
+import { createTestModule, hello, reportValues, toBeALogObject } from './utils';
 
 const tcpOptions: TcpOptions['options'] = {};
 const mqttOptions: MqttOptions['options'] = { url: 'mqtt://localhost:1883', reconnectPeriod: 0 };
@@ -99,10 +93,7 @@ for (const { server, transport, options, protocol, parser } of [
     const modRef = await createTestModule(
       RpcServerModule,
       {
-        service: serviceOptionsFactory(server),
-        interceptor: {
-          rpc: parser,
-        },
+        application: server,
       },
       [parser],
     );

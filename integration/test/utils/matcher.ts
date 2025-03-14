@@ -109,7 +109,7 @@ const doTest = (
   return { pass, message };
 };
 export const toBeALogObject = (
-  received: string | LogObject,
+  received: string | LogObject | unknown,
   method: string,
   endpoint: string,
   protocol: string,
@@ -125,7 +125,7 @@ export const toBeALogObject = (
   if (typeof received === 'string') {
     [recIp, , recMethod, recEndpoint, recProto, recStatus, recTime, , recSize] =
       received.split(' ');
-  } else {
+  } else if (isLogObject(received)) {
     let callerAddress: string | string[], responseTime: number, contentLength: number;
     ({
       callerAddress,
@@ -156,4 +156,8 @@ export const toBeALogObject = (
     recSize,
   );
   ok(result.pass, result.message);
+};
+
+const isLogObject = (received: unknown): received is LogObject => {
+  return typeof received === 'object' && 'callerAddress' in received;
 };

@@ -18,8 +18,8 @@ export class DelegatorService {
   ) {}
 
   async onModuleInit() {
-    const provders = this.discoveryService.getProviders();
-    provders
+    const providers = this.discoveryService.getProviders();
+    providers
       .filter(
         (provider) =>
           !provider.isNotMetatype && this.reflector.get(OGMA_CONTEXT_PARSER, provider.metatype),
@@ -63,7 +63,7 @@ export class DelegatorService {
       options,
       parser,
     });
-    return { meta, log: this.getStringOrObject(logObject, { json: options.json }) };
+    return this.getStringOrObject({ ...logObject, meta }, { json: options.json });
   }
 
   private getParser(type: ContextType | 'graphql'): AbstractInterceptorService {
@@ -85,7 +85,7 @@ export class DelegatorService {
       options,
       parser,
     });
-    return { meta, log: this.getStringOrObject(logObject, { json: options.json }) };
+    return this.getStringOrObject({ ...logObject, meta }, { json: options.json });
   }
 
   private getContextString({
@@ -106,10 +106,29 @@ export class DelegatorService {
     return parser[method](data, context, startTime, options);
   }
 
-  private getStringOrObject(data: LogObject, options: { json: boolean }): string | LogObject {
-    return options.json
-      ? data
-      : `${data.callerAddress} - ${data.method} ${data.callPoint} ${data.protocol} ${data.status} ${data.responseTime}ms - ${data.contentLength}`;
+  private getStringOrObject(
+    { meta, ...data }: LogObject & { meta: unknown },
+    options: { json: boolean; inlineMeta?: boolean },
+  ): { log: string | (LogObject & { meta?: unknown }); meta?: unknown } {
+    const returnData: { log: string | (LogObject & { meta?: unknown }); meta?: unknown } = {
+      log: '',
+    };
+    if (options.json) {
+      if (options.inlineMeta) {
+        returnData.log = { ...data, meta };
+      } else {
+        returnData.log = data;
+        returnData.meta = meta;
+      }
+    } else {
+      if (options.inlineMeta) {
+        returnData.log = `${data.callerAddress} - ${data.method} ${data.callPoint} ${data.protocol} ${data.status} ${data.responseTime}ms - ${data.contentLength} - meta: ${JSON.stringify(meta)}`;
+      } else {
+        returnData.log = `${data.callerAddress} - ${data.method} ${data.callPoint} ${data.protocol} ${data.status} ${data.responseTime}ms - ${data.contentLength}`;
+        returnData.meta = meta;
+      }
+    }
+    return returnData;
   }
 
   getStartTime(host: ArgumentsHost): number {
