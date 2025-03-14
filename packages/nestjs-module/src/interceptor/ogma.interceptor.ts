@@ -59,7 +59,7 @@ export class OgmaInterceptor implements NestInterceptor {
     method: 'Error' | 'Success',
     { context, startTime, data, correlationId, options }: InterceptorMeta & { data: any },
   ): void {
-    const callMethod = `getContext${method}String`;
+    const callMethod = `getContext${method}String` as const;
     if (!this.shouldSkip(context)) {
       const { meta, log: logObject } = this.delegate[callMethod](data, context, startTime, options);
       this.log(logObject, context, correlationId);
@@ -90,7 +90,7 @@ export class OgmaInterceptor implements NestInterceptor {
   }
 
   public log(
-    logObject: string | LogObject,
+    logObject: string | LogObject | unknown,
     context: ExecutionContext,
     correlationId?: string,
   ): void {

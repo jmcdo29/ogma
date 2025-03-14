@@ -1,19 +1,10 @@
-import {
-  OgmaFilterService,
-  OgmaInterceptor,
-  OgmaService,
-  OgmaServiceOptions,
-} from '@ogma/nestjs-module';
+import { OgmaFilterService, OgmaInterceptor, OgmaService } from '@ogma/nestjs-module';
 
-const stream = process.stdout;
 process.stdout.getColorDepth = () => 8;
 export * from './createModule';
 export * from './matcher';
 export * from './ws-promise';
 export const hello = { hello: 'world' };
-export const serviceOptionsFactory = (app: string, json = false): OgmaServiceOptions => {
-  return { application: app, stream, json };
-};
 
 export const reportValues = (
   ogma: OgmaService,

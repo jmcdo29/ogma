@@ -11,13 +11,7 @@ import { suite } from 'uvu';
 import { is } from 'uvu/assert';
 
 import { HttpServerModule } from '../src/http/http-server.module';
-import {
-  createTestModule,
-  hello,
-  reportValues,
-  serviceOptionsFactory,
-  toBeALogObject,
-} from './utils';
+import { createTestModule, hello, reportValues, toBeALogObject } from './utils';
 
 const expectRequestId = (spy: Stub<OgmaInterceptor['log']> | Stub<OgmaFilterService['doLog']>) => {
   is(typeof spy.firstCall.args[2], 'string');
@@ -58,9 +52,7 @@ for (const { adapter, server, parser } of [
     filterSpy: undefined,
   });
   HttpSuite.before(async (context) => {
-    const modRef = await createTestModule(HttpServerModule, serviceOptionsFactory(server), [
-      parser,
-    ]);
+    const modRef = await createTestModule(HttpServerModule, { application: server }, [parser]);
     context.app = modRef.createNestApplication(adapter);
     const interceptor = context.app.get(OgmaInterceptor);
     const filterService = context.app.get(OgmaFilterService);

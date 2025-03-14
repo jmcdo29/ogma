@@ -13,7 +13,7 @@ import { is } from 'uvu/assert';
 import WebSocket from 'ws';
 
 import { WsModule } from '../src/ws/ws.module';
-import { makeWs, reportValues, serviceOptionsFactory, toBeALogObject } from './utils';
+import { makeWs, reportValues, toBeALogObject } from './utils';
 
 for (const { adapter, server, parser, client, protocol, sendMethod, serializer } of [
   {
@@ -52,7 +52,7 @@ for (const { adapter, server, parser, client, protocol, sendMethod, serializer }
   });
   WsSuite.before(async (context) => {
     const modRef = await Test.createTestingModule({
-      imports: [WsModule.register(serviceOptionsFactory(server))],
+      imports: [WsModule.register({ application: server })],
       providers: [parser],
     }).compile();
     context.app = modRef.createNestApplication();
