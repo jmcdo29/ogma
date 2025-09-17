@@ -28,14 +28,14 @@ export abstract class AbstractInterceptorService implements InterceptorService {
     const stringifiedData = data ? JSON.stringify(data) : '';
     const dataLength = Buffer.from(stringifiedData).byteLength;
     return {
-      callerAddress: this.getCallerIp(context),
-      method: this.getMethod(context),
-      callPoint: this.getCallPoint(context),
-      responseTime: this.getResponseTime(startTime),
+      callerAddress: this.getCallerIp(context, options),
+      method: this.getMethod(context, options),
+      callPoint: this.getCallPoint(context, options),
+      responseTime: this.getResponseTime(startTime, options),
       contentLength: dataLength,
-      protocol: this.getProtocol(context),
-      status: this.getStatus(context, options.color && !options.json),
-      meta: this.getMeta(context, data),
+      protocol: this.getProtocol(context, options),
+      status: this.getStatus(context, options.color && !options.json, undefined, options),
+      meta: this.getMeta(context, data, options),
     };
   }
 
@@ -55,14 +55,14 @@ export abstract class AbstractInterceptorService implements InterceptorService {
     options: OgmaInterceptorServiceOptions,
   ): MetaLogObject {
     return {
-      callerAddress: this.getCallerIp(context),
-      method: this.getMethod(context),
-      callPoint: this.getCallPoint(context),
-      status: this.getStatus(context, options.color && !options.json, error),
-      responseTime: this.getResponseTime(startTime),
+      callerAddress: this.getCallerIp(context, options),
+      method: this.getMethod(context, options),
+      callPoint: this.getCallPoint(context, options),
+      status: this.getStatus(context, options.color && !options.json, error, options),
+      responseTime: this.getResponseTime(startTime, options),
       contentLength: Buffer.from(JSON.stringify(error.message)).byteLength,
-      protocol: this.getProtocol(context),
-      meta: this.getMeta(context, error),
+      protocol: this.getProtocol(context, options),
+      meta: this.getMeta(context, error, options),
     };
   }
 
@@ -71,10 +71,17 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    * @param _context the execution context
    * @param inColor if the status should be in color
    * @param error if it was an error
+   * @param options the options passed to the interceptor
    * @returns a string representing the status
    */
-  getStatus(_context: ArgumentsHost, inColor: boolean, error?: HttpException | Error): string {
+  getStatus(
+    _context: ArgumentsHost,
+    inColor: boolean,
+    error?: HttpException | Error,
+    _options?: OgmaInterceptorServiceOptions,
+  ): string {
     const status = error ? 500 : 200;
+
     return inColor ? this.wrapInColor(status) : status.toString();
   }
 
@@ -82,17 +89,26 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    * A helper method to allow devs the ability to pass in extra metadata when it comes to the interceptor
    * @param _context The ArgumentsHost
    * @param _data the response body or the error being returned
+   * @param _options the options passed to the interceptor
    * @returns whatever metadata you want to add in on a second log line. This can be a string, an object, anything
    */
-  getMeta(_context: ArgumentsHost, _data: unknown): unknown {
+  getMeta(
+    _context: ArgumentsHost,
+    _data: unknown,
+    _options?: OgmaInterceptorServiceOptions,
+  ): unknown {
     return;
   }
 
   /**
    * A helper method to get the Ip of the calling client
    * @param context the execution context
+   * @param options the options passed to the interceptor
    */
-  abstract getCallerIp(context: ArgumentsHost): string[] | string;
+  abstract getCallerIp(
+    context: ArgumentsHost,
+    options?: OgmaInterceptorServiceOptions,
+  ): string[] | string;
 
   /**
    * A helper method to get the method type of the request
@@ -106,18 +122,20 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    * Websockets: unknown at moment
    *
    * @param context the execution context
+   * @param options the options passed to the interceptor
    */
-  abstract getMethod(context: ArgumentsHost): string;
+  abstract getMethod(context: ArgumentsHost, options?: OgmaInterceptorServiceOptions): string;
 
-  private getResponseTime(startTime: number): number {
+  private getResponseTime(startTime: number, _options?: OgmaInterceptorServiceOptions): number {
     return Date.now() - startTime;
   }
 
   /**
    * A helper method to get the protocol of the request
    * @param context execution context from Nest
+   * @param options the options passed to the interceptor
    */
-  abstract getProtocol(context: ArgumentsHost): string;
+  abstract getProtocol(context: ArgumentsHost, options?: OgmaInterceptorServiceOptions): string;
 
   /**
    * A helper method to get what was called
@@ -130,8 +148,9 @@ export abstract class AbstractInterceptorService implements InterceptorService {
    *
    * WebSockets: Subscription Event name
    * @param context execution context from Nest
+   * @param options the options passed to the interceptor
    */
-  abstract getCallPoint(context: ArgumentsHost): string;
+  abstract getCallPoint(context: ArgumentsHost, options?: OgmaInterceptorServiceOptions): string;
 
   /**
    * A helper method for setting the correlationId to later be retrieved when logging
