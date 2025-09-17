@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.5.1
+
+### Patch Changes
+
+- 03b36ee: pass in service options to methods of abstract parser
+
 ## 5.5.0
 
 ### Minor Changes
@@ -175,7 +181,6 @@
 - e82c80b: NestJS v9 Support
 
   ## Features
-
   - Use the new `ConfigurableModuleBuilder` from `@nestjs/common@9`
   - Support Fastify v4
     - As a side effect, `@ogma/platform-graphql-fastify` can **only** be used with `@nestjs/mercurius` until `apollo-server-fastify` supports v4
@@ -273,7 +278,6 @@
 - 8bea02f: Release of `@ogma/common` and `@ogma/styler`. Upgrade `@ogma/nestjs-module` to be 100% compatible with Nest's logger
 
   # Breaking Changes
-
   - `@ogma/logger` now depends on `@ogma/common` and `@ogma/styler` for types and string styling, instead of managing it on its own
   - `@ogma/nestjs-module` now accepts `trace` as the second parameter to `error` instead of `context`. `meta` can still be passed as a second parameter too or it can be a third parameter.
   - `@ogma/logger` now sets an `ool` property when logging in JSON mode to accommodate when using a custom log map
@@ -281,7 +285,6 @@
   - `@ogma/cli` now reads from the `ool` property instead `level` to allow writing back to Ogma's standard format
 
   # Features
-
   - `@ogma/logger` now correctly logs Error objects the same way `process.stdout` does instead of logging `{}`
   - `@ogma/logger` can accept a `levelMap` property for custom level mapping
   - `@ogma/logger`'s `stream` option can now have a `getColorDepth` property method, but it is not necessary
