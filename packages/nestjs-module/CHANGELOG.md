@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.5.2
+
+### Patch Changes
+
+- a017e58: Pull the inlineMeta option to ensure that meta from the parsers is actually logged inline
+
 ## 5.5.1
 
 ### Patch Changes
