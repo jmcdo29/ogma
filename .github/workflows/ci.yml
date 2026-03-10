@@ -19,8 +19,8 @@ jobs:
     name: Nx Cloud - Main Job
     uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.15.0
     with:
-      node-version: '20'
-      pnpm-version: '9'
+      node-version: '24'
+      pnpm-version: '10'
       parallel-commands-on-agents: |
         pnpm nx affected --target=lint --parallel=3
         pnpm nx affected --target=test --parallel=3
@@ -33,13 +33,13 @@ jobs:
     continue-on-error: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 24.x
       - name: Install pnpm
-        run: npm i -g pnpm@^9
+        run: npm i -g pnpm@^10
       - name: Install deps
         run: pnpm i
       - name: Collect Test Coverage
@@ -90,5 +90,5 @@ jobs:
     uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.15.0
     with:
       number-of-agents: 3
-      node-version: '20'
-      pnpm-version: '9'
+      node-version: '24'
+      pnpm-version: '10'
