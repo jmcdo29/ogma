@@ -58,4 +58,5 @@ jobs:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: '' # intentionally blank for trusted publishing
+          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
