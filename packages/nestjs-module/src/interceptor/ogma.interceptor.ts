@@ -10,6 +10,7 @@ import { OgmaOptions } from '@ogma/logger';
 import { MonoTypeOperatorFunction, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+import { OgmaInterceptorServiceOptions } from '../interfaces';
 import { OGMA_INTERCEPTOR_SKIP } from '../ogma.constants';
 import { OgmaService } from '../ogma.service';
 import { InterceptorMeta } from './interfaces/interceptor-service.interface';
@@ -23,20 +24,26 @@ import { DelegatorService } from './providers';
 export class OgmaInterceptor implements NestInterceptor {
   private json: boolean;
   private color: boolean;
+  private inlineMeta?: boolean;
 
   constructor(
     private readonly service: OgmaService,
     private readonly delegate: DelegatorService,
     private readonly reflector: Reflector,
   ) {
-    const ogmaOptions: OgmaOptions = (this.service as any).ogma.options;
+    const ogmaOptions: OgmaOptions & { inlineMeta?: boolean } = (this.service as any).ogma.options;
     this.json = ogmaOptions.json;
     this.color = ogmaOptions.color;
+    this.inlineMeta = ogmaOptions.inlineMeta;
   }
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const startTime = Date.now();
-    const options = { json: this.json, color: this.color };
+    const options: OgmaInterceptorServiceOptions = {
+      json: this.json,
+      color: this.color,
+      inlineMeta: this.inlineMeta,
+    };
     const correlationId = this.generateRequestId(context);
     this.delegate.setRequestId(context, correlationId);
     return next.handle().pipe(this.rxJsLogTap({ context, startTime, options, correlationId }));
